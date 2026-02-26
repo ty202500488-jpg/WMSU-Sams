@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WMSU-SAMS Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="student_dashboard.css">
+   
+</head>
+<body>
+
+<!-- TOP NAVBAR -->
+<header class="top-nav">
+    <div class="top-logo">WMSU-SAMS</div>
+    <nav class="top-links">
+        <a href="student_dashboard.html" class="active"><i class="fas fa-home"></i> Home</a>
+        <a href="notification.html"><i class="fas fa-bell"></i> Notifications</a>
+        <a href="application.html"><i class="fas fa-file-alt"></i> Applications</a>
+        <a href="positions.html"><i class="fas fa-briefcase"></i> Browse Positions</a>
+     </nav>
+
+        <!-- Profile Dropdown -->
+        <div class="profile-dropdown">
+            <img src="Images/profile.jpg.jpg" alt="Profile Photo" class="profile-img">
+            <div class="dropdown-content">
+                <a href="#">View Profile</a>
+                <a href="login.html">Logout</a>
+            </div>
+        </div>
+   
+</header>
+
+<main class="dashboard-content">
+
+    <!-- WELCOME & PROFILE COMPLETION -->
+    <section class="welcome-section">
+        <div class="welcome-text">
+            <h1>Welcome Back, Juan Dela Cruz</h1>
+            <p>BSCS – 1st Year</p>
+            <div class="section-divider"></div>
+            
+            <div class="profile-completion">
+                Profile Completion: <span class="completion">80%</span>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 80%;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="status-action">
+            <span class="status-badge verified" title="Verified by CPPESO">Verified</span>
+            <button class="primary-btn" title="Browse Available Positions">Browse Available Positions</button>
+        </div>
+    </section>
+
+    <!-- ALERTS -->
+    <section class="alert-section">
+        <h2>⚠ Attention Required</h2>
+        <ul>
+            <li class="alert-li">Upload your Certificate of Registration (COR) to complete verification.</li>
+            <li class="alert-li">You have 1 application awaiting interview confirmation.</li>
+        </ul>
+    </section>
+
+    <!-- APPLICATION STATUS CARDS -->
+    <section class="stats-section">
+        <div class="card status-pending" title="Applications submitted and awaiting department review">
+            <h3>Pending Review</h3>
+            <p>2 Applications</p>
+        </div>
+        <div class="card status-interview" title="Applications approved and scheduled for interview">
+            <h3>For Interview</h3>
+            <p>1 Application</p>
+        </div>
+        <div class="card status-approved" title="Applications approved; positions confirmed">
+            <h3>Approved</h3>
+            <p>2 Applications</p>
+        </div>
+        <div class="card status-rejected" title="Applications declined due to insufficient qualifications">
+            <h3>Rejected</h3>
+            <p>1 Application</p>
+        </div>
+    </section>
+
+    <!-- FEATURED POSITION / HERO CARD -->
+<section class="hero-section">
+    <div class="hero-card">
+        <h3>Featured Position</h3>
+             <div class="section-divider"></div>
+        <p><strong>IT Office – Student Assistant</strong></p>
+        <p>Requirments: HTML, CSS, Documentation</p>
+        <p>Year Level: 2nd Year and Above</p>
+        <p>Schedule: Mon–Wed (1PM–5PM)</p>
+        <p>Duration: 3 months</p>
+        <p>Slots Available: 2</p>
+        <p class="job-description">
+            Description: Assist the IT Office with website updates, documentation, and student support tasks.
+        </p>
+          <div class="section-divider"></div>
+        <button class="status-badge active" title="This position is currently active">Active</button>
+    </div>
+</section>
+
+<!-- RECENT ACTIVITY -->
+<section class="activity-section">
+    <div class="recent-activity-card">
+        <h3>Recent Activity</h3>
+             <div class="section-divider"></div>
+        <div class="activity">
+            <p><strong>Applied:</strong> IT Office – Student Assistant</p>
+            <span>2h ago</span>
+        </div>
+             <div class="section-divider"></div>
+        <div class="activity">
+            <p><strong>Approved:</strong> Library SA</p>
+            <span>1d ago</span>
+        </div>
+             <div class="section-divider"></div>
+        <div class="activity">
+            <p><strong>Browsed:</strong> Available SA Positions</p>
+            <span>2d ago</span>
+        </div>
+    </div>
+</section>
+
+    <!-- QUICK ACTIONS -->
+    <section class="quick-actions">
+        <h2>Quick Actions</h2>
+        <div class="action-buttons">
+            <button title="Search and browse all available positions">Browse SA Positions</button>
+            <button title="View the status of your applications">View My Applications</button>
+            <button title="Update your profile and upload missing documents">Update Profile</button>
+        </div>
+    </section>
+
+</main>
+</body>
+</html>

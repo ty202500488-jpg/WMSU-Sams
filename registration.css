@@ -1,0 +1,180 @@
+/*  GLOBAL RESET  */
+*{
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+body{
+	font-family: Arial, sans-serif;
+	min-height: 100vh;
+	background-color: #f5f5f5;
+}
+
+/*  BACKGROUND  */
+.background{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: url("Images/background.jpg.png");
+	background-size: cover;
+	background-position: center;
+	z-index: -1;
+}
+.background::before{
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: rgba(0,0,0,0.5);
+}
+.background::after{
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: rgb(172, 64, 64);
+	mix-blend-mode: multiply;
+	opacity: 0.6;
+}
+
+/*  CARD  */
+.container{
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	padding: 20px;
+	position: relative;
+	top: 80px;
+}
+.register-card{
+	width: 100%;
+	max-width: 600px;
+	background: #ffffff;
+	border-radius: 12px;
+	box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+	padding: 40px 50px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 15px;
+}
+.register-card h1{
+	color: #720b0b;
+	font-size: 28px;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+/*  ACCOUNT TYPE BUTTONS  */
+.account-type{
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+	margin-bottom: 20px;
+	width: 100%;
+}
+.type-btn{
+	flex: 1;
+	padding: 12px 0;
+	border-radius: 8px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	color: #720b0b;
+	font-weight: bold;
+	cursor: pointer;
+	transition: 0.3s;
+}
+.type-btn:hover{
+	background-color: #f0f0f0;
+}
+.type-btn.active{
+	background-color: #720b0b;
+	color: #fff;
+	border-color: #720b0b;
+}
+
+/*  FORMS  */
+.account-form{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+.account-form label{
+	display: block;
+	font-size: 14px;
+	margin-bottom: 2px;
+	color: #333;
+}
+.account-form input,
+.account-form select,
+.account-form button{
+	width: 100%;
+	padding: 12px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	background-color: #fff;
+	box-sizing: border-box;
+}
+
+.account-form input:focus,
+.account-form select:focus{
+	outline: none;
+	border-color: #720b0b;
+	box-shadow: 0 0 6px rgba(172,64,64,0.4);
+}
+
+/*  ROWS  */
+.account-form .row{
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+}
+.account-form .row > div{
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+}
+
+/*  REGISTER BUTTON  */
+#registerBtn{
+	background-color: #720b0b;
+	color: #fff;
+	padding: 12px 0;
+	border-radius: 12px;
+	font-size: 15px;
+	cursor: pointer;
+	border: none;
+	transition: 0.3s;
+}
+#registerBtn:hover{
+	transform: translateY(-2px);
+	box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/*  SIGN IN LINK  */
+.register-card a{
+	margin-top: 10px;
+	text-align: center;
+	font-size: 14px;
+	text-decoration: none;
+	color: rgb(172, 64, 64);
+}
+.register-card a:hover{
+	text-decoration: underline;
+}
+
+/*  RESPONSIVE  */
+@media (max-width: 768px){
+	.register-card{
+		padding: 30px 20px;
+	}
+	.account-form .row{
+		flex-direction: column;
+	}
+	.account-type{
+		flex-direction: column;
+	}
+}

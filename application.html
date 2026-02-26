@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Applications</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<link rel="stylesheet" href="application.css">
+</head>
+<body>
+
+<header class="top-nav">
+    <div class="top-logo">WMSU-SAMS</div>
+    <nav class="top-links">
+        <a href="student_dashboard.html"><i class="fas fa-home"></i> Home</a>
+        <a href="notification.html"><i class="fas fa-bell"></i> Notifications</a>
+        <a href="application.html"  class="active"><i class="fas fa-file-alt"></i> Applications</a>
+        <a href="positions.html"><i class="fas fa-briefcase"></i> Browse Positions</a>
+    </nav>
+    <!-- Profile Dropdown -->
+    <div class="profile-dropdown">
+        <img src="Images/profile.jpg.jpg" alt="Profile Photo" class="profile-img">
+        <div class="dropdown-content">
+            <a href="#">View Profile</a>
+            <a href="login.html">Logout</a>
+        </div>
+    </div>
+</header>
+
+<!-- SUMMARY BAR -->
+<div class="summary-bar">
+  <div class="summary-item">Total: 4</div>
+  <div class="summary-item">Pending: 1</div>
+  <div class="summary-item">Interview: 1</div>
+  <div class="summary-item">Approved: 1</div>
+  <div class="summary-item">Rejected: 1</div>
+</div>
+
+<!-- TODAY -->
+<div id="top-date-divider">Today</div>
+
+<!-- APPLICATION CARD 1 -->
+<div class="app-card">
+  <div class="card-top">
+    <div class="job-title">Student Assistant – Library Department</div>
+    <div class="status-badge status-review">Under Review</div>
+  </div>
+  <div class="card-middle">
+    <strong>Application ID:</strong> APP-2026-0142<br>
+    <strong>Date Applied:</strong> Feb 20, 2026<br>
+    <strong>Work Schedule:</strong> Mon–Wed (1:00 PM – 5:00 PM)<br>
+    <strong>Skills:</strong> Data Entry, Basic Excel, Filing<br>
+    <strong>Documents:</strong> ✔ COR ✔ Valid ID ✔ Resume
+  </div>
+  <div class="progress-tracker">
+    <div class="stage completed">
+      <span class="stage-name">Submitted</span>
+      <span class="stage-time">Feb 20, 9:42 AM</span>
+    </div>
+    <div class="stage current">
+      <span class="stage-name">Under Review</span>
+      <span class="stage-time">Feb 22, 10:15 AM</span>
+    </div>
+    <div class="stage pending"><span class="stage-name">Interview Scheduled</span></div>
+    <div class="stage pending"><span class="stage-name">Interview Completed</span></div>
+    <div class="stage pending"><span class="stage-name">Decision</span></div>
+    <div class="stage pending"><span class="stage-name">Deployment</span></div>
+  </div>
+  <div class="card-actions">
+    <button class="btn btn-primary">View Details</button>
+    <button class="btn btn-secondary">Withdraw</button>
+  </div>
+</div>
+
+<!-- APPLICATION CARD 2 -->
+<div class="app-card">
+  <div class="card-top">
+    <div class="job-title">IT Support Assistant – MIS Department</div>
+    <div class="status-badge status-interview">Interview Scheduled</div>
+  </div>
+  <div class="card-middle">
+    <strong>Application ID:</strong> APP-2026-0138<br>
+    <strong>Date Applied:</strong> Feb 18, 2026<br>
+    <strong>Interview:</strong> Feb 28, 10:00 AM, MIS Office
+  </div>
+  <div class="progress-tracker">
+    <div class="stage completed"><span class="stage-name">Submitted</span><span class="stage-time">Feb 18, 9:30 AM</span></div>
+    <div class="stage completed"><span class="stage-name">Under Review</span><span class="stage-time">Feb 19, 11:00 AM</span></div>
+    <div class="stage completed"><span class="stage-name">Shortlisted</span><span class="stage-time">Feb 20, 2:00 PM</span></div>
+    <div class="stage current"><span class="stage-name">Interview Scheduled</span><span class="stage-time">Feb 22, 3:00 PM</span></div>
+    <div class="stage pending"><span class="stage-name">Decision</span></div>
+    <div class="stage pending"><span class="stage-name">Deployment</span></div>
+  </div>
+  <div class="card-actions">
+    <button class="btn btn-primary">Confirm Interview</button>
+    <button class="btn btn-secondary">View Details</button>
+  </div>
+</div>
+
+<!-- YESTERDAY -->
+<div class="date-divider">Yesterday</div>
+
+<!-- APPLICATION CARD 3 -->
+<div class="app-card">
+  <div class="card-top">
+    <div class="job-title">Records Clerk – Registrar Office</div>
+    <div class="status-badge status-rejected">Rejected</div>
+  </div>
+  <div class="card-middle">
+    <strong>Application ID:</strong> APP-2026-0125<br>
+    <strong>Date Applied:</strong> Feb 15, 2026<br>
+    <strong>Reason:</strong> Position filled by another applicant
+  </div>
+  <div class="progress-tracker">
+    <div class="stage completed"><span class="stage-name">Submitted</span><span class="stage-time">Feb 15, 8:00 AM</span></div>
+    <div class="stage completed"><span class="stage-name">Under Review</span><span class="stage-time">Feb 16, 10:00 AM</span></div>
+    <div class="stage completed"><span class="stage-name">Final Decision</span><span class="stage-time">Feb 17, 12:30 PM</span></div>
+    <div class="stage current"><span class="stage-name">Rejected</span></div>
+    <div class="stage pending"><span class="stage-name">Deployment</span></div>
+  </div>
+  <div class="card-actions">
+    <button class="btn btn-primary">View Details</button>
+  </div>
+</div>
+
+<!-- EARLIER / ACTIVE -->
+<div class="date-divider">Earlier</div>
+
+<div class="app-card app-active">
+  <div class="card-top">
+    <div class="job-title">Library Assistant – Library Department</div>
+    <div class="status-badge status-active">Active</div>
+  </div>
+  <div class="card-middle">
+    <strong>Application ID:</strong> APP-2026-0110<br>
+    <strong>Date Applied:</strong> Feb 10, 2026<br>
+    <strong>Schedule:</strong> Mon–Fri (1:00 PM – 4:00 PM)
+  </div>
+  <div class="progress-tracker">
+    <div class="stage completed"><span class="stage-name">Submitted</span><span class="stage-time">Feb 10, 9:00 AM</span></div>
+    <div class="stage completed"><span class="stage-name">Under Review</span><span class="stage-time">Feb 11, 11:00 AM</span></div>
+    <div class="stage completed"><span class="stage-name">Approved</span><span class="stage-time">Feb 12, 2:00 PM</span></div>
+    <div class="stage completed"><span class="stage-name">Deployment</span><span class="stage-time">Feb 13, 1:00 PM</span></div>
+    <div class="stage current"><span class="stage-name">Active</span></div>
+  </div>
+  <div class="card-actions">
+    <button class="btn btn-primary">View Details</button>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="registration.css">
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div class="background"></div>
+
+    <div class="container">
+        <div class="register-card">
+            <h1>Create Account</h1>
+
+            <!-- Account Type Buttons -->
+            <div class="account-type">
+                <button type="button" class="type-btn active" data-target="student">Student</button>
+                <button type="button" class="type-btn" data-target="employer">Employer</button>
+                <button type="button" class="type-btn" data-target="cppeso">CPPESO</button>
+            </div>
+
+            <!-- Student Form -->
+            <form id="studentForm" class="account-form">
+                <div class="row">
+                    <div>
+                        <label for="studentName">Full Name</label>
+                        <input type="text" id="studentName" placeholder="Enter Full Name">
+                    </div>
+                    <div>
+                        <label for="studentID">Student ID</label>
+                        <input type="text" id="studentID" placeholder="Enter Student ID">
+                    </div>
+                </div>
+
+                <label for="studentEmail">WMSU Email</label>
+                <input type="email" id="studentEmail" placeholder="example@wmsu.edu.ph">
+
+                <div class="row">
+                    <div>
+                        <label for="studentCourse">Course</label>
+                        <input type="text" id="studentCourse" placeholder="Enter Course">
+                    </div>
+                    <div>
+                        <label for="studentYear">Year Level</label>
+                        <input type="number" id="studentYear" placeholder="Enter Year Level">
+                    </div>
+                </div>
+
+                <label for="studentPassword">Password</label>
+                <input type="password" id="studentPassword" placeholder="Enter Password">
+
+                <a href="login.html" id="registerBtn">Register</a>
+            </form>
+
+            <!-- Employer Form -->
+            <form id="employerForm" class="account-form">
+                <label for="empName">Full Name</label>
+                <input type="text" id="empName" placeholder="Enter Full Name">
+
+                <div class="row">
+                    <div>
+                        <label for="position">Position</label>
+                        <input type="text" id="position" placeholder="Enter Position">
+                    </div>
+                    <div>
+                        <label for="organization">Organization / Office</label>
+                        <input type="text" id="organization" placeholder="Enter Organization / Office">
+                    </div>
+                </div>
+
+                <label for="location">Office Location</label>
+                <input type="text" id="location" placeholder="Enter Office Location">
+
+                <label for="empEmail">Official WMSU Email</label>
+                <input type="email" id="empEmail" placeholder="example@wmsu.edu.ph">
+
+                <label for="proof">Proof of Affiliation</label>
+                <input type="file" id="proof">
+
+                <label for="duration">School Year / Duration</label>
+                <input type="text" id="duration" placeholder="Ex. 2025-2026">
+
+                <label for="empPassword">Password</label>
+                <input type="password" id="empPassword" placeholder="Enter Password">
+
+                <a href="login.html" id="registerBtn">Register</a>
+            </form>
+
+            <!-- CPPESO Form -->
+            <form id="cppesoForm" class="account-form">
+                <label for="cppesoName">Full Name</label>
+                <input type="text" id="cppesoName" placeholder="Enter Full Name">
+
+                <label for="cppesoEmail">Official WMSU Email</label>
+                <input type="email" id="cppesoEmail" placeholder="example@wmsu.edu.ph">
+
+                <label for="cppesoPassword">Password</label>
+                <input type="password" id="cppesoPassword" placeholder="Enter Password">
+
+               <a href="login.html" id="registerBtn">Register</a>
+            </form>
+
+            <a href="login.html">Already have an account? Sign-In</a>
+        </div>
+    </div>
+
+    <script>
+        // Account Type Button Logic
+        const buttons = document.querySelectorAll(".type-btn");
+        const forms = {
+            student: document.getElementById("studentForm"),
+            employer: document.getElementById("employerForm"),
+            cppeso: document.getElementById("cppesoForm")
+        };
+
+        Object.values(forms).forEach(f => f.style.display = "none");
+        forms["student"].style.display = "flex"; // default active
+
+        buttons.forEach(btn => {
+            btn.addEventListener("click", () => {
+                // Toggle active button
+                buttons.forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+
+                // Show corresponding form
+                const target = btn.dataset.target;
+                Object.entries(forms).forEach(([key, form]) => {
+                    form.style.display = key === target ? "flex" : "none";
+                });
+            });
+        });
+    </script>
+</body>
+</html>
