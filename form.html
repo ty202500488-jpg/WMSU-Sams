@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">        <title>Student Application Form</title>
+    <link rel="stylesheet" href="form.css">
+</head>
+
+<body>
+    <div class="form-container">
+        <form action="#" method="POST" enctype="multipart/form-data">
+
+    <!-- PERSONAL INFORMATION -->
+    <div class="form-section">
+        <h2>Personal Information</h2>
+
+        <div class="row">
+            <div class="form-group">
+                <label>First Name *</label>
+                <input type="text" name="first_name" required pattern="[A-Za-z\s]+">
+            </div>
+
+            <div class="form-group">
+                <label>Middle Name</label>
+                <input type="text" name="middle_name" pattern="[A-Za-z\s]+">
+            </div>
+
+            <div class="form-group">
+               <label>Last Name *</label>
+                <input type="text" name="last_name" required pattern="[A-Za-z\s]+">    
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <label>Student ID *</label>
+                <input type="text" name="student_id"  placeholder="e.g. 2025-0001" required pattern="[0-9]+">
+            </div>
+
+            <div class="form-group">
+                <label>Date of Birth *</label>
+                <input type="date" name="dob" required>
+            </div>
+        </div>
+
+         <div class="row">
+            <div class="form-group">
+                <label>Email *</label>
+                <input type="email" name="email"  placeholder="someone@wmsu.edu.ph" required>
+            </div>
+
+            <div class="form-group">
+                <label>Contact Number *</label>
+                <input type="text" name="contact"  placeholder="e.g. 09123456789" required pattern="[0-9]{10,11}">
+            </div>
+        </div>
+    </div>
+
+        <!-- ACADEMIC INFORMATION -->    
+    <div class="form-section">  
+        <h2>Academic Information</h2>
+
+        <div class="row">
+            <div class="form-group">
+            <label>Year Level *</label>
+                <select name="strand" required>
+                    <option value="">Select</option>
+                    <option>1st Year</option>
+                    <option>2nd Year</option>
+                    <option>3rd Year</option>
+                    <option>4th Year</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Current GPA *</label>
+                <input type="number" name="gpa" required min="0" max="100">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+            <label>School Year *</label>
+                <select name="school_year" required>
+                    <option value="">Select</option>
+                    <option>2025-2026</option>
+                    <option>2026-2027</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Semester *</label>
+                    <select name="semester" required>
+                        <option value="">Select</option>
+                        <option>First Semester</option>
+                        <option>Second Semester</option>
+                    </select>
+            </div>
+        </div>
+    </div>
+
+        <!-- APPLICATION DETAILS -->
+    <div class="form-section">
+        <h2>Application Details</h2>
+            <div class="form-group">
+                <label>Position Applied For *</label>
+                <select name="position" required>
+                    <option value="">Select Position</option>
+                    <option>Office Assistant</option>
+                    <option>Library Support</option>
+                    <option>IT Support</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Availability *</label>
+                <input type="text" name="availability" placeholder="e.g. Mon-Fri, 8:00AM - 12:00PM" required>
+            </div>
+
+            <div class="form-group">
+                <label>Why do you want to apply? (Optional)</label>
+                <textarea name="motivation" rows="4" maxlength="500"></textarea>
+            </div>
+        </div>
+
+        <!-- ATTACHMENTS -->
+        <div class="form-section">
+            <h2>Attachments (Optional)</h2>
+
+            <div class="form-group">
+                <label>Upload Resume (PDF only)</label>
+                <input type="file" name="resume" accept=".pdf">
+            </div>
+        </div>
+
+        <!-- DECLARATION -->
+        <div class="form-section">
+            <div class="checkbox-group">
+                <input type="checkbox" required>
+                <label>I certify that all information provided is true and accurate.</label>
+            </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit Application</button>
+
+    </form>
+</div>
+
+</body>
+</html>
