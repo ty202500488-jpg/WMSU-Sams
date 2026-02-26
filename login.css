@@ -39,7 +39,39 @@ body{
 	opacity: 0.6;
 }
 
-/* ===== CENTER CONTAINER ===== */
+/*  RETURN BUTTON  */
+.return-btn{
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	z-index: 2;
+	color: #fff;
+	font-size: 18px;
+}
+
+.return-btn::before,
+.return-btn::after{
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+
+}
+
+.return-btn::before{
+	content: "";
+	position: absolute;
+	inset: 0;
+}
+
+.return-btn::after{
+	content: "";
+	position: absolute;
+	inset: 0;
+	color: #fff;
+}
+
+/*  CENTER CONTAINER  */
 .container{
 	display: flex;
 	justify-content: center;
@@ -48,7 +80,7 @@ body{
 	padding: 20px;
 }
 
-/* ===== MAIN CARD ===== */
+/*  MAIN CARD  */
 .container-inner{
 	display: flex;
 	width: 50%;
@@ -59,7 +91,7 @@ body{
 	background: white;
 }
 
-/* ===== LEFT IMAGE SECTION ===== */
+/*  LEFT IMAGE SECTION  */
 .image{
 	flex: 1;
 	position: relative;
@@ -131,7 +163,7 @@ body{
     color: #f0f0f0;
 }
 
-/* ===== RIGHT LOGIN SECTION ===== */
+/*  RIGHT LOGIN SECTION  */
 .Login{
 	flex: 1;
 	display: flex;
@@ -148,7 +180,7 @@ body{
 	color: #720b0b;
 }
 
-/* ===== FORM ===== */
+/*  FORM  */
 .Login form{
 	display: flex;
 	flex-direction: column;
@@ -176,7 +208,7 @@ body{
 	box-shadow: 0 0 6px rgba(172,64,64,0.4);
 }
 
-/* ===== BUTTON ===== */
+/*  BUTTON  */
 #login{
 	display: inline-block;
     background-color: #720b0b;
@@ -195,7 +227,7 @@ body{
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-/* ===== FORGOT PASSWORD LINK ===== */
+/*  FORGOT PASSWORD LINK  */
 .Login a{
 	margin-top: 15px;
 	text-align: center;
@@ -208,7 +240,7 @@ body{
 	text-decoration: underline;
 }
 
-/* ===== RESPONSIVE DESIGN ===== */
+/*  RESPONSIVE DESIGN  */
 @media (max-width: 768px){
 
 	.container-inner{

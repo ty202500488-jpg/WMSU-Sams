@@ -37,6 +37,38 @@ body{
 	opacity: 0.6;
 }
 
+/*  RETURN BUTTON  */
+.return-btn{
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	z-index: 2;
+	color: #fff;
+	font-size: 18px;
+}
+
+.return-btn::before,
+.return-btn::after{
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+
+}
+
+.return-btn::before{
+	content: "";
+	position: absolute;
+	inset: 0;
+}
+
+.return-btn::after{
+	content: "";
+	position: absolute;
+	inset: 0;
+	color: #fff;
+}
+
 /*  CARD  */
 .container{
 	display: flex;
