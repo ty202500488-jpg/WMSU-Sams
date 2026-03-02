@@ -119,6 +119,45 @@ body {
 .notification-row:hover {
   background-color: #f5faff;
 }
+/*Notif Menu*/
+.notif-menu{
+  position: relative;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+/* Notification Info */
+.notification-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+}
+/*Menu*/
+.dropdown-menu{
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background: white;
+  border: 1px solid #7c2b2b;
+  border-radius: 6px;
+  width: 150px;
+  box-shadow: 0 4px 10px #7c2b2b;
+  display: none;
+  z-index: 9999;
+}
+/*Item*/
+.dropdown-item{
+  padding: 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.dropdown-item:hover{
+  background-color: #7c2b2b;
+}
+.pinned{
+  background-color: #7c2b2b;
+}
 
 /* Notification Info */
 .notification-info {
@@ -174,4 +213,5 @@ body {
   color: #888;
   white-space: nowrap;
   margin-left: 15px;
+
 }
