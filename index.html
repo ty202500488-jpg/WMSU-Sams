@@ -72,6 +72,102 @@
     					<li>Centralized Management</li>
     					<li>Improved Communication</li>
   					</ul>
+
+				<h2></h2>
+				<h2>REASONS YOU SHOULD VISIT<br>WMSU Career and Job Placement Center</h2>
+				<div class="benefitsdrop">
+					<button onclick="benefitsdown('ben1')" class="benefitsbutton">Career Advising & Career Coaching</button>
+					<div id="ben1" class="benefits-drop-text">
+					  <p>Takes a closer and deeper understanding of oneself to positively identify values parallel to one's interests,
+						skills, strengths, and weaknesses for a better and fitting career chhoice that meets the social, cultural and 
+						economic demands.</p>
+					</div>
+				  </div>
+				  
+				<p></p>
+				<div class="benefitsdrop">
+					<button onclick="benefitsdown('ben2')" class="benefitsbutton">Career Assessment</button>
+					<div id="ben2" class="benefits-drop-text">
+					  <p>Strengthens decision-making using the assessment tools perfectly designed to evaluate students and alumni's 
+						interest and aptitude to discover the career that fits you best.</p>
+					</div>
+				  </div>
+
+				  <p></p>
+				  <div class="benefitsdrop">
+					  <button onclick="benefitsdown('ben3')" class="benefitsbutton">Career Portfolio (Resume/CV)</button>
+					  <div id="ben3" class="benefits-drop-text">
+						<p>Helps plan and organize documentary requisites that will showcase 
+							the positive traits and highlight the strengths of the sutdents and 
+							the alumni to meet their professional goals and to provide potential
+							employers with a set of profound capabilities.
+						</p>
+					  </div>
+					</div>
+
+					<p></p>
+					<div class="benefitsdrop">
+						<button onclick="benefitsdown('ben4')" class="benefitsbutton">Student Scholars Deployment and SPES Enrollment</button>
+						<div id="ben4" class="benefits-drop-text">
+						  <p>Helps the students and the alumnit take advantage of job oppotunities 
+							and maximize their potential.
+						  </p>
+						</div>
+					  </div>
+
+					  <p></p>
+					  <div class="benefitsdrop">
+						  <button onclick="benefitsdown('ben5')" class="benefitsbutton">Labor Market Information (LMI),<br>Employment Opportunity and Referral</button>
+						  <div id="ben5" class="benefits-drop-text">
+							<p>Provides adequate knowledge on career opportunities and extends the 
+								students' and the alumni's network and builds strong ties with different
+								companies and organizations for a better and faster employment.
+							</p>
+						  </div>
+						</div>
+
+						<p></p>
+						<div class="benefitsdrop">
+							<button onclick="benefitsdown('ben6')" class="benefitsbutton">Alumni Linkages</button>
+							<div id="ben6" class="benefits-drop-text">
+							  <p>Realizes the benefits of strengthening ties and connections for greater
+								partnership. The alumni will serve as a support system for a smooth partnership.
+							  </p>
+							</div>
+						  </div>
+
+						  <p></p>
+						  <div class="benefitsdrop">
+							  <button onclick="benefitsdown('ben7')" class="benefitsbutton">Training/Workshop</button>
+							  <div id="ben7" class="benefits-drop-text">
+								<p>Provides students, alumni, and the community with a set of life-skill building
+									program that will enhance and sharpen their abilities.
+								</p>
+							  </div>
+							</div>
+					<script>
+						function benefitsdown(bendropdownId) {
+						  var dropdowns = document.getElementsByClassName("benefits-drop-text");
+						  for (var i = 0; i < dropdowns.length; i++) {
+							var openDropdown = dropdowns[i];
+							if (openDropdown.id !== bendropdownId) {
+							  openDropdown.classList.remove('benefitshow');
+							}
+						  }
+						  document.getElementById(bendropdownId).classList.toggle("benefitshow");
+						}
+						window.onclick = function(event) {
+						  if (!event.target.matches('.benefitsbutton')) {
+							var dropdowns = document.getElementsByClassName("benefits-drop-text");
+							for (var i = 0; i < dropdowns.length; i++) {
+							  var openDropdown = dropdowns[i];
+							  if (openDropdown.classList.contains('benefitshow')) {
+								openDropdown.classList.remove('benefitshow');
+							  }
+							}
+						  }
+						}
+						</script>
 			</section>
 
 				<!-- Call to Action -->
