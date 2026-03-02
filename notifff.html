@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notifications</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="shibal.css">
+</head>
+
+<body>
+<!-- Sidebar -->
+<div class="sidebar">
+    <div class="return-btn"><a class="return-btn" href="student_dashboard.html"><i class="fa-solid fa-arrow-left"></i></a></div>
+    <div class="sidebar-item active">All</div>
+    <div class="sidebar-item">Important</div>
+    <div class="sidebar-item">Unread</div>
+    <div class="sidebar-item">Applications</div>
+    <div class="sidebar-item">Appointments</div>
+    <div class="sidebar-item">Jobs</div>
+     <div class="sidebar-item">Documents</div>
+</div>
+
+<!-- Main Content -->
+<div class="main-content">
+    <div class="header">
+        <h1>Notifications</h1>
+        <button id= "mark-allbtn" class="mark-all">Mark All Read</button>
+    </div>
+
+    <input type="text" placeholder="Search notifications..." class="search-bar">
+
+    <div class="notifications-list">
+
+      <!--  APPLICATIONS  -->
+      <div class="category-separator">Applications</div>
+
+      <!-- Newest first -->
+      <div class="notification-row">
+        <div class="notification-info">
+          <span class="notification-title">
+            <span class="type-dot type-success"></span>
+            Application Approved
+            <span class="new-badge">NEW</span>
+          </span>
+          <span class="notification-desc">
+            Your application for Student Assistant – HR Department has been approved. Prepare required documents.
+          </span>
+        </div>
+        <span class="notification-time">5 minutes ago</span>
+      </div>
+
+      <div class="notification-row">
+        <div class="notification-info">
+          <span class="notification-title">
+            <span class="type-dot type-warning"></span>
+            Pending Application
+          </span>
+          <span class="notification-desc">
+            Your application for Library Assistant is still pending review. Check status for updates.
+          </span>
+        </div>
+        <span class="notification-time">Yesterday</span>
+      </div>
+
+      <div class="notification-row">
+        <div class="notification-info">
+          <span class="notification-title">
+            <span class="type-dot type-error"></span>
+            Application Rejected
+          </span>
+          <span class="notification-desc">
+            Your application for Library Assistant was rejected due to incomplete submission. Review requirements and reapply.
+          </span>
+        </div>
+        <span class="notification-time">Yesterday, 3:00 PM</span>
+      </div>
+
+      <!--  APPOINTMENTS  -->
+      <div class="category-separator">Appointments</div>
+
+      <div class="notification-row">
+        <div class="notification-info">
+          <span class="notification-title">
+            <span class="type-dot type-info"></span>
+            Interview Scheduled
+            <span class="new-badge">NEW</span>
+          </span>
+          <span class="notification-desc">
+            Interview for Student Assistant on Feb 28, 2026, at 2:00 PM with HR Department.
+          </span>
+        </div>
+        <span class="notification-time">10 minutes ago</span>
+      </div>
+
+      <div class="notification-row">
+        <div class="notification-info">
+          <span class="notification-title">
+            <span class="type-dot type-info"></span>
+            Appointment Reminder
+          </span>
+          <span class="notification-desc">
+            Reminder: Your HR Department interview is scheduled for Feb 28, 2026, 2:00 PM.
+          </span>
+        </div>
+        <span class="notification-time">Today, 8:00 AM</span>
+      </div>
+
+      <!-- JOBS  -->
+      <div class="category-separator">Jobs</div>
+
+      <div class="notification-row">
+        <div class="notification-info">
+          <span class="notification-title">
+            <span class="type-dot type-info"></span>
+            New Job Posting – Marketing
+            <span class="new-badge">NEW</span>
+          </span>
+          <span class="notification-desc">
+            Marketing Department posted a new Student Assistant position. Apply before Mar 1, 2026.
+          </span>
+        </div>
+        <span class="notification-time">Today, 11:00 AM</span>
+      </div>
+
+      <div class="notification-row">
+        <div class="notification-info">
+          <span class="notification-title">
+            <span class="type-dot type-info"></span>
+            New Job Posting – Accounting
+            <span class="new-badge">NEW</span>
+          </span>
+          <span class="notification-desc">
+            Accounting Department posted a new position: Accounting Clerk. Apply before Feb 28, 2026.
+          </span>
+        </div>
+        <span class="notification-time">Today, 10:00 AM</span>
+      </div>
+      <div class="notification-row">
+        <div class="notification-info">
+          <span class="notification-title">
+            <span class="type-dot type-info"></span>
+            New Job Posting – IT Assistant
+            <span class="new-badge">NEW</span>
+          </span>
+          <span class="notification-desc">
+            Accounting Department posted a new position: IT Assistant. Apply before Feb 28, 2026.
+          </span>
+        </div>
+        <span class="notification-time">Today, 9:37 AM</span>
+        </div>
+
+      <!--  DOCUMENTS  -->
+      <div class="category-separator">Documents</div>
+
+      <div class="notification-row">
+        <div class="notification-info">
+          <span class="notification-title">
+            <span class="type-dot type-warning"></span>
+            COR Verification Pending
+          </span>
+          <span class="notification-desc">
+            Your Certificate of Registration is under verification. Cannot apply for new jobs until complete.
+          </span>
+        </div>
+        <span class="notification-time">30 minutes ago</span>
+      </div>
+
+      <div class="notification-row">
+        <div class="notification-info">
+          <span class="notification-title">
+            <span class="type-dot type-success"></span>
+            Document Verified
+          </span>
+          <span class="notification-desc">
+            Your uploaded Certificate of Registration and ID have been verified. You can now apply for jobs.
+          </span>
+        </div>
+        <span class="notification-time">Yesterday, 1:00 PM</span>
+      </div>
+
+      <div class="notification-row">
+        <div class="notification-info">
+          <span class="notification-title">
+            <span class="type-dot type-error"></span>
+            Submission Failed
+          </span>
+          <span class="notification-desc">
+            Your uploaded ID for verification failed due to file format error. Please re-upload a valid image.
+          </span>
+        </div>
+        <span class="notification-time">Yesterday, 5:00 PM</span>
+      </div>
+
+      <div class="notification-row">
+  <div class="notification-info">
+    <span class="notification-title">
+      <span class="type-dot type-info"></span>
+      Application Received
+      <span class="new-badge">NEW</span>
+    </span>
+    <span class="notification-desc">
+      Your application for IT Support Intern has been successfully submitted and is awaiting review.
+    </span>
+  </div>
+  <span class="notification-time">Just now</span>
+</div>
+
+<div class="notification-row">
+  <div class="notification-info">
+    <span class="notification-title">
+      <span class="type-dot type-warning"></span>
+      Additional Requirements Needed
+    </span>
+    <span class="notification-desc">
+      Please submit your updated GPA certification for your HR Assistant application.
+    </span>
+  </div>
+  <span class="notification-time">Today, 1:15 PM</span>
+</div>
+
+    </div>
+
+    <script>
+document.getElementById("mark-allbtn").addEventListener("click", function() {
+
+    // Select all NEW badges
+    const newBadges = document.querySelectorAll(".new-badge");
+
+    // Remove each NEW badge
+    newBadges.forEach(function(badge) {
+        badge.remove(); // completely removes the NEW tag
+    });
+
+});
+</script>
+</div>
+
+</body>
+</html>
