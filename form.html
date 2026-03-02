@@ -84,11 +84,28 @@
 
         <div class="row">
             <div class="form-group">
-            <label>School Year *</label>
+            <label>Course *</label>
                 <select name="school_year" required>
                     <option value="">Select</option>
-                    <option>2025-2026</option>
-                    <option>2026-2027</option>
+                    <option>College of Argriculture</option>
+					<option>College of Architecture</option>
+					<option>College of Arts & Sciences</option>
+					<option>College of Asian & Islamic Studies</option>
+					<option>College of Computing Studies</option>
+					<option>College of Criminal Justice Education</option>
+					<option>College of Engineering</option>
+					<option>College of Forestry & Environmental Studies</option>
+					<option>College of Home Economics</option>
+					<option>College of Law</option>
+					<option>College of Liberal Arts</option>
+					<option>College of Medicine</option>
+					<option>College of Nursing</option>
+					<option>College of Public Administration & Development Studies</option>
+					<option>College of Science and Mathematics</option>
+					<option>College of Social Work & Community Development</option>
+					<option>College of Sports Science & Physical Education</option>
+					<option>College of Teacher Education</option>
+					<option>Professional Science Master's Program</option>    
                 </select>
             </div>
 
@@ -106,33 +123,103 @@
         <!-- APPLICATION DETAILS -->
     <div class="form-section">
         <h2>Application Details</h2>
-            <div class="form-group">
-                <label>Position Applied For *</label>
-                <select name="position" required>
-                    <option value="">Select Position</option>
-                    <option>Office Assistant</option>
-                    <option>Library Support</option>
-                    <option>IT Support</option>
-                </select>
-            </div>
+        <div class="form-group">
+			<label>Availability *</label>
+			<!-- Monday -->
+			<div class="availability-day">
+				<label>
+					<input type="checkbox" data-day="monday" >
+					Monday
+				</label>
+				<div class="time-range">
+					<input type="time" name="monday_start">
+					<input type="time" name="monday_end">
+				</div>
+			</div>
 
-            <div class="form-group">
-                <label>Availability *</label>
-                <input type="text" name="availability" placeholder="e.g. Mon-Fri, 8:00AM - 12:00PM" required>
-            </div>
+			<!-- Tuesday -->
+			<div class="availability-day">
+				<label>
+					<input type="checkbox" data-day="tuesday">
+					Tuesday
+				</label>
+				<div class="time-range">
+					<input type="time" name="tuesday_start">
+					<input type="time" name="tuesday_end">
+				</div>
+			</div>
+			<!-- Wednesday -->
+			<div class="availability-day">
+				<label>
+					<input type="checkbox" data-day="wednesday">
+					Wednesday
+				</label>
+				<div class="time-range">
+					<input type="time" name="wednesday_start">
+					<input type="time" name="wednesday_end">
+				</div>
+			</div>
 
+			<!-- Thursday -->
+			<div class="availability-day">
+				<label>
+					<input type="checkbox" data-day="thursday">
+					Thursday
+				</label>
+				<div class="time-range">
+					<input type="time" name="thursday_start">
+					<input type="time" name="thursday_end">
+				</div>
+			</div>
+
+			<!-- Friday -->
+			<div class="availability-day">
+				<label>
+					<input type="checkbox" data-day="friday">
+					Friday
+				</label>
+				<div class="time-range">
+					<input type="time" name="friday_start">
+					<input type="time" name="friday_end">
+				</div>
+			</div>
+
+			<!-- Saturday -->
+			<div class="availability-day">
+				<label>
+					<input type="checkbox" data-day="saturday">
+					Saturday
+				</label>
+				<div class="time-range">
+					<input type="time" name="saturday_start">
+					<input type="time" name="saturday_end">
+				</div>
+			</div>
+
+			<!-- Sunday -->
+			<div class="availability-day">
+				<label>
+					<input type="checkbox" data-day="sunday">
+					Sunday
+				</label>
+				<div class="time-range">
+					<input type="time" name="sunday_start">
+					<input type="time" name="sunday_end">
+				</div>
+			</div>
+		</div>
             <div class="form-group">
                 <label>Why do you want to apply? (Optional)</label>
                 <textarea name="motivation" rows="4" maxlength="500"></textarea>
             </div>
-        </div>
+    </div>
 
         <!-- ATTACHMENTS -->
         <div class="form-section">
-            <h2>Attachments (Optional)</h2>
+            <h2>Attachments (Required) </h2>
 
             <div class="form-group">
-                <label>Upload Resume (PDF only)</label>
+                <label>Upload COR *</label>
                 <input type="file" name="resume" accept=".pdf">
             </div>
         </div>
