@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employer Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="employer_dashboard.css">
+</head>
+<body>
+
+<!-- TOP NAVIGATION -->
+<header class="top-nav">
+    <div class="top-logo">WMSU-SAMS</div>
+    <nav class="top-links">
+        <a href="student_dashboard.html" class="active"><i class="fas fa-home"></i> Home</a>
+        <a href="notification.html"><i class="fas fa-bell"></i> Notifications</a>
+        <a href="application.html"><i class="fas fa-file-alt"></i> Applications</a>
+        <a href="positions.html"><i class="fas fa-briefcase"></i> Positions</a>
+     </nav>
+
+        <!-- Profile Dropdown -->
+        <div class="profile-dropdown">
+            <img src="Images/profile.jpg.jpg" alt="Profile Photo" class="profile-img">
+            <div class="dropdown-content">
+                <a href="#">View Profile</a>
+                <a href="login.html">Logout</a>
+            </div>
+        </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<div class="dashboard-content">
+
+    <!-- HEADER SECTION -->
+    <section class="welcome-section">
+        <div class="welcome-text">
+            <h1>Department Dashboard</h1>
+            <p>Library Department</p>
+        </div>
+
+        <div class="status-action">
+            <span class="status-badge status-active">Active Department</span>
+            <button class="primary-btn">+ Create SA Position</button>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- SUMMARY CARDS -->
+    <section class="stats-section">
+        <div class="card status-active">
+            <h3>Active Positions</h3>
+            <p>4</p>
+        </div>
+
+        <div class="card status-interview">
+            <h3>Total Applications</h3>
+            <p>26</p>
+        </div>
+
+        <div class="card status-pending">
+            <h3>Pending Review</h3>
+            <p>12</p>
+        </div>
+
+        <div class="card status-approved">
+            <h3>Approved Assistants</h3>
+            <p>6</p>
+        </div>
+    </section>
+
+    <!-- RECENT APPLICATIONS -->
+    <section class="table-card">
+        <h2>Recent Applications</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Course</th>
+                    <th>Year</th>
+                    <th>GPA</th>
+                    <th>Status</th>
+                    <th>Workflow</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Maria Santos</td>
+                    <td>BSIT</td>
+                    <td>3rd Year</td>
+                    <td>1.75</td>
+                    <td><span class="status-badge status-pending">Pending</span></td>
+                    <td>
+                        <div class="workflow">
+                            <span class="step completed">Submitted</span>
+                            <span class="step current">Reviewed</span>
+                            <span class="step">Approved</span>
+                        </div>
+                    </td>
+                    <td>
+                        <button class="action-btn btn-review">Review</button>
+                        <button class="action-btn btn-approve">Approve</button>
+                        <button class="action-btn btn-reject">Reject</button>
+                    </td>
+                </tr>
+
+                <tr>
+        <td>Angela Cruz</td>
+        <td>BSIT</td>
+        <td>1st Year</td>
+        <td>1.80</td>
+        <td><span class="status-badge status-pending">Pending</span></td>
+        <td>
+            <div class="workflow">
+                <span class="step completed">Submitted</span>
+                <span class="step current">Reviewed</span>
+                <span class="step">Approved</span>
+            </div>
+        </td>
+        <td>
+            <button class="action-btn btn-review">Review</button>
+            <button class="action-btn btn-approve">Approve</button>
+            <button class="action-btn btn-reject">Reject</button>
+        </td>
+    </tr>
+
+    <tr>
+        <td>Luz Mendoza</td>
+        <td>BSCE</td>
+        <td>4th Year</td>
+        <td>1.70</td>
+        <td><span class="status-badge status-pending">Pending</span></td>
+        <td>
+            <div class="workflow">
+                <span class="step completed">Submitted</span>
+                <span class="step current">Reviewed</span>
+                <span class="step">Approved</span>
+            </div>
+        </td>
+        <td>
+            <button class="action-btn btn-review">Review</button>
+            <button class="action-btn btn-approve">Approve</button>
+            <button class="action-btn btn-reject">Reject</button>
+        </td>
+    </tr>
+
+    <tr>
+        <td>Carla Reyes</td>
+        <td>BSIT</td>
+        <td>3rd Year</td>
+        <td>1.88</td>
+        <td><span class="status-badge status-pending">Pending</span></td>
+        <td>
+            <div class="workflow">
+                <span class="step completed">Submitted</span>
+                <span class="step current">Reviewed</span>
+                <span class="step">Approved</span>
+            </div>
+        </td>
+        <td>
+            <button class="action-btn btn-review">Review</button>
+            <button class="action-btn btn-approve">Approve</button>
+            <button class="action-btn btn-reject">Reject</button>
+        </td>
+    </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- ACTIVE POSITIONS -->
+    <section class="table-card">
+    <h2>Active SA Positions</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Position</th>
+                <th>Slots</th>
+                <th>Deadline</th>
+                <th>Applicants</th>
+                <th>Status</th>
+                <th>Filled</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>Library Assistant</td>
+                <td>3</td>
+                <td>March 30, 2026</td>
+                <td>10</td>
+                <td><span class="status-badge status-interview">Open</span></td>
+                <td><span class="slots-text">2 / 3 filled</span></td>
+            </tr>
+
+            <tr>
+                <td>Office Assistant</td>
+                <td>2</td>
+                <td>April 5, 2026</td>
+                <td>6</td>
+                <td><span class="status-badge status-approved">Ongoing Selection</span></td>
+                <td><span class="slots-text">1 / 2 filled</span></td>
+            </tr>
+
+            <tr>
+                <td>IT Lab Assistant</td>
+                <td>2</td>
+                <td>April 10, 2026</td>
+                <td>4</td>
+                <td><span class="status-badge status-interview">Open</span></td>
+                <td><span class="slots-text">0 / 2 filled</span></td>
+            </tr>
+
+            <tr>
+                <td>Registrar Assistant</td>
+                <td>1</td>
+                <td>April 15, 2026</td>
+                <td>3</td>
+                <td><span class="status-badge status-pending">Open</span></td>
+                <td><span class="slots-text">0 / 1 filled</span></td>
+            </tr>
+
+            <tr>
+                <td>Event Coordinator</td>
+                <td>1</td>
+                <td>April 25, 2026</td>
+                <td>2</td>
+                <td><span class="status-badge status-pending">Open</span></td>
+                <td><span class="slots-text">0 / 1 filled</span></td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+</body>
+</html>

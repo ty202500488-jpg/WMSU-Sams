@@ -130,7 +130,7 @@ header{
 /* MAIN */
 main{
 	position: relative;
-	top: 430px;
+	top: 380px;
 	left: 100px;
 	width: 80%;
 }
@@ -185,10 +185,26 @@ main>p{
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
+.hero-benefits {
+    position: relative;
+	top: 110px;
+    display: flex;
+    gap: 50px;
+    font-size: 0.9rem;
+    color: #ffffffcc; 
+    justify-content: center; 
+}
+
+.hero-benefits span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
 
 /* FEATURES SECTION */
 #features {
-  	padding: 60px 100px;
+  	padding: 60px 0px;
   	background: #f5f5f5;
   	text-align: center;
 }
@@ -201,7 +217,7 @@ main>p{
 
 .feature-container {
   	display: flex;
-  	justify-content: space-evenly;
+  	justify-content: center;
   	gap: 30px;
   	flex-wrap: wrap;
 }
@@ -212,6 +228,7 @@ main>p{
   	border-radius: 15px;
   	box-shadow: 0 8px 20px rgba(0,0,0,0.1);
   	width: 300px;
+	height: 300px;
   	transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -234,41 +251,155 @@ main>p{
 
 /* BENEFITS SECTION */
 #benefits {
-  	padding: 80px 100px;
-  	background: #f5f5f5;
+  	padding: 60px 0px;
+  	background: #720b0b;
   	text-align: center;
 }
 
 #benefits h2 {
   	font-size: 36px;
-  	margin: 20px 0px 60px 0px;
-  	color: #720b0b;
+  	margin: 0px 0px 60px 0px;
+  	color: #ffffff;
 }
 
-#benefits ul {
-  	list-style: none;
+.benefits-container {
   	display: flex;
   	justify-content: center;
   	gap: 30px;
   	flex-wrap: wrap;
-  	padding: 0;
 }
 
-#benefits ul li {
-  	background: #ffffff;
-  	padding: 20px 30px;
-  	border-radius: 12px;
-  	font-size: 16px;
-  	color: #9f0f0f;
-  	font-weight: bold;
-  	min-width: 180px;
-  	box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+.benefits-container .card {
+  	background: white;
+  	padding: 30px 20px;
+  	border-radius: 15px;
+  	box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  	width: 300px;
+	height: 300px;
   	transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.benefits ul li:hover {
-  	transform: translateY(-5px);
-  	box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+.benefits-container .card:hover {
+  	transform: translateY(-10px);
+  	box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+}
+
+.benefits-container .card h3 {
+  	font-size: 22px;
+  	color: #9f0f0f;
+  	margin-bottom: 15px;
+}
+
+.benefits-container .card p {
+  	font-size: 16px;
+  	color: #333;
+  	line-height: 1.5;
+}
+
+/* Featured Positions */
+#positions {
+    padding: 60px 0px;
+    background: #f9f9f9;
+    text-align: center;
+}
+
+#positions h2 {
+    font-size: 36px;
+    margin-bottom: 50px;
+	margin-top: 0px;
+    color: #720b0b;
+}
+
+.position-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.position-container .card {
+    background: white;
+    padding: 25px 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    width: 300px;
+	height: 240px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.position-container .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+}
+
+.position-container .card h3 {
+    color: #9f0f0f;
+    margin-bottom: 12px;
+}
+
+.position-container .card p {
+    font-size: 15px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.position-container .apply-btn {
+    display: inline-block;
+    background-color: #720b0b;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-size: 14px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.position-container .apply-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Testimonials */
+#testimonials {
+    padding: 60px 50px;
+    background: #720b0b;
+    text-align: center;
+}
+
+#testimonials h2 {
+    font-size: 36px;
+    margin-bottom: 50px;
+    color: #ffffff;
+}
+
+.testimonial-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.testimonial-container .card {
+    background: white;
+    padding: 25px 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-style: italic;
+}
+
+.testimonial-container .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+}
+
+.testimonial-container .card h4 {
+    margin-top: 15px;
+    font-weight: bold;
+    font-style: normal;
+    color: #720b0b;
+    font-size: 14px;
 }
 
 /* CALL TO ACTION */
@@ -285,6 +416,7 @@ main>p{
 }
 
 #cta p {
+	color: #888888;
   	font-size: 26px;
   	margin-bottom: 40px;
 }
@@ -362,7 +494,7 @@ footer a:hover {
 }
 
 .footer-copy {
-  grid-column: 1 / -1; /* spans full width */
+  grid-column: 1 / -1; 
   text-align: center;
   margin-top: 30px;
   font-size: 13px;
