@@ -1,49 +1,98 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>Sign-In</title>
-		<link rel="stylesheet" href="login.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-		<meta charset="UTF-8">
-	</head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign-In</title>
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <!-- Return button -->
+    <div class="return-btn">
+        <a href="index.html"><i class="fa-solid fa-arrow-left"></i></a>
+    </div>
 
-	<body>
-		<div class="return-btn"><a class="return-btn" href="index.html"><i class="fa-solid fa-arrow-left"></i></a></div>
-			<!-- Background -->
-		<div class="background"></div>
-			<!-- Left contents -->
-		<div class="container">
-			<div class="container-inner">
-				<div class="image">
-					<div class="logo-container">
-						<div class="logo"></div>
-					</div>
-					
-					<div class="signup-link">
-                		<a href="registration.html">Don't have an account?</a>
-          		  	</div>
-				</div>
-			
-			<!-- Right contents -->
-				<div class="Login">
-					<h1>Sign-In</h1>
-					<label for="email">Email</label>
-					<input type="email" id="email" placeholder="Example@wmsu.edu.ph">
+    <!-- Background -->
+    <div class="background"></div>
 
-					<label for="password">Password</label>
-					<input type="password" id="password" placeholder="Enter your Password">
+    <div class="container">
+        <div class="container-inner">
+            <!-- Left side image/logo -->
+            <div class="image">
+                <div class="logo-container">
+                    <div class="logo"></div>
+                </div>
+                <div class="signup-link">
+                    <a href="registration.html">Don't have an account?</a>
+                </div>
+            </div>
 
-						<a href="student_dashboard.html" id="login">Login</a>
-					<a href="#">Forgot Password?</a>
-				</div>
-			</div>
-		</div>
+            <!-- Right side login form -->
+            <div class="Login">
+                <h1 id="loginTitle">Student Sign-In</h1>
 
-	
-	
-	
-	
-	
-	
-	</body>
+                <!-- Login type buttons -->
+                <div class="login-type" style="display:flex; justify-content:center; margin-bottom:20px;">
+                    <button type="button" class="login-btn active" data-target="student" 
+                        style="padding:10px 20px; margin:0 5px; border:1px solid #720b0b; border-radius:8px; cursor:pointer; background:#fff; color:#720b0b; font-weight:bold;">
+                        Student
+                    </button>
+                    <button type="button" class="login-btn" data-target="employer" 
+                        style="padding:10px 20px; margin:0 5px; border:1px solid #720b0b; border-radius:8px; cursor:pointer; background:#fff; color:#720b0b; font-weight:bold;">
+                        Employer
+                    </button>
+                    <button type="button" class="login-btn" data-target="cppeso" 
+                        style="padding:10px 20px; margin:0 5px; border:1px solid #720b0b; border-radius:8px; cursor:pointer; background:#fff; color:#720b0b; font-weight:bold;">
+                        Admin
+                    </button>
+                </div>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Example@wmsu.edu.ph">
+
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your Password">
+
+                <button id="login">Login</button>
+                <a href="#">Forgot Password?</a>
+            </div>
+        </div>
+    </div>
+
+
+		<script>
+        // Toggle login type
+        const loginButtons = document.querySelectorAll(".login-btn");
+        let currentType = "student";
+
+        loginButtons.forEach(btn => {
+            btn.addEventListener("click", () => {
+                loginButtons.forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                currentType = btn.dataset.target;
+                document.getElementById("loginTitle").textContent = btn.textContent + " Sign-In";
+            });
+        });
+
+        // Dummy login handler (replace with backend)
+        document.getElementById("login").addEventListener("click", () => {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            const dummyAccounts = {
+                student: {email: "student@wmsu.edu.ph", password: "student123", redirect: "student_dashboard.html"},
+                employer: {email: "employer@wmsu.edu.ph", password: "employer123", redirect: "employer_dashboard.html"},
+                cppeso: {email: "admin@wmsu.edu.ph", password: "admin123", redirect: "admin_dashboard.html"}
+            };
+
+            const account = dummyAccounts[currentType];
+
+            if(email === account.email && password === account.password) {
+                window.location.href = account.redirect;
+            } else {
+                alert("Invalid credentials for " + currentType);
+            }
+        });
+    </script>
+</body>
 </html>

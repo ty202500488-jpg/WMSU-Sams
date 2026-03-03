@@ -42,31 +42,27 @@ body{
 	position: absolute;
 	top: 20px;
 	left: 20px;
-	z-index: 2;
+	z-index: 5;
 	color: #fff;
 	font-size: 18px;
 }
 
-.return-btn::before,
-.return-btn::after{
-	content: "";
-	position: absolute;
-	inset: 0;
-	z-index: 1;
-
+.return-btn a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0,0,0,0.5);
+    color: #fff;
+    font-size: 18px;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
 }
-
-.return-btn::before{
-	content: "";
-	position: absolute;
-	inset: 0;
-}
-
-.return-btn::after{
-	content: "";
-	position: absolute;
-	inset: 0;
-	color: #fff;
+.return-btn a:hover {
+	background-color: rgba(0,0,0,0.7);
+	transform: translateY(-2px);
 }
 
 /*  CARD  */
