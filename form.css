@@ -106,23 +106,33 @@ textarea {
     font-weight: normal;
 }
 
-/* BUTTON  */
-.submit-btn {
+/* Button wrapper */
+.button-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+/* BUTTON */
+a.submit-btn {
     background: #720b0b;
     color: #fff;
-    padding: 12px;
+    padding: 12px 30px;
+    width: 60%;
     border: none;
-    width: 100%;
+    text-decoration: none;
     border-radius: 8px;
-    font-size: 15px;
+    font-size: 20px;
     cursor: pointer;
     transition: 0.3s;
+    display: inline-block;
+    text-align: center;
 }
 
-.submit-btn:hover {
+a.submit-btn:hover {
     background: #550808;
+    transform: translateY(-2px);
 }
-
 /*  RESPONSIVE  */
 @media (max-width: 768px) {
     .row {

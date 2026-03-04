@@ -1,0 +1,123 @@
+/* Layout */
+.status-body {
+    background: #f4f6f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+.status-container {
+    background: #ffffff;
+    padding: 50px 40px;
+    width: 90%;
+    max-width: 550px;
+    text-align: center;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+/* Icon */
+.status-icon {
+    width: 95px;
+    height: 95px;
+    margin: 0 auto 25px auto;
+    background: #fff3cd;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.status-icon i {
+    font-size: 45px;
+    color: #856404;
+}
+
+/* Title */
+.status-container h1 {
+    color: #720b0b;
+    margin-bottom: 15px;
+}
+
+.status-text {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+/* Status Badge */
+.status-badge {
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 13px;
+    margin-bottom: 25px;
+}
+
+.status-badge.pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+/* Process Box */
+.process-box {
+    background: #f0f4ff;
+    border: 1px solid #bbc9ee;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.process-box h3 {
+    margin-bottom: 15px;
+    color: #720b0b;
+}
+
+.process-box ul {
+    list-style: none;
+   padding-left: 18px;
+    margin: 0;
+}
+
+.process-box li {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Notice */
+.notice-box {
+    background: #ffe5e5;
+    border: 1px solid #ffb3b3;
+    padding: 15px;
+    border-radius: 12px;
+    font-size: 13px;
+    color: #a10000;
+    margin-bottom: 25px;
+}
+
+/* Buttons */
+.status-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.primary-btn {
+    background: #720b0b;
+    width: 50%;
+    color: white;
+    padding: 14px 25px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
