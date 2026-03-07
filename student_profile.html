@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Student Profile - WMSU-SAMS</title>
+<link rel="stylesheet" href="student_profile.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+<div class="profile-container">
+
+    <!-- Return Button -->
+    <a href="dashboard.html" class="return-btn"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</a>
+
+    <!-- Header -->
+    <div class="profile-header">
+        <div class="avatar"><i class="fa-solid fa-user"></i></div>
+        <div class="header-info">
+            <h2>Juan Dela Cruz</h2>
+            <p>ID: 2023-10452</p>
+            <p>Course: BS IT - 3rd Year</p>
+            <button class="edit-btn"><i class="fa-solid fa-pen"></i> Edit Header Info</button>
+        </div>
+    </div>
+
+    <!-- Profile Completion Tracker -->
+    <div class="completion-tracker">
+        <p>Profile Completion: 85%</p>
+        <div class="progress-bar">
+            <div class="progress" style="width: 85%;"></div>
+        </div>
+        <p>Personal: ✔ Academic: ✔ Skills: ✔ Resume: ✔ Portfolio: ✔ COR: ✔</p>
+    </div>
+
+    <!-- Eligibility Indicator -->
+    <div class="eligibility">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        Incomplete Documents → Cannot Apply Yet
+        <span>Complete missing sections to unlock application access</span>
+    </div>
+
+    <!-- Personal Info -->
+    <div class="section">
+        <h3>Personal Information <button class="edit-btn"><i class="fa-solid fa-pen"></i> Edit</button></h3>
+        <div class="info">
+            <label>Email: <input type="email" value="juan@email.com"></label>
+            <label>Phone: <input type="text" value="09123456789"></label>
+            <label>Address: <input type="text" value="Zamboanga City"></label>
+            <label>Date of Birth: <input type="date" value="2003-01-10"></label>
+            <button class="save-btn">Save</button>
+        </div>
+    </div>
+
+    <!-- Academic Info -->
+    <div class="section">
+        <h3>Academic Information <button class="edit-btn"><i class="fa-solid fa-pen"></i> Edit</button></h3>
+        <div class="info">
+            <label>Course: <input type="text" value="BS Information Technology"></label>
+            <label>Year Level: <input type="text" value="3rd Year"></label>
+            <label>College: <input type="text" value="College of Computing Studies"></label>
+            <label>Enrollment Status: <input type="text" value="Enrolled"></label>
+            <button class="save-btn">Save</button>
+        </div>
+    </div>
+
+    <!-- Skills -->
+    <div class="section">
+        <h3>Skills <button class="edit-btn"><i class="fa-solid fa-pen"></i> Edit</button></h3>
+        <div class="skills-list">
+            <span class="skill">Web Dev</span>
+            <span class="skill">MS Office</span>
+            <span class="skill">Data Entry</span>
+            <span class="skill">Graphic Design</span>
+        </div>
+        <button class="save-btn">Save</button>
+    </div>
+
+    <!-- Resume Upload -->
+    <div class="section">
+        <h3>Resume Upload</h3>
+        <p>Filename: juan_resume.pdf | Status: Verified</p>
+        <button class="upload-btn"><i class="fa-solid fa-upload"></i> Upload / Replace</button>
+        <button class="download-btn"><i class="fa-solid fa-download"></i> Download</button>
+        <button class="preview-btn"><i class="fa-solid fa-eye"></i> Preview</button>
+    </div>
+
+    <!-- Portfolio -->
+    <div class="section">
+        <h3>Portfolio / Work Samples</h3>
+        <p>File 1: project1.pdf</p>
+        <p>File 2: graphic_sample.png</p>
+        <p>Status: Pending Verification</p>
+        <button class="upload-btn"><i class="fa-solid fa-upload"></i> Upload / Replace</button>
+        <button class="download-btn"><i class="fa-solid fa-download"></i> Download</button>
+        <button class="preview-btn"><i class="fa-solid fa-eye"></i> Preview</button>
+    </div>
+
+    <!-- COR Certificate -->
+    <div class="section">
+        <h3>COR Certificate Upload</h3>
+        <p>Filename: COR_2026.pdf | Status: Verified</p>
+        <button class="upload-btn"><i class="fa-solid fa-upload"></i> Upload / Replace</button>
+        <button class="download-btn"><i class="fa-solid fa-download"></i> Download</button>
+        <button class="preview-btn"><i class="fa-solid fa-eye"></i> Preview</button>
+    </div>
+
+    <!-- Document Verification Status -->
+    <div class="section verification">
+        <h3>Document Verification Status (Admin Only)</h3>
+        <ul>
+            <li>ID: Verified</li>
+            <li>Enrollment Proof: Verified</li>
+            <li>Resume: Verified</li>
+            <li>Portfolio: Pending</li>
+            <li>COR Certificate: Verified</li>
+        </ul>
+    </div>
+
+</div>
+</body>
+</html>
