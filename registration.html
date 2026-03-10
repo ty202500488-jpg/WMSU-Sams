@@ -25,67 +25,37 @@
 
             <!-- Student Form -->
             <form id="studentForm" class="account-form">
-                <div class="row">
-                    <div>
-                        <label for="studentName">Full Name</label>
-                        <input type="text" id="studentName" placeholder="Enter Full Name">
-                    </div>
-                    <div>
-                        <label for="studentID">Student ID</label>
-                        <input type="text" id="studentID" placeholder="Enter Student ID">
-                    </div>
-                </div>
+                <label for="studentName">Full Name</label>
+                <input type="text" id="studentName" placeholder="Enter Full Name">
 
-                <label for="studentEmail">WMSU Email</label>
-                <input type="email" id="studentEmail" placeholder="example@wmsu.edu.ph">
-
-                <div class="row">
-                    <div>
-                        <label for="studentCourse">Course</label>
-                        <input type="text" id="studentCourse" placeholder="Enter Course">
-                    </div>
-                    <div>
-                        <label for="studentYear">Year Level</label>
-                        <input type="number" id="studentYear" placeholder="Enter Year Level">
-                    </div>
-                </div>
+                <label for="studentEmail">Official WMSU Email</label>
+                <input type="email" id="studentEmail" placeholder="example@wmsu.edu.ph" required>
 
                 <label for="studentPassword">Password</label>
-                <input type="password" id="studentPassword" placeholder="Enter Password">
+                <input type="password" id="studentPassword" placeholder="Enter Password" required>
+
+                <label for="confirmStudentPassword">Confirm Password</label>
+                <input type="password" id="confirmStudentPassword" placeholder="Confirm Password" required>
 
                 <a href="login.html" id="registerBtn">Register</a>
             </form>
 
             <!-- Employer Form -->
             <form id="employerForm" class="account-form">
+
                 <label for="empName">Full Name</label>
                 <input type="text" id="empName" placeholder="Enter Full Name">
 
-                <div class="row">
-                    <div>
-                        <label for="position">Position</label>
-                        <input type="text" id="position" placeholder="Enter Position">
-                    </div>
-                    <div>
-                        <label for="organization">Organization / Office</label>
-                        <input type="text" id="organization" placeholder="Enter Organization / Office">
-                    </div>
-                </div>
-
-                <label for="location">Office Location</label>
-                <input type="text" id="location" placeholder="Enter Office Location">
-
                 <label for="empEmail">Official WMSU Email</label>
-                <input type="email" id="empEmail" placeholder="example@wmsu.edu.ph">
-
-                <label for="proof">Proof of Affiliation</label>
-                <input type="file" id="proof">
-
-                <label for="duration">School Year / Duration</label>
-                <input type="text" id="duration" placeholder="Ex. 2025-2026">
+                <input type="email" id="empEmail" placeholder="example@wmsu.edu.ph" required>
 
                 <label for="empPassword">Password</label>
-                <input type="password" id="empPassword" placeholder="Enter Password">
+                <input type="password" id="empPassword" placeholder="Enter Password" required>
+
+                <label for="confirmEmpPassword">Confirm Password</label>
+                <input type="password" id="confirmEmpPassword" placeholder="Confirm Password" required>
+
+                <!-- Optional fields for profile completion after login -->
 
                 <a href="login.html" id="registerBtn">Register</a>
             </form>
@@ -96,12 +66,15 @@
                 <input type="text" id="cppesoName" placeholder="Enter Full Name">
 
                 <label for="cppesoEmail">Official WMSU Email</label>
-                <input type="email" id="cppesoEmail" placeholder="example@wmsu.edu.ph">
+                <input type="email" id="cppesoEmail" placeholder="example@wmsu.edu.ph" required>
 
                 <label for="cppesoPassword">Password</label>
-                <input type="password" id="cppesoPassword" placeholder="Enter Password">
+                <input type="password" id="cppesoPassword" placeholder="Enter Password" required>
 
-               <a href="registration_submitted.html" id="registerBtn">Register</a>
+                <label for="confirmCppesoPassword">Confirm Password</label>
+                <input type="password" id="confirmCppesoPassword" placeholder="Confirm Password" required>
+
+                <a href="registration_submitted.html" id="registerBtn">Register</a>
             </form>
 
             <a href="login.html">Already have an account? Sign-In</a>

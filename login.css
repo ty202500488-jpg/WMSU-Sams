@@ -42,13 +42,12 @@ body{
 /*  RETURN BUTTON  */
 .return-btn{
 	position: absolute;
-	top: 20px;
-	left: 20px;
+	top: 40px;
+	left: 39px;
 	z-index: 5;
 	color: #fff;
 	font-size: 18px;
 }
-
 
 .return-btn a {
     display: flex;
@@ -68,7 +67,6 @@ body{
     background-color: rgba(0,0,0,0.8);
     transform: translateY(-2px);
 }
-
 
 /*  CENTER CONTAINER  */
 .container{
@@ -155,103 +153,69 @@ body{
 	color: #f0f0f0;
 }
 
-/*  RIGHT LOGIN SECTION  */
-.Login{
-	flex: 1;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	padding: 40px 60px;
-	background: white;
-	min-width: 250px;
+/* Right login form */
+.login-form {
+    flex: 1;
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.login-form h1 {
+    margin-bottom: 30px;
+    color: #720b0b;
+    text-align: center;
+}
+.login-form label {
+    margin-bottom: 5px;
+    color: #333;
 }
 
-.Login h1{
-	margin-bottom: 30px;
-	font-size: 30px;
-	text-align: center;
-	color: #720b0b;
+/* Input Type*/
+.login-form input {
+    width: 100%;
+    padding: 12px 0px 12px 10px;          
+    border-radius: 8px;       
+	border: 1px solid #8c8c8c;
+    background-color: #fff; 
+    color: #000000;            
+    transition: 0.3s;
+    margin-bottom: 20px;
+    font-size: 14px;
 }
 
-/*  LOGIN TYPE BUTTONS */
-.login-type{
-	display: flex;
-	justify-content: center;
-	margin-bottom: 20px;
-	flex-wrap: wrap;
+.login-form input:hover {
+    background-color: #f0f0f0;
 }
 
-.login-type .login-btn{
-	padding: 10px 20px;
-	margin: 5px;
-	border: 1px solid #720b0b;
-	border-radius: 8px;
-	cursor: pointer;
-	background: #fff;
-	color: #720b0b;
-	font-weight: bold;
-	transition: 0.3s;
+.login-form input:focus {
+    outline: none;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(114, 11, 11, 0.5);
+    border-color: #720b0b;
 }
 
-.login-type .login-btn.active,
-.login-type .login-btn:hover{
-	background: #720b0b;
-	color: #fff;
+.login-form button {
+    padding: 12px;
+    background: #720b0b;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
 }
-
-/*  FORM  */
-.Login label{
-	font-size: 14px;
-	margin-bottom: 6px;
+.login-form button:hover {
+    background: #5a0808;
 }
-
-.Login input{
-	width: 100%;
-	padding: 12px;
-	margin-bottom: 20px;
-	border: 1px solid #ccc;
-	border-radius: 6px;
-	font-size: 14px;
-	transition: 0.3s;
-}
-
-.Login input:focus{
-	outline: none;
-	border-color: rgb(172, 64, 64);
-	box-shadow: 0 0 6px rgba(172,64,64,0.4);
-}
-
-/*  LOGIN BUTTON  */
-#login{
-	display: block;
-	width: 100%;
-	background-color: #720b0b;
-	color: #ffffff;
-	padding: 12px;
-	border: none;
-	border-radius: 12px;
-	font-size: 15px;
-	cursor: pointer;
-	transition: 0.3s;
-}
-
-#login:hover{
-	transform: translateY(-2px);
-	box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-/*  FORGOT PASSWORD LINK  */
-.Login a{
-	margin-top: 15px;
-	text-align: center;
-	font-size: 14px;
-	text-decoration: none;
-	color: rgb(172, 64, 64);
-	display: block;
-}
-
-.Login a:hover{
-	text-decoration: underline;
+.forgot-password {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    color: #720b0b;
+    text-decoration: none;
+    font-size: 14px;
 }
 
 /*  RESPONSIVE DESIGN  */
