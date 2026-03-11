@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
     <title>Register</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="registration.css">
-    <meta charset="UTF-8">
 </head>
 
 <body>
-    <div class="return-btn"><a class="return-btn" href="index.html"><i class="fa-solid fa-arrow-left"></i></a></div>
+    <div class="return-btn">
+        <a href="index.html"><i class="fa-solid fa-arrow-left"></i></a>
+    </div>
     <div class="background"></div>
 
     <div class="container">
@@ -24,92 +26,61 @@
             </div>
 
             <!-- Student Form -->
-            <form id="studentForm" class="account-form">
-                <div class="row">
-                    <div>
-                        <label for="studentName">Full Name</label>
-                        <input type="text" id="studentName" placeholder="Enter Full Name">
-                    </div>
-                    <div>
-                        <label for="studentID">Student ID</label>
-                        <input type="text" id="studentID" placeholder="Enter Student ID">
-                    </div>
-                </div>
+            <form id="studentForm" class="account-form" action="registration_submitted.html">
+                <label for="studentName">Full Name</label>
+                <input type="text" id="studentName" placeholder="Enter Full Name" required>
 
-                <label for="studentEmail">WMSU Email</label>
-                <input type="email" id="studentEmail" placeholder="example@wmsu.edu.ph">
-
-                <div class="row">
-                    <div>
-                        <label for="studentCourse">Course</label>
-                        <input type="text" id="studentCourse" placeholder="Enter Course">
-                    </div>
-                    <div>
-                        <label for="studentYear">Year Level</label>
-                        <input type="number" id="studentYear" placeholder="Enter Year Level">
-                    </div>
-                </div>
+                <label for="studentEmail">Official WMSU Email</label>
+                <input type="email" id="studentEmail" placeholder="example@wmsu.edu.ph" required>
 
                 <label for="studentPassword">Password</label>
-                <input type="password" id="studentPassword" placeholder="Enter Password">
+                <input type="password" id="studentPassword" placeholder="Enter Password" required>
 
-                <a href="login.html" id="registerBtn">Register</a>
+                <label for="confirmStudentPassword">Confirm Password</label>
+                <input type="password" id="confirmStudentPassword" placeholder="Confirm Password" required>
+
+                <button type="submit" id="register-btn">Register</button>
             </form>
 
             <!-- Employer Form -->
-            <form id="employerForm" class="account-form">
+            <form id="employerForm" class="account-form" action="registration_submitted.html">
                 <label for="empName">Full Name</label>
-                <input type="text" id="empName" placeholder="Enter Full Name">
-
-                <div class="row">
-                    <div>
-                        <label for="position">Position</label>
-                        <input type="text" id="position" placeholder="Enter Position">
-                    </div>
-                    <div>
-                        <label for="organization">Organization / Office</label>
-                        <input type="text" id="organization" placeholder="Enter Organization / Office">
-                    </div>
-                </div>
-
-                <label for="location">Office Location</label>
-                <input type="text" id="location" placeholder="Enter Office Location">
+                <input type="text" id="empName" placeholder="Enter Full Name" required>
 
                 <label for="empEmail">Official WMSU Email</label>
-                <input type="email" id="empEmail" placeholder="example@wmsu.edu.ph">
-
-                <label for="proof">Proof of Affiliation</label>
-                <input type="file" id="proof">
-
-                <label for="duration">School Year / Duration</label>
-                <input type="text" id="duration" placeholder="Ex. 2025-2026">
+                <input type="email" id="empEmail" placeholder="example@wmsu.edu.ph" required>
 
                 <label for="empPassword">Password</label>
-                <input type="password" id="empPassword" placeholder="Enter Password">
+                <input type="password" id="empPassword" placeholder="Enter Password" required>
 
-                <a href="login.html" id="registerBtn">Register</a>
+                <label for="confirmEmpPassword">Confirm Password</label>
+                <input type="password" id="confirmEmpPassword" placeholder="Confirm Password" required>
+
+                <button type="submit" id="register-btn">Register</button>
             </form>
 
             <!-- CPPESO Form -->
-            <form id="cppesoForm" class="account-form">
+            <form id="cppesoForm" class="account-form" action="registration_submitted.html">
                 <label for="cppesoName">Full Name</label>
-                <input type="text" id="cppesoName" placeholder="Enter Full Name">
+                <input type="text" id="cppesoName" placeholder="Enter Full Name" required>
 
                 <label for="cppesoEmail">Official WMSU Email</label>
-                <input type="email" id="cppesoEmail" placeholder="example@wmsu.edu.ph">
+                <input type="email" id="cppesoEmail" placeholder="example@wmsu.edu.ph" required>
 
                 <label for="cppesoPassword">Password</label>
-                <input type="password" id="cppesoPassword" placeholder="Enter Password">
+                <input type="password" id="cppesoPassword" placeholder="Enter Password" required>
 
-               <a href="registration_submitted.html" id="registerBtn">Register</a>
+                <label for="confirmCppesoPassword">Confirm Password</label>
+                <input type="password" id="confirmCppesoPassword" placeholder="Confirm Password" required>
+
+                <button type="submit" id="register-btn">Register</button>
             </form>
 
-            <a href="login.html">Already have an account? Sign-In</a>
+            <a href="login.html">Already have an account? Login</a>
         </div>
     </div>
 
     <script>
-        // Account Type Button Logic
         const buttons = document.querySelectorAll(".type-btn");
         const forms = {
             student: document.getElementById("studentForm"),
@@ -117,22 +88,35 @@
             cppeso: document.getElementById("cppesoForm")
         };
 
+        // Hide all forms, show only default
         Object.values(forms).forEach(f => f.style.display = "none");
-        forms["student"].style.display = "flex"; // default active
+        forms.student.style.display = "flex";
 
+        // Switch forms on button click
         buttons.forEach(btn => {
             btn.addEventListener("click", () => {
-                // Toggle active button
                 buttons.forEach(b => b.classList.remove("active"));
                 btn.classList.add("active");
 
-                // Show corresponding form
                 const target = btn.dataset.target;
                 Object.entries(forms).forEach(([key, form]) => {
-                    form.style.display = key === target ? "flex" : "none";
+                    form.style.display = (key === target) ? "flex" : "none";
                 });
+            });
+        });
+
+        // Optional: Password confirmation validation
+        document.querySelectorAll(".account-form").forEach(form => {
+            form.addEventListener("submit", e => {
+                const pwd = form.querySelector('input[type="password"]:nth-of-type(1)');
+                const confirmPwd = form.querySelector('input[type="password"]:nth-of-type(2)');
+                if (pwd.value !== confirmPwd.value) {
+                    e.preventDefault();
+                    alert("Passwords do not match!");
+                }
             });
         });
     </script>
 </body>
+
 </html>

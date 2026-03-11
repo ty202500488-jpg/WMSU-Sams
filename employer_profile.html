@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Department Profile - WMSU-SAMS</title>
+<link rel="stylesheet" href="employer_profile.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+
+<div class="profile-container">
+
+    <!-- Return Button -->
+    <a href="dashboard.html" class="return-btn"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</a>
+
+    <!-- Header -->
+    <div class="profile-header">
+        <div class="avatar"><i class="fa-solid fa-building-columns"></i></div>
+        <div class="header-info">
+            <h2>College of Computing Studies</h2>
+            <p>Department ID: CCS-2023-01</p>
+            <p>Head: Dr. Juan dela Cruz</p>
+            <button class="edit-btn"><i class="fa-solid fa-pen"></i> Edit Header Info</button>
+        </div>
+    </div>
+
+    <!-- Profile Completion Tracker -->
+    <div class="completion-tracker">
+        <p>Profile Completion: 70%</p>
+        <div class="progress-bar">
+            <div class="progress" style="width: 70%;"></div>
+        </div>
+        <p>Department Info: ✔ Contact Info: ✔ Positions Posted: ⚪ Documents: ⚪ Account Settings: ✔</p>
+    </div>
+
+    <!-- Incomplete Documents -->
+    <div class="incomplete-docs">
+        <h3>Incomplete Documents</h3>
+        <ul>
+            <li>Department Registration Form</li>
+            <li>Head of Department ID Copy</li>
+            <li>Proof of Department Authorization</li>
+        </ul>
+    </div>
+
+    <!-- Department Information -->
+    <div class="section">
+        <h3>Department Information</h3>
+        <label>Department Name: 
+            <input type="text" value="College of Computing Studies">
+            <button class="edit-btn-small"><i class="fa-solid fa-pen"></i></button>
+        </label>
+        <hr>
+        <label>Department ID: 
+            <input type="text" value="CCS-2023-01">
+            <button class="edit-btn-small"><i class="fa-solid fa-pen"></i></button>
+        </label>
+        <hr>
+        <label>College Affiliation: 
+            <input type="text" value="College of Computing">
+            <button class="edit-btn-small"><i class="fa-solid fa-pen"></i></button>
+        </label>
+        <hr>
+        <label>Head of Department: 
+            <input type="text" value="Dr. Juan dela Cruz">
+            <button class="edit-btn-small"><i class="fa-solid fa-pen"></i></button>
+        </label>
+        <button class="save-btn">Save Section</button>
+    </div>
+
+    <!-- Contact Information -->
+    <div class="section">
+        <h3>Contact Information</h3>
+        <label>Email: 
+            <input type="email" value="ccs@wmsu.edu.ph">
+            <button class="edit-btn-small"><i class="fa-solid fa-pen"></i></button>
+        </label>
+        <hr>
+        <label>Phone: 
+            <input type="text" value="09123456789">
+            <button class="edit-btn-small"><i class="fa-solid fa-pen"></i></button>
+        </label>
+        <hr>
+        <label>Office Location: 
+            <input type="text" value="CCS Building, WMSU">
+            <button class="edit-btn-small"><i class="fa-solid fa-pen"></i></button>
+        </label>
+        <button class="save-btn">Save Section</button>
+    </div>
+
+    <!-- Positions Posted -->
+    <div class="section">
+        <h3>Positions Posted</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Position Title</th>
+                    <th>Slots</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Student Assistant - IT Lab</td>
+                    <td>3</td>
+                    <td>Pending</td>
+                    <td>
+                        <button class="view-btn">View</button>
+                        <button class="edit-btn-small"><i class="fa-solid fa-pen"></i> Edit</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Student Assistant - Library</td>
+                    <td>2</td>
+                    <td>Approved</td>
+                    <td>
+                        <button class="view-btn">View</button>
+                        <button class="edit-btn-small"><i class="fa-solid fa-pen"></i> Edit</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Documents -->
+    <div class="section">
+        <h3>Documents</h3>
+        <p>Registration Form.pdf <button class="upload-btn"><i class="fa-solid fa-upload"></i> Upload</button> <button class="download-btn"><i class="fa-solid fa-download"></i> Download</button></p>
+        <p>HOD ID.pdf <button class="upload-btn"><i class="fa-solid fa-upload"></i> Upload</button> <button class="download-btn"><i class="fa-solid fa-download"></i> Download</button></p>
+        <p>Authorization Letter.pdf <button class="upload-btn"><i class="fa-solid fa-upload"></i> Upload</button> <button class="download-btn"><i class="fa-solid fa-download"></i> Download</button></p>
+    </div>
+
+    <!-- Account Settings -->
+    <div class="section">
+        <h3>Account Settings</h3>
+        <label>Email: 
+            <input type="email" value="ccs@wmsu.edu.ph">
+            <button class="edit-btn-small"><i class="fa-solid fa-pen"></i></button>
+        </label>
+        <hr>
+        <label>Change Password: 
+            <input type="password">
+            <button class="edit-btn-small"><i class="fa-solid fa-pen"></i></button>
+        </label>
+        <button class="save-btn">Save Section</button>
+    </div>
+
+</div>
+</body>
+</html>

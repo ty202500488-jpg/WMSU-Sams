@@ -40,8 +40,8 @@ body{
 /*  RETURN BUTTON  */
 .return-btn{
 	position: absolute;
-	top: 20px;
-	left: 20px;
+	top: 40px;
+	left: 39px;
 	z-index: 5;
 	color: #fff;
 	font-size: 18px;
@@ -55,7 +55,6 @@ body{
     height: 40px;
     background-color: rgba(0,0,0,0.5);
     color: #fff;
-    font-size: 18px;
     border-radius: 50%;
     text-decoration: none;
     transition: background 0.3s, transform 0.2s;
@@ -131,7 +130,6 @@ body{
 .account-form label{
 	display: block;
 	font-size: 14px;
-	margin-bottom: 2px;
 	color: #333;
 }
 .account-form input,
@@ -167,7 +165,7 @@ body{
 }
 
 /*  REGISTER BUTTON  */
-#registerBtn{
+#register-btn{
 	background-color: #720b0b;
 	color: #fff;
 	padding: 12px 0;
@@ -177,7 +175,7 @@ body{
 	border: none;
 	transition: 0.3s;
 }
-#registerBtn:hover{
+#register-btn:hover{
 	transform: translateY(-2px);
 	box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }

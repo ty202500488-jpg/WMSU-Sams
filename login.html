@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sign-In</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Sign-In</title>
     <link rel="stylesheet" href="login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
     <!-- Return button -->
     <div class="return-btn">
-        <a href="index.html"><i class="fa-solid fa-arrow-left"></i></a>
+        <a href="index.html"><i class="fa-solid fa-arrow-left"></i> </a>
     </div>
 
     <!-- Background -->
@@ -28,69 +29,40 @@
             </div>
 
             <!-- Right side login form -->
-            <div class="Login">
-                <h1 id="loginTitle">Student Sign-In</h1>
-
-                <!-- Login type buttons -->
-                <div class="login-type" style="display:flex; justify-content:center; margin-bottom:20px;">
-                    <button type="button" class="login-btn active" data-target="student" 
-                        style="padding:10px 20px; margin:0 5px; border:1px solid #720b0b; border-radius:8px; cursor:pointer; background:#fff; color:#720b0b; font-weight:bold;">
-                        Student
-                    </button>
-                    <button type="button" class="login-btn" data-target="employer" 
-                        style="padding:10px 20px; margin:0 5px; border:1px solid #720b0b; border-radius:8px; cursor:pointer; background:#fff; color:#720b0b; font-weight:bold;">
-                        Employer
-                    </button>
-                    <button type="button" class="login-btn" data-target="cppeso" 
-                        style="padding:10px 20px; margin:0 5px; border:1px solid #720b0b; border-radius:8px; cursor:pointer; background:#fff; color:#720b0b; font-weight:bold;">
-                        Admin
-                    </button>
-                </div>
+            <div class="login-form">
+                <h1>Login</h1>
 
                 <label for="email">Email</label>
-                <input type="email" id="email" placeholder="Example@wmsu.edu.ph">
+                <input type="email" id="email" placeholder="example@wmsu.edu.ph">
 
                 <label for="password">Password</label>
                 <input type="password" id="password" placeholder="Enter your Password">
 
                 <button id="login">Login</button>
-                <a href="#">Forgot Password?</a>
+                <a href="#" class="forgot-password">Forgot Password?</a>
             </div>
         </div>
     </div>
 
-
-		<script>
-        // Toggle login type
-        const loginButtons = document.querySelectorAll(".login-btn");
-        let currentType = "student";
-
-        loginButtons.forEach(btn => {
-            btn.addEventListener("click", () => {
-                loginButtons.forEach(b => b.classList.remove("active"));
-                btn.classList.add("active");
-                currentType = btn.dataset.target;
-                document.getElementById("loginTitle").textContent = btn.textContent + " Sign-In";
-            });
-        });
-
-        // Dummy login handler (replace with backend)
+    <script>
         document.getElementById("login").addEventListener("click", () => {
-            const email = document.getElementById("email").value;
+            const email = document.getElementById("email").value.trim();
             const password = document.getElementById("password").value;
 
-            const dummyAccounts = {
-                student: {email: "student@wmsu.edu.ph", password: "student123", redirect: "student_dashboard.html"},
-                employer: {email: "employer@wmsu.edu.ph", password: "employer123", redirect: "employer_dashboard.html"},
-                cppeso: {email: "admin@wmsu.edu.ph", password: "admin123", redirect: "admin_dashboard.html"}
-            };
+            // Dummy accounts
+            const accounts = [
+                { type: "student", email: "student@wmsu.edu.ph", password: "student123", redirect: "student_dashboard.html" },
+                { type: "employer", email: "employer@wmsu.edu.ph", password: "employer123", redirect: "employer_dashboard.html" },
+                { type: "cppeso", email: "admin@wmsu.edu.ph", password: "admin123", redirect: "admin_dashboard.html" }
+            ];
 
-            const account = dummyAccounts[currentType];
+            // Match account
+            const account = accounts.find(acc => acc.email === email && acc.password === password);
 
-            if(email === account.email && password === account.password) {
+            if(account) {
                 window.location.href = account.redirect;
             } else {
-                alert("Invalid credentials for " + currentType);
+                alert("Invalid email or password.");
             }
         });
     </script>
