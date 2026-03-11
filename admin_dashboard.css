@@ -1,0 +1,200 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Arial, Helvetica, sans-serif;
+background:#f4f6f9;
+color:#222;
+}
+
+/* LAYOUT */
+
+.layout{
+display:grid;
+grid-template-columns:240px 1fr;
+min-height:100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+background:#7b1113;
+color:white;
+padding:25px 20px;
+display:flex;
+flex-direction:column;
+}
+
+.logo{
+margin-bottom:40px;
+}
+
+.logo h2{
+font-size:22px;
+}
+
+.logo p{
+font-size:12px;
+opacity:.8;
+}
+
+.sidebar ul{
+list-style:none;
+}
+
+.sidebar li{
+padding:12px;
+margin-bottom:6px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.sidebar li:hover{
+background:#a4161a;
+}
+
+.active{
+background:#a4161a;
+}
+
+.logout{
+margin-top:20px;
+}
+
+/* MAIN */
+
+.main{
+padding:30px;
+}
+
+/* TOPBAR */
+
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
+}
+
+.title span{
+font-size:13px;
+color:#666;
+}
+
+.user{
+background:white;
+padding:8px 14px;
+border-radius:6px;
+border:1px solid #ddd;
+}
+
+/* STATS */
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:18px;
+margin-bottom:30px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:10px;
+border:1px solid #e2e2e2;
+}
+
+.card h3{
+font-size:14px;
+color:#666;
+margin-bottom:6px;
+}
+
+.card p{
+font-size:28px;
+font-weight:bold;
+}
+
+/* GRID */
+
+.dashboard-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+/* PANELS */
+
+.panel{
+background:white;
+padding:20px;
+border-radius:10px;
+border:1px solid #e2e2e2;
+}
+
+.panel.full{
+grid-column:1/-1;
+}
+
+.panel h2{
+font-size:16px;
+margin-bottom:15px;
+}
+
+/* PIPELINE */
+
+.pipeline{
+display:flex;
+justify-content:space-between;
+gap:10px;
+}
+
+.stage{
+flex:1;
+background:#f2f2f2;
+padding:12px;
+text-align:center;
+border-radius:6px;
+}
+
+.stage span{
+font-size:12px;
+color:#666;
+display:block;
+}
+
+.stage strong{
+font-size:20px;
+}
+
+/* TASKS */
+
+.task-list{
+list-style:none;
+}
+
+.task-list li{
+padding:8px 0;
+border-bottom:1px solid #eee;
+}
+
+/* ACTIVITY */
+
+.activity{
+list-style:none;
+}
+
+.activity li{
+display:flex;
+gap:15px;
+padding:10px 0;
+border-bottom:1px solid #eee;
+}
+
+.activity span{
+font-weight:bold;
+color:#555;
+}
