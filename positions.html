@@ -42,31 +42,31 @@
         <input type="text" id="search" placeholder="Search Position">
         <label for="department">Department</label>
         <select id="department">
-            <option>All Departments</option>
-            <option>STEM</option>
-            <option>ABM</option>
-            <option>HUMSS</option>
-            <option>GAS</option>
+            <option value="all">All Departments</option>
+            <option value="STEM">STEM</option>
+            <option value="ABM">ABM</option>
+            <option value="HUMSS">HUMSS</option>
+            <option value="GAS">GAS</option>
         </select>
         <label for="college">College</label>
         <select id="college">
-            <option>All Colleges</option>
-            <option>College of Arts & Sciences</option>
-            <option>College of Engineering</option>
-            <option>College of Business</option>
+            <option value="all">All Colleges</option>
+            <option value="CAS" >College of Arts & Sciences</option>
+            <option value="COE">College of Engineering</option>
+            <option value="COB">College of Business</option>
         </select>
         <label for="duration">Duration</label>
         <select id="duration">
-            <option>Any</option>
-            <option>Short-term</option>
-            <option>Long-term</option>
+            <option value="any">Any</option>
+            <option value="short">Short-term</option>
+            <option value="long">Long-term</option>
         </select>
         <label for="pay">Pay</label>
         <select id="pay">
-            <option>Any</option>
-            <option>₱0 – ₱500/week</option>
-            <option>₱500 – ₱1000/week</option>
-            <option>₱1000+/week</option>
+            <option value="any">Any</option>
+            <option value="low">₱0 – ₱500/week</option>
+            <option value="mid">₱500 – ₱1000/week</option>
+            <option value="high">₱1000+/week</option>
         </select>
     </aside>
 
@@ -74,7 +74,11 @@
     <main class="positions-grid">
 
         <!-- CARD 1 -->
-        <div class="position-card">
+        <div class="position-card"
+          data-department="STEM"
+          data-college="CAS"
+          data-duration="short"
+          data-pay="500">
                 <div class="status">New</div>
             <div class="header">
                 <h4>Lab Assistant</h4>
@@ -102,7 +106,11 @@
         </div>
 
         <!-- CARD 2 -->
-        <div class="position-card">
+        <div class="position-card"
+          data-department="ABM"
+          data-college="COB"
+          data-duration="short"
+          data-pay="500">
             <div class="status">New</div>
             <div class="header">
                 <h4>Business Research Assistant</h4>
@@ -130,7 +138,11 @@
         </div>
 
          <!-- CARD 3 -->
-        <div class="position-card">
+        <div class="position-card"
+          data-department="HUMSS"
+          data-college="CAS"
+          data-duration="short"
+          data-pay="500">
             <div class="header">
                 <h4>Event Organizer Assistant</h4>
                 <div class="department">HUMSS</div>
@@ -157,7 +169,11 @@
         </div>
 
          <!-- CARD 4 -->
-        <div class="position-card">
+        <div class="position-card"
+          data-department="GAS"
+          data-college="CAS"
+          data-duration="short"
+          data-pay="450">
             <div class="header">
                 <h4>Library Assistant</h4>
                 <div class="department">GAS</div>
@@ -184,7 +200,11 @@
         </div>
 
          <!-- CARD 5 -->
-        <div class="position-card">
+       <div class="position-card"
+         data-department="STEM"
+         data-college="COE"
+         data-duration="long"
+         data-pay="700">
             <div class="header">
                 <h4>IT Support Intern</h4>
                 <div class="department">STEM</div>
@@ -211,7 +231,11 @@
         </div>
 
          <!-- CARD 6 -->
-        <div class="position-card">
+        <div class="position-card"
+          data-department="ABM"
+          data-college="COB"
+          data-duration="short"
+          data-pay="500">
             <div class="header">
                 <h4>Social Media Assistant</h4>
                 <div class="department">ABM</div>
@@ -239,6 +263,79 @@
         
     </main>
     </div>
+    
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+const search = document.getElementById("search");
+const department = document.getElementById("department");
+const college = document.getElementById("college");
+const duration = document.getElementById("duration");
+const pay = document.getElementById("pay");
+
+const cards = document.querySelectorAll(".position-card");
+
+function filterCards(){
+
+    const searchValue = search.value.toLowerCase();
+    const deptValue = department.value;
+    const collegeValue = college.value;
+    const durationValue = duration.value;
+    const payValue = pay.value;
+
+    cards.forEach(card => {
+
+        const title = card.querySelector("h4").textContent.toLowerCase();
+
+        const cardDept = card.dataset.department;
+        const cardCollege = card.dataset.college;
+        const cardDuration = card.dataset.duration;
+        const cardPay = parseInt(card.dataset.pay);
+
+        let visible = true;
+
+        if(!title.includes(searchValue)){
+            visible = false;
+        }
+
+        if(deptValue !== "all" && cardDept !== deptValue){
+            visible = false;
+        }
+
+        if(collegeValue !== "all" && cardCollege !== collegeValue){
+            visible = false;
+        }
+
+        if(durationValue !== "any" && cardDuration !== durationValue){
+            visible = false;
+        }
+
+        if(payValue === "low" && cardPay > 500){
+            visible = false;
+        }
+
+        if(payValue === "mid" && (cardPay < 500 || cardPay > 1000)){
+            visible = false;
+        }
+
+        if(payValue === "high" && cardPay < 1000){
+            visible = false;
+        }
+
+        card.style.display = visible ? "block" : "none";
+
+    });
+
+}
+
+search.addEventListener("input", filterCards);
+department.addEventListener("change", filterCards);
+college.addEventListener("change", filterCards);
+duration.addEventListener("change", filterCards);
+pay.addEventListener("change", filterCards);
+
+});
+</script>
 
 </body>
 </html>
