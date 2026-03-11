@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Student Profile - WMSU-SAMS</title>
-<link rel="stylesheet" href="student_profile.css">
+<title>Edit Student Profile - WMSU-SAMS</title>
+<link rel="stylesheet" href="edit_student_profile.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
@@ -11,23 +11,26 @@
 
     <!-- Top Bar Button-->
     <div class="top-bar">
-         <a href="student_dashboard.html" class="return-btn">
-             <i class="fa-solid fa-arrow-left"></i> Back to Dashboard
-        </a>
-
-        <a href="edit_student_profile.html" class="edit-btn">
-            <i class="fa-solid fa-pen"></i> Edit Profile
-        </a>
+        <a href="student_profile.html" class="return-btn"><i class="fa-solid fa-arrow-left"></i> Back to Profile</a>
+        <a href="student_profile.html" class="confirm-btn">Confirm Changes</a>
     </div>
-
+ 
     <!-- Header -->
     <div class="profile-header">
         <div class="avatar"><i class="fa-solid fa-user"></i></div>
         <div class="header-info">
-            <h2>Juan Dela Cruz</h2>
-            <p>ID: 2023-10452</p>
-            <p>Course: BS IT - 3rd Year</p>
-           
+            <label>
+                <span>Username:</span> 
+                <input type="text" value="Juan Dela Cruz" placeholder="Name">
+            </label>
+            <label>
+                <span>ID:</span>
+                <input type="text" value="2023-10452" placeholder="ID Number">
+            </label>
+            <label>
+                 <span>Course:</span>
+                 <input type="text" value="BS IT - 3rd Year" placeholder="Course - Year Level">
+            </label>
         </div>
     </div>
 
@@ -51,10 +54,11 @@
     <div class="section">
         <h3>Personal Information</h3>
         <div class="info">
-            <p><span class="label">Email:</span> juan@email.com</p>
-            <p><span class="label">Phone:</span> 09123456789</p>
-            <p><span class="label">Address:</span> Zamboanga City</p>
-            <p><span class="label">Date of Birth:</span> 2003-01-10</p>
+            <label>Email: <input type="email" value="juan@email.com"></label>
+            <label>Phone: <input type="text" value="09123456789"></label>
+            <label>Address: <input type="text" value="Zamboanga City"></label>
+            <label>Date of Birth: <input type="date" value="2003-01-10"></label>
+            <button class="save-btn"> Save</button>
         </div>
     </div>
 
@@ -62,10 +66,11 @@
     <div class="section">
         <h3>Academic Information</h3>
         <div class="info">
-            <p><span class="label">Course:</span> BS Information Technology</p>
-            <p><span class="label">Year Level:</span> 3rd Year</p>
-            <p><span class="label">College:</span> College of Computing Studies</p>
-            <p><span class="label">Enrollment Status:</span> Enrolled</p>
+            <label>Course: <input type="text" value="BS Information Technology"></label>
+            <label>Year Level: <input type="text" value="3rd Year"></label>
+            <label>College: <input type="text" value="College of Computing Studies"></label>
+            <label>Enrollment Status: <input type="text" value="Enrolled"></label>
+            <button class="save-btn"> Save</button>
         </div>
     </div>
 
@@ -73,17 +78,19 @@
     <div class="section">
         <h3>Skills</h3>
         <div class="skills-list">
-            <span class="skill">Web Dev</span>
-            <span class="skill">MS Office</span>
-            <span class="skill">Data Entry</span>
-            <span class="skill">Graphic Design</span>
+            <span class="skill"><input type="text" value="Web Dev"></span>
+            <span class="skill"><input type="text" value="MS Office"></span>
+            <span class="skill"><input type="text" value="Data Entry"></span>
+            <span class="skill"><input type="text" value="Graphic Design"></span>
+            <button class="save-btn"> Save</button>
         </div>
     </div>
 
     <!-- Resume Upload -->
     <div class="section">
         <h3>Resume Upload</h3>
-        <p>Filename: juan_resume.pdf | Status: Verified</p>
+        <p>Filename: juan_resume.pdf</p>
+        <button class="upload-btn"><i class="fa-solid fa-upload"></i> Upload / Replace</button>
         <button class="download-btn"><i class="fa-solid fa-download"></i> Download</button>
         <button class="preview-btn"><i class="fa-solid fa-eye"></i> Preview</button>
     </div>
@@ -93,7 +100,7 @@
         <h3>Portfolio / Work Samples</h3>
         <p>File 1: project1.pdf</p>
         <p>File 2: graphic_sample.png</p>
-        <p>Status: Pending Verification</p>
+        <button class="upload-btn"><i class="fa-solid fa-upload"></i> Upload / Replace</button>
         <button class="download-btn"><i class="fa-solid fa-download"></i> Download</button>
         <button class="preview-btn"><i class="fa-solid fa-eye"></i> Preview</button>
     </div>
@@ -101,7 +108,8 @@
     <!-- COR Certificate -->
     <div class="section">
         <h3>COR Certificate Upload</h3>
-        <p>Filename: COR_2026.pdf | Status: Verified</p>
+        <p>Filename: COR_2026.pdf</p>
+        <button class="upload-btn"><i class="fa-solid fa-upload"></i> Upload / Replace</button>
         <button class="download-btn"><i class="fa-solid fa-download"></i> Download</button>
         <button class="preview-btn"><i class="fa-solid fa-eye"></i> Preview</button>
     </div>
