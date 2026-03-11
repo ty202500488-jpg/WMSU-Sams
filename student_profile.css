@@ -93,7 +93,7 @@ body{
 
 .progress{
     height:100%;
-    background:#f5b400;
+    background:#9f0f0f;
 }
 
 /* INCOMPLETE DOCS */
@@ -154,9 +154,9 @@ body{
 
 /* SMALL EDIT BUTTON */
 
-.edit-btn-small{
-    background:#720b0b;
-    color:#fff;
+.edit-btn{
+    background:#ffffff;
+    color:#000000;
     border:none;
     padding:5px 10px;
     font-size:12px;
@@ -164,14 +164,14 @@ body{
     cursor:pointer;
 }
 
-.edit-btn-small i{
+.edit-btn i{
     margin-right:3px;
 }
 
 /* SAVE BUTTON */
 
 .save-btn{
-    background:#720b0b;
+    background:#9f0f0f;
     color:#fff;
     border:none;
     padding:9px 18px;
@@ -203,7 +203,7 @@ th{
 /* VIEW BUTTON */
 
 .view-btn{
-    background:#720b0b;
+    background:#9f0f0f;
     color:#fff;
     border:none;
     padding:5px 10px;
@@ -226,8 +226,8 @@ th{
 .upload-btn,
 .download-btn,
 .preview-btn{
-    background:#720b0b;
-    color:#fff;
+    background:#9f9f9f;
+    color:#000000;
     border:none;
     padding:5px 12px;
     border-radius:6px;
