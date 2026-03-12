@@ -3,7 +3,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
 }
 
 body {
@@ -112,7 +112,7 @@ textarea {
 
 .availability-day label {
     display: flex;
-	align-items: center
+	align-items: center;
     margin-bottom: 6px;
 	gap: 8px;
     font-weight: 500;
