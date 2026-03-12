@@ -113,6 +113,19 @@ body {
 .primary-btn { background: #9f0f0f; color: white; border: none; padding: 8px 15px; border-radius: 8px; cursor: pointer; transition: 0.3s; }
 .primary-btn:hover { background: #720b0b; }
 
+.secondary-btn {   
+    background-color: #ffffff;
+    color: #720b0b;
+    border: 2px solid #720b0b;
+    text-decoration: none;
+    padding: 8px 15px; 
+    border-radius: 12px;
+    font-size: 15px;
+    margin-left: 15px;
+    transition: background-color 0.3s, transform 0.2s;
+    cursor: pointer;}
+.secondary-btn:hover { background: #ff482c5a; }
+
 /* CARD HEADERS AND INFO COLUMNS */
 .position-header, .application-header, .assignment-header { display: flex; flex-direction: column; gap: 8px; border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-bottom: 10px; }
 .position-info, .application-info, .assignment-info { display: flex; gap: 40px; flex-wrap: wrap; }
