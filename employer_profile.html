@@ -1,151 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Department Profile - WMSU-SAMS</title>
-<link rel="stylesheet" href="employer_profile.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department Profile | WMSU-SAMS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="employer_profile.css">
 </head>
 <body>
 
-<div class="profile-container">
+    <div class="layout-wrapper">
+        
+        <aside class="sidebar-left">
+            <a href="dashboard.html" class="back-btn-link"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</a>
+            
+            <div class="profile-summary-card">
+                <div class="dept-icon-circle">
+                    <i class="fa-solid fa-building-columns"></i>
+                </div>
+                <h3>College of Computing Studies</h3>
+                <p>CCS-2023-01</p>
+                <div class="status-chip verified">Official Department</div>
+            </div>
 
-    <!-- Return Button -->
-    <a href="dashboard.html" class="return-btn"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</a>
+            <nav class="profile-nav">
+                <a href="#dept-info" class="nav-item active"><i class="fas fa-info-circle"></i> Basic Info</a>
+                <a href="#positions" class="nav-item"><i class="fas fa-user-tie"></i> Posted Positions</a>
+                <a href="#documents" class="nav-item"><i class="fas fa-file-alt"></i> Compliance Docs</a>
+                <a href="#settings" class="nav-item"><i class="fas fa-cog"></i> Account Settings</a>
+            </nav>
 
-    <!-- Header -->
-    <div class="profile-header">
-        <div class="avatar"><i class="fa-solid fa-building-columns"></i></div>
-        <div class="header-info">
-            <h2>College of Computing Studies</h2>
-            <p>Department ID: CCS-2023-01</p>
-            <p>Head: Dr. Juan dela Cruz</p>
-            <button class="edit-btn"><i class="fa-solid fa-pen"></i> Edit Header Info</button>
-        </div>
+            <div class="alert-box">
+                <h4><i class="fa-solid fa-circle-exclamation"></i> Action Required</h4>
+                <p>3 documents are missing or expired. Upload them to maintain hiring eligibility.</p>
+                <ul class="mini-list">
+                    <li>Registration Form</li>
+                    <li>HOD ID Copy</li>
+                    <li>Authorization</li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="profile-content">
+            
+            <div class="glass-card completion-header">
+                <div class="completion-text">
+                    <span>Profile Completion</span>
+                    <strong>70%</strong>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-fill" style="width: 70%;"></div>
+                </div>
+            </div>
+
+            <section id="dept-info" class="content-card">
+                <div class="card-title">
+                    <h3>Department Information</h3>
+                    <button class="text-edit-btn">Edit All</button>
+                </div>
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label>College Affiliation</label>
+                        <p>College of Computing Studies</p>
+                    </div>
+                    <div class="input-group">
+                        <label>Head of Department</label>
+                        <p>Dr. Juan dela Cruz</p>
+                    </div>
+                    <div class="input-group">
+                        <label>Contact Email</label>
+                        <p>ccs@wmsu.edu.ph</p>
+                    </div>
+                    <div class="input-group">
+                        <label>Office Location</label>
+                        <p>CCS Building, WMSU Main</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="positions" class="content-card">
+                <div class="card-title">
+                    <h3>Positions Posted</h3>
+                    <button class="add-btn-small">+ New Post</button>
+                </div>
+                <div class="table-responsive">
+                    <table class="dept-table">
+                        <thead>
+                            <tr>
+                                <th>Position</th>
+                                <th>Slots</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>IT Lab Assistant</td>
+                                <td>3</td>
+                                <td><span class="badge pending">Pending</span></td>
+                                <td><button class="icon-btn"><i class="fas fa-eye"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td>Library Aide</td>
+                                <td>2</td>
+                                <td><span class="badge approved">Approved</span></td>
+                                <td><button class="icon-btn"><i class="fas fa-eye"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="documents" class="content-card">
+                <div class="card-title">
+                    <h3>Compliance Documents</h3>
+                </div>
+                <div class="doc-grid">
+                    <div class="doc-row">
+                        <div class="doc-meta">
+                            <i class="fas fa-file-pdf"></i>
+                            <div>
+                                <strong>Registration Form</strong>
+                                <span>Missing</span>
+                            </div>
+                        </div>
+                        <button class="upload-link-btn">Upload Now</button>
+                    </div>
+                    <div class="doc-row">
+                        <div class="doc-meta">
+                            <i class="fas fa-file-pdf"></i>
+                            <div>
+                                <strong>Authorization Letter</strong>
+                                <span>Verified • 2026</span>
+                            </div>
+                        </div>
+                        <div class="doc-btns">
+                            <button class="icon-btn-lite"><i class="fas fa-download"></i></button>
+                            <button class="icon-btn-lite"><i class="fas fa-sync"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <aside class="sidebar-right">
+            <div class="side-stat-card">
+                <h4>Hiring Activity</h4>
+                <div class="mini-kpi">
+                    <div class="kpi-box">
+                        <strong>05</strong>
+                        <span>Total Slots</span>
+                    </div>
+                    <div class="kpi-box">
+                        <strong>12</strong>
+                        <span>Applicants</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="side-stat-card">
+                <h4>Account Security</h4>
+                <p class="small-text">Last password change: 2 months ago</p>
+                <button class="outline-btn-full">Update Password</button>
+            </div>
+        </aside>
+
     </div>
 
-    <!-- Profile Completion Tracker -->
-    <div class="completion-tracker">
-        <p>Profile Completion: 70%</p>
-        <div class="progress-bar">
-            <div class="progress" style="width: 70%;"></div>
-        </div>
-        <p>Department Info: ✔ Contact Info: ✔ Positions Posted: ⚪ Documents: ⚪ Account Settings: ✔</p>
-    </div>
-
-    <!-- Incomplete Documents -->
-    <div class="incomplete-docs">
-        <h3>Incomplete Documents</h3>
-        <ul>
-            <li>Department Registration Form</li>
-            <li>Head of Department ID Copy</li>
-            <li>Proof of Department Authorization</li>
-        </ul>
-    </div>
-
-    <!-- Department Information -->
-    <div class="section">
-        <h3>Department Information</h3>
-        <label>Department Name: 
-            <input type="text" value="College of Computing Studies">
-            <button class="edit-btn-small"><i class="fa-solid fa-pen"></i></button>
-        </label>
-        <hr>
-        <label>Department ID: 
-            <input type="text" value="CCS-2023-01">
-            <button class="edit-btn-small"><i class="fa-solid fa-pen"></i></button>
-        </label>
-        <hr>
-        <label>College Affiliation: 
-            <input type="text" value="College of Computing">
-            <button class="edit-btn-small"><i class="fa-solid fa-pen"></i></button>
-        </label>
-        <hr>
-        <label>Head of Department: 
-            <input type="text" value="Dr. Juan dela Cruz">
-            <button class="edit-btn-small"><i class="fa-solid fa-pen"></i></button>
-        </label>
-        <button class="save-btn">Save Section</button>
-    </div>
-
-    <!-- Contact Information -->
-    <div class="section">
-        <h3>Contact Information</h3>
-        <label>Email: 
-            <input type="email" value="ccs@wmsu.edu.ph">
-            <button class="edit-btn-small"><i class="fa-solid fa-pen"></i></button>
-        </label>
-        <hr>
-        <label>Phone: 
-            <input type="text" value="09123456789">
-            <button class="edit-btn-small"><i class="fa-solid fa-pen"></i></button>
-        </label>
-        <hr>
-        <label>Office Location: 
-            <input type="text" value="CCS Building, WMSU">
-            <button class="edit-btn-small"><i class="fa-solid fa-pen"></i></button>
-        </label>
-        <button class="save-btn">Save Section</button>
-    </div>
-
-    <!-- Positions Posted -->
-    <div class="section">
-        <h3>Positions Posted</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Position Title</th>
-                    <th>Slots</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Student Assistant - IT Lab</td>
-                    <td>3</td>
-                    <td>Pending</td>
-                    <td>
-                        <button class="view-btn">View</button>
-                        <button class="edit-btn-small"><i class="fa-solid fa-pen"></i> Edit</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Student Assistant - Library</td>
-                    <td>2</td>
-                    <td>Approved</td>
-                    <td>
-                        <button class="view-btn">View</button>
-                        <button class="edit-btn-small"><i class="fa-solid fa-pen"></i> Edit</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <!-- Documents -->
-    <div class="section">
-        <h3>Documents</h3>
-        <p>Registration Form.pdf <button class="upload-btn"><i class="fa-solid fa-upload"></i> Upload</button> <button class="download-btn"><i class="fa-solid fa-download"></i> Download</button></p>
-        <p>HOD ID.pdf <button class="upload-btn"><i class="fa-solid fa-upload"></i> Upload</button> <button class="download-btn"><i class="fa-solid fa-download"></i> Download</button></p>
-        <p>Authorization Letter.pdf <button class="upload-btn"><i class="fa-solid fa-upload"></i> Upload</button> <button class="download-btn"><i class="fa-solid fa-download"></i> Download</button></p>
-    </div>
-
-    <!-- Account Settings -->
-    <div class="section">
-        <h3>Account Settings</h3>
-        <label>Email: 
-            <input type="email" value="ccs@wmsu.edu.ph">
-            <button class="edit-btn-small"><i class="fa-solid fa-pen"></i></button>
-        </label>
-        <hr>
-        <label>Change Password: 
-            <input type="password">
-            <button class="edit-btn-small"><i class="fa-solid fa-pen"></i></button>
-        </label>
-        <button class="save-btn">Save Section</button>
-    </div>
-
-</div>
 </body>
 </html>

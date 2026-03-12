@@ -2,62 +2,68 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Application Submitted</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Submitted | WMSU-SAMS</title>
     <link rel="stylesheet" href="application_success.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body class="success-body">
 
-    <div class="success-container">
-
-        <!-- Success Icon -->
-        <div class="success-icon">
-            <i class="fa-solid fa-circle-check"></i>
+    <div class="success-card">
+        
+        <div class="confetti-wrapper">
+            <div class="success-circle">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <div class="confetti-piece"></div>
+            <div class="confetti-piece"></div>
+            <div class="confetti-piece"></div>
         </div>
 
-        <!-- Main Message -->
-        <h1>Application Submitted!</h1>
+        <h1>Submission Successful!</h1>
+        <p class="subtitle">Your application for <strong>Library Student Assistant</strong> has been sent to the department.</p>
 
-        <p class="success-text">
-            Your application has been successfully received.
-            The department will review your submission and notify you of the result.
-        </p>
-
-        <!-- What Happens Next -->
-        <div class="next-steps-box">
-            <h3><i class="fa-solid fa-list-check"></i> What Happens Next?</h3>
-
-            <ul>
-                <li>
-                    <i class="fa-solid fa-user-check"></i>
-                    Department reviews your application
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-chart-line"></i>
-                    Application status is updated in your dashboard
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-bell"></i>
-                    You receive a notification once approved or rejected
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-briefcase"></i>
-                    If approved, you will receive assignment details
-                </li>
-            </ul>
+        <div class="receipt-tag">
+            <span>REFERENCE NUMBER</span>
+            <strong>#SA-2026-8841</strong>
         </div>
 
-        <!-- Action Buttons -->
-        <div class="success-buttons">
-            <a href="student_dashboard.html" class="primary-btn"> Go to Dashboard </a>
+        <div class="divider"><span>PROCESSED VIA WMSU-SAMS</span></div>
 
-            <a href="positions.html" class="secondary-btn">
-                <i class="fa-solid fa-magnifying-glass"></i> Browse More Positions
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-num">01</div>
+                <div class="step-content">
+                    <strong>Review</strong>
+                    <p>Department evaluates your profile and resume.</p>
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-num">02</div>
+                <div class="step-content">
+                    <strong>Update</strong>
+                    <p>Status changes from "Pending" to "Under Review".</p>
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-num">03</div>
+                <div class="step-content">
+                    <strong>Alert</strong>
+                    <p>Check your email for interview invites.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-footer">
+            <a href="student_dashboard.html" class="btn-main">
+                <i class="fa-solid fa-house-chimney"></i> Back to Dashboard
             </a>
+            <div class="action-links">
+                <a href="application.html">Track Application</a>
+                <span class="dot">•</span>
+                <a href="positions.html">View More Jobs</a>
+            </div>
         </div>
 
     </div>
