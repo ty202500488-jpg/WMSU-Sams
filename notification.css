@@ -11,7 +11,7 @@ body {
     color: #1c1e21;
 }
 
-/* ===== TOP NAVBAR (Matches Positions Page) ===== */
+/* ===== TOP NAVBAR ===== */
 .top-nav {
     position: fixed;
     top: 0;
@@ -23,13 +23,30 @@ body {
     justify-content: space-between;
     padding: 0 30px;
     z-index: 1001;
-    color: white;
 }
-.top-logo { font-weight: bold; font-size: 20px; }
-.top-links { display: flex; gap: 20px; }
-.top-links a { color: white; text-decoration: none; font-size: 14px; display: flex; align-items: center; gap: 8px; }
-.top-links a.active { border-bottom: 3px solid #f5b400; padding-bottom: 5px; }
-.profile-img { width: 35px; height: 35px; border-radius: 50%; border: 2px solid white; }
+
+.top-logo { color: #fff; font-weight: bold; font-size: 20px; }
+.top-links { display: flex; align-items: center; gap: 25px; }
+.top-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+}
+.top-links a:hover { opacity: 0.8; }
+.top-links a.active { border-bottom: 2px solid #f5b400; padding-bottom: 5px; }
+
+/* PROFILE DROPDOWN */
+.profile-dropdown { position: relative; }
+.profile-dropdown .profile-img { width: 35px; height: 35px; border-radius: 50%; border: 2px solid white; cursor: pointer; }
+.profile-dropdown .dropdown-content { display: none; position: absolute; right: 0; background: #fff; min-width: 150px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); top: 45px; }
+.profile-dropdown:hover .dropdown-content { display: block; }
+.profile-dropdown .dropdown-content a { display: block; padding: 12px; color: #333; text-decoration: none; font-size: 14px; }
+.profile-dropdown .dropdown-content a:hover { background: #f5f5f5; }
 
 /* ===== LAYOUT GRID ===== */
 .container {
@@ -265,7 +282,7 @@ hr { border: none; border-top: 1px solid #ced0d4; margin: 10px 0; }
     font-weight: 500;
 }
 
-.help-box { background: #9f0f0f; color: white; }
+.help-box { background: #1c1e21; color: white; }
 .help-box p { font-size: 13px; margin-bottom: 15px; opacity: 0.9; }
 .secondary-btn {
     width: 100%;
@@ -273,7 +290,7 @@ hr { border: none; border-top: 1px solid #ced0d4; margin: 10px 0; }
     border: none;
     border-radius: 6px;
     background: white;
-    color: #9f0f0f;
+    color: #1c1e21;
     font-weight: bold;
     cursor: pointer;
 }
