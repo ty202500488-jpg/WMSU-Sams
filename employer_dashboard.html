@@ -2,240 +2,145 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Employer Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer Dashboard | WMSU-SAMS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="employer_dashboard.css">
 </head>
 <body>
 
-<!-- TOP NAVIGATION -->
-<header class="top-nav">
-    <div class="top-logo">WMSU-SAMS</div>
-    <nav class="top-links">
-        <a href="student_dashboard.html" class="active"><i class="fas fa-home"></i> Home</a>
-        <a href="notification.html"><i class="fas fa-bell"></i> Notifications</a>
-        <a href="application.html"><i class="fas fa-file-alt"></i> Applications</a>
-        <a href="positions.html"><i class="fas fa-briefcase"></i> Positions</a>
-     </nav>
-
-        <!-- Profile Dropdown -->
+    <header class="top-nav">
+        <div class="top-logo">WMSU-SAMS</div>
+        <nav class="top-links">
+            <a href="employer_dashboard.html" class="active"><i class="fas fa-chart-line"></i> Dashboard</a>
+            <a href="manage_applicants.html"><i class="fas fa-users"></i> Applicants</a>
+            <a href="payroll.html"><i class="fas fa-file-invoice-dollar"></i> Payroll</a>
+            <a href="positions.html"><i class="fas fa-briefcase"></i> Postings</a>
+        </nav>
         <div class="profile-dropdown">
-            <img src="Images/profile.jpg.jpg" alt="Profile Photo" class="profile-img">
-            <div class="dropdown-content">
-                <a href="#">View Profile</a>
-                <a href="login.html">Logout</a>
+            <a href="dept_profile.html">
+                <img src="Images/profile.jpg.jpg" alt="Profile" class="profile-img">
+            </a>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <aside class="sidebar-panel">
+            <div class="user-mini-card">
+                <div class="cover-photo"></div>
+                <div class="user-info">
+                    <div class="avatar-replacement">LIB</div>
+                    <h3>Library Department</h3>
+                    <p>WMSU Main Campus</p>
+                </div>
+                <hr>
+                <div class="profile-stats">
+                    <div class="stat"><span>Hiring Capacity</span> <strong>12/15</strong></div>
+                    <div class="progress-container"><div class="progress-fill" style="width: 80%;"></div></div>
+                </div>
+                <a href="#" class="sidebar-link"><i class="fas fa-plus-circle"></i> Create SA Position</a>
+                <a href="#" class="sidebar-link"><i class="fas fa-cog"></i> Dept Settings</a>
             </div>
-        </div>
-</header>
 
-<!-- MAIN CONTENT -->
-<div class="dashboard-content">
+            <div class="alert-box">
+                <i class="fas fa-info-circle"></i>
+                <p>You have <strong>8 pending</strong> DTRs to approve this week.</p>
+            </div>
+        </aside>
 
-    <!-- HEADER SECTION -->
-    <section class="welcome-section">
-        <div class="welcome-text">
-            <h1>Department Dashboard</h1>
-            <p>Library Department</p>
-        </div>
+        <main class="dashboard-feed">
+            
+            <div class="feed-section">
+                <h2 class="section-title">Overview</h2>
+                <div class="stats-row">
+                    <div class="mini-stat-card">
+                        <strong>26</strong>
+                        <span>Total Applicants</span>
+                    </div>
+                    <div class="mini-stat-card">
+                        <strong style="color: #f5b400;">12</strong>
+                        <span>Pending Review</span>
+                    </div>
+                    <div class="mini-stat-card">
+                        <strong style="color: #2ecc71;">6</strong>
+                        <span>Approved</span>
+                    </div>
+                </div>
+            </div>
 
-        <div class="status-action">
-            <button class="primary-btn">+ Create SA Position</button>
-        </div>
-    </section>
+            <div class="feed-section">
+                <div class="section-header-flex">
+                    <h2 class="section-title">Pending Applications</h2>
+                    <a href="#">See All</a>
+                </div>
 
-    <hr class="section-divider">
-
-    <!-- SUMMARY CARDS -->
-    <section class="stats-section">
-        <div class="card status-active">
-            <h3>Active Positions</h3>
-            <p>4</p>
-        </div>
-
-        <div class="card status-interview">
-            <h3>Total Applications</h3>
-            <p>26</p>
-        </div>
-
-        <div class="card status-pending">
-            <h3>Pending Review</h3>
-            <p>12</p>
-        </div>
-
-        <div class="card status-approved">
-            <h3>Approved Assistants</h3>
-            <p>6</p>
-        </div>
-    </section>
-
-    <!-- RECENT APPLICATIONS -->
-    <section class="table-card">
-        <h2>Recent Applications</h2>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Student Name</th>
-                    <th>Course</th>
-                    <th>Year</th>
-                    <th>GPA</th>
-                    <th>Status</th>
-                    <th>Workflow</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr>
-                    <td>Maria Santos</td>
-                    <td>BSIT</td>
-                    <td>3rd Year</td>
-                    <td>1.75</td>
-                    <td><span class="status-badge status-pending">Pending</span></td>
-                    <td>
-                        <div class="workflow">
-                            <span class="step completed">Submitted</span>
-                            <span class="step current">Reviewed</span>
-                            <span class="step">Approved</span>
+                <div class="main-card">
+                    <div class="card-header">
+                        <div class="icon-circle"><i class="fas fa-user"></i></div>
+                        <div class="header-text">
+                            <h4>Maria Santos <span>• BSIT 3rd Year</span></h4>
+                            <span class="badge-active">GPA: 1.75</span>
                         </div>
-                    </td>
-                    <td>
-                        <button class="action-btn btn-review">Review</button>
-                        <button class="action-btn btn-approve">Approve</button>
-                        <button class="action-btn btn-reject">Reject</button>
-                    </td>
-                </tr>
+                    </div>
+                    <div class="card-content">
+                        <p><i class="fas fa-briefcase"></i> Position: <strong>Library Assistant</strong></p>
+                        <p><i class="fas fa-clock"></i> Applied: <strong>2 hours ago</strong></p>
+                    </div>
+                    <div class="card-actions">
+                        <button class="action-btn">Review Docs</button>
+                        <button class="action-btn-outline">Approve</button>
+                        <button class="action-btn-outline" style="color: #e74c3c;">Reject</button>
+                    </div>
+                </div>
 
-                <tr>
-        <td>Angela Cruz</td>
-        <td>BSIT</td>
-        <td>1st Year</td>
-        <td>1.80</td>
-        <td><span class="status-badge status-pending">Pending</span></td>
-        <td>
-            <div class="workflow">
-                <span class="step completed">Submitted</span>
-                <span class="step current">Reviewed</span>
-                <span class="step">Approved</span>
+                <div class="main-card">
+                    <div class="card-header">
+                        <div class="icon-circle blue"><i class="fas fa-user"></i></div>
+                        <div class="header-text">
+                            <h4>Angela Cruz <span>• BSIT 1st Year</span></h4>
+                            <span class="badge-active">GPA: 1.80</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <p><i class="fas fa-briefcase"></i> Position: <strong>IT Lab Assistant</strong></p>
+                        <p><i class="fas fa-clock"></i> Applied: <strong>Yesterday</strong></p>
+                    </div>
+                    <div class="card-actions">
+                        <button class="action-btn">Review Docs</button>
+                        <button class="action-btn-outline">Approve</button>
+                    </div>
+                </div>
             </div>
-        </td>
-        <td>
-            <button class="action-btn btn-review">Review</button>
-            <button class="action-btn btn-approve">Approve</button>
-            <button class="action-btn btn-reject">Reject</button>
-        </td>
-    </tr>
+        </main>
 
-    <tr>
-        <td>Luz Mendoza</td>
-        <td>BSCE</td>
-        <td>4th Year</td>
-        <td>1.70</td>
-        <td><span class="status-badge status-pending">Pending</span></td>
-        <td>
-            <div class="workflow">
-                <span class="step completed">Submitted</span>
-                <span class="step current">Reviewed</span>
-                <span class="step">Approved</span>
+        <aside class="right-panel">
+            <div class="side-widget">
+                <h4>Recent DTR Submissions</h4>
+                <div class="suggestion-item">
+                    <div class="s-icon"><i class="fas fa-clock"></i></div>
+                    <div class="s-text">
+                        <strong>Luz Mendoza</strong>
+                        <span>8.5 Hours • Pending</span>
+                    </div>
+                </div>
+                <div class="suggestion-item">
+                    <div class="s-icon"><i class="fas fa-clock"></i></div>
+                    <div class="s-text">
+                        <strong>Juan Dela Cruz</strong>
+                        <span>4.0 Hours • Pending</span>
+                    </div>
+                </div>
+                <a href="#" class="view-more">Manage All DTRs</a>
             </div>
-        </td>
-        <td>
-            <button class="action-btn btn-review">Review</button>
-            <button class="action-btn btn-approve">Approve</button>
-            <button class="action-btn btn-reject">Reject</button>
-        </td>
-    </tr>
 
-    <tr>
-        <td>Carla Reyes</td>
-        <td>BSIT</td>
-        <td>3rd Year</td>
-        <td>1.88</td>
-        <td><span class="status-badge status-pending">Pending</span></td>
-        <td>
-            <div class="workflow">
-                <span class="step completed">Submitted</span>
-                <span class="step current">Reviewed</span>
-                <span class="step">Approved</span>
+            <div class="side-widget help-widget">
+                <p>Reporting a problem with a Student Assistant?</p>
+                <button class="help-btn">Contact HR Office</button>
             </div>
-        </td>
-        <td>
-            <button class="action-btn btn-review">Review</button>
-            <button class="action-btn btn-approve">Approve</button>
-            <button class="action-btn btn-reject">Reject</button>
-        </td>
-    </tr>
-            </tbody>
-        </table>
-    </section>
+        </aside>
 
-    <!-- ACTIVE POSITIONS -->
-    <section class="table-card">
-    <h2>Active SA Positions</h2>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Position</th>
-                <th>Slots</th>
-                <th>Deadline</th>
-                <th>Applicants</th>
-                <th>Status</th>
-                <th>Filled</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            <tr>
-                <td>Library Assistant</td>
-                <td>3</td>
-                <td>March 30, 2026</td>
-                <td>10</td>
-                <td><span class="status-badge status-interview">Open</span></td>
-                <td><span class="slots-text">2 / 3 filled</span></td>
-            </tr>
-
-            <tr>
-                <td>Office Assistant</td>
-                <td>2</td>
-                <td>April 5, 2026</td>
-                <td>6</td>
-                <td><span class="status-badge status-approved">Ongoing Selection</span></td>
-                <td><span class="slots-text">1 / 2 filled</span></td>
-            </tr>
-
-            <tr>
-                <td>IT Lab Assistant</td>
-                <td>2</td>
-                <td>April 10, 2026</td>
-                <td>4</td>
-                <td><span class="status-badge status-interview">Open</span></td>
-                <td><span class="slots-text">0 / 2 filled</span></td>
-            </tr>
-
-            <tr>
-                <td>Registrar Assistant</td>
-                <td>1</td>
-                <td>April 15, 2026</td>
-                <td>3</td>
-                <td><span class="status-badge status-pending">Open</span></td>
-                <td><span class="slots-text">0 / 1 filled</span></td>
-            </tr>
-
-            <tr>
-                <td>Event Coordinator</td>
-                <td>1</td>
-                <td>April 25, 2026</td>
-                <td>2</td>
-                <td><span class="status-badge status-pending">Open</span></td>
-                <td><span class="slots-text">0 / 1 filled</span></td>
-            </tr>
-
-        </tbody>
-    </table>
-</section>
-
-</div>
+    </div>
 
 </body>
 </html>
