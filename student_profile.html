@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
-<div class="profile-container">
 
     <div class="profile-layout">
         <aside class="profile-sidebar">
@@ -24,108 +23,104 @@
                 <div class="badge verified"><i class="fa-solid fa-circle-check"></i> Verified Student</div>
             </div>
 
-    <!-- Header -->
-    <div class="profile-header">
-        <div class="avatar"><i class="fa-solid fa-user"></i></div>
-        <div class="header-info">
-            <h2>Juan Dela Cruz</h2>
-            <p>ID: 2023-10452</p>
-            <p>Course: BS IT - 3rd Year</p>
-            <button class="edit-btn"><i class="fa-solid fa-pen"></i> Edit Header Info</button>
-        </div>
-    </div>
+            <nav class="side-nav">
+                <a href="#personal" class="active"><i class="fa-solid fa-user"></i> Personal Info</a>
+                <a href="#academic"><i class="fa-solid fa-graduation-cap"></i> Academic Details</a>
+                <a href="#documents"><i class="fa-solid fa-file-lines"></i> Documents</a>
+                <a href="#skills"><i class="fa-solid fa-star"></i> Skills & Portfolio</a>
+            </nav>
 
-    <!-- Profile Completion Tracker -->
-    <div class="completion-tracker">
-        <p>Profile Completion: 85%</p>
-        <div class="progress-bar">
-            <div class="progress" style="width: 85%;"></div>
-        </div>
-        <p>Personal: ✔ Academic: ✔ Skills: ✔ Resume: ✔ Portfolio: ✔ COR: ✔</p>
-    </div>
+            <div class="eligibility-card blocked">
+                <i class="fa-solid fa-lock"></i>
+                <h4>Application Status</h4>
+                <p>Locked: Complete your portfolio to unlock applications.</p>
+            </div>
+        </aside>
 
-    <!-- Eligibility Indicator -->
-    <div class="eligibility">
-        <i class="fa-solid fa-circle-exclamation"></i>
-        Incomplete Documents → Cannot Apply Yet
-        <span>Complete missing sections to unlock application access</span>
-    </div>
+        <main class="profile-main">
+            <header class="content-header">
+                <div class="progress-section">
+                    <div class="progress-text">
+                        <span>Profile Completion</span>
+                        <strong>85%</strong>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-fill" style="width: 85%;"></div>
+                    </div>
+                </div>
+            </header>
 
-    <!-- Personal Info -->
-    <div class="section">
-        <h3>Personal Information <button class="edit-btn"><i class="fa-solid fa-pen"></i> Edit</button></h3>
-        <div class="info">
-            <label>Email: <input type="email" value="juan@email.com"></label>
-            <label>Phone: <input type="text" value="09123456789"></label>
-            <label>Address: <input type="text" value="Zamboanga City"></label>
-            <label>Date of Birth: <input type="date" value="2003-01-10"></label>
-            <button class="save-btn">Save</button>
-        </div>
-    </div>
+            <section id="personal" class="profile-section">
+                <div class="section-header">
+                    <h3><i class="fa-solid fa-address-card"></i> Personal Information</h3>
+                    <div class="doc-actions">
+                        <button class="edit-btn-text"><a href="edit_student_profile.html" >Edit Details</a></button>
+                    </div>
+                </div>
+                <div class="info-grid">
+                    <div class="info-box"><span>Email Address</span><p>juan@email.com</p></div>
+                    <div class="info-box"><span>Phone Number</span><p>0912 345 6789</p></div>
+                    <div class="info-box"><span>Home Address</span><p>Zamboanga City, PH</p></div>
+                    <div class="info-box"><span>Birth Date</span><p>January 10, 2003</p></div>
+                </div>
+            </section>
 
-    <!-- Academic Info -->
-    <div class="section">
-        <h3>Academic Information <button class="edit-btn"><i class="fa-solid fa-pen"></i> Edit</button></h3>
-        <div class="info">
-            <label>Course: <input type="text" value="BS Information Technology"></label>
-            <label>Year Level: <input type="text" value="3rd Year"></label>
-            <label>College: <input type="text" value="College of Computing Studies"></label>
-            <label>Enrollment Status: <input type="text" value="Enrolled"></label>
-            <button class="save-btn">Save</button>
-        </div>
-    </div>
+            <section id="academic" class="profile-section">
+                <div class="section-header">
+                    <h3><i class="fa-solid fa-university"></i> Academic Information</h3>
+                </div>
+                <div class="info-grid">
+                    <div class="info-box"><span>College</span><p>College of Computing Studies</p></div>
+                    <div class="info-box"><span>Course</span><p>BS Information Technology</p></div>
+                    <div class="info-box"><span>Year Level</span><p>3rd Year</p></div>
+                    <div class="info-box"><span>Status</span><p class="status-enrolled">Enrolled</p></div>
+                </div>
+            </section>
 
-    <!-- Skills -->
-    <div class="section">
-        <h3>Skills <button class="edit-btn"><i class="fa-solid fa-pen"></i> Edit</button></h3>
-        <div class="skills-list">
-            <span class="skill">Web Dev</span>
-            <span class="skill">MS Office</span>
-            <span class="skill">Data Entry</span>
-            <span class="skill">Graphic Design</span>
-        </div>
-        <button class="save-btn">Save</button>
-    </div>
+            <section id="documents" class="profile-section">
+                <div class="section-header">
+                    <h3><i class="fa-solid fa-folder-open"></i> Required Documents</h3>
+                </div>
+                <div class="doc-list">
+                    <div class="doc-item">
+                        <div class="doc-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                        <div class="doc-info">
+                            <strong>Latest Resume</strong>
+                            <span>juan_resume.pdf • Verified</span>
+                        </div>
+                        <div class="doc-actions">
+                            <button title="Preview"><i class="fa-solid fa-eye"></i></button>
+                            <button title="Download"><i class="fa-solid fa-download"></i></button>
+                            <button class="replace-btn">Replace</button>
+                        </div>
+                    </div>
+                    
+                    <div class="doc-item">
+                        <div class="doc-icon"><i class="fa-solid fa-file-image"></i></div>
+                        <div class="doc-info">
+                            <strong>Certificate of Registration (COR)</strong>
+                            <span>COR_2026.pdf • Verified</span>
+                        </div>
+                        <div class="doc-actions">
+                            <button title="Preview"><i class="fa-solid fa-eye"></i></button>
+                            <button class="replace-btn">Replace</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-    <!-- Resume Upload -->
-    <div class="section">
-        <h3>Resume Upload</h3>
-        <p>Filename: juan_resume.pdf | Status: Verified</p>
-        <button class="upload-btn"><i class="fa-solid fa-upload"></i> Upload / Replace</button>
-        <button class="download-btn"><i class="fa-solid fa-download"></i> Download</button>
-        <button class="preview-btn"><i class="fa-solid fa-eye"></i> Preview</button>
-    </div>
-
-    <!-- Portfolio -->
-    <div class="section">
-        <h3>Portfolio / Work Samples</h3>
-        <p>File 1: project1.pdf</p>
-        <p>File 2: graphic_sample.png</p>
-        <p>Status: Pending Verification</p>
-        <button class="upload-btn"><i class="fa-solid fa-upload"></i> Upload / Replace</button>
-        <button class="download-btn"><i class="fa-solid fa-download"></i> Download</button>
-        <button class="preview-btn"><i class="fa-solid fa-eye"></i> Preview</button>
-    </div>
-
-    <!-- COR Certificate -->
-    <div class="section">
-        <h3>COR Certificate Upload</h3>
-        <p>Filename: COR_2026.pdf | Status: Verified</p>
-        <button class="upload-btn"><i class="fa-solid fa-upload"></i> Upload / Replace</button>
-        <button class="download-btn"><i class="fa-solid fa-download"></i> Download</button>
-        <button class="preview-btn"><i class="fa-solid fa-eye"></i> Preview</button>
-    </div>
-
-    <!-- Document Verification Status -->
-    <div class="section verification">
-        <h3>Document Verification Status (Admin Only)</h3>
-        <ul>
-            <li>ID: Verified</li>
-            <li>Enrollment Proof: Verified</li>
-            <li>Resume: Verified</li>
-            <li>Portfolio: Pending</li>
-            <li>COR Certificate: Verified</li>
-        </ul>
+            <section id="skills" class="profile-section">
+                <div class="section-header">
+                    <h3><i class="fa-solid fa-wand-magic-sparkles"></i> Skills & Portfolio</h3>
+                </div>
+                <div class="skills-container">
+                    <span class="skill-tag">Web Development</span>
+                    <span class="skill-tag">MS Office</span>
+                    <span class="skill-tag">Graphic Design</span>
+                    <span class="skill-tag">Data Entry</span>
+                </div>
+            </section>
+        </main>
     </div>
 
 </body>
