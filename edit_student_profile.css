@@ -67,6 +67,8 @@ body {
     cursor: pointer;
 }
 
+.change-photo:hover { background: #7a0b0b; }
+
 .badge.verified {
     display: inline-block;
     background: #e7f3ff;
@@ -187,7 +189,6 @@ body {
 .doc-info { flex: 1; }
 .doc-info strong { display: block; font-size: 14px; }
 .doc-info span { font-size: 12px; color: #65676b; }
-
 .doc-actions { display: flex; gap: 8px; }
 .doc-actions button {
     background:  #f0f2f5;
@@ -199,9 +200,15 @@ body {
     font-weight: 600;
 }
 
-.replace-btn, .edit-btn-text, .add-btn { background: #9f0f0f !important; color: white !important; }
+/*  BUTTONS */
 
-.edit-btn-text a, .add-btn p {
+#replace-btn, #edit-btn-text, #add-btn { background: #9f0f0f; color: white; border: none; padding: 10px 18px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px; transition: 0.2s; }
+#replace-btn:hover { background: #7a0b0b; }
+#edit-btn-text:hover { background: #7a0b0b; }
+#add-btn:hover { background: #7a0b0b; }
+
+
+#edit-btn-text a, #add-btn p {
     color: white;
     text-decoration: none;
 }
