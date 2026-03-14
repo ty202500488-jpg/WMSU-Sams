@@ -112,7 +112,7 @@ body {
 .status-badge.pending { background: #fff3cd; color: #856404; }
 .status-badge.none { background: #d0d0d0; color: #4b4b4b; }
 
-.application-action { display: flex; gap: 10px; border-top: 1px solid #eee; pt: 15px; margin-top: 10px; padding-top: 15px;}
+.application-action { display: flex; gap: 10px; border-top: 1px solid #eee; padding: 15px 0; margin-top: 10px; }
 
 /* ===== RIGHT PANEL (FIXED) ===== */
 .right-panel {
@@ -141,7 +141,7 @@ body {
 .help-card p { font-size: 13px; color: #614d0c; line-height: 1.5; }
 
 /* ===== BUTTONS ===== */
-.primary-btn { background: #9f0f0f; color: white; border: none; padding: 10px 18px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px; transition: 0.2s; }
+.primary-btn { background: #9f0f0f; text-decoration: none; color: white; border: none; padding: 10px 18px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px; transition: 0.2s; }
 .primary-btn:hover { background: #7a0b0b; }
 .secondary-btn { background: #f8f9fa; color: #333; border: 1px solid #ddd; padding: 10px 18px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px; }
 .secondary-btn:hover { background: #e9ecef; }
