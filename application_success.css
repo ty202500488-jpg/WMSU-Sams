@@ -1,104 +1,122 @@
+:root {
+    --primary: #720b0b;
+    --success: #27ae60;
+    --bg: #f3f4f6;
+    --text: #2d3436;
+    --text-light: #636e72;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
 .success-body {
-    background: #e9e9e9;
+    background: var(--bg);
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    font-family: Arial, sans-serif;
-}
-
-.success-container {
-    background: #ffffff;
-    padding: 50px 40px;
-    width: 90%;
-    max-width: 500px;
-    text-align: center;
-    border-radius: 20px;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-}
-
-.success-icon {
-    width: 90px;
-    height: 90px;
-    margin: 0 auto 25px auto;
-    background: #e6f4ea;
-    color: #2e7d32;
-    font-size: 45px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-}
-
-.success-container h1 {
-    color: #720b0b;
-    margin-bottom: 15px;
-}
-
-.success-text {
-    font-size: 15px;
-    color: #555;
-    margin-bottom: 30px;
-}
-
-.next-steps-box {
-    background: #f0f4ff;
-    border: 1px solid #bbc9ee;
+    font-family: 'Segoe UI', system-ui, sans-serif;
     padding: 20px;
-    border-radius: 15px;
-    text-align: left;
+}
+
+.success-card {
+    background: white;
+    width: 100%;
+    max-width: 520px;
+    padding: 40px;
+    border-radius: 28px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* --- Success Icon & Confetti --- */
+.success-circle {
+    width: 80px; height: 80px;
+    background: var(--success);
+    color: white;
+    font-size: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 0 auto 25px;
+    box-shadow: 0 10px 20px rgba(39, 174, 96, 0.2);
+    animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0); }
+    to { transform: scale(1); }
+}
+
+h1 { color: var(--primary); font-size: 26px; margin-bottom: 10px; }
+.subtitle { color: var(--text-light); font-size: 15px; line-height: 1.5; margin-bottom: 25px; }
+
+/* --- Receipt Styling --- */
+.receipt-tag {
+    background: #f8f9fa;
+    border: 1px dashed #dcdde1;
+    padding: 15px;
+    border-radius: 12px;
+    display: inline-block;
     margin-bottom: 30px;
 }
+.receipt-tag span { display: block; font-size: 10px; font-weight: 800; color: var(--text-light); letter-spacing: 1px; }
+.receipt-tag strong { font-family: 'Courier New', monospace; color: var(--text); font-size: 18px; }
 
-.next-steps-box h3 {
-    margin-bottom: 15px;
-    color: #720b0b;
+.divider {
+    border-bottom: 1px solid #eee;
+    margin: 20px 0 30px;
+    position: relative;
 }
-
-.next-steps-box ul {
-    list-style: none;
-    padding-left: 18px;
-}
-
-.next-steps-box li {
-    margin-bottom: 10px;
-    font-size: 14px;
-    color: #333;
-}
-
-/* Buttons */
-.success-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-.primary-btn {
-    background: #720b0b;
-    color: white;
-    padding: 12px 25px;
-    border-radius: 12px;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-.primary-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-}
-
-.secondary-btn {
+.divider span {
+    position: absolute;
+    top: -10px; left: 50%;
+    transform: translateX(-50%);
     background: white;
-    border: 2px solid #720b0b;
-    color: #720b0b;
-    padding: 10px 25px;
-    border-radius: 12px;
-    text-decoration: none;
-    transition: 0.3s;
+    padding: 0 15px;
+    font-size: 10px;
+    color: #b2bec3;
+    font-weight: 700;
 }
 
-.secondary-btn:hover {
-    background: #720b0b;
-    color: white;
+/* --- Next Steps Grid --- */
+.steps-grid { text-align: left; margin-bottom: 35px; }
+.step-card {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    background: #fdfdfd;
+    padding: 12px;
+    border-radius: 10px;
+    transition: 0.3s;
 }
+.step-num {
+    background: #eee;
+    color: var(--text-light);
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 800;
+}
+.step-content strong { display: block; font-size: 14px; color: var(--text); }
+.step-content p { font-size: 12px; color: var(--text-light); }
+
+/* --- Footer & Buttons --- */
+.btn-main {
+    display: block;
+    background: var(--primary);
+    color: white;
+    text-decoration: none;
+    padding: 16px;
+    border-radius: 14px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    transition: 0.3s;
+}
+.btn-main:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(114, 11, 11, 0.2); }
+
+.action-links { font-size: 13px; color: var(--text-light); }
+.action-links a { color: var(--primary); text-decoration: none; font-weight: 600; }
+.action-links .dot { margin: 0 8px; color: #dfe6e9; }

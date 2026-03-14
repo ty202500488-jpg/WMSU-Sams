@@ -2,25 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>WMSU-SAMS Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | WMSU-SAMS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="student_dashboard.css">
-   
 </head>
-
 <body>
 
-<!-- TOP NAVBAR -->
-<header class="top-nav">
-    <div class="top-logo">WMSU-SAMS</div>
-    <nav class="top-links">
-        <a href="student_dashboard.html" class="active"><i class="fas fa-home"></i> Home</a>
-        <a href="notification.html"><i class="fas fa-bell"></i> Notifications</a>
-        <a href="application.html"><i class="fas fa-file-alt"></i> Applications</a>
-        <a href="positions.html"><i class="fas fa-briefcase"></i> Browse Positions</a>
-     </nav>
-
-        <!-- Profile Dropdown -->
+    <header class="top-nav">
+        <div class="top-logo">WMSU-SAMS</div>
+        <nav class="top-links">
+            <a href="student_dashboard.html" class="active"><i class="fas fa-home"></i> Home</a>
+            <a href="notification.html"><i class="fas fa-bell"></i> Notifications</a>
+            <a href="application.html"><i class="fas fa-file-alt"></i> Applications</a>
+            <a href="positions.html"><i class="fas fa-briefcase"></i> Browse Positions</a>
+        </nav>
+        
         <div class="profile-dropdown">
             <a href="student_profile.html">
                 <img src="Images/profile.jpg.jpg" alt="Profile Photo" class="profile-img">
@@ -30,111 +27,135 @@
                 <a href="login.html">Logout</a>
             </div>
         </div>
-</header>
+    </header>
 
-<main class="dashboard-content">
+    <div class="container">
 
-    <!-- WELCOME & PROFILE COMPLETION -->
-    <section class="welcome-section">
-        <div class="welcome-text">
-            <h1>Welcome Back, Juan Dela Cruz</h1>
-            <p>BSCS – 1st Year</p>
-            <div class="section-divider"></div>
+        <aside class="sidebar-panel">
+            <div class="user-mini-card">
+                <div class="cover-photo"></div>
+                <div class="user-info">
+                    <img src="Images/profile.jpg.jpg" alt="User" class="avatar-large">
+                    <h3>Juan Dela Cruz</h3>
+                    <p>BSCS – 1st Year</p>
+                </div>
+                <hr>
+                <div class="profile-stats">
+                    <div class="stat"><span>Completion</span> <strong>80%</strong></div>
+                    <div class="progress-container"><div class="progress-fill" style="width: 80%;"></div></div>
+                </div>
+                <a href="student_profile.html" class="sidebar-link"><i class="fas fa-user-edit"></i> Edit Profile</a>
+                <a href="application.html" class="sidebar-link"><i class="fas fa-history"></i> My History</a>
+            </div>
+
+            <div class="alert-box">
+                <i class="fas fa-exclamation-circle"></i>
+                <p>Complete your <strong>Profile</strong> to unlock applications.</p>
+            </div>
+        </aside>
+
+        <main class="dashboard-feed">
             
-            <div class="profile-completion">
-                Profile Completion: <span class="completion">80%</span>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 80%;"></div>
+            <div class="feed-section">
+                <h2 class="section-title">Current Assignment</h2>
+                <div class="main-card assignment">
+                    <div class="card-header">
+                        <div class="icon-circle"><i class="fas fa-building"></i></div>
+                        <div class="header-text">
+                            <h4>Admin Office – Student Assistant</h4>
+                            <span class="badge-active">Active Now</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <p><i class="fas fa-user-tie"></i> Supervisor: <strong>Mr. Smith</strong></p>
+                        <p><i class="fas fa-clock"></i> Schedule: <strong>Mon–Fri | 1PM – 4PM</strong></p>
+                    </div>
+                    <div class="card-actions">
+                        <button class="action-btn">Log Work Hours</button>
+                        <button class="action-btn-outline">View Details</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feed-section">
+                <div class="section-header-flex">
+                    <h2 class="section-title">Recent Applications</h2>
+                    <a href="application.html">See All</a>
+                </div>
+                <div class="main-card">
+            <div class="card-header">
+                <div class="icon-circle blue"><i class="fas fa-laptop-code"></i></div>
+                <div class="header-text">
+                    <h4>IT Office – Assistant</h4>
+                    <span class="status-text">Applied March 8, 2026</span>
+                </div>
+            </div>
+            <div class="card-content">
+                <div class="simple-status">
+                    <span class="dot-pending"></span> Pending Review
                 </div>
             </div>
         </div>
 
-        <div class="status-action">
-            <span class="status-badge verified" title="Verified by CPPESO">Verified</span>
-            <button class="primary-btn" title="Browse Available Positions">Browse Available Positions</button>
+        <div class="main-card">
+            <div class="card-header">
+                <div class="icon-circle green"><i class="fas fa-microscope"></i></div>
+                <div class="header-text">
+                    <h4>Research Assistant – Science Lab</h4>
+                    <span class="status-text">Applied March 1, 2026</span>
+                </div>
+            </div>
+            <div class="card-content">
+                <div class="simple-status">
+                    <span class="dot-interview"></span> Interview Scheduled: <strong>Mar 15</strong>
+                </div>
+            </div>
         </div>
-    </section>
 
-    <!-- ALERTS -->
-    <section class="alert-section">
-        <h2>⚠ Attention Required</h2>
-        <ul>
-            <li class="alert-li">Upload your Certificate of Registration (COR) to complete verification.</li>
-            <li class="alert-li">You have 1 application awaiting interview confirmation.</li>
-        </ul>
-    </section>
-
-    <!-- APPLICATION STATUS CARDS -->
-    <section class="stats-section">
-        <div class="card status-pending" title="Applications submitted and awaiting department review">
-            <h3>Pending Review</h3>
-            <p>2 Applications</p>
-        </div>
-        <div class="card status-interview" title="Applications approved and scheduled for interview">
-            <h3>For Interview</h3>
-            <p>1 Application</p>
-        </div>
-        <div class="card status-approved" title="Applications approved; positions confirmed">
-            <h3>Approved</h3>
-            <p>2 Applications</p>
-        </div>
-        <div class="card status-rejected" title="Applications declined due to insufficient qualifications">
-            <h3>Rejected</h3>
-            <p>1 Application</p>
-        </div>
-    </section>
-
-    <!-- FEATURED POSITION / HERO CARD -->
-<section class="hero-section">
-    <div class="hero-card">
-        <h3>Featured Position</h3>
-             <div class="section-divider"></div>
-        <p><strong>IT Office – Student Assistant</strong></p>
-        <p>Requirments: HTML, CSS, Documentation</p>
-        <p>Year Level: 2nd Year and Above</p>
-        <p>Schedule: Mon–Wed (1PM–5PM)</p>
-        <p>Duration: 3 months</p>
-        <p>Slots Available: 2</p>
-        <p class="job-description">
-            Description: Assist the IT Office with website updates, documentation, and student support tasks.
-        </p>
-          <div class="section-divider"></div>
-        <button class="status-badge active" title="This position is currently active">Active</button>
-    </div>
-</section>
-
-<!-- RECENT ACTIVITY -->
-<section class="activity-section">
-    <div class="recent-activity-card">
-        <h3>Recent Activity</h3>
-             <div class="section-divider"></div>
-        <div class="activity">
-            <p><strong>Applied:</strong> IT Office – Student Assistant</p>
-            <span>2h ago</span>
-        </div>
-             <div class="section-divider"></div>
-        <div class="activity">
-            <p><strong>Approved:</strong> Library SA</p>
-            <span>1d ago</span>
-        </div>
-             <div class="section-divider"></div>
-        <div class="activity">
-            <p><strong>Browsed:</strong> Available SA Positions</p>
-            <span>2d ago</span>
+        <div class="main-card">
+            <div class="card-header">
+                <div class="icon-circle gray"><i class="fas fa-archive"></i></div>
+                <div class="header-text">
+                    <h4>Records Clerk – Admission</h4>
+                    <span class="status-text">Applied Feb 24, 2026</span>
+                </div>
+            </div>
+            <div class="card-content">
+                <div class="simple-status">
+                    <span class="dot-rejected"></span> Position Filled
+                </div>
+            </div>
         </div>
     </div>
-</section>
+        </main>
 
-    <!-- QUICK ACTIONS -->
-    <section class="quick-actions">
-        <h2>Quick Actions</h2>
-        <div class="action-buttons">
-            <button title="Search and browse all available positions">Browse SA Positions</button>
-            <button title="View the status of your applications">View My Applications</button>
-            <button title="Update your profile and upload missing documents">Update Profile</button>
-        </div>
-    </section>
-</main>
+        <aside class="right-panel">
+            <div class="side-widget">
+                <h4>Suggested Positions</h4>
+                <div class="suggestion-item">
+                    <div class="s-icon"><i class="fas fa-book"></i></div>
+                    <div class="s-text">
+                        <strong>Library Assistant</strong>
+                        <span>Library Dept • 3 Slots</span>
+                    </div>
+                </div>
+                <div class="suggestion-item">
+                    <div class="s-icon"><i class="fas fa-print"></i></div>
+                    <div class="s-text">
+                        <strong>Clerical Aide</strong>
+                        <span>Registrar • 1 Slot</span>
+                    </div>
+                </div>
+                <a href="positions.html" class="view-more">View all positions</a>
+            </div>
+
+            <div class="side-widget help-widget">
+                <p>Need help with your application?</p>
+                <button class="help-btn">Message Support</button>
+            </div>
+        </aside>
+
+    </div>
 
 </body>
 </html>

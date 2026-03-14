@@ -38,33 +38,11 @@
                 <label for="password">Password</label>
                 <input type="password" id="password" placeholder="Enter your Password">
 
-                <button id="login">Login</button>
+                <a id="login" href="student_dashboard.html">Login</a>
                 <a href="#" class="forgot-password">Forgot Password?</a>
             </div>
         </div>
     </div>
 
-    <script>
-        document.getElementById("login").addEventListener("click", () => {
-            const email = document.getElementById("email").value.trim();
-            const password = document.getElementById("password").value;
-
-            // Dummy accounts
-            const accounts = [
-                { type: "student", email: "student@wmsu.edu.ph", password: "student123", redirect: "student_dashboard.html" },
-                { type: "employer", email: "employer@wmsu.edu.ph", password: "employer123", redirect: "employer_dashboard.html" },
-                { type: "cppeso", email: "admin@wmsu.edu.ph", password: "admin123", redirect: "admin_dashboard.html" }
-            ];
-
-            // Match account
-            const account = accounts.find(acc => acc.email === email && acc.password === password);
-
-            if(account) {
-                window.location.href = account.redirect;
-            } else {
-                alert("Invalid email or password.");
-            }
-        });
-    </script>
 </body>
 </html>

@@ -6,7 +6,7 @@
 }
 
 body{
-	font-family: Arial, sans-serif;
+	font-family: 'Segoe UI', Arial, sans-serif;
 	height: 100vh;
 }
 
@@ -194,7 +194,7 @@ body{
     border-color: #720b0b;
 }
 
-.login-form button {
+.login-form #login {
     padding: 12px;
     background: #720b0b;
     color: #fff;
@@ -204,8 +204,10 @@ body{
     cursor: pointer;
     font-size: 16px;
     transition: background 0.3s;
+	text-decoration: none;
+	text-align: center;
 }
-.login-form button:hover {
+.login-form #login:hover {
     background: #5a0808;
 }
 .forgot-password {

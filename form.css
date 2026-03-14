@@ -3,7 +3,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
 }
 
 body {
@@ -92,7 +92,7 @@ textarea {
 /* CHECKBOX GROUP  */
 .checkbox-group {
     display: flex;
-    align-items: center;
+    align-items: left;
     gap: 5px;
     font-size: 14px;
 }
@@ -104,6 +104,32 @@ textarea {
 .checkbox-group label {
     margin: 0;
     font-weight: normal;
+}
+/*Availability*/
+.availability-day {
+    margin-bottom: 15px;
+}
+
+.availability-day label {
+    display: flex;
+	align-items: center;
+    margin-bottom: 6px;
+	gap: 8px;
+    font-weight: 500;
+	margin-bottom: 6px;
+}
+
+.availability-day input[type="checkbox"]{
+	width: auto;
+}
+
+.time-range {
+    display: flex;
+    gap: 10px;
+}
+
+.time-range input[type="time"] {
+    flex: 1;
 }
 
 /* Button wrapper */
