@@ -1,245 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
-    
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">        
-    <title>Student Application Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPPESO Student Collection | WMSU-SAMS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="form.css">
 </head>
-
 <body>
-    <div class="return-btn"><a class="return-btn" href="positions.html"><i class="fa-solid fa-arrow-left"></i></a></div>
-    <div class="form-container">
-        <form action="#" method="POST" enctype="multipart/form-data">
 
-    <!-- PERSONAL INFORMATION -->
-    <div class="form-section">
-        <h2>Personal Information</h2>
+    <div class="return-btn">
+        <a href="positions.html"><i class="fa-solid fa-arrow-left"></i> </a>
+    </div>
 
-        <div class="row">
-            <div class="form-group">
-                <label>First Name *</label>
-                <input type="text" name="first_name" required pattern="[A-Za-z\s]+">
+    <div class="form-wrapper">
+        <header class="cppeso-header">
+            <div class="header-content">
+                <img src="Images/wmsu.jpg.jpg" alt="WMSU Logo" class="form-logo">
+                <div class="title-area">
+                    <h1>CPPESO Student Application Form</h1>
+                    <p>Student Assistant Information Collection</p>
+                </div>
             </div>
+        </header>
 
-            <div class="form-group">
-                <label>Middle Name</label>
-                <input type="text" name="middle_name" pattern="[A-Za-z\s]+">
+        <form action="application_success.html" method="POST" enctype="multipart/form-data">
+            
+            <section class="form-card">
+                <h2 class="section-title"><i class="fa-solid fa-address-card"></i> Personal Information</h2>
+                <div class="input-row">
+                    <div class="field">
+                        <label>First Name</label>
+                        <input type="text" name="first_name" placeholder="Required" required>
+                    </div>
+                    <div class="field">
+                        <label>Middle Name</label>
+                        <input type="text" name="middle_name" placeholder="Optional">
+                    </div>
+                    <div class="field">
+                        <label>Last Name</label>
+                        <input type="text" name="last_name" placeholder="Required" required>
+                    </div>
+                </div>
+
+                <div class="input-row split-2-1">
+                    <div class="field">
+                        <label>Student ID Number</label>
+                        <input type="text" name="student_id" placeholder="e.g., 2021-01234" required>
+                    </div>
+                    <div class="field">
+                        <label>Date of Birth</label>
+                        <input type="date" name="dob" required>
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <div class="field">
+                        <label>Email Address</label>
+                        <input type="email" name="email" placeholder="name@wmsu.edu.ph" required>
+                    </div>
+                    <div class="field">
+                        <label>Contact Number</label>
+                        <input type="tel" name="contact" placeholder="09XXXXXXXXX" required>
+                    </div>
+                </div>
+            </section>
+
+            <section class="form-card">
+                <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Academic Information</h2>
+                <div class="input-row">
+                    <div class="field">
+                        <label>College Department</label>
+                        <select name="college" required>
+                            <option value="" disabled selected>Select College</option>
+                            <option>College of Computing Studies</option>
+                            <option>College of Engineering</option>
+                            <option>College of Nursing</option>
+                            <option>College of Liberal Arts</option>
+                            </select>
+                    </div>
+                </div>
+                <div class="input-row grid-3">
+                    <div class="field">
+                        <label>Year Level</label>
+                        <select name="year_level" required>
+                            <option>1st Year</option>
+                            <option>2nd Year</option>
+                            <option>3rd Year</option>
+                            <option>4th Year</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>Semester</label>
+                        <select name="semester" required>
+                            <option>First Semester</option>
+                            <option>Second Semester</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>Latest GPA</label>
+                        <input type="number" step="0.01" name="gpa" placeholder="0.00" required>
+                    </div>
+                </div>
+            </section>
+
+            <section class="form-card">
+    <div class="card-header">
+        <h2 class="section-title"><i class="fa-solid fa-calendar-check"></i> Duty Availability</h2>
+        <p class="section-hint">Check the days you are available and specify your class-free hours.</p>
+    </div>
+    
+    <div class="schedule-grid">
+        <div class="day-row">
+            <div class="day-selector">
+                <input type="checkbox" id="mon" class="day-check">
+                <label for="mon" class="day-label">
+                    <span class="custom-check"></span>
+                    Monday
+                </label>
             </div>
-
-            <div class="form-group">
-               <label>Last Name *</label>
-                <input type="text" name="last_name" required pattern="[A-Za-z\s]+">    
+            <div class="time-fields">
+                <div class="time-input-group">
+                    <label>From</label>
+                    <input type="time" name="mon_start">
+                </div>
+                <span class="time-separator">to</span>
+                <div class="time-input-group">
+                    <input type="time" name="mon_end">
+                </div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="form-group">
-                <label>Student ID *</label>
-                <input type="text" name="student_id"  placeholder="e.g. 2025-0001" required pattern="[0-9]+">
+        <div class="day-row">
+            <div class="day-selector">
+                <input type="checkbox" id="tue" class="day-check">
+                <label for="tue" class="day-label">
+                    <span class="custom-check"></span>
+                    Tuesday
+                </label>
             </div>
-
-            <div class="form-group">
-                <label>Date of Birth *</label>
-                <input type="date" name="dob" required>
+            <div class="time-fields">
+                <div class="time-input-group">
+                    <label>From</label>
+                    <input type="time" name="tue_start">
+                </div>
+                <span class="time-separator">to</span>
+                <div class="time-input-group">
+                    <input type="time" name="tue_end">
+                </div>
             </div>
         </div>
 
-         <div class="row">
-            <div class="form-group">
-                <label>Email *</label>
-                <input type="email" name="email"  placeholder="someone@wmsu.edu.ph" required>
+        <div class="day-row">
+            <div class="day-selector">
+                <input type="checkbox" id="wed" class="day-check">
+                <label for="wed" class="day-label">
+                    <span class="custom-check"></span>
+                    Wednesday
+                </label>
             </div>
+            <div class="time-fields">
+                <div class="time-input-group">
+                    <label>From</label>
+                    <input type="time" name="wed_start">
+                </div>
+                <span class="time-separator">to</span>
+                <div class="time-input-group">
+                    <input type="time" name="wed_end">
+                </div>
+            </div>
+        </div>
 
-            <div class="form-group">
-                <label>Contact Number *</label>
-                <input type="text" name="contact"  placeholder="e.g. 09123456789" required pattern="[0-9]{10,11}">
+        <div class="day-row">
+            <div class="day-selector">
+                <input type="checkbox" id="thu" class="day-check">
+                <label for="thu" class="day-label">
+                    <span class="custom-check"></span>
+                    Thursday
+                </label>
+            </div>
+            <div class="time-fields">
+                <div class="time-input-group">
+                    <label>From</label>
+                    <input type="time" name="thu_start">
+                </div>
+                <span class="time-separator">to</span>
+                <div class="time-input-group">
+                    <input type="time" name="thu_end">
+                </div>
+            </div>
+        </div>
+
+        <div class="day-row">
+            <div class="day-selector">
+                <input type="checkbox" id="fri" class="day-check">
+                <label for="fri" class="day-label">
+                    <span class="custom-check"></span>
+                    Friday
+                </label>
+            </div>
+            <div class="time-fields">
+                <div class="time-input-group">
+                    <label>From</label>
+                    <input type="time" name="fri_start">
+                </div>
+                <span class="time-separator">to</span>
+                <div class="time-input-group">
+                    <input type="time" name="fri_end">
+                </div>
             </div>
         </div>
     </div>
+</section>
 
-        <!-- ACADEMIC INFORMATION -->    
-    <div class="form-section">  
-        <h2>Academic Information</h2>
+            <section class="form-card">
+                <h2 class="section-title"><i class="fa-solid fa-file-arrow-up"></i> Required Documents</h2>
+                <div class="upload-container">
+                    <label class="upload-box">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <span>Upload Certificate of Registration (COR)</span>
+                        <small>PDF format only • Max 5MB</small>
+                        <input type="file" name="cor_file" accept=".pdf" required>
+                    </label>
+                </div>
+            </section>
 
-        <div class="row">
-            <div class="form-group">
-            <label>Year Level *</label>
-                <select name="strand" required>
-                    <option value="">Select</option>
-                    <option>1st Year</option>
-                    <option>2nd Year</option>
-                    <option>3rd Year</option>
-                    <option>4th Year</option>
-                </select>
+            <div class="declaration">
+                <label class="checkbox-wrapper">
+                    <input type="checkbox" required>
+                    <span class="checkmark"></span>
+                    <p>I hereby certify that the information provided is true and correct to the best of my knowledge for CPPESO verification.</p>
+                </label>
             </div>
 
-            <div class="form-group">
-                <label>Current GPA *</label>
-                <input type="number" name="gpa" required min="0" max="100">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group">
-            <label>Course *</label>
-                <select name="school_year" required>
-                    <option value="">Select</option>
-                    <option>College of Argriculture</option>
-					<option>College of Architecture</option>
-					<option>College of Arts & Sciences</option>
-					<option>College of Asian & Islamic Studies</option>
-					<option>College of Computing Studies</option>
-					<option>College of Criminal Justice Education</option>
-					<option>College of Engineering</option>
-					<option>College of Forestry & Environmental Studies</option>
-					<option>College of Home Economics</option>
-					<option>College of Law</option>
-					<option>College of Liberal Arts</option>
-					<option>College of Medicine</option>
-					<option>College of Nursing</option>
-					<option>College of Public Administration & Development Studies</option>
-					<option>College of Science and Mathematics</option>
-					<option>College of Social Work & Community Development</option>
-					<option>College of Sports Science & Physical Education</option>
-					<option>College of Teacher Education</option>
-					<option>Professional Science Master's Program</option>    
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Semester *</label>
-                    <select name="semester" required>
-                        <option value="">Select</option>
-                        <option>First Semester</option>
-                        <option>Second Semester</option>
-                    </select>
-            </div>
-        </div>
+            <button type="submit" class="submit-btn">
+                <span>Submit Application</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </form>
     </div>
-
-        <!-- APPLICATION DETAILS -->
-    <div class="form-section">
-        <h2>Application Details</h2>
-        <div class="form-group">
-			<label>Availability *</label>
-			<!-- Monday -->
-			<div class="availability-day">
-				<label>
-					<input type="checkbox" data-day="monday" >
-					Monday
-				</label>
-				<div class="time-range">
-					<input type="time" name="monday_start">
-					<input type="time" name="monday_end">
-				</div>
-			</div>
-
-			<!-- Tuesday -->
-			<div class="availability-day">
-				<label>
-					<input type="checkbox" data-day="tuesday">
-					Tuesday
-				</label>
-				<div class="time-range">
-					<input type="time" name="tuesday_start">
-					<input type="time" name="tuesday_end">
-				</div>
-			</div>
-			<!-- Wednesday -->
-			<div class="availability-day">
-				<label>
-					<input type="checkbox" data-day="wednesday">
-					Wednesday
-				</label>
-				<div class="time-range">
-					<input type="time" name="wednesday_start">
-					<input type="time" name="wednesday_end">
-				</div>
-			</div>
-
-			<!-- Thursday -->
-			<div class="availability-day">
-				<label>
-					<input type="checkbox" data-day="thursday">
-					Thursday
-				</label>
-				<div class="time-range">
-					<input type="time" name="thursday_start">
-					<input type="time" name="thursday_end">
-				</div>
-			</div>
-
-			<!-- Friday -->
-			<div class="availability-day">
-				<label>
-					<input type="checkbox" data-day="friday">
-					Friday
-				</label>
-				<div class="time-range">
-					<input type="time" name="friday_start">
-					<input type="time" name="friday_end">
-				</div>
-			</div>
-
-			<!-- Saturday -->
-			<div class="availability-day">
-				<label>
-					<input type="checkbox" data-day="saturday">
-					Saturday
-				</label>
-				<div class="time-range">
-					<input type="time" name="saturday_start">
-					<input type="time" name="saturday_end">
-				</div>
-			</div>
-
-			<!-- Sunday -->
-			<div class="availability-day">
-				<label>
-					<input type="checkbox" data-day="sunday">
-					Sunday
-				</label>
-				<div class="time-range">
-					<input type="time" name="sunday_start">
-					<input type="time" name="sunday_end">
-				</div>
-			</div>
-		</div>
-            <div class="form-group">
-                <label>Why do you want to apply? (Optional)</label>
-                <textarea name="motivation" rows="4" maxlength="500"></textarea>
-            </div>
-    </div>
-
-        <!-- ATTACHMENTS -->
-        <div class="form-section">
-            <h2>Attachments (Required) </h2>
-
-            <div class="form-group">
-                <label>Upload COR *</label>
-                <input type="file" name="resume" accept=".pdf">
-            </div>
-        </div>
-
-        <!-- DECLARATION -->
-        <div class="form-section">
-            <div class="checkbox-group">
-                <input type="checkbox" required>
-                <label>I certify that all information provided is true and accurate.</label>
-            </div>
-        </div>
-
-        <div class="button-wrapper">
-            <a class="submit-btn" href="application_success.html">
-            Submit Application
-            </a>
-        </div>
-
-    </form>
-</div>
 
 </body>
 </html>
