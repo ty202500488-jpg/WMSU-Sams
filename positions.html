@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Browse Positions | WMSU SAMS</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Browse Positions | CPPESO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="positions.css">
 </head>
+
 <body>
+<!-- TOP NAVBAR -->
+<header class="top-nav">
+    <div class="top-logo">WMSU-SAMS</div>
+    <nav class="top-links">
+        <a href="student_dashboard.html"><i class="fas fa-home"></i> Home</a>
+        <a href="notification.html"><i class="fas fa-bell"></i> Notifications</a>
+        <a href="application.html"><i class="fas fa-file-alt"></i> Applications</a>
+        <a href="positions.html" class="active"><i class="fas fa-briefcase"></i> Browse Positions</a>
+     </nav>
 
-    <header class="top-nav">
-        <div class="top-logo">WMSU-SAMS</div>
-        <nav class="top-links">
-            <a href="student_dashboard.html"><i class="fas fa-home"></i> Home</a>
-            <a href="notification.html"><i class="fas fa-bell"></i> Notifications</a>
-            <a href="application.html"><i class="fas fa-file-alt"></i> Applications</a>
-            <a href="positions.html" class="active"><i class="fas fa-briefcase"></i> Browse Positions</a>
-        </nav>
-
+        <!-- Profile Dropdown -->
         <div class="profile-dropdown">
             <a href="student_profile.html">
                 <img src="Images/profile.jpg.jpg" alt="Profile Photo" class="profile-img">
@@ -27,132 +30,312 @@
                 <a href="login.html">Logout</a>
             </div>
         </div>
-    </header>
+   
+</header>
 
-    <div class="container">
+<div class="container">
+    <!-- FILTER SIDEBAR -->
+    <aside class="filter-panel">
+        <h3 style="text-align: center;">Filters</h3>
+        <div class="section-divider"></div>
+        <label for="search">Search</label>
+        <input type="text" id="search" placeholder="Search Position">
+        <label for="department">Department</label>
+        <select id="department">
+            <option value="all">All Departments</option>
+            <option value="STEM">STEM</option>
+            <option value="ABM">ABM</option>
+            <option value="HUMSS">HUMSS</option>
+            <option value="GAS">GAS</option>
+        </select>
+        <label for="college">College</label>
+        <select id="college">
+            <option value="all">All Colleges</option>
+            <option value="CAS" >College of Arts & Sciences</option>
+            <option value="COE">College of Engineering</option>
+            <option value="COB">College of Business</option>
+        </select>
+        <label for="duration">Duration</label>
+        <select id="duration">
+            <option value="any">Any</option>
+            <option value="short">Short-term</option>
+            <option value="long">Long-term</option>
+        </select>
+        <label for="pay">Pay</label>
+        <select id="pay">
+            <option value="any">Any</option>
+            <option value="low">₱0 – ₱500/week</option>
+            <option value="mid">₱500 – ₱1000/week</option>
+            <option value="high">₱1000+/week</option>
+        </select>
+    </aside>
 
-        <aside class="filter-panel">
-            <div class="filter-header">
-                <h3><i class="fas fa-filter"></i> Filters</h3>
+    <!-- POSITIONS GRID -->
+    <main class="positions-grid">
+
+        <!-- CARD 1 -->
+        <div class="position-card"
+          data-department="STEM"
+          data-college="CAS"
+          data-duration="short"
+          data-pay="500">
+                <div class="status">New</div>
+            <div class="header">
+                <h4>Lab Assistant</h4>
+                <div class="department">STEM</div>        
             </div>
-            <div class="filter-body">
-                <label for="search">Search</label>
-                <input type="text" id="search" placeholder="Search Position">
-
-                <label for="department">Department</label>
-                <select id="department">
-                    <option>All Departments</option>
-                    <option>STEM</option>
-                    <option>ABM</option>
-                    <option>HUMSS</option>
-                    <option>GAS</option>
-                </select>
-
-                <label for="duration">Duration</label>
-                <select id="duration">
-                    <option>Any</option>
-                    <option>Short-term</option>
-                    <option>Long-term</option>
-                </select>
-
-                <label for="pay">Pay</label>
-                <select id="pay">
-                    <option>Any</option>
-                    <option>₱0 – ₱500/week</option>
-                    <option>₱500 – ₱1000/week</option>
-                    <option>₱1000+/week</option>
-                </select>
-                <button class="primary-btn" style="width: 100%; margin-top: 10px;">Apply Filters</button>
+            <div class="info-row">
+                <span><i class="fas fa-money-bill-wave"></i> 500/week</span>
+                <span><i class="fas fa-clock"></i> 3 days/week</span>
+                <span><i class="fas fa-user-friends"></i> 3 openings</span>
+                <span><i class="fas fa-map-marker-alt"></i> On-campus</span>
+                <span><i class="fas fa-calendar-alt"></i> Deadline: Mar 10</span>
             </div>
-        </aside>
-
-        <main class="job-list">
-            <div class="application-card">
-                <div class="application-header">
-                    <h2>Student Assistant</h2>
-                    <hr>
-                    <p>Assist IT Office with website updates, documentation, and student support tasks.</p>
-                </div>
-                <div class="application-info">
-                    <div class="column">
-                        <p><i class="fas fa-building"></i> <strong>Department:</strong> IT Office</p>
-                        <p><i class="fas fa-calendar"></i> <strong>Date Applied:</strong> March 8, 2026</p>
-                        <p><i class="fas fa-clock"></i> <strong>Interview Date:</strong> March 12, 2026</p>
-                    </div>
-                    <div class="column">
-                        <p><i class="fas fa-info-circle"></i> <strong>Status:</strong> <span class="status-badge pending">Pending</span></p>
-                        <p><i class="fas fa-sticky-note"></i> <strong>Notes:</strong> Waiting for document verification.</p>
-                    </div>
-                </div>
-                <div class="application-action">
-                    <button class="secondary-btn">View Details</button>
-                    <button class="primary-btn">Cancel Application</button>
-                </div>
+            <div class="tags"><i class="fas fa-tags"></i> STEM, Research, Short-term</div>
+            <div class="expandable">
+                <p><strong>Responsibilities:</strong> Assist in setting up lab experiments and maintaining equipment for Physics 101 labs.</p>
+                <p><strong>Requirements:</strong> STEM Strand, basic lab safety knowledge, GPA ≥ 85%</p>
+                <ul class="checklist">
+                    <li>Resume ✅</li>
+                    <li>Grade Report ✅</li>
+                    <li>Consent Form ✅</li>
+                </ul>
+                <p><strong>Benefits:</strong> Certificate + small allowance</p>
             </div>
+            <a href="form.html" class="apply-btn">Apply Now</a>
+        </div>
 
-            <div class="application-card">
-                <div class="application-header">
-                    <h2>Library Assistant</h2>
-                    <hr>
-                    <p>Organize library books, assist students in locating resources, and maintain records.</p>
-                </div>
-                <div class="application-info">
-                    <div class="column">
-                        <p><i class="fas fa-building"></i> <strong>Department:</strong> Library</p>
-                        <p><i class="fas fa-calendar"></i> <strong>Date Applied:</strong> March 1, 2026</p>
-                        <p><i class="fas fa-clock"></i> <strong>Interview Date:</strong> March 5, 2026</p>
-                    </div>
-                    <div class="column">
-                        <p><i class="fas fa-info-circle"></i> <strong>Status:</strong> <span class="status-badge approved">Approved</span></p>
-                        <p><i class="fas fa-sticky-note"></i> <strong>Notes:</strong> Documents verified successfully.</p>
-                    </div>
-                </div>
-                <div class="application-action">
-                    <button class="secondary-btn">View Details</button>
-                    <button class="primary-btn">Cancel Application</button>
-                </div>
+        <!-- CARD 2 -->
+        <div class="position-card"
+          data-department="ABM"
+          data-college="COB"
+          data-duration="short"
+          data-pay="500">
+            <div class="status">New</div>
+            <div class="header">
+                <h4>Business Research Assistant</h4>
+                <div class="department">ABM</div>
             </div>
-
-            <div class="application-card">
-                <div class="application-header">
-                    <h2>IT Support Intern</h2>
-                    <hr>
-                    <p>Assist in software troubleshooting, IT support for student devices, and network management.</p>
-                </div>
-                <div class="application-info">
-                    <div class="column">
-                        <p><i class="fas fa-building"></i> <strong>Department:</strong> MIS</p>
-                        <p><i class="fas fa-calendar"></i> <strong>Date Applied:</strong> Feb 28, 2026</p>
-                        <p><i class="fas fa-clock"></i> <strong>Interview Date:</strong> March 3, 2026</p>
-                    </div>
-                    <div class="column">
-                        <p><i class="fas fa-info-circle"></i> <strong>Status:</strong> <span class="status-badge interview">Interview Scheduled</span></p>
-                        <p><i class="fas fa-sticky-note"></i> <strong>Notes:</strong> Confirm attendance before March 2.</p>
-                    </div>
-                </div>
-                <div class="application-action">
-                    <button class="secondary-btn">View Details</button>
-                    <button class="primary-btn">Cancel Application</button>
-                </div>
+            <div class="info-row">
+                <span><i class="fas fa-money-bill-wave"></i> 500/week</span>
+                <span><i class="fas fa-clock"></i> 2 days/week</span>
+                <span><i class="fas fa-user-friends"></i> 2 openings</span>
+                <span><i class="fas fa-map-marker-alt"></i> Remote</span>
+                <span><i class="fas fa-calendar-alt"></i> Deadline: Mar 15</span>
             </div>
-        </main>
-
-        <aside class="right-panel">
-            <div class="stat-card">
-                <h4>Application Status</h4>
-                <div class="stat-item"><span>Approved</span> <span class="count">2</span></div>
-                <div class="stat-item"><span>Pending</span> <span class="count">2</span></div>
-                <div class="stat-item"><span>Interview</span> <span class="count">1</span></div>
-                <div class="stat-item"><span>Rejected</span> <span class="count">1</span></div>
+            <div class="tags"><i class="fas fa-tags"></i> ABM, Research, Remote</div>
+            <div class="expandable">
+                <p><strong>Responsibilities:</strong> Help conduct surveys and compile reports for the Business Ethics course project.</p>
+                <p><strong>Requirements:</strong> ABM Strand, good communication skills</p>
+                <ul class="checklist">
+                    <li>Resume ✅</li>
+                    <li>Grade Report ✅</li>
+                    <li>Consent Form ✅</li>
+                </ul>
+                <p><strong>Benefits:</strong> Certificate + project experience</p>
             </div>
+            <a href="form.html" class="apply-btn">Apply Now</a>
+        </div>
 
-            <div class="stat-card help-card">
-                <h4><i class="fas fa-lightbulb"></i> Quick Tip</h4>
-                <p>Ensure your <strong>Study Load</strong> is updated in your profile to speed up verification.</p>
+         <!-- CARD 3 -->
+        <div class="position-card"
+          data-department="HUMSS"
+          data-college="CAS"
+          data-duration="short"
+          data-pay="500">
+            <div class="header">
+                <h4>Event Organizer Assistant</h4>
+                <div class="department">HUMSS</div>
             </div>
-        </aside>
+            <div class="info-row">
+                   <span><i class="fas fa-money-bill-wave"></i> 500/week</span>
+                <span><i class="fas fa-clock"></i> 5 hours/week</span>
+                <span><i class="fas fa-user-friends"></i> 4 openings</span>
+                <span><i class="fas fa-map-marker-alt"></i> On-campus</span>
+                <span><i class="fas fa-calendar-alt"></i> Deadline: Mar 20</span>
+            </div>
+            <div class="tags"><i class="fas fa-tags"></i> HUMSS, Event, Short-term</div>
+            <div class="expandable">
+                <p><strong>Responsibilities:</strong> Assist the Humanities Club in organizing workshops and managing student participation.</p>
+                <p><strong>Requirements:</strong> HUMSS Strand, organizational skills, teamwork</p>
+                <ul class="checklist">
+                    <li>Resume ✅</li>
+                    <li>Grade Report ✅</li>
+                    <li>Consent Form ✅</li>
+                </ul>
+                <p><strong>Benefits:</strong> Certificate + leadership experience</p>
+            </div>
+            <a href="form.html" class="apply-btn">Apply Now</a>
+        </div>
 
+         <!-- CARD 4 -->
+        <div class="position-card"
+          data-department="GAS"
+          data-college="CAS"
+          data-duration="short"
+          data-pay="450">
+            <div class="header">
+                <h4>Library Assistant</h4>
+                <div class="department">GAS</div>
+            </div>
+            <div class="info-row">
+                <span><i class="fas fa-money-bill-wave"></i> 450/week</span>
+                <span><i class="fas fa-clock"></i> 2 days/week</span>
+                <span><i class="fas fa-user-friends"></i> 2 openings</span>
+                <span><i class="fas fa-map-marker-alt"></i> On-campus</span>
+                <span><i class="fas fa-calendar-alt"></i> Deadline: Mar 12</span>
+            </div>
+            <div class="tags"><i class="fas fa-tags"></i> GAS, Library, Short-term</div>
+            <div class="expandable">
+                <p><strong>Responsibilities:</strong> Organize library books, assist students in locating resources, maintain records.</p>
+                <p><strong>Requirements:</strong> GAS Strand, attention to detail</p>
+                <ul class="checklist">
+                    <li>Resume ✅</li>
+                    <li>Grade Report ✅</li>
+                    <li>Consent Form ✅</li>
+                </ul>
+                <p><strong>Benefits:</strong> Certificate + reference letter</p>
+            </div>
+            <a href="form.html" class="apply-btn">Apply Now</a>
+        </div>
+
+         <!-- CARD 5 -->
+       <div class="position-card"
+         data-department="STEM"
+         data-college="COE"
+         data-duration="long"
+         data-pay="700">
+            <div class="header">
+                <h4>IT Support Intern</h4>
+                <div class="department">STEM</div>
+            </div>
+            <div class="info-row">
+                <span><i class="fas fa-money-bill-wave"></i> 700/week</span>
+                <span><i class="fas fa-clock"></i> 3 days/week</span>
+                <span><i class="fas fa-user-friends"></i> 1 opening</span>
+                <span><i class="fas fa-map-marker-alt"></i> On-campus</span>
+                <span><i class="fas fa-calendar-alt"></i> Deadline: Mar 18</span>
+            </div>
+            <div class="tags"><i class="fas fa-tags"></i> STEM, IT, Internship</div>
+            <div class="expandable">
+                <p><strong>Responsibilities:</strong> Troubleshoot student devices, assist in software installations, manage IT equipment.</p>
+                <p><strong>Requirements:</strong> STEM Strand, basic IT knowledge</p>
+                <ul class="checklist">
+                    <li>Resume ✅</li>
+                    <li>Grade Report ✅</li>
+                    <li>Consent Form ✅</li>
+                </ul>
+                <p><strong>Benefits:</strong> Certificate + IT experience</p>
+            </div>
+            <a href="form.html" class="apply-btn">Apply Now</a>
+        </div>
+
+         <!-- CARD 6 -->
+        <div class="position-card"
+          data-department="ABM"
+          data-college="COB"
+          data-duration="short"
+          data-pay="500">
+            <div class="header">
+                <h4>Social Media Assistant</h4>
+                <div class="department">ABM</div>
+            </div>
+            <div class="info-row">
+                <span><i class="fas fa-money-bill-wave"></i> 500/week</span>
+                <span><i class="fas fa-clock"></i> 4 hours/week</span>
+                <span><i class="fas fa-user-friends"></i> 2 openings</span>
+                <span><i class="fas fa-map-marker-alt"></i> Remote</span>
+                <span><i class="fas fa-calendar-alt"></i> Deadline: Mar 22</span>
+            </div>
+            <div class="tags"><i class="fas fa-tags"></i> ABM, Social Media, Remote</div>
+            <div class="expandable">
+                <p><strong>Responsibilities:</strong> Manage posts, respond to student inquiries, assist in campaign planning.</p>
+                <p><strong>Requirements:</strong> ABM Strand, creative skills</p>
+                <ul class="checklist">
+                    <li>Resume ✅</li>
+                    <li>Grade Report ✅</li>
+                    <li>Consent Form ✅</li>
+                </ul>
+                <p><strong>Benefits:</strong> Certificate + social media experience</p>
+            </div>
+            <a href="form.html" class="apply-btn">Apply Now</a>
+        </div>
+        
+    </main>
     </div>
+    
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+const search = document.getElementById("search");
+const department = document.getElementById("department");
+const college = document.getElementById("college");
+const duration = document.getElementById("duration");
+const pay = document.getElementById("pay");
+
+const cards = document.querySelectorAll(".position-card");
+
+function filterCards(){
+
+    const searchValue = search.value.toLowerCase();
+    const deptValue = department.value;
+    const collegeValue = college.value;
+    const durationValue = duration.value;
+    const payValue = pay.value;
+
+    cards.forEach(card => {
+
+        const title = card.querySelector("h4").textContent.toLowerCase();
+
+        const cardDept = card.dataset.department;
+        const cardCollege = card.dataset.college;
+        const cardDuration = card.dataset.duration;
+        const cardPay = parseInt(card.dataset.pay);
+
+        let visible = true;
+
+        if(!title.includes(searchValue)){
+            visible = false;
+        }
+
+        if(deptValue !== "all" && cardDept !== deptValue){
+            visible = false;
+        }
+
+        if(collegeValue !== "all" && cardCollege !== collegeValue){
+            visible = false;
+        }
+
+        if(durationValue !== "any" && cardDuration !== durationValue){
+            visible = false;
+        }
+
+        if(payValue === "low" && cardPay > 500){
+            visible = false;
+        }
+
+        if(payValue === "mid" && (cardPay < 500 || cardPay > 1000)){
+            visible = false;
+        }
+
+        if(payValue === "high" && cardPay < 1000){
+            visible = false;
+        }
+
+        card.style.display = visible ? "block" : "none";
+
+    });
+
+}
+
+search.addEventListener("input", filterCards);
+department.addEventListener("change", filterCards);
+college.addEventListener("change", filterCards);
+duration.addEventListener("change", filterCards);
+pay.addEventListener("change", filterCards);
+
+});
+</script>
 
 </body>
 </html>
