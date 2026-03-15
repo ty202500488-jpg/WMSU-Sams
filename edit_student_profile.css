@@ -213,6 +213,18 @@ body {
     text-decoration: none;
 }
 
+/* INPUTS */
+input {
+    padding: 12px;
+    border: 1px solid #888;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: 0.3s border;
+    width: 70%;
+ }
+
+ input:focus { border-color: #9f0f0f; outline: none; }
+
 
 /* SKILLS */
 .skills-container { display: flex; flex-wrap: wrap; gap: 10px; }
