@@ -191,7 +191,7 @@ body {
 .doc-info span { font-size: 12px; color: #65676b; }
 .doc-actions { display: flex; gap: 8px; }
 .doc-actions button {
-    background: #f0f2f5;
+    background:  #f0f2f5;
     border: none;
     padding: 8px 12px;
     border-radius: 6px;
@@ -200,16 +200,31 @@ body {
     font-weight: 600;
 }
 
-/* BUTTONS */
+/*  BUTTONS */
 
-#replace-btn, #edit-btn-text { background: #9f0f0f; color: white; border: none; padding: 10px 18px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px; transition: 0.2s; }
+#replace-btn, #edit-btn-text, #add-btn { background: #9f0f0f; color: white; border: none; padding: 10px 18px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px; transition: 0.2s; }
 #replace-btn:hover { background: #7a0b0b; }
 #edit-btn-text:hover { background: #7a0b0b; }
+#add-btn:hover { background: #7a0b0b; }
 
-#edit-btn-text a {
+
+#edit-btn-text a, #add-btn p {
     color: white;
     text-decoration: none;
 }
+
+/* INPUTS */
+input {
+    padding: 12px;
+    border: 1px solid #888;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: 0.3s border;
+    width: 70%;
+ }
+
+ input:focus { border-color: #9f0f0f; outline: none; }
+
 
 /* SKILLS */
 .skills-container { display: flex; flex-wrap: wrap; gap: 10px; }
