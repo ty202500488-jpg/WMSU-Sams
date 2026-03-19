@@ -1,13 +1,19 @@
+/* ===== RESET ===== */
 * {
-    margin: 0; padding: 0; box-sizing: border-box;
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box;
     font-family: 'Segoe UI', system-ui, sans-serif;
 }
 
 body {
     background-color: #f0f2f5;
     color: #1c1e21;
+    line-height: 1.5;
+    overflow-x: hidden;
 }
 
+/* ===== PROFILE LAYOUT ===== */
 .profile-layout {
     display: grid;
     grid-template-columns: 320px 1fr;
@@ -50,7 +56,8 @@ body {
 }
 
 .avatar-container img {
-    width: 100%; height: 100%;
+    width: 100%; 
+    height: 100%;
     border-radius: 50%;
     object-fit: cover;
     border: 4px solid #f0f2f5;
@@ -211,8 +218,49 @@ body {
     font-weight: 600;
 }
 
-/* RESPONSIVE */
-@media (max-width: 900px) {
-    .profile-layout { grid-template-columns: 1fr; }
-    .profile-sidebar { position: relative; top: 0; }
+/* ===== RESPONSIVE ===== */
+
+/* Tablets / Medium Screens */
+@media (max-width: 1024px) {
+    .profile-layout { grid-template-columns: 1fr; gap: 25px; padding: 20px; }
+    .profile-sidebar { position: relative; top: 0; width: 100%; margin-bottom: 20px; }
+}
+
+/* Small Tablets / Large Phones */
+@media (max-width: 768px) {
+    .avatar-container { width: 80px; height: 80px; }
+    .change-photo { width: 28px; height: 28px; }
+    .profile-card-mini { padding: 25px 15px; }
+    .section-header h3 { font-size: 16px; }
+    .info-grid { gap: 15px; }
+    .info-box p { font-size: 14px; }
+    .content-header { padding: 15px 20px; }
+    .doc-item { padding: 12px; gap: 12px; }
+    .doc-info strong { font-size: 13px; }
+    .doc-info span { font-size: 11px; }
+}
+
+/* Mobile Phones */
+@media (max-width: 576px) {
+    .profile-card-mini { padding: 20px 12px; }
+    .avatar-container { width: 70px; height: 70px; }
+    .change-photo { width: 24px; height: 24px; }
+    .section-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .section-header h3 { font-size: 15px; }
+    .info-grid { grid-template-columns: 1fr; gap: 12px; }
+    .doc-item { flex-direction: column; align-items: flex-start; }
+    .doc-actions { width: 100%; justify-content: flex-start; }
+    .skills-container { justify-content: flex-start; gap: 8px; }
+}
+
+/* Very Small Phones */
+@media (max-width: 420px) {
+    .profile-layout { margin: 20px 10px; }
+    .profile-card-mini { padding: 15px 10px; }
+    .avatar-container { width: 60px; height: 60px; }
+    .change-photo { width: 20px; height: 20px; }
+    .section-header h3 { font-size: 14px; }
+    .info-box p { font-size: 13px; }
+    .doc-item { padding: 10px; }
+    .skill-tag { padding: 6px 12px; font-size: 12px; }
 }

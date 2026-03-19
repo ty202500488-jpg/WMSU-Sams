@@ -134,7 +134,48 @@ input:focus { border-color: var(--wmsu-crimson); outline: none; }
 .checkbox-wrapper { display: flex; gap: 12px; align-items: flex-start; cursor: pointer; }
 .checkbox-wrapper p { font-size: 13px; color: #666; margin: 0; }
 
-@media (max-width: 600px) {
+/* ===== RESPONSIVE LAYOUT ===== */
+
+/* Medium Screens / Tablets */
+@media (max-width: 900px) {
     .input-row { flex-direction: column; }
     .day-row { flex-direction: column; gap: 10px; }
+    .grid-3 .field { width: 100%; }
+    .split-2-1 .field:first-child { flex: 1; }
+    .cppeso-header { padding: 25px; }
+    .header-content { flex-direction: column; gap: 10px; }
+    .title-area h1 { font-size: 22px; }
+    .title-area p { font-size: 13px; }
+    .form-card { padding: 25px; }
+}
+
+/* Small Tablets / Large Phones */
+@media (max-width: 600px) {
+    body { padding: 20px 15px; }
+    .cppeso-header { padding: 20px; margin-top: 60px; }
+    .form-logo { width: 50px; height: 50px; }
+    .title-area h1 { font-size: 20px; }
+    .title-area p { font-size: 12px; }
+    .input-row { gap: 0; }
+    .day-label { width: 100%; }
+    .time-fields { flex-wrap: wrap; gap: 5px; }
+    .time-fields input { width: 100%; }
+    .upload-box { padding: 25px; }
+    .submit-btn { padding: 16px; font-size: 16px; }
+}
+
+/* Mobile Phones */
+@media (max-width: 420px) {
+    .return-btn { top: 20px; left: 15px; }
+    .cppeso-header { padding: 15px; border-radius: 10px; margin-top: 50px; }
+    .header-content { gap: 10px; }
+    .form-logo { width: 45px; height: 45px; }
+    .title-area h1 { font-size: 18px; }
+    .title-area p { font-size: 11px; }
+    .form-card { padding: 20px; }
+    .section-title { font-size: 16px; }
+    input, select, textarea { font-size: 13px; padding: 10px; }
+    .submit-btn { font-size: 15px; padding: 14px; }
+    .upload-box i { font-size: 28px; }
+    .checkbox-wrapper p { font-size: 12px; }
 }
