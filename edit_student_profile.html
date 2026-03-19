@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Profile | WMSU-SAMS</title>
-    <link rel="stylesheet" href="student_profile.css">
+    <title>Edit My Profile | WMSU-SAMS</title>
+    <link rel="stylesheet" href="edit_student_profile.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
@@ -54,14 +54,14 @@
                 <div class="section-header">
                     <h3><i class="fa-solid fa-address-card"></i> Personal Information</h3>
                     <div class="doc-actions">
-                        <button id="edit-btn-text"><a href="edit_student_profile.html" >Edit Details</a></button>
+                        <button id="edit-btn-text"><a href="student_profile.html" >Confirm Changes</a></button>
                     </div>
                 </div>
                 <div class="info-grid">
-                    <div class="info-box"><span>Email Address</span><p>juan@email.com</p></div>
-                    <div class="info-box"><span>Phone Number</span><p>0912 345 6789</p></div>
-                    <div class="info-box"><span>Home Address</span><p>Zamboanga City, PH</p></div>
-                    <div class="info-box"><span>Birth Date</span><p>January 10, 2003</p></div>
+                    <div class="info-box"><label><span>Email Address</span><input type="email" name="email" value="juan@email.com"></label></div>
+                    <div class="info-box"><label><span>Phone Number</span><input type="tel" name="number" value="0912 345 6789"></label></div>
+                    <div class="info-box"><label><span>Home Address</span><input type="text" name="address" value="Zamboanga City, PH"></label></div>
+                    <div class="info-box"><label><span>Birth Date</span><input type="date" name="birth_date" value="2003-01-10"></label></div>
                 </div>
             </section>
 
@@ -70,10 +70,10 @@
                     <h3><i class="fa-solid fa-university"></i> Academic Information</h3>
                 </div>
                 <div class="info-grid">
-                    <div class="info-box"><span>College</span><p>College of Computing Studies</p></div>
-                    <div class="info-box"><span>Course</span><p>BS Information Technology</p></div>
-                    <div class="info-box"><span>Year Level</span><p>3rd Year</p></div>
-                    <div class="info-box"><span>Status</span><p class="status-enrolled">Enrolled</p></div>
+                    <div class="info-box"><label><span>College</span><input type="text" name="college" value="College of Computing Studies"></label></div>
+                    <div class="info-box"><label><span>Course</span><input type="text" name="course" value="BS Information Technology"></label></div>
+                    <div class="info-box"><label><span>Year Level</span><input type="text" name="year_level" value="3rd Year"></label></div>
+                    <div class="info-box"><label><span>Status</span><input type="text" name="status" value="Enrolled"></label></div>
                 </div>
             </section>
 
@@ -112,6 +112,7 @@
             <section id="skills" class="profile-section">
                 <div class="section-header">
                     <h3><i class="fa-solid fa-wand-magic-sparkles"></i> Skills & Portfolio</h3>
+                    <div class="doc-actions"><button id="add-btn"><p>+ Add Skill</p></button></div>
                 </div>
                 <div class="skills-container">
                     <span class="skill-tag">Web Development</span>
