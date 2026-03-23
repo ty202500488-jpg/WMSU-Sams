@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Applicants | WMSU-SAMS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="employer_applications.css">
+</head>
+<body>
+
+    <header class="top-nav">
+        <div class="top-logo">WMSU-SAMS</div>
+        <nav class="top-links">
+            <a href="employer_dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a>
+            <a href="employer_application.html" class="active"><i class="fas fa-users"></i> Applicants</a>
+            <a href="payroll.html"><i class="fas fa-file-invoice-dollar"></i> Payroll</a>
+            <a href="positions.html"><i class="fas fa-briefcase"></i> Postings</a>
+        </nav>
+        <div class="profile-dropdown">
+            <a href="employer_profile.html">
+                <img src="Images/profile.jpg.jpg" alt="Profile" class="profile-img">
+            </a>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar-panel">
+            <div class="user-mini-card">
+                <div class="cover-photo"></div>
+                <div class="user-info">
+                    <div class="avatar-replacement">LIB</div>
+                    <h3>Library Department</h3>
+                    <p>WMSU Main Campus</p>
+                </div>
+                <hr>
+                <div class="sidebar-menu">
+                    <a href="#" class="sidebar-link active-link"><i class="fas fa-list"></i> All Applicants</a>
+                    <a href="#" class="sidebar-link"><i class="fas fa-clock"></i> Pending Review</a>
+                    <a href="#" class="sidebar-link"><i class="fas fa-user-check"></i> Shortlisted</a>
+                    <a href="#" class="sidebar-link"><i class="fas fa-archive"></i> Archived</a>
+                </div>
+            </div>
+
+            <div class="side-widget help-widget">
+                <p>Need a printed copy of the applicant list?</p>
+                <button class="help-btn"><i class="fas fa-print"></i> Print Report</button>
+            </div>
+        </aside>
+
+        <main class="dashboard-feed">
+            <div class="feed-section">
+                <div class="section-header-flex">
+                    <h2 class="section-title">Applicant Management</h2>
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search by name or ID...">
+                    </div>
+                </div>
+
+                <div class="main-card table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Student Info</th>
+                                <th>Applied Position</th>
+                                <th>GPA</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="student-profile">
+                                        <div class="mini-avatar">MS</div>
+                                        <div class="name-stack">
+                                            <strong>Maria Santos</strong>
+                                            <span>BSIT - 3rd Year</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Library Assistant</td>
+                                <td><span class="gpa-badge">1.75</span></td>
+                                <td><span class="status pending">Pending</span></td>
+                                <td class="action-cells">
+                                    <button class="btn-icon view" title="View Profile"><i class="fas fa-eye"></i></button>
+                                    <button class="btn-icon approve" title="Approve"><i class="fas fa-check"></i></button>
+                                    <button class="btn-icon reject" title="Reject"><i class="fas fa-times"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="student-profile">
+                                        <div class="mini-avatar blue">AC</div>
+                                        <div class="name-stack">
+                                            <strong>Angela Cruz</strong>
+                                            <span>BSIT - 1st Year</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>IT Lab Assistant</td>
+                                <td><span class="gpa-badge">1.80</span></td>
+                                <td><span class="status pending">Pending</span></td>
+                                <td class="action-cells">
+                                    <button class="btn-icon view"><i class="fas fa-eye"></i></button>
+                                    <button class="btn-icon approve"><i class="fas fa-check"></i></button>
+                                    <button class="btn-icon reject"><i class="fas fa-times"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="student-profile">
+                                        <div class="mini-avatar green">MR</div>
+                                        <div class="name-stack">
+                                            <strong>Mark Rivera</strong>
+                                            <span>BSCS - 2nd Year</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Database Assistant</td>
+                                <td><span class="gpa-badge">1.45</span></td>
+                                <td><span class="status pending">Pending</span></td>
+                                <td class="action-cells">
+                                    <button class="btn-icon view"><i class="fas fa-eye"></i></button>
+                                    <button class="btn-icon approve"><i class="fas fa-check"></i></button>
+                                    <button class="btn-icon reject"><i class="fas fa-times"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="student-profile">
+                                        <div class="mini-avatar orange">SL</div>
+                                        <div class="name-stack">
+                                            <strong>Sophia Luna</strong>
+                                            <span>BSED - 4th Year</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Office Helper</td>
+                                <td><span class="gpa-badge">1.25</span></td>
+                                <td><span class="status pending">Pending</span></td>
+                                <td class="action-cells">
+                                    <button class="btn-icon view"><i class="fas fa-eye"></i></button>
+                                    <button class="btn-icon approve"><i class="fas fa-check"></i></button>
+                                    <button class="btn-icon reject"><i class="fas fa-times"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+        <aside class="right-panel">
+            <div class="side-widget">
+                <h4>Quick Filters</h4>
+                <div class="filter-option">
+                    <label><input type="checkbox"> Priority Applicants</label>
+                </div>
+                <div class="filter-option">
+                    <label><input type="checkbox"> High GPA (1.0 - 1.5)</label>
+                </div>
+            </div>
+
+            <div class="side-widget stats-mini">
+                <h4>Hiring Summary</h4>
+                <div class="stat-item"><span>Total Apps</span> <strong>48</strong></div>
+                <div class="stat-item"><span>Remaining Slots</span> <strong style="color: #2ecc71;">3</strong></div>
+            </div>
+        </aside>
+    </div>
+</body>
+</html>

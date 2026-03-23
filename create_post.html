@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Job Vacancy | WMSU-SAMS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="create_post.css">
+</head>
+<body>
+
+    <div class="return-btn">
+        <a href="employer_dashboard.html"><i class="fa-solid fa-arrow-left"></i></a>
+    </div>
+
+    <div class="form-wrapper">
+        <header class="cppeso-header">
+            <div class="header-content">
+                <img src="Images/wmsu.jpg.jpg" alt="WMSU Logo" class="form-logo">
+                <div class="title-area">
+                    <h1>Create Job Vacancy</h1>
+                    <p>Employer Position Request Form</p>
+                </div>
+            </div>
+        </header>
+
+        <form action="post_success.html" method="POST">
+            
+            <section class="form-card">
+                <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> Position Identity</h2>
+                
+                <div class="input-row split-2-1">
+                    <div class="field">
+                        <label>Job Title / Designation</label>
+                        <input type="text" name="job_title" placeholder="e.g., Office Technical Assistant" required>
+                    </div>
+                    <div class="field">
+                        <label>Slots Available</label>
+                        <input type="number" name="slots" value="1" min="1" required>
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <div class="field">
+                        <label>Target Office / Unit</label>
+                        <input type="text" name="unit" placeholder="e.g., College of Engineering - Dean's Office" required>
+                    </div>
+                    <div class="field">
+                        <label>Employment Category</label>
+                        <select name="category" required>
+                            <option value="Regular">Regular (Semestral)</option>
+                            <option value="Summer">Summer Job</option>
+                            <option value="Special">Special Project</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <section class="form-card">
+                <h2 class="section-title"><i class="fa-solid fa-coins"></i> Compensation & Schedule</h2>
+                
+                <div class="input-row grid-3">
+                    <div class="field">
+                        <label>Fixed Rate</label>
+                        <input type="text" value="₱ 50.00 / hour" readonly style="background: #fdf2f2; font-weight: bold; color: var(--wmsu-crimson);">
+                    </div>
+                    <div class="field">
+                        <label>Max Hours/Month</label>
+                        <input type="text" value="100 Hours" readonly style="background: #fdf2f2; font-weight: bold; color: var(--wmsu-crimson);">
+                    </div>
+                    <div class="field">
+                        <label>Work Shift</label>
+                        <input type="text" name="shift" placeholder="e.g., AM Shift only">
+                    </div>
+                </div>
+            </section>
+
+            <section class="form-card">
+                <h2 class="section-title"><i class="fa-solid fa-list-check"></i> Job Requirements</h2>
+                
+                <div class="field" style="margin-bottom: 20px;">
+                    <label>Tasks & Responsibilities</label>
+                    <textarea name="tasks" rows="4" placeholder="List the daily duties of the student assistant..." required></textarea>
+                </div>
+
+                <div class="field">
+                    <label>Preferred Qualifications (Optional)</label>
+                    <textarea name="qualifications" rows="3" placeholder="e.g., At least 2nd year, Proficient in MS Excel..."></textarea>
+                </div>
+            </section>
+
+            <div class="declaration">
+                <label class="checkbox-wrapper">
+                    <input type="checkbox" required>
+                    <p>I hereby certify that this position follows the University's guidelines for Student Assistantship and budget allocation.</p>
+                </label>
+            </div>
+
+            <button type="submit" class="submit-btn">
+                <span>Post Vacancy</span>
+                <i class="fa-solid fa-paper-plane"></i>
+            </button>
+        </form>
+    </div>
+
+</body>
+</html>

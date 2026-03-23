@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Postings | WMSU-SAMS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="job_posting.css">
+</head>
+<body>
+
+    <header class="top-nav">
+        <div class="top-logo">WMSU-SAMS</div>
+        <nav class="top-links">
+            <a href="employer_dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a>
+            <a href="employer_application.html"><i class="fas fa-users"></i> Applicants</a>
+            <a href="payroll.html"><i class="fas fa-file-invoice-dollar"></i> Payroll</a>
+            <a href="job_posting.html" class="active"><i class="fas fa-briefcase"></i> Postings</a>
+        </nav>
+        <div class="profile-dropdown">
+            <a href="employer_profile.html">
+                <img src="Images/profile.jpg.jpg" alt="Profile" class="profile-img">
+            </a>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <aside class="sidebar-panel">
+            <div class="user-mini-card">
+                <div class="cover-photo"></div>
+                <div class="user-info">
+                    <div class="avatar-replacement">LIB</div>
+                    <h3>Library Department</h3>
+                    <p>WMSU Main Campus</p>
+                </div>
+                <hr>
+                <div class="sidebar-menu">
+                    <a href="#" class="sidebar-link active-link"><i class="fas fa-layer-group"></i> Active Postings</a>
+                    <a href="#" class="sidebar-link"><i class="fas fa-folder-minus"></i> Closed Positions</a>
+                    <a href="#" class="sidebar-link"><i class="fas fa-chart-pie"></i> Dept Analytics</a>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <i class="fas fa-lightbulb"></i>
+                <p>Keeping job descriptions clear helps attract the best SAs!</p>
+            </div>
+        </aside>
+
+        <main class="dashboard-feed">
+            <div class="feed-section">
+                <div class="section-header-flex">
+                    <h2 class="section-title">Job Postings</h2>
+                    <a href="create_post.html" class="create-btn" style="text-decoration: none;">
+                        <i class="fas fa-plus"></i> Create Position
+                    </a>
+                </div>
+
+                <div class="main-card posting-card">
+                    <div class="posting-header">
+                        <div class="job-info">
+                            <h3>Library Assistant</h3>
+                            <span>Posted: March 15, 2026</span>
+                        </div>
+                        <span class="status-tag open">Active</span>
+                    </div>
+                    <div class="posting-details">
+                        <p><i class="fas fa-users"></i> Slots: <strong>5 / 8 Filled</strong></p>
+                        <p><i class="fas fa-clock"></i> Hours: <strong>20 hrs/week</strong></p>
+                        <p><i class="fas fa-align-left"></i> Task: Assist in cataloging books and maintaining the silent study area.</p>
+                    </div>
+                    <div class="posting-footer">
+                        <button class="action-btn-sm"><i class="fas fa-edit"></i> Edit</button>
+                        <button class="action-btn-sm"><i class="fas fa-pause"></i> Pause</button>
+                        <button class="action-btn-sm delete-btn"><i class="fas fa-trash"></i> Close</button>
+                    </div>
+                </div>
+
+                <div class="main-card posting-card">
+                    <div class="posting-header">
+                        <div class="job-info">
+                            <h3>IT Lab Assistant</h3>
+                            <span>Posted: March 10, 2026</span>
+                        </div>
+                        <span class="status-tag open">Active</span>
+                    </div>
+                    <div class="posting-details">
+                        <p><i class="fas fa-users"></i> Slots: <strong>2 / 4 Filled</strong></p>
+                        <p><i class="fas fa-clock"></i> Hours: <strong>15 hrs/week</strong></p>
+                        <p><i class="fas fa-align-left"></i> Task: Monitor computer usage and assist with basic technical troubleshooting.</p>
+                    </div>
+                    <div class="posting-footer">
+                        <button class="action-btn-sm"><i class="fas fa-edit"></i> Edit</button>
+                        <button class="action-btn-sm"><i class="fas fa-pause"></i> Pause</button>
+                        <button class="action-btn-sm delete-btn"><i class="fas fa-trash"></i> Close</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <aside class="right-panel">
+            <div class="side-widget">
+                <h4>Department Capacity</h4>
+                <div class="capacity-meter">
+                    <div class="capacity-text">
+                        <span>Total Hired</span>
+                        <strong>12 / 15</strong>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-fill" style="width: 80%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="side-widget help-widget">
+                <p>New Semester Guidelines?</p>
+                <button class="help-btn">HR Handbook</button>
+            </div>
+        </aside>
+
+    </div>
+
+</body>
+</html>
