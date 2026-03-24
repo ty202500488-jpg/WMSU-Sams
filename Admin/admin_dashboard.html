@@ -1,140 +1,1402 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CPPESO Admin | WMSU-SAMS</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="admin_dashboard.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>WMSU SAMS | Admin Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+<link href="admin_dashboard.css" rel="stylesheet"/>
 </head>
 <body>
 
-    <header class="top-nav">
-        <div class="nav-left">
-            <div class="top-logo">WMSU-SAMS</div>
-            <div class="search-container">
-                <i class="fas fa-search"></i>
-                <input type="text" placeholder="Search student ID or Dept...">
-            </div>
-        </div>
-        
-        <nav class="top-links">
-            <a href="#" class="active" title="Dashboard"><i class="fas fa-th-large"></i></a>
-            <a href="#" title="Verify Students"><i class="fas fa-user-check"></i></a>
-            <a href="#" title="Placements"><i class="fas fa-map-marker-alt"></i></a>
-            <a href="#" title="Reports"><i class="fas fa-file-contract"></i></a>
-        </nav>
+<!-- ── RADIO INPUTS FOR NAVIGATION ───────────────── -->
+<input class="nav-radio" type="radio" name="nav" id="nav-dashboard"    checked/>
+<input class="nav-radio" type="radio" name="nav" id="nav-students"/>
+<input class="nav-radio" type="radio" name="nav" id="nav-departments"/>
+<input class="nav-radio" type="radio" name="nav" id="nav-positions"/>
+<input class="nav-radio" type="radio" name="nav" id="nav-applications"/>
+<input class="nav-radio" type="radio" name="nav" id="nav-reports"/>
 
-        <div class="nav-right">
-            <div class="notif-bell">
-                <i class="fas fa-bell"></i>
-                <span class="pulse-dot"></span>
-            </div>
-            <div class="profile-area">
-                <span class="admin-name">CPPESO Admin</span>
-                <img src="Images/profile.jpg.jpg" alt="Admin Profile" class="profile-img-nav">
-            </div>
-        </div>
-    </header>
+<!-- ── TAB RADIOS ─────────────────────────────────── -->
+<input class="tab-radio" type="radio" name="app-tab" id="tab-all"      checked/>
+<input class="tab-radio" type="radio" name="app-tab" id="tab-pending"/>
+<input class="tab-radio" type="radio" name="app-tab" id="tab-approved"/>
+<input class="tab-radio" type="radio" name="app-tab" id="tab-rejected"/>
 
-    <div class="container">
+<!-- ═══════════════════════════════════════════════
+     SIDEBAR
+════════════════════════════════════════════════ -->
+<div class="layout">
 
-        <aside class="sidebar-panel">
-            <div class="admin-card">
-                <div class="admin-cover"></div>
-                <div class="admin-profile-circle">
-                    <i class="fas fa-user-shield"></i>
-                </div>
-                <h3>CPPESO Office</h3>
-                <p>System Administrator</p>
-            </div>
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
+    <div class="logo-text">
+      <div class="abbr">WMSU-SAMS</div>
+      <div class="full">Student Assistant Mgmt.</div>
+    </div>
+  </div>
 
-            <div class="menu-group">
-                <a href="#" class="menu-item active"><i class="fas fa-home"></i> Admin Home</a>
-                <a href="#" class="menu-item"><i class="fas fa-check-circle"></i> Verification Queue <span class="count">12</span></a>
-                <a href="#" class="menu-item"><i class="fas fa-building"></i> Dept Requests <span class="count blue">3</span></a>
-                <a href="#" class="menu-item"><i class="fas fa-clipboard-list"></i> Job Approvals</a>
-                <hr class="menu-divider">
-                <a href="#" class="menu-item"><i class="fas fa-bullhorn"></i> Post Announcement</a>
-                <a href="#" class="menu-item logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
-            </div>
-        </aside>
+  <div class="sidebar-section-label">Main Menu</div>
 
-        <main class="dashboard-feed">
-            
-            <div class="feed-section">
-                <h2 class="section-title">Application Pipeline</h2>
-                <div class="pipeline-row">
-                    <div class="pipeline-step"><strong>532</strong><span>Total SAs</span></div>
-                    <div class="pipeline-step"><strong>42</strong><span>Pending</span></div>
-                    <div class="pipeline-step current"><strong>18</strong><span>Placement</span></div>
-                    <div class="pipeline-step"><strong>9</strong><span>Active</span></div>
-                </div>
-            </div>
-
-            <div class="feed-section">
-                <div class="section-header-flex">
-                    <h2 class="section-title">Recent Actions Required</h2>
-                </div>
-
-                <div class="main-card">
-                    <div class="card-header">
-                        <div class="user-avatar-initials">MS</div>
-                        <div class="header-text">
-                            <h4>Maria Santos <span>requested verification</span></h4>
-                            <p>30 minutes ago • <span class="urgent">New Student</span></p>
-                        </div>
-                    </div>
-                    <div class="card-body-content">
-                        <p>Student submitted <strong>Study Load</strong> and <strong>Final Grades</strong> for BSIT 3rd Year. Everything looks valid.</p>
-                    </div>
-                    <div class="card-footer-actions">
-                        <button class="btn-primary-fb">Approve Verification</button>
-                        <button class="btn-secondary-fb">View Documents</button>
-                    </div>
-                </div>
-
-                <div class="main-card">
-                    <div class="card-header">
-                        <div class="icon-circle blue"><i class="fas fa-building"></i></div>
-                        <div class="header-text">
-                            <h4>Library Department <span>• 2 Slots</span></h4>
-                            <p>Requires Library Aides for Night Shift</p>
-                        </div>
-                    </div>
-                    <div class="card-footer-actions">
-                        <button class="btn-primary-fb">Confirm Slots</button>
-                        <button class="btn-secondary-fb">Reject</button>
-                    </div>
-                </div>
-            </div>
-        </main>
-
-        <aside class="right-panel">
-            <div class="side-widget">
-                <h4>System Logs</h4>
-                <div class="log-item">
-                    <div class="log-dot green"></div>
-                    <p><strong>Admin</strong> approved 5 students</p>
-                </div>
-                <div class="log-item">
-                    <div class="log-dot blue"></div>
-                    <p><strong>Library</strong> updated job status</p>
-                </div>
-                <div class="log-item">
-                    <div class="log-dot"></div>
-                    <p>New registration: <strong>John Doe</strong></p>
-                </div>
-            </div>
-
-            <div class="side-widget quick-stats">
-                <h4>Active Stats</h4>
-                <div class="mini-stat"><span>Verified Students:</span> <strong>421</strong></div>
-                <div class="mini-stat"><span>Budget Used:</span> <strong>62%</strong></div>
-            </div>
-        </aside>
-
+  <nav class="sidebar-nav">
+    <div class="nav-item">
+      <label for="nav-dashboard">
+        <i class="fas fa-th-large"></i>
+        Dashboard
+      </label>
+    </div>
+    <div class="nav-item">
+      <label for="nav-students">
+        <i class="fas fa-user-check"></i>
+        Verify Students
+        <span class="nav-badge">5</span>
+      </label>
+    </div>
+    <div class="nav-item">
+      <label for="nav-departments">
+        <i class="fas fa-building"></i>
+        Verify Departments
+        <span class="nav-badge">3</span>
+      </label>
+    </div>
+    <div class="nav-item">
+      <label for="nav-positions">
+        <i class="fas fa-briefcase"></i>
+        Manage Positions
+      </label>
+    </div>
+    <div class="nav-item">
+      <label for="nav-applications">
+        <i class="fas fa-clipboard-list"></i>
+        Applications Approval
+        <span class="nav-badge">8</span>
+      </label>
     </div>
 
+    <div class="sidebar-section-label">Analytics</div>
+
+    <div class="nav-item">
+      <label for="nav-reports">
+        <i class="fas fa-chart-bar"></i>
+        Reports
+      </label>
+    </div>
+  </nav>
+
+  <div class="sidebar-footer">
+    <a href="#" class="logout-btn">
+      <i class="fas fa-sign-out-alt"></i>
+      Logout
+    </a>
+  </div>
+</aside>
+
+<!-- ═══════════════════════════════════════════════
+     TOPBAR
+════════════════════════════════════════════════ -->
+<header class="topbar">
+  <div class="topbar-left">
+    <h1>Admin Panel</h1>
+    <p>Western Mindanao State University — AY 2025–2026</p>
+  </div>
+  <div class="topbar-right">
+    <div class="topbar-notif">
+      <i class="fas fa-bell"></i>
+      <span class="notif-dot"></span>
+    </div>
+    <div class="topbar-user">
+      <div class="user-avatar">AD</div>
+      <div>
+        <div class="user-name">Admin</div>
+        <div class="user-role">System Administrator</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════
+     MAIN CONTENT
+════════════════════════════════════════════════ -->
+<main class="main-content">
+
+
+<!-- ╔══════════════════════════════════════════════
+     § DASHBOARD
+══════════════════════════════════════════════╗ -->
+<section class="section" id="sec-dashboard">
+
+  <div class="section-header">
+    <div>
+      <div class="section-title">Welcome back, Administrator</div>
+      <div class="section-sub">Here's what's happening in SAMS today — Tuesday, March 24, 2026</div>
+    </div>
+    <div class="section-actions">
+      <button class="btn btn-outline"><i class="fas fa-download"></i> Export Report</button>
+      <button class="btn btn-primary"><i class="fas fa-sync-alt"></i> Refresh</button>
+    </div>
+  </div>
+
+  <!-- Stat Cards -->
+  <div class="stat-grid">
+    <div class="stat-card maroon">
+      <div class="stat-card-top">
+        <div class="stat-icon maroon"><i class="fas fa-users"></i></div>
+        <span class="stat-trend up"><i class="fas fa-arrow-up"></i> +12</span>
+      </div>
+      <div class="stat-value">248</div>
+      <div class="stat-label">Total Students Registered</div>
+    </div>
+    <div class="stat-card gold">
+      <div class="stat-card-top">
+        <div class="stat-icon gold"><i class="fas fa-university"></i></div>
+        <span class="stat-trend up"><i class="fas fa-arrow-up"></i> +2</span>
+      </div>
+      <div class="stat-value">18</div>
+      <div class="stat-label">Total Departments</div>
+    </div>
+    <div class="stat-card green">
+      <div class="stat-card-top">
+        <div class="stat-icon green"><i class="fas fa-user-tie"></i></div>
+        <span class="stat-trend up"><i class="fas fa-arrow-up"></i> +7</span>
+      </div>
+      <div class="stat-value">94</div>
+      <div class="stat-label">Active Student Assistants</div>
+    </div>
+    <div class="stat-card orange">
+      <div class="stat-card-top">
+        <div class="stat-icon orange"><i class="fas fa-hourglass-half"></i></div>
+        <span class="stat-trend warn"><i class="fas fa-exclamation"></i> Action</span>
+      </div>
+      <div class="stat-value">16</div>
+      <div class="stat-label">Pending Applications</div>
+    </div>
+  </div>
+
+  <!-- Alert Banner -->
+  <div class="alert-banner warn">
+    <i class="fas fa-exclamation-triangle"></i>
+    <span><strong>Action Required:</strong> 5 student verifications and 3 department approvals are awaiting your review. Please resolve them before the deadline.</span>
+  </div>
+
+  <!-- Dashboard Grid -->
+  <div class="dash-grid">
+
+    <!-- Recent Activity -->
+    <div class="card">
+      <div class="card-header">
+        <h3><i class="fas fa-clock"></i> Recent Activity</h3>
+        <a href="#" class="view-all">View all <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="card-body">
+        <ul class="activity-list">
+          <li class="activity-item">
+            <div class="activity-dot reg"><i class="fas fa-user-plus"></i></div>
+            <div>
+              <div class="activity-text"><strong>Maria Santos</strong> registered as a new student and uploaded required documents.</div>
+              <div class="activity-time"><i class="fas fa-clock" style="font-size:10px;"></i> 14 minutes ago</div>
+            </div>
+          </li>
+          <li class="activity-item">
+            <div class="activity-dot dept"><i class="fas fa-building"></i></div>
+            <div>
+              <div class="activity-text"><strong>College of Nursing</strong> submitted department registration for verification.</div>
+              <div class="activity-time"><i class="fas fa-clock" style="font-size:10px;"></i> 1 hour ago</div>
+            </div>
+          </li>
+          <li class="activity-item">
+            <div class="activity-dot app"><i class="fas fa-file-alt"></i></div>
+            <div>
+              <div class="activity-text"><strong>Juan dela Cruz</strong> applied for <em>Library Assistant</em> at CEAS Department.</div>
+              <div class="activity-time"><i class="fas fa-clock" style="font-size:10px;"></i> 2 hours ago</div>
+            </div>
+          </li>
+          <li class="activity-item">
+            <div class="activity-dot reg"><i class="fas fa-user-plus"></i></div>
+            <div>
+              <div class="activity-text"><strong>Ana Reyes</strong> registered and submitted COR and resume for verification.</div>
+              <div class="activity-time"><i class="fas fa-clock" style="font-size:10px;"></i> 3 hours ago</div>
+            </div>
+          </li>
+          <li class="activity-item">
+            <div class="activity-dot warn"><i class="fas fa-exclamation"></i></div>
+            <div>
+              <div class="activity-text"><strong>IT Department</strong> application for <em>Lab Monitor</em> slot is still pending final decision.</div>
+              <div class="activity-time"><i class="fas fa-clock" style="font-size:10px;"></i> Yesterday, 4:30 PM</div>
+            </div>
+          </li>
+          <li class="activity-item">
+            <div class="activity-dot app"><i class="fas fa-check-circle"></i></div>
+            <div>
+              <div class="activity-text"><strong>Carlos Mendez</strong> was approved as Student Assistant for the <em>Finance Office</em>.</div>
+              <div class="activity-time"><i class="fas fa-clock" style="font-size:10px;"></i> Yesterday, 2:15 PM</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Pending Actions -->
+    <div>
+      <div class="card" style="margin-bottom:20px;">
+        <div class="card-header">
+          <h3><i class="fas fa-tasks"></i> Pending Actions</h3>
+        </div>
+        <div class="card-body" style="padding-top:14px;">
+          <ul class="pending-list">
+            <li class="pending-item">
+              <div class="pending-left">
+                <div class="pending-icon" style="background:#fce4e8;color:var(--maroon);"><i class="fas fa-user-check"></i></div>
+                <div>
+                  <div class="pending-label">Student Verifications</div>
+                  <div class="pending-sub">Documents awaiting review</div>
+                </div>
+              </div>
+              <span class="badge-count">5</span>
+            </li>
+            <li class="pending-item">
+              <div class="pending-left">
+                <div class="pending-icon" style="background:#fef9ec;color:var(--yellow);"><i class="fas fa-building"></i></div>
+                <div>
+                  <div class="pending-label">Dept. Verifications</div>
+                  <div class="pending-sub">Awaiting legitimacy check</div>
+                </div>
+              </div>
+              <span class="badge-count">3</span>
+            </li>
+            <li class="pending-item">
+              <div class="pending-left">
+                <div class="pending-icon" style="background:var(--green-light);color:var(--green);"><i class="fas fa-clipboard-list"></i></div>
+                <div>
+                  <div class="pending-label">SA Applications</div>
+                  <div class="pending-sub">Final approval pending</div>
+                </div>
+              </div>
+              <span class="badge-count">8</span>
+            </li>
+            <li class="pending-item">
+              <div class="pending-left">
+                <div class="pending-icon" style="background:var(--blue-light);color:var(--blue);"><i class="fas fa-file-invoice"></i></div>
+                <div>
+                  <div class="pending-label">Reports Due</div>
+                  <div class="pending-sub">Monthly summary needed</div>
+                </div>
+              </div>
+              <span class="badge-count">2</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Quick Summary -->
+      <div class="card">
+        <div class="card-header">
+          <h3><i class="fas fa-chart-pie"></i> Quick Summary</h3>
+        </div>
+        <div class="card-body">
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div>
+              <div class="dist-label">
+                <span class="dist-name">Verified Students</span>
+                <span class="dist-count">186 / 248</span>
+              </div>
+              <div class="dist-bar-wrap"><div class="dist-bar" style="width:75%;"></div></div>
+            </div>
+            <div>
+              <div class="dist-label">
+                <span class="dist-name">Active SA Slots Filled</span>
+                <span class="dist-count">94 / 120</span>
+              </div>
+              <div class="dist-bar-wrap"><div class="dist-bar" style="width:78%;background:linear-gradient(90deg,var(--green),#4ade80);"></div></div>
+            </div>
+            <div>
+              <div class="dist-label">
+                <span class="dist-name">Approved Departments</span>
+                <span class="dist-count">15 / 18</span>
+              </div>
+              <div class="dist-bar-wrap"><div class="dist-bar" style="width:83%;background:linear-gradient(90deg,var(--blue),#60a5fa);"></div></div>
+            </div>
+            <div>
+              <div class="dist-label">
+                <span class="dist-name">Applications Resolved</span>
+                <span class="dist-count">52 / 68</span>
+              </div>
+              <div class="dist-bar-wrap"><div class="dist-bar" style="width:76%;background:linear-gradient(90deg,var(--yellow),#fbbf24);"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /dash-grid -->
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════
+     § VERIFY STUDENTS
+══════════════════════════════════════════════╗ -->
+<section class="section" id="sec-students">
+
+  <div class="section-header">
+    <div>
+      <div class="section-title">Verify Students</div>
+      <div class="section-sub">Review submitted documents and approve or reject student registrations</div>
+    </div>
+    <div class="section-actions">
+      <button class="btn btn-outline btn-sm"><i class="fas fa-filter"></i> Filter</button>
+      <button class="btn btn-primary btn-sm"><i class="fas fa-download"></i> Export</button>
+    </div>
+  </div>
+
+  <div class="alert-banner info" style="margin-bottom:20px;">
+    <i class="fas fa-info-circle"></i>
+    <span><strong>5 students</strong> are pending verification. Please review their submitted documents (COR & Resume) carefully before approving.</span>
+  </div>
+
+  <div class="filter-bar">
+    <input type="text" placeholder="&#xf002; Search student name or ID…" style="font-family:'Font Awesome 6 Free','DM Sans',sans-serif;"/>
+    <select>
+      <option>All Status</option>
+      <option>Pending</option>
+      <option>Approved</option>
+      <option>Rejected</option>
+    </select>
+    <select>
+      <option>All Courses</option>
+      <option>BSCS</option>
+      <option>BSED</option>
+      <option>BSN</option>
+      <option>BSBA</option>
+    </select>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Student</th>
+          <th>Student ID</th>
+          <th>Course / Year</th>
+          <th>GWA</th>
+          <th>Documents Submitted</th>
+          <th>Date Submitted</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td>1</td>
+          <td>
+            <div class="t-avatar">
+              <div class="av av-a">MS</div>
+              <div><div class="td-name">Maria Santos</div><div class="td-sub">santos.maria@wmsu.edu.ph</div></div>
+            </div>
+          </td>
+          <td>2022-00145</td>
+          <td>BSCS — 3rd Year</td>
+          <td><strong style="color:var(--green)">1.75</strong></td>
+          <td>
+            <span class="doc-tag"><i class="fas fa-file-pdf"></i> COR</span>
+            <span class="doc-tag"><i class="fas fa-file-alt"></i> Resume</span>
+          </td>
+          <td>Mar 24, 2026</td>
+          <td><span class="badge pending">Pending</span></td>
+          <td>
+            <div class="action-btns">
+              <button class="btn btn-view btn-sm"><i class="fas fa-eye"></i> View Docs</button>
+              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
+              <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>2</td>
+          <td>
+            <div class="t-avatar">
+              <div class="av av-b">JD</div>
+              <div><div class="td-name">Juan dela Cruz</div><div class="td-sub">delacruz.juan@wmsu.edu.ph</div></div>
+            </div>
+          </td>
+          <td>2021-00388</td>
+          <td>BSBA — 4th Year</td>
+          <td><strong style="color:var(--green)">1.85</strong></td>
+          <td>
+            <span class="doc-tag"><i class="fas fa-file-pdf"></i> COR</span>
+            <span class="doc-tag"><i class="fas fa-file-alt"></i> Resume</span>
+          </td>
+          <td>Mar 24, 2026</td>
+          <td><span class="badge pending">Pending</span></td>
+          <td>
+            <div class="action-btns">
+              <button class="btn btn-view btn-sm"><i class="fas fa-eye"></i> View Docs</button>
+              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
+              <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>3</td>
+          <td>
+            <div class="t-avatar">
+              <div class="av av-c">AR</div>
+              <div><div class="td-name">Ana Reyes</div><div class="td-sub">reyes.ana@wmsu.edu.ph</div></div>
+            </div>
+          </td>
+          <td>2023-00072</td>
+          <td>BSN — 2nd Year</td>
+          <td><strong style="color:var(--yellow)">2.00</strong></td>
+          <td>
+            <span class="doc-tag"><i class="fas fa-file-pdf"></i> COR</span>
+            <span class="doc-tag cert"><i class="fas fa-certificate"></i> Good Moral</span>
+          </td>
+          <td>Mar 23, 2026</td>
+          <td><span class="badge pending">Pending</span></td>
+          <td>
+            <div class="action-btns">
+              <button class="btn btn-view btn-sm"><i class="fas fa-eye"></i> View Docs</button>
+              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
+              <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>4</td>
+          <td>
+            <div class="t-avatar">
+              <div class="av av-d">CM</div>
+              <div><div class="td-name">Carlos Mendez</div><div class="td-sub">mendez.carlos@wmsu.edu.ph</div></div>
+            </div>
+          </td>
+          <td>2020-00561</td>
+          <td>BSED — 4th Year</td>
+          <td><strong style="color:var(--green)">1.60</strong></td>
+          <td>
+            <span class="doc-tag"><i class="fas fa-file-pdf"></i> COR</span>
+            <span class="doc-tag"><i class="fas fa-file-alt"></i> Resume</span>
+            <span class="doc-tag cert"><i class="fas fa-certificate"></i> Good Moral</span>
+          </td>
+          <td>Mar 22, 2026</td>
+          <td><span class="badge approved">Approved</span></td>
+          <td>
+            <div class="action-btns">
+              <button class="btn btn-view btn-sm"><i class="fas fa-eye"></i> View Docs</button>
+              <span style="font-size:12px;color:var(--green);font-weight:600;"><i class="fas fa-check-circle"></i> Verified</span>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>5</td>
+          <td>
+            <div class="t-avatar">
+              <div class="av av-e">LT</div>
+              <div><div class="td-name">Liza Torres</div><div class="td-sub">torres.liza@wmsu.edu.ph</div></div>
+            </div>
+          </td>
+          <td>2022-00299</td>
+          <td>BSCS — 3rd Year</td>
+          <td><strong style="color:var(--yellow)">2.25</strong></td>
+          <td>
+            <span class="doc-tag"><i class="fas fa-file-pdf"></i> COR</span>
+          </td>
+          <td>Mar 22, 2026</td>
+          <td><span class="badge pending">Pending</span></td>
+          <td>
+            <div class="action-btns">
+              <button class="btn btn-view btn-sm"><i class="fas fa-eye"></i> View Docs</button>
+              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
+              <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>6</td>
+          <td>
+            <div class="t-avatar">
+              <div class="av av-f">RG</div>
+              <div><div class="td-name">Rico Garcia</div><div class="td-sub">garcia.rico@wmsu.edu.ph</div></div>
+            </div>
+          </td>
+          <td>2021-00431</td>
+          <td>BSBA — 3rd Year</td>
+          <td><strong style="color:var(--red)">2.75</strong></td>
+          <td>
+            <span class="doc-tag"><i class="fas fa-file-pdf"></i> COR</span>
+            <span class="doc-tag"><i class="fas fa-file-alt"></i> Resume</span>
+          </td>
+          <td>Mar 21, 2026</td>
+          <td><span class="badge rejected">Rejected</span></td>
+          <td>
+            <div class="action-btns">
+              <button class="btn btn-view btn-sm"><i class="fas fa-eye"></i> View Docs</button>
+              <span style="font-size:12px;color:var(--red);font-weight:600;"><i class="fas fa-times-circle"></i> Rejected</span>
+            </div>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-top:18px;flex-wrap:wrap;gap:10px;">
+    <span style="font-size:13px;color:var(--gray-500);">Showing <strong>1–6</strong> of <strong>248</strong> students</span>
+    <div style="display:flex;gap:6px;">
+      <button class="btn btn-outline btn-sm"><i class="fas fa-chevron-left"></i></button>
+      <button class="btn btn-primary btn-sm">1</button>
+      <button class="btn btn-outline btn-sm">2</button>
+      <button class="btn btn-outline btn-sm">3</button>
+      <button class="btn btn-outline btn-sm"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════
+     § VERIFY DEPARTMENTS
+══════════════════════════════════════════════╗ -->
+<section class="section" id="sec-departments">
+
+  <div class="section-header">
+    <div>
+      <div class="section-title">Verify Departments</div>
+      <div class="section-sub">Review department credentials and uploaded documents before approval</div>
+    </div>
+    <div class="section-actions">
+      <button class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Add Department</button>
+    </div>
+  </div>
+
+  <div class="alert-banner warn">
+    <i class="fas fa-exclamation-triangle"></i>
+    <span><strong>3 departments</strong> are awaiting legitimacy verification. Review their MOA, authorization letter, and department profile.</span>
+  </div>
+
+  <div class="table-wrap" style="margin-top:20px;">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Department</th>
+          <th>Dean / Head</th>
+          <th>College</th>
+          <th>SA Slots Requested</th>
+          <th>Documents</th>
+          <th>Date Submitted</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td>1</td>
+          <td>
+            <div>
+              <div class="td-name"><i class="fas fa-building" style="color:var(--maroon);margin-right:6px;"></i>College of Nursing</div>
+              <div class="td-sub">Health Sciences Building</div>
+            </div>
+          </td>
+          <td>Dean Patricia Lim</td>
+          <td>Health Sciences</td>
+          <td><strong>8 slots</strong></td>
+          <td>
+            <span class="doc-tag moa"><i class="fas fa-file-contract"></i> MOA</span>
+            <span class="doc-tag"><i class="fas fa-envelope"></i> Auth. Letter</span>
+          </td>
+          <td>Mar 24, 2026</td>
+          <td><span class="badge pending">Pending</span></td>
+          <td>
+            <div class="action-btns">
+              <button class="btn btn-view btn-sm"><i class="fas fa-eye"></i> View</button>
+              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
+              <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>2</td>
+          <td>
+            <div>
+              <div class="td-name"><i class="fas fa-building" style="color:var(--maroon);margin-right:6px;"></i>College of Engineering</div>
+              <div class="td-sub">Engineering Complex, Bldg. A</div>
+            </div>
+          </td>
+          <td>Dean Roberto Cruz</td>
+          <td>Engineering & Tech</td>
+          <td><strong>12 slots</strong></td>
+          <td>
+            <span class="doc-tag moa"><i class="fas fa-file-contract"></i> MOA</span>
+            <span class="doc-tag"><i class="fas fa-envelope"></i> Auth. Letter</span>
+            <span class="doc-tag cert"><i class="fas fa-id-card"></i> Dept. Profile</span>
+          </td>
+          <td>Mar 23, 2026</td>
+          <td><span class="badge pending">Pending</span></td>
+          <td>
+            <div class="action-btns">
+              <button class="btn btn-view btn-sm"><i class="fas fa-eye"></i> View</button>
+              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
+              <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>3</td>
+          <td>
+            <div>
+              <div class="td-name"><i class="fas fa-building" style="color:var(--maroon);margin-right:6px;"></i>Information Technology Dept.</div>
+              <div class="td-sub">ICT Building, 2nd Floor</div>
+            </div>
+          </td>
+          <td>Dean Alma Fernandez</td>
+          <td>Computing & IT</td>
+          <td><strong>10 slots</strong></td>
+          <td>
+            <span class="doc-tag moa"><i class="fas fa-file-contract"></i> MOA</span>
+          </td>
+          <td>Mar 22, 2026</td>
+          <td><span class="badge pending">Pending</span></td>
+          <td>
+            <div class="action-btns">
+              <button class="btn btn-view btn-sm"><i class="fas fa-eye"></i> View</button>
+              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
+              <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>4</td>
+          <td>
+            <div>
+              <div class="td-name"><i class="fas fa-building" style="color:var(--maroon);margin-right:6px;"></i>College of Education</div>
+              <div class="td-sub">Education Annex Building</div>
+            </div>
+          </td>
+          <td>Dean Vicente Tan</td>
+          <td>Arts & Sciences</td>
+          <td><strong>6 slots</strong></td>
+          <td>
+            <span class="doc-tag moa"><i class="fas fa-file-contract"></i> MOA</span>
+            <span class="doc-tag"><i class="fas fa-envelope"></i> Auth. Letter</span>
+            <span class="doc-tag cert"><i class="fas fa-id-card"></i> Dept. Profile</span>
+          </td>
+          <td>Mar 20, 2026</td>
+          <td><span class="badge approved">Approved</span></td>
+          <td>
+            <div class="action-btns">
+              <button class="btn btn-view btn-sm"><i class="fas fa-eye"></i> View</button>
+              <button class="btn btn-edit btn-sm"><i class="fas fa-edit"></i> Edit</button>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>5</td>
+          <td>
+            <div>
+              <div class="td-name"><i class="fas fa-building" style="color:var(--maroon);margin-right:6px;"></i>University Library</div>
+              <div class="td-sub">Main Library Building</div>
+            </div>
+          </td>
+          <td>Head Rosario Bautista</td>
+          <td>Administrative</td>
+          <td><strong>5 slots</strong></td>
+          <td>
+            <span class="doc-tag moa"><i class="fas fa-file-contract"></i> MOA</span>
+            <span class="doc-tag cert"><i class="fas fa-id-card"></i> Dept. Profile</span>
+          </td>
+          <td>Mar 18, 2026</td>
+          <td><span class="badge approved">Approved</span></td>
+          <td>
+            <div class="action-btns">
+              <button class="btn btn-view btn-sm"><i class="fas fa-eye"></i> View</button>
+              <button class="btn btn-edit btn-sm"><i class="fas fa-edit"></i> Edit</button>
+            </div>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════
+     § MANAGE POSITIONS
+══════════════════════════════════════════════╗ -->
+<section class="section" id="sec-positions">
+
+  <div class="section-header">
+    <div>
+      <div class="section-title">Manage Positions</div>
+      <div class="section-sub">Define and manage available Student Assistant positions across departments</div>
+    </div>
+    <div class="section-actions">
+      <button class="btn btn-outline btn-sm"><i class="fas fa-filter"></i> Filter</button>
+      <button class="btn btn-gold btn-sm"><i class="fas fa-plus"></i> New Position</button>
+    </div>
+  </div>
+
+  <div class="positions-grid">
+
+    <div class="position-card">
+      <div class="pos-header">
+        <div>
+          <div class="pos-name">Library Assistant</div>
+          <div class="pos-dept"><i class="fas fa-building" style="font-size:10px;"></i> University Library</div>
+        </div>
+        <span class="badge active">Active</span>
+      </div>
+      <div class="pos-stats">
+        <div class="pos-stat">
+          <div class="pos-stat-val">5</div>
+          <div class="pos-stat-lbl">Total Slots</div>
+        </div>
+        <div class="pos-stat">
+          <div class="pos-stat-val">3</div>
+          <div class="pos-stat-lbl">Filled</div>
+        </div>
+        <div class="pos-stat">
+          <div class="pos-stat-val col-green">2</div>
+          <div class="pos-stat-lbl">Available</div>
+        </div>
+        <div class="pos-stat">
+          <div class="pos-stat-val">20h</div>
+          <div class="pos-stat-lbl">Per Week</div>
+        </div>
+      </div>
+      <div class="pos-footer">
+        <div class="pos-rate"><i class="fas fa-peso-sign"></i> ₱4,500 / mo</div>
+        <div class="action-btns">
+          <button class="btn btn-edit btn-sm"><i class="fas fa-edit"></i></button>
+          <button class="btn btn-delete btn-sm"><i class="fas fa-trash"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="position-card">
+      <div class="pos-header">
+        <div>
+          <div class="pos-name">Laboratory Monitor</div>
+          <div class="pos-dept"><i class="fas fa-building" style="font-size:10px;"></i> Information Technology Dept.</div>
+        </div>
+        <span class="badge active">Active</span>
+      </div>
+      <div class="pos-stats">
+        <div class="pos-stat">
+          <div class="pos-stat-val">8</div>
+          <div class="pos-stat-lbl">Total Slots</div>
+        </div>
+        <div class="pos-stat">
+          <div class="pos-stat-val">8</div>
+          <div class="pos-stat-lbl">Filled</div>
+        </div>
+        <div class="pos-stat">
+          <div class="pos-stat-val" style="color:var(--red);">0</div>
+          <div class="pos-stat-lbl">Available</div>
+        </div>
+        <div class="pos-stat">
+          <div class="pos-stat-val">24h</div>
+          <div class="pos-stat-lbl">Per Week</div>
+        </div>
+      </div>
+      <div class="pos-footer">
+        <div class="pos-rate"><i class="fas fa-peso-sign"></i> ₱5,000 / mo</div>
+        <div class="action-btns">
+          <button class="btn btn-edit btn-sm"><i class="fas fa-edit"></i></button>
+          <button class="btn btn-delete btn-sm"><i class="fas fa-trash"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="position-card">
+      <div class="pos-header">
+        <div>
+          <div class="pos-name">Office Assistant</div>
+          <div class="pos-dept"><i class="fas fa-building" style="font-size:10px;"></i> College of Education</div>
+        </div>
+        <span class="badge active">Active</span>
+      </div>
+      <div class="pos-stats">
+        <div class="pos-stat">
+          <div class="pos-stat-val">6</div>
+          <div class="pos-stat-lbl">Total Slots</div>
+        </div>
+        <div class="pos-stat">
+          <div class="pos-stat-val">4</div>
+          <div class="pos-stat-lbl">Filled</div>
+        </div>
+        <div class="pos-stat">
+          <div class="pos-stat-val col-green">2</div>
+          <div class="pos-stat-lbl">Available</div>
+        </div>
+        <div class="pos-stat">
+          <div class="pos-stat-val">16h</div>
+          <div class="pos-stat-lbl">Per Week</div>
+        </div>
+      </div>
+      <div class="pos-footer">
+        <div class="pos-rate"><i class="fas fa-peso-sign"></i> ₱4,000 / mo</div>
+        <div class="action-btns">
+          <button class="btn btn-edit btn-sm"><i class="fas fa-edit"></i></button>
+          <button class="btn btn-delete btn-sm"><i class="fas fa-trash"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="position-card">
+      <div class="pos-header">
+        <div>
+          <div class="pos-name">Research Assistant</div>
+          <div class="pos-dept"><i class="fas fa-building" style="font-size:10px;"></i> College of Engineering</div>
+        </div>
+        <span class="badge active">Active</span>
+      </div>
+      <div class="pos-stats">
+        <div class="pos-stat">
+          <div class="pos-stat-val">4</div>
+          <div class="pos-stat-lbl">Total Slots</div>
+        </div>
+        <div class="pos-stat">
+          <div class="pos-stat-val">2</div>
+          <div class="pos-stat-lbl">Filled</div>
+        </div>
+        <div class="pos-stat">
+          <div class="pos-stat-val col-green">2</div>
+          <div class="pos-stat-lbl">Available</div>
+        </div>
+        <div class="pos-stat">
+          <div class="pos-stat-val">18h</div>
+          <div class="pos-stat-lbl">Per Week</div>
+        </div>
+      </div>
+      <div class="pos-footer">
+        <div class="pos-rate"><i class="fas fa-peso-sign"></i> ₱5,500 / mo</div>
+        <div class="action-btns">
+          <button class="btn btn-edit btn-sm"><i class="fas fa-edit"></i></button>
+          <button class="btn btn-delete btn-sm"><i class="fas fa-trash"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="position-card">
+      <div class="pos-header">
+        <div>
+          <div class="pos-name">Clinic Aide</div>
+          <div class="pos-dept"><i class="fas fa-building" style="font-size:10px;"></i> College of Nursing</div>
+        </div>
+        <span class="badge pending">Pending</span>
+      </div>
+      <div class="pos-stats">
+        <div class="pos-stat">
+          <div class="pos-stat-val">6</div>
+          <div class="pos-stat-lbl">Total Slots</div>
+        </div>
+        <div class="pos-stat">
+          <div class="pos-stat-val">0</div>
+          <div class="pos-stat-lbl">Filled</div>
+        </div>
+        <div class="pos-stat">
+          <div class="pos-stat-val col-green">6</div>
+          <div class="pos-stat-lbl">Available</div>
+        </div>
+        <div class="pos-stat">
+          <div class="pos-stat-val">20h</div>
+          <div class="pos-stat-lbl">Per Week</div>
+        </div>
+      </div>
+      <div class="pos-footer">
+        <div class="pos-rate"><i class="fas fa-peso-sign"></i> ₱4,800 / mo</div>
+        <div class="action-btns">
+          <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Activate</button>
+          <button class="btn btn-delete btn-sm"><i class="fas fa-trash"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="position-card">
+      <div class="pos-header">
+        <div>
+          <div class="pos-name">Finance Clerk</div>
+          <div class="pos-dept"><i class="fas fa-building" style="font-size:10px;"></i> Finance Office</div>
+        </div>
+        <span class="badge active">Active</span>
+      </div>
+      <div class="pos-stats">
+        <div class="pos-stat">
+          <div class="pos-stat-val">3</div>
+          <div class="pos-stat-lbl">Total Slots</div>
+        </div>
+        <div class="pos-stat">
+          <div class="pos-stat-val">3</div>
+          <div class="pos-stat-lbl">Filled</div>
+        </div>
+        <div class="pos-stat">
+          <div class="pos-stat-val" style="color:var(--red);">0</div>
+          <div class="pos-stat-lbl">Available</div>
+        </div>
+        <div class="pos-stat">
+          <div class="pos-stat-val">20h</div>
+          <div class="pos-stat-lbl">Per Week</div>
+        </div>
+      </div>
+      <div class="pos-footer">
+        <div class="pos-rate"><i class="fas fa-peso-sign"></i> ₱4,200 / mo</div>
+        <div class="action-btns">
+          <button class="btn btn-edit btn-sm"><i class="fas fa-edit"></i></button>
+          <button class="btn btn-delete btn-sm"><i class="fas fa-trash"></i></button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /positions-grid -->
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════
+     § APPLICATIONS APPROVAL
+══════════════════════════════════════════════╗ -->
+<section class="section" id="sec-applications">
+
+  <div class="section-header">
+    <div>
+      <div class="section-title">Applications Approval</div>
+      <div class="section-sub">Final review and decision on Student Assistant applications</div>
+    </div>
+    <div class="section-actions">
+      <button class="btn btn-outline btn-sm"><i class="fas fa-download"></i> Export CSV</button>
+    </div>
+  </div>
+
+  <div class="alert-banner warn" style="margin-bottom:20px;">
+    <i class="fas fa-exclamation-triangle"></i>
+    <span><strong>8 applications</strong> need your final decision. Approving an application assigns the student as an official Student Assistant.</span>
+  </div>
+
+  <!-- Tab Group -->
+  <div style="display:flex;gap:0;margin-bottom:20px;">
+    <label class="tab-label" for="tab-all" style="padding:9px 20px;font-size:13px;font-weight:500;cursor:pointer;background:var(--white);border:1.5px solid var(--gray-200);border-right:none;color:var(--gray-500);border-radius:9px 0 0 9px;transition:all 0.18s;">All Applications</label>
+    <label class="tab-label" for="tab-pending" style="padding:9px 20px;font-size:13px;font-weight:500;cursor:pointer;background:var(--white);border:1.5px solid var(--gray-200);border-right:none;color:var(--gray-500);transition:all 0.18s;">Pending</label>
+    <label class="tab-label" for="tab-approved" style="padding:9px 20px;font-size:13px;font-weight:500;cursor:pointer;background:var(--white);border:1.5px solid var(--gray-200);border-right:none;color:var(--gray-500);transition:all 0.18s;">Approved</label>
+    <label class="tab-label" for="tab-rejected" style="padding:9px 20px;font-size:13px;font-weight:500;cursor:pointer;background:var(--white);border:1.5px solid var(--gray-200);border-right:1.5px solid var(--gray-200);color:var(--gray-500);border-radius:0 9px 9px 0;transition:all 0.18s;">Rejected</label>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Applicant</th>
+          <th>Position Applied</th>
+          <th>Department</th>
+          <th>GWA</th>
+          <th>Units</th>
+          <th>Date Applied</th>
+          <th>Status</th>
+          <th>Final Decision</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td>1</td>
+          <td>
+            <div class="t-avatar">
+              <div class="av av-a">MS</div>
+              <div><div class="td-name">Maria Santos</div><div class="td-sub">2022-00145 · BSCS 3rd Yr</div></div>
+            </div>
+          </td>
+          <td><strong>Library Assistant</strong></td>
+          <td>University Library</td>
+          <td><strong style="color:var(--green)">1.75</strong></td>
+          <td>21 units</td>
+          <td>Mar 24, 2026</td>
+          <td><span class="badge pending">Pending</span></td>
+          <td>
+            <div class="action-btns">
+              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
+              <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>2</td>
+          <td>
+            <div class="t-avatar">
+              <div class="av av-b">JD</div>
+              <div><div class="td-name">Juan dela Cruz</div><div class="td-sub">2021-00388 · BSBA 4th Yr</div></div>
+            </div>
+          </td>
+          <td><strong>Finance Clerk</strong></td>
+          <td>Finance Office</td>
+          <td><strong style="color:var(--green)">1.85</strong></td>
+          <td>24 units</td>
+          <td>Mar 24, 2026</td>
+          <td><span class="badge pending">Pending</span></td>
+          <td>
+            <div class="action-btns">
+              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
+              <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>3</td>
+          <td>
+            <div class="t-avatar">
+              <div class="av av-c">AR</div>
+              <div><div class="td-name">Ana Reyes</div><div class="td-sub">2023-00072 · BSN 2nd Yr</div></div>
+            </div>
+          </td>
+          <td><strong>Clinic Aide</strong></td>
+          <td>College of Nursing</td>
+          <td><strong style="color:var(--yellow)">2.00</strong></td>
+          <td>18 units</td>
+          <td>Mar 23, 2026</td>
+          <td><span class="badge pending">Pending</span></td>
+          <td>
+            <div class="action-btns">
+              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
+              <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>4</td>
+          <td>
+            <div class="t-avatar">
+              <div class="av av-d">LT</div>
+              <div><div class="td-name">Liza Torres</div><div class="td-sub">2022-00299 · BSCS 3rd Yr</div></div>
+            </div>
+          </td>
+          <td><strong>Lab Monitor</strong></td>
+          <td>IT Department</td>
+          <td><strong style="color:var(--yellow)">2.25</strong></td>
+          <td>21 units</td>
+          <td>Mar 23, 2026</td>
+          <td><span class="badge pending">Pending</span></td>
+          <td>
+            <div class="action-btns">
+              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
+              <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>5</td>
+          <td>
+            <div class="t-avatar">
+              <div class="av av-e">PV</div>
+              <div><div class="td-name">Pedro Valdez</div><div class="td-sub">2021-00602 · BSED 4th Yr</div></div>
+            </div>
+          </td>
+          <td><strong>Office Assistant</strong></td>
+          <td>College of Education</td>
+          <td><strong style="color:var(--green)">1.90</strong></td>
+          <td>24 units</td>
+          <td>Mar 22, 2026</td>
+          <td><span class="badge pending">Pending</span></td>
+          <td>
+            <div class="action-btns">
+              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
+              <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>6</td>
+          <td>
+            <div class="t-avatar">
+              <div class="av av-f">CM</div>
+              <div><div class="td-name">Carlos Mendez</div><div class="td-sub">2020-00561 · BSED 4th Yr</div></div>
+            </div>
+          </td>
+          <td><strong>Finance Clerk</strong></td>
+          <td>Finance Office</td>
+          <td><strong style="color:var(--green)">1.60</strong></td>
+          <td>24 units</td>
+          <td>Mar 21, 2026</td>
+          <td><span class="badge approved">Approved</span></td>
+          <td>
+            <div style="font-size:12.5px;color:var(--green);font-weight:600;">
+              <i class="fas fa-check-double"></i> Assigned — Finance Office
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>7</td>
+          <td>
+            <div class="t-avatar">
+              <div class="av av-a">NB</div>
+              <div><div class="td-name">Nina Bautista</div><div class="td-sub">2022-00411 · BSBA 3rd Yr</div></div>
+            </div>
+          </td>
+          <td><strong>Office Assistant</strong></td>
+          <td>Registrar's Office</td>
+          <td><strong style="color:var(--yellow)">2.10</strong></td>
+          <td>21 units</td>
+          <td>Mar 20, 2026</td>
+          <td><span class="badge rejected">Rejected</span></td>
+          <td>
+            <div style="font-size:12.5px;color:var(--red);font-weight:600;">
+              <i class="fas fa-times-circle"></i> Rejected — GWA below requirement
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>8</td>
+          <td>
+            <div class="t-avatar">
+              <div class="av av-b">FO</div>
+              <div><div class="td-name">Felix Ocampo</div><div class="td-sub">2023-00189 · BSCS 2nd Yr</div></div>
+            </div>
+          </td>
+          <td><strong>Research Assistant</strong></td>
+          <td>College of Engineering</td>
+          <td><strong style="color:var(--green)">1.80</strong></td>
+          <td>18 units</td>
+          <td>Mar 19, 2026</td>
+          <td><span class="badge pending">Pending</span></td>
+          <td>
+            <div class="action-btns">
+              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
+              <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
+            </div>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════
+     § REPORTS
+══════════════════════════════════════════════╗ -->
+<section class="section" id="sec-reports">
+
+  <div class="section-header">
+    <div>
+      <div class="section-title">Reports & Analytics</div>
+      <div class="section-sub">Comprehensive overview of SAMS data for Academic Year 2025–2026</div>
+    </div>
+    <div class="section-actions">
+      <select class="btn btn-outline btn-sm" style="cursor:pointer;">
+        <option>AY 2025–2026</option>
+        <option>AY 2024–2025</option>
+        <option>AY 2023–2024</option>
+      </select>
+      <button class="btn btn-primary btn-sm"><i class="fas fa-print"></i> Print Report</button>
+      <button class="btn btn-gold btn-sm"><i class="fas fa-file-excel"></i> Export Excel</button>
+    </div>
+  </div>
+
+  <!-- Top Report Stats -->
+  <div class="reports-grid">
+    <div class="report-stat">
+      <div class="report-stat-val">248</div>
+      <div class="report-stat-lbl">Total Students Registered</div>
+      <div class="report-stat-sub">↑ 12 new this semester</div>
+    </div>
+    <div class="report-stat">
+      <div class="report-stat-val">94</div>
+      <div class="report-stat-lbl">Active Student Assistants</div>
+      <div class="report-stat-sub">78% of total capacity</div>
+    </div>
+    <div class="report-stat">
+      <div class="report-stat-val">18</div>
+      <div class="report-stat-lbl">Registered Departments</div>
+      <div class="report-stat-sub">15 verified, 3 pending</div>
+    </div>
+    <div class="report-stat">
+      <div class="report-stat-val">68</div>
+      <div class="report-stat-lbl">Total Applications</div>
+      <div class="report-stat-sub">52 resolved, 16 pending</div>
+    </div>
+    <div class="report-stat">
+      <div class="report-stat-val" style="color:var(--green);">76%</div>
+      <div class="report-stat-lbl">Application Approval Rate</div>
+      <div class="report-stat-sub">52 approved out of 68</div>
+    </div>
+    <div class="report-stat">
+      <div class="report-stat-val" style="color:var(--gold);">1.87</div>
+      <div class="report-stat-lbl">Average GWA of Active SAs</div>
+      <div class="report-stat-sub">Within academic standard</div>
+    </div>
+  </div>
+
+  <!-- Status Summary -->
+  <div class="section-header" style="margin-bottom:16px;">
+    <div class="section-title" style="font-size:20px;">Status Summary</div>
+  </div>
+
+  <div class="status-grid">
+    <div class="status-box">
+      <div class="status-box-val col-green">186</div>
+      <div class="status-box-lbl">Verified Students</div>
+    </div>
+    <div class="status-box">
+      <div class="status-box-val col-yellow">5</div>
+      <div class="status-box-lbl">Pending Verification</div>
+    </div>
+    <div class="status-box">
+      <div class="status-box-val col-red">57</div>
+      <div class="status-box-lbl">Unverified Students</div>
+    </div>
+    <div class="status-box">
+      <div class="status-box-val col-blue">15</div>
+      <div class="status-box-lbl">Approved Departments</div>
+    </div>
+    <div class="status-box">
+      <div class="status-box-val col-yellow">3</div>
+      <div class="status-box-lbl">Pending Depts.</div>
+    </div>
+    <div class="status-box">
+      <div class="status-box-val col-green">52</div>
+      <div class="status-box-lbl">Approved Applications</div>
+    </div>
+    <div class="status-box">
+      <div class="status-box-val col-yellow">16</div>
+      <div class="status-box-lbl">Pending Applications</div>
+    </div>
+    <div class="status-box">
+      <div class="status-box-val col-red">0</div>
+      <div class="status-box-lbl">Rejected Departments</div>
+    </div>
+  </div>
+
+  <!-- Department Distribution -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px;">
+
+    <div class="card">
+      <div class="card-header">
+        <h3><i class="fas fa-chart-bar"></i> SA Distribution by Department</h3>
+      </div>
+      <div class="card-body">
+        <ul class="dist-list">
+          <li class="dist-item">
+            <div class="dist-label">
+              <span class="dist-name">Information Technology</span>
+              <span class="dist-count">8 SAs</span>
+            </div>
+            <div class="dist-bar-wrap"><div class="dist-bar" style="width:100%;"></div></div>
+          </li>
+          <li class="dist-item">
+            <div class="dist-label">
+              <span class="dist-name">College of Engineering</span>
+              <span class="dist-count">7 SAs</span>
+            </div>
+            <div class="dist-bar-wrap"><div class="dist-bar" style="width:87%;"></div></div>
+          </li>
+          <li class="dist-item">
+            <div class="dist-label">
+              <span class="dist-name">University Library</span>
+              <span class="dist-count">5 SAs</span>
+            </div>
+            <div class="dist-bar-wrap"><div class="dist-bar" style="width:62%;"></div></div>
+          </li>
+          <li class="dist-item">
+            <div class="dist-label">
+              <span class="dist-name">College of Education</span>
+              <span class="dist-count">4 SAs</span>
+            </div>
+            <div class="dist-bar-wrap"><div class="dist-bar" style="width:50%;"></div></div>
+          </li>
+          <li class="dist-item">
+            <div class="dist-label">
+              <span class="dist-name">Finance Office</span>
+              <span class="dist-count">3 SAs</span>
+            </div>
+            <div class="dist-bar-wrap"><div class="dist-bar" style="width:37%;"></div></div>
+          </li>
+          <li class="dist-item">
+            <div class="dist-label">
+              <span class="dist-name">Other Departments</span>
+              <span class="dist-count">67 SAs</span>
+            </div>
+            <div class="dist-bar-wrap"><div class="dist-bar" style="width:84%;background:linear-gradient(90deg,var(--gray-400),var(--gray-300));"></div></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3><i class="fas fa-calendar-alt"></i> Monthly Applications Trend</h3>
+      </div>
+      <div class="card-body">
+        <ul class="dist-list">
+          <li class="dist-item">
+            <div class="dist-label">
+              <span class="dist-name">October 2025</span>
+              <span class="dist-count">12 apps</span>
+            </div>
+            <div class="dist-bar-wrap"><div class="dist-bar" style="width:60%;background:linear-gradient(90deg,#7c3aed,#a78bfa);"></div></div>
+          </li>
+          <li class="dist-item">
+            <div class="dist-label">
+              <span class="dist-name">November 2025</span>
+              <span class="dist-count">18 apps</span>
+            </div>
+            <div class="dist-bar-wrap"><div class="dist-bar" style="width:90%;background:linear-gradient(90deg,#7c3aed,#a78bfa);"></div></div>
+          </li>
+          <li class="dist-item">
+            <div class="dist-label">
+              <span class="dist-name">December 2025</span>
+              <span class="dist-count">4 apps</span>
+            </div>
+            <div class="dist-bar-wrap"><div class="dist-bar" style="width:20%;background:linear-gradient(90deg,#7c3aed,#a78bfa);"></div></div>
+          </li>
+          <li class="dist-item">
+            <div class="dist-label">
+              <span class="dist-name">January 2026</span>
+              <span class="dist-count">14 apps</span>
+            </div>
+            <div class="dist-bar-wrap"><div class="dist-bar" style="width:70%;background:linear-gradient(90deg,#7c3aed,#a78bfa);"></div></div>
+          </li>
+          <li class="dist-item">
+            <div class="dist-label">
+              <span class="dist-name">February 2026</span>
+              <span class="dist-count">12 apps</span>
+            </div>
+            <div class="dist-bar-wrap"><div class="dist-bar" style="width:60%;background:linear-gradient(90deg,#7c3aed,#a78bfa);"></div></div>
+          </li>
+          <li class="dist-item">
+            <div class="dist-label">
+              <span class="dist-name">March 2026 (ongoing)</span>
+              <span class="dist-count">8 apps</span>
+            </div>
+            <div class="dist-bar-wrap"><div class="dist-bar" style="width:40%;background:linear-gradient(90deg,var(--gold),var(--gold-light));"></div></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div><!-- /reports-2col -->
+
+</section>
+
+</main><!-- /main-content -->
+</div><!-- /layout -->
 </body>
 </html>
