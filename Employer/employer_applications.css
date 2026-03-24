@@ -1,3 +1,10 @@
+:root {
+    --maroon:       #7B0D1E;
+    --maroon-dark:  #5a0915;
+    --maroon-deep:  #3d0610;
+    --maroon-light: #9e1a2e;
+}
+
 /* ===== GLOBAL RESET ===== */
 * {
     margin: 0; padding: 0; box-sizing: border-box;
@@ -9,7 +16,7 @@ body { background-color: #f0f2f5; color: #1c1e21; }
 /* ===== NAVBAR ===== */
 .top-nav {
     position: fixed; top: 0; width: 100%; height: 60px;
-    background: #9f0f0f; display: flex; align-items: center;
+    background: linear-gradient(175deg, var(--maroon-deep) 0%, var(--maroon) 50%, var(--maroon-light) 100%); display: flex; align-items: center;
     justify-content: space-between; padding: 0 30px; z-index: 1001;
 }
 .top-logo { color: white; font-weight: bold; font-size: 20px; }
@@ -31,11 +38,11 @@ body { background-color: #f0f2f5; color: #1c1e21; }
 /* ===== SIDEBAR PANEL ===== */
 .sidebar-panel { position: sticky; top: 80px; height: fit-content; }
 .user-mini-card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
-.cover-photo { height: 60px; background: #9f0f0f; }
+.cover-photo { height: 60px;  background: linear-gradient(175deg, var(--maroon-deep) 0%, var(--maroon) 50%, var(--maroon-light) 100%); }
 .user-info { text-align: center; margin-top: -35px; padding: 15px; }
 .avatar-replacement {
     width: 70px; height: 70px; border-radius: 50%; margin: 0 auto;
-    border: 4px solid white; background: #9f0f0f; color: white;
+    border: 4px solid white; background: linear-gradient(175deg, var(--maroon-deep) 0%, var(--maroon) 50%, var(--maroon-light) 100%); color: white;
     display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 20px;
 }
 .user-info h3 { font-size: 16px; margin-top: 10px; }

@@ -42,7 +42,7 @@ body { background-color: #f0f2f5; color: #1c1e21; padding: 20px 0; }
 .completion-header { background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
 .completion-text { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 8px; }
 .progress-container { background: #e4e6eb; height: 8px; border-radius: 4px; overflow: hidden; }
-.progress-fill { background: #f5b400; height: 100%; transition: width 0.5s ease-in-out; }
+.progress-fill { background: #720b0b; height: 100%; transition: width 0.5s ease-in-out; }
 
 .content-card { background: white; border-radius: 12px; padding: 25px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
 .card-title { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
