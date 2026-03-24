@@ -1,3 +1,10 @@
+:root {
+    --maroon:       #7B0D1E;
+    --maroon-dark:  #5a0915;
+    --maroon-deep:  #3d0610;
+    --maroon-light: #9e1a2e;
+}
+
 *{
 	box-sizing:border-box;
 }
@@ -51,7 +58,7 @@ header{
 	box-shadow: 0 4px 15px rgba(32, 31, 31, 0.3);
 	width: 100%;
 	min-height: 60px;
-	background: #9f0f0f;
+	 background: linear-gradient(175deg, var(--maroon-deep) 0%, var(--maroon) 50%, var(--maroon-light) 100%);
 	padding: 0 40px;
 }
 
@@ -453,7 +460,7 @@ main{
 
 /* FOOTER */
 footer {
-  background: #720b0b;
+  background: linear-gradient(175deg, var(--maroon-deep) 0%, var(--maroon) 50%, var(--maroon-light) 100%);
   color: white;
   padding: 60px 40px;
   display: grid;
