@@ -196,6 +196,31 @@ body{
 	text-decoration: underline;
 }
 
+/* HIDE RADIO BUTTONS */
+.role-select {
+    display: none;
+}
+
+/* HIDE ALL FORMS BY DEFAULT */
+.account-form {
+    display: none;
+}
+
+/* SHOW ACTIVE FORM */
+#student:checked ~ .container #studentForm,
+#employer:checked ~ .container #employerForm,
+#cppeso:checked ~ .container #cppesoForm {
+    display: flex;
+}
+
+/* ACTIVE BUTTON STYLE */
+#student:checked ~ .container .account-type label[for="student"],
+#employer:checked ~ .container .account-type label[for="employer"],
+#cppeso:checked ~ .container .account-type label[for="cppeso"] {
+    background-color: #720b0b;
+    color: #fff;
+}
+
 /*  RESPONSIVE MEDIA QUERIES  */
 @media (max-width: 1024px){
 	.register-card{
