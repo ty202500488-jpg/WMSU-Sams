@@ -191,7 +191,7 @@ body {
     border-radius: 0 8px 8px 0;
 }
 
-/* ===== DASHBOARD FEED (CENTER COLUMN) ===== */
+/* ===== DASHBOARD FEED ===== */
 .dashboard-feed { 
     grid-column: 2; 
 }
@@ -215,8 +215,8 @@ body {
 }
 
 .view-all-link { 
-    font-size: 14px; 
-    color: #9f0f0f; 
+    font-size: 17px; 
+    color: #0064d1; 
     text-decoration: none; 
     font-weight: 600;
 }
@@ -254,9 +254,22 @@ body {
 
 hr { 
     border: 0; 
-    border-top: 1px solid #eee; 
+    border-top: 1px solid #c7c6c6; 
     margin: 15px 0; 
 }
+
+/* REQUIREMENTS LIST */
+.requirements-list {
+    margin-top: 5px;
+    padding-left: 10px;
+    font-size: 13px;
+    color: #333;
+}
+
+.requirements li {
+    margin-bottom: 4px;
+}
+
 
 /* ===== INFO COLUMNS ===== */
 .application-info { 
