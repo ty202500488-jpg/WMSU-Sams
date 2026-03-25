@@ -121,8 +121,8 @@ body {
 .container {
     display: grid;
     grid-template-columns: 300px 1fr 320px;
-    gap: 30px; /* standardized gap */
-    padding: 85px 30px 30px; /* standardized padding */
+    gap: 30px; 
+    padding: 85px 30px 30px; 
     max-width: 1400px;
     margin: 0 auto;
 }
@@ -191,41 +191,162 @@ body {
     border-radius: 0 8px 8px 0;
 }
 
-/* ===== CENTER FEED ===== */
-.dashboard-feed { grid-column: 2; }
+/* ===== DASHBOARD FEED (CENTER COLUMN) ===== */
+.dashboard-feed { 
+    grid-column: 2; 
+}
 
-.section-title { font-size: 17px; color: #65676b; margin-bottom: 15px; }
-.section-header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-.section-header-flex a { font-size: 14px; color: #0064d1; text-decoration: none; }
+.feed-section {
+    margin-bottom: 30px;
+}
 
-.main-card {
-    background: white;
-    border-radius: 10px;
+.section-title { 
+    font-size: 17px; 
+    color: #65676b; 
+    margin-bottom: 15px; 
+    font-weight: 600;
+}
+
+.section-header-flex { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 15px; 
+}
+
+.view-all-link { 
+    font-size: 14px; 
+    color: #9f0f0f; 
+    text-decoration: none; 
+    font-weight: 600;
+}
+
+.view-all-link:hover { 
+    text-decoration: underline; 
+}
+
+/* ===== SHARED CARD STYLING ===== */
+.main-card, .application-card {
+    background: #fff;
+    border-radius: 12px;
     padding: 20px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-    margin-bottom: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
 }
 
-.card-header { display: flex; gap: 15px; align-items: center; margin-bottom: 15px; }
-.icon-circle {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background: #f0f2f5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* Header Styles */
+.card-header, .application-header { 
+    margin-bottom: 15px; 
+}
+
+.header-text h4, .application-header h3 { 
+    font-size: 18px; 
+    color: #1a1a1a; 
+    margin: 0;
+}
+
+.application-header p { 
+    font-size: 14px; 
+    color: #666; 
+    margin-top: 8px;
+}
+
+hr { 
+    border: 0; 
+    border-top: 1px solid #eee; 
+    margin: 15px 0; 
+}
+
+/* ===== INFO COLUMNS ===== */
+.application-info { 
+    display: flex; 
+    gap: 20px; 
+    margin-bottom: 15px; 
+}
+
+.application-info .column { 
+    flex: 1; 
+    font-size: 13.5px; 
+    color: #555; 
+    line-height: 1.8; 
+}
+
+.application-info i {
+    width: 20px; 
     color: #9f0f0f;
+    text-align: center;
+    margin-right: 5px;
 }
-.icon-circle.blue { color: #0064d1; }
 
-.badge-active { font-size: 11px; background: #e7f3ff; color: #1877f2; padding: 2px 8px; border-radius: 4px; font-weight: bold; }
+/* ===== BADGES & STATUS ===== */
+.badge-active { 
+    font-size: 11px; 
+    background: #e7f3ff; 
+    color: #1877f2; 
+    padding: 3px 10px; 
+    border-radius: 20px; 
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 5px;
+}
 
-.card-content p { font-size: 14px; color: #444; margin-bottom: 10px; }
-.card-actions { display: flex; gap: 10px; border-top: 1px solid #eee; padding-top: 15px; }
-.action-btn { background: #9f0f0f; color: white; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: 600; }
-.action-btn:hover { background: #7a0b0b; }
-.action-btn-outline { background: #f2f2f2; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: 600; }
+.status-pending {
+    color: #f5b400; /* Gold */
+    font-weight: bold;
+}
+
+.status-badge { 
+    padding: 4px 12px; 
+    border-radius: 20px; 
+    font-size: 11px; 
+    font-weight: bold; 
+}
+
+.status-badge.none { 
+    background: #f0f2f5; 
+    color: #65676b; 
+}
+
+/* ===== BUTTONS ===== */
+.card-actions, .application-action { 
+    display: flex; 
+    gap: 10px; 
+    border-top: 1px solid #eee; 
+    padding-top: 15px; 
+}
+
+.action-btn, .primary-btn { 
+    background: #9f0f0f; 
+    color: white; 
+    border: none; 
+    padding: 9px 18px; 
+    border-radius: 6px; 
+    cursor: pointer; 
+    font-weight: 600;
+    font-size: 13px;
+    transition: background 0.2s;
+}
+
+.action-btn:hover, .primary-btn:hover { 
+    background: #7a0b0b; 
+}
+
+.action-btn-outline, .secondary-btn { 
+    background: #f0f2f5; 
+    color: #1c1e21;
+    border: none; 
+    padding: 9px 18px; 
+    border-radius: 6px; 
+    cursor: pointer; 
+    font-weight: 600;
+    font-size: 13px;
+    transition: background 0.2s;
+}
+
+.action-btn-outline:hover, .secondary-btn:hover { 
+    background: #e4e6eb; 
+}
 
 /* ===== RIGHT PANEL ===== */
 .side-widget {
