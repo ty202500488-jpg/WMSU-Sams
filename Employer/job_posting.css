@@ -23,14 +23,12 @@ body { background-color: var(--bg); color: var(--text); }
     justify-content: space-between; padding: 0 30px; z-index: 1001;
 }
 .top-logo { color: white; font-weight: bold; font-size: 20px; white-space: nowrap;}
-.top-links {display: flex; align-items: center;}
 .top-links a { color: white; text-decoration: none; margin-left: 20px; font-size: 14px; opacity: 0.8; transition: 0.3s; white-space: nowrap; }
 .top-links a:hover, .top-links a.active { opacity: 1; font-weight: bold; }
 .top-links a.active { border-bottom: 3px solid var(--gold); padding-bottom: 5px; }
-.top-links a span { display: inline;}
 .profile-img { width: 35px; height: 35px; border-radius: 50%; border: 2px solid white; flex-shrink: 0; }
 
-
+/*==== MAIN CONTAINER ====*/
 .container {
     display: grid;
     grid-template-columns: clamp(220px, 22%, 300px) 1fr clamp(250px, 22%, 320px);
@@ -43,8 +41,9 @@ body { background-color: var(--bg); color: var(--text); }
 .container > * {min-width: 0;}
 
 /* ===== CARDS & SIDEBAR ===== */
+.section-title { font-size: 17px; font-weight: 700; margin-bottom: 16px; color: var(--muted);}
 .sidebar-panel { position: static; top: 80px; height: fit-content;}
-.user-mini-card, .main-card, .side-widget { background: var(--white); border-radius: 10px; box-shadow: 0 1px 2px var(--shadow); overflow: hidden; margin-bottom: 16px; }
+.user-mini-card, .main-card, .side-widget { background: var(--white); border-radius: 10px; box-shadow:var(--shadow); margin-bottom: 16px; }
 .cover-photo { height: 60px;  background: linear-gradient(175deg, var(--maroon-deep) 0%, var(--maroon) 50%, var(--maroon-light) 100%); }
 .user-info { text-align: center; margin-top: -35px; padding:0 15px 15px; }
 .avatar-replacement {
@@ -133,9 +132,6 @@ body { background-color: var(--bg); color: var(--text); }
     .top-links a i { font-size: 18px; display: block; }
     .container { grid-template-columns: 1fr; padding: 70px 12px 24px; gap: 12px; }
     .sidebar-panel { display: static; }
-
-    .user-mini-card .cover-photo,
-    .user-mini-card .user-info {display: none;}
 
     .section-header-flex { flex-direction: column; align-items: flex-start; }
     .create-btn { width: 100%; justify-content: center; }

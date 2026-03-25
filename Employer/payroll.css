@@ -123,10 +123,8 @@ body { background-color: var(--bg); color: var(--text); }
     .top-links a i { font-size: 18px; display: block; }
     .container { grid-template-columns: 1fr; padding: 70px 12px 24px; gap: 12px; }
     .sidebar-panel { display: static; }
-    .user-mini-card .cover-photo,
-    .user-mini-card .user-info {display: none;}
 
     .stats-row {grid-template-columns: 1fr; gap: 10px;}
-    .sectrion-header-flex { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .section-header-flex { flex-direction: column; align-items: flex-start; gap: 10px; }
     .right-panel {grid-template-columns: 1fr;}
  }
