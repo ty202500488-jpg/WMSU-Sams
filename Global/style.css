@@ -471,10 +471,12 @@ main{
     border-radius:8px;
     font-weight:600;
     cursor:pointer;
+    text-decoration: none;
 }
 
 .primary-btn:hover{
     background:#9f0f0f;
+    text-decoration: none;
 }
 
 .secondary-btn { 
@@ -484,8 +486,9 @@ main{
     padding: 10px 18px; border-radius: 6px; 
     cursor: pointer; font-weight: 600; 
     font-size: 13px; 
+    text-decoration: none;
 }
-.secondary-btn:hover { background: #e9ecef; }
+.secondary-btn:hover { background: #e9ecef; text-decoration: none; }
 
 /* CTA */
 #cta {
