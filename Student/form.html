@@ -32,7 +32,7 @@
                 <div class="input-row">
                     <div class="field">
                         <label>First Name</label>
-                        <input type="text" name="first_name" placeholder="Required" required>
+                        <input type="text" name="first_name" placeholder="Required">
                     </div>
                     <div class="field">
                         <label>Middle Name</label>
@@ -40,14 +40,14 @@
                     </div>
                     <div class="field">
                         <label>Last Name</label>
-                        <input type="text" name="last_name" placeholder="Required" required>
+                        <input type="text" name="last_name" placeholder="Required">
                     </div>
                 </div>
 
                 <div class="input-row split-2-1">
                     <div class="field">
                         <label>Student ID Number</label>
-                        <input type="text" name="student_id" placeholder="e.g., 2021-01234" required>
+                        <input type="text" name="student_id" placeholder="e.g., 2021-01234">
                     </div>
                     <div class="field">
                         <label>Date of Birth</label>
@@ -58,11 +58,11 @@
                 <div class="input-row">
                     <div class="field">
                         <label>Email Address</label>
-                        <input type="email" name="email" placeholder="name@wmsu.edu.ph" required>
+                        <input type="email" name="email" placeholder="name@wmsu.edu.ph">
                     </div>
                     <div class="field">
                         <label>Contact Number</label>
-                        <input type="tel" name="contact" placeholder="09XXXXXXXXX" required>
+                        <input type="tel" name="contact" placeholder="09XXXXXXXXX">
                     </div>
                 </div>
             </section>
@@ -230,23 +230,22 @@
                         <i class="fa-solid fa-cloud-arrow-up"></i>
                         <span>Upload Certificate of Registration (COR)</span>
                         <small>PDF format only • Max 5MB</small>
-                        <input type="file" name="cor_file" accept=".pdf" required>
+                        <input type="file" name="cor_file" accept=".pdf">
                     </label>
                 </div>
             </section>
 
             <div class="declaration">
                 <label class="checkbox-wrapper">
-                    <input type="checkbox" required>
+                    <input type="checkbox" >
                     <span class="checkmark"></span>
                     <p>I hereby certify that the information provided is true and correct to the best of my knowledge for CPPESO verification.</p>
                 </label>
             </div>
 
-            <button type="submit" class="submit-btn">
-                <span>Submit Application</span>
-                <i class="fa-solid fa-arrow-right"></i>
-            </button>
+            <a href="application_success.html" type="submit" class="submit-btn">
+                Submit Application
+            </a>
         </form>
     </div>
 

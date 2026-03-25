@@ -127,6 +127,7 @@ input:focus { border-color: var(--wmsu-crimson); outline: none; }
     cursor: pointer;
     display: flex; justify-content: center; align-items: center; gap: 15px;
     transition: 0.3s;
+    text-decoration: none;
 }
 .submit-btn:hover { background: var(--wmsu-dark); transform: translateY(-2px); }
 
