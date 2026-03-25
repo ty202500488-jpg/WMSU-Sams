@@ -18,9 +18,13 @@
             <a href="job_posting.html"><i class="fas fa-briefcase"></i> <span>Postings</span></a>
         </nav>
         <div class="profile-dropdown">
-            <a href="employer_profile.html">
-                <img src="../images/profile.jpg.jpg" alt="Profile" class="profile-img">
+            <a href="student_profile.html">
+                <img src="../images/profile.jpg.jpg" alt="Profile Photo" class="profile-img">
             </a>
+            <div class="dropdown-content">
+                <a href="employer_profile.html">View Profile</a>
+                <a href="../Global/login.html">Logout</a>
+            </div>
         </div>
     </header>
 
@@ -36,7 +40,7 @@
                 </div>
                 <hr>
                 <div class="profile-stats">
-                    <div class="stat"><span>Hiring Capacity</span> <strong>12/15</strong></div>
+                    <div class="stat"><span>Hiring Capacity</span> <strong>6/10</strong></div>
                     <div class="progress-container"><div class="progress-fill" style="width: 80%;"></div></div>
                 </div>
                 <a href="#" class="sidebar-link"><i class="fas fa-plus-circle"></i> Create SA Position</a>
@@ -79,37 +83,57 @@
                     <div class="card-header">
                         <div class="icon-circle"><i class="fas fa-user"></i></div>
                         <div class="header-text">
+                            <small class="text-muted">ID: 2023-0142</small>
                             <h4>Maria Santos <span>• BSIT 3rd Year</span></h4>
-                            <span class="badge-active">GPA: 1.75</span>
+                            <div class="badge-group">
+                                <span class="badge-active">GPA: 1.75</span>
+                                <span class="status-pill status-pending">Pending Review</span>
+                            </div>
                         </div>
                     </div>
+                    
                     <div class="card-content">
                         <p><i class="fas fa-briefcase"></i> Position: <strong>Library Assistant</strong></p>
                         <p><i class="fas fa-clock"></i> Applied: <strong>2 hours ago</strong></p>
+                        <p><i class="fas fa-envelope"></i> <strong>m.santos@wmsu.edu.ph</strong></p>
                     </div>
+
                     <div class="card-actions">
-                        <button class="action-btn">Review Docs</button>
-                        <button class="action-btn-outline">Approve</button>
-                        <button class="action-btn-outline" style="color: #e74c3c;">Reject</button>
+                        <div class="main-btns">
+                            <button class="action-btn" title="View PDF Documents"><i class="fas fa-file-pdf"></i> Docs</button>
+                            <button class="action-btn-outline"><i class="fas fa-check"></i> Approve</button>
+                        </div>
+                        <button class="action-btn-outline text-red"><i class="fas fa-times"></i> Reject</button>
                     </div>
                 </div>
 
                 <div class="main-card">
                     <div class="card-header">
-                        <div class="icon-circle blue"><i class="fas fa-user"></i></div>
+                        <div class="icon-circle"><i class="fas fa-user"></i></div>
                         <div class="header-text">
+                            <small class="text-muted">ID: 2025-0412</small>
                             <h4>Angela Cruz <span>• BSIT 1st Year</span></h4>
-                            <span class="badge-active">GPA: 1.80</span>
+                            <div class="badge-group">
+                                <span class="badge-active">GPA: 1.25</span>
+                                <span class="status-pill status-pending">Pending Review</span>
+                            </div>
                         </div>
                     </div>
+
                     <div class="card-content">
                         <p><i class="fas fa-briefcase"></i> Position: <strong>IT Lab Assistant</strong></p>
                         <p><i class="fas fa-clock"></i> Applied: <strong>Yesterday</strong></p>
+                        <p><i class="fas fa-envelope"></i> <strong>a.cruz@wmsu.edu.ph</strong></p>
                     </div>
+
                     <div class="card-actions">
-                        <button class="action-btn">Review Docs</button>
-                        <button class="action-btn-outline">Approve</button>
+                        <div class="main-btns">
+                            <button class="action-btn" title="View PDF Documents"><i class="fas fa-file-pdf"></i> Docs</button>
+                            <button class="action-btn-outline"><i class="fas fa-check"></i> Approve</button>
+                        </div>
+                        <button class="action-btn-outline text-red"><i class="fas fa-times"></i> Reject</button>
                     </div>
+
                 </div>
             </div>
         </main>

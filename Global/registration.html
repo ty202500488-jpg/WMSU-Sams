@@ -28,85 +28,89 @@
         <!-- ACCOUNT TYPE BUTTONS -->
         <div class="account-type">
             <label for="student" class="type-btn">Student</label>
-            <label for="employer" class="type-btn">Employer</label>
+            <label for="employer" class="type-btn">Department</label>
             <label for="cppeso" class="type-btn">CPPESO</label>
         </div>
 
         <!-- STUDENT FORM -->
-        <form id="studentForm" class="account-form" action="registration_submitted.html">
-
+            <form id="studentForm" class="account-form" action="submitted.html" method="POST">
             <label>Full Name</label>
-            <input type="text" placeholder="e.g. John Alvarez" required>
+            <input type="text" autocomplete="name" placeholder="Lastname, Firstname, M.I.">
 
-            <label>Official Email</label>
-            <input type="email" placeholder="e.g. johnalvarez@gmail.com" required>
+            <label>Official WMSU Email</label>
+            <input type="email" placeholder="username@wmsu.edu.ph">
 
             <div class="row">
                 <div>
                     <label>Student ID</label>
-                    <input type="text" placeholder="e.g. 2023-12345" required>
+                    <input type="text" inputmode="numeric" pattern="[0-9-]*" placeholder="2023-01234">
                 </div>
                 <div>
                     <label>Year Level</label>
-                    <input type="text" placeholder="e.g. 3rd Year" required>
+                    <select required>
+                        <option value="" disabled selected>Select Year</option>
+                        <option value="1">1st Year</option>
+                        <option value="2">2nd Year</option>
+                        <option value="3">3rd Year</option>
+                        <option value="4">4th Year</option>
+                    </select>
                 </div>
             </div>
 
-            <label>Course</label>
-            <input type="text" placeholder="e.g. BS Information Technology" required>
-
             <label>Password</label>
-            <input type="password" placeholder="Create a password" required>
+            <input type="password" minlength="8" placeholder="Enter Password">
 
             <label>Confirm Password</label>
-            <input type="password" placeholder="Confirm your password" required>
+            <input type="password" minlength="8" placeholder="Confirm Password">
 
-            <a id="register-btn" href="registration_submitted.html">Register</a>
-
+           <a id="register-btn" href="registration_submitted.html">Register</a>
         </form>
 
         <!-- EMPLOYER FORM -->
-        <form id="employerForm" class="account-form" action="registration_submitted.html">
+        <form id="employerForm" class="account-form" action="submitted.html" method="POST">
+            
+            <label>Department/Office Name</label>
+            <input type="text" placeholder="e.g. University Library">
 
-            <label>Department Name</label>
-            <input type="text" placeholder="e.g. Library Department" required>
+            <label>College/Unit</label>
+            <select required>
+                <option>College of Computing Studies</option>
+                <option>College of Liberal Arts</option>
+                <option>Administrative Office</option>
+            </select>
 
-            <label>Head of Department</label>
-            <input type="text" placeholder="Enter department head's full name" required>
+            <label>Head of Office</label>
+            <input type="text" placeholder="Dean or Director Full Name">
 
-            <label> Email</label>
-            <input type="email" placeholder="e.g. email@gmail.com" required>
-
-            <label>Contact Number</label>
-            <input type="text" placeholder="e.g. 09XXXXXXXXX" required>
+            <label>Official WMSU Email</label> 
+            <input type="email" placeholder="username@wmsu.edu.ph">
 
             <label>Password</label>
-            <input type="password" placeholder="Create a password" required>
+            <input type="password" minlength="8" placeholder="Enter Password">
 
             <label>Confirm Password</label>
-            <input type="password" placeholder="Confirm your password" required>
+            <input type="password" minlength="8" placeholder="Confirm Password">
 
-            <a id="register-btn" href="registration_submitted.html">Register</a>
-
+           <a id="register-btn" href="registration_submitted.html">Register</a>
         </form>
 
         <!-- CPPESO FORM -->
         <form id="cppesoForm" class="account-form" action="registration_submitted.html">
 
             <label>Admin Name</label>
-            <input type="text" placeholder="Enter admin name" required>
+            <input type="text" placeholder="Enter Full Name">
 
             <label> Email</label>
-            <input type="email" placeholder="e.g. email@gmail.com" required>
+            <input type="email" placeholder="username@wmsu.edu.ph">
 
             <label>Password</label>
-            <input type="password" placeholder="Create a password" required>
+            <input type="password" placeholder="Create Password">
 
             <label>Confirm Password</label>
-            <input type="password" placeholder="Confirm your password" required>
+            <input type="password" placeholder="Confirm Password">
 
             <label>Authorization Code</label>
-            <input type="text" placeholder="Enter authorization code" required>
+            <input type="text" placeholder="Enter Authorization Code">
 
              <a id="register-btn" href="registration_submitted.html">Register</a>
 
