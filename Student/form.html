@@ -32,37 +32,37 @@
                 <div class="input-row">
                     <div class="field">
                         <label>First Name</label>
-                        <input type="text" name="first_name" placeholder="Required">
+                        <input type="text" name="first_name" placeholder="Required" value="Juan">
                     </div>
                     <div class="field">
                         <label>Middle Name</label>
-                        <input type="text" name="middle_name" placeholder="Optional">
+                        <input type="text" name="middle_name" placeholder="Optional" value="Dela">
                     </div>
                     <div class="field">
                         <label>Last Name</label>
-                        <input type="text" name="last_name" placeholder="Required">
+                        <input type="text" name="last_name" placeholder="Required" value="Cruz">
                     </div>
                 </div>
 
                 <div class="input-row split-2-1">
                     <div class="field">
                         <label>Student ID Number</label>
-                        <input type="text" name="student_id" placeholder="e.g., 2021-01234">
+                        <input type="text" name="student_id" placeholder="e.g., 2021-01234" value="2023-10452">
                     </div>
                     <div class="field">
                         <label>Date of Birth</label>
-                        <input type="date" name="dob" required>
+                        <input type="date" name="dob" value="2003-01-10" required>
                     </div>
                 </div>
 
                 <div class="input-row">
                     <div class="field">
                         <label>Email Address</label>
-                        <input type="email" name="email" placeholder="name@wmsu.edu.ph">
+                        <input type="email" name="email" placeholder="name@wmsu.edu.ph" value="juan@email.com">
                     </div>
                     <div class="field">
                         <label>Contact Number</label>
-                        <input type="tel" name="contact" placeholder="09XXXXXXXXX">
+                        <input type="tel" name="contact" placeholder="09XXXXXXXXX" value="09123456789">
                     </div>
                 </div>
             </section>
@@ -73,8 +73,8 @@
                     <div class="field">
                         <label>College Department</label>
                         <select name="college" required>
-                            <option value="" disabled selected>Select College</option>
-                            <option>College of Computing Studies</option>
+                            <option value="" disabled>Select College</option>
+                            <option selected>College of Computing Studies</option>
                             <option>College of Engineering</option>
                             <option>College of Nursing</option>
                             <option>College of Liberal Arts</option>
@@ -87,14 +87,14 @@
                         <select name="year_level" required>
                             <option>1st Year</option>
                             <option>2nd Year</option>
-                            <option>3rd Year</option>
+                            <option selected>3rd Year</option>
                             <option>4th Year</option>
                         </select>
                     </div>
                     <div class="field">
                         <label>Semester</label>
                         <select name="semester" required>
-                            <option>First Semester</option>
+                            <option selected>First Semester</option>
                             <option>Second Semester</option>
                         </select>
                     </div>
@@ -134,7 +134,7 @@
                         </div>
                     </div>
 
-        
+                    
                     <div class="day-row">
                         <div class="day-selector">
                             <input type="checkbox" id="tue" class="day-check">
@@ -158,7 +158,6 @@
                         </div>
                     </div>
 
-        
                     <div class="day-row">
                         <div class="day-selector">
                             <input type="checkbox" id="wed" class="day-check">
@@ -201,6 +200,7 @@
             </div>
         </div>
 
+                    
         <div class="day-row">
             <div class="day-selector">
                 <input type="checkbox" id="fri" class="day-check">
