@@ -30,7 +30,6 @@
     </header>
 
     <div class="container">
-
         <aside class="sidebar-panel">
             <div class="user-mini-card">
                 <div class="cover-photo"></div>
@@ -55,78 +54,122 @@
         </aside>
 
         <main class="dashboard-feed">
-            
-            <div class="feed-section">
+            <section class="feed-section">
                 <h2 class="section-title">Current Assignment</h2>
+
                 <div class="main-card assignment">
                     <div class="card-header">
-                        <div class="icon-circle"><i class="fas fa-building"></i></div>
                         <div class="header-text">
                             <h4>Admin Office – Student Assistant</h4>
-                            <span class="badge-active">Active Now</span>
                         </div>
                     </div>
-                    <div class="card-content">
-                        <p><i class="fas fa-user-tie"></i> Supervisor: <strong>Mr. Smith</strong></p>
-                        <p><i class="fas fa-clock"></i> Schedule: <strong>Mon–Fri | 1PM – 4PM</strong></p>
-                    </div>
+                        
+                        <hr>
+
+                    <div class="application-info">
+                        <div class="column">
+                            <p><i class="fas fa-user-tie"></i> Supervisor: <strong>Mr. Smith</strong></p>
+                            <p><i class="fas fa-clock"></i> Schedule: <strong>Mon–Fri | 1PM – 4PM</strong></p>
+                            <p><i class="fas fa-calendar"></i> Start Date: <strong>March 10, 2026</strong></p>
+                        </div>
+                                    
+                    <div class="column">
+                        <p><i class="fas fa-money-bill-wave"></i> Pay: <strong>₱60/hour</strong></p>
+                        <div class="progress-section">
+                        <p><i class="fas fa-hourglass-half"></i> Hours: <strong>32 / 80 hrs</strong></p>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill" style="width: 40%;"></div>
+                                    </div>
+                                </div>
+                                <p><i class="fas fa-wallet"></i> Status: <span class="badge-active">Active Now</span>
+                               </div>
+                        </div>
+
                     <div class="card-actions">
-                        <button class="action-btn">Log Work Hours</button>
-                        <button class="action-btn-outline">View Details</button>
+                        <button type="button" class="action-btn">Log Work Hours</button>
+                        <button type="button" class="action-btn-outline">View Details</button>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <div class="feed-section">
+            <section class="feed-section">
                 <div class="section-header-flex">
                     <h2 class="section-title">Recent Applications</h2>
-                    <a href="application.html">See All</a>
+                    <a href="application.html" class="view-all-link">See All</a>
                 </div>
-                <div class="main-card">
-            <div class="card-header">
-                <div class="icon-circle blue"><i class="fas fa-laptop-code"></i></div>
-                <div class="header-text">
-                    <h4>IT Office – Student Assistant</h4>
-                    <span class="status-text">Applied March 8, 2026</span>
-                </div>
-            </div>
-            <div class="card-content">
-                <div class="simple-status">
-                    <span class="dot-pending"></span> Pending Review
-                </div>
-            </div>
-        </div>
 
-        <div class="main-card">
-            <div class="card-header">
-                <div class="icon-circle green"><i class="fas fa-microscope"></i></div>
-                <div class="header-text">
-                    <h4> Science Lab – Research Assistant </h4>
-                    <span class="status-text">Applied March 1, 2026</span>
-                </div>
-            </div>
-            <div class="card-content">
-                <div class="simple-status">
-                    <span class="dot-interview"></span> Interview Scheduled: <strong>Mar 15</strong>
-                </div>
-            </div>
-        </div>
+                <article class="application-card">
+                    <div class="application-header">
+                        <h3>Library Assistant</h3>
+                        <hr>
+                        <p>Organize library books, assist students in locating resources, and maintain records.</p>
+                    </div>
 
-        <div class="main-card">
-            <div class="card-header">
-                <div class="icon-circle gray"><i class="fas fa-archive"></i></div>
-                <div class="header-text">
-                    <h4>Records Clerk – Admission</h4>
-                    <span class="status-text">Applied Feb 24, 2026</span>
-                </div>
-            </div>
-            <div class="card-content">
-                <div class="simple-status">
-                    <span class="dot-rejected"></span> Position Filled
-                </div>
-            </div>
-        </div>
-    </div>
+                    <div class="application-info">
+                        <div class="column">
+                            <p><i class="fas fa-building"></i> <strong>Department:</strong> Library</p>
+                            <p><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> Main Library</p>
+                            <p><i class="fas fa-money-bill-wave"></i> <strong>Pay:</strong> ₱50/hour</p>
+                        </div>
+
+                        <div class="column">
+                            <p><i class="fas fa-hourglass-half"></i> <strong>Hours:</strong> 15 hrs/week</p>
+                            <p><i class="fas fa-users"></i> <strong>Slots:</strong> 1 / 3</p>
+                            <p><i class="fas fa-info-circle"></i> <strong>Status:</strong> 
+                                <span class="status-badge none">Available</span>
+                            </p>
+                        </div>
+
+                        <ul class="requirements-list">
+                             <p><strong><i class="fas fa-check-circle"></i> Requirements:</strong></p>
+                            <li>Organized and detail-oriented</li>
+                            <li>Basic record keeping skills</li>
+                            <li>Minimum GPA: 2.5</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="application-action">
+                        <button type="button" class="secondary-btn">View Details</button>
+                        <button class="primary-btn">Cancel</button>
+                    </div>
+                </article>
+
+                <article class="application-card">
+                    <div class="application-header">
+                        <h3>IT Support Intern</h3>
+                        <hr>
+                        <p>Assist in software troubleshooting, IT support for student devices, and network management.</p>
+                    </div>
+
+                    <div class="application-info">
+                        <div class="column">
+                            <p><i class="fas fa-building"></i> <strong>Department:</strong> MIS</p>
+                            <p><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> MIS Office</p>
+                            <p><i class="fas fa-money-bill-wave"></i> <strong>Pay:</strong> ₱70/hour</p>
+                        </div>
+
+                        <div class="column">
+                            <p><i class="fas fa-hourglass-half"></i> <strong>Hours:</strong> 25 hrs/week</p>
+                            <p><i class="fas fa-users"></i> <strong>Slots:</strong> 3 / 5</p>
+                            <p><i class="fas fa-info-circle"></i> <strong>Status:</strong> 
+                                <span class="status-badge none">Available</span>
+                            </p>
+                        </div>
+
+                        <ul class="requirements-list">
+                            <p><strong><i class="fas fa-check-circle"></i> Requirements:</strong></p>
+                            <li>Basic troubleshooting skills</li>
+                            <li>Familiar with networking basics</li>
+                            <li>Minimum GPA: 2.75</li>
+                        </ul>
+                    </div>
+
+                    <div class="application-action">
+                        <button type="button" class="secondary-btn">View Details</button>
+                        <button class="primary-btn">Cancel</button>
+                    </div>
+                </article>
+            </section>
         </main>
 
         <aside class="right-panel">
