@@ -18,13 +18,22 @@
             <a href="positions.html" class="active"><i class="fas fa-briefcase"></i> Browse Positions</a>
         </nav>
 
-        <div class="profile-dropdown">
-            <a href="student_profile.html">
-                <img src="../images/profile.jpg.jpg" alt="Profile Photo" class="profile-img">
-            </a>
-            <div class="dropdown-content">
-                <a href="student_profile.html">View Profile</a>
-                <a href="../Global/login.html">Logout</a>
+        <div class="top-right">
+            <div class="profile">
+                <a href="student_profile.html">
+                <img src="../images/profile.jpg.jpg" class="profile-img">
+                </a>
+            </div>
+
+            <div class="settings-menu">
+                <i class="fas fa-bars menu-icon"></i>
+                
+                <div class="settings-dropdown">
+                    <a href="edit_student_profile.html"><i class="fas fa-user-edit"></i> Edit Profile</a>
+                    <a href=""><i class="fas fa-key"></i> Change Password</a>
+                    <a href=""><i class="fas fa-bell"></i> Notification Preferences</a>
+                    <a href="../Global/login.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
             </div>
         </div>
     </header>
@@ -39,28 +48,18 @@
                 <label for="search">Search</label>
                 <input type="text" id="search" placeholder="Search Position">
 
-                <label for="department">Colleges</label>
+                <label for="department">Departments</label>
                 <select id="department">
-                    <option>All Colleges</option>
-			        <option>College of Argriculture</option>
-			        <option>College of Architecture</option>
-			        <option>College of Arts & Sciences</option>
-                    <option>College of Asian & Islamic Studies</option>
-			        <option>College of Computing Studies</option>
-			        <option>College of Criminal Justice Education</option>
-			        <option>College of Engineering</option>
-			        <option>College of Forestry & Environmental Studies</option>
-			        <option>College of Home Economics</option>
-			        <option>College of Law</option>
-			        <option>College of Liberal Arts</option>
-			        <option>College of Medicine</option>
-			        <option>College of Nursing</option>
-			        <option>College of Public Administration & Development Studies</option>
-			        <option>College of Science and Mathematics</option>
-			        <option>College of Social Work & Community Development</option>
-			        <option>College of Sports Science & Physical Education</option>
-			        <option>College of Teacher Education</option>
-			        <option>Professional Science Master's Program</option>
+                    <option>All Departments</option>
+			        <option>IT Office</option>
+			        <option>Library Department</option>
+			        <option>Registrar</option>
+                    <option>Student Affairs</option>
+			        <option>Research Office</option>
+			        <option>Guidance Office</option>
+			        <option>Cashier</option>
+			        <option>Health Service</option>
+			        <option>Sports Office</option>
                 </select>
 
                 <label for="duration">Duration</label>
@@ -137,7 +136,7 @@
                         <p><i class="fas fa-hourglass-half"></i> <strong>Hours:</strong> 15 hrs/week</p>
                         <p><i class="fas fa-users"></i> <strong>Slots:</strong> 1 / 3</p>
                         <p><i class="fas fa-info-circle"></i> <strong>Status:</strong> 
-                            <span class="status-badge none">Available</span>
+                            <span class="status-badge approved">Approved</span>
                         </p>
                     </div>
 
@@ -151,7 +150,7 @@
 
                 <div class="application-action">
                     <button class="secondary-btn">View Details</button>
-                    <a href="form.html" class="primary-btn">Apply</a>
+                    <button class="primary-btn">Cancel Application</button>
                 </div>
             </div>
 
@@ -175,7 +174,7 @@
                         <p><i class="fas fa-hourglass-half"></i> <strong>Hours:</strong> 25 hrs/week</p>
                         <p><i class="fas fa-users"></i> <strong>Slots:</strong> 3 / 5</p>
                         <p><i class="fas fa-info-circle"></i> <strong>Status:</strong> 
-                            <span class="status-badge none">Available</span>
+                            <span class="status-badge interview">Interview</span>
                         </p>
                     </div>
 
@@ -189,18 +188,57 @@
 
                 <div class="application-action">
                     <button class="secondary-btn">View Details</button>
-                    <a href="form.html" class="primary-btn">Apply</a>
+                    <button class="primary-btn">Confirm Attendance</button>
                 </div>
             </div>
+
+            <div class="application-card">
+                <div class="application-header">
+                    <h2>Registrar Assistant</h2>
+                    <hr>
+                    <p>Assist in managing student records, processing enrollment documents, and handling front desk inquiries.</p>
+                </div>
+
+                <div class="application-info">
+                    <div class="column">
+                        <p><i class="fas fa-building"></i> <strong>Department:</strong> Registrar</p>
+                        <p><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> Registrar Office</p>
+                        <p><i class="fas fa-money-bill-wave"></i> <strong>Pay:</strong> ₱70/hour</p>
+                    </div>
+
+                    <div class="column">
+
+                        <p><i class="fas fa-hourglass-half"></i> <strong>Hours:</strong> 25 hrs/week</p>
+                        <p><i class="fas fa-users"></i> <strong>Slots:</strong> 2 / 5</p>
+                        <p><i class="fas fa-info-circle"></i> <strong>Status:</strong> 
+                            <span class="status-badge none">Available</span>
+                        </p>
+                    </div>
+
+                    <ul class="requirements">
+                        <p><i class="fas fa-check-circle"></i> <strong>Requirements:</strong></p>
+                        <li>Strong attention to detail</li>
+                        <li>Basic MS Office skills (Word/Excel)</li>
+                        <li>Minimum GPA: 2.75</li>
+                    </ul>
+                </div>
+
+                <div class="application-action">
+                    <button class="secondary-btn">View Details</button>
+                    <a href="form.html" class="primary-btn" href="#">Apply</a>
+                </div>
+            </div>
+
+            
         </main>
 
 
         <aside class="right-panel">
             <div class="stat-card">
                 <h4>Application Status</h4>
-                <div class="stat-item"><span>Approved</span> <span class="count">0</span></div>
-                <div class="stat-item"><span>Pending</span> <span class="count">1</span></div>
-                <div class="stat-item"><span>Interview</span> <span class="count">0</span></div>
+                <div class="stat-item"><span>Approved</span> <span class="count">1</span></div>
+                <div class="stat-item"><span>Under Review</span> <span class="count">1</span></div>
+                <div class="stat-item"><span>Interview</span> <span class="count">1</span></div>
                 <div class="stat-item"><span>Rejected</span> <span class="count">0</span></div>
             </div>
 
