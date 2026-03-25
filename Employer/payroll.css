@@ -136,8 +136,8 @@ body { background-color: var(--bg); color: var(--text); }
 .status.pending { background: #fffbe6; color: var(--gold); }
 .status.verified { background: #e7fef0; color: var(--green); }
 
-.action-btn-sm { background: #f0f2f5; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: 600; transition: 0.2s; white-space: nowrap; }
-.action-btn-sm:hover { background: #e4e6eb; color: var(--text); }
+.action-btn-sm {color:white; background: #720b0b; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: 600; transition: 0.2s; white-space: nowrap; }
+.action-btn-sm:hover { color:white; background: #500808;}
 
 /* RIGHT PANEL WIDGETS */
 .right-panel { display: flex; flex-direction: column; gap: 0; }
