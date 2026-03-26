@@ -457,7 +457,7 @@
           <td><strong style="color:var(--yellow)">2.00</strong></td>
           <td>
             <span class="doc-tag"><i class="fas fa-file-pdf"></i> COR</span>
-            <span class="doc-tag cert"><i class="fas fa-certificate"></i> Good Moral</span>
+            <span class="doc-tag"><i class="fas fa-file-alt"></i> Resume</span>
           </td>
           <td>Mar 23, 2026</td>
           <td><span class="badge pending">Pending</span></td>
@@ -484,7 +484,6 @@
           <td>
             <span class="doc-tag"><i class="fas fa-file-pdf"></i> COR</span>
             <span class="doc-tag"><i class="fas fa-file-alt"></i> Resume</span>
-            <span class="doc-tag cert"><i class="fas fa-certificate"></i> Good Moral</span>
           </td>
           <td>Mar 22, 2026</td>
           <td><span class="badge approved">Approved</span></td>
@@ -509,6 +508,7 @@
           <td><strong style="color:var(--yellow)">2.25</strong></td>
           <td>
             <span class="doc-tag"><i class="fas fa-file-pdf"></i> COR</span>
+            <span class="doc-tag"><i class="fas fa-file-alt"></i> Resume</span>
           </td>
           <td>Mar 22, 2026</td>
           <td><span class="badge pending">Pending</span></td>
@@ -574,9 +574,6 @@
     <div>
       <div class="section-title">Verify Departments</div>
       <div class="section-sub">Review department credentials and uploaded documents before approval</div>
-    </div>
-    <div class="section-actions">
-      <button class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Add Department</button>
     </div>
   </div>
 
@@ -748,8 +745,11 @@
       <div class="section-sub">Define and manage available Student Assistant positions across departments</div>
     </div>
     <div class="section-actions">
+       <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Search by name or ID...">
+       </div>
       <button class="btn btn-outline btn-sm"><i class="fas fa-filter"></i> Filter</button>
-      <button class="btn btn-gold btn-sm"><i class="fas fa-plus"></i> New Position</button>
     </div>
   </div>
 
@@ -898,41 +898,6 @@
     <div class="position-card">
       <div class="pos-header">
         <div>
-          <div class="pos-name">Clinic Aide</div>
-          <div class="pos-dept"><i class="fas fa-building" style="font-size:10px;"></i> College of Nursing</div>
-        </div>
-        <span class="badge pending">Pending</span>
-      </div>
-      <div class="pos-stats">
-        <div class="pos-stat">
-          <div class="pos-stat-val">6</div>
-          <div class="pos-stat-lbl">Total Slots</div>
-        </div>
-        <div class="pos-stat">
-          <div class="pos-stat-val">0</div>
-          <div class="pos-stat-lbl">Filled</div>
-        </div>
-        <div class="pos-stat">
-          <div class="pos-stat-val col-green">6</div>
-          <div class="pos-stat-lbl">Available</div>
-        </div>
-        <div class="pos-stat">
-          <div class="pos-stat-val">20h</div>
-          <div class="pos-stat-lbl">Per Week</div>
-        </div>
-      </div>
-      <div class="pos-footer">
-        <div class="pos-rate"><i class="fas fa-peso-sign"></i> ₱4,800 / mo</div>
-        <div class="action-btns">
-          <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Activate</button>
-          <button class="btn btn-delete btn-sm"><i class="fas fa-trash"></i></button>
-        </div>
-      </div>
-    </div>
-
-    <div class="position-card">
-      <div class="pos-header">
-        <div>
           <div class="pos-name">Finance Clerk</div>
           <div class="pos-dept"><i class="fas fa-building" style="font-size:10px;"></i> Finance Office</div>
         </div>
@@ -960,6 +925,41 @@
         <div class="pos-rate"><i class="fas fa-peso-sign"></i> ₱4,200 / mo</div>
         <div class="action-btns">
           <button class="btn btn-edit btn-sm"><i class="fas fa-edit"></i></button>
+          <button class="btn btn-delete btn-sm"><i class="fas fa-trash"></i></button>
+        </div>
+      </div>
+    </div>
+
+       <div class="position-card">
+      <div class="pos-header">
+        <div>
+          <div class="pos-name">Clinic Aide</div>
+          <div class="pos-dept"><i class="fas fa-building" style="font-size:10px;"></i> College of Nursing</div>
+        </div>
+        <span class="badge pending">Pending</span>
+      </div>
+      <div class="pos-stats">
+        <div class="pos-stat">
+          <div class="pos-stat-val">6</div>
+          <div class="pos-stat-lbl">Total Slots</div>
+        </div>
+        <div class="pos-stat">
+          <div class="pos-stat-val">0</div>
+          <div class="pos-stat-lbl">Filled</div>
+        </div>
+        <div class="pos-stat">
+          <div class="pos-stat-val col-green">6</div>
+          <div class="pos-stat-lbl">Available</div>
+        </div>
+        <div class="pos-stat">
+          <div class="pos-stat-val">20h</div>
+          <div class="pos-stat-lbl">Per Week</div>
+        </div>
+      </div>
+      <div class="pos-footer">
+        <div class="pos-rate"><i class="fas fa-peso-sign"></i> ₱4,800 / mo</div>
+        <div class="action-btns">
+          <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Activate</button>
           <button class="btn btn-delete btn-sm"><i class="fas fa-trash"></i></button>
         </div>
       </div>
@@ -1013,6 +1013,48 @@
         </tr>
       </thead>
       <tbody>
+
+        <tr>
+          <td>6</td>
+          <td>
+            <div class="t-avatar">
+              <div class="av av-f">CM</div>
+              <div><div class="td-name">Carlos Mendez</div><div class="td-sub">2020-00561 · BSED 4th Yr</div></div>
+            </div>
+          </td>
+          <td><strong>Finance Clerk</strong></td>
+          <td>Finance Office</td>
+          <td><strong style="color:var(--green)">1.60</strong></td>
+          <td>24 units</td>
+          <td>Mar 21, 2026</td>
+          <td><span class="badge approved">Approved</span></td>
+          <td>
+            <div style="font-size:12.5px;color:var(--green);font-weight:600;">
+              <i class="fas fa-check-double"></i> Assigned — Finance Office
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>7</td>
+          <td>
+            <div class="t-avatar">
+              <div class="av av-a">NB</div>
+              <div><div class="td-name">Nina Bautista</div><div class="td-sub">2022-00411 · BSBA 3rd Yr</div></div>
+            </div>
+          </td>
+          <td><strong>Office Assistant</strong></td>
+          <td>Registrar's Office</td>
+          <td><strong style="color:var(--yellow)">2.10</strong></td>
+          <td>21 units</td>
+          <td>Mar 20, 2026</td>
+          <td><span class="badge rejected">Rejected</span></td>
+          <td>
+            <div style="font-size:12.5px;color:var(--red);font-weight:600;">
+              <i class="fas fa-times-circle"></i> Rejected — GWA below requirement
+            </div>
+          </td>
+        </tr>
 
         <tr>
           <td>1</td>
@@ -1125,48 +1167,6 @@
         </tr>
 
         <tr>
-          <td>6</td>
-          <td>
-            <div class="t-avatar">
-              <div class="av av-f">CM</div>
-              <div><div class="td-name">Carlos Mendez</div><div class="td-sub">2020-00561 · BSED 4th Yr</div></div>
-            </div>
-          </td>
-          <td><strong>Finance Clerk</strong></td>
-          <td>Finance Office</td>
-          <td><strong style="color:var(--green)">1.60</strong></td>
-          <td>24 units</td>
-          <td>Mar 21, 2026</td>
-          <td><span class="badge approved">Approved</span></td>
-          <td>
-            <div style="font-size:12.5px;color:var(--green);font-weight:600;">
-              <i class="fas fa-check-double"></i> Assigned — Finance Office
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-          <td>7</td>
-          <td>
-            <div class="t-avatar">
-              <div class="av av-a">NB</div>
-              <div><div class="td-name">Nina Bautista</div><div class="td-sub">2022-00411 · BSBA 3rd Yr</div></div>
-            </div>
-          </td>
-          <td><strong>Office Assistant</strong></td>
-          <td>Registrar's Office</td>
-          <td><strong style="color:var(--yellow)">2.10</strong></td>
-          <td>21 units</td>
-          <td>Mar 20, 2026</td>
-          <td><span class="badge rejected">Rejected</span></td>
-          <td>
-            <div style="font-size:12.5px;color:var(--red);font-weight:600;">
-              <i class="fas fa-times-circle"></i> Rejected — GWA below requirement
-            </div>
-          </td>
-        </tr>
-
-        <tr>
           <td>8</td>
           <td>
             <div class="t-avatar">
@@ -1187,7 +1187,6 @@
             </div>
           </td>
         </tr>
-
       </tbody>
     </table>
   </div>

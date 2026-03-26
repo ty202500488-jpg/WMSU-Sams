@@ -725,6 +725,20 @@
 
   .filter-bar input { width: 220px; }
 
+.search-box { position: relative; }
+.search-box i { position: absolute; left: 10px; top: 50%; color: var(--muted); font-size: 13px; transform: translateY(-50%);}
+.search-box input {
+    padding: 8px 15px 8px 35px;
+    border-radius: 20px; 
+    border: 1px solid var(--border);
+    outline: none; 
+    width: 100%; 
+    font-size: 13px;
+    max-width: 250px;
+    transition: border 0.2s;
+}
+.search-box input:focus {border-color: var(--maroon-light);}
+
   /* ── POSITIONS GRID ───────────────────────────────── */
   .positions-grid {
     display: grid;
