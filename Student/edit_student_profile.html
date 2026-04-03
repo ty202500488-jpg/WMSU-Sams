@@ -53,9 +53,21 @@
             <section id="personal" class="profile-section">
                 <div class="section-header">
                     <h3><i class="fa-solid fa-address-card"></i> Personal Information</h3>
+
                     <div class="doc-actions">
-                        <button id="edit-btn-text"><a href="student_profile.html" >Confirm Changes</a></button>
+                        <button id="edit-btn-text"><a href="#cancel-confirm-1" >Confirm Changes</a></button>
                     </div>
+
+                    <div id="cancel-confirm-1" class="modal-overlay">
+                        <div class="modal-box">
+                            <h3>Confirm Changes</h3>
+                            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
+                                <a href="student_profile.html" class="primary-btn" style="background: #9f0f0f;">Yes</a>
+                                <a href="#" class="secondary-btn ">No</a>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
                 <div class="info-grid">
                     <div class="info-box"><label><span>Email Address</span><input type="email" name="email" value="juan@email.com"></label></div>
