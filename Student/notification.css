@@ -428,6 +428,12 @@ hr {
     border-radius: 8px;
 }
 
+.help-box h4 {
+   color: white;
+   display: flex;
+   justify-content: center;
+}
+
 .help-box p {
     font-size: 0.8125rem;
     margin-bottom: 12px;

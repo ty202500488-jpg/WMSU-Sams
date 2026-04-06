@@ -18,6 +18,7 @@
 <input class="nav-radio" type="radio" name="nav" id="nav-students"/>
 <input class="nav-radio" type="radio" name="nav" id="nav-departments"/>
 <input class="nav-radio" type="radio" name="nav" id="nav-positions"/>
+<input class="nav-radio" type="radio" name="nav" id="nav-suggest-positions"/>
 <input class="nav-radio" type="radio" name="nav" id="nav-applications"/>
 <input class="nav-radio" type="radio" name="nav" id="nav-reports"/>
 
@@ -67,6 +68,12 @@
       <label for="nav-positions">
         <i class="fas fa-briefcase"></i>
         Manage Positions
+      </label>
+    </div>
+    <div class="nav-item">
+      <label for="nav-suggest-positions">
+        <i class="fas fa-hand-holding-heart"></i>
+        Suggest Positions
       </label>
     </div>
     <div class="nav-item">
@@ -552,19 +559,6 @@
       </tbody>
     </table>
   </div>
-
-  <!-- Pagination -->
-  <div style="display:flex;align-items:center;justify-content:space-between;margin-top:18px;flex-wrap:wrap;gap:10px;">
-    <span style="font-size:13px;color:var(--gray-500);">Showing <strong>1–6</strong> of <strong>248</strong> students</span>
-    <div style="display:flex;gap:6px;">
-      <button class="btn btn-outline btn-sm"><i class="fas fa-chevron-left"></i></button>
-      <button class="btn btn-primary btn-sm">1</button>
-      <button class="btn btn-outline btn-sm">2</button>
-      <button class="btn btn-outline btn-sm">3</button>
-      <button class="btn btn-outline btn-sm"><i class="fas fa-chevron-right"></i></button>
-    </div>
-  </div>
-
 </section>
 
 
@@ -973,6 +967,152 @@
 
 
 <!-- ╔══════════════════════════════════════════════
+     § SUGGEST POSITIONS TO STUDENTS
+══════════════════════════════════════════════╗ -->
+<section class="section" id="sec-suggest-positions">
+
+  <div class="section-header">
+    <div>
+      <div class="section-title">Suggest Positions to Students</div>
+      <div class="section-sub">Assign positions to students based on their academic records and schedule compatibility</div>
+    </div>
+  </div>
+
+  <div class="alert-banner info" style="margin-bottom:20px;">
+    <i class="fas fa-info-circle"></i>
+    <span><strong>CPPE Workflow:</strong> Students only see positions that have been specifically suggested by CPPE Admin based on their profile and schedule match. This ensures fair assignment rather than competitive browsing.</span>
+  </div>
+
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header">
+      <h3><i class="fas fa-star"></i> Create Position Suggestion</h3>
+    </div>
+    <div class="card-body" style="padding:25px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+        
+        <div>
+          <label style="display:block;font-weight:600;margin-bottom:8px;color:#333;">Select Student <span style="color:#dc2626;">*</span></label>
+          <select style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;font-size:14px;">
+            <option value="">-- Choose a student --</option>
+            <option value="maria">Maria Santos (2022-00145) • BSCS 3rd Year</option>
+            <option value="juan">Juan dela Cruz (2021-00388) • BSBA 4th Year</option>
+            <option value="ana">Ana Reyes (2023-00072) • BSN 2nd Year</option>
+            <option value="liza">Liza Torres (2022-00299) • BSCS 3rd Year</option>
+            <option value="pedro">Pedro Valdez (2021-00602) • BSED 4th Year</option>
+          </select>
+        </div>
+
+        <div>
+          <label style="display:block;font-weight:600;margin-bottom:8px;color:#333;">Student Schedule <span style="color:#dc2626;">*</span></label>
+          <input type="text" placeholder="e.g., Mon-Wed 1PM-4PM" readonly style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;font-size:14px;background:#f5f5f5;">
+        </div>
+
+        <div>
+          <label style="display:block;font-weight:600;margin-bottom:8px;color:#333;">Select Position <span style="color:#dc2626;">*</span></label>
+          <select style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;font-size:14px;">
+            <option value="">-- Choose a position --</option>
+            <option value="lib-asst">Library Assistant • University Library (Mon-Fri, 20h/week)</option>
+            <option value="lab-mon">Laboratory Monitor • IT Dept (Tue-Thu, 24h/week)</option>
+            <option value="office-asst">Office Assistant • College of Education (Wed-Fri, 16h/week)</option>
+            <option value="research">Research Assistant • College of Engineering (Mon-Wed, 18h/week)</option>
+          </select>
+        </div>
+
+        <div>
+          <label style="display:block;font-weight:600;margin-bottom:8px;color:#333;">Schedule Compatibility <span style="color:#dc2626;">*</span></label>
+          <div style="padding:10px;background:#e8f5e9;border-radius:6px;border:1px solid #c8e6c9;color:#2e7d32;font-size:14px;">
+            <i class="fas fa-check-circle"></i> Compatible - Suitable for this student
+          </div>
+        </div>
+
+      </div>
+
+      <div style="margin-top:20px;padding-top:20px;border-top:1px solid #eee;">
+        <label style="display:block;font-weight:600;margin-bottom:8px;color:#333;">Reason for Suggestion</label>
+        <textarea placeholder="e.g., Strong academic record matches position requirements, schedule aligns with department needs..." style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;font-family:inherit;font-size:14px;resize:vertical;min-height:80px;"></textarea>
+      </div>
+
+      <div style="margin-top:20px;display:flex;gap:10px;justify-content:flex-end;">
+        <button class="btn btn-outline"><i class="fas fa-times"></i> Cancel</button>
+        <button class="btn btn-primary"><i class="fas fa-paper-plane"></i> Send Suggestion to Student</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3><i class="fas fa-history"></i> Suggestion History</h3>
+      <a href="#" class="view-all">View all <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Student</th>
+              <th>Position Suggested</th>
+              <th>Department</th>
+              <th>Student Status</th>
+              <th>Date Suggested</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="t-avatar">
+                  <div class="av av-f">MS</div>
+                  <div><div class="td-name">Maria Santos</div><div class="td-sub">2022-00145</div></div>
+                </div>
+              </td>
+              <td><strong>Library Assistant</strong></td>
+              <td>University Library</td>
+              <td><span class="badge" style="background:#fff3cd;color:#856404;">Pending Response</span></td>
+              <td>Mar 24, 2026</td>
+              <td>
+                <button class="btn btn-sm" style="background:#f5f5f5;color:#666;border:1px solid #ddd;"><i class="fas fa-redo"></i> Resend</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="t-avatar">
+                  <div class="av av-b">JD</div>
+                  <div><div class="td-name">Juan dela Cruz</div><div class="td-sub">2021-00388</div></div>
+                </div>
+              </td>
+              <td><strong>Finance Clerk</strong></td>
+              <td>Finance Office</td>
+              <td><span class="badge approved">Accepted by Student</span></td>
+              <td>Mar 23, 2026</td>
+              <td>
+                <button class="btn btn-sm" style="background:#e8f5e9;color:#2e7d32;border:1px solid #c8e6c9;"><i class="fas fa-check"></i> Approved</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="t-avatar">
+                  <div class="av av-c">AR</div>
+                  <div><div class="td-name">Ana Reyes</div><div class="td-sub">2023-00072</div></div>
+                </div>
+              </td>
+              <td><strong>Clinic Aide</strong></td>
+              <td>College of Nursing</td>
+              <td><span class="badge rejected">Declined by Student</span></td>
+              <td>Mar 22, 2026</td>
+              <td>
+                <button class="btn btn-sm" style="background:#fee;color:#c33;border:1px solid #fcc;"><i class="fas fa-times"></i> Declined</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════
      § APPLICATIONS APPROVAL
 ══════════════════════════════════════════════╗ -->
 <section class="section" id="sec-applications">
@@ -1009,10 +1149,16 @@
           <th>Position Applied</th>
           <th>Department</th>
           <th>GWA</th>
-          <th>Units</th>
-          <th>Date Applied</th>
+          <th colspan="3" style="text-align:center;">Document Verification</th>
           <th>Status</th>
           <th>Final Decision</th>
+        </tr>
+        <tr style="background:#f9f9f9;border-bottom:1px solid #ddd;">
+          <th colspan="5" style="text-align:right;padding:8px 15px;font-weight:500;font-size:13px;color:#666;"></th>
+          <th style="text-align:center;padding:8px 10px;font-weight:500;font-size:12px;color:#666;"><i class="fas fa-calendar"></i> Schedule</th>
+          <th style="text-align:center;padding:8px 10px;font-weight:500;font-size:12px;color:#666;"><i class="fas fa-file"></i> COR</th>
+          <th style="text-align:center;padding:8px 10px;font-weight:500;font-size:12px;color:#666;"><i class="fas fa-chart-line"></i> Grades</th>
+          <th colspan="2"></th>
         </tr>
       </thead>
       <tbody>
@@ -1028,8 +1174,9 @@
           <td><strong>Finance Clerk</strong></td>
           <td>Finance Office</td>
           <td><strong style="color:var(--green)">1.60</strong></td>
-          <td>24 units</td>
-          <td>Mar 21, 2026</td>
+          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
+          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
+          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
           <td><span class="badge approved">Approved</span></td>
           <td>
             <div style="font-size:12.5px;color:var(--green);font-weight:600;">
@@ -1049,8 +1196,9 @@
           <td><strong>Office Assistant</strong></td>
           <td>Registrar's Office</td>
           <td><strong style="color:var(--yellow)">2.10</strong></td>
-          <td>21 units</td>
-          <td>Mar 20, 2026</td>
+          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
+          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
+          <td style="text-align:center;"><span class="badge rejected" style="font-size:11px;padding:4px 8px;color:#fff;"><i class="fas fa-times"></i> Rejected</span></td>
           <td><span class="badge rejected">Rejected</span></td>
           <td>
             <div style="font-size:12.5px;color:var(--red);font-weight:600;">
@@ -1070,8 +1218,9 @@
           <td><strong>Library Assistant</strong></td>
           <td>University Library</td>
           <td><strong style="color:var(--green)">1.75</strong></td>
-          <td>21 units</td>
-          <td>Mar 24, 2026</td>
+          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
+          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
+          <td style="text-align:center;"><span class="badge pending" style="font-size:11px;padding:4px 8px;"><i class="fas fa-clock"></i> Pending</span></td>
           <td><span class="badge pending">Pending</span></td>
           <td>
             <div class="action-btns">
@@ -1092,8 +1241,9 @@
           <td><strong>Finance Clerk</strong></td>
           <td>Finance Office</td>
           <td><strong style="color:var(--green)">1.85</strong></td>
-          <td>24 units</td>
-          <td>Mar 24, 2026</td>
+          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
+          <td style="text-align:center;"><span class="badge pending" style="font-size:11px;padding:4px 8px;"><i class="fas fa-clock"></i> Pending</span></td>
+          <td style="text-align:center;"><span class="badge pending" style="font-size:11px;padding:4px 8px;"><i class="fas fa-clock"></i> Pending</span></td>
           <td><span class="badge pending">Pending</span></td>
           <td>
             <div class="action-btns">
@@ -1114,8 +1264,9 @@
           <td><strong>Clinic Aide</strong></td>
           <td>College of Nursing</td>
           <td><strong style="color:var(--yellow)">2.00</strong></td>
-          <td>18 units</td>
-          <td>Mar 23, 2026</td>
+          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
+          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
+          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
           <td><span class="badge pending">Pending</span></td>
           <td>
             <div class="action-btns">
@@ -1136,8 +1287,9 @@
           <td><strong>Lab Monitor</strong></td>
           <td>IT Department</td>
           <td><strong style="color:var(--yellow)">2.25</strong></td>
-          <td>21 units</td>
-          <td>Mar 23, 2026</td>
+          <td style="text-align:center;"><span class="badge pending" style="font-size:11px;padding:4px 8px;"><i class="fas fa-clock"></i> Pending</span></td>
+          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
+          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
           <td><span class="badge pending">Pending</span></td>
           <td>
             <div class="action-btns">
@@ -1158,8 +1310,9 @@
           <td><strong>Office Assistant</strong></td>
           <td>College of Education</td>
           <td><strong style="color:var(--green)">1.90</strong></td>
-          <td>24 units</td>
-          <td>Mar 22, 2026</td>
+          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
+          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
+          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
           <td><span class="badge pending">Pending</span></td>
           <td>
             <div class="action-btns">
@@ -1180,8 +1333,9 @@
           <td><strong>Research Assistant</strong></td>
           <td>College of Engineering</td>
           <td><strong style="color:var(--green)">1.80</strong></td>
-          <td>18 units</td>
-          <td>Mar 19, 2026</td>
+          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
+          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
+          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
           <td><span class="badge pending">Pending</span></td>
           <td>
             <div class="action-btns">

@@ -190,11 +190,13 @@ document.addEventListener('DOMContentLoaded', function() {
             const name = row ? row.querySelector('strong')?.textContent || 'Applicant' : 'Applicant';
             const position = row ? row.querySelectorAll('td')[1]?.textContent || 'position' : 'position';
             
-            confirmAction(
-                'Confirm Rejection',
-                `Are you sure you want to reject ${name}'s application for the ${position} position? This action cannot be undone.`,
-                () => {
-                    showAlert('Application Rejected', `${name}'s application has been rejected successfully.`, 'success', () => {
+            // Show the rejection reason modal
+            showRejectionReasonModal(name, (rejectionData) => {
+                showAlert(
+                    'Application Rejected',
+                    `${name}'s application has been rejected. They'll be notified of your decision.`,
+                    'success',
+                    () => {
                         if (row) {
                             const status = row.querySelector('.status');
                             if (status) {
@@ -202,11 +204,9 @@ document.addEventListener('DOMContentLoaded', function() {
                                 status.textContent = 'Rejected';
                             }
                         }
-                    });
-                },
-                null,
-                { confirmText: 'Yes, Reject', cancelText: 'Cancel', confirmColor: 'danger-btn' }
-            );
+                    }
+                );
+            });
         });
     });
 

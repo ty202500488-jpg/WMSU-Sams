@@ -6,6 +6,8 @@
     <title>Employer Dashboard | WMSU-SAMS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="employer_dashboard.css">
+    <link rel="stylesheet" href="../Global/modals.css">
+    <script src="../Global/modals.js" defer></script>
 </head>
 <body>
 
@@ -76,7 +78,7 @@
             <div class="feed-section">
                 <div class="section-header-flex">
                     <h2 class="section-title">Pending Applications</h2>
-                    <a href="#">See All</a>
+                    <a href="employer_application.html">See All</a>
                 </div>
 
                 <div class="main-card">
@@ -165,6 +167,67 @@
         </aside>
 
     </div>
+
+<script>
+// Attach handlers to reject and approve buttons
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle Reject buttons
+    const rejectBtns = document.querySelectorAll('.btn-icon.reject');
+    rejectBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const card = this.closest('.main-card');
+            const name = card ? card.querySelector('h4')?.textContent.split('•')[0].trim() || 'Applicant' : 'Applicant';
+            
+            // Show the rejection reason modal
+            showRejectionReasonModal(name, (rejectionData) => {
+                showAlert(
+                    'Application Rejected',
+                    `${name}'s application has been rejected. They'll be notified of your decision.`,
+                    'success',
+                    () => {
+                        if (card) {
+                            const statusPill = card.querySelector('.status-pill');
+                            if (statusPill) {
+                                statusPill.className = 'status-pill status-rejected';
+                                statusPill.textContent = 'Rejected';
+                            }
+                        }
+                    }
+                );
+            });
+        });
+    });
+
+    // Handle Approve buttons
+    const approveBtns = document.querySelectorAll('.btn-icon.approve');
+    approveBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const card = this.closest('.main-card');
+            const name = card ? card.querySelector('h4')?.textContent.split('•')[0].trim() || 'Applicant' : 'Applicant';
+            
+            confirmAction(
+                'Confirm Approval',
+                `Are you sure you want to approve ${name}'s application?`,
+                () => {
+                    showAlert('Application Approved', `${name}'s application has been approved successfully.`, 'success', () => {
+                        if (card) {
+                            const statusPill = card.querySelector('.status-pill');
+                            if (statusPill) {
+                                statusPill.className = 'status-pill status-approved';
+                                statusPill.textContent = 'Approved';
+                            }
+                        }
+                    });
+                },
+                null,
+                { confirmText: 'Yes, Approve', cancelText: 'Cancel', confirmColor: 'success-btn' }
+            );
+        });
+    });
+});
+</script>
 
 </body>
 </html>

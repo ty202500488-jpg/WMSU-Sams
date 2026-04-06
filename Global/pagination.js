@@ -49,6 +49,7 @@ class TablePaginator {
             margin-top: 18px;
             flex-wrap: wrap;
             gap: 10px;
+            padding: 13px;
         `;
 
         // Left side: Info text

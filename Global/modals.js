@@ -196,6 +196,135 @@ class ModalManager {
     }
 
     /**
+     * Create and show a rejection reason modal
+     * @param {string} studentName - Name of the student being rejected
+     * @param {function} onSubmit - Callback with reason when submitted (reason object with type, customReason, etc)
+     * @param {function} onCancel - Callback when cancelled (optional)
+     */
+    showRejectionReasonModal(studentName, onSubmit, onCancel = null) {
+        const modalId = 'rejection-modal-' + Date.now();
+        
+        const modal = document.createElement('div');
+        modal.id = modalId;
+        modal.className = 'modal-overlay rejection-modal';
+        modal.innerHTML = `
+            <div class="modal-box">
+                <h3><i class="fa-solid fa-times-circle"></i> Reject Application</h3>
+                <p>Rejecting application from <strong>${studentName}</strong></p>
+                
+                <form class="rejection-form" id="rejection-form-${Date.now()}">
+                    <div class="form-group">
+                        <label>Reason for Rejection <span class="required">*</span></label>
+                        <div class="preset-reasons">
+                            <div class="reason-option">
+                                <input type="radio" id="reason-schedule" name="reason-type" value="schedule" required>
+                                <label for="reason-schedule">Schedule conflict or unavailability</label>
+                            </div>
+                            <div class="reason-option">
+                                <input type="radio" id="reason-gpa" name="reason-type" value="gpa" required>
+                                <label for="reason-gpa">GPA requirement not met</label>
+                            </div>
+                            <div class="reason-option">
+                                <input type="radio" id="reason-qualifications" name="reason-type" value="qualifications" required>
+                                <label for="reason-qualifications">Missing required qualifications</label>
+                            </div>
+                            <div class="reason-option">
+                                <input type="radio" id="reason-documents" name="reason-type" value="documents" required>
+                                <label for="reason-documents">Incomplete or missing documents</label>
+                            </div>
+                            <div class="reason-option">
+                                <input type="radio" id="reason-other" name="reason-type" value="other" required>
+                                <label for="reason-other">Other (please specify)</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Additional Comments <span class="required">*</span></label>
+                        <textarea name="rejection-reason" id="rejection-reason" placeholder="Please provide specific feedback for the student..." required></textarea>
+                        <div class="char-count"><span id="char-count">0</span>/500</div>
+                        <div class="error-message" id="reason-error">Please provide a reason (minimum 10 characters)</div>
+                    </div>
+
+                    <div class="rejection-actions">
+                        <button type="button" class="cancel-btn" id="cancel-rejection">
+                            <i class="fa-solid fa-times"></i> Cancel
+                        </button>
+                        <button type="submit" class="confirm-btn" id="confirm-rejection">
+                            <i class="fa-solid fa-check"></i> Submit Rejection
+                        </button>
+                    </div>
+                </form>
+            </div>
+        `;
+
+        document.body.appendChild(modal);
+        this.modals.set(modalId, modal);
+
+        // Get form elements
+        const form = modal.querySelector('form');
+        const reasonTypeInputs = modal.querySelectorAll('input[name="reason-type"]');
+        const reasonTextarea = modal.querySelector('textarea[name="rejection-reason"]');
+        const charCount = modal.querySelector('#char-count');
+        const errorMessage = modal.querySelector('#reason-error');
+        const submitBtn = modal.querySelector('#confirm-rejection');
+        const cancelBtn = modal.querySelector('#cancel-rejection');
+
+        // Character counter
+        reasonTextarea.addEventListener('input', () => {
+            charCount.textContent = reasonTextarea.value.length;
+            if (reasonTextarea.value.length >= 10) {
+                reasonTextarea.classList.remove('required-field');
+                errorMessage.classList.remove('show');
+                submitBtn.disabled = false;
+            } else {
+                submitBtn.disabled = true;
+            }
+        });
+
+        // Form validation on submit
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const selectedReason = Array.from(reasonTypeInputs).find(r => r.checked)?.value;
+            const customReason = reasonTextarea.value.trim();
+
+            if (!selectedReason) {
+                alertify.error('Please select a reason');
+                return;
+            }
+
+            if (customReason.length < 10) {
+                reasonTextarea.classList.add('required-field');
+                errorMessage.classList.add('show');
+                return;
+            }
+
+            // Submit the form with the rejection data
+            const rejectionData = {
+                type: selectedReason,
+                reason: customReason,
+                submittedAt: new Date().toISOString()
+            };
+
+            this.hide(modalId);
+            if (onSubmit) onSubmit(rejectionData);
+            setTimeout(() => modal.remove(), 300);
+        });
+
+        // Cancel button
+        cancelBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.hide(modalId);
+            if (onCancel) onCancel();
+            setTimeout(() => modal.remove(), 300);
+        });
+
+        // Show modal
+        this.show(modalId);
+    }
+
+    /**
      * Convert existing HTML modals to use this manager
      * Call this if you have modals already in HTML
      */
@@ -227,4 +356,14 @@ function hideModal(modalId) {
 
 function showModal(modalId) {
     modalManager.show(modalId);
+}
+
+/**
+ * Show rejection reason modal for employers rejecting applications
+ * @param {string} studentName - Name of the student being rejected
+ * @param {function} onSubmit - Callback with rejection reason
+ * @param {function} onCancel - Optional cancel callback
+ */
+function showRejectionReasonModal(studentName, onSubmit, onCancel = null) {
+    modalManager.showRejectionReasonModal(studentName, onSubmit, onCancel);
 }
