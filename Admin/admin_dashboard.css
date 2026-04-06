@@ -167,15 +167,15 @@
     align-items: center;
     gap: 12px;
     padding: 11px 16px;
-    background: rgba(220,38,38,0.15);
+    background: rgba(114, 1, 1, 0.777);
     border-radius: 10px;
-    color: #fca5a5;
+    color: #ffe2e2;
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
     text-decoration: none;
     transition: background 0.2s;
-    border: 1px solid rgba(220,38,38,0.2);
+    border: 1px solid rgba(168, 0, 0, 0.645);
   }
   .logout-btn:hover { background: rgba(220,38,38,0.28); }
 

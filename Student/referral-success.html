@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referral Logged | WMSU-SAMS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #720b0b;
+            --success: #27ae60;
+            --bg: #f3f4f6;
+            --text: #2d3436;
+            --text-light: #636e72;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--bg);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            padding: 20px;
+        }
+
+        .success-card {
+            background: white;
+            width: 100%;
+            max-width: 520px;
+            padding: 40px;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* --- Success Icon & Animation --- */
+        .success-circle {
+            width: 80px; height: 80px;
+            background: var(--success);
+            color: white;
+            font-size: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            box-shadow: 0 10px 20px rgba(39, 174, 96, 0.2);
+            animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+
+        h1 { color: var(--primary); font-size: 26px; margin-bottom: 10px; }
+        .subtitle { color: var(--text-light); font-size: 15px; line-height: 1.5; margin-bottom: 25px; }
+
+        /* --- Receipt Styling --- */
+        .receipt-tag {
+            background: #f8f9fa;
+            border: 1px dashed #dcdde1;
+            padding: 15px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+        .receipt-tag span { display: block; font-size: 10px; font-weight: 800; color: var(--text-light); letter-spacing: 1px; }
+        .receipt-tag strong { font-family: 'Courier New', monospace; color: var(--text); font-size: 18px; }
+
+        .divider {
+            border-bottom: 1px solid #eee;
+            margin: 20px 0 30px;
+            position: relative;
+        }
+        .divider span {
+            position: absolute;
+            top: -10px; left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 0 15px;
+            font-size: 10px;
+            color: #b2bec3;
+            font-weight: 700;
+        }
+
+        /* --- Next Steps Grid --- */
+        .steps-grid { text-align: left; margin-bottom: 35px; }
+        .step-card {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            background: #fdfdfd;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #f0f0f0;
+        }
+        .step-icon {
+            background: #eee;
+            color: var(--primary);
+            width: 35px; height: 35px;
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 16px;
+        }
+        .step-content strong { display: block; font-size: 14px; color: var(--text); }
+        .step-content p { font-size: 12px; color: var(--text-light); }
+
+        /* --- Action Footer --- */
+        .btn-main {
+            display: block;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 16px;
+            border-radius: 14px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(114, 11, 11, 0.2); }
+
+        .action-links { font-size: 13px; color: var(--text-light); }
+        .action-links a { color: var(--primary); text-decoration: none; font-weight: 600; }
+        .action-links .dot { margin: 0 8px; color: #dfe6e9; }
+    </style>
+</head>
+<body>
+
+    <div class="success-card">
+        
+        <div class="success-circle">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+        </div>
+
+        <h1>Duty Log Submitted!</h1>
+        <p class="subtitle">Your <strong>4.50 hours</strong> for April 06 have been recorded and sent to your supervisor for verification.</p>
+
+        <div class="divider"><span>WHAT HAPPENS NEXT?</span></div>
+
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-icon"><i class="fa-solid fa-user-check"></i></div>
+                <div class="step-content">
+                    <strong>Supervisor Review</strong>
+                    <p>Your department head will verify and sign off on your hours.</p>
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                <div class="step-content">
+                    <strong>Quota Update</strong>
+                    <p>Once approved, these hours will be added to your monthly total.</p>
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon"><i class="fa-solid fa-envelope"></i></div>
+                <div class="step-content">
+                    <strong>Email Log</strong>
+                    <p>A summary has been sent to your student email for your records.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-footer">
+            <a href="student_dashboard.html" class="btn-main">
+                <i class="fa-solid fa-house-chimney"></i> Back to Dashboard
+            </a>
+            <div class="action-links">
+                <a href="my_logs.html">View History</a>
+                <span class="dot">•</span>
+                <a href="Referral.html">Log New Shift</a>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
