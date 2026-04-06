@@ -534,7 +534,7 @@ if (document.head) {
             display: block;
             color: #dc2626;
             font-size: 12px;
-            margin-top: 4px;
+            margin-top: -15px;
             font-weight: 500;
         }
         .input-error {

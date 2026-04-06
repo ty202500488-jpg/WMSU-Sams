@@ -146,6 +146,7 @@ body{
 	border-radius: 6px;
 	background-color: #fff;
 	box-sizing: border-box;
+	margin-bottom: 15px;
 }
 
 .account-form input:focus,
