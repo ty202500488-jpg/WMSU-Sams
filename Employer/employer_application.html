@@ -6,6 +6,9 @@
     <title>Manage Applicants | WMSU-SAMS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="employer_applications.css">
+    <link rel="stylesheet" href="../Global/modals.css">
+    <script src="../Global/modals.js" defer></script>
+    <script src="../Global/pagination.js" defer></script>
 </head>
 <body>
 
@@ -174,5 +177,69 @@
             </div>
         </aside>
     </div>
+
+<script>
+// Attach confirmation modals to action buttons
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle Reject buttons
+    const rejectBtns = document.querySelectorAll('.btn-icon.reject');
+    rejectBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const row = this.closest('tr');
+            const name = row ? row.querySelector('strong')?.textContent || 'Applicant' : 'Applicant';
+            const position = row ? row.querySelectorAll('td')[1]?.textContent || 'position' : 'position';
+            
+            confirmAction(
+                'Confirm Rejection',
+                `Are you sure you want to reject ${name}'s application for the ${position} position? This action cannot be undone.`,
+                () => {
+                    showAlert('Application Rejected', `${name}'s application has been rejected successfully.`, 'success', () => {
+                        if (row) {
+                            const status = row.querySelector('.status');
+                            if (status) {
+                                status.className = 'status rejected';
+                                status.textContent = 'Rejected';
+                            }
+                        }
+                    });
+                },
+                null,
+                { confirmText: 'Yes, Reject', cancelText: 'Cancel', confirmColor: 'danger-btn' }
+            );
+        });
+    });
+
+    // Handle Approve buttons
+    const approveBtns = document.querySelectorAll('.btn-icon.approve');
+    approveBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const row = this.closest('tr');
+            const name = row ? row.querySelector('strong')?.textContent || 'Applicant' : 'Applicant';
+            const position = row ? row.querySelectorAll('td')[1]?.textContent || 'position' : 'position';
+            
+            confirmAction(
+                'Confirm Approval',
+                `Are you sure you want to approve ${name}'s application for the ${position} position?`,
+                () => {
+                    showAlert('Application Approved', `${name}'s application has been approved successfully.`, 'success', () => {
+                        if (row) {
+                            const status = row.querySelector('.status');
+                            if (status) {
+                                status.className = 'status approved';
+                                status.textContent = 'Approved';
+                            }
+                        }
+                    });
+                },
+                null,
+                { confirmText: 'Yes, Approve', cancelText: 'Cancel', confirmColor: 'success-btn' }
+            );
+        });
+    });
+});
+</script>
+
 </body>
 </html>

@@ -7,6 +7,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
 <link href="admin_dashboard.css" rel="stylesheet"/>
+<link href="../Global/modals.css" rel="stylesheet"/>
+<script src="../Global/modals.js" defer></script>
+<script src="../Global/pagination.js" defer></script>
 </head>
 <body>
 
@@ -1400,6 +1403,72 @@
 </section>
 
 </main><!-- /main-content -->
+
+<script>
+// Attach confirmation modals to action buttons
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle Reject buttons
+    const rejectBtns = document.querySelectorAll('.btn-reject');
+    rejectBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const row = this.closest('tr');
+            const name = row ? row.querySelector('.td-name')?.textContent || 'Student' : 'Student';
+            const status = row ? row.querySelector('.badge')?.textContent || '' : '';
+            
+            confirmAction(
+                'Confirm Rejection',
+                `Are you sure you want to reject this ${status.toLowerCase()} application from ${name}? This action cannot be undone.`,
+                () => {
+                    showAlert('Application Rejected', `${name}'s application has been rejected successfully.`, 'success', () => {
+                        // Update status badge if exists
+                        if (row) {
+                            const badge = row.querySelector('.badge');
+                            if (badge) {
+                                badge.className = 'badge rejected';
+                                badge.textContent = 'Rejected';
+                            }
+                        }
+                    });
+                },
+                null,
+                { confirmText: 'Yes, Reject', cancelText: 'Cancel', confirmColor: 'danger-btn' }
+            );
+        });
+    });
+
+    // Handle Approve buttons
+    const approveBtns = document.querySelectorAll('.btn-approve');
+    approveBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const row = this.closest('tr');
+            const name = row ? row.querySelector('.td-name')?.textContent || 'Student' : 'Student';
+            const status = row ? row.querySelector('.badge')?.textContent || '' : '';
+            
+            confirmAction(
+                'Confirm Approval',
+                `Are you sure you want to approve this ${status.toLowerCase()} application from ${name}?`,
+                () => {
+                    showAlert('Application Approved', `${name}'s application has been approved successfully.`, 'success', () => {
+                        // Update status badge if exists
+                        if (row) {
+                            const badge = row.querySelector('.badge');
+                            if (badge) {
+                                badge.className = 'badge approved';
+                                badge.textContent = 'Approved';
+                            }
+                        }
+                    });
+                },
+                null,
+                { confirmText: 'Yes, Approve', cancelText: 'Cancel', confirmColor: 'success-btn' }
+            );
+        });
+    });
+});
+</script>
+
 </div><!-- /layout -->
 </body>
 </html>
