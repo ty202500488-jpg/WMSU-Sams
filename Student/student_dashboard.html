@@ -196,6 +196,20 @@
 
             <section class="feed-section">
                 <div class="section-header-flex">
+                    <h2 class="section-title"><i class="fas fa-lightbulb" style="margin-right: 8px; color: #f59e0b;"></i> Suggested for You</h2>
+                    <span style="font-size: 12px; color: #666;">Based on your schedule and qualifications</span>
+                </div>
+
+                <div id="suggested-positions-container">
+                    <div style="text-align: center; padding: 30px; color: #999;">
+                        <i class="fas fa-spinner fa-spin" style="font-size: 24px; margin-bottom: 10px;"></i>
+                        <p>Loading suggestions...</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="feed-section">
+                <div class="section-header-flex">
                     <h2 class="section-title">Recent Applications</h2>
                     <a href="application.html" class="view-all-link">View All</a>
                 </div>
@@ -339,6 +353,9 @@
         </aside>
 
     </div>
+
+    <script src="../Global/modals.js" defer></script>
+    <script src="student-applications.js" defer></script>
 
 </body>
 </html>

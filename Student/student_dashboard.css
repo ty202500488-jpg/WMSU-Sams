@@ -647,6 +647,34 @@ hr {
     .right-panel { display: none; }
 }
 
+/* ===== SUGGESTED POSITIONS STYLING ===== */
+.position-suggestion-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border: 2px solid #eff6ff;
+    border-left: 4px solid #1d4ed8;
+    transition: all 0.3s ease;
+}
+
+.position-suggestion-card:hover {
+    box-shadow: 0 4px 12px rgba(29, 78, 216, 0.1);
+    border-color: #dbeafe;
+}
+
+.position-suggestion-card .application-header h3 {
+    color: #1d4ed8;
+}
+
+.position-suggestion-card .application-action .btn-success {
+    background: #10b981 !important;
+    color: white !important;
+    border: none !important;
+    cursor: not-allowed !important;
+}
+
 /* Tablet to Large Phone */
 @media (max-width: 992px) {
     .container { display: flex; flex-direction: column; padding-top: 80px; }

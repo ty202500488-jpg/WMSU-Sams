@@ -19,14 +19,10 @@
 <input class="nav-radio" type="radio" name="nav" id="nav-departments"/>
 <input class="nav-radio" type="radio" name="nav" id="nav-positions"/>
 <input class="nav-radio" type="radio" name="nav" id="nav-suggest-positions"/>
-<input class="nav-radio" type="radio" name="nav" id="nav-applications"/>
+<input class="nav-radio" type="radio" name="nav" id="nav-payroll"/>
 <input class="nav-radio" type="radio" name="nav" id="nav-reports"/>
 
-<!-- ── TAB RADIOS ─────────────────────────────────── -->
-<input class="tab-radio" type="radio" name="app-tab" id="tab-all"      checked/>
-<input class="tab-radio" type="radio" name="app-tab" id="tab-pending"/>
-<input class="tab-radio" type="radio" name="app-tab" id="tab-approved"/>
-<input class="tab-radio" type="radio" name="app-tab" id="tab-rejected"/>
+<!-- ── TAB RADIOS (Removed - Applications section removed) ─────────────────────────────────── -->
 
 <!-- ═══════════════════════════════════════════════
      SIDEBAR
@@ -76,15 +72,15 @@
         Suggest Positions
       </label>
     </div>
+
+    <div class="sidebar-section-label">Operations</div>
+
     <div class="nav-item">
-      <label for="nav-applications">
-        <i class="fas fa-clipboard-list"></i>
-        Applications Approval
-        <span class="nav-badge">8</span>
+      <label for="nav-payroll">
+        <i class="fas fa-money-bill-wave"></i>
+        Payroll
       </label>
     </div>
-
-    <div class="sidebar-section-label">Analytics</div>
 
     <div class="nav-item">
       <label for="nav-reports">
@@ -393,8 +389,6 @@
           <th>Student</th>
           <th>Student ID</th>
           <th>Course / Year</th>
-          <th>GWA</th>
-          <th>Documents Submitted</th>
           <th>Date Submitted</th>
           <th>Status</th>
           <th>Actions</th>
@@ -412,16 +406,10 @@
           </td>
           <td>2022-00145</td>
           <td>BSCS — 3rd Year</td>
-          <td><strong style="color:var(--green)">1.75</strong></td>
-          <td>
-            <span class="doc-tag"><i class="fas fa-file-pdf"></i> COR</span>
-            <span class="doc-tag"><i class="fas fa-file-alt"></i> Resume</span>
-          </td>
           <td>Mar 24, 2026</td>
           <td><span class="badge pending">Pending</span></td>
           <td>
             <div class="action-btns">
-              <button class="btn btn-view btn-sm"><i class="fas fa-eye"></i> View Docs</button>
               <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
               <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
             </div>
@@ -438,16 +426,10 @@
           </td>
           <td>2021-00388</td>
           <td>BSBA — 4th Year</td>
-          <td><strong style="color:var(--green)">1.85</strong></td>
-          <td>
-            <span class="doc-tag"><i class="fas fa-file-pdf"></i> COR</span>
-            <span class="doc-tag"><i class="fas fa-file-alt"></i> Resume</span>
-          </td>
           <td>Mar 24, 2026</td>
           <td><span class="badge pending">Pending</span></td>
           <td>
             <div class="action-btns">
-              <button class="btn btn-view btn-sm"><i class="fas fa-eye"></i> View Docs</button>
               <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
               <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
             </div>
@@ -464,16 +446,10 @@
           </td>
           <td>2023-00072</td>
           <td>BSN — 2nd Year</td>
-          <td><strong style="color:var(--yellow)">2.00</strong></td>
-          <td>
-            <span class="doc-tag"><i class="fas fa-file-pdf"></i> COR</span>
-            <span class="doc-tag"><i class="fas fa-file-alt"></i> Resume</span>
-          </td>
           <td>Mar 23, 2026</td>
           <td><span class="badge pending">Pending</span></td>
           <td>
             <div class="action-btns">
-              <button class="btn btn-view btn-sm"><i class="fas fa-eye"></i> View Docs</button>
               <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
               <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
             </div>
@@ -490,18 +466,10 @@
           </td>
           <td>2020-00561</td>
           <td>BSED — 4th Year</td>
-          <td><strong style="color:var(--green)">1.60</strong></td>
-          <td>
-            <span class="doc-tag"><i class="fas fa-file-pdf"></i> COR</span>
-            <span class="doc-tag"><i class="fas fa-file-alt"></i> Resume</span>
-          </td>
           <td>Mar 22, 2026</td>
-          <td><span class="badge approved">Approved</span></td>
+          <td><span class="badge approved">Verified</span></td>
           <td>
-            <div class="action-btns">
-              <button class="btn btn-view btn-sm"><i class="fas fa-eye"></i> View Docs</button>
-              <span style="font-size:12px;color:var(--green);font-weight:600;"><i class="fas fa-check-circle"></i> Verified</span>
-            </div>
+           
           </td>
         </tr>
 
@@ -515,16 +483,10 @@
           </td>
           <td>2022-00299</td>
           <td>BSCS — 3rd Year</td>
-          <td><strong style="color:var(--yellow)">2.25</strong></td>
-          <td>
-            <span class="doc-tag"><i class="fas fa-file-pdf"></i> COR</span>
-            <span class="doc-tag"><i class="fas fa-file-alt"></i> Resume</span>
-          </td>
           <td>Mar 22, 2026</td>
           <td><span class="badge pending">Pending</span></td>
           <td>
             <div class="action-btns">
-              <button class="btn btn-view btn-sm"><i class="fas fa-eye"></i> View Docs</button>
               <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
               <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
             </div>
@@ -541,18 +503,10 @@
           </td>
           <td>2021-00431</td>
           <td>BSBA — 3rd Year</td>
-          <td><strong style="color:var(--red)">2.75</strong></td>
-          <td>
-            <span class="doc-tag"><i class="fas fa-file-pdf"></i> COR</span>
-            <span class="doc-tag"><i class="fas fa-file-alt"></i> Resume</span>
-          </td>
           <td>Mar 21, 2026</td>
           <td><span class="badge rejected">Rejected</span></td>
           <td>
-            <div class="action-btns">
-              <button class="btn btn-view btn-sm"><i class="fas fa-eye"></i> View Docs</button>
-              <span style="font-size:12px;color:var(--red);font-weight:600;"><i class="fas fa-times-circle"></i> Rejected</span>
-            </div>
+
           </td>
         </tr>
 
@@ -587,8 +541,6 @@
           <th>Department</th>
           <th>Dean / Head</th>
           <th>College</th>
-          <th>SA Slots Requested</th>
-          <th>Documents</th>
           <th>Date Submitted</th>
           <th>Status</th>
           <th>Actions</th>
@@ -606,16 +558,10 @@
           </td>
           <td>Dean Patricia Lim</td>
           <td>Health Sciences</td>
-          <td><strong>8 slots</strong></td>
-          <td>
-            <span class="doc-tag moa"><i class="fas fa-file-contract"></i> MOA</span>
-            <span class="doc-tag"><i class="fas fa-envelope"></i> Auth. Letter</span>
-          </td>
           <td>Mar 24, 2026</td>
           <td><span class="badge pending">Pending</span></td>
           <td>
             <div class="action-btns">
-              <button class="btn btn-view btn-sm"><i class="fas fa-eye"></i> View</button>
               <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
               <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
             </div>
@@ -632,17 +578,10 @@
           </td>
           <td>Dean Roberto Cruz</td>
           <td>Engineering & Tech</td>
-          <td><strong>12 slots</strong></td>
-          <td>
-            <span class="doc-tag moa"><i class="fas fa-file-contract"></i> MOA</span>
-            <span class="doc-tag"><i class="fas fa-envelope"></i> Auth. Letter</span>
-            <span class="doc-tag cert"><i class="fas fa-id-card"></i> Dept. Profile</span>
-          </td>
           <td>Mar 23, 2026</td>
           <td><span class="badge pending">Pending</span></td>
           <td>
             <div class="action-btns">
-              <button class="btn btn-view btn-sm"><i class="fas fa-eye"></i> View</button>
               <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
               <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
             </div>
@@ -659,15 +598,10 @@
           </td>
           <td>Dean Alma Fernandez</td>
           <td>Computing & IT</td>
-          <td><strong>10 slots</strong></td>
-          <td>
-            <span class="doc-tag moa"><i class="fas fa-file-contract"></i> MOA</span>
-          </td>
           <td>Mar 22, 2026</td>
           <td><span class="badge pending">Pending</span></td>
           <td>
             <div class="action-btns">
-              <button class="btn btn-view btn-sm"><i class="fas fa-eye"></i> View</button>
               <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
               <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
             </div>
@@ -684,19 +618,10 @@
           </td>
           <td>Dean Vicente Tan</td>
           <td>Arts & Sciences</td>
-          <td><strong>6 slots</strong></td>
-          <td>
-            <span class="doc-tag moa"><i class="fas fa-file-contract"></i> MOA</span>
-            <span class="doc-tag"><i class="fas fa-envelope"></i> Auth. Letter</span>
-            <span class="doc-tag cert"><i class="fas fa-id-card"></i> Dept. Profile</span>
-          </td>
           <td>Mar 20, 2026</td>
-          <td><span class="badge approved">Approved</span></td>
+          <td><span class="badge approved">Verified</span></td>
           <td>
-            <div class="action-btns">
-              <button class="btn btn-view btn-sm"><i class="fas fa-eye"></i> View</button>
-              <button class="btn btn-edit btn-sm"><i class="fas fa-edit"></i> Edit</button>
-            </div>
+            <div class="action-btns"></div>
           </td>
         </tr>
 
@@ -710,18 +635,10 @@
           </td>
           <td>Head Rosario Bautista</td>
           <td>Administrative</td>
-          <td><strong>5 slots</strong></td>
-          <td>
-            <span class="doc-tag moa"><i class="fas fa-file-contract"></i> MOA</span>
-            <span class="doc-tag cert"><i class="fas fa-id-card"></i> Dept. Profile</span>
-          </td>
           <td>Mar 18, 2026</td>
-          <td><span class="badge approved">Approved</span></td>
+          <td><span class="badge approved">Verified</span></td>
           <td>
-            <div class="action-btns">
-              <button class="btn btn-view btn-sm"><i class="fas fa-eye"></i> View</button>
-              <button class="btn btn-edit btn-sm"><i class="fas fa-edit"></i> Edit</button>
-            </div>
+            <div class="action-btns"></div>
           </td>
         </tr>
 
@@ -780,10 +697,7 @@
       </div>
       <div class="pos-footer">
         <div class="pos-rate"><i class="fas fa-peso-sign"></i> ₱4,500 / mo</div>
-        <div class="action-btns">
-          <button class="btn btn-edit btn-sm"><i class="fas fa-edit"></i></button>
-          <button class="btn btn-delete btn-sm"><i class="fas fa-trash"></i></button>
-        </div>
+        <div class="action-btns"><button class="btn btn-edit btn-sm"><i class="fas fa-edit"></i></button><button class="btn btn-delete btn-sm"><i class="fas fa-trash"></i></button></div>
       </div>
     </div>
 
@@ -815,10 +729,7 @@
       </div>
       <div class="pos-footer">
         <div class="pos-rate"><i class="fas fa-peso-sign"></i> ₱5,000 / mo</div>
-        <div class="action-btns">
-          <button class="btn btn-edit btn-sm"><i class="fas fa-edit"></i></button>
-          <button class="btn btn-delete btn-sm"><i class="fas fa-trash"></i></button>
-        </div>
+        <div class="action-btns"><button class="btn btn-edit btn-sm"><i class="fas fa-edit"></i></button><button class="btn btn-delete btn-sm"><i class="fas fa-trash"></i></button></div>
       </div>
     </div>
 
@@ -850,10 +761,7 @@
       </div>
       <div class="pos-footer">
         <div class="pos-rate"><i class="fas fa-peso-sign"></i> ₱4,000 / mo</div>
-        <div class="action-btns">
-          <button class="btn btn-edit btn-sm"><i class="fas fa-edit"></i></button>
-          <button class="btn btn-delete btn-sm"><i class="fas fa-trash"></i></button>
-        </div>
+        <div class="action-btns"><button class="btn btn-edit btn-sm"><i class="fas fa-edit"></i></button><button class="btn btn-delete btn-sm"><i class="fas fa-trash"></i></button></div>
       </div>
     </div>
 
@@ -885,10 +793,7 @@
       </div>
       <div class="pos-footer">
         <div class="pos-rate"><i class="fas fa-peso-sign"></i> ₱5,500 / mo</div>
-        <div class="action-btns">
-          <button class="btn btn-edit btn-sm"><i class="fas fa-edit"></i></button>
-          <button class="btn btn-delete btn-sm"><i class="fas fa-trash"></i></button>
-        </div>
+        <div class="action-btns"><button class="btn btn-edit btn-sm"><i class="fas fa-edit"></i></button><button class="btn btn-delete btn-sm"><i class="fas fa-trash"></i></button></div>
       </div>
     </div>
 
@@ -920,10 +825,7 @@
       </div>
       <div class="pos-footer">
         <div class="pos-rate"><i class="fas fa-peso-sign"></i> ₱4,200 / mo</div>
-        <div class="action-btns">
-          <button class="btn btn-edit btn-sm"><i class="fas fa-edit"></i></button>
-          <button class="btn btn-delete btn-sm"><i class="fas fa-trash"></i></button>
-        </div>
+        <div class="action-btns"><button class="btn btn-edit btn-sm"><i class="fas fa-edit"></i></button><button class="btn btn-delete btn-sm"><i class="fas fa-trash"></i></button></div>
       </div>
     </div>
 
@@ -955,10 +857,7 @@
       </div>
       <div class="pos-footer">
         <div class="pos-rate"><i class="fas fa-peso-sign"></i> ₱4,800 / mo</div>
-        <div class="action-btns">
-          <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Activate</button>
-          <button class="btn btn-delete btn-sm"><i class="fas fa-trash"></i></button>
-        </div>
+        <div class="action-btns"><button class="btn btn-edit btn-sm"><i class="fas fa-edit"></i></button><button class="btn btn-delete btn-sm"><i class="fas fa-trash"></i></button></div>
       </div>
     </div>
 
@@ -1113,31 +1012,83 @@
 
 
 <!-- ╔══════════════════════════════════════════════
-     § APPLICATIONS APPROVAL
+     § PAYROLL
 ══════════════════════════════════════════════╗ -->
-<section class="section" id="sec-applications">
+<section class="section" id="sec-payroll">
 
   <div class="section-header">
     <div>
-      <div class="section-title">Applications Approval</div>
-      <div class="section-sub">Final review and decision on Student Assistant applications</div>
+      <div class="section-title">Payroll Management</div>
+      <div class="section-sub">Release payments to Student Assistants based on accumulated work hours</div>
     </div>
     <div class="section-actions">
-      <button class="btn btn-outline btn-sm"><i class="fas fa-download"></i> Export CSV</button>
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Search student by name or ID..." id="payroll-search">
+      </div>
+      <button class="btn btn-outline btn-sm"><i class="fas fa-download"></i> Export Report</button>
+      <button class="btn btn-primary btn-sm" id="release-all-btn"><i class="fas fa-money-bill-check"></i> Release All Pending</button>
     </div>
   </div>
 
-  <div class="alert-banner warn" style="margin-bottom:20px;">
-    <i class="fas fa-exclamation-triangle"></i>
-    <span><strong>8 applications</strong> need your final decision. Approving an application assigns the student as an official Student Assistant.</span>
+  <div class="alert-banner info" style="margin-bottom:20px;">
+    <i class="fas fa-info-circle"></i>
+    <span><strong>5 students</strong> have pending payroll. Funds will be transferred to their designated accounts upon release.</span>
   </div>
 
-  <!-- Tab Group -->
-  <div style="display:flex;gap:0;margin-bottom:20px;">
-    <label class="tab-label" for="tab-all" style="padding:9px 20px;font-size:13px;font-weight:500;cursor:pointer;background:var(--white);border:1.5px solid var(--gray-200);border-right:none;color:var(--gray-500);border-radius:9px 0 0 9px;transition:all 0.18s;">All Applications</label>
-    <label class="tab-label" for="tab-pending" style="padding:9px 20px;font-size:13px;font-weight:500;cursor:pointer;background:var(--white);border:1.5px solid var(--gray-200);border-right:none;color:var(--gray-500);transition:all 0.18s;">Pending</label>
-    <label class="tab-label" for="tab-approved" style="padding:9px 20px;font-size:13px;font-weight:500;cursor:pointer;background:var(--white);border:1.5px solid var(--gray-200);border-right:none;color:var(--gray-500);transition:all 0.18s;">Approved</label>
-    <label class="tab-label" for="tab-rejected" style="padding:9px 20px;font-size:13px;font-weight:500;cursor:pointer;background:var(--white);border:1.5px solid var(--gray-200);border-right:1.5px solid var(--gray-200);color:var(--gray-500);border-radius:0 9px 9px 0;transition:all 0.18s;">Rejected</label>
+  <!-- Payroll Summary Stats -->
+  <div class="stat-grid">
+    <div class="stat-card maroon">
+      <div class="stat-card-top">
+        <div>
+          <div class="stat-label">Total Pending</div>
+          <div class="stat-value">₱87,500</div>
+        </div>
+        <div class="stat-icon maroon"><i class="fas fa-hourglass-half"></i></div>
+      </div>
+      <div class="stat-bar">
+        <div class="stat-bar-fill" style="width: 60%;"></div>
+      </div>
+    </div>
+
+    <div class="stat-card gold">
+      <div class="stat-card-top">
+        <div>
+          <div class="stat-label">Released This Month</div>
+          <div class="stat-value">₱142,000</div>
+        </div>
+        <div class="stat-icon gold"><i class="fas fa-check-circle"></i></div>
+      </div>
+      <div class="stat-bar">
+        <div class="stat-bar-fill" style="width: 85%; background: var(--gold);"></div>
+      </div>
+    </div>
+
+    <div class="stat-card green">
+      <div class="stat-card-top">
+        <div>
+          <div class="stat-label">Total Released (AY)</div>
+          <div class="stat-value">₱580,000</div>
+        </div>
+        <div class="stat-icon green"><i class="fas fa-money-bill-wave"></i></div>
+      </div>
+      <div class="stat-bar">
+        <div class="stat-bar-fill" style="width: 95%; background: var(--green);"></div>
+      </div>
+    </div>
+
+    <div class="stat-card orange">
+      <div class="stat-card-top">
+        <div>
+          <div class="stat-label">Average Hours/Week</div>
+          <div class="stat-value">18.5h</div>
+        </div>
+        <div class="stat-icon orange"><i class="fas fa-clock"></i></div>
+      </div>
+      <div class="stat-bar">
+        <div class="stat-bar-fill" style="width: 74%; background: var(--yellow);"></div>
+      </div>
+    </div>
   </div>
 
   <div class="table-wrap">
@@ -1145,87 +1096,33 @@
       <thead>
         <tr>
           <th>#</th>
-          <th>Applicant</th>
-          <th>Position Applied</th>
-          <th>Department</th>
-          <th>GWA</th>
-          <th colspan="3" style="text-align:center;">Document Verification</th>
+          <th>Student</th>
+          <th>Position</th>
+          <th>Accumulated Hours</th>
+          <th>Hourly Rate</th>
+          <th>Total Amount</th>
           <th>Status</th>
-          <th>Final Decision</th>
-        </tr>
-        <tr style="background:#f9f9f9;border-bottom:1px solid #ddd;">
-          <th colspan="5" style="text-align:right;padding:8px 15px;font-weight:500;font-size:13px;color:#666;"></th>
-          <th style="text-align:center;padding:8px 10px;font-weight:500;font-size:12px;color:#666;"><i class="fas fa-calendar"></i> Schedule</th>
-          <th style="text-align:center;padding:8px 10px;font-weight:500;font-size:12px;color:#666;"><i class="fas fa-file"></i> COR</th>
-          <th style="text-align:center;padding:8px 10px;font-weight:500;font-size:12px;color:#666;"><i class="fas fa-chart-line"></i> Grades</th>
-          <th colspan="2"></th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
-
-        <tr>
-          <td>6</td>
-          <td>
-            <div class="t-avatar">
-              <div class="av av-f">CM</div>
-              <div><div class="td-name">Carlos Mendez</div><div class="td-sub">2020-00561 · BSED 4th Yr</div></div>
-            </div>
-          </td>
-          <td><strong>Finance Clerk</strong></td>
-          <td>Finance Office</td>
-          <td><strong style="color:var(--green)">1.60</strong></td>
-          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
-          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
-          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
-          <td><span class="badge approved">Approved</span></td>
-          <td>
-            <div style="font-size:12.5px;color:var(--green);font-weight:600;">
-              <i class="fas fa-check-double"></i> Assigned — Finance Office
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-          <td>7</td>
-          <td>
-            <div class="t-avatar">
-              <div class="av av-a">NB</div>
-              <div><div class="td-name">Nina Bautista</div><div class="td-sub">2022-00411 · BSBA 3rd Yr</div></div>
-            </div>
-          </td>
-          <td><strong>Office Assistant</strong></td>
-          <td>Registrar's Office</td>
-          <td><strong style="color:var(--yellow)">2.10</strong></td>
-          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
-          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
-          <td style="text-align:center;"><span class="badge rejected" style="font-size:11px;padding:4px 8px;color:#fff;"><i class="fas fa-times"></i> Rejected</span></td>
-          <td><span class="badge rejected">Rejected</span></td>
-          <td>
-            <div style="font-size:12.5px;color:var(--red);font-weight:600;">
-              <i class="fas fa-times-circle"></i> Rejected — GWA below requirement
-            </div>
-          </td>
-        </tr>
 
         <tr>
           <td>1</td>
           <td>
             <div class="t-avatar">
               <div class="av av-a">MS</div>
-              <div><div class="td-name">Maria Santos</div><div class="td-sub">2022-00145 · BSCS 3rd Yr</div></div>
+              <div><div class="td-name">Maria Santos</div><div class="td-sub">2022-00145 · Library Assistant</div></div>
             </div>
           </td>
-          <td><strong>Library Assistant</strong></td>
-          <td>University Library</td>
-          <td><strong style="color:var(--green)">1.75</strong></td>
-          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
-          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
-          <td style="text-align:center;"><span class="badge pending" style="font-size:11px;padding:4px 8px;"><i class="fas fa-clock"></i> Pending</span></td>
-          <td><span class="badge pending">Pending</span></td>
+          <td>Library Assistant</td>
+          <td><strong>78.5 hours</strong></td>
+          <td>₱125/hr</td>
+          <td><strong style="color: var(--maroon); font-size: 14px;">₱9,812.50</strong></td>
+          <td><span class="badge pending">Pending Release</span></td>
           <td>
             <div class="action-btns">
-              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
-              <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
+              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Release Pay</button>
             </div>
           </td>
         </tr>
@@ -1235,20 +1132,17 @@
           <td>
             <div class="t-avatar">
               <div class="av av-b">JD</div>
-              <div><div class="td-name">Juan dela Cruz</div><div class="td-sub">2021-00388 · BSBA 4th Yr</div></div>
+              <div><div class="td-name">Juan dela Cruz</div><div class="td-sub">2021-00388 · Finance Clerk</div></div>
             </div>
           </td>
-          <td><strong>Finance Clerk</strong></td>
-          <td>Finance Office</td>
-          <td><strong style="color:var(--green)">1.85</strong></td>
-          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
-          <td style="text-align:center;"><span class="badge pending" style="font-size:11px;padding:4px 8px;"><i class="fas fa-clock"></i> Pending</span></td>
-          <td style="text-align:center;"><span class="badge pending" style="font-size:11px;padding:4px 8px;"><i class="fas fa-clock"></i> Pending</span></td>
-          <td><span class="badge pending">Pending</span></td>
+          <td>Finance Clerk</td>
+          <td><strong>92 hours</strong></td>
+          <td>₱125/hr</td>
+          <td><strong style="color: var(--maroon); font-size: 14px;">₱11,500</strong></td>
+          <td><span class="badge pending">Pending Release</span></td>
           <td>
             <div class="action-btns">
-              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
-              <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
+              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Release Pay</button>
             </div>
           </td>
         </tr>
@@ -1258,20 +1152,17 @@
           <td>
             <div class="t-avatar">
               <div class="av av-c">AR</div>
-              <div><div class="td-name">Ana Reyes</div><div class="td-sub">2023-00072 · BSN 2nd Yr</div></div>
+              <div><div class="td-name">Ana Reyes</div><div class="td-sub">2023-00072 · Clinic Aide</div></div>
             </div>
           </td>
-          <td><strong>Clinic Aide</strong></td>
-          <td>College of Nursing</td>
-          <td><strong style="color:var(--yellow)">2.00</strong></td>
-          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
-          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
-          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
-          <td><span class="badge pending">Pending</span></td>
+          <td>Clinic Aide</td>
+          <td><strong>65 hours</strong></td>
+          <td>₱120/hr</td>
+          <td><strong style="color: var(--maroon); font-size: 14px;">₱7,800</strong></td>
+          <td><span class="badge pending">Pending Release</span></td>
           <td>
             <div class="action-btns">
-              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
-              <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
+              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Release Pay</button>
             </div>
           </td>
         </tr>
@@ -1281,20 +1172,17 @@
           <td>
             <div class="t-avatar">
               <div class="av av-d">LT</div>
-              <div><div class="td-name">Liza Torres</div><div class="td-sub">2022-00299 · BSCS 3rd Yr</div></div>
+              <div><div class="td-name">Liza Torres</div><div class="td-sub">2022-00299 · Lab Monitor</div></div>
             </div>
           </td>
-          <td><strong>Lab Monitor</strong></td>
-          <td>IT Department</td>
-          <td><strong style="color:var(--yellow)">2.25</strong></td>
-          <td style="text-align:center;"><span class="badge pending" style="font-size:11px;padding:4px 8px;"><i class="fas fa-clock"></i> Pending</span></td>
-          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
-          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
-          <td><span class="badge pending">Pending</span></td>
+          <td>Lab Monitor</td>
+          <td><strong>88 hours</strong></td>
+          <td>₱130/hr</td>
+          <td><strong style="color: var(--maroon); font-size: 14px;">₱11,440</strong></td>
+          <td><span class="badge pending">Pending Release</span></td>
           <td>
             <div class="action-btns">
-              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
-              <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
+              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Release Pay</button>
             </div>
           </td>
         </tr>
@@ -1304,43 +1192,37 @@
           <td>
             <div class="t-avatar">
               <div class="av av-e">PV</div>
-              <div><div class="td-name">Pedro Valdez</div><div class="td-sub">2021-00602 · BSED 4th Yr</div></div>
+              <div><div class="td-name">Pedro Valdez</div><div class="td-sub">2021-00602 · Office Assistant</div></div>
             </div>
           </td>
-          <td><strong>Office Assistant</strong></td>
-          <td>College of Education</td>
-          <td><strong style="color:var(--green)">1.90</strong></td>
-          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
-          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
-          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
-          <td><span class="badge pending">Pending</span></td>
+          <td>Office Assistant</td>
+          <td><strong>71.5 hours</strong></td>
+          <td>₱120/hr</td>
+          <td><strong style="color: var(--maroon); font-size: 14px;">₱8,580</strong></td>
+          <td><span class="badge pending">Pending Release</span></td>
           <td>
             <div class="action-btns">
-              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
-              <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
+              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Release Pay</button>
             </div>
           </td>
         </tr>
 
         <tr>
-          <td>8</td>
+          <td>6</td>
           <td>
             <div class="t-avatar">
-              <div class="av av-b">FO</div>
-              <div><div class="td-name">Felix Ocampo</div><div class="td-sub">2023-00189 · BSCS 2nd Yr</div></div>
+              <div class="av av-f">CM</div>
+              <div><div class="td-name">Carlos Mendez</div><div class="td-sub">2020-00561 · Finance Clerk</div></div>
             </div>
           </td>
-          <td><strong>Research Assistant</strong></td>
-          <td>College of Engineering</td>
-          <td><strong style="color:var(--green)">1.80</strong></td>
-          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
-          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
-          <td style="text-align:center;"><span class="badge approved" style="font-size:11px;padding:4px 8px;"><i class="fas fa-check"></i> Verified</span></td>
-          <td><span class="badge pending">Pending</span></td>
+          <td>Finance Clerk</td>
+          <td><strong>95 hours</strong></td>
+          <td>₱125/hr</td>
+          <td><strong style="color: var(--green); font-size: 14px;">₱11,875</strong></td>
+          <td><span class="badge approved">Released</span></td>
           <td>
-            <div class="action-btns">
-              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
-              <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
+            <div style="font-size: 12px; color: var(--green); font-weight: 600;">
+              <i class="fas fa-check-double"></i> Released Mar 28, 2026
             </div>
           </td>
         </tr>
@@ -1621,6 +1503,81 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+</script>
+
+<!-- ══════════════════════════════════════════════
+     ADMIN ACTION HANDLERS
+════════════════════════════════════════════════ -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Handle Approve/Reject buttons for Verify Students and Departments
+  document.querySelectorAll('.btn-approve, .btn-reject').forEach(button => {
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      const isApprove = button.classList.contains('btn-approve');
+      let titleText = isApprove ? 'Confirm Verification' : 'Confirm Rejection';
+      let messageText = isApprove ? 'Are you sure you want to verify this item?' : 'Are you sure you want to reject this item?';
+      
+      // Check if this is a Release Pay button (Payroll section)
+      if (button.textContent.includes('Release Pay')) {
+        titleText = 'Confirm Payment Release';
+        messageText = 'Release payment to this student?';
+      } else if (button.textContent.includes('Activate')) {
+        titleText = 'Confirm Activation';
+        messageText = 'Activate this position for suggestions?';
+      }
+      
+      // Use the modal confirmation function
+      confirmAction(titleText, messageText, () => {
+        // On confirmation, hide the action buttons and update the row
+        const row = button.closest('tr');
+        const section = button.closest('section');
+        const sectionId = section ? section.id : '';
+        
+        // Only apply button hiding and status updates for Verify Students & Departments
+        const isVerificationSection = sectionId === 'sec-students' || sectionId === 'sec-departments';
+        
+        if (isVerificationSection) {
+          const actionBtns = row.querySelector('.action-btns');
+          const statusCell = row.querySelector('[class*="badge"]');
+          
+          if (actionBtns) {
+            // Hide the action buttons
+            actionBtns.style.display = 'none';
+            
+            // Update the status badge
+            if (statusCell) {
+              if (isApprove) {
+                statusCell.classList.remove('pending', 'rejected');
+                statusCell.classList.add('approved');
+                statusCell.textContent = 'Verified';
+              } else {
+                statusCell.classList.remove('pending', 'approved');
+                statusCell.classList.add('rejected');
+                statusCell.textContent = 'Rejected';
+              }
+            }
+          }
+          
+          // Show confirmation message
+          const successMessage = `Item has been ${isApprove ? 'verified' : 'rejected'} successfully.`;
+          showAlert('Success', successMessage, 'success');
+        } else {
+          // For other sections (Payroll, Manage Positions), just show success message
+          const successMessage = button.textContent.includes('Release Pay') 
+            ? 'Payment released successfully.' 
+            : button.textContent.includes('Activate')
+            ? 'Position activated successfully.'
+            : `Action completed successfully.`;
+          
+          showAlert('Success', successMessage, 'success');
+        }
+      });
+    });
+  });
+});
+
 </script>
 
 </div><!-- /layout -->
