@@ -196,20 +196,6 @@
 
             <section class="feed-section">
                 <div class="section-header-flex">
-                    <h2 class="section-title"><i class="fas fa-lightbulb" style="margin-right: 8px; color: #f59e0b;"></i> Suggested for You</h2>
-                    <span style="font-size: 12px; color: #666;">Based on your schedule and qualifications</span>
-                </div>
-
-                <div id="suggested-positions-container">
-                    <div style="text-align: center; padding: 30px; color: #999;">
-                        <i class="fas fa-spinner fa-spin" style="font-size: 24px; margin-bottom: 10px;"></i>
-                        <p>Loading suggestions...</p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="feed-section">
-                <div class="section-header-flex">
                     <h2 class="section-title">Recent Applications</h2>
                     <a href="application.html" class="view-all-link">View All</a>
                 </div>
@@ -268,62 +254,22 @@
                         </div>
                     </div>
                 </article>
-
-                <article class="application-card">
-                    <div class="application-header">
-                        <h3>IT Support Intern</h3>
-                        <hr>
-                        <p>Assist in software troubleshooting, IT support for student devices, and network management.</p>
-                    </div>
-
-                    <div class="application-info">
-                        <div class="column">
-                            <p><i class="fas fa-building"></i> <strong>Department:</strong> MIS</p>
-                            <p><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> MIS Office</p>
-                            <p><i class="fas fa-money-bill-wave"></i> <strong>Pay:</strong> ₱70/hour</p>
-                        </div>
-
-                        <div class="column">
-                            <p><i class="fas fa-hourglass-half"></i> <strong>Hours:</strong> 25 hrs/week</p>
-                            <p><i class="fas fa-users"></i> <strong>Slots:</strong> 3 / 5</p>
-                            <p><i class="fas fa-info-circle"></i> <strong>Status:</strong> 
-                                <span class="status-badge none">Available</span>
-                            </p>
-                        </div>
-
-                        <ul class="requirements-list">
-                            <p><strong><i class="fas fa-check-circle"></i> Requirements:</strong></p>
-                            <li>Basic troubleshooting skills</li>
-                            <li>Familiar with networking basics</li>
-                            <li>Minimum GPA: 2.75</li>
-                        </ul>
-                    </div>
-
-                    <div class="application-action">
-                        <a href="#view-details-1" class="secondary-btn" style="text-decoration: none;">View Details</a>
-                        <a href="#cancel-confirm-1" class="primary-btn" style="text-decoration: none;">Cancel</a>
-                    </div>
-
-                    <div id="view-details-1" class="modal-overlay">
-                        <div class="modal-box">
-                            <h3>Job Description</h3>
-                            <p>Detailed information about the IT Support Intern position goes here...</p>
-                            <a href="#" class="secondary-btn" style="text-decoration: none;">Close</a>
-                        </div>
-                    </div>
-
-                    <div id="cancel-confirm-1" class="modal-overlay">
-                        <div class="modal-box">
-                            <h3>Are you sure?</h3>
-                            <p>Do you really want to cancel this application?</p>
-                            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
-                              <a href="#" class="primary-btn" style="text-decoration: none; background: #9f0f0f;">Cancel</a>
-                            <a href="#" class="secondary-btn" style="text-decoration: none;">No</a>
-                            </div>
-                        </div>
-                    </div>
-                </article>
             </section>
+
+            <section class="feed-section">
+                <div class="section-header-flex">
+                    <h2 class="section-title"> Suggested for You</h2>
+                    <a href="positions.html" class="view-all-link">View All</a>
+                </div>
+
+                <div id="suggested-positions-container">
+                    <div style="text-align: center; padding: 30px; color: #999;">
+                        <i class="fas fa-spinner fa-spin" style="font-size: 24px; margin-bottom: 10px;"></i>
+                        <p>Loading suggestions...</p>
+                    </div>
+                </div>
+            </section>
+
         </main>
 
         <aside class="right-panel">
@@ -343,7 +289,7 @@
                         <span>Registrar • 1 Slot</span>
                     </div>
                 </div>
-                <a href="suggested_positions.html" class="view-more">View all suggestions</a>
+                <a href="positions.html" class="view-more">View all</a>
             </div>
 
             <div class="side-widget help-widget">
@@ -355,7 +301,6 @@
     </div>
 
     <script src="../Global/modals.js" defer></script>
-    <script src="student-applications.js" defer></script>
-
+   
 </body>
 </html>
