@@ -610,6 +610,18 @@ border-left: 4px solid #ffc107;
     font-family: 'Segoe UI', Roboto, sans-serif;
 }
 
+.cancel-modal-box {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    width: fit-content;
+    max-width: 550px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
 hr {
     border: 0;
     border-top: 1px solid #d6d6d6;
