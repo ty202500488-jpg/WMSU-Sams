@@ -158,12 +158,12 @@ body { background-color: var(--bg); color: var(--text); }
 .status { display: inline-block; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: bold;}
 .status.pending {background: #fffbe6; color: #f5b400; }
 
-.action-cells { display: flex; gap: 8px;flex-wrap: wrap; }
+.action-cells { display: flex; gap: 8px;flex-wrap: wrap; margin:20px 0px 0px 0; }
 .btn-icon { width: 30px; height: 30px; border: none; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; font-size: 14px;}
-.btn-icon.view { background: #e7f3ff; color: #1877f2; }
-.btn-icon.approve { background: #e7fef0; color: #2ecc71; }
-.btn-icon.reject { background: #fdf2f2; color: #e74c3c; }
-.btn-icon:hover { filter: brightness(0.9); transform: translateY(-1px); }
+.btn-icon.view { background: #e7f3ff; color: #1877f2; transform: translateY(-10px); }
+.btn-icon.approve { background: #e7fef0; color: #2ecc71; transform: translateY(-10px); }
+.btn-icon.reject { background: #fdf2f2; color: #e74c3c; transform: translateY(-10px); }
+.btn-icon:hover { filter: brightness(0.9); transform: translateY(-12px); }
 
 /* ===== RIGHT PANEL ===== */
 .right-panel { display: flex; flex-direction: column; gap: 0; }
