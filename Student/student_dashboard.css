@@ -505,6 +505,34 @@ hr {
     color: #65676b; 
 }
 
+.suggestion-badge {
+    display: inline-block;
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+    color: #856404;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.suggested {
+border-left: 4px solid #ffc107;
+}
+
+.status-badge.suggested-badge {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.suggestion-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
 /* ===== BUTTONS ===== */
 .card-actions, .application-action { 
     display: flex; 
@@ -593,16 +621,6 @@ hr {
     margin: 10px 0 5px 0;
     color: #1a202c;
     font-size: 1.8rem;
-}
-
-.badge {
-    background: #ebf8ff;
-    color: #2b6cb0;
-    padding: 4px 12px;
-    border-radius: 99px;
-    font-size: 0.75rem;
-    font-weight: bold;
-    text-transform: uppercase;
 }
 
 .subtitle {
