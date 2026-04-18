@@ -31,11 +31,8 @@ body {
     background: linear-gradient(175deg, var(--maroon-deep) 0%, var(--maroon) 50%, var(--maroon-light) 100%);
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: 0 30px;
     z-index: 1001;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    flex-wrap: wrap;
 }
 
 .top-logo {
@@ -46,10 +43,12 @@ body {
 }
 
 .top-links {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     align-items: center;
-    gap: 20px; /* standardized gap */
-    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .top-links a {
@@ -73,8 +72,67 @@ body {
     border-bottom: 2px solid #f5b400;
 }
 
-/* ===== PROFILE DROPDOWN ===== */
-.profile-dropdown {
+/* RIGHT SIDE CONTAINER */
+.top-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto; 
+}
+
+/* ===== HAMBURGER SETTINGS MENU ===== */
+.settings-menu {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+}
+
+/* Hamburger icon */
+.menu-icon {
+    font-size: 20px;
+    color: #fff;
+    cursor: pointer;
+    padding: 6px;
+}
+
+/* Dropdown */
+.settings-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 45px;
+    background: #fff;
+    min-width: 220px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    overflow: hidden;
+    z-index: 1002;
+}
+
+/* SHOW DROPDOWN ON HOVER */
+.settings-menu:hover .settings-dropdown {
+    display: block;
+}
+
+/* Links */
+.settings-dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
+/* Hover effect */
+.settings-dropdown a:hover {
+    background: #f5f5f5;
+}
+
+/* ===== PROFILE ===== */
+.profile {
     position: relative;
     display: flex;
     align-items: center;
@@ -87,35 +145,7 @@ body {
     border: 2px solid white;
     cursor: pointer;
     object-fit: cover;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    right: 0;
-    top: 50px;
-    background: #fff;
-    min-width: 180px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-    overflow: hidden;
-    z-index: 1002;
-}
-
-.profile-dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.dropdown-content a {
-    display: block;
-    padding: 12px 16px;
-    color: #333;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-.dropdown-content a:hover {
-    background: #f5f5f5;
+    margin-right: 10px;   
 }
 
 /* ===== MAIN CONTAINER LAYOUT ===== */
@@ -169,6 +199,7 @@ body {
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
+
 .application-header h2 { font-size: 18px; color: #1a1a1a; }
 .application-header hr { border: 0; border-top: 1px solid #eee; margin: 12px 0; }
 .application-header p { font-size: 14px; color: #666; margin-bottom: 15px; }
@@ -180,8 +211,177 @@ body {
 .status-badge { padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: bold; }
 .status-badge.pending { background: #fff3cd; color: #856404; }
 .status-badge.none { background: #d0d0d0; color: #4b4b4b; }
+.status-badge.interview { background: #cce5ff; color: #004085; }
+.status-badge.approved { background: #d4edda; color: #158000; }
+
+
 
 .application-action { display: flex; gap: 10px; border-top: 1px solid #eee; padding: 15px 0; margin-top: 10px; }
+
+/* Modal Overlay Setup */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Hidden State */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 9999;
+}
+
+/* The Logic: Show when the ID is targeted in the URL */
+.modal-overlay:target {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Layout & Spacing */
+.modal-box {
+    background: #ffffff;
+    padding: 40px;
+    width: 100%;
+    max-width: 550px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+.cancel-modal-box {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    width: fit-content;
+    max-width: 550px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #d6d6d6;
+    margin: 20px 0;
+}
+
+/* Header & Badge */
+.modal-header h2 {
+    margin: 10px 0 5px 0;
+    color: #1a202c;
+    font-size: 1.8rem;
+}
+
+.badge {
+    background: #ebf8ff;
+    color: #2b6cb0;
+    padding: 4px 12px;
+    border-radius: 99px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.subtitle {
+    color: #718096;
+    margin: 0;
+}
+
+/* Info Grid (Pay, Location, etc.) */
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    font-size: 0.75rem;
+    color: #a0aec0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.value {
+    font-weight: 600;
+    color: #2d3748;
+}
+
+/* Lists and Skill Tags */
+.modal-body h4 {
+    color: #2d3748;
+    margin-bottom: 12px;
+}
+
+.custom-list {
+    list-style: none;
+    padding: 0;
+}
+
+.custom-list li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    color: #4a5568;
+}
+
+.custom-list li::before {
+    content: "•";
+    color: #4299e1;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.skill-tags span {
+    background: #f7fafc;
+    border: 1px solid #e2e8f0;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: #4a5568;
+}
+
+/* Zoom-in effect when targeted */
+.modal-overlay:target .modal-box {
+    transform: scale(1);
+}
+
+/* Close/Action buttons inside modal */
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.modal-box .secondary-btn, 
+.modal-box .primary-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
 
 /* REQUIREMENTS LIST */
 .requirements {
@@ -221,6 +421,110 @@ body {
 
 .secondary-btn { background: #f8f9fa; color: #333; border: 1px solid #ddd; padding: 10px 18px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px; }
 .secondary-btn:hover { background: #e9ecef; }
+
+ .workflow-info {
+    background: #cce7fa;
+    border-left: 4px solid #2388db;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+        .workflow-info i {
+            color: #1e8ce7;
+            font-size: 20px;
+        }
+
+        .suggestion-badge {
+            display: inline-block;
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            color: #856404;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .suggested {
+            border-left: 4px solid #ffc107;
+        }
+
+        .status-badge.suggested-badge {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .workflow-action {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .action-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .danger-btn {
+            background: #f44336;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .danger-btn:hover {
+            background: #d32f2f;
+        }
+
+        .no-suggestions {
+            text-align: center;
+            padding: 60px 20px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            color: #999;
+        }
+
+        .no-suggestions i {
+            font-size: 48px;
+            margin-bottom: 15px;
+            opacity: 0.5;
+        }
+
+        .no-suggestions h3 {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .suggestion-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .workflow-action {
+                flex-direction: column;
+            }
+
+            .action-group {
+                width: 100%;
+            }
+
+            .action-group button,
+            .action-group a {
+                flex: 1;
+            }
+        }
 
 /* ===== RESPONSIVE ===== */
 

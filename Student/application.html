@@ -6,6 +6,8 @@
     <title>My Applications | SAMS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="application.css">
+    <link rel="stylesheet" href="../Global/modals.css">
+    <script src="../Global/modals.js" defer></script>
 </head>
 <body>
 
@@ -15,18 +17,24 @@
             <a href="student_dashboard.html"><i class="fas fa-home"></i> Home</a>
             <a href="notification.html"><i class="fas fa-bell"></i> Notifications</a>
             <a href="application.html" class="active"><i class="fas fa-file-alt"></i> Applications</a>
-            <a href="positions.html"><i class="fas fa-briefcase"></i> Browse Positions</a>
+             <a href="positions.html"><i class="fas fa-briefcase"></i> Positions</a>
         </nav>
 
-        <div class="profile-dropdown">
-            <a href="student_profile.html">
-                <img src="../images/profile.jpg.jpg" alt="Profile Photo" class="profile-img">
-            </a>
-            <div class="dropdown-content">
-                <a href="student_profile.html">View Profile</a>
-                <a href="../Global/login.html">Logout</a>
+        <div class="top-right">
+            <div class="profile-dropdown">
+                <a href="student_profile.html">
+                <img src="../images/profile.jpg.jpg" class="profile-img">
+                </a>
             </div>
-        </div>
+
+            <div class="settings-menu">
+                <i class="fas fa-bars menu-icon"></i>
+                <div class="settings-dropdown">
+                    <a href="edit_student_profile.html"><i class="fas fa-user-edit"></i> Edit Profile</a>
+                    <a href="../Global/login.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </div>
+        </div>  
     </header>
 
     <div class="container">
@@ -37,7 +45,7 @@
             </div>
             <div class="sidebar-body">
                 <div class="sidebar-item active"><i class="fas fa-list-ul"></i> All Applications</div>
-                <div class="sidebar-item"><i class="fas fa-clock"></i> Pending Review</div>
+                <div class="sidebar-item"><i class="fas fa-clock"></i> Under Review</div>
                 <div class="sidebar-item"><i class="fas fa-calendar-alt"></i> Interviews</div>
                 <hr>
                 <div class="sidebar-item"><i class="fas fa-check-circle"></i> Approved / Active</div>
@@ -48,13 +56,50 @@
         <main class="app-list">
             
             <div class="summary-grid">
-                <div class="stat-box"><strong>2</strong><span>Total</span></div>
-                <div class="stat-box"><strong>1</strong><span>Pending</span></div>
-                <div class="stat-box"><strong>0</strong><span>Interview</span></div>
-                <div class="stat-box"><strong>0</strong><span>Approved</span></div>
+                <div class="stat-box"><strong>3</strong><span>Total</span></div>
+                <div class="stat-box"><strong>1</strong><span>Under Review</span></div>
+                <div class="stat-box"><strong>1</strong><span>Interview</span></div>
+                <div class="stat-box"><strong>1</strong><span>Approved</span></div>
             </div>
 
             <div class="date-divider">Today</div>
+
+            <div class="app-card">
+                <div class="card-header">
+                    <div class="dept-icon tech"><i class="fas fa-laptop-code"></i></div>
+                        <div class="header-text">
+                            <h4>IT Support Intern – MIS</h4>
+                            <span>Applied on Feb 28, 2026</span>
+                    </div>
+                    <div class="notif-opts">
+                        <button class="three-dots"><i class="fas fa-ellipsis-h"></i></button>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="status-line">
+                        <span class="status-badge status-interview">Interview Scheduled</span>
+                        <span class="app-id">ID: APP-2026-0138</span>
+                    </div>
+                    <div class="info-box">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Interview: <strong>March 3, 10:00 AM - 12:00 PM</strong> at MIS Office</span>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <a href="Referral.html" class="footer-btn btn-confirm">Confirm Attendance</a>
+                    <a href="#view-details-1" class="footer-btn"><i class="far fa-eye"></i>View Details</a>
+                </div>
+
+                    <div id="view-details-1" class="modal-overlay">
+                        <div class="modal-box">
+                            <h3>Application Description</h3>
+                            <p>Detailed information about the IT Support Intern position goes here...</p>
+                            <a href="#" class="secondary-btn" style="text-decoration: none;">Close</a>
+                        </div>
+                    </div>
+            </div>
 
             <div class="app-card">
                 <div class="card-header">
@@ -84,38 +129,28 @@
                 </div>
 
                 <div class="card-footer">
-                    <button class="footer-btn"><i class="far fa-eye"></i> View Details</button>
-                    <button class="footer-btn text-red"><i class="fas fa-times"></i> Withdraw</button>
-                </div>
-            </div>
-
-            <div class="app-card">
-                <div class="card-header">
-                    <div class="dept-icon tech"><i class="fas fa-laptop-code"></i></div>
-                        <div class="header-text">
-                            <h4>IT Support Intern – MIS</h4>
-                            <span>Applied on Feb 28, 2026</span>
-                    </div>
-                    <div class="notif-opts">
-                        <button class="three-dots"><i class="fas fa-ellipsis-h"></i></button>
-                    </div>
+                   <a href="#view-details-1" class="footer-btn"><i class="far fa-eye"></i>View Details</a>
+                <a href="#cancel-confirm-1"class="footer-btn text-red"><i class="fas fa-times"></i> Withdraw</a>
                 </div>
 
-                <div class="card-body">
-                    <div class="status-line">
-                        <span class="status-badge status-interview">Interview Scheduled</span>
-                        <span class="app-id">ID: APP-2026-0138</span>
+                 <div id="view-details-1" class="modal-overlay">
+                        <div class="modal-box">
+                            <h3>Job Description</h3>
+                            <p>Detailed information about the IT Support Intern position goes here...</p>
+                            <a href="#" class="secondary-btn" style="text-decoration: none;">Close</a>
+                        </div>
                     </div>
-                    <div class="info-box">
-                        <i class="fas fa-info-circle"></i>
-                        <span>Interview: <strong>March 3, 10:00 AM - 12:00 PM</strong> at MIS Office</span>
-                    </div>
-                </div>
 
-                <div class="card-footer">
-                    <button class="footer-btn btn-confirm">Confirm Attendance</button>
-                    <button class="footer-btn">View Details</button>
-                </div>
+                    <div id="cancel-confirm-1" class="modal-overlay">
+                        <div class="modal-box">
+                            <h3>Are you sure?</h3>
+                            <p>Do you really want to Withdraw this Application?</p>
+                            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
+                                <a href="#" class="primary-btn" style="text-decoration: none; background: #9f0f0f;">Withdraw</a>
+                                <a href="#" class="secondary-btn" style="text-decoration: none;">No</a>
+                            </div>
+                        </div>
+                    </div>
             </div>
 
             <div class="app-card">
@@ -145,12 +180,29 @@
                     <p class="step-label">Current Stage: <strong>Waiting for Interview Schedule</strong></p>
                 </div>
                 <div class="card-footer">
-                    <button class="footer-btn"><i class="far fa-eye"></i> View Details</button>
-                    <button class="footer-btn text-red"><i class="fas fa-times"></i> Withdraw</button>
+                    <a href="#view-details-1" class="footer-btn"><i class="far fa-eye"></i>View Details</a>
+                    <a href="#cancel-confirm-1"class="footer-btn text-red"><i class="fas fa-times"></i> Withdraw</a>
                 </div>
+
+                 <div id="view-details-1" class="modal-overlay">
+                        <div class="modal-box">
+                            <h3>Job Description</h3>
+                            <p>Detailed information about the IT Support Intern position goes here...</p>
+                            <a href="#" class="secondary-btn" style="text-decoration: none;">Close</a>
+                        </div>
+                    </div>
+
+                    <div id="cancel-confirm-1" class="modal-overlay">
+                        <div class="modal-box">
+                            <h3>Are you sure?</h3>
+                            <p>Do you really want to Withdraw this Application?</p>
+                            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
+                                <a href="#" class="primary-btn" style="text-decoration: none; background: #9f0f0f;">Withdraw</a>
+                                <a href="#" class="secondary-btn" style="text-decoration: none;">No</a>
+                            </div>
+                        </div>
+                    </div>
             </div>
-             
-      
         </main>
 
         <aside class="right-panel">
@@ -163,8 +215,6 @@
                 </ul>
             </div>
 
-           
-            
             <div class="info-card contact-card">
                 <h4>Need Help?</h4>
                 <p>Contact the Student Affairs Office if you encounter issues with your submission.</p>

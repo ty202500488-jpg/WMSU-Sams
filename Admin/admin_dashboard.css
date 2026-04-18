@@ -139,7 +139,8 @@
   #nav-students:checked ~ .layout .sidebar label[for="nav-students"],
   #nav-departments:checked ~ .layout .sidebar label[for="nav-departments"],
   #nav-positions:checked ~ .layout .sidebar label[for="nav-positions"],
-  #nav-applications:checked ~ .layout .sidebar label[for="nav-applications"],
+  #nav-suggest-positions:checked ~ .layout .sidebar label[for="nav-suggest-positions"],
+  #nav-payroll:checked ~ .layout .sidebar label[for="nav-payroll"],
   #nav-reports:checked ~ .layout .sidebar label[for="nav-reports"] {
     background: rgba(255,255,255,0.13);
     color: #fff;
@@ -151,7 +152,8 @@
   #nav-students:checked ~ .layout .sidebar label[for="nav-students"] i,
   #nav-departments:checked ~ .layout .sidebar label[for="nav-departments"] i,
   #nav-positions:checked ~ .layout .sidebar label[for="nav-positions"] i,
-  #nav-applications:checked ~ .layout .sidebar label[for="nav-applications"] i,
+  #nav-suggest-positions:checked ~ .layout .sidebar label[for="nav-suggest-positions"] i,
+  #nav-payroll:checked ~ .layout .sidebar label[for="nav-payroll"] i,
   #nav-reports:checked ~ .layout .sidebar label[for="nav-reports"] i {
     color: var(--gold-light);
     opacity: 1;
@@ -167,15 +169,15 @@
     align-items: center;
     gap: 12px;
     padding: 11px 16px;
-    background: rgba(220,38,38,0.15);
+    background: rgba(114, 1, 1, 0.777);
     border-radius: 10px;
-    color: #fca5a5;
+    color: #ffe2e2;
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
     text-decoration: none;
     transition: background 0.2s;
-    border: 1px solid rgba(220,38,38,0.2);
+    border: 1px solid rgba(168, 0, 0, 0.645);
   }
   .logout-btn:hover { background: rgba(220,38,38,0.28); }
 
@@ -285,7 +287,8 @@
   #nav-students:checked     ~ .layout .main-content #sec-students     { display: block; }
   #nav-departments:checked  ~ .layout .main-content #sec-departments  { display: block; }
   #nav-positions:checked    ~ .layout .main-content #sec-positions    { display: block; }
-  #nav-applications:checked ~ .layout .main-content #sec-applications { display: block; }
+  #nav-suggest-positions:checked ~ .layout .main-content #sec-suggest-positions { display: block; }
+  #nav-payroll:checked      ~ .layout .main-content #sec-payroll      { display: block; }
   #nav-reports:checked      ~ .layout .main-content #sec-reports      { display: block; }
 
   /* Default: show dashboard */
@@ -293,17 +296,22 @@
   #nav-students:checked ~ .layout .topbar .page-title::before { content: "Verify Students"; }
   #nav-departments:checked ~ .layout .topbar .page-title::before { content: "Verify Departments"; }
   #nav-positions:checked ~ .layout .topbar .page-title::before { content: "Manage Positions"; }
-  #nav-applications:checked ~ .layout .topbar .page-title::before { content: "Applications Approval"; }
+  #nav-suggest-positions:checked ~ .layout .topbar .page-title::before { content: "Suggest Positions"; }
+  #nav-payroll:checked ~ .layout .topbar .page-title::before { content: "Payroll Management"; }
   #nav-reports:checked ~ .layout .topbar .page-title::before { content: "Reports"; }
 
   /* ── SECTION HEADER ───────────────────────────────── */
   .section-header {
     margin-bottom: 28px;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
+    gap: 20px;
+  }
+
+  .section-header > div:first-child {
+    flex: 1;
+    min-width: 0;
   }
 
   .section-title {
@@ -320,7 +328,13 @@
     margin-top: 4px;
   }
 
-  .section-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+  .section-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-shrink: 0;
+  }
 
   /* ── STAT CARDS ───────────────────────────────────── */
   .stat-grid {
@@ -718,12 +732,90 @@
     font-family: 'DM Sans', sans-serif;
     outline: none;
     transition: border-color 0.2s;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%237B0D1E' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+  }
+
+  .filter-bar select {
+    padding-right: 35px;
   }
 
   .filter-bar input:focus,
   .filter-bar select:focus { border-color: var(--maroon); }
 
   .filter-bar input { width: 220px; }
+
+.search-box { position: relative; width: 220px; }
+.search-box i { position: absolute; left: 10px; top: 50%; color: var(--muted); font-size: 13px; transform: translateY(-50%);}
+.search-box input {
+    padding: 8px 15px 8px 35px;
+    border-radius: 20px; 
+    border: 1px solid var(--border);
+    outline: none; 
+    width: 100%; 
+    font-size: 13px;
+    transition: border 0.2s;
+    box-sizing: border-box;
+}
+.search-box input:focus {border-color: var(--maroon-light);}
+
+/* Enhanced dropdown/select styling for better responsiveness */
+.filter-bar select {
+    cursor: pointer;
+    min-height: 36px;
+}
+
+/* Mobile filter improvements */
+@media (max-width: 768px) {
+    .section-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+    }
+
+    .section-header > div:first-child {
+        flex: none;
+    }
+
+    .section-actions {
+        width: 100%;
+        flex-shrink: 1;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    .search-box input {
+        width: 100%;
+    }
+
+    .filter-bar {
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+    }
+
+    .filter-bar input,
+    .filter-bar select,
+    .search-box input {
+        width: 100%;
+        max-width: none;
+        min-height: 44px;
+        font-size: 16px; /* Prevent iOS zoom */
+        padding: 10px 14px;
+    }
+
+    .filter-bar select {
+        padding: 10px 35px 10px 14px;
+    }
+
+    .search-box input {
+        padding: 10px 15px 10px 40px;
+    }
+}
 
   /* ── POSITIONS GRID ───────────────────────────────── */
   .positions-grid {

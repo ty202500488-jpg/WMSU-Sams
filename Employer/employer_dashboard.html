@@ -6,6 +6,8 @@
     <title>Employer Dashboard | WMSU-SAMS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="employer_dashboard.css">
+    <link rel="stylesheet" href="../Global/modals.css">
+    <script src="../Global/modals.js" defer></script>
 </head>
 <body>
 
@@ -14,13 +16,16 @@
         <nav class="top-links">
             <a href="employer_dashboard.html" class="active"><i class="fas fa-chart-line"></i><span> Dashboar</span>d</a>
             <a href="employer_application.html"><i class="fas fa-users"></i> <span>Applicants</span></a>
-            <a href="payroll.html"><i class="fas fa-file-invoice-dollar"></i><span> Payroll</span></a>
             <a href="job_posting.html"><i class="fas fa-briefcase"></i> <span>Postings</span></a>
         </nav>
         <div class="profile-dropdown">
-            <a href="employer_profile.html">
-                <img src="../images/profile.jpg.jpg" alt="Profile" class="profile-img">
+            <a href="student_profile.html">
+                <img src="../images/profile.jpg.jpg" alt="Profile Photo" class="profile-img">
             </a>
+            <div class="dropdown-content">
+                <a href="employer_profile.html">View Profile</a>
+                <a href="../Global/login.html">Logout</a>
+            </div>
         </div>
     </header>
 
@@ -36,7 +41,7 @@
                 </div>
                 <hr>
                 <div class="profile-stats">
-                    <div class="stat"><span>Hiring Capacity</span> <strong>12/15</strong></div>
+                    <div class="stat"><span>Hiring Capacity</span> <strong>6/10</strong></div>
                     <div class="progress-container"><div class="progress-fill" style="width: 80%;"></div></div>
                 </div>
                 <a href="#" class="sidebar-link"><i class="fas fa-plus-circle"></i> Create SA Position</a>
@@ -55,15 +60,15 @@
                 <h2 class="section-title">Overview</h2>
                 <div class="stats-row">
                     <div class="mini-stat-card">
-                        <strong>26</strong>
+                        <strong>2</strong>
                         <span>Total Applicants</span>
                     </div>
                     <div class="mini-stat-card">
-                        <strong style="color: #f5b400;">12</strong>
+                        <strong style="color: #f5b400;">2</strong>
                         <span>Pending Review</span>
                     </div>
                     <div class="mini-stat-card">
-                        <strong style="color: #2ecc71;">6</strong>
+                        <strong style="color: #2ecc71;">0</strong>
                         <span>Approved</span>
                     </div>
                 </div>
@@ -72,44 +77,64 @@
             <div class="feed-section">
                 <div class="section-header-flex">
                     <h2 class="section-title">Pending Applications</h2>
-                    <a href="#">See All</a>
+                    <a href="employer_application.html">See All</a>
                 </div>
 
                 <div class="main-card">
                     <div class="card-header">
                         <div class="icon-circle"><i class="fas fa-user"></i></div>
                         <div class="header-text">
+                            <small class="text-muted">ID: 2023-0142</small>
                             <h4>Maria Santos <span>• BSIT 3rd Year</span></h4>
-                            <span class="badge-active">GPA: 1.75</span>
+                            <div class="badge-group">
+                                <span class="badge-active">GPA: 1.75</span>
+                                <span class="status-pill status-pending">Pending Review</span>
+                            </div>
                         </div>
                     </div>
+                    
                     <div class="card-content">
                         <p><i class="fas fa-briefcase"></i> Position: <strong>Library Assistant</strong></p>
                         <p><i class="fas fa-clock"></i> Applied: <strong>2 hours ago</strong></p>
+                        <p><i class="fas fa-envelope"></i> <strong>m.santos@wmsu.edu.ph</strong></p>
                     </div>
+
                     <div class="card-actions">
-                        <button class="action-btn">Review Docs</button>
-                        <button class="action-btn-outline">Approve</button>
-                        <button class="action-btn-outline" style="color: #e74c3c;">Reject</button>
+                        <div class="main-btns">
+                            <button class="btn-icon view"><i class="fas fa-eye"></i> View</button>
+                            <button class="btn-icon approve"><i class="fas fa-check"></i> Approve</button>
+                        </div>
+                        <button class="btn-icon reject"><i class="fas fa-times"></i> Reject</button>
                     </div>
                 </div>
 
                 <div class="main-card">
                     <div class="card-header">
-                        <div class="icon-circle blue"><i class="fas fa-user"></i></div>
+                        <div class="icon-circle"><i class="fas fa-user"></i></div>
                         <div class="header-text">
+                            <small class="text-muted">ID: 2025-0412</small>
                             <h4>Angela Cruz <span>• BSIT 1st Year</span></h4>
-                            <span class="badge-active">GPA: 1.80</span>
+                            <div class="badge-group">
+                                <span class="badge-active">GPA: 1.25</span>
+                                <span class="status-pill status-pending">Pending Review</span>
+                            </div>
                         </div>
                     </div>
+
                     <div class="card-content">
                         <p><i class="fas fa-briefcase"></i> Position: <strong>IT Lab Assistant</strong></p>
                         <p><i class="fas fa-clock"></i> Applied: <strong>Yesterday</strong></p>
+                        <p><i class="fas fa-envelope"></i> <strong>a.cruz@wmsu.edu.ph</strong></p>
                     </div>
+
                     <div class="card-actions">
-                        <button class="action-btn">Review Docs</button>
-                        <button class="action-btn-outline">Approve</button>
+                        <div class="main-btns">
+                             <button class="btn-icon view"><i class="fas fa-eye"></i> View</button>
+                            <button class="btn-icon approve"><i class="fas fa-check"></i> Approve</button>
+                        </div>
+                        <button class="btn-icon reject"><i class="fas fa-times"></i> Reject</button>
                     </div>
+
                 </div>
             </div>
         </main>
@@ -141,6 +166,67 @@
         </aside>
 
     </div>
+
+<script>
+// Attach handlers to reject and approve buttons
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle Reject buttons
+    const rejectBtns = document.querySelectorAll('.btn-icon.reject');
+    rejectBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const card = this.closest('.main-card');
+            const name = card ? card.querySelector('h4')?.textContent.split('•')[0].trim() || 'Applicant' : 'Applicant';
+            
+            // Show the rejection reason modal
+            showRejectionReasonModal(name, (rejectionData) => {
+                showAlert(
+                    'Application Rejected',
+                    `${name}'s application has been rejected. They'll be notified of your decision.`,
+                    'success',
+                    () => {
+                        if (card) {
+                            const statusPill = card.querySelector('.status-pill');
+                            if (statusPill) {
+                                statusPill.className = 'status-pill status-rejected';
+                                statusPill.textContent = 'Rejected';
+                            }
+                        }
+                    }
+                );
+            });
+        });
+    });
+
+    // Handle Approve buttons
+    const approveBtns = document.querySelectorAll('.btn-icon.approve');
+    approveBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const card = this.closest('.main-card');
+            const name = card ? card.querySelector('h4')?.textContent.split('•')[0].trim() || 'Applicant' : 'Applicant';
+            
+            confirmAction(
+                'Confirm Approval',
+                `Are you sure you want to approve ${name}'s application?`,
+                () => {
+                    showAlert('Application Approved', `${name}'s application has been approved successfully.`, 'success', () => {
+                        if (card) {
+                            const statusPill = card.querySelector('.status-pill');
+                            if (statusPill) {
+                                statusPill.className = 'status-pill status-approved';
+                                statusPill.textContent = 'Approved';
+                            }
+                        }
+                    });
+                },
+                null,
+                { confirmText: 'Yes, Approve', cancelText: 'Cancel', confirmColor: 'success-btn' }
+            );
+        });
+    });
+});
+</script>
 
 </body>
 </html>

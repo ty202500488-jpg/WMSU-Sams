@@ -6,6 +6,7 @@
     <title>Edit My Profile | WMSU-SAMS</title>
     <link rel="stylesheet" href="edit_student_profile.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="../Global/validation.js"></script>
 </head>
 <body>
 
@@ -42,7 +43,7 @@
                 <div class="progress-section">
                     <div class="progress-text">
                         <span>Profile Completion</span>
-                        <strong>85%</strong>
+                        <strong>85% (4/5 sections)</strong>
                     </div>
                     <div class="progress-track">
                         <div class="progress-fill" style="width: 85%;"></div>
@@ -53,9 +54,21 @@
             <section id="personal" class="profile-section">
                 <div class="section-header">
                     <h3><i class="fa-solid fa-address-card"></i> Personal Information</h3>
+
                     <div class="doc-actions">
-                        <button id="edit-btn-text"><a href="student_profile.html" >Confirm Changes</a></button>
+                        <button id="edit-btn-text"><a href="#cancel-confirm-1" >Confirm Changes</a></button>
                     </div>
+
+                    <div id="cancel-confirm-1" class="modal-overlay">
+                        <div class="modal-box">
+                            <h3>Confirm Changes</h3>
+                            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
+                                <a href="student_profile.html" class="primary-btn" style="background: #9f0f0f;">Yes</a>
+                                <a href="#" class="secondary-btn ">No</a>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
                 <div class="info-grid">
                     <div class="info-box"><label><span>Email Address</span><input type="email" name="email" value="juan@email.com"></label></div>
