@@ -13,20 +13,20 @@
             --transition:   all 0.2s ease-in-out;
         }
 
-        /* ===== GLOBAL RESET ===== */
-        * {
-            margin: 0; padding: 0; box-sizing: border-box;
-            font-family: 'Segoe UI', Arial, sans-serif;
-        }
+/* ===== GLOBAL RESET ===== */
+ * {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
 
-        body { 
-            background-color: var(--bg); 
-            color: var(--text); 
-            line-height: 1.5;
-            overflow-x: hidden;
-        }
+body { 
+    background-color: var(--bg); 
+    color: var(--text); 
+    line-height: 1.5;
+    overflow-x: hidden;
+}
 
-        /* ===== TOP NAVIGATION BAR ===== */
+/* ===== TOP NAVIGATION BAR ===== */
 .top-nav {
     position: fixed;
     top: 0;
@@ -329,6 +329,18 @@
         .help-widget p { font-size: 13px; margin-bottom: 15px; opacity: 0.9; }
         .help-btn { width: 100%; padding: 10px; border-radius: 6px; border: none; background: var(--gold); color: var(--maroon-deep); font-weight: bold; cursor: pointer; transition: 0.2s; }
         .help-btn:hover { filter: brightness(1.1); }
+
+        input[type="date"] {
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 2px 4px;
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        outline: none;
+        height: 34px;
+        position: relative;
+        left: 8px;
+        }
 
         /* ===== ANIMATIONS ===== */
         @keyframes fadeOut {

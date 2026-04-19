@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="review_attendace.css">
     <link rel="stylesheet" href="../Global/modals.css">
+    <script src="../Global/modals.js" defer></script>
     <script src="../Global/pagination.js" defer></script>
 </head>
 <body>
@@ -48,7 +49,7 @@
                     <p>Main Campus, WMSU</p>
                 </div>
                 <div class="profile-stats">
-                    <div class="stat"><span>Approval Progress</span> <strong id="prog-text">5/8</strong></div>
+                    <div class="stat"><span>Hiring Capacity</span> <strong id="prog-text">6/10</strong></div>
                     <div class="progress-container"><div id="prog-bar" class="progress-fill" style="width: 62.5%;"></div></div>
                 </div>
             </div>
@@ -63,10 +64,10 @@
                 <i class="fas fa-info-circle"></i> Review logs before 5:00 PM today to ensure payroll processing.
             </div>
         </aside>
-
+        
         <main class="dashboard-feed">
             <div class="section-header-flex">
-                <h2 class="section-title">Attendance Review <span style="font-weight: normal; color: var(--muted); font-size: 14px;">(April 19, 2026)</span></h2>
+                <h2 class="section-title" style="font-size: 20px;>Attendance Review <span style="font-weight: normal; color: var(--muted); font-size: 14px;"><input type="date" value="2026-04-19"></span></h2>
                 <button class="btn-primary" onclick="bulkApprove()"><i class="fas fa-check-double"></i> Approve All</button>
             </div>
 
@@ -225,61 +226,67 @@
     </div>
 
     <script>
-        // Progress Logic
-        let total = 8;
-        let processed = 3;
-
-        function updateProgress() {
-            let percentage = (processed / total) * 100;
-            document.getElementById('prog-bar').style.width = percentage + "%";
-            document.getElementById('prog-text').innerText = processed + "/" + total;
-        }
-
-        // Card removal animation
-        function removeCard(btn) {
-            const card = btn.closest('.main-card');
-            card.classList.add('confirming');
-            setTimeout(() => {
-                card.style.display = 'none';
-                processed++;
-                updateProgress();
-            }, 400);
-        }
-
-        // Bulk Approve Logic
-        function bulkApprove() {
-            if(confirm("Approve all visible attendance logs?")) {
-                const cards = document.querySelectorAll('.main-card');
-                cards.forEach(card => {
-                    if(card.style.display !== 'none') {
-                        card.classList.add('confirming');
-                        setTimeout(() => {
-                            card.style.display = 'none';
-                            processed++;
-                            updateProgress();
-                        }, 400);
-                    }
+    // Attach confirmation modals to action buttons
+    document.addEventListener('DOMContentLoaded', function() {
+        // Handle Reject buttons
+        const rejectBtns = document.querySelectorAll('.btn-icon.reject');
+        rejectBtns.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const row = this.closest('tr');
+                const name = row ? row.querySelector('strong')?.textContent || 'Applicant' : 'Applicant';
+                const position = row ? row.querySelectorAll('td')[1]?.textContent || 'position' : 'position';
+                
+                // Show the rejection reason modal
+                showRejectionReasonModal(name, (rejectionData) => {
+                    showAlert(
+                        'Application Rejected',
+                        `${name}'s application has been rejected. They'll be notified of your decision.`,
+                        'success',
+                        () => {
+                            if (row) {
+                                const status = row.querySelector('.status');
+                                if (status) {
+                                    status.className = 'status rejected';
+                                    status.textContent = 'Rejected';
+                                }
+                            }
+                        }
+                    );
                 });
-            }
-        }
-
-        // Filtering Logic
-        function filterCards() {
-            let input = document.getElementById('searchInput').value.toLowerCase();
-            let cards = document.querySelectorAll('.main-card');
-
-            cards.forEach(card => {
-                let name = card.getAttribute('data-name').toLowerCase();
-                if(name.includes(input)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
             });
-        }
+        });
 
-        // Initial Progress Sync
-        updateProgress();
+        // Handle Approve buttons
+        const approveBtns = document.querySelectorAll('.btn-icon.approve');
+        approveBtns.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const row = this.closest('tr');
+                const name = row ? row.querySelector('strong')?.textContent || 'Applicant' : 'Applicant';
+                const position = row ? row.querySelectorAll('td')[1]?.textContent || 'position' : 'position';
+                
+                confirmAction(
+                    'Confirm Approval',
+                    `Are you sure you want to approve ${name}'s application for the ${position} position?`,
+                    () => {
+                        showAlert('Application Approved', `${name}'s application has been approved successfully.`, 'success', () => {
+                            if (row) {
+                                const status = row.querySelector('.status');
+                                if (status) {
+                                    status.className = 'status approved';
+                                    status.textContent = 'Approved';
+                                }
+                            }
+                        });
+                    },
+                    null,
+                    { confirmText: 'Yes, Approve', cancelText: 'Cancel', confirmColor: 'success-btn' }
+                );
+            });
+        });
+    });
     </script>
+
 </body>
 </html>
