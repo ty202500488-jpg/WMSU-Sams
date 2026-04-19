@@ -1,0 +1,577 @@
+:root {
+    --maroon:       #7B0D1E;
+    --maroon-dark:  #5a0915;
+    --maroon-deep:  #3d0610;
+    --maroon-light: #9e1a2e;
+}
+
+
+/* ===== GLOBAL STYLES & RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #f0f2f5;
+    color: #1c1e21;
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+/* ===== TOP NAVIGATION BAR ===== */
+.top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(175deg, var(--maroon-deep) 0%, var(--maroon) 50%, var(--maroon-light) 100%);
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    z-index: 1001;
+}
+
+.top-logo {
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.25rem;
+    letter-spacing: 0.5px;
+}
+
+.top-links {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.top-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px; /* standardized gap */
+    padding: 4px;
+    transition: all 0.2s ease;
+    border-bottom: 2px solid transparent;
+}
+
+.top-links a:hover {
+    opacity: 0.8;
+}
+
+.top-links a.active {
+    border-bottom: 2px solid #f5b400;
+}
+
+/* RIGHT SIDE CONTAINER */
+.top-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto; 
+}
+
+/* ===== HAMBURGER SETTINGS MENU ===== */
+.settings-menu {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+}
+
+/* Hamburger icon */
+.menu-icon {
+    font-size: 20px;
+    color: #fff;
+    cursor: pointer;
+    padding: 6px;
+}
+
+/* Dropdown */
+.settings-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 45px;
+    background: #fff;
+    min-width: 220px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    overflow: hidden;
+    z-index: 1002;
+}
+
+/* SHOW DROPDOWN ON HOVER */
+.settings-menu:hover .settings-dropdown {
+    display: block;
+}
+
+/* Links */
+.settings-dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
+/* Hover effect */
+.settings-dropdown a:hover {
+    background: #f5f5f5;
+}
+
+/* ===== PROFILE ===== */
+.profile {
+    position: relative;
+    display: flex;
+}
+
+.profile-img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid white;
+    cursor: pointer;
+    object-fit: cover;
+    margin-right: 10px;   
+}
+
+/* ===== MAIN LAYOUT CONTAINER ===== */
+.container {
+    display: grid;
+    grid-template-columns: 280px 1fr 300px;
+    gap: 28px;
+    padding: 85px 20px 20px;
+    max-width: 1450px;
+    margin: 0 auto;
+}
+
+/* ===== LEFT SIDEBAR ===== */
+.sidebar-panel {
+    position: sticky;
+    top: 85px;
+    align-self: start;
+}
+
+.panel-header h3 {
+    font-size: 1.375rem;
+    margin-bottom: 18px;
+}
+
+.sidebar-item {
+    padding: 12px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    transition: background 0.2s;
+    color: #1c1e21;
+}
+
+.sidebar-item:hover {
+    background-color: #e4e6eb;
+}
+
+.sidebar-item.active {
+    background-color: #cfe5fb;
+    color: #0064d1;
+}
+
+.sidebar-item i {
+    font-size: 18px;
+    width: 24px;
+    text-align: center;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #ced0d4;
+    margin: 12px 0;
+}
+
+/* ===== CENTER NOTIFICATION LIST ===== */
+.notification-list {
+    grid-column: 2;
+    min-width: 0;
+}
+
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.header-actions .text-btn {
+    background: none;
+    border: none;
+    color: #0064d1;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.header-actions .text-btn:hover {
+    background-color: rgba(0, 100, 209, 0.1);
+}
+
+.search-bar {
+    width: 100%;
+    padding: 12px 18px;
+    border-radius: 20px;
+    border: 1px solid transparent;
+    background: #e4e6eb;
+    margin-bottom: 22px;
+    outline: none;
+    font-size: 0.9375rem;
+}
+
+.search-bar:focus {
+    background: #fff;
+    border-color: #1877f2;
+    box-shadow: 0 0 0 2px rgba(24, 119, 242, 0.2);
+}
+
+/* NOTIFICATION CARDS */
+.notif-card {
+    background: #fff;
+    padding: 16px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.notif-card:hover {
+    background-color: #f2f2f2;
+}
+
+.notif-card.unread {
+    background-color: #d6e9ff;
+}
+
+/* Category Dividers (Today, Yesterday, etc.) */
+.category-divider {
+    font-weight: bold;
+    color: #65676b;
+    margin: 0px 0 12px 0;
+    font-size: 0.875rem;
+}
+
+/* Icon Containers */
+.notif-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+/* Notification Status Colors */
+.approved  { background: #e7f3ff; color: #1877f2; }
+.interview { background: #fef2f2; color: #f87171; }
+.job       { background: #f0fdf4; color: #22c55e; }
+.rejected  { background: #fff1f2; color: #e11d48; }
+.document  { background: #f3f4f6; color: #4b5563; }
+
+.notif-content {
+    flex-grow: 1;
+}
+
+.notif-content p {
+    font-size: 0.9375rem;
+    line-height: 1.4;
+    color: #050505;
+}
+
+.notif-time {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.8125rem;
+    color: #1877f2;
+    font-weight: 600;
+}
+
+/* Old notifications have gray time */
+.category-divider ~ .notif-card .notif-time {
+    color: #65676b;
+}
+
+/* THREE DOTS OPTIONS MENU */
+.notif-opts {
+    position: relative;
+}
+
+.three-dots {
+    background: none;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #65676b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+}
+
+.notif-card:hover .three-dots {
+    opacity: 1;
+}
+
+.three-dots:hover {
+    background-color: #e4e6eb;
+}
+
+.opt-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 36px;
+    background: white;
+    width: 200px;
+    border-radius: 8px;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.2);
+    padding: 8px;
+    z-index: 100;
+}
+
+.notif-opts:focus-within .opt-dropdown {
+    display: block;
+}
+
+.opt-dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    text-decoration: none;
+    color: #050505;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: 6px;
+}
+
+.opt-dropdown a:hover {
+    background-color: #f2f2f2;
+}
+
+.delete-opt:hover {
+    color: #e11d48 !important;
+}
+
+.unread-dot {
+    width: 12px;
+    height: 12px;
+    background-color: #1877f2;
+    border-radius: 50%;
+    margin-left: 8px;
+}
+
+/* ===== RIGHT PANEL ===== */
+.right-panel {
+    position: sticky;
+    top: 85px;
+    align-self: start;
+}
+
+.action-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.action-card h4 {
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: #65676b;
+}
+
+.setting-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.help-box {
+    background: #1c1e21;
+    color: white;
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.help-box h4 {
+   color: white;
+   display: flex;
+   justify-content: center;
+}
+
+.help-box p {
+    font-size: 0.8125rem;
+    margin-bottom: 12px;
+    opacity: 0.8;
+}
+
+.secondary-btn {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: white;
+    color: #1c1e21;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.secondary-btn:hover {
+    background-color: #f2f2f2;
+}
+
+/* --- BUTTON THEME MATCHING (WMSU Maroon) --- */
+
+.action-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+/* Primary Action: WMSU Maroon Gradient to match Top Nav */
+.action-btn.primary {
+    background:  var(--maroon);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 4px rgba(123, 13, 30, 0.2);
+}
+
+.action-btn.primary:hover {
+    background: var(--maroon-light);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(123, 13, 30, 0.3);
+}
+
+/* Secondary Action: Subtle Gray matching your sidebar-item style */
+.action-btn.secondary {
+    background-color: #f0f2f5;
+    color: #1c1e21;
+    border: 1px solid #ced0d4;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.action-btn.secondary:hover {
+    background-color: #e4e6eb;
+    border-color: #ccd0d5;
+}
+
+
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1200px) {
+    .container {
+        grid-template-columns: 250px 1fr;
+        gap: 20px;
+    }
+    .right-panel { display: none; }
+}
+
+
+@media (max-width: 992px) {
+    .container { 
+        display: flex; 
+        flex-direction: column; 
+        padding-top: 80px;
+    }
+    .sidebar-panel { 
+        position: static; 
+        width: 100%; 
+        margin-bottom: 20px;
+    }
+    .notification-list {
+        width: 100%;
+    }
+}
+
+/* Small Phones */
+@media (max-width: 768px) {
+    .top-nav {
+        height: auto;
+        padding: 10px 15px;
+        flex-wrap: wrap;
+    }
+    .top-links {
+        order: 3;
+        width: 100%;
+        justify-content: space-around;
+        padding-top: 10px;
+        gap: 0;
+    }
+    .top-links a {
+        font-size: 0.75rem;
+    }
+    .notif-card {
+        padding: 12px;
+    }
+    .three-dots {
+        opacity: 1; 
+    }
+}
+
+@media (max-width: 480px) {
+    .top-logo { font-size: 1rem; }
+    .notif-icon { width: 40px; height: 40px; }
+    .notif-content p { font-size: 0.85rem; }
+    .sidebar-item { font-size: 0.875rem; }
+}
+
+@media (max-width: 480px) {
+    .action-row {
+        flex-direction: column;
+    }
+    .action-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
