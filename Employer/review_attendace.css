@@ -265,10 +265,6 @@ body {
             transition: var(--transition); border-left: 4px solid transparent;
         }
         
-        .main-card:hover { transform: scale(1.005); }
-        .card-flagged { border-left-color: #e74c3c; }
-        .card-warning { border-left-color: var(--gold); }
-
         .card-header { display: flex; gap: 15px; align-items: center; margin-bottom: 15px; }
         
         .icon-circle {
@@ -287,7 +283,7 @@ body {
         }
         .badge-ontime { background: #e7fef0; color: #2ecc71; }
         .badge-late { background: #fffbe6; color: #f5b400; }
-        .badge-flagged { background: #fdf2f2; color: #e74c3c; }
+        .badge-flagged { background: #f22a2a65; color: #d73826; }
 
         .attendance-grid {
             display: grid; grid-template-columns: repeat(3, 1fr);
