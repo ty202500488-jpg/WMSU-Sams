@@ -362,5 +362,45 @@
 
     </div>
 
+<script>
+    const positions = [
+  { title: "IT Student Assistant", dept: "IT Office",          pay: 60, hours: 20, status: "review" },
+  { title: "Library Assistant",    dept: "Library Department", pay: 50, hours: 15, status: "available" },
+  { title: "IT Support Intern",    dept: "IT Office",          pay: 70, hours: 25, status: "available" },
+  { title: "Registrar Assistant",  dept: "Registrar",          pay: 70, hours: 25, status: "available" },
+];
+
+function applyFilters() {
+  const q    = document.getElementById("search").value.toLowerCase();
+  const dept = document.getElementById("department").value;
+  const dur  = document.getElementById("duration").value;
+  const pay  = document.getElementById("pay").value;
+
+  document.querySelectorAll(".application-card").forEach((card, i) => {
+    const p = positions[i];
+    const weekly = p.pay * p.hours;
+
+    const matchSearch   = !q || card.innerText.toLowerCase().includes(q);
+    const matchDept     = !dept || dept === "All Departments" || p.dept === dept;
+    const matchDuration = !dur  || dur  === "Any"
+                          || (dur === "Short-term" && p.hours < 20)
+                          || (dur === "Long-term"  && p.hours >= 20);
+    const matchPay      = !pay  || pay  === "Any"
+                          || (pay === "₱0 – ₱500/week"    && weekly <= 500)
+                          || (pay === "₱500 – ₱1000/week" && weekly > 500 && weekly <= 1000)
+                          || (pay === "₱1000+/week"        && weekly > 1000);
+
+    card.style.display = (matchSearch && matchDept && matchDuration && matchPay) ? "" : "none";
+  });
+}
+
+["search", "department", "duration", "pay"].forEach(id =>
+  document.getElementById(id).addEventListener("input", applyFilters)
+);
+
+document.querySelector(".primary-btn").addEventListener("click", applyFilters);
+
+</script>
+
 </body>
 </html>

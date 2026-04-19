@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Review | WMSU-SAMS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="review_attendace.css">
+    <link rel="stylesheet" href="../Global/modals.css">
+    <script src="../Global/pagination.js" defer></script>
+</head>
+<body>
+
+   <header class="top-nav">
+        <div class="top-logo">WMSU-SAMS</div>
+        <nav class="top-links">
+            <a href="employer_dashboard.html"><i class="fas fa-chart-line"></i> <span>Dashboard</span></a>
+            <a href="employer_notifications.html"><i class="fas fa-bell"></i> <span>Notifications</span></a>
+            <a href="review_attendance.html" class="active"><i class="fas fa-clock"></i> <span>Attendance</span></a>
+            <a href="employer_application.html"><i class="fas fa-users"></i> <span>Applicants</span></a>
+            <a href="job_posting.html"><i class="fas fa-briefcase"></i> <span>Postings</span></a>
+        </nav>
+        <div class="top-right">
+            <div class="profile">
+                <a href="student_profile.html">
+                <img src="../images/profile.jpg.jpg" class="profile-img">
+                </a>
+            </div>
+
+            <div class="settings-menu">
+                <i class="fas fa-bars menu-icon"></i>
+                
+                <div class="settings-dropdown">
+                    <a href="edit_student_profile.html"><i class="fas fa-user-edit"></i> Edit Profile</a>
+                    <a href="../Global/login.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar-panel">
+            <div class="user-mini-card">
+                <div class="cover-photo"></div>
+                <div class="user-info">
+                    <div class="avatar-replacement">LIB</div>
+                    <h3>Department of Library</h3>
+                    <p>Main Campus, WMSU</p>
+                </div>
+                <div class="profile-stats">
+                    <div class="stat"><span>Approval Progress</span> <strong id="prog-text">5/8</strong></div>
+                    <div class="progress-container"><div id="prog-bar" class="progress-fill" style="width: 62.5%;"></div></div>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="sidebar-link active-link"><i class="fas fa-clock"></i> Pending Reviews</a>
+                <a href="#" class="sidebar-link"><i class="fas fa-history"></i> Log History</a>
+                <a href="#" class="sidebar-link"><i class="fas fa-cog"></i> Shift Settings</a>
+            </nav>
+
+            <div class="alert-box">
+                <i class="fas fa-info-circle"></i> Review logs before 5:00 PM today to ensure payroll processing.
+            </div>
+        </aside>
+
+        <main class="dashboard-feed">
+            <div class="section-header-flex">
+                <h2 class="section-title">Attendance Review <span style="font-weight: normal; color: var(--muted); font-size: 14px;">(April 19, 2026)</span></h2>
+                <button class="btn-primary" onclick="bulkApprove()"><i class="fas fa-check-double"></i> Approve All</button>
+            </div>
+
+            <div class="filter-strip">
+                <div class="pill-group">
+                    <div class="pill active">All Logs</div>
+                    <div class="pill">Morning</div>
+                    <div class="pill">Afternoon</div>
+                    <div class="pill">Flagged</div>
+                </div>
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search by student name..." onkeyup="filterCards()">
+                </div>
+            </div>
+
+            <div id="cards-container">
+                <div class="main-card" data-name="Maria Santos">
+                    <div class="card-header">
+                        <div class="icon-circle">MS</div>
+                        <div class="header-text">
+                            <h4>Maria Santos <span class="badge badge-ontime">On Time</span></h4>
+                            <p>ID: 2022-00124 • Library Assistant</p>
+                        </div>
+                    </div>
+                    <div class="attendance-grid">
+                        <div class="grid-item"><span>Time In</span><strong>08:00 AM</strong></div>
+                        <div class="grid-item"><span>Time Out</span><strong>12:00 PM</strong></div>
+                        <div class="grid-item highlight"><span>Total Hrs</span><strong>4.00</strong></div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-icon view"><i class="fas fa-eye"></i> Details</button>
+                        <button class="btn-icon approve" onclick="removeCard(this)"><i class="fas fa-check"></i> Approve</button>
+                        <button class="btn-icon reject" onclick="removeCard(this)"><i class="fas fa-times"></i> Reject</button>
+                    </div>
+                </div>
+
+                <div class="main-card card-warning" data-name="Juan Dela Cruz">
+                    <div class="card-header">
+                        <div class="icon-circle">JD</div>
+                        <div class="header-text">
+                            <h4>Juan Dela Cruz <span class="badge badge-late">Late (15m)</span></h4>
+                            <p>ID: 2022-00542 • Lab Monitor</p>
+                        </div>
+                    </div>
+                    <div class="attendance-grid">
+                        <div class="grid-item"><span>Time In</span><strong>08:15 AM</strong></div>
+                        <div class="grid-item"><span>Time Out</span><strong>12:00 PM</strong></div>
+                        <div class="grid-item highlight"><span>Total Hrs</span><strong>3.75</strong></div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-icon view"><i class="fas fa-eye"></i> Details</button>
+                        <button class="btn-icon approve" onclick="removeCard(this)"><i class="fas fa-check"></i> Approve</button>
+                        <button class="btn-icon reject" onclick="removeCard(this)"><i class="fas fa-times"></i> Reject</button>
+                    </div>
+                </div>
+
+                <div class="main-card card-flagged" data-name="Angela Cruz">
+                    <div class="card-header">
+                        <div class="icon-circle">AC</div>
+                        <div class="header-text">
+                            <h4>Angela Cruz <span class="badge badge-flagged">Undertime</span></h4>
+                            <p>ID: 2022-11092 • Office Aide</p>
+                        </div>
+                    </div>
+                    <div class="attendance-grid">
+                        <div class="grid-item"><span>Time In</span><strong>01:00 PM</strong></div>
+                        <div class="grid-item"><span>Time Out</span><strong>04:00 PM</strong></div>
+                        <div class="grid-item highlight"><span>Total Hrs</span><strong>3.00</strong></div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-icon view"><i class="fas fa-eye"></i> Details</button>
+                        <button class="btn-icon approve" onclick="removeCard(this)"><i class="fas fa-check"></i> Approve</button>
+                        <button class="btn-icon reject" onclick="removeCard(this)"><i class="fas fa-times"></i> Reject</button>
+                    </div>
+                </div>
+
+                <div class="main-card card-flagged" data-name="Mark Villanueva">
+                    <div class="card-header">
+                        <div class="icon-circle">MV</div>
+                        <div class="header-text">
+                            <h4>Mark Villanueva <span class="badge badge-flagged">Missing Out</span></h4>
+                            <p>ID: 2021-00871 • Lab Monitor</p>
+                        </div>
+                    </div>
+                    <div class="attendance-grid">
+                        <div class="grid-item"><span>Time In</span><strong>01:10 PM</strong></div>
+                        <div class="grid-item"><span>Time Out</span><strong>--</strong></div>
+                        <div class="grid-item highlight"><span>Total Hrs</span><strong>--</strong></div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-icon view"><i class="fas fa-exclamation-triangle"></i> Contact</button>
+                        <button class="btn-icon reject" onclick="removeCard(this)"><i class="fas fa-times"></i> Invalidate</button>
+                    </div>
+                </div>
+
+                <div class="main-card card-flagged" data-name="Bryan Torres">
+                    <div class="card-header">
+                        <div class="icon-circle">BT</div>
+                        <div class="header-text">
+                            <h4>Bryan Torres <span class="badge badge-flagged">Early Log</span></h4>
+                            <p>ID: 2023-00211 • Technical Aide</p>
+                        </div>
+                    </div>
+                    <div class="attendance-grid">
+                        <div class="grid-item"><span>Time In</span><strong>03:15 AM</strong></div>
+                        <div class="grid-item"><span>Time Out</span><strong>07:20 AM</strong></div>
+                        <div class="grid-item highlight"><span>Total Hrs</span><strong>4.08</strong></div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-icon view"><i class="fas fa-eye"></i> Details</button>
+                        <button class="btn-icon approve" onclick="removeCard(this)"><i class="fas fa-check"></i> Approve</button>
+                        <button class="btn-icon reject" onclick="removeCard(this)"><i class="fas fa-times"></i> Reject</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <aside class="right-panel">
+            <div class="side-widget">
+                <h4>Today's Summary</h4>
+                <div class="insight-item">
+                    <div class="i-icon"><i class="fas fa-clock"></i></div>
+                    <div class="i-text">
+                        <strong>45.2 Hours</strong>
+                        <span>Total Department Worktime</span>
+                    </div>
+                </div>
+                <div class="insight-item">
+                    <div class="i-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                    <div class="i-text">
+                        <strong>3 Discrepancies</strong>
+                        <span>Requires Manual Review</span>
+                    </div>
+                </div>
+                <a href="#" style="display: flex; justify-content: flex-end; text-decoration: none; color: rgb(0, 89, 255); font-size: small;" >View Details</a>
+            </div>
+
+            <div class="side-widget">
+                <h4>Recent Activity</h4>
+                <div class="insight-item">
+                    <div class="i-text">
+                        <strong>Maria Santos</strong>
+                        <span>Approved by Supervisor</span>
+                    </div>
+                </div>
+                <div class="insight-item">
+                    <div class="i-text">
+                        <strong>Liza Mendoza</strong>
+                        <span>Logged out 5m ago</span>
+                    </div>
+                </div>
+                   <a href="#" style="display: flex; justify-content: flex-end; text-decoration: none; color: rgb(0, 89, 255); font-size: small;" >View Details</a>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        // Progress Logic
+        let total = 8;
+        let processed = 3;
+
+        function updateProgress() {
+            let percentage = (processed / total) * 100;
+            document.getElementById('prog-bar').style.width = percentage + "%";
+            document.getElementById('prog-text').innerText = processed + "/" + total;
+        }
+
+        // Card removal animation
+        function removeCard(btn) {
+            const card = btn.closest('.main-card');
+            card.classList.add('confirming');
+            setTimeout(() => {
+                card.style.display = 'none';
+                processed++;
+                updateProgress();
+            }, 400);
+        }
+
+        // Bulk Approve Logic
+        function bulkApprove() {
+            if(confirm("Approve all visible attendance logs?")) {
+                const cards = document.querySelectorAll('.main-card');
+                cards.forEach(card => {
+                    if(card.style.display !== 'none') {
+                        card.classList.add('confirming');
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                            processed++;
+                            updateProgress();
+                        }, 400);
+                    }
+                });
+            }
+        }
+
+        // Filtering Logic
+        function filterCards() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.querySelectorAll('.main-card');
+
+            cards.forEach(card => {
+                let name = card.getAttribute('data-name').toLowerCase();
+                if(name.includes(input)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Initial Progress Sync
+        updateProgress();
+    </script>
+</body>
+</html>
