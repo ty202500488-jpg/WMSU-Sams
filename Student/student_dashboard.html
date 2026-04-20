@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | WMSU-SAMS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="student_dashboard.css">
+</head>
+<body>
+
+    <header class="top-nav">
+        <div class="top-logo">WMSU-SAMS</div>
+        <nav class="top-links">
+            <a href="student_dashboard.html" class="active"><i class="fas fa-home"></i> Home</a>
+            <a href="notification.html"><i class="fas fa-bell"></i> Notifications</a>
+            <a href="application.html"><i class="fas fa-file-alt"></i> Applications</a>
+            <a href="positions.html"><i class="fas fa-briefcase"></i> Positions</a>
+        </nav>
+
+        <div class="top-right">
+            <div class="profile">
+                <a href="student_profile.html">
+                <img src="../images/profile.jpg.jpg" class="profile-img">
+                </a>
+            </div>
+
+            <div class="settings-menu">
+                <i class="fas fa-bars menu-icon"></i>
+                
+                <div class="settings-dropdown">
+                    <a href="edit_student_profile.html"><i class="fas fa-user-edit"></i> Edit Profile</a>
+                    <a href="../Global/login.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar-panel">
+            <div class="user-mini-card">
+                <div class="cover-photo"></div>
+                <div class="user-info">
+                    <img src="../images/profile.jpg.jpg" alt="User" class="avatar-large">
+                    <h3>Juan Dela Cruz</h3>
+                    <p>BSCS – 1st Year</p>
+                </div>
+                <hr>
+                <div class="profile-stats">
+                    <div class="stat"><span>Completion</span> <strong>80%</strong></div>
+                    <div class="progress-container"><div class="progress-fill" style="width: 80%;"></div></div>
+                </div>
+                <a href="edit_student_profile.html" class="sidebar-link"><i class="fas fa-user-edit"></i> Edit Profile</a>
+                <a href="application.html" class="sidebar-link"><i class="fas fa-history"></i> My History</a>
+            </div>
+
+            <div class="alert-box">
+                <i class="fas fa-exclamation-circle"></i>
+                <p>Complete your <strong>Profile</strong> to unlock applications.</p>
+            </div>
+        </aside>
+
+        <main class="dashboard-feed">
+
+            <section class="feed-section">
+                <div class="section-header-flex">
+                    <h2 class="section-title">Work & Earnings</h2>
+                    <a href="Referral.html" style="text-decoration: none;" class="primary-btn log-btn"><i class="fas fa-plus"></i> New Log</a>
+                </div>
+
+                <div class="earnings-overview-card">
+                    <div class="main-balance">
+                        <span class="label">Accumulated Earnings</span>
+                        <h1 class="amount">₱1,950.<small>00</small></h1>
+                        <div class="balance-meta">
+                            <span class="trend up"><i class="fas fa-arrow-up"></i> +₱240 today</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-divider"></div>
+
+                    <div class="secondary-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-clock-rotate-left"></i>
+                            <div>
+                                <strong>32.5 hrs</strong>
+                                <span>Total Time</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-coins"></i>
+                            <div>
+                                <strong>₱60/hr</strong>
+                                <span>Rate</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-header-flex">
+                    <h2 class="section-title">Recent Work Logs</h2>
+                    <a href="notification.html" class="view-all-link">View All</a>
+                </div>
+                <div class="log-feed">
+                    <div class="log-card">
+                        <div class="log-date">
+                            <span class="day">07</span>
+                            <span class="month">APR</span>
+                        </div>
+                        <div class="log-details">
+                            <h4>Admin Office - Document Filing</h4>
+                            <p>1:00 PM - 4:00 PM (3 Hours)</p>
+                        </div>
+                        <div class="log-amount">
+                            <span class="plus-amount">+₱180.00</span>
+                            <span class="status-tag approved">Approved</span>
+                        </div>
+                    </div>
+
+                    <div class="log-card">
+                        <div class="log-date">
+                            <span class="day">06</span>
+                            <span class="month">APR</span>
+                        </div>
+                        <div class="log-details">
+                            <h4>System Maintenance</h4>
+                            <p>8:00 AM - 12:00 PM (4 Hours)</p>
+                        </div>
+                        <div class="log-amount">
+                            <span class="plus-amount">+₱240.00</span>
+                            <span class="status-tag pending">Pending</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="feed-section">
+                <h2 class="section-title">Current Assignment</h2>
+
+                <div class="main-card assignment">
+                   <div class="application-header">
+                        <div class="suggestion-group"> 
+                            <h3>IT Student Assistant</h3>  
+                            <div class="suggestion-badge">
+                                <i class="fas fa-star"></i> Suggested for You
+                        </div>
+                    </div>
+                    <hr>
+                    <p>Assist IT Office with website updates, documentation, and student support tasks.</p>
+                </div>
+
+                <div class="application-info">
+                    <div class="column">
+                        <p><i class="fas fa-building"></i> <strong>Department:</strong> IT Office</p>
+                        <p><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> IT Building</p>
+                        <p><i class="fas fa-money-bill-wave"></i> <strong>Pay:</strong> ₱60/hour</p>
+                    </div>
+
+                    <div class="column">
+                        <p><i class="fas fa-hourglass-half"></i> <strong>Hours:</strong> 20 hrs/week</p>
+                        <p><i class="fas fa-users"></i> <strong>Slots:</strong> 2 / 5</p>
+                        <p><i class="fas fa-info-circle"></i> <strong>Status:</strong> 
+                            <span class="status-badge pending">Under Review</span>
+                        </p>
+                    </div>
+
+                    <ul class="requirements-list">
+                        <p><i class="fas fa-check-circle"></i> <strong>Requirements:</strong></p>
+                        <li>Basic HTML & CSS knowledge</li>
+                        <li>Familiar with Microsoft Office</li>
+                        <li>Minimum GPA: 2.5</li>
+                    </ul>
+                </div>
+
+                
+                    <div class="application-action">
+                        <a href="Referral.html" class="action-btn" style="text-decoration: none;">Log Work Hours</a>
+                        <a href="#view-details-1" class="primary-btn action-btn-outline" style="text-decoration: none;">View Details</a>
+                    </div>
+
+                <div id="view-details-1" class="modal-overlay">
+                    <div class="modal-box">
+
+                        <a href="#close" class="modal-close-btn">&times;</a>
+
+                        <div class="modal-header">
+                            <h2>IT Student Assistant</h2>
+                            <p class="subtitle"><strong>Department:</strong> IT Office</p>
+                        </div>
+
+                        <hr>
+
+                        <div class="modal-body">
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <span class="label">Location</span>
+                                    <span class="value">IT Building, 2nd Floor</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">Pay Rate</span>
+                                    <span class="value">₱60 / hour</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">Daily Hours</span>
+                                    <span class="value">4 hours / day</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">Availability</span>
+                                    <span class="value">2 of 5 slots left</span>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <h4>Job Description</h4>
+                            <p style="color: #4a5568; line-height: 1.6;">
+                                Assist the IT Department in maintaining campus-wide digital assets. You will be responsible for updating website content, assisting students with technical issues in the computer labs, and organizing hardware documentation.
+                            </p>
+
+                            <hr>
+
+                            <h4>Responsibilities</h4>
+                            <ul class="custom-list">
+                                <li>Update and maintain the IT Department's website.</li>
+                                <li>Provide technical support to students in computer labs.</li>
+                                <li>Organize and maintain hardware documentation.</li>
+                                <li>Assist with IT-related events and workshops.</li>
+                                <li>Report equipment issues to the IT supervisor.</li>
+                            </ul>
+                            
+                            <hr>
+                            <h4>Requirements & Qualifications</h4>
+                            <ul class="custom-list">
+                                <li>Must be a currently enrolled student.</li>
+                                <li>Minimum GPA of 2.5 or higher.</li>
+                                <li>Reliable and punctual.</li>
+                                <li>Can commit to 20 hours per week.</li>
+                            </ul>
+
+                            <hr>
+
+                            <h4>Required Skills</h4>
+                            <div class="skill-tags">
+                                <span>HTML/CSS</span>
+                                <span>Microsoft Office</span>
+                                <span>Troubleshooting</span>
+                                <span>Technical Writing</span>
+                            </div>
+
+                            <hr>
+                            <h4>Benefits</h4>
+                            <ul class="custom-list">
+                                <li>Gain practical experience in IT support and web maintenance.</li>
+                                <li>Flexible work hours to accommodate your class schedule.</li>
+                                <li>Opportunity to network with IT professionals and other student assistants.</li>
+                                <li>Earn while you learn with a competitive hourly rate.</li>
+                            </ul>
+
+                            <hr>
+                            <h4>Supervisor</h4>
+                            <div class="info-item">
+                                <span class="label">Name</span>
+                                <span class="value">Ms. Ana Rodriguez</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Email</span>
+                                <span class="value">ana.rodriguez@wmsu.edu.ph</span>
+
+                            </div>
+
+                            <hr>
+
+                            <h4>Application Deadline</h4>
+                            <p style="color: #dc2626; font-weight: 600;">Applications are accepted until further notice.</p>
+                        </div>
+
+                        <div class="modal-footer">
+                            <a href="#close" class="secondary-btn">Close</a>
+                            <a href="form.html" class="primary-btn" style="color: white; border-radius: 8px;">Apply</a>
+                        </div>
+                    </div>
+                </div>
+
+                    <div id="cancel-confirm-1" class="modal-overlay">
+                        <div class="cancel-modal-box">
+                            <h3 style="display: flex; justify-content: center;">Are you sure?</h3>
+                            <p style="display: flex; justify-content: center;">Do you really want to cancel this application?</p>
+                            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
+                                <a href="#" class="primary-btn" style="text-decoration: none; background: #9f0f0f;">Cancel</a>
+                                <a href="#" class="secondary-btn" style="text-decoration: none;">No</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="feed-section">
+                <div class="section-header-flex">
+                    <h2 class="section-title">Recent Applications</h2>
+                    <a href="application.html" class="view-all-link">View All</a>
+                </div>
+
+                <article class="application-card">
+                    <div class="application-header">
+                        <div class="suggestion-group"> 
+                            <h3>Library Assistant</h3>
+                            <div class="suggestion-badge">
+                                <i class="fas fa-star"></i> Suggested for You
+                        </div>
+                    </div>
+                    <hr>
+                   <p>Organize library books, assist students in locating resources, and maintain records.</p>
+                </div>
+
+                    <div class="application-info">
+                        <div class="column">
+                            <p><i class="fas fa-building"></i> <strong>Department:</strong> Library</p>
+                            <p><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> Main Library</p>
+                            <p><i class="fas fa-money-bill-wave"></i> <strong>Pay:</strong> ₱50/hour</p>
+                        </div>
+
+                        <div class="column">
+                            <p><i class="fas fa-hourglass-half"></i> <strong>Hours:</strong> 15 hrs/week</p>
+                            <p><i class="fas fa-users"></i> <strong>Slots:</strong> 1 / 3</p>
+                            <p><i class="fas fa-info-circle"></i> <strong>Status:</strong> 
+                                <span class="status-badge none">Available</span>
+                            </p>
+                        </div>
+
+                        <ul class="requirements-list">
+                             <p><strong><i class="fas fa-check-circle"></i> Requirements:</strong></p>
+                            <li>Organized and detail-oriented</li>
+                            <li>Basic record keeping skills</li>
+                            <li>Minimum GPA: 2.5</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="application-action">
+                        <a href="#view-details-library" class="secondary-btn" style="text-decoration: none;">View Details</a>
+                        <a href="#cancel-confirm-1" class="primary-btn" style="text-decoration: none;">Cancel</a>
+                    </div>
+
+                <div id="view-details-2" class="modal-overlay">
+                    <div class="modal-box">
+                        <div class="modal-header">
+                            <h2>Library Assistant</h2>
+                            <p class="subtitle"><strong>Department:</strong> Library</p>
+                        </div>
+
+                        <hr>
+
+                        <div class="modal-body">
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <span class="label">Location</span>
+                                    <span class="value">IT Building, 2nd Floor</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">Pay Rate</span>
+                                    <span class="value">₱60 / hour</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">Daily Hours</span>
+                                    <span class="value">4 hours / day</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">Availability</span>
+                                    <span class="value">2 of 5 slots left</span>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <h4>Job Description</h4>
+                            <p style="color: #4a5568; line-height: 1.6;">
+                                Assist the IT Department in maintaining campus-wide digital assets. You will be responsible for updating website content, assisting students with technical issues in the computer labs, and organizing hardware documentation.
+                            </p>
+
+                            <hr>
+
+                            <h4>Requirements & Qualifications</h4>
+                            <ul class="custom-list">
+                                <li>Must be a currently enrolled student.</li>
+                                <li>Minimum GPA of 2.5 or higher.</li>
+                                <li>Reliable and punctual.</li>
+                                <li>Can commit to 20 hours per week.</li>
+                            </ul>
+
+                            <hr>
+
+                            <h4>Required Skills</h4>
+                            <div class="skill-tags">
+                                <span>HTML/CSS</span>
+                                <span>Microsoft Office</span>
+                                <span>Troubleshooting</span>
+                                <span>Technical Writing</span>
+                            </div>
+                            
+                        </div>
+
+                        <div class="modal-footer">
+                            <a href="#" class="secondary-btn">Close</a>
+                            <a href="form.html" class="primary-btn" style="color: white; border-radius: 8px;">Apply</a>
+                        </div>
+                    </div>
+                </div>
+
+                    <div id="cancel-confirm-1" class="modal-overlay">
+                        <div class="modal-box">
+                            <h3>Are you sure?</h3>
+                            <p>Do you really want to cancel this application?</p>
+                            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
+                                <a href="#" class="primary-btn" style="text-decoration: none; background: #9f0f0f;">Cancel</a>
+                                <a href="#" class="secondary-btn" style="text-decoration: none;">No</a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </section>
+
+            <section class="feed-section">
+                <div class="section-header-flex">
+                    <h2 class="section-title"> Suggested for You</h2>
+                    <a href="positions.html" class="view-all-link">View All</a>
+                </div>
+
+                <div id="suggested-positions-container">
+                    <div style="text-align: center; padding: 30px; color: #999;">
+                        <i class="fas fa-spinner fa-spin" style="font-size: 24px; margin-bottom: 10px;"></i>
+                        <p>Loading suggestions...</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <aside class="right-panel">
+            <div class="side-widget">
+                <h4>Suggested Positions</h4>
+                <div class="suggestion-item">
+                    <div class="s-icon"><i class="fas fa-book"></i></div>
+                    <div class="s-text">
+                        <strong>Library Assistant</strong>
+                        <span>Library Dept • 3 Slots</span>
+                    </div>
+                </div>
+                <div class="suggestion-item">
+                    <div class="s-icon"><i class="fas fa-print"></i></div>
+                    <div class="s-text">
+                        <strong>Clerical Aide</strong>
+                        <span>Registrar • 1 Slot</span>
+                    </div>
+                </div>
+                <a href="positions.html" class="view-more">View all</a>
+            </div>
+
+            <div class="side-widget help-widget">
+                <p>Need help with your application?</p>
+                <button class="help-btn">Message Support</button>
+            </div>
+        </aside>
+
+    </div>
+
+    <script src="../Global/modals.js" defer></script>
+   
+</body>
+</html>

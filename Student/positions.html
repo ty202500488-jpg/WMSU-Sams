@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Positions | WMSU SAMS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="positions.css">
+</head>
+<body>
+
+    <header class="top-nav">
+        <div class="top-logo">WMSU-SAMS</div>
+        <nav class="top-links">
+            <a href="student_dashboard.html"><i class="fas fa-home"></i> Home</a>
+            <a href="notification.html"><i class="fas fa-bell"></i> Notifications</a>
+            <a href="application.html"><i class="fas fa-file-alt"></i> Applications</a>
+            <a href="positions.html" class="active"><i class="fas fa-briefcase"></i> Positions</a>
+        </nav>
+
+        <div class="top-right">
+            <div class="profile">
+                <a href="student_profile.html">
+                <img src="../images/profile.jpg.jpg" class="profile-img">
+                </a>
+            </div>
+
+            <div class="settings-menu">
+                <i class="fas fa-bars menu-icon"></i>
+                
+                <div class="settings-dropdown">
+                    <a href="edit_student_profile.html"><i class="fas fa-user-edit"></i> Edit Profile</a>
+                    <a href="../Global/login.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <aside class="filter-panel">
+            <div class="filter-header">
+                <h3><i class="fas fa-filter"></i> Filters</h3>
+            </div>
+            <div class="filter-body">
+                <label for="search">Search</label>
+                <input type="text" id="search" placeholder="Search Position">
+
+                <label for="department">Departments</label>
+                <select id="department">
+                    <option>All Departments</option>
+			        <option>IT Office</option>
+			        <option>Library Department</option>
+			        <option>Registrar</option>
+                    <option>Student Affairs</option>
+			        <option>Research Office</option>
+			        <option>Guidance Office</option>
+			        <option>Cashier</option>
+			        <option>Health Service</option>
+			        <option>Sports Office</option>
+                </select>
+
+                <label for="duration">Duration</label>
+                <select id="duration">
+                    <option>Any</option>
+                    <option>Short-term</option>
+                    <option>Long-term</option>
+                </select>
+
+                <label for="pay">Pay</label>
+                <select id="pay">
+                    <option>Any</option>
+                    <option>₱0 – ₱500/week</option>
+                    <option>₱500 – ₱1000/week</option>
+                    <option>₱1000+/week</option>
+                </select>
+                <button class="primary-btn" style="width: 100%; margin-top: 10px;">Apply Filters</button>
+            </div>
+        </aside>
+
+        <main class="job-list">
+
+            <div class="workflow-info">
+                <i class="fas fa-info-circle"></i>
+                <p><strong>NOTE: </strong> These positions have been suggested based on your profile and schedule. Once you apply, the department will review your profile.</p>
+            </div>
+    
+            <div class="application-card">
+                <div class="application-header">
+                    <div class="suggestion-group"> 
+                        <h2>IT Student Assistant</h2>  
+                        <div class="suggestion-badge">
+                            <i class="fas fa-star"></i> Suggested for You
+                        </div>
+                    </div>
+                    <hr>
+                    <p>Assist IT Office with website updates, documentation, and student support tasks.</p>
+                </div>
+
+                <div class="application-info">
+                    <div class="column">
+                        <p><i class="fas fa-building"></i> <strong>Department:</strong> IT Office</p>
+                        <p><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> IT Building</p>
+                        <p><i class="fas fa-money-bill-wave"></i> <strong>Pay:</strong> ₱60/hour</p>
+                    </div>
+
+                    <div class="column">
+                        <p><i class="fas fa-hourglass-half"></i> <strong>Hours:</strong> 20 hrs/week</p>
+                        <p><i class="fas fa-users"></i> <strong>Slots:</strong> 2 / 5</p>
+                        <p><i class="fas fa-info-circle"></i> <strong>Status:</strong> 
+                            <span class="status-badge pending">Under Review</span>
+                        </p>
+                    </div>
+
+                    <ul class="requirements">
+                        <p><i class="fas fa-check-circle"></i> <strong>Requirements:</strong></p>
+                        <li>Basic HTML & CSS knowledge</li>
+                        <li>Familiar with Microsoft Office</li>
+                        <li>Minimum GPA: 2.5</li>
+                    </ul>
+                </div>
+
+                <!-- Modal for IT Student Assistant -->
+                <div class="application-action">
+                    <a href="#view-details-1" class="secondary-btn" style="text-decoration: none;">View Details</a>
+                    <a href="#cancel-confirm-1" class="primary-btn action-btn-outline" style="text-decoration: none;">Cancel Application</a>
+                </div>
+
+                <div id="view-details-1" class="modal-overlay">
+                    <div class="modal-box">
+
+                        <a href="#close" class="modal-close-btn">&times;</a>
+                        <div class="modal-header">
+                            <h2>IT Student Assistant</h2>
+                            <p class="subtitle"><strong>Department:</strong> IT Office</p>
+                        </div>
+
+                        <hr>
+
+                        <div class="modal-body">
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <span class="label">Location</span>
+                                    <span class="value">IT Building, 2nd Floor</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">Pay Rate</span>
+                                    <span class="value">₱60 / hour</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">Daily Hours</span>
+                                    <span class="value">4 hours / day</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">Availability</span>
+                                    <span class="value">2 of 5 slots left</span>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <h4>Job Description</h4>
+                            <p style="color: #4a5568; line-height: 1.6;">
+                                Assist the IT Department in maintaining campus-wide digital assets. You will be responsible for updating website content, assisting students with technical issues in the computer labs, and organizing hardware documentation.
+                            </p>
+
+                            <hr>
+
+                            <h4>Requirements & Qualifications</h4>
+                            <ul class="custom-list">
+                                <li>Must be a currently enrolled student.</li>
+                                <li>Minimum GPA of 2.5 or higher.</li>
+                                <li>Reliable and punctual.</li>
+                                <li>Can commit to 20 hours per week.</li>
+                            </ul>
+
+                            <hr>
+                            <h4>Responsibilities</h4>
+                            <ul class="custom-list">
+                                <li>Update and maintain the IT Department's website.</li>
+                                <li>Provide technical support to students in computer labs.</li>
+                                <li>Organize and maintain hardware documentation.</li>
+                                <li>Assist with IT-related events and workshops.</li>
+                                <li>Report equipment issues to the IT supervisor.</li>
+                            </ul>
+
+                            <hr>
+
+                            <h4>Required Skills</h4>
+                            <div class="skill-tags">
+                                <span>HTML/CSS</span>
+                                <span>Microsoft Office</span>
+                                <span>Troubleshooting</span>
+                                <span>Technical Writing</span>
+                            </div>
+
+                            <hr>
+                            <h4>Benefits</h4>
+                            <ul class="custom-list">
+                                <li>Gain practical experience in IT support and web maintenance.</li>
+                                <li>Flexible work hours to accommodate your class schedule.</li>
+                                <li>Opportunity to network with IT professionals and other student assistants.</li>
+                                <li>Earn while you learn with a competitive hourly rate.</li>
+                            </ul>
+
+                            <hr>
+                            <h4>Supervisor</h4>
+                            <div class="info-item">
+                                <span class="label">Name</span>
+                                <span class="value">Ms. Ana Rodriguez</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Email</span>
+                                <span class="value">ana_rodriguez@wmsu.edu.ph</span>
+
+                            </div>
+
+                            <hr>
+
+                            <h4>Application Deadline</h4>
+                            <p style="color: #dc2626; font-weight: 600;">Applications are accepted until further notice.</p>
+                        
+                        </div>
+
+                        <div class="modal-footer">
+                            <a href="#" class="secondary-btn">Close</a>
+                            <a href="form.html" class="primary-btn" style="color: white; border-radius: 8px;">Apply</a>
+                        </div>
+                    </div>
+                </div>
+
+                    <div id="cancel-confirm-1" class="modal-overlay">
+                        <div class="cancel-modal-box">
+                            <h3 style="display: flex; justify-content: center;">Are you sure?</h3>
+                            <p style="display: flex; justify-content: center;">Do you really want to cancel this application?</p>
+                            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
+                                <a href="#" class="primary-btn" style="text-decoration: none; background: #9f0f0f;">Cancel</a>
+                                <a href="#" class="secondary-btn" style="text-decoration: none;">No</a>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+
+            <!--Application Card for Library Assistant-->
+            <div class="application-card">
+                <div class="application-header">
+                     <div class="suggestion-group"> 
+                         <h2>Library Assistant</h2> 
+                        <div class="suggestion-badge">
+                            <i class="fas fa-star"></i> Suggested for You
+                        </div>
+                    </div>        
+                    <hr>
+                    <p>Organize library books, assist students in locating resources, and maintain records.</p>
+                </div>
+
+                <div class="application-info">
+                    <div class="column">
+                        <p><i class="fas fa-building"></i> <strong>Department:</strong> Library</p>
+                        <p><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> Main Library</p>
+                        <p><i class="fas fa-money-bill-wave"></i> <strong>Pay:</strong> ₱50/hour</p>
+                    </div>
+
+                    <div class="column">
+                        <p><i class="fas fa-hourglass-half"></i> <strong>Hours:</strong> 15 hrs/week</p>
+                        <p><i class="fas fa-users"></i> <strong>Slots:</strong> 1 / 3</p>
+                        <p><i class="fas fa-info-circle"></i> <strong>Status:</strong> 
+                            <span class="status-badge none">Available</span>
+                        </p>
+                    </div>
+
+                    <ul class="requirements">
+                        <p><i class="fas fa-check-circle"></i> <strong>Requirements:</strong></p>
+                        <li>Organized and detail-oriented</li>
+                        <li>Basic record keeping skills</li>
+                        <li>Minimum GPA: 2.5</li>
+                    </ul>
+                </div>
+
+                <!--Modal for Library Assistant-->
+                <div class="application-action">
+                    <a href="#view-details-2" class="secondary-btn" style="text-decoration: none;">View Details</a>
+                    <a href="form.html" class="primary-btn" href="#">Apply</a>
+                </div>
+            </div>
+
+            <div id="view-details-2" class="modal-overlay">
+                <div class="modal-box">
+                    <a href="#close" class="modal-close-btn"> &times;</a>
+
+                    <div class="modal-header">
+                        <h2>Library Assistant</h2>
+                        <p class="subtitle"><strong>Department:</strong> Library</p>
+                    </div>
+
+                    <hr>
+                    <div class="modal-body">
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="label">Location</span>
+                                <span class="value">Main Library, 1st Floor</span>
+                            </div>
+
+                            <div class="info-item">
+                                <span class="label">Pay Rate</span>
+                                <span class="value">₱50 / hour</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Daily Hours</span>
+                                <span class="value">3 hours / day</span>
+                            </div>
+
+                            <div class="info-item">
+                                <span class="label">Availability</span>
+                                <span class="value">1 of 3 slots left</span>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <h4>Job Description</h4>
+                        <p style="color: #4a5568; line-height: 1.6;">
+                            Assist the Library Department in maintaining an organized and efficient library environment. Responsibilities include organizing books, assisting students in locating resources, and maintaining accurate records of library materials.
+                        </p>
+
+                        <hr>
+
+                        <h4>Requirements & Qualifications</h4>
+                        <ul class="custom-list">
+                            <li>Must be a currently enrolled student.</li>
+                            <li>Minimum GPA of 2.5 or higher.</li>
+                            <li>Organized and detail-oriented.</li>
+                            <li>Can commit to 15 hours per week.</li>
+                        </ul>
+
+                        <hr>
+                        <h4>Responsibilities</h4>
+                        <ul class="custom-list">
+                            <li>Organize and shelve library books according to the classification system.</li>
+                            <li>Assist students in locating resources and using library equipment.</li>
+                            <li>Maintain accurate records of borrowed and returned materials.</li>
+                            <li>Support library events and activities as needed.</li>                               
+                        </ul>
+                        
+                        <hr>
+
+                        <h4>Required Skills</h4>
+                        <div class="skill-tags">
+                            <span>Organization</span>
+                            <span>Customer Service</span>
+                            <span>Record Keeping</span>
+                            <span>Library Systems</span>
+                        </div>
+
+                        <hr>
+
+                        <h4>Benefits</h4>
+                        <ul class="custom-list">
+                            <li>Gain experience in library operations and customer service.</li>
+                            <li>Flexible scheduling around your classes.</li>
+                            <li>Opportunity to work in a quiet, academic environment.</li>
+                            <li>Earn while you learn with a competitive hourly rate.</li>
+                        </ul>
+
+                        <hr>
+
+                        <h4>Supervisor</h4>
+                        <div class="info-item">
+                            <span class="label">Name</span>
+                            <span class="value">Ms. Maria Santos</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Email</span>
+                            <span class="value">maria_santos@wmsu.edu.ph</span>
+                        </div>
+
+                        <hr>
+                        <h4>Application Deadline</h4>
+                        <p style="color: #dc2626; font-weight: 600;">Applications are accepted until further notice.</p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <a href="#close" class="secondary-btn">Close</a>
+                        <a href="form.html" class="primary-btn" style="color: white; border-radius: 8px;">Apply</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="application-card">
+                <div class="application-header">
+                    <div class="suggestion-group"> 
+                        <h2>IT Support Intern</h2> 
+                        <div class="suggestion-badge">
+                            <i class="fas fa-star"></i> Suggested for You
+                        </div>
+                    </div>
+                    <hr>
+                    <p>Assist in software troubleshooting, IT support for student devices, and network management.</p>
+                </div>
+
+                <div class="application-info">
+                    <div class="column">
+                        <p><i class="fas fa-building"></i> <strong>Department:</strong> MIS</p>
+                        <p><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> MIS Office</p>
+                        <p><i class="fas fa-money-bill-wave"></i> <strong>Pay:</strong> ₱70/hour</p>
+                    </div>
+
+                    <div class="column">
+
+                        <p><i class="fas fa-hourglass-half"></i> <strong>Hours:</strong> 25 hrs/week</p>
+                        <p><i class="fas fa-users"></i> <strong>Slots:</strong> 3 / 5</p>
+                        <p><i class="fas fa-info-circle"></i> <strong>Status:</strong> 
+                            <span class="status-badge none">Available</span>
+                        </p>
+                    </div>
+
+                    <ul class="requirements">
+                        <p><i class="fas fa-check-circle"></i> <strong>Requirements:</strong></p>
+                        <li>Basic troubleshooting skills</li>
+                        <li>Familiar with networking basics</li>
+                        <li>Minimum GPA: 2.75</li>
+                    </ul>
+                </div>
+
+                <!--Modal for IT Support Intern-->
+                <div class="application-action">
+                    <a href="#view-details-3" class="secondary-btn" style="text-decoration: none;">View Details</a>
+                    <a href="form.html" class="primary-btn" href="#">Apply</a>
+                </div>
+
+                <div id="view-details-3" class="modal-overlay">
+                    <div class="modal-box">
+
+                        <a href="#close" class="modal-close-btn">&times;</a>
+                        <div class="modal-header">
+                            <h2>IT Support Intern</h2>
+                            <p class="subtitle"><strong>Department:</strong> MIS</p>
+                        </div>
+
+                        <hr>
+                        <div class="modal-body">
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <span class="label">Location</span>
+                                    <span class="value">MIS Office, 3rd Floor</span>
+                                </div>
+
+                                <div class="info-item">
+                                    <span class="label">Pay Rate</span>
+                                    <span class="value">₱70 / hour</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">Daily Hours</span>
+                                    <span class="value">5 hours / day</span>
+                                </div>
+
+                                <div class="info-item">
+                                    <span class="label">Availability</span>
+                                    <span class="value">3 of 5 slots left</span>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <h4>Job Description</h4>
+                            <p style="color: #4a5568; line-height: 1.6;">
+                                Assist the MIS Department in providing IT support to students and staff. This role involves troubleshooting software and hardware issues, assisting with network management, and maintaining IT equipment. The intern will gain hands-on experience in IT support and network administration.
+                            </p>
+
+                             <hr>
+
+                            <h4>Requirements & Qualifications</h4>
+                            <ul class="custom-list">
+                                <li>Must be a currently enrolled student.</li>
+                                <li>Minimum GPA of 2.75 or higher.</li>
+                                <li>Basic troubleshooting skills and familiarity with networking concepts.</li>
+                                <li>Can commit to 25 hours per week.</li>
+                            </ul>
+
+                            <hr>
+
+                            <h4>Responsibilities</h4>
+                            <ul class="custom-list">
+                                <li>Troubleshoot software and hardware issues for students and staff.</li>
+                                <li>Assist with network management and connectivity problems.</li>
+                                <li>Maintain and organize IT equipment and inventory.</li>
+                                <li>Provide support during IT-related events and workshops.</li>
+                                <li>Report recurring issues to the MIS supervisor for further action.</li>
+                            </ul>
+
+                            <hr>
+
+                            <h4>Required Skills</h4>
+                            <div class="skill-tags">
+                                <span>Troubleshooting</span>
+                                <span>Networking Basics</span>
+                                <span>Customer Service</span>
+                                <span>Technical Support</span>
+                                <span>Microsoft Office</span>
+                            </div>
+                            
+                            <hr>
+                            <h4>Benefits</h4>
+                            <ul class="custom-list">
+                                <li>Gain practical experience in IT support and network management.</li>
+                                <li>Exposure to real-world technical environments.</li>
+                                <li>Opportunity to work closely with IT professionals and gain mentorship.</li>
+                                <li>Earn while you learn with a competitive hourly rate.</li>
+                            </ul>
+
+                            <hr>
+                            <h4>Supervisor</h4>
+                            <div class="info-item">
+                                <span class="label">Name</span>
+                                <span class="value">Mr. Carlos Mendoza</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Email</span>
+                                <span class="value">carlos_mendoza@wmsu.edu.ph</span>
+                            </div>
+
+                            <hr>
+                            <h4>Application Deadline</h4>
+                            <p style="color: #dc2626; font-weight: 600;">Applications are accepted until further notice.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#close" class="secondary-btn">Close</a>
+                            <a href="form.html" class="primary-btn" style="color: white; border-radius: 8px;">Apply</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="application-card">
+                <div class="application-header">
+                    <div class="suggestion-group"> 
+                        <h2>Registrar Assistant</h2>
+                        <div class="suggestion-badge">
+                            <i class="fas fa-star"></i> Suggested for You
+                        </div>
+                    </div>
+                    <hr>
+                    <p>Assist in managing student records, processing enrollment documents, and handling front desk inquiries.</p>
+                </div>
+
+                <div class="application-info">
+                    <div class="column">
+                        <p><i class="fas fa-building"></i> <strong>Department:</strong> Registrar</p>
+                        <p><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> Registrar Office</p>
+                        <p><i class="fas fa-money-bill-wave"></i> <strong>Pay:</strong> ₱70/hour</p>
+                    </div>
+
+                    <div class="column">
+
+                        <p><i class="fas fa-hourglass-half"></i> <strong>Hours:</strong> 25 hrs/week</p>
+                        <p><i class="fas fa-users"></i> <strong>Slots:</strong> 2 / 5</p>
+                        <p><i class="fas fa-info-circle"></i> <strong>Status:</strong> 
+                            <span class="status-badge none">Available</span>
+                        </p>
+                    </div>
+
+                    <ul class="requirements">
+                        <p><i class="fas fa-check-circle"></i> <strong>Requirements:</strong></p>
+                        <li>Strong attention to detail</li>
+                        <li>Basic MS Office skills (Word/Excel)</li>
+                        <li>Minimum GPA: 2.75</li>
+                    </ul>
+                </div>
+
+                <!--Modal for Registrar Assistant-->
+                <div class="application-action">
+                    <a href="#view-details-4" class="secondary-btn" style="text-decoration: none;">View Details</a>
+                    <a href="form.html" class="primary-btn" href="#">Apply</a>
+                </div>
+
+                <div id="view-details-4" class="modal-overlay">
+                    <div class="modal-box">
+
+                        <a href="#close" class="modal-close-btn">&times;</a>
+                        <div class="modal-header">
+                            <h2>Registrar Assistant</h2>
+                            <p class="subtitle"><strong>Department:</strong> Registrar</p>
+                        </div>
+
+                        <hr>
+                        <div class="modal-body">
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <span class="label">Location</span>
+                                    <span class="value">Registrar Office, 1st Floor</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">Pay Rate</span>
+                                    <span class="value">₱70 / hour</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">Daily Hours</span>
+                                    <span class="value">5 hours / day</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">Availability</span>
+                                    <span class="value">2 of 5 slots left</span>
+                                </div>
+                            </div>
+
+                            <hr>
+                            <h4>Job Description</h4>
+                            <p style = "color: #4a5568;">Assist the Registrar's Office in managing student records and process enrollment documents. You will handle front desk inquiries and maintain accurate student information.</p>
+
+                            <hr>
+                            <h4>Requirements & Qualifications</h4>
+                            <ul class="custom-list">
+                                <li>Must be a currently enrolled student.</li>
+                                <li>Minimum GPA of 2.75 or higher.</li>
+                                <li>Strong attention to detail and organizational skills.</li>
+                                <li>Can commit to 25 hours per week.</li>
+                            </ul>
+
+                            <hr>
+                            <h4>Responsibilities</h4>
+                            <ul class="custom-list">
+                                <li>Manage and update student records accurately.</li>
+                                <li>Process enrollment documents and assist with registration.</li>
+                                <li>Handle front desk inquiries and provide excellent customer service.</li>
+                                <li>Support the Registrar's Office during peak enrollment periods.</li>
+                                <li>Report any discrepancies in student records to the supervisor.</li>
+                            </ul>
+
+                            <hr>
+                            <h4>Required Skills</h4>
+                            <div class="skill-tags">
+                                <span>Attention to Detail</span>
+                                <span>Microsoft Office</span>
+                                <span>Customer Service</span>
+                                <span>Record Management</span>
+                            </div>
+
+                            <hr>
+                            <h4>Benefits</h4>
+                            <ul class="custom-list">
+                                <li>Gain experience in administrative support and record management.</li>
+                                <li>Flexible scheduling to accommodate your classes.</li>
+                                <li>Opportunity to work closely with administrative professionals.</li>
+                                <li>Earn while you learn with a competitive hourly rate.</li>
+                            </ul>
+
+                            <hr>
+                            <h4>Supervisor</h4>
+                            <div class="info-item">
+                                <span class="label">Name</span>
+                                <span class="value">Ms. Elena Garcia</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Email</span>
+                                <span class="value">elena_garcia@university.edu</span>
+                            </div>
+
+                            <hr>
+                            <h4>Application Deadline</h4>
+                            <p style="color: #dc2626; font-weight: 600;">Applications are accepted until further notice.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#close" class="secondary-btn">Close</a>
+                            <a href="form.html" class="primary-btn" style="color: white; border-radius: 8px;">Apply</a>
+                        </div>
+                    </div>
+                </div>
+        </main>
+
+        <aside class="right-panel">
+            <div class="stat-card">
+                <h4>Application Status</h4>
+                <div class="stat-item"><span>Approved</span> <span class="count">1</span></div>
+                <div class="stat-item"><span>Under Review</span> <span class="count">1</span></div>
+                <div class="stat-item"><span>Interview</span> <span class="count">1</span></div>
+                <div class="stat-item"><span>Rejected</span> <span class="count">0</span></div>
+            </div>
+
+            <div class="stat-card help-card">
+                <h4><i class="fas fa-lightbulb"></i> Quick Tip</h4>
+                <p>Ensure your <strong>Study Load</strong> is updated in your profile to speed up verification.</p>
+            </div>
+        </aside>
+
+    </div>
+
+<script>
+    const positions = [
+  { title: "IT Student Assistant", dept: "IT Office",          pay: 60, hours: 20, status: "review" },
+  { title: "Library Assistant",    dept: "Library Department", pay: 50, hours: 15, status: "available" },
+  { title: "IT Support Intern",    dept: "IT Office",          pay: 70, hours: 25, status: "available" },
+  { title: "Registrar Assistant",  dept: "Registrar",          pay: 70, hours: 25, status: "available" },
+];
+
+function applyFilters() {
+  const q    = document.getElementById("search").value.toLowerCase();
+  const dept = document.getElementById("department").value;
+  const dur  = document.getElementById("duration").value;
+  const pay  = document.getElementById("pay").value;
+
+  document.querySelectorAll(".application-card").forEach((card, i) => {
+    const p = positions[i];
+    const weekly = p.pay * p.hours;
+
+    const matchSearch   = !q || card.innerText.toLowerCase().includes(q);
+    const matchDept     = !dept || dept === "All Departments" || p.dept === dept;
+    const matchDuration = !dur  || dur  === "Any"
+                          || (dur === "Short-term" && p.hours < 20)
+                          || (dur === "Long-term"  && p.hours >= 20);
+    const matchPay      = !pay  || pay  === "Any"
+                          || (pay === "₱0 – ₱500/week"    && weekly <= 500)
+                          || (pay === "₱500 – ₱1000/week" && weekly > 500 && weekly <= 1000)
+                          || (pay === "₱1000+/week"        && weekly > 1000);
+
+    card.style.display = (matchSearch && matchDept && matchDuration && matchPay) ? "" : "none";
+  });
+}
+
+["search", "department", "duration", "pay"].forEach(id =>
+  document.getElementById(id).addEventListener("input", applyFilters)
+);
+
+document.querySelector(".primary-btn").addEventListener("click", applyFilters);
+
+</script>
+
+</body>
+</html>
