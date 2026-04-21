@@ -1655,6 +1655,33 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
+<!-- Manage Positions - Delete button-->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  // ── Delete buttons ───────────────────────────
+  document.querySelectorAll('.btn-delete').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      const card = this.closest('.position-card');
+      const posName = card ? card.querySelector('.pos-name').textContent : 'this position';
+
+      confirmAction(
+        'Confirm Deletion',
+        `Are you sure you want to delete the position "${posName}"? This action cannot be undone.`,
+        function () {
+          card.style.transition = 'opacity 0.3s';
+          card.style.opacity = '0';
+          setTimeout(function () { card.remove(); }, 300);
+          showAlert('Position Deleted', `"${posName}" has been deleted successfully.`, 'success');
+        },
+        null,
+        { confirmText: 'Yes, Delete', cancelText: 'Cancel', confirmColor: 'danger-btn' }
+      );
+    });
+  });
+});
+</script>
+
 </div><!-- /layout -->
 </body>
 </html>
