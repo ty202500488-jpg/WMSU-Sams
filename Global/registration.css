@@ -227,6 +227,60 @@ body{
     color: #fff;
 }
 
+.upload-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.upload-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 40px 20px;
+  background: #fff;
+}
+
+.dropzone svg {
+  color: #9ca3af;
+  flex-shrink: 0;
+}
+
+.dropzone-text {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.dropzone input[type="file"] {
+  display: none;
+}
+
+.choose-btn {
+  font-size: 13px;
+  font-weight: 500;
+  background: #f9eeee;
+  border: 1px solid #9e1a2e;
+  border-radius: 6px;
+  padding: 5px 14px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.choose-btn:hover {
+  background: #dbeafe;
+  border-color: #93c5fd;
+}
+
 /*  RESPONSIVE MEDIA QUERIES  */
 @media (max-width: 1024px){
 	.register-card{

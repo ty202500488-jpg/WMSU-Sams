@@ -420,6 +420,60 @@ main{
     font-size: 18px;
 }
 
+/* FAQ Section */
+#faq {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 120px 20px;
+    background: #f4f4f4;
+    text-align: center;
+} 
+#faq h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: #720b0b;
+}
+#faq p {
+    color: #555;
+    margin-bottom: 50px;
+}
+.faq-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+
+.faq-item {
+    background: white;
+    padding: 30px 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    min-height: 300px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.faq-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+}
+.faq-container .faq-question {
+    font-size: 18px;
+    color: #9f0f0f;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+.faq-container .faq-answer p {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.5;
+}
+
 /* Grid Layout */
 .job-grid {
     display: grid;
