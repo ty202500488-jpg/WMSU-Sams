@@ -453,17 +453,28 @@ hr {
 }
 
 .view-receipt-link {
-    display: inline-block;
-    margin-top: 8px;
-    font-size: 13px;
-    color: #720b0b;
+    background:  var(--maroon);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.85rem;
     font-weight: 600;
-    text-decoration: underline;
     cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 4px rgba(123, 13, 30, 0.2);
+    text-decoration: none;
+    margin-top: 8px;
 }
 
 .view-receipt-link:hover {
-    color: #9f0f0f;
+    background: var(--maroon-light);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(123, 13, 30, 0.3);
+    text-decoration: none;
 }
 
 .secondary-btn:hover {
