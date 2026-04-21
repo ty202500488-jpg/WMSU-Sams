@@ -688,7 +688,7 @@
           <div class="pos-stat-lbl">Filled</div>
         </div>
         <div class="pos-stat">
-          <div class="pos-stat-val col-green">2</div>
+          <div class="pos-stat-val col-green"></div>
           <div class="pos-stat-lbl">Available</div>
         </div>
         <div class="pos-stat">
@@ -720,7 +720,7 @@
           <div class="pos-stat-lbl">Filled</div>
         </div>
         <div class="pos-stat">
-          <div class="pos-stat-val" style="color:var(--red);">0</div>
+          <div class="pos-stat-val" style="color:var(--red);"></div>
           <div class="pos-stat-lbl">Available</div>
         </div>
         <div class="pos-stat">
@@ -752,7 +752,7 @@
           <div class="pos-stat-lbl">Filled</div>
         </div>
         <div class="pos-stat">
-          <div class="pos-stat-val col-green">2</div>
+          <div class="pos-stat-val col-green"></div>
           <div class="pos-stat-lbl">Available</div>
         </div>
         <div class="pos-stat">
@@ -784,7 +784,7 @@
           <div class="pos-stat-lbl">Filled</div>
         </div>
         <div class="pos-stat">
-          <div class="pos-stat-val col-green">2</div>
+          <div class="pos-stat-val col-green"></div>
           <div class="pos-stat-lbl">Available</div>
         </div>
         <div class="pos-stat">
@@ -816,7 +816,7 @@
           <div class="pos-stat-lbl">Filled</div>
         </div>
         <div class="pos-stat">
-          <div class="pos-stat-val" style="color:var(--red);">0</div>
+          <div class="pos-stat-val" style="color:var(--red);"></div>
           <div class="pos-stat-lbl">Available</div>
         </div>
         <div class="pos-stat">
@@ -848,7 +848,7 @@
           <div class="pos-stat-lbl">Filled</div>
         </div>
         <div class="pos-stat">
-          <div class="pos-stat-val col-green">6</div>
+          <div class="pos-stat-val col-green"></div>
           <div class="pos-stat-lbl">Available</div>
         </div>
         <div class="pos-stat">
@@ -1678,6 +1678,21 @@ document.addEventListener('DOMContentLoaded', function () {
         { confirmText: 'Yes, Delete', cancelText: 'Cancel', confirmColor: 'danger-btn' }
       );
     });
+  });
+});
+</script>
+
+<!--Manage Positions Total Slots - Filled Slots = Available Slots script-->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.position-card').forEach(function (card) {
+    const stats = card.querySelectorAll('.pos-stat-val');
+    // stats[0] = Total Slots, stats[1] = Filled, stats[2] = Available
+    const total = parseInt(stats[0].textContent);
+    const filled = parseInt(stats[1].textContent);
+    if (!isNaN(total) && !isNaN(filled)) {
+      stats[2].textContent = total - filled;
+    }
   });
 });
 </script>
