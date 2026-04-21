@@ -37,29 +37,29 @@
             <form id="studentForm" class="account-form" action="submitted.html" method="POST" required>
              <div class="input-row">
                     <div class="field">
-                        <label>First Name</label>
-                        <input type="text" name="first_name" placeholder="Enter First Name" required>
+                        <label>First Name<span style="color: red;"> *</span></label>
+                        <input type="text" name="first_name" placeholder="e.g. Juan" required>
                     </div>
                     <div class="field">
                         <label>Middle Name</label>
-                        <input type="text" name="middle_name" placeholder="Enter Middle Initial" required>
+                        <input type="text" name="middle_name" placeholder="e.g. Santos (Optional)" >
                     </div>
                     <div class="field">
-                        <label>Last Name</label>
-                        <input type="text" name="last_name" placeholder="Enter Last Name" required>
+                        <label>Last Name<span style="color: red;"> *</span></label>
+                        <input type="text" name="last_name" placeholder="e.g. Dela Cruz" required>
                     </div>
                 </div>
 
-            <label>Official WMSU Email</label>
-            <input type="email" placeholder="username@wmsu.edu.ph" required>
+            <label>Official WMSU Email<span style="color: red;"> *</span></label>
+            <input type="email" placeholder="e.g. username@wmsu.edu.ph" required>
 
             <div class="row">
                 <div>
-                    <label>Student ID</label>
-                    <input type="text" inputmode="numeric" pattern="[0-9-]*" placeholder="2023-01234" required>
+                    <label>Student ID<span style="color: red;"> *</span></label>
+                    <input type="text" inputmode="numeric" pattern="[0-9-]*" placeholder="e.g. 2023-01234" required>
                 </div>
                 <div>
-                    <label>Year Level</label>
+                    <label>Year Level<span style="color: red;"> *</span></label>
                     <select required>
                         <option value="" disabled selected>Select Year</option>
                         <option value="1">1st Year</option>
@@ -70,10 +70,19 @@
                 </div>
             </div>
 
-            <label>Password</label>
+            <div class="upload-field">
+                <label class="upload-label">Upload COR</label>
+                <div class="dropzone">
+                    <label class="choose-btn" for="fileInput">Choose your files</label>
+                    <input type="file" id="fileInput" accept=".pdf,.jpg,.jpeg,.png" required>
+                    <span class="dropzone-text">No files chosen</span>
+                </div>
+            </div>
+
+            <label>Password<span style="color: red;"> *</span></label>
             <input type="password" minlength="8" placeholder="Enter Password" required>
 
-            <label>Confirm Password</label>
+            <label>Confirm Password<span style="color: red;"> *</span></label>
             <input type="password" minlength="8" placeholder="Confirm Password" required>
 
            <a id="register-btn" href="registration_submitted.html">Register</a>
@@ -84,20 +93,20 @@
 
              <div class="input-row">
                     <div class="field">
-                        <label>First Name</label>
-                        <input type="text" name="first_name" placeholder="Enter First Name" required>
+                        <label>First Name<span style="color: red;"> *</span></label>
+                        <input type="text" name="first_name" placeholder="e.g. Juan" required>
                     </div>
                     <div class="field">
                         <label>Middle Name</label>
-                        <input type="text" name="middle_name" placeholder="Enter Middle Initial" required>
+                        <input type="text" name="middle_name" placeholder="e.g. Santos(Optional)" >
                     </div>
                     <div class="field">
-                        <label>Last Name</label>
-                        <input type="text" name="last_name" placeholder="Enter Last Name" required>
+                        <label>Last Name<span style="color: red;"> *</span></label>
+                        <input type="text" name="last_name" placeholder="e.g. Dela Cruz" required>
                     </div>
                 </div>
             
-            <label>Department/Office</label>
+            <label>Department/Office<span style="color: red;"> *</span></label>
             <select required>
 			    <option>Library Department</option>
                 <option>IT Office</option>
@@ -111,13 +120,14 @@
 			    <option>Sports Office</option>
             </select>
 
-            <label>Official WMSU Email</label> 
-            <input type="email" placeholder="username@wmsu.edu.ph" required>
+            <label>Official WMSU Email<span style="color: red;"> *</span></label> 
+            <input type="email" placeholder="e.g. username@wmsu.edu.ph" required>
 
-            <label>Password</label>
+            
+            <label>Password<span style="color: red;"> *</span></label>
             <input type="password" minlength="8" placeholder="Enter Password" required>
 
-            <label>Confirm Password</label>
+            <label>Confirm Password<span style="color: red;"> *</span></label>
             <input type="password" minlength="8" placeholder="Confirm Password" required>
 
            <a id="register-btn" href="registration_submitted.html">Register</a>
@@ -128,29 +138,29 @@
 
             <div class="input-row">
                     <div class="field">
-                        <label>First Name</label>
-                        <input type="text" name="first_name" placeholder="Enter First Name" required>
+                        <label>First Name<span style="color: red;"> *</span></label>
+                        <input type="text" name="first_name" placeholder="e.g. Juan" required>
                     </div>
                     <div class="field">
                         <label>Middle Name</label>
-                        <input type="text" name="middle_name" placeholder="Enter Middle Initial" required>
+                        <input type="text" name="middle_name" placeholder="e.g. Santos (Optional)">
                     </div>
                     <div class="field">
-                        <label>Last Name</label>
-                        <input type="text" name="last_name" placeholder="Enter Last Name" required>
+                        <label>Last Name<span style="color: red;"> *</span></label>
+                        <input type="text" name="last_name" placeholder="e.g. Dela Cruz" required>
                     </div>
                 </div>
 
-            <label> Email</label>
-            <input type="email" placeholder="username@wmsu.edu.ph" required>
+            <label> Email<span style="color: red;"> *</span></label>
+            <input type="email" placeholder="e.g. username@wmsu.edu.ph" required>
 
-            <label>Password</label>
+            <label>Password<span style="color: red;"> *</span></label>
             <input type="password" placeholder="Create Password" required>
 
-            <label>Confirm Password</label>
+            <label>Confirm Password<span style="color: red;"> *</span></label>
             <input type="password" placeholder="Confirm Password" required>
 
-            <label>Authorization Code</label>
+            <label>Authorization Code<span style="color: red;"> *</span></label>
             <input type="text" placeholder="Enter Authorization Code" required>
 
              <a id="register-btn" href="registration_submitted.html">Register</a>
