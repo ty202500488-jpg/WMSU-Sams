@@ -452,6 +452,20 @@ hr {
     transition: background 0.2s;
 }
 
+.view-receipt-link {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 13px;
+    color: #720b0b;
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.view-receipt-link:hover {
+    color: #9f0f0f;
+}
+
 .secondary-btn:hover {
     background-color: #f2f2f2;
 }

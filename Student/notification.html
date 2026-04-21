@@ -54,112 +54,127 @@
         </aside>
 
         <main class="notification-list">
-    <div class="list-header">
-        <h1>Notifications</h1>
-        <div class="header-actions">
-            <button class="text-btn">Mark all as read</button>
-        </div>
-    </div>
-
-    <input type="text" placeholder="Search notifications..." class="search-bar">
-
-    <div class="category-divider">New</div>
-
-    <div class="notif-card unread">
-        <div class="notif-icon approved">
-            <i class="fas fa-check-circle"></i>
-        </div>
-        <div class="notif-content">
-            <p>Your application for <strong>Student Assistant – Library Dept</strong> has been approved.</p>
-            <span class="notif-time">Just now</span>
-        </div>
-        <div class="notif-opts">
-            <button class="three-dots"><i class="fas fa-ellipsis-h"></i></button>
-            <div class="opt-dropdown">
-                <a href="#"><i class="fas fa-check"></i> Mark as read</a>
-                <a href="#" class="delete-opt"><i class="fas fa-trash"></i> Remove</a>
+        <div class="list-header">
+            <h1>Notifications</h1>
+            <div class="header-actions">
+                <button class="text-btn">Mark all as read</button>
             </div>
         </div>
-        <div class="unread-dot"></div>
-    </div>
 
-    <div class="notif-card unread">
-        <div class="notif-icon job">
-            <i class="fas fa-briefcase"></i>
-        </div>
-        <div class="notif-content">
-            <p><strong>New Job Alert:</strong> Library Department is looking for 2 Research Assistants.</p>
-            <span class="notif-time">12 mins ago</span>
-        </div>
-        <div class="notif-opts">
-            <button class="three-dots"><i class="fas fa-ellipsis-h"></i></button>
-        </div>
-        <div class="unread-dot"></div>
-    </div>
+        <input type="text" placeholder="Search notifications..." class="search-bar">
 
-    <div class="category-divider">Today</div>
+        <div class="category-divider">New</div>
 
-    <div class="notif-card">
-        <div class="notif-icon interview">
-            <i class="fas fa-calendar-alt"></i>
+        <div class="notif-card unread payroll-notif">
+            <div class="notif-icon payroll">
+                <i class="fas fa-money-check-alt"></i>
+            </div>
+            <div class="notif-content">
+                <p><strong>Payroll Released:</strong> Your stipend for the period of <strong>March 2026</strong> is now ready for claiming.</p>
+                <a href="claim_receipt.html" class="view-receipt-link">Click to Claim Receipt</a>
+                <span class="notif-time">Just now</span>
+            </div>
+            <div class="notif-opts">
+                <button class="three-dots"><i class="fas fa-ellipsis-h"></i></button>
+            </div>
+            <div class="unread-dot"></div>
         </div>
-        <div class="notif-content">
-            <p>Interview scheduled for <strong>IT Support Intern</strong> at 10:00 AM - 12:00 PM.</p>
-            <span class="notif-time">4 hours ago</span>
-        </div>
-        <div class="notif-opts">
-            <button class="three-dots"><i class="fas fa-ellipsis-h"></i></button>
-        </div>
-    </div>
 
-    <div class="notif-card">
-        <div class="notif-icon document">
-            <i class="fas fa-file-upload"></i>
-        </div>
-        <div class="notif-content">
-            <p>Your <strong>Certificate of Registration</strong> has been successfully verified.</p>
-            <span class="notif-time">8 hours ago</span>
-        </div>
-        <div class="notif-opts">
-            <button class="three-dots"><i class="fas fa-ellipsis-h"></i></button>
-        </div>
-    </div>
-
-    <div class="category-divider">Earlier</div>
-
-    <div class="notif-card">
-        <div class="notif-icon rejected">
-            <i class="fas fa-times-circle"></i>
-        </div>
-        <div class="notif-content">
-            <p>Your application for <strong>Records Clerk – Admission</strong> was rejected.</p>
-            <span class="notif-time">2 days ago</span>
-        </div>
-        <div class="notif-opts">
-            <button class="three-dots"><i class="fas fa-ellipsis-h"></i></button>
-        </div>
-    </div>
-</main>
-
-        <aside class="right-panel">
-            <div class="action-card">
-                <h4>Settings</h4>
-                <div class="setting-row">
-                    <span>Email Alerts</span>
-                    <input type="checkbox" checked>
-                </div>
-                <div class="setting-row">
-                    <span>Push Notifications</span>
-                    <input type="checkbox" checked>
+        <div class="notif-card unread">
+            <div class="notif-icon approved">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="notif-content">
+                <p>Your application for <strong>Student Assistant – Library Dept</strong> has been approved.</p>
+                <span class="notif-time">Just now</span>
+            </div>
+            <div class="notif-opts">
+                <button class="three-dots"><i class="fas fa-ellipsis-h"></i></button>
+                <div class="opt-dropdown">
+                    <a href="#"><i class="fas fa-check"></i> Mark as read</a>
+                    <a href="#" class="delete-opt"><i class="fas fa-trash"></i> Remove</a>
                 </div>
             </div>
+            <div class="unread-dot"></div>
+        </div>
 
-            <div class="action-card help-box">
-                <h4>Missing something?</h4>
-                <p>If an application status changed but you didn't get a notification, contact MIS.</p>
-                <button class="secondary-btn">Report Issue</button>
+        <div class="notif-card unread">
+            <div class="notif-icon job">
+                <i class="fas fa-briefcase"></i>
             </div>
-        </aside>
+            <div class="notif-content">
+                <p><strong>New Job Alert:</strong> Library Department is looking for 2 Research Assistants.</p>
+                <span class="notif-time">12 mins ago</span>
+            </div>
+            <div class="notif-opts">
+                <button class="three-dots"><i class="fas fa-ellipsis-h"></i></button>
+            </div>
+            <div class="unread-dot"></div>
+        </div>
+
+        <div class="category-divider">Today</div>
+
+        <div class="notif-card">
+            <div class="notif-icon interview">
+                <i class="fas fa-calendar-alt"></i>
+            </div>
+            <div class="notif-content">
+                <p>Interview scheduled for <strong>IT Support Intern</strong> at 10:00 AM - 12:00 PM.</p>
+                <span class="notif-time">4 hours ago</span>
+            </div>
+            <div class="notif-opts">
+                <button class="three-dots"><i class="fas fa-ellipsis-h"></i></button>
+            </div>
+        </div>
+
+        <div class="notif-card">
+            <div class="notif-icon document">
+                <i class="fas fa-file-upload"></i>
+            </div>
+            <div class="notif-content">
+                <p>Your <strong>Certificate of Registration</strong> has been successfully verified.</p>
+                <span class="notif-time">8 hours ago</span>
+            </div>
+            <div class="notif-opts">
+                <button class="three-dots"><i class="fas fa-ellipsis-h"></i></button>
+            </div>
+        </div>
+
+        <div class="category-divider">Earlier</div>
+
+        <div class="notif-card">
+            <div class="notif-icon rejected">
+                <i class="fas fa-times-circle"></i>
+            </div>
+            <div class="notif-content">
+                <p>Your application for <strong>Records Clerk – Admission</strong> was rejected.</p>
+                <span class="notif-time">2 days ago</span>
+            </div>
+            <div class="notif-opts">
+                <button class="three-dots"><i class="fas fa-ellipsis-h"></i></button>
+            </div>
+        </div>
+    </main>
+
+            <aside class="right-panel">
+                <div class="action-card">
+                    <h4>Settings</h4>
+                    <div class="setting-row">
+                        <span>Email Alerts</span>
+                        <input type="checkbox" checked>
+                    </div>
+                    <div class="setting-row">
+                        <span>Push Notifications</span>
+                        <input type="checkbox" checked>
+                    </div>
+                </div>
+
+                <div class="action-card help-box">
+                    <h4>Missing something?</h4>
+                    <p>If an application status changed but you didn't get a notification, contact MIS.</p>
+                    <button class="secondary-btn">Report Issue</button>
+                </div>
+            </aside>
 
     </div>
 
