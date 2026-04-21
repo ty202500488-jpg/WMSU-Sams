@@ -1108,7 +1108,7 @@
       </thead>
       <tbody>
 
-        <tr data-name="Maria Santos" data-id="2022-00145">
+        <tr data-name="Maria Santos" data-id="2022-00145" data-hours="78.5" data-rate="50">
           <td>1</td>
           <td>
             <div class="t-avatar">
@@ -1118,8 +1118,8 @@
           </td>
           <td>Library Assistant</td>
           <td><strong>78.5 hours</strong></td>
-          <td>₱125/hr</td>
-          <td><strong style="color: var(--maroon); font-size: 14px;">₱9,812.50</strong></td>
+          <td>₱50/hr</td>
+          <td class="payroll-total"><strong style="color: var(--maroon); font-size: 14px;"></strong></td>
           <td><span class="badge pending">Pending Release</span></td>
           <td>
             <div class="action-btns">
@@ -1128,7 +1128,7 @@
           </td>
         </tr>
 
-        <tr data-name="Juan dela Cruz" data-id="2021-00388">
+        <tr data-name="Juan dela Cruz" data-id="2021-00388" data-hours="92" data-rate="50">
           <td>2</td>
           <td>
             <div class="t-avatar">
@@ -1138,8 +1138,8 @@
           </td>
           <td>Finance Clerk</td>
           <td><strong>92 hours</strong></td>
-          <td>₱125/hr</td>
-          <td><strong style="color: var(--maroon); font-size: 14px;">₱11,500</strong></td>
+          <td>₱50/hr</td>
+          <td class="payroll-total"><strong style="color: var(--maroon); font-size: 14px;"></strong></td>
           <td><span class="badge pending">Pending Release</span></td>
           <td>
             <div class="action-btns">
@@ -1148,7 +1148,7 @@
           </td>
         </tr>
 
-        <tr data-name="Ana Reyes" data-id="2023-00072">
+        <tr data-name="Ana Reyes" data-id="2023-00072" data-hours="65" data-rate="50">
           <td>3</td>
           <td>
             <div class="t-avatar">
@@ -1158,8 +1158,8 @@
           </td>
           <td>Clinic Aide</td>
           <td><strong>65 hours</strong></td>
-          <td>₱120/hr</td>
-          <td><strong style="color: var(--maroon); font-size: 14px;">₱7,800</strong></td>
+          <td>₱50/hr</td>
+          <td class="payroll-total"><strong style="color: var(--maroon); font-size: 14px;"></strong></td>
           <td><span class="badge pending">Pending Release</span></td>
           <td>
             <div class="action-btns">
@@ -1168,7 +1168,7 @@
           </td>
         </tr>
 
-        <tr data-name="Liza Torres" data-id="2022-00299">
+        <tr data-name="Liza Torres" data-id="2022-00299" data-hours="88" data-rate="50">
           <td>4</td>
           <td>
             <div class="t-avatar">
@@ -1178,8 +1178,8 @@
           </td>
           <td>Lab Monitor</td>
           <td><strong>88 hours</strong></td>
-          <td>₱130/hr</td>
-          <td><strong style="color: var(--maroon); font-size: 14px;">₱11,440</strong></td>
+          <td>₱50/hr</td>
+          <td class="payroll-total"><strong style="color: var(--maroon); font-size: 14px;"></strong></td>
           <td><span class="badge pending">Pending Release</span></td>
           <td>
             <div class="action-btns">
@@ -1188,7 +1188,7 @@
           </td>
         </tr>
 
-        <tr data-name="Pedro Valdez" data-id="2021-00602">
+        <tr data-name="Pedro Valdez" data-id="2021-00602" data-hours="71.5" data-rate="50">
           <td>5</td>
           <td>
             <div class="t-avatar">
@@ -1198,8 +1198,8 @@
           </td>
           <td>Office Assistant</td>
           <td><strong>71.5 hours</strong></td>
-          <td>₱120/hr</td>
-          <td><strong style="color: var(--maroon); font-size: 14px;">₱8,580</strong></td>
+          <td>₱50/hr</td>
+          <td class="payroll-total"><strong style="color: var(--maroon); font-size: 14px;"></strong></td>
           <td><span class="badge pending">Pending Release</span></td>
           <td>
             <div class="action-btns">
@@ -1208,7 +1208,7 @@
           </td>
         </tr>
 
-        <tr data-name="Carlos Mendez" data-id="2020-00561">
+        <tr data-name="Carlos Mendez" data-id="2020-00561" data-hours="95" data-rate="50">
           <td>6</td>
           <td>
             <div class="t-avatar">
@@ -1218,8 +1218,8 @@
           </td>
           <td>Finance Clerk</td>
           <td><strong>95 hours</strong></td>
-          <td>₱125/hr</td>
-          <td><strong style="color: var(--green); font-size: 14px;">₱11,875</strong></td>
+          <td>₱50/hr</td>
+          <td class="payroll-total"><strong style="color: var(--green); font-size: 14px;"></strong></td>
           <td><span class="badge approved">Released</span></td>
           <td>
             <div style="font-size: 12px; color: var(--green); font-weight: 600;">
@@ -1678,6 +1678,23 @@ document.addEventListener('DOMContentLoaded', function () {
         { confirmText: 'Yes, Delete', cancelText: 'Cancel', confirmColor: 'danger-btn' }
       );
     });
+  });
+});
+</script>
+
+<!--Payroll Total computation script-->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('#payroll-table tbody tr').forEach(function (row) {
+    const hours = parseFloat(row.dataset.hours);
+    const rate = parseFloat(row.dataset.rate);
+    if (!isNaN(hours) && !isNaN(rate)) {
+      const total = hours * rate;
+      const cell = row.querySelector('.payroll-total strong');
+      if (cell) {
+        cell.textContent = '₱' + total.toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+    }
   });
 });
 </script>
