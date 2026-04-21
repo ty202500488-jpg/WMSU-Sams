@@ -360,29 +360,30 @@
   </div>
 
   <div class="filter-bar">
-    
+
     <div class="search-box">
         <i class="fas fa-search"></i>
-        <input type="text" placeholder="Search by name or ID...">
+        <input type="text" id="student-search" placeholder="Search by name or ID...">
     </div>
 
-    <select>
-      <option>All Status</option>
-      <option>Pending</option>
-      <option>Approved</option>
-      <option>Rejected</option>
+    <select id="student-filter-status">
+      <option value="">All Status</option>
+      <option value="pending">Pending</option>
+      <option value="approved">Approved</option>
+      <option value="rejected">Rejected</option>
     </select>
-    <select>
-      <option>All Courses</option>
-      <option>BSCS</option>
-      <option>BSED</option>
-      <option>BSN</option>
-      <option>BSBA</option>
+
+    <select id="student-filter-course">
+      <option value="">All Courses</option>
+      <option value="BSCS">BSCS</option>
+      <option value="BSED">BSED</option>
+      <option value="BSN">BSN</option>
+      <option value="BSBA">BSBA</option>
     </select>
   </div>
 
   <div class="table-wrap">
-    <table>
+    <table id="students-table">
       <thead>
         <tr>
           <th>#</th>
@@ -396,7 +397,7 @@
       </thead>
       <tbody>
 
-        <tr>
+        <tr data-name="Maria Santos" data-id="2022-00145" data-status="pending" data-course="BSCS">
           <td>1</td>
           <td>
             <div class="t-avatar">
@@ -416,7 +417,7 @@
           </td>
         </tr>
 
-        <tr>
+        <tr data-name="Juan dela Cruz" data-id="2021-00388" data-status="pending" data-course="BSBA">
           <td>2</td>
           <td>
             <div class="t-avatar">
@@ -436,7 +437,7 @@
           </td>
         </tr>
 
-        <tr>
+        <tr data-name="Ana Reyes" data-id="2023-00072" data-status="pending" data-course="BSN">
           <td>3</td>
           <td>
             <div class="t-avatar">
@@ -456,7 +457,7 @@
           </td>
         </tr>
 
-        <tr>
+        <tr data-name="Carlos Mendez" data-id="2020-00561" data-status="approved" data-course="BSED">
           <td>4</td>
           <td>
             <div class="t-avatar">
@@ -473,7 +474,7 @@
           </td>
         </tr>
 
-        <tr>
+        <tr data-name="Liza Torres" data-id="2022-00299" data-status="pending" data-course="BSCS">
           <td>5</td>
           <td>
             <div class="t-avatar">
@@ -493,7 +494,7 @@
           </td>
         </tr>
 
-        <tr>
+        <tr data-name="Rico Garcia" data-id="2021-00431" data-status="rejected" data-course="BSBA">
           <td>6</td>
           <td>
             <div class="t-avatar">
@@ -933,7 +934,7 @@
 
       <div style="margin-top:20px;display:flex;gap:10px;justify-content:flex-end;">
         <button class="btn btn-outline"><i class="fas fa-times"></i> Cancel</button>
-        <button class="btn btn-primary"><i class="fas fa-paper-plane"></i> Send Suggestion to Student</button>
+        <button class="btn btn-primary" id="send-suggestion-btn"><i class="fas fa-paper-plane"></i> Send Suggestion to Student</button>
       </div>
     </div>
   </div>
@@ -1092,7 +1093,7 @@
   </div>
 
   <div class="table-wrap">
-    <table>
+    <table id="payroll-table">
       <thead>
         <tr>
           <th>#</th>
@@ -1107,7 +1108,7 @@
       </thead>
       <tbody>
 
-        <tr>
+        <tr data-name="Maria Santos" data-id="2022-00145">
           <td>1</td>
           <td>
             <div class="t-avatar">
@@ -1127,7 +1128,7 @@
           </td>
         </tr>
 
-        <tr>
+        <tr data-name="Juan dela Cruz" data-id="2021-00388">
           <td>2</td>
           <td>
             <div class="t-avatar">
@@ -1147,7 +1148,7 @@
           </td>
         </tr>
 
-        <tr>
+        <tr data-name="Ana Reyes" data-id="2023-00072">
           <td>3</td>
           <td>
             <div class="t-avatar">
@@ -1167,7 +1168,7 @@
           </td>
         </tr>
 
-        <tr>
+        <tr data-name="Liza Torres" data-id="2022-00299">
           <td>4</td>
           <td>
             <div class="t-avatar">
@@ -1187,7 +1188,7 @@
           </td>
         </tr>
 
-        <tr>
+        <tr data-name="Pedro Valdez" data-id="2021-00602">
           <td>5</td>
           <td>
             <div class="t-avatar">
@@ -1207,7 +1208,7 @@
           </td>
         </tr>
 
-        <tr>
+        <tr data-name="Carlos Mendez" data-id="2020-00561">
           <td>6</td>
           <td>
             <div class="t-avatar">
@@ -1577,7 +1578,108 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+</script>
 
+<!--Student Search Filter script-->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  // ── Verify Students ──────────────────────────
+  const studentSearch = document.getElementById('student-search');
+  const studentFilterStatus = document.getElementById('student-filter-status');
+  const studentFilterCourse = document.getElementById('student-filter-course');
+  const studentsTable = document.getElementById('students-table');
+
+  function filterStudentsTable() {
+    const query = studentSearch.value.toLowerCase().trim();
+    const statusVal = studentFilterStatus.value.toLowerCase();
+    const courseVal = studentFilterCourse.value.toUpperCase();
+
+    const rows = studentsTable.querySelectorAll('tbody tr');
+    rows.forEach(function (row) {
+      const name = (row.dataset.name || '').toLowerCase();
+      const id = (row.dataset.id || '').toLowerCase();
+      const status = (row.dataset.status || '').toLowerCase();
+      const course = (row.dataset.course || '').toUpperCase();
+
+      const matchesQuery = !query || name.includes(query) || id.includes(query);
+      const matchesStatus = !statusVal || status === statusVal;
+      const matchesCourse = !courseVal || course === courseVal;
+
+      row.style.display = (matchesQuery && matchesStatus && matchesCourse) ? '' : 'none';
+    });
+  }
+
+  if (studentSearch)       studentSearch.addEventListener('input', filterStudentsTable);
+  if (studentFilterStatus) studentFilterStatus.addEventListener('change', filterStudentsTable);
+  if (studentFilterCourse) studentFilterCourse.addEventListener('change', filterStudentsTable);
+
+  // ── Payroll Search ───────────────────────────
+  const payrollSearch = document.getElementById('payroll-search');
+  const payrollTable = document.getElementById('payroll-table');
+
+  function filterPayrollTable() {
+    const query = payrollSearch.value.toLowerCase().trim();
+    const rows = payrollTable.querySelectorAll('tbody tr');
+    rows.forEach(function (row) {
+      const name = (row.dataset.name || '').toLowerCase();
+      const id = (row.dataset.id || '').toLowerCase();
+      const matches = !query || name.includes(query) || id.includes(query);
+      row.style.display = matches ? '' : 'none';
+    });
+  }
+
+  if (payrollSearch) payrollSearch.addEventListener('input', filterPayrollTable);
+
+});
+</script>
+
+<!-- Suggest Positions - Send button feedback-->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const sendBtn = document.getElementById('send-suggestion-btn');
+  if (sendBtn) {
+    sendBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      confirmAction(
+        'Confirm Suggestion',
+        'Are you sure you want to send this position suggestion to the selected student?',
+        () => {
+          showAlert('Suggestion Sent', 'The position suggestion was successfully sent to the student.', 'success');
+        },
+        null,
+        { confirmText: 'Send', cancelText: 'Cancel', confirmColor: 'success-btn' }
+      );
+    });
+  }
+});
+</script>
+
+<!-- Manage Positions - Delete button-->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  // ── Delete buttons ───────────────────────────
+  document.querySelectorAll('.btn-delete').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      const card = this.closest('.position-card');
+      const posName = card ? card.querySelector('.pos-name').textContent : 'this position';
+
+      confirmAction(
+        'Confirm Deletion',
+        `Are you sure you want to delete the position "${posName}"? This action cannot be undone.`,
+        function () {
+          card.style.transition = 'opacity 0.3s';
+          card.style.opacity = '0';
+          setTimeout(function () { card.remove(); }, 300);
+          showAlert('Position Deleted', `"${posName}" has been deleted successfully.`, 'success');
+        },
+        null,
+        { confirmText: 'Yes, Delete', cancelText: 'Cancel', confirmColor: 'danger-btn' }
+      );
+    });
+  });
+});
 </script>
 
 </div><!-- /layout -->
