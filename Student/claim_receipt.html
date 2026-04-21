@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claim Receipt | WMSU-SAMS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #720b0b;
+            --success: #27ae60;
+            --bg: #f3f4f6;
+            --text: #2d3436;
+            --text-light: #636e72;
+            --border: #e0e0e0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--bg);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            padding: 20px;
+        }
+
+        .receipt-card {
+            background: white;
+            width: 100%;
+            max-width: 520px;
+            padding: 0;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        /* --- Receipt Header --- */
+        .receipt-header {
+            background: var(--primary);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .receipt-header i {
+            font-size: 40px;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .receipt-header h1 { font-size: 24px; margin-bottom: 5px; }
+        .receipt-header p { font-size: 14px; opacity: 0.8; }
+
+        /* --- Receipt Body --- */
+        .receipt-content { padding: 40px; }
+
+        .claim-amount {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .claim-amount span { display: block; font-size: 12px; color: var(--text-light); text-transform: uppercase; letter-spacing: 1px; }
+        .claim-amount strong { font-size: 42px; color: var(--text); font-weight: 800; }
+
+        .data-grid {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 1px solid #f0f0f0;
+        }
+
+        .data-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .data-row:last-child { border-bottom: none; }
+        .label { font-size: 13px; color: var(--text-light); }
+        .value { font-size: 14px; color: var(--text); font-weight: 600; text-align: right; }
+        .ref-no { font-family: 'Courier New', monospace; color: var(--primary); font-weight: 700; }
+
+        /* --- Instructions --- */
+        .instruction-box {
+            background: #fff9c4;
+            padding: 15px;
+            border-radius: 12px;
+            border-left: 5px solid #fbc02d;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+        .instruction-box h4 { font-size: 14px; color: #827717; margin-bottom: 5px; }
+        .instruction-box p { font-size: 12px; color: #948b3d; line-height: 1.4; }
+
+        /* --- Action Footer --- */
+        .action-footer { padding: 0 40px 40px; }
+
+        .btn-print {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 16px;
+            border-radius: 14px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            transition: 0.3s;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .btn-print:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(114, 11, 11, 0.2); }
+
+        .btn-back {
+            display: block;
+            text-align: center;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .btn-back:hover { color: var(--primary); }
+
+        /* Print Media Query */
+        @media print {
+            body { background: white; }
+            .btn-print, .btn-back, .receipt-header i { display: none; }
+            .receipt-card { box-shadow: none; border: 1px solid black; max-width: 100%; }
+            .receipt-header { background: white !important; color: black !important; border-bottom: 2px dashed #000; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="receipt-card">
+        
+        <div class="receipt-header">
+            <h1>Payroll Claim Receipt</h1>
+            <p>Western Mindanao State University</p>
+        </div>
+
+        <div class="receipt-content">
+            <div class="claim-amount">
+                <span>Total Amount to Claim</span>
+                <strong>₱5,450.00</strong>
+            </div>
+
+            <div class="data-grid">
+                <div class="data-row">
+                    <span class="label">Reference No.</span>
+                    <span class="value ref-no">WMSU-PAY-2026-8842</span>
+                </div>
+                <div class="data-row">
+                    <span class="label">Student Name</span>
+                    <span class="value">Dela Cruz, Juan A.</span>
+                </div>
+                 <div class="data-row">
+                    <span class="label">Student ID</span>
+                    <span class="value">2023-12345</span>
+                </div>
+                <div class="data-row">
+                    <span class="label">Payroll Period</span>
+                    <span class="value">March 01 - March 31, 2026</span>
+                </div>
+                <div class="data-row">
+                    <span class="label">Department</span>
+                    <span class="value">University Library</span>
+                </div>
+                <div class="data-row">
+                    <span class="label">Total Duty Hours</span>
+                    <span class="value">109.00 Hours</span>
+                </div>
+            </div>
+
+            <div class="instruction-box">
+                <h4><i class="fa-solid fa-circle-info"></i> How to Claim:</h4>
+                <p>Present this digital receipt along with your <strong>Valid Student ID</strong> at the <strong>Cashier's Office (Administration Building)</strong>. Stipends are available for claiming starting today.</p>
+            </div>
+        </div>
+
+        <div class="action-footer">
+            <button onclick="window.print()" class="btn-print">
+                <i class="fa-solid fa-print"></i> Download / Print Receipt
+            </button>
+            <a href="notification.html" class="btn-back">
+                <i class="fa-solid fa-arrow-left"></i> Return to Notifications
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>
