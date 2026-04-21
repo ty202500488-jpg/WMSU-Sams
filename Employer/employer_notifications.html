@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications | SAMS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="employer_notifications.css">
+    <link rel="stylesheet" href="../Global/modals.css">
+    <script src="../Global/pagination.js" defer></script>
+</head>
+<body>
+
+     <header class="top-nav">
+        <div class="top-logo">WMSU-SAMS</div>
+        <nav class="top-links">
+            <a href="employer_dashboard.html"><i class="fas fa-chart-line"></i> <span>Dashboard</span></a>
+            <a href="employer_notifications.html" class="active"><i class="fas fa-bell"></i> <span>Notifications</span></a>
+            <a href="review_attendance.html"><i class="fas fa-clock"></i> <span>Attendance</span></a>
+            <a href="employer_application.html"><i class="fas fa-users"></i> <span>Applicants</span></a>
+            <a href="job_posting.html"><i class="fas fa-briefcase"></i> <span>Postings</span></a>
+        </nav>
+        <div class="top-right">
+            <div class="profile">
+                <a href="employer_profile.html">
+                <img src="../images/profile.jpg.jpg" class="profile-img">
+                </a>
+            </div>
+
+            <div class="settings-menu">
+                <i class="fas fa-bars menu-icon"></i>
+                
+                <div class="settings-dropdown">
+                    <a href="edit_student_profile.html"><i class="fas fa-user-edit"></i> Edit Profile</a>
+                    <a href="../Global/login.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="container">
+
+        <aside class="sidebar-panel">
+            <div class="panel-header">
+                <h3>Manage</h3>
+            </div>
+            <div class="sidebar-body">
+                <div class="sidebar-item active"><i class="fas fa-list"></i> All</div>
+                <div class="sidebar-item"><i class="fas fa-envelope-open"></i> Unread</div>
+                <div class="sidebar-item"><i class="fas fa-star"></i> Important</div>
+                <hr>
+                <div class="sidebar-item"><i class="fas fa-file-invoice"></i> Attendance</div>
+                <div class="sidebar-item"><i class="fas fa-calendar-check"></i> Applicants</div>
+                <div class="sidebar-item"><i class="fas fa-question-circle"></i> Other</div>
+            </div>
+        </aside>
+
+        <main class="notification-list">
+            <div class="list-header">
+                <h1>Notifications</h1>
+                <div class="header-actions">
+                    <button class="text-btn">Mark all as read</button>
+                </div>
+            </div>
+
+            <input type="text" placeholder="Search by student or position..." class="search-bar">
+
+            <div class="category-divider">Attendance & Referrals</div>
+            
+            <div class="notif-card unread high-priority">
+                <div class="notif-icon approved">
+                    <i class="fas fa-file-signature"></i>
+                </div>
+                <div class="notif-content">
+                    <p><strong>Attendance Submitted:</strong> <strong>Maria Santos</strong> submitted a referral/duty log for <em>Library Assistant</em>.</p>
+                    <span class="notif-time">Just now — 08:00 AM</span>
+                    <div class="action-row">
+                        <button class="action-btn primary"><i class="fas fa-check"></i> Confirm Attendance</button>
+                        <button class="action-btn secondary">Review Details</button>
+                    </div>
+                </div>
+                <div class="unread-dot"></div>
+            </div>
+
+            <div class="category-divider">Hiring & Applications</div>
+            
+            <div class="notif-card unread">
+                <div class="notif-icon job">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <div class="notif-content">
+                    <p><strong>New Applicant:</strong> <strong>Arnel Panganiban</strong> applied for <em>Library Assistant</em>.</p>
+                    <p class="notif-subtext">Match Score: <strong>115/130</strong> | Schedule Compatible: <strong>Yes</strong></p>
+                    <span class="notif-time">Just now</span>
+                    <div class="action-row">
+                        <button class="action-btn primary">Review Applicant</button>
+                    </div>
+                </div>
+                <div class="unread-dot"></div>
+            </div>
+
+            <div class="notif-card">
+                <div class="notif-icon alert">
+                    <i class="fas fa-hourglass-half"></i>
+                </div>
+                <div class="notif-content">
+                    <p><strong>Pending Reminder:</strong> Application for <strong>Juan dela Cruz</strong> has been waiting for 3 days.</p>
+                    <span class="notif-time">Today</span>
+                    <div class="action-row">
+                        <button class="action-btn primary">Act Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-divider">System Alerts</div>
+
+            <div class="notif-card">
+                <div class="notif-icon rejected">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="notif-content">
+                    <p><strong>Slots Full:</strong> <em>Research Assistant</em> position has reached its hiring limit (5/5).</p>
+                    <span class="notif-time">3 hours ago</span>
+                </div>
+            </div>
+
+            <div class="notif-card">
+                <div class="notif-icon rejected">
+                    <i class="fas fa-user-minus"></i>
+                </div>
+                <div class="notif-content">
+                    <p><strong>Withdrawn:</strong> <strong>Elena Cruz</strong> removed her application for <em>Finance Clerk</em>.</p>
+                    <span class="notif-time">Yesterday</span>
+                </div>
+            </div>
+
+            <div class="notif-card">
+                <div class="notif-icon approved">
+                    <i class="fas fa-id-card-clip"></i>
+                </div>
+                <div class="notif-content">
+                    <p><strong>Candidate Ready:</strong> <strong>Maria Santos</strong> finished document verification. Ready to be assigned duty hours.</p>
+                    <span class="notif-time">Yesterday</span>
+                </div>
+            </div>
+
+            <div class="notif-card">
+                <div class="notif-icon document">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <div class="notif-content">
+                    <p><strong>Schedule Change:</strong> <strong>Kevin Rivera</strong> updated his COR. Check for duty conflicts.</p>
+                    <span class="notif-time">2 days ago</span>
+                </div>
+            </div>
+        </main>
+
+        <aside class="right-panel">
+            <div class="action-card">
+                 <h4>Settings</h4>
+                <div class="setting-row">
+                    <span>Email Alerts</span>
+                    <input type="checkbox" checked>
+                </div>
+
+                <div class="setting-row">
+                    <span>Push Notifications</span>
+                    <input type="checkbox" checked>
+                </div>
+            </div>
+
+            <div class="action-card help-box">
+                <h4>Missing something?</h4>
+                <p>If an application status changed but you didn't get a notification, contact MIS.</p>
+                <button class="secondary-btn">Report Issue</button>
+                </div>
+        </aside>
+    </div>
+
+</body>
+</html>
