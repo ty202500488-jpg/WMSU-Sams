@@ -934,7 +934,7 @@
 
       <div style="margin-top:20px;display:flex;gap:10px;justify-content:flex-end;">
         <button class="btn btn-outline"><i class="fas fa-times"></i> Cancel</button>
-        <button class="btn btn-primary"><i class="fas fa-paper-plane"></i> Send Suggestion to Student</button>
+        <button class="btn btn-primary" id="send-suggestion-btn"><i class="fas fa-paper-plane"></i> Send Suggestion to Student</button>
       </div>
     </div>
   </div>
@@ -1631,6 +1631,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (payrollSearch) payrollSearch.addEventListener('input', filterPayrollTable);
 
+});
+</script>
+
+<!-- Suggest Positions - Send button feedback-->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const sendBtn = document.getElementById('send-suggestion-btn');
+  if (sendBtn) {
+    sendBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      confirmAction(
+        'Confirm Suggestion',
+        'Are you sure you want to send this position suggestion to the selected student?',
+        () => {
+          showAlert('Suggestion Sent', 'The position suggestion was successfully sent to the student.', 'success');
+        },
+        null,
+        { confirmText: 'Send', cancelText: 'Cancel', confirmColor: 'success-btn' }
+      );
+    });
+  }
 });
 </script>
 
