@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Positions | WMSU SAMS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="positions.css">
+</head>
+<body>
+
+    <header class="top-nav">
+        <div class="top-logo">WMSU-SAMS</div>
+        <nav class="top-links">
+            <a href="student_dashboard.html"><i class="fas fa-home"></i> Home</a>
+            <a href="notification.html"><i class="fas fa-bell"></i> Notifications</a>
+            <a href="application.html"><i class="fas fa-file-alt"></i> Applications</a>
+            <a href="positions.html" class="active"><i class="fas fa-briefcase"></i> Browse Positions</a>
+        </nav>
+
+        <div class="profile-dropdown">
+            <a href="student_profile.html">
+                <img src="Images/profile.jpg.jpg" alt="Profile Photo" class="profile-img">
+            </a>
+            <div class="dropdown-content">
+                <a href="student_profile.html">View Profile</a>
+                <a href="login.html">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <aside class="filter-panel">
+            <div class="filter-header">
+                <h3><i class="fas fa-filter"></i> Filters</h3>
+            </div>
+            <div class="filter-body">
+                <label for="search">Search</label>
+                <input type="text" id="search" placeholder="Search Position">
+
+                <label for="department">Colleges</label>
+                <select id="department">
+                    <option>All Colleges</option>
+			        <option>College of Argriculture</option>
+			        <option>College of Architecture</option>
+			        <option>College of Arts & Sciences</option>
+                    <option>College of Asian & Islamic Studies</option>
+			        <option>College of Computing Studies</option>
+			        <option>College of Criminal Justice Education</option>
+			        <option>College of Engineering</option>
+			        <option>College of Forestry & Environmental Studies</option>
+			        <option>College of Home Economics</option>
+			        <option>College of Law</option>
+			        <option>College of Liberal Arts</option>
+			        <option>College of Medicine</option>
+			        <option>College of Nursing</option>
+			        <option>College of Public Administration & Development Studies</option>
+			        <option>College of Science and Mathematics</option>
+			        <option>College of Social Work & Community Development</option>
+			        <option>College of Sports Science & Physical Education</option>
+			        <option>College of Teacher Education</option>
+			        <option>Professional Science Master's Program</option>
+                </select>
+
+                <label for="duration">Duration</label>
+                <select id="duration">
+                    <option>Any</option>
+                    <option>Short-term</option>
+                    <option>Long-term</option>
+                </select>
+
+                <label for="pay">Pay</label>
+                <select id="pay">
+                    <option>Any</option>
+                    <option>₱0 – ₱500/week</option>
+                    <option>₱500 – ₱1000/week</option>
+                    <option>₱1000+/week</option>
+                </select>
+                <button class="primary-btn" style="width: 100%; margin-top: 10px;">Apply Filters</button>
+            </div>
+        </aside>
+
+        <main class="job-list">
+            <div class="application-card">
+                <div class="application-header">
+                    <h2>IT Student Assistant</h2>
+                    <hr>
+                    <p>Assist IT Office with website updates, documentation, and student support tasks.</p>
+                </div>
+                <div class="application-info">
+                    <div class="column">
+                        <p><i class="fas fa-building"></i> <strong>Department:</strong> IT Office</p>
+                        <p><i class="fas fa-calendar"></i> <strong>Date Applied:</strong> March 8, 2026</p>
+                        <p><i class="fas fa-clock"></i> <strong>Interview Date:</strong> March 12, 2026</p>
+                    </div>
+                    <div class="column">
+                        <p><i class="fas fa-info-circle"></i> <strong>Status:</strong> <span class="status-badge pending">Pending</span></p>
+                        <p><i class="fas fa-sticky-note"></i> <strong>Notes:</strong> Waiting for document verification.</p>
+                    </div>
+                </div>
+                <div class="application-action">
+                    <button class="secondary-btn">View Details</button>
+                    <button class="primary-btn">Cancel Application</button>
+                </div>
+            </div>
+
+            <div class="application-card">
+                <div class="application-header">
+                    <h2>Library Assistant</h2>
+                    <hr>
+                    <p>Organize library books, assist students in locating resources, and maintain records.</p>
+                </div>
+                <div class="application-info">
+                    <div class="column">
+                        <p><i class="fas fa-building"></i> <strong>Department:</strong> Library</p>
+                        <p><i class="fas fa-calendar"></i> <strong>Date Applied:</strong> March 1, 2026</p>
+                        <p><i class="fas fa-clock"></i> <strong>Interview Date:</strong> March 5, 2026</p>
+                    </div>
+                    <div class="column">
+                        <p><i class="fas fa-info-circle"></i> <strong>Status:</strong> <span class="status-badge approved">Approved</span></p>
+                        <p><i class="fas fa-sticky-note"></i> <strong>Notes:</strong> Documents verified successfully.</p>
+                    </div>
+                </div>
+                <div class="application-action">
+                    <button class="secondary-btn">View Details</button>
+                    <button class="primary-btn">Cancel Application</button>
+                </div>
+            </div>
+
+            <div class="application-card">
+                <div class="application-header">
+                    <h2>IT Support Intern</h2>
+                    <hr>
+                    <p>Assist in software troubleshooting, IT support for student devices, and network management.</p>
+                </div>
+                <div class="application-info">
+                    <div class="column">
+                        <p><i class="fas fa-building"></i> <strong>Department:</strong> MIS</p>
+                        <p><i class="fas fa-calendar"></i> <strong>Date Applied:</strong> Feb 28, 2026</p>
+                        <p><i class="fas fa-clock"></i> <strong>Interview Date:</strong> March 3, 2026</p>
+                    </div>
+                    <div class="column">
+                        <p><i class="fas fa-info-circle"></i> <strong>Status:</strong> <span class="status-badge interview">Interview Scheduled</span></p>
+                        <p><i class="fas fa-sticky-note"></i> <strong>Notes:</strong> Confirm attendance before March 2.</p>
+                    </div>
+                </div>
+                <div class="application-action">
+                    <button class="secondary-btn">View Details</button>
+                    <button class="primary-btn">Cancel Application</button>
+                </div>
+            </div>
+        </main>
+
+        <aside class="right-panel">
+            <div class="stat-card">
+                <h4>Application Status</h4>
+                <div class="stat-item"><span>Approved</span> <span class="count">2</span></div>
+                <div class="stat-item"><span>Pending</span> <span class="count">2</span></div>
+                <div class="stat-item"><span>Interview</span> <span class="count">1</span></div>
+                <div class="stat-item"><span>Rejected</span> <span class="count">1</span></div>
+            </div>
+
+            <div class="stat-card help-card">
+                <h4><i class="fas fa-lightbulb"></i> Quick Tip</h4>
+                <p>Ensure your <strong>Study Load</strong> is updated in your profile to speed up verification.</p>
+            </div>
+        </aside>
+
+    </div>
+
+</body>
+</html>
