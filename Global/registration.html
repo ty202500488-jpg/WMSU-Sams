@@ -71,7 +71,7 @@
             </div>
 
             <div class="upload-field">
-                <label class="upload-label">Upload COR</label>
+                <label class="upload-label">Upload COR <span style="color: red;"> *</span></label>
                 <div class="dropzone">
                     <label class="choose-btn" for="fileInput">Choose your files</label>
                     <input type="file" id="fileInput" accept=".pdf,.jpg,.jpeg,.png" required>
@@ -123,7 +123,15 @@
             <label>Official WMSU Email<span style="color: red;"> *</span></label> 
             <input type="email" placeholder="e.g. username@wmsu.edu.ph" required>
 
-            
+            <div class="upload-field">
+                <label class="upload-label">Upload Staff ID<span style="color: red;"> *</span></label>
+                <div class="dropzone">
+                    <label class="choose-btn" for="fileInput">Choose your files</label>
+                    <input type="file" id="fileInput" accept=".pdf,.jpg,.jpeg,.png" required>
+                    <span class="dropzone-text">No files chosen</span>
+                </div>
+            </div>
+
             <label>Password<span style="color: red;"> *</span></label>
             <input type="password" minlength="8" placeholder="Enter Password" required>
 

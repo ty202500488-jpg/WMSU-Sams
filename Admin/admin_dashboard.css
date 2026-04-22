@@ -674,17 +674,18 @@
   }
   .btn-view:hover { background: #bfdbfe; }
 
-  .btn-edit {
-    background: var(--yellow-light);
-    color: var(--yellow);
-  }
-  .btn-edit:hover { background: #fde68a; }
+  .btn-icon { width: 30px; height: 30px; border: none; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; font-size: 14px;}
+  .btn-icon.view { background: #e7f3ff; color: #1877f2; transform: translateY(0px); }
+  .btn-icon.approve { background: #e7fef0; color: #2ecc71; transform: translateY(0px); }
+  .btn-icon.reject { background: #fdf2f2; color: #e74c3c; transform: translateY(0px); }
+  .btn-icon:hover { filter: brightness(0.9); transform: translateY(-4px); }
 
-  .btn-delete {
-    background: var(--red-light);
-    color: var(--red);
-  }
-  .btn-delete:hover { background: #fecaca; }
+  .create-btn {
+    background: var(--maroon); color: white; border: none; padding: 6px 13px; 
+    border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 12px;
+    display: flex; align-items: center; gap: 8px; transition: 0.2s; white-space: nowrap;
+}
+  .create-btn:hover { background: var(--maroon-dark); transform: translateY(-1px); }
 
   .btn-outline {
     background: transparent;
