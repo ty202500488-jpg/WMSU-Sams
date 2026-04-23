@@ -1191,9 +1191,9 @@
         </div>
 
         <!-- ── FILTER BAR ── -->
-        <div
+        <div 
           style="background:#fff;padding:16px 20px;border-radius:12px;border:1px solid var(--gray-200);margin-bottom:20px;box-shadow:var(--shadow-sm);display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
-          <div class="search-box" style="width:200px;">
+          <div class="search-box" style="border:1.5px solid var(--gray-200); width:200px; border-radius: 10px;">
             <i class="fas fa-search"></i>
             <input type="text" id="log-search" placeholder="Search student or ID..." oninput="filterLogTable()">
           </div>
@@ -1213,12 +1213,7 @@
             <option value="approved">Approved</option>
             <option value="rejected">Rejected</option>
           </select>
-          <select id="log-filter-flag" onchange="filterLogTable()"
-            style="padding:8px 14px;border:1.5px solid var(--gray-200);border-radius:9px;font-size:13px;color:var(--gray-700);outline:none;cursor:pointer;">
-            <option value="">All Entries</option>
-            <option value="flagged">Flagged Only</option>
-            <option value="clean">Clean Only</option>
-          </select>
+         
           <div style="display:flex;align-items:center;gap:6px;margin-left:auto;">
             <span style="font-size:12px;color:var(--gray-400);">Date:</span>
             <input type="date" id="log-date-from" value="2026-04-01"
@@ -1234,8 +1229,7 @@
           <table id="attendance-log-table">
             <thead>
               <tr>
-                <th style="width:36px;"><input type="checkbox" id="select-all-logs" title="Select All"
-                    onchange="toggleAllLogs(this)"></th>
+                <th style="width:36px;">#</th>
                 <th>Student</th>
                 <th>Department</th>
                 <th>Date</th>
@@ -1244,7 +1238,6 @@
                 <th>Hours</th>
                 <th>Supervisor</th>
                 <th>Status</th>
-                <th>⚠ Flags</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -1252,7 +1245,7 @@
 
               <!-- ─── Row 1: Clean entry, pending admin ─── -->
               <tr class="log-row" data-status="pending-admin" data-dept="ict" data-flag="clean">
-                <td><input type="checkbox" class="log-checkbox"></td>
+                <td>1</td>
                 <td>
                   <div class="t-avatar">
                     <div class="av av-a">MS</div>
@@ -1271,7 +1264,6 @@
                 </td>
                 <td><span class="supervisor-tag"><i class="fas fa-user-shield"></i> A. Fernandez</span></td>
                 <td><span class="badge pending-admin">Pending Admin</span></td>
-                <td><span class="flag-clean"><i class="fas fa-check-circle"></i> Clean</span></td>
                 <td>
                   <div class="action-btns">
                     <button class="btn-icon view" title="View Full Details"
@@ -1287,7 +1279,7 @@
 
               <!-- ─── Row 2: Overtime — FLAGGED ─── -->
               <tr class="log-row log-row-flagged" data-status="pending-admin" data-dept="library" data-flag="flagged">
-                <td><input type="checkbox" class="log-checkbox"></td>
+                <td>2</td>
                 <td>
                   <div class="t-avatar">
                     <div class="av av-b">JD</div>
@@ -1300,15 +1292,13 @@
                 <td><span class="dept-chip"><i class="fas fa-building"></i> University Library</span></td>
                 <td style="white-space:nowrap;">Apr 22, 2026</td>
                 <td><span class="time-chip time-in">07:00 AM</span></td>
-                <td><span class="time-chip time-out">05:30 PM</span></td>
+                <td><span class="time-chip time-out">11:00 PM</span></td>
                 <td>
-                  <strong class="hours-val hours-danger">10.50h</strong>
-                  <div style="font-size:10px;color:var(--red);font-weight:600;">₱525 est.</div>
+                  <strong class="hours-val">4.00h</strong>
+                  <div style="font-size:10px;color:var(--green);font-weight:600;">₱525 est.</div>
                 </td>
                 <td><span class="supervisor-tag"><i class="fas fa-user-shield"></i> R. Cruz</span></td>
                 <td><span class="badge pending-admin">Pending Admin</span></td>
-                <td><span class="flag-tag flag-overtime"><i class="fas fa-exclamation-triangle"></i> Overtime
-                    (&gt;8h)</span></td>
                 <td>
                   <div class="action-btns">
                     <button class="btn-icon view" title="View Full Details"
@@ -1324,7 +1314,7 @@
 
               <!-- ─── Row 3: Missing timeout — FLAGGED ─── -->
               <tr class="log-row log-row-flagged" data-status="pending-admin" data-dept="nursing" data-flag="flagged">
-                <td><input type="checkbox" class="log-checkbox"></td>
+                <td>3</td>
                 <td>
                   <div class="t-avatar">
                     <div class="av av-c">AR</div>
@@ -1337,21 +1327,20 @@
                 <td><span class="dept-chip"><i class="fas fa-building"></i> College of Nursing</span></td>
                 <td style="white-space:nowrap;">Apr 23, 2026</td>
                 <td><span class="time-chip time-in">01:00 PM</span></td>
-                <td><span class="time-chip time-missing">N/A</span></td>
+                <td><span class="time-chip time-out">05:30 PM</span></td>
                 <td>
-                  <strong class="hours-val hours-danger">—</strong>
-                  <div style="font-size:10px;color:var(--red);font-weight:600;">Uncomputable</div>
+                  <strong class="hours-val">10.50h</strong>
+                  <div style="font-size:10px;color:var(--green);font-weight:600;">₱525 est.</div>
                 </td>
                 <td><span class="supervisor-tag"><i class="fas fa-user-shield"></i> M. Lopez</span></td>
                 <td><span class="badge pending-admin">Pending Admin</span></td>
-                <td><span class="flag-tag flag-missing"><i class="fas fa-exclamation-circle"></i> No Timeout</span></td>
                 <td>
                   <div class="action-btns">
                     <button class="btn-icon view" title="View Full Details"
                       onclick="openLogDetail('Ana Reyes','2023-00072','Clinic Aide','College of Nursing','Apr 23, 2026','01:00 PM','N/A','—','M. Lopez','No Timeout (missing)','₱50/hr','Uncomputable',true)"><i
                         class="fas fa-eye"></i></button>
-                    <button class="btn-icon approve" title="Cannot approve — timeout missing"
-                      style="opacity:0.35;cursor:not-allowed;" disabled><i class="fas fa-check"></i></button>
+                    <button class="btn-icon approve" title="Approve" onclick="approveLogEntry(this, 'Ana Reyes')"><i
+                        class="fas fa-check"></i></button>
                     <button class="btn-icon reject" title="Reject" onclick="rejectLogEntry(this, 'Ana Reyes')"><i
                         class="fas fa-times"></i></button>
                   </div>
@@ -1360,7 +1349,7 @@
 
               <!-- ─── Row 4: Supervisor edited — FLAGGED ─── -->
               <tr class="log-row log-row-flagged" data-status="pending-admin" data-dept="finance" data-flag="flagged">
-                <td><input type="checkbox" class="log-checkbox"></td>
+                <td>4</td>
                 <td>
                   <div class="t-avatar">
                     <div class="av av-d">LT</div>
@@ -1378,10 +1367,8 @@
                   <strong class="hours-val">4.00h</strong>
                   <div style="font-size:10px;color:var(--green);font-weight:600;">₱200 est.</div>
                 </td>
-                <td><span class="supervisor-tag supervisor-edited"><i class="fas fa-edit"></i> C. Reyes
-                    <em>(edited)</em></span></td>
+                <td><span class="supervisor-tag"><i class="fas fa-user-shield"></i> A. Fernandez</span></td>
                 <td><span class="badge pending-admin">Pending Admin</span></td>
-                <td><span class="flag-tag flag-edited"><i class="fas fa-pen"></i> Supervisor Edited</span></td>
                 <td>
                   <div class="action-btns">
                     <button class="btn-icon view" title="View Full Details"
@@ -1394,89 +1381,10 @@
                   </div>
                 </td>
               </tr>
-
-              <!-- ─── Row 5: Approved ─── -->
-              <tr class="log-row" data-status="approved" data-dept="ict" data-flag="clean">
-                <td><input type="checkbox" class="log-checkbox" disabled></td>
-                <td>
-                  <div class="t-avatar">
-                    <div class="av av-e">JO</div>
-                    <div>
-                      <div class="td-name">Janricson Ompoy</div>
-                      <div class="td-sub">2022-00319 · IT Assistant</div>
-                    </div>
-                  </div>
-                </td>
-                <td><span class="dept-chip"><i class="fas fa-building"></i> ICT Building</span></td>
-                <td style="white-space:nowrap;">Apr 21, 2026</td>
-                <td><span class="time-chip time-in">08:00 AM</span></td>
-                <td><span class="time-chip time-out">12:00 PM</span></td>
-                <td>
-                  <strong class="hours-val">4.00h</strong>
-                  <div style="font-size:10px;color:var(--green);font-weight:600;">₱200 paid</div>
-                </td>
-                <td><span class="supervisor-tag"><i class="fas fa-user-shield"></i> A. Fernandez</span></td>
-                <td><span class="badge approved">Approved</span></td>
-                <td><span class="flag-clean"><i class="fas fa-check-circle"></i> Clean</span></td>
-                <td>
-                  <div class="action-btns">
-                    <button class="btn-icon view" title="View Details"
-                      onclick="openLogDetail('Janricson Ompoy','2022-00319','IT Assistant','ICT Building','Apr 21, 2026','08:00 AM','12:00 PM','4.00','A. Fernandez','Clean','₱50/hr','₱200.00',false)"><i
-                        class="fas fa-eye"></i></button>
-                    <button class="btn-icon" style="background:#e8f5e9;color:#2e7d32;cursor:default;"
-                      title="Already Approved"><i class="fas fa-check-double"></i></button>
-                  </div>
-                </td>
-              </tr>
-
-              <!-- ─── Row 6: Graveyard shift — Rejected ─── -->
-              <tr class="log-row log-row-rejected" data-status="rejected" data-dept="education" data-flag="flagged">
-                <td><input type="checkbox" class="log-checkbox" disabled></td>
-                <td>
-                  <div class="t-avatar">
-                    <div class="av av-f">PV</div>
-                    <div>
-                      <div class="td-name">Pedro Valdez</div>
-                      <div class="td-sub">2021-00602 · Office Aide</div>
-                    </div>
-                  </div>
-                </td>
-                <td><span class="dept-chip"><i class="fas fa-building"></i> College of Education</span></td>
-                <td style="white-space:nowrap;">Apr 20, 2026</td>
-                <td><span class="time-chip time-in">03:00 AM</span></td>
-                <td><span class="time-chip time-out">07:00 AM</span></td>
-                <td>
-                  <strong class="hours-val">4.00h</strong>
-                  <div style="font-size:10px;color:var(--red);font-weight:600;">Rejected</div>
-                </td>
-                <td><span class="supervisor-tag"><i class="fas fa-user-shield"></i> M. Lopez</span></td>
-                <td><span class="badge rejected">Rejected</span></td>
-                <td><span class="flag-tag flag-overtime"><i class="fas fa-moon"></i> Graveyard Shift</span></td>
-                <td>
-                  <div class="action-btns">
-                    <button class="btn-icon view" title="View Details"
-                      onclick="openLogDetail('Pedro Valdez','2021-00602','Office Aide','College of Education','Apr 20, 2026','03:00 AM','07:00 AM','4.00','M. Lopez','Graveyard Shift (3AM)','₱50/hr','₱200.00',true)"><i
-                        class="fas fa-eye"></i></button>
-                  </div>
-                </td>
-              </tr>
-
             </tbody>
           </table>
         </div>
-
-        <!-- Pagination row -->
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:16px;padding:0 4px;">
-          <div style="font-size:12.5px;color:var(--gray-400);">Showing 6 of 12 attendance records</div>
-          <div style="display:flex;gap:6px;">
-            <button class="btn btn-outline btn-sm"><i class="fas fa-chevron-left"></i></button>
-            <button class="btn btn-primary btn-sm">1</button>
-            <button class="btn btn-outline btn-sm">2</button>
-            <button class="btn btn-outline btn-sm"><i class="fas fa-chevron-right"></i></button>
-          </div>
-        </div>
-
-      </section><!-- /sec-review-log-hours -->
+      </section>
 
       <!-- ── LOG DETAIL SIDE PANEL (outside section, inside layout) ── -->
       <div id="log-detail-overlay" onclick="closeLogDetail(event)"
@@ -1671,11 +1579,6 @@
 
             row.style.display = (matchName && matchDept && matchStatus && matchFlag) ? '' : 'none';
           });
-        }
-
-        // ── Select all checkboxes ─────────────────
-        function toggleAllLogs(master) {
-          document.querySelectorAll('.log-checkbox:not(:disabled)').forEach(cb => { cb.checked = master.checked; });
         }
 
         // ── Approve individual log ─────────────────
