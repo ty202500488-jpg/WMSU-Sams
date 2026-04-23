@@ -140,6 +140,7 @@
   #nav-departments:checked ~ .layout .sidebar label[for="nav-departments"],
   #nav-positions:checked ~ .layout .sidebar label[for="nav-positions"],
   #nav-suggest-positions:checked ~ .layout .sidebar label[for="nav-suggest-positions"],
+  #nav-review-log-hours:checked ~ .layout .sidebar label[for="nav-review-log-hours"],
   #nav-payroll:checked ~ .layout .sidebar label[for="nav-payroll"],
   #nav-reports:checked ~ .layout .sidebar label[for="nav-reports"] {
     background: rgba(255,255,255,0.13);
@@ -153,6 +154,7 @@
   #nav-departments:checked ~ .layout .sidebar label[for="nav-departments"] i,
   #nav-positions:checked ~ .layout .sidebar label[for="nav-positions"] i,
   #nav-suggest-positions:checked ~ .layout .sidebar label[for="nav-suggest-positions"] i,
+  #nav-review-log-hours:checked ~ .layout .sidebar label[for="nav-review-log-hours"] i,
   #nav-payroll:checked ~ .layout .sidebar label[for="nav-payroll"] i,
   #nav-reports:checked ~ .layout .sidebar label[for="nav-reports"] i {
     color: var(--gold-light);

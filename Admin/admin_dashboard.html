@@ -14,11 +14,12 @@
 <body>
 
 <!-- ── RADIO INPUTS FOR NAVIGATION ───────────────── -->
-<input class="nav-radio" type="radio" name="nav" id="nav-dashboard"    checked/>
+<input class="nav-radio" type="radio" name="nav" id="nav-dashboard" checked/>
 <input class="nav-radio" type="radio" name="nav" id="nav-students"/>
 <input class="nav-radio" type="radio" name="nav" id="nav-departments"/>
 <input class="nav-radio" type="radio" name="nav" id="nav-positions"/>
 <input class="nav-radio" type="radio" name="nav" id="nav-suggest-positions"/>
+<input class="nav-radio" type="radio" name="nav" id="nav-review-log-hours"/>
 <input class="nav-radio" type="radio" name="nav" id="nav-payroll"/>
 <input class="nav-radio" type="radio" name="nav" id="nav-reports"/>
 
@@ -70,6 +71,12 @@
       <label for="nav-suggest-positions">
         <i class="fas fa-hand-holding-heart"></i>
         Suggest Positions
+      </label>
+    </div>
+    <div class="nav-item">
+      <label for="nav-review-log-hours">
+        <i class="fas fa-clipboard-check"></i>
+        Review Log Hours
       </label>
     </div>
 
@@ -1034,9 +1041,62 @@
       </div>
     </div>
   </div>
-
 </section>
 
+<!-- ╔══════════════════════════════════════════════
+     § REVIEW LOG HOURS
+══════════════════════════════════════════════╗ -->
+<section class="section" id="sec-review-log-hours">
+  <div class="section-header">
+    <div>
+      <div class="section-title">Attendance Validation</div>
+      <div class="section-sub">Final review of duty logs before payroll processing</div>
+    </div>
+    <div class="section-actions">
+       <button class="btn btn-primary"><i class="fas fa-check-double"></i> Bulk Approve</button>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Student</th>
+          <th>Department</th>
+          <th>Date</th>
+          <th>Total Hours</th>
+          <th>Supervisor Status</th>
+          <th>Risk</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Maria Santos</strong></td>
+          <td>ICT Building</td>
+          <td>Apr 22, 2026</td>
+          <td>4.0</td>
+          <td><span class="badge approved-soft">Verified by A. Fernandez</span></td>
+          <td><span class="text-green"><i class="fas fa-check-circle"></i> Low</span></td>
+          <td><button class="btn-icon approve"><i class="fas fa-check"></i></button></td>
+        </tr>
+        
+        <tr class="row-warning">
+          <td><strong>Juan Dela Cruz</strong></td>
+          <td>Library</td>
+          <td>Apr 22, 2026</td>
+          <td>10.0</td>
+          <td><span class="badge approved-soft">Verified by R. Cruz</span></td>
+          <td><span class="text-warn" title="Overtime detected"><i class="fas fa-exclamation-triangle"></i> High</span></td>
+          <td>
+            <button class="btn-icon view"><i class="fas fa-eye"></i></button>
+            <button class="btn-icon reject"><i class="fas fa-times"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 
 <!-- ╔══════════════════════════════════════════════
      § PAYROLL
