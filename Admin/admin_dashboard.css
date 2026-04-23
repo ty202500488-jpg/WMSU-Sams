@@ -290,6 +290,7 @@
   #nav-departments:checked  ~ .layout .main-content #sec-departments  { display: block; }
   #nav-positions:checked    ~ .layout .main-content #sec-positions    { display: block; }
   #nav-suggest-positions:checked ~ .layout .main-content #sec-suggest-positions { display: block; }
+  #nav-review-log-hours:checked  ~ .layout .main-content #sec-review-log-hours  { display: block; }
   #nav-payroll:checked      ~ .layout .main-content #sec-payroll      { display: block; }
   #nav-reports:checked      ~ .layout .main-content #sec-reports      { display: block; }
 
@@ -1115,3 +1116,119 @@
     .reports-grid { grid-template-columns: 1fr; }
     .status-grid { grid-template-columns: repeat(2, 1fr); }
   }
+
+/* ══════════════════════════════════════════════
+   REVIEW LOG HOURS — ATTENDANCE VALIDATION STYLES
+══════════════════════════════════════════════ */
+
+/* ── Time Chips ─── */
+.time-chip {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+}
+.time-in  { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
+.time-out { background: #fce4e8; color: #7B0D1E; border: 1px solid #fca5a5; }
+.time-missing { background: #fef3c7; color: #92400e; border: 1px dashed #fcd34d; }
+
+/* ── Department Chip ─── */
+.dept-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--gray-600);
+  white-space: nowrap;
+}
+.dept-chip i { color: var(--maroon); font-size: 10px; }
+
+/* ── Supervisor Tag ─── */
+.supervisor-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--blue);
+  background: var(--blue-light);
+  padding: 3px 9px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.supervisor-tag i { font-size: 10px; }
+.supervisor-edited {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fcd34d;
+}
+
+/* ── Hours Value ─── */
+.hours-val { font-size: 14px; font-weight: 700; color: var(--gray-800); }
+.hours-danger { color: var(--red) !important; }
+
+/* ── Smart Flag Tags ─── */
+.flag-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 9px;
+  border-radius: 20px;
+  font-size: 11.5px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.flag-overtime { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+.flag-missing  { background: #fee2e2; color: var(--red);   border: 1px solid #fca5a5; }
+.flag-edited   { background: #ede9fe; color: #5b21b6; border: 1px solid #c4b5fd; }
+
+/* ── Clean Indicator ─── */
+.flag-clean {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--green);
+}
+.flag-clean i { font-size: 11px; }
+
+/* ── Status Badge Additions ─── */
+.badge.pending-admin {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fcd34d;
+}
+
+/* ── Row Highlight States ─── */
+.log-row-flagged {
+  background: linear-gradient(90deg, rgba(254,243,199,0.35) 0%, transparent 100%);
+  border-left: 3px solid #fcd34d !important;
+}
+.log-row-flagged td:first-child { border-left: none; }
+
+.log-row-rejected {
+  opacity: 0.65;
+}
+.log-row-rejected td { text-decoration-line: none; }
+
+/* ── Rejection Reason Modal helper ─── */
+.btn-reject {
+  background: var(--red-light);
+  color: var(--red-btn);
+  border: 1.5px solid #fca5a5;
+  border-radius: 9px;
+  padding: 8px 14px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.18s, transform 0.15s;
+}
+.btn-reject:hover { background: #fecdd3; transform: translateY(-1px); }
