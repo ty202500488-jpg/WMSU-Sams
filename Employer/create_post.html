@@ -32,27 +32,31 @@
                 
                 <div class="input-row split-2-1">
                     <div class="field">
-                        <label>Job Title / Designation</label>
+                        <label>Job Title</label>
                         <input type="text" name="job_title" placeholder="e.g., Office Technical Assistant" required>
                     </div>
+
                     <div class="field">
-                        <label>Slots Available</label>
-                        <input type="number" name="slots" value="1" min="1" required>
+                        <label>Supervisor</label>
+                        <input type="text" name="supervisor" placeholder="e.g., Dr. John Doe" required>
                     </div>
+    
+                </div>
+
+                <div class="field" style="margin-bottom: 20px;">
+                    <label>Job Description</label>
+                    <textarea name="description" rows="4" placeholder="Describe the role and responsibilities..." required></textarea>
                 </div>
 
                 <div class="input-row">
                     <div class="field">
-                        <label>Target Office / Unit</label>
+                        <label>Location</label>
                         <input type="text" name="unit" placeholder="e.g., College of Engineering - Dean's Office" required>
                     </div>
-                    <div class="field">
-                        <label>Employment Category</label>
-                        <select name="category" required>
-                            <option value="Regular">Regular (Semestral)</option>
-                            <option value="Summer">Summer Job</option>
-                            <option value="Special">Special Project</option>
-                        </select>
+                    
+                     <div class="field">
+                        <label>Slots Available</label>
+                        <input type="number" name="slots" value="1" min="1" required>
                     </div>
                 </div>
             </section>
@@ -84,8 +88,13 @@
                     <textarea name="tasks" rows="4" placeholder="List the daily duties of the student assistant..." required></textarea>
                 </div>
 
+                 <div class="field">
+                    <label>Benefits</label>
+                    <textarea name="benefits" rows="3" placeholder="e.g., Health insurance, Meal allowance..."></textarea>
+                </div>
+
                 <div class="field">
-                    <label>Preferred Qualifications (Optional)</label>
+                    <label>Preferred Qualifications</label>
                     <textarea name="qualifications" rows="3" placeholder="e.g., At least 2nd year, Proficient in MS Excel..."></textarea>
                 </div>
             </section>
