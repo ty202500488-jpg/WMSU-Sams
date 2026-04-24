@@ -1512,7 +1512,7 @@
 }
 .modal-overlay:target{ opacity: 1; visibility: visible; }
 
-.modal-box {
+.modal-card {
   position: relative;
   background: #ffffff;
   padding: 0 !important;
@@ -1627,7 +1627,7 @@
 }
 .btn-open:hover {text-decoration: underline;}
 
-.modal-box .close-btn {
+.btn-closed {
   padding: 10px 28px;
   border-radius: 6px;
   font-weight: 600;
