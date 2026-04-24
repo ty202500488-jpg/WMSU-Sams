@@ -1,1455 +1,2150 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>WMSU SAMS | Admin Dashboard</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
-<link href="admin_dashboard.css" rel="stylesheet"/>
-<link href="../Global/modals.css" rel="stylesheet"/>
-<script src="../Global/modals.js" defer></script>
-<script src="../Global/pagination.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WMSU SAMS | Admin Dashboard</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link href="admin_dashboard.css" rel="stylesheet" />
+  <link href="../Global/modals.css" rel="stylesheet" />
+  <script src="../Global/modals.js" defer></script>
+  <script src="../Global/pagination.js" defer></script>
 </head>
+
 <body>
 
-<!-- ── RADIO INPUTS FOR NAVIGATION ───────────────── -->
-<input class="nav-radio" type="radio" name="nav" id="nav-dashboard"    checked/>
-<input class="nav-radio" type="radio" name="nav" id="nav-students"/>
-<input class="nav-radio" type="radio" name="nav" id="nav-departments"/>
-<input class="nav-radio" type="radio" name="nav" id="nav-positions"/>
-<input class="nav-radio" type="radio" name="nav" id="nav-suggest-positions"/>
-<input class="nav-radio" type="radio" name="nav" id="nav-payroll"/>
-<input class="nav-radio" type="radio" name="nav" id="nav-reports"/>
+  <!-- ── RADIO INPUTS FOR NAVIGATION ───────────────── -->
+  <input class="nav-radio" type="radio" name="nav" id="nav-dashboard" checked />
+  <input class="nav-radio" type="radio" name="nav" id="nav-students" />
+  <input class="nav-radio" type="radio" name="nav" id="nav-departments" />
+  <input class="nav-radio" type="radio" name="nav" id="nav-positions" />
+  <input class="nav-radio" type="radio" name="nav" id="nav-suggest-positions" />
+  <input class="nav-radio" type="radio" name="nav" id="nav-review-log-hours" />
+  <input class="nav-radio" type="radio" name="nav" id="nav-payroll" />
+  <input class="nav-radio" type="radio" name="nav" id="nav-reports" />
 
-<!-- ── TAB RADIOS (Removed - Applications section removed) ─────────────────────────────────── -->
+  <div class="layout">
 
-<!-- ═══════════════════════════════════════════════
-     SIDEBAR
-════════════════════════════════════════════════ -->
-<div class="layout">
-
-<aside class="sidebar">
-  <div class="sidebar-logo">
-    <div class="logo-text">
-      <div class="abbr">WMSU-SAMS</div>
-      <div class="full">Student Assistant Management System.</div>
-    </div>
-  </div>
-
-  <div class="sidebar-section-label">Main Menu</div>
-
-  <nav class="sidebar-nav">
-    <div class="nav-item">
-      <label for="nav-dashboard">
-        <i class="fas fa-th-large"></i>
-        Dashboard
-      </label>
-    </div>
-    <div class="nav-item">
-      <label for="nav-students">
-        <i class="fas fa-user-check"></i>
-        Verify Students
-        <span class="nav-badge">4</span>
-      </label>
-    </div>
-    <div class="nav-item">
-      <label for="nav-departments">
-        <i class="fas fa-building"></i>
-        Verify Departments
-        <span class="nav-badge">3</span>
-      </label>
-    </div>
-    <div class="nav-item">
-      <label for="nav-positions">
-        <i class="fas fa-briefcase"></i>
-        Manage Positions
-      </label>
-    </div>
-    <div class="nav-item">
-      <label for="nav-suggest-positions">
-        <i class="fas fa-hand-holding-heart"></i>
-        Suggest Positions
-      </label>
-    </div>
-
-    <div class="sidebar-section-label">Operations</div>
-
-    <div class="nav-item">
-      <label for="nav-payroll">
-        <i class="fas fa-money-bill-wave"></i>
-        Payroll
-      </label>
-    </div>
-
-    <div class="nav-item">
-      <label for="nav-reports">
-        <i class="fas fa-chart-bar"></i>
-        Reports
-      </label>
-    </div>
-  </nav>
-
-  <div class="sidebar-footer">
-    <a href="../Global/index.html" class="logout-btn">
-      <i class="fas fa-sign-out-alt"></i>
-      Logout
-    </a>
-  </div>
-</aside>
-
-<!-- ═══════════════════════════════════════════════
-     TOPBAR
-════════════════════════════════════════════════ -->
-<header class="topbar">
-  <div class="topbar-left">
-    <h1>Admin Panel</h1>
-    <p>Western Mindanao State University — AY 2025–2026</p>
-  </div>
-  <div class="topbar-right">
-    <div class="topbar-notif">
-      <i class="fas fa-bell"></i>
-      <span class="notif-dot"></span>
-    </div>
-    <div class="topbar-user">
-      <div class="user-avatar">AD</div>
-      <div>
-        <div class="user-name">Admin</div>
-        <div class="user-role">System Administrator</div>
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-text">
+          <div class="abbr">WMSU-SAMS</div>
+          <div class="full">Student Assistant Management System.</div>
+        </div>
       </div>
-    </div>
-  </div>
-</header>
 
-<!-- ═══════════════════════════════════════════════
-     MAIN CONTENT
-════════════════════════════════════════════════ -->
-<main class="main-content">
+      <div class="sidebar-section-label">Main Menu</div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-item">
+          <label for="nav-dashboard">
+            <i class="fas fa-th-large"></i>
+            Dashboard
+          </label>
+        </div>
+        <div class="nav-item">
+          <label for="nav-students">
+            <i class="fas fa-user-check"></i>
+            Verify Students
+            <span class="nav-badge" id="sidebar-badge-students">5</span>
+          </label>
+        </div>
+        <div class="nav-item">
+          <label for="nav-departments">
+            <i class="fas fa-building"></i>
+            Verify Departments
+            <span class="nav-badge" id="sidebar-badge-depts">5</span>
+          </label>
+        </div>
+        <div class="nav-item">
+          <label for="nav-positions">
+            <i class="fas fa-briefcase"></i>
+            Manage Positions
+          </label>
+        </div>
+        <div class="nav-item">
+          <label for="nav-suggest-positions">
+            <i class="fas fa-hand-holding-heart"></i>
+            Suggest Positions
+          </label>
+        </div>
+        <div class="nav-item">
+          <label for="nav-review-log-hours">
+            <i class="fas fa-clipboard-check"></i>
+            Review Log Hours
+          </label>
+        </div>
+
+        <div class="sidebar-section-label">Operations</div>
+
+        <div class="nav-item">
+          <label for="nav-payroll">
+            <i class="fas fa-money-bill-wave"></i>
+            Payroll
+          </label>
+        </div>
+
+        <div class="nav-item">
+          <label for="nav-reports">
+            <i class="fas fa-chart-bar"></i>
+            Reports
+          </label>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="../index.html" class="logout-btn">
+          <i class="fas fa-sign-out-alt"></i>
+          Logout
+        </a>
+      </div>
+    </aside>
+
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1>Admin Panel</h1>
+        <p>Western Mindanao State University — AY 2025–2026</p>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-notif">
+          <i class="fas fa-bell"></i>
+          <span class="notif-dot"></span>
+        </div>
+        <div class="topbar-user">
+          <div class="user-avatar">AD</div>
+          <div>
+            <div class="user-name">Admin</div>
+            <div class="user-role">System Administrator</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-content">
 
 
-<!-- ╔══════════════════════════════════════════════
+      <!-- ╔══════════════════════════════════════════════
      § DASHBOARD
 ══════════════════════════════════════════════╗ -->
-<section class="section" id="sec-dashboard">
+      <section class="section" id="sec-dashboard">
 
-  <div class="section-header">
-    <div>
-      <div class="section-title">Welcome back, Administrator</div>
-      <div class="section-sub">Here's what's happening in SAMS today — Tuesday, March 24, 2026</div>
-    </div>
-    <div class="section-actions">
-      <button class="btn btn-outline"><i class="fas fa-download"></i> Export Report</button>
-      <button class="btn btn-primary"><i class="fas fa-sync-alt"></i> Refresh</button>
-    </div>
-  </div>
-
-  <!-- Stat Cards -->
-  <div class="stat-grid">
-    <div class="stat-card maroon">
-      <div class="stat-card-top">
-        <div class="stat-icon maroon"><i class="fas fa-users"></i></div>
-        <span class="stat-trend up"><i class="fas fa-arrow-up"></i> +12</span>
-      </div>
-      <div class="stat-value">248</div>
-      <div class="stat-label">Total Students Registered</div>
-    </div>
-    <div class="stat-card gold">
-      <div class="stat-card-top">
-        <div class="stat-icon gold"><i class="fas fa-university"></i></div>
-        <span class="stat-trend up"><i class="fas fa-arrow-up"></i> +2</span>
-      </div>
-      <div class="stat-value">18</div>
-      <div class="stat-label">Total Departments</div>
-    </div>
-    <div class="stat-card green">
-      <div class="stat-card-top">
-        <div class="stat-icon green"><i class="fas fa-user-tie"></i></div>
-        <span class="stat-trend up"><i class="fas fa-arrow-up"></i> +7</span>
-      </div>
-      <div class="stat-value">94</div>
-      <div class="stat-label">Active Student Assistants</div>
-    </div>
-    <div class="stat-card orange">
-      <div class="stat-card-top">
-        <div class="stat-icon orange"><i class="fas fa-hourglass-half"></i></div>
-        <span class="stat-trend warn"><i class="fas fa-exclamation"></i> Action</span>
-      </div>
-      <div class="stat-value">16</div>
-      <div class="stat-label">Pending Applications</div>
-    </div>
-  </div>
-
-  <!-- Alert Banner -->
-  <div class="alert-banner warn">
-    <i class="fas fa-exclamation-triangle"></i>
-    <span><strong>Action Required:</strong> 4 student verifications and 3 department approvals are awaiting your review. Please resolve them before the deadline.</span>
-  </div>
-
-  <!-- Dashboard Grid -->
-  <div class="dash-grid">
-
-    <!-- Recent Activity -->
-    <div class="card">
-      <div class="card-header">
-        <h3><i class="fas fa-clock"></i> Recent Activity</h3>
-        <a href="#" class="view-all">View all <i class="fas fa-arrow-right"></i></a>
-      </div>
-      <div class="card-body">
-        <ul class="activity-list">
-          <li class="activity-item">
-            <div class="activity-dot reg"><i class="fas fa-user-plus"></i></div>
-            <div>
-              <div class="activity-text"><strong>Maria Santos</strong> registered as a new student and uploaded required documents.</div>
-              <div class="activity-time"><i class="fas fa-clock" style="font-size:10px;"></i> 14 minutes ago</div>
-            </div>
-          </li>
-          <li class="activity-item">
-            <div class="activity-dot dept"><i class="fas fa-building"></i></div>
-            <div>
-              <div class="activity-text"><strong>College of Nursing</strong> submitted department registration for verification.</div>
-              <div class="activity-time"><i class="fas fa-clock" style="font-size:10px;"></i> 1 hour ago</div>
-            </div>
-          </li>
-          <li class="activity-item">
-            <div class="activity-dot app"><i class="fas fa-file-alt"></i></div>
-            <div>
-              <div class="activity-text"><strong>Juan dela Cruz</strong> applied for <em>Library Assistant</em> at CEAS Department.</div>
-              <div class="activity-time"><i class="fas fa-clock" style="font-size:10px;"></i> 2 hours ago</div>
-            </div>
-          </li>
-          <li class="activity-item">
-            <div class="activity-dot reg"><i class="fas fa-user-plus"></i></div>
-            <div>
-              <div class="activity-text"><strong>Ana Reyes</strong> registered and submitted COR and resume for verification.</div>
-              <div class="activity-time"><i class="fas fa-clock" style="font-size:10px;"></i> 3 hours ago</div>
-            </div>
-          </li>
-          <li class="activity-item">
-            <div class="activity-dot warn"><i class="fas fa-exclamation"></i></div>
-            <div>
-              <div class="activity-text"><strong>IT Department</strong> application for <em>Lab Monitor</em> slot is still pending final decision.</div>
-              <div class="activity-time"><i class="fas fa-clock" style="font-size:10px;"></i> Yesterday, 4:30 PM</div>
-            </div>
-          </li>
-          <li class="activity-item">
-            <div class="activity-dot app"><i class="fas fa-check-circle"></i></div>
-            <div>
-              <div class="activity-text"><strong>Carlos Mendez</strong> was approved as Student Assistant for the <em>Finance Office</em>.</div>
-              <div class="activity-time"><i class="fas fa-clock" style="font-size:10px;"></i> Yesterday, 2:15 PM</div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Pending Actions -->
-    <div>
-      <div class="card" style="margin-bottom:20px;">
-        <div class="card-header">
-          <h3><i class="fas fa-tasks"></i> Pending Actions</h3>
-        </div>
-        <div class="card-body" style="padding-top:14px;">
-          <ul class="pending-list">
-            <li class="pending-item">
-              <div class="pending-left">
-                <div class="pending-icon" style="background:#fce4e8;color:var(--maroon);"><i class="fas fa-user-check"></i></div>
-                <div>
-                  <div class="pending-label">Student Verifications</div>
-                  <div class="pending-sub">Documents awaiting review</div>
-                </div>
-              </div>
-              <span class="badge-count">4</span>
-            </li>
-            <li class="pending-item">
-              <div class="pending-left">
-                <div class="pending-icon" style="background:#fef9ec;color:var(--yellow);"><i class="fas fa-building"></i></div>
-                <div>
-                  <div class="pending-label">Dept. Verifications</div>
-                  <div class="pending-sub">Awaiting legitimacy check</div>
-                </div>
-              </div>
-              <span class="badge-count">3</span>
-            </li>
-            <li class="pending-item">
-              <div class="pending-left">
-                <div class="pending-icon" style="background:var(--green-light);color:var(--green);"><i class="fas fa-clipboard-list"></i></div>
-                <div>
-                  <div class="pending-label">SA Applications</div>
-                  <div class="pending-sub">Final approval pending</div>
-                </div>
-              </div>
-              <span class="badge-count">8</span>
-            </li>
-            <li class="pending-item">
-              <div class="pending-left">
-                <div class="pending-icon" style="background:var(--blue-light);color:var(--blue);"><i class="fas fa-file-invoice"></i></div>
-                <div>
-                  <div class="pending-label">Reports Due</div>
-                  <div class="pending-sub">Monthly summary needed</div>
-                </div>
-              </div>
-              <span class="badge-count">2</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Quick Summary -->
-      <div class="card">
-        <div class="card-header">
-          <h3><i class="fas fa-chart-pie"></i> Quick Summary</h3>
-        </div>
-        <div class="card-body">
-          <div style="display:flex;flex-direction:column;gap:12px;">
-            <div>
-              <div class="dist-label">
-                <span class="dist-name">Verified Students</span>
-                <span class="dist-count">186 / 248</span>
-              </div>
-              <div class="dist-bar-wrap"><div class="dist-bar" style="width:75%;"></div></div>
-            </div>
-            <div>
-              <div class="dist-label">
-                <span class="dist-name">Active SA Slots Filled</span>
-                <span class="dist-count">94 / 120</span>
-              </div>
-              <div class="dist-bar-wrap"><div class="dist-bar" style="width:78%;background:linear-gradient(90deg,var(--green),#4ade80);"></div></div>
-            </div>
-            <div>
-              <div class="dist-label">
-                <span class="dist-name">Approved Departments</span>
-                <span class="dist-count">15 / 18</span>
-              </div>
-              <div class="dist-bar-wrap"><div class="dist-bar" style="width:83%;background:linear-gradient(90deg,var(--blue),#60a5fa);"></div></div>
-            </div>
-            <div>
-              <div class="dist-label">
-                <span class="dist-name">Applications Resolved</span>
-                <span class="dist-count">52 / 68</span>
-              </div>
-              <div class="dist-bar-wrap"><div class="dist-bar" style="width:76%;background:linear-gradient(90deg,var(--yellow),#fbbf24);"></div></div>
-            </div>
+        <div class="section-header">
+          <div>
+            <div class="section-title">Welcome back, Administrator</div>
+            <div class="section-sub">Here's what's happening in SAMS today — Tuesday, March 24, 2026</div>
+          </div>
+          <div class="section-actions">
+            <button class="btn btn-outline"><i class="fas fa-download"></i> Export Report</button>
+            <button class="btn btn-primary"><i class="fas fa-sync-alt"></i> Refresh</button>
           </div>
         </div>
-      </div>
-    </div>
 
-  </div><!-- /dash-grid -->
-</section>
+        <!-- Stat Cards -->
+        <div class="stat-grid">
+          <div class="stat-card maroon">
+            <div class="stat-card-top">
+              <div class="stat-icon maroon"><i class="fas fa-users"></i></div>
+              <span class="stat-trend up"><i class="fas fa-arrow-up"></i> +12</span>
+            </div>
+            <div class="stat-value">248</div>
+            <div class="stat-label">Total Students Registered</div>
+          </div>
+          <div class="stat-card gold">
+            <div class="stat-card-top">
+              <div class="stat-icon gold"><i class="fas fa-university"></i></div>
+              <span class="stat-trend up"><i class="fas fa-arrow-up"></i> +2</span>
+            </div>
+            <div class="stat-value">18</div>
+            <div class="stat-label">Total Departments</div>
+          </div>
+          <div class="stat-card green">
+            <div class="stat-card-top">
+              <div class="stat-icon green"><i class="fas fa-user-tie"></i></div>
+              <span class="stat-trend up"><i class="fas fa-arrow-up"></i> +7</span>
+            </div>
+            <div class="stat-value">94</div>
+            <div class="stat-label">Active Student Assistants</div>
+          </div>
+          <div class="stat-card orange">
+            <div class="stat-card-top">
+              <div class="stat-icon orange"><i class="fas fa-hourglass-half"></i></div>
+              <span class="stat-trend warn"><i class="fas fa-exclamation"></i> Action</span>
+            </div>
+            <div class="stat-value">16</div>
+            <div class="stat-label">Pending Applications</div>
+          </div>
+        </div>
+
+        <!-- Alert Banner -->
+        <div class="alert-banner warn" id="dash-alert-banner">
+          <i class="fas fa-exclamation-triangle"></i>
+          <span id="dash-alert-text"><strong>Action Required:</strong> <strong>5 student verifications</strong> and <strong>5 department approvals</strong> are awaiting your review. Please resolve them before the deadline.</span>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="dash-grid">
+
+          <!-- Recent Activity -->
+          <div class="card">
+            <div class="card-header">
+              <h3><i class="fas fa-clock"></i> Recent Activity</h3>
+              <a href="#" class="view-all">View all <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="card-body">
+              <ul class="activity-list">
+                <li class="activity-item">
+                  <div class="activity-dot reg"><i class="fas fa-user-plus"></i></div>
+                  <div>
+                    <div class="activity-text"><strong>Maria Santos</strong> registered as a new student and uploaded
+                      required documents.</div>
+                    <div class="activity-time"><i class="fas fa-clock" style="font-size:10px;"></i> 14 minutes ago</div>
+                  </div>
+                </li>
+                <li class="activity-item">
+                  <div class="activity-dot dept"><i class="fas fa-building"></i></div>
+                  <div>
+                    <div class="activity-text"><strong>College of Nursing</strong> submitted department registration for
+                      verification.</div>
+                    <div class="activity-time"><i class="fas fa-clock" style="font-size:10px;"></i> 1 hour ago</div>
+                  </div>
+                </li>
+                <li class="activity-item">
+                  <div class="activity-dot app"><i class="fas fa-file-alt"></i></div>
+                  <div>
+                    <div class="activity-text"><strong>Juan dela Cruz</strong> applied for <em>Library Assistant</em> at
+                      CEAS Department.</div>
+                    <div class="activity-time"><i class="fas fa-clock" style="font-size:10px;"></i> 2 hours ago</div>
+                  </div>
+                </li>
+                <li class="activity-item">
+                  <div class="activity-dot reg"><i class="fas fa-user-plus"></i></div>
+                  <div>
+                    <div class="activity-text"><strong>Ana Reyes</strong> registered and submitted COR and resume for
+                      verification.</div>
+                    <div class="activity-time"><i class="fas fa-clock" style="font-size:10px;"></i> 3 hours ago</div>
+                  </div>
+                </li>
+                <li class="activity-item">
+                  <div class="activity-dot warn"><i class="fas fa-exclamation"></i></div>
+                  <div>
+                    <div class="activity-text"><strong>IT Department</strong> application for <em>Lab Monitor</em> slot
+                      is still pending final decision.</div>
+                    <div class="activity-time"><i class="fas fa-clock" style="font-size:10px;"></i> Yesterday, 4:30 PM
+                    </div>
+                  </div>
+                </li>
+                <li class="activity-item">
+                  <div class="activity-dot app"><i class="fas fa-check-circle"></i></div>
+                  <div>
+                    <div class="activity-text"><strong>Carlos Mendez</strong> was approved as Student Assistant for the
+                      <em>Finance Office</em>.
+                    </div>
+                    <div class="activity-time"><i class="fas fa-clock" style="font-size:10px;"></i> Yesterday, 2:15 PM
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Pending Actions -->
+          <div>
+            <div class="card" style="margin-bottom:20px;">
+              <div class="card-header">
+                <h3><i class="fas fa-tasks"></i> Pending Actions</h3>
+              </div>
+              <div class="card-body" style="padding-top:14px;">
+                <ul class="pending-list">
+                  <li class="pending-item">
+                    <div class="pending-left">
+                      <div class="pending-icon" style="background:#fce4e8;color:var(--maroon);"><i
+                          class="fas fa-user-check"></i></div>
+                      <div>
+                        <div class="pending-label">Student Verifications</div>
+                        <div class="pending-sub">Documents awaiting review</div>
+                      </div>
+                    </div>
+                    <span class="badge-count" id="dash-count-students">5</span>
+                  </li>
+                  <li class="pending-item">
+                    <div class="pending-left">
+                      <div class="pending-icon" style="background:#fef9ec;color:var(--yellow);"><i
+                          class="fas fa-building"></i></div>
+                      <div>
+                        <div class="pending-label">Dept. Verifications</div>
+                        <div class="pending-sub">Awaiting legitimacy check</div>
+                      </div>
+                    </div>
+                    <span class="badge-count" id="dash-count-depts">5</span>
+                  </li>
+                  <li class="pending-item">
+                    <div class="pending-left">
+                      <div class="pending-icon" style="background:var(--green-light);color:var(--green);"><i
+                          class="fas fa-clipboard-list"></i></div>
+                      <div>
+                        <div class="pending-label">SA Applications</div>
+                        <div class="pending-sub">Final approval pending</div>
+                      </div>
+                    </div>
+                    <span class="badge-count">8</span>
+                  </li>
+                  <li class="pending-item">
+                    <div class="pending-left">
+                      <div class="pending-icon" style="background:var(--blue-light);color:var(--blue);"><i
+                          class="fas fa-file-invoice"></i></div>
+                      <div>
+                        <div class="pending-label">Reports Due</div>
+                        <div class="pending-sub">Monthly summary needed</div>
+                      </div>
+                    </div>
+                    <span class="badge-count">2</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Quick Summary -->
+            <div class="card">
+              <div class="card-header">
+                <h3><i class="fas fa-chart-pie"></i> Quick Summary</h3>
+              </div>
+              <div class="card-body">
+                <div style="display:flex;flex-direction:column;gap:12px;">
+                  <div>
+                    <div class="dist-label">
+                      <span class="dist-name">Verified Students</span>
+                      <span class="dist-count">186 / 248</span>
+                    </div>
+                    <div class="dist-bar-wrap">
+                      <div class="dist-bar" style="width:75%;"></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="dist-label">
+                      <span class="dist-name">Active SA Slots Filled</span>
+                      <span class="dist-count">94 / 120</span>
+                    </div>
+                    <div class="dist-bar-wrap">
+                      <div class="dist-bar" style="width:78%;background:linear-gradient(90deg,var(--green),#4ade80);">
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="dist-label">
+                      <span class="dist-name">Approved Departments</span>
+                      <span class="dist-count">15 / 18</span>
+                    </div>
+                    <div class="dist-bar-wrap">
+                      <div class="dist-bar" style="width:83%;background:linear-gradient(90deg,var(--blue),#60a5fa);">
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="dist-label">
+                      <span class="dist-name">Applications Resolved</span>
+                      <span class="dist-count">52 / 68</span>
+                    </div>
+                    <div class="dist-bar-wrap">
+                      <div class="dist-bar" style="width:76%;background:linear-gradient(90deg,var(--yellow),#fbbf24);">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /dash-grid -->
+      </section>
 
 
-<!-- ╔══════════════════════════════════════════════
+      <!-- ╔══════════════════════════════════════════════
      § VERIFY STUDENTS
 ══════════════════════════════════════════════╗ -->
-<section class="section" id="sec-students">
+      <section class="section" id="sec-students">
 
-  <div class="section-header">
-    <div>
-      <div class="section-title">Verify Students</div>
-      <div class="section-sub">Review submitted documents and approve or reject student registrations</div>
-    </div>
-    <div class="section-actions">
-      <button class="btn btn-outline btn-sm"><i class="fas fa-filter"></i> Filter</button>
-      <button class="btn btn-primary btn-sm"><i class="fas fa-download"></i> Export</button>
-    </div>
-  </div>
-
-  <div class="alert-banner info" style="margin-bottom:20px;">
-    <i class="fas fa-info-circle"></i>
-    <span><strong>5 students</strong> are pending verification. Please review their submitted documents (COR) carefully before approving.</span>
-  </div>
-
-  <div class="filter-bar">
-
-    <div class="search-box">
-        <i class="fas fa-search"></i>
-        <input type="text" id="student-search" placeholder="Search by name or ID...">
-    </div>
-
-    <select id="student-filter-status">
-      <option value="">All Status</option>
-      <option value="pending">Pending</option>
-      <option value="approved">Approved</option>
-      <option value="rejected">Rejected</option>
-    </select>
-
-    <select id="student-filter-course">
-      <option value="">All Courses</option>
-      <option value="BSCS">BSCS</option>
-      <option value="BSED">BSED</option>
-      <option value="BSN">BSN</option>
-      <option value="BSBA">BSBA</option>
-    </select>
-  </div>
-
-  <div class="table-wrap">
-    <table id="students-table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Student</th>
-          <th>Student ID</th>
-          <th>Course / Year</th>
-          <th>Date Submitted</th>
-          <th>Status</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-
-        <tr data-name="Maria Santos" data-id="2022-00145" data-status="pending" data-course="BSCS">
-          <td>1</td>
-          <td>
-            <div class="t-avatar">
-              <div class="av av-a">MS</div>
-              <div><div class="td-name">Maria Santos</div><div class="td-sub">santos.maria@wmsu.edu.ph</div></div>
-            </div>
-          </td>
-          <td>2022-00145</td>
-          <td>BSCS — 3rd Year</td>
-          <td>Mar 19, 2026</td>
-          <td><span class="badge pending">Pending</span></td>
-          <td>
-            <div class="action-btns">
-              <button class="btn-icon view">
-                <a href="#view-docs-1"><i class="fas fa-eye"></i></a>
-              </button>
-              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
-              <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
-            </div>
-          </td>
-        </tr>
-
-        <tr data-name="Juan dela Cruz" data-id="2021-00388" data-status="pending" data-course="BSBA">
-          <td>2</td>
-          <td>
-            <div class="t-avatar">
-              <div class="av av-b">JD</div>
-              <div><div class="td-name">Juan dela Cruz</div><div class="td-sub">delacruz.juan@wmsu.edu.ph</div></div>
-            </div>
-          </td>
-          <td>2021-00388</td>
-          <td>BSBA — 4th Year</td>
-          <td>Mar 19, 2026</td>
-          <td><span class="badge pending">Pending</span></td>
-          <td>
-            <div class="action-btns">
-              <button class="btn-icon view">
-                <a href="#view-docs-2"><i class="fas fa-eye"></i></a>
-              </button>
-              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
-              <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
-            </div>
-          </td>
-        </tr>
-
-        <tr data-name="Ana Reyes" data-id="2023-00072" data-status="pending" data-course="BSN">
-          <td>3</td>
-          <td>
-            <div class="t-avatar">
-              <div class="av av-c">AR</div>
-              <div><div class="td-name">Ana Reyes</div><div class="td-sub">reyes.ana@wmsu.edu.ph</div></div>
-            </div>
-          </td>
-          <td>2023-00072</td>
-          <td>BSN — 2nd Year</td>
-          <td>Mar 20, 2026</td>
-          <td><span class="badge pending">Pending</span></td>
-          <td>
-            <div class="action-btns">
-              <button class="btn-icon view"><a href="#view-docs-3"><i class="fas fa-eye"></i></a></button>
-              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
-              <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
-            </div>
-          </td>
-        </tr>
-
-        <tr data-name="Liza Torres" data-id="2022-00299" data-status="pending" data-course="BSCS">
-          <td>4</td>
-          <td>
-            <div class="t-avatar">
-              <div class="av av-e">LT</div>
-              <div><div class="td-name">Liza Torres</div><div class="td-sub">torres.liza@wmsu.edu.ph</div></div>
-            </div>
-          </td>
-          <td>2022-00299</td>
-          <td>BSCS — 3rd Year</td>
-          <td>Mar 20, 2026</td>
-          <td><span class="badge pending">Pending</span></td>
-          <td>
-            <div class="action-btns">
-              <button class="btn-icon view"><a href="#view-docs-4"><i class="fas fa-eye"></i></a></button>
-              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
-              <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
-            </div>
-          </td>
-        </tr>
-
-        <tr data-name="Janricson Ompoy" data-id="2022-00319" data-status="pending" data-course="BSCS">
-          <td>5</td>
-          <td>
-            <div class="t-avatar">
-              <div class="av av-e">JO</div>
-              <div><div class="td-name">Janricson Ompoy</div><div class="td-sub">ompoy.janricson@wmsu.edu.ph</div></div>
-            </div>
-          </td>
-          <td>2022-00319</td>
-          <td>BSCS — 1st Year</td>
-          <td>Mar 22, 2026</td>
-          <td><span class="badge pending">Pending</span></td>
-          <td>
-            <div class="action-btns">
-               <button class="btn-icon view"><a href="#view-docs-5"><i class="fas fa-eye"></i></a></button>
-              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
-              <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
-            </div>
-          </td>
-        </tr>
-
-      </tbody>
-    </table>
-  </div>
-</section>
-
-
-<!-- ╔══════════════════════════════════════════════
-     § VERIFY DEPARTMENTS
-══════════════════════════════════════════════╗ -->
-<section class="section" id="sec-departments">
-
-  <div class="section-header">
-    <div>
-      <div class="section-title">Verify Departments</div>
-      <div class="section-sub">Review department credentials and uploaded documents before approval</div>
-    </div>
-  </div>
-
-  <div class="alert-banner warn">
-    <i class="fas fa-exclamation-triangle"></i>
-    <span><strong>5 departments</strong> are awaiting legitimacy verification. Review their MOA, authorization letter, and department profile.</span>
-  </div>
-
-  <div class="table-wrap" style="margin-top:20px;">
-    <table>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Department</th>
-          <th>Dean / Head</th>
-          <th>College</th>
-          <th>Date Submitted</th>
-          <th>Status</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-
-        <tr>
-          <td>1</td>
-          <td>
-            <div>
-              <div class="td-name"><i class="fas fa-building" style="color:var(--maroon);margin-right:6px;"></i>College of Engineering</div>
-              <div class="td-sub">Engineering Complex, Bldg. A</div>
-            </div>
-          </td>
-          <td>Dean Roberto Cruz</td>
-          <td>Engineering & Tech</td>
-          <td>Mar 23, 2026</td>
-          <td><span class="badge pending">Pending</span></td>
-          <td>
-            <div class="action-btns">
-              <button class="btn-icon view"><a href="#view-dept-1"><i class="fas fa-eye"></i></a></button>
-              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
-              <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-          <td>2</td>
-          <td>
-            <div>
-              <div class="td-name"><i class="fas fa-building" style="color:var(--maroon);margin-right:6px;"></i>Information Technology Dept.</div>
-              <div class="td-sub">ICT Building, 2nd Floor</div>
-            </div>
-          </td>
-          <td>Dean Alma Fernandez</td>
-          <td>Computing & IT</td>
-          <td>Mar 22, 2026</td>
-          <td><span class="badge pending">Pending</span></td>
-          <td>
-            <div class="action-btns">
-              <button class="btn-icon view"><a href="#view-dept-2"><i class="fas fa-eye"></i></a></button>
-              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
-              <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-          <td>3</td>
-          <td>
-            <div>
-              <div class="td-name"><i class="fas fa-building" style="color:var(--maroon);margin-right:6px;"></i>College of Education</div>
-              <div class="td-sub">Education Building, Room 101</div>
-            </div>
-          </td>
-          <td>Dean Maria Lopez</td>
-          <td>Education</td>
-          <td>Mar 21, 2026</td>
-          <td><span class="badge pending">Pending</span></td>
-          <td>
-            <div class="action-btns">
-              <button class="btn-icon view"><a href="#view-dept-3"><i class="fas fa-eye"></i></a></button>
-              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
-              <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-          <td>4</td>
-          <td>
-            <div>
-              <div class="td-name"><i class="fas fa-building" style="color:var(--maroon);margin-right:6px;"></i>Registrar Office</div>
-              <div class="td-sub">Admin Building, Ground Floor</div>
-            </div>
-          </td>
-          <td>Mr. Carlos Reyes</td>
-          <td>Administrative</td>
-          <td>Mar 20, 2026</td>
-          <td><span class="badge pending">Pending</span></td>
-          <td>
-            <div class="action-btns">
-              <button class="btn-icon view"><a href="#view-dept-4"><i class="fas fa-eye"></i></a></i></button>
-              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
-              <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-          <td>5</td>
-          <td>
-            <div>
-              <div class="td-name"><i class="fas fa-building" style="color:var(--maroon);margin-right:6px;"></i>Guidance Office</div>
-              <div class="td-sub">Student Services Center</div>
-            </div>
-          </td>
-          <td>Ms. Angela Bautista</td>
-          <td>Student Services</td>
-          <td>Mar 19, 2026</td>
-          <td><span class="badge pending">Pending</span></td>
-          <td>
-            <div class="action-btns">
-              <button class="btn-icon view"><a href="#view-dept-5"><i class="fas fa-eye"></i></a></i></button>
-              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
-              <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-
-<!-- ╔══════════════════════════════════════════════
-     § MANAGE POSITIONS
-══════════════════════════════════════════════╗ -->
-<section class="section" id="sec-positions">
-
-  <div class="section-header">
-    <div>
-      <div class="section-title">Manage Positions</div>
-      <div class="section-sub">Define and manage available Student Assistant positions across departments</div>
-    </div>
-    <div class="section-actions">
-       <div class="search-box">
-          <i class="fas fa-search"></i>
-          <input type="text" placeholder="Search by name or ID...">
-       </div>
-       <a href="create_post.html" class="create-btn" style="text-decoration: none; font-weight: 600;"><i class="fas fa-plus"></i> New Position</a>
-      <button class="btn btn-outline btn-sm"><i class="fas fa-filter"></i> Filter</button>
-    </div>
-  </div>
-
-  <div class="positions-grid">
-
-    <div class="position-card">
-      <div class="pos-header">
-        <div>
-          <div class="pos-name">Library Assistant</div>
-          <div class="pos-dept"><i class="fas fa-building" style="font-size:10px;"></i> University Library</div>
-        </div>
-       <span class="badge pending">Pending</span>
-      </div>
-      <div class="pos-stats">
-        <div class="pos-stat">
-          <div class="pos-stat-val">5</div>
-          <div class="pos-stat-lbl">Total Slots</div>
-        </div>
-        <div class="pos-stat">
-          <div class="pos-stat-val">3</div>
-          <div class="pos-stat-lbl">Filled</div>
-        </div>
-        <div class="pos-stat">
-          <div class="pos-stat-val col-green"></div>
-          <div class="pos-stat-lbl">Available</div>
-        </div>
-        <div class="pos-stat">
-          <div class="pos-stat-val">20h</div>
-          <div class="pos-stat-lbl">Per Week</div>
-        </div>
-      </div>
-      <div class="pos-footer">
-        <div class="pos-rate"><i class="fas fa-peso-sign"></i> 4,500 / mo</div>
-       <div class="action-btns">
-          <button class="btn-icon view"><a href="#view-pos-1"><i class="fas fa-eye"></i></a></button>
-          <button class="btn-icon approve"><i class="fas fa-check"></i></button>
-          <button class="btn-icon reject"><i class="fas fa-times"></i></button>
-        </div>
-      </div>
-    </div>
-
-    <div class="position-card">
-      <div class="pos-header">
-        <div>
-          <div class="pos-name">Laboratory Monitor</div>
-          <div class="pos-dept"><i class="fas fa-building" style="font-size:10px;"></i> Information Technology Dept.</div>
-        </div>
-        <span class="badge pending">Pending</span>
-      </div>
-      <div class="pos-stats">
-        <div class="pos-stat">
-          <div class="pos-stat-val">8</div>
-          <div class="pos-stat-lbl">Total Slots</div>
-        </div>
-        <div class="pos-stat">
-          <div class="pos-stat-val">8</div>
-          <div class="pos-stat-lbl">Filled</div>
-        </div>
-        <div class="pos-stat">
-          <div class="pos-stat-val" style="color:var(--red);"></div>
-          <div class="pos-stat-lbl">Available</div>
-        </div>
-        <div class="pos-stat">
-          <div class="pos-stat-val">24h</div>
-          <div class="pos-stat-lbl">Per Week</div>
-        </div>
-      </div>
-      <div class="pos-footer">
-        <div class="pos-rate"><i class="fas fa-peso-sign"></i> 5,000 / mo</div>
-        <div class="action-btns">
-          <button class="btn-icon view"><a href="#view-pos-2"><i class="fas fa-eye"></i></a></button>
-          <button class="btn-icon approve"><i class="fas fa-check"></i></button>
-          <button class="btn-icon reject"><i class="fas fa-times"></i></button>
-        </div>
-      </div>
-    </div>
-
-    <div class="position-card">
-      <div class="pos-header">
-        <div>
-          <div class="pos-name">Office Assistant</div>
-          <div class="pos-dept"><i class="fas fa-building" style="font-size:10px;"></i> College of Education</div>
-        </div>
-        <span class="badge pending">Pending</span>
-      </div>
-      <div class="pos-stats">
-        <div class="pos-stat">
-          <div class="pos-stat-val">6</div>
-          <div class="pos-stat-lbl">Total Slots</div>
-        </div>
-        <div class="pos-stat">
-          <div class="pos-stat-val">4</div>
-          <div class="pos-stat-lbl">Filled</div>
-        </div>
-        <div class="pos-stat">
-          <div class="pos-stat-val col-green"></div>
-          <div class="pos-stat-lbl">Available</div>
-        </div>
-        <div class="pos-stat">
-          <div class="pos-stat-val">16h</div>
-          <div class="pos-stat-lbl">Per Week</div>
-        </div>
-      </div>
-      <div class="pos-footer">
-        <div class="pos-rate"><i class="fas fa-peso-sign"></i> 4,000 / mo</div>
-        <div class="action-btns">
-          <button class="btn-icon view"><a href="#view-pos-3"><i class="fas fa-eye"></i></a></button>
-          <button class="btn-icon approve"><i class="fas fa-check"></i></button>
-          <button class="btn-icon reject"><i class="fas fa-times"></i></button>
-        </div>
-      </div>
-    </div>
-
-    <div class="position-card">
-      <div class="pos-header">
-        <div>
-          <div class="pos-name">Research Assistant</div>
-          <div class="pos-dept"><i class="fas fa-building" style="font-size:10px;"></i> College of Engineering</div>
-        </div>
-        <span class="badge pending">Pending</span>
-      </div>
-      <div class="pos-stats">
-        <div class="pos-stat">
-          <div class="pos-stat-val">4</div>
-          <div class="pos-stat-lbl">Total Slots</div>
-        </div>
-        <div class="pos-stat">
-          <div class="pos-stat-val">2</div>
-          <div class="pos-stat-lbl">Filled</div>
-        </div>
-        <div class="pos-stat">
-          <div class="pos-stat-val col-green"></div>
-          <div class="pos-stat-lbl">Available</div>
-        </div>
-        <div class="pos-stat">
-          <div class="pos-stat-val">18h</div>
-          <div class="pos-stat-lbl">Per Week</div>
-        </div>
-      </div>
-      <div class="pos-footer">
-        <div class="pos-rate"><i class="fas fa-peso-sign"></i> 5,500 / mo</div>
-        <div class="action-btns">
-          <button class="btn-icon view"><a href="#view-pos-4"><i class="fas fa-eye"></i></a></button>
-          <button class="btn-icon approve"><i class="fas fa-check"></i></button>
-          <button class="btn-icon reject"><i class="fas fa-times"></i></button>
-        </div>
-      </div>
-    </div>
-
-    <div class="position-card">
-      <div class="pos-header">
-        <div>
-          <div class="pos-name">Finance Clerk</div>
-          <div class="pos-dept"><i class="fas fa-building" style="font-size:10px;"></i> Finance Office</div>
-        </div>
-        <span class="badge pending">Pending</span>
-      </div>
-      <div class="pos-stats">
-        <div class="pos-stat">
-          <div class="pos-stat-val">3</div>
-          <div class="pos-stat-lbl">Total Slots</div>
-        </div>
-        <div class="pos-stat">
-          <div class="pos-stat-val">3</div>
-          <div class="pos-stat-lbl">Filled</div>
-        </div>
-        <div class="pos-stat">
-          <div class="pos-stat-val" style="color:var(--red);"></div>
-          <div class="pos-stat-lbl">Available</div>
-        </div>
-        <div class="pos-stat">
-          <div class="pos-stat-val">20h</div>
-          <div class="pos-stat-lbl">Per Week</div>
-        </div>
-      </div>
-      <div class="pos-footer">
-        <div class="pos-rate"><i class="fas fa-peso-sign"></i> 4,200 / mo</div>
-        <div class="action-btns">
-          <button class="btn-icon view"><a href="#view-pos-5"><i class="fas fa-eye"></i></a></button>
-          <button class="btn-icon approve"><i class="fas fa-check"></i></button>
-          <button class="btn-icon reject"><i class="fas fa-times"></i></button>
-        </div>
-      </div>
-    </div>
-
-       <div class="position-card">
-      <div class="pos-header">
-        <div>
-          <div class="pos-name">Clinic Aide</div>
-          <div class="pos-dept"><i class="fas fa-building" style="font-size:10px;"></i> College of Nursing</div>
-        </div>
-        <span class="badge pending">Pending</span>
-      </div>
-      <div class="pos-stats">
-        <div class="pos-stat">
-          <div class="pos-stat-val">6</div>
-          <div class="pos-stat-lbl">Total Slots</div>
-        </div>
-        <div class="pos-stat">
-          <div class="pos-stat-val">0</div>
-          <div class="pos-stat-lbl">Filled</div>
-        </div>
-        <div class="pos-stat">
-          <div class="pos-stat-val col-green"></div>
-          <div class="pos-stat-lbl">Available</div>
-        </div>
-        <div class="pos-stat">
-          <div class="pos-stat-val">20h</div>
-          <div class="pos-stat-lbl">Per Week</div>
-        </div>
-      </div>
-      <div class="pos-footer">
-        <div class="pos-rate"><i class="fas fa-peso-sign"></i> 4,800 / mo</div>
-       <div class="action-btns">
-          <button class="btn-icon view"><a href="#view-pos-6"><i class="fas fa-eye"></i></a></button>
-          <button class="btn-icon approve"><i class="fas fa-check"></i></button>
-          <button class="btn-icon reject"><i class="fas fa-times"></i></button>
-        </div>
-      </div>
-    </div>
-
-  </div><!-- /positions-grid -->
-</section>
-
-
-<!-- ╔══════════════════════════════════════════════
-     § SUGGEST POSITIONS TO STUDENTS
-══════════════════════════════════════════════╗ -->
-<section class="section" id="sec-suggest-positions">
-
-  <div class="section-header">
-    <div>
-      <div class="section-title">Suggest Positions to Students</div>
-      <div class="section-sub">Assign positions to students based on their academic records and schedule compatibility</div>
-    </div>
-  </div>
-
-  <div class="alert-banner info" style="margin-bottom:20px;">
-    <i class="fas fa-info-circle"></i>
-    <span><strong>CPPE Workflow:</strong> Students only see positions that have been specifically suggested by CPPE Admin based on their profile and schedule match. This ensures fair assignment rather than competitive browsing.</span>
-  </div>
-
-  <div class="card" style="margin-bottom:20px;">
-    <div class="card-header">
-      <h3><i class="fas fa-star"></i> Create Position Suggestion</h3>
-    </div>
-    <div class="card-body" style="padding:25px;">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
-        
-        <div>
-          <label style="display:block;font-weight:600;margin-bottom:8px;color:#333;">Select Student <span style="color:#dc2626;">*</span></label>
-          <select style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;font-size:14px;">
-            <option value="">-- Choose a student --</option>
-            <option value="maria">Maria Santos (2022-00145) • BSCS 3rd Year</option>
-            <option value="juan">Juan dela Cruz (2021-00388) • BSBA 4th Year</option>
-            <option value="ana">Ana Reyes (2023-00072) • BSN 2nd Year</option>
-            <option value="liza">Liza Torres (2022-00299) • BSCS 3rd Year</option>
-            <option value="pedro">Pedro Valdez (2021-00602) • BSED 4th Year</option>
-          </select>
-        </div>
-
-        <div>
-          <label style="display:block;font-weight:600;margin-bottom:8px;color:#333;">Student Schedule <span style="color:#dc2626;">*</span></label>
-          <input type="text" placeholder="e.g., Mon-Wed 1PM-4PM" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;font-size:14px;background:#f5f5f5;">
-        </div>
-
-        <div>
-          <label style="display:block;font-weight:600;margin-bottom:8px;color:#333;">Select Position <span style="color:#dc2626;">*</span></label>
-          <select style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;font-size:14px;">
-            <option value="">-- Choose a position --</option>
-            <option value="lib-asst">Library Assistant • University Library (Mon-Fri, 20h/week)</option>
-            <option value="lab-mon">Laboratory Monitor • IT Dept (Tue-Thu, 24h/week)</option>
-            <option value="office-asst">Office Assistant • College of Education (Wed-Fri, 16h/week)</option>
-            <option value="research">Research Assistant • College of Engineering (Mon-Wed, 18h/week)</option>
-          </select>
-        </div>
-
-        <div>
-          <label style="display:block;font-weight:600;margin-bottom:8px;color:#333;">Schedule Compatibility <span style="color:#dc2626;">*</span></label>
-          <div style="padding:10px;background:#e8f5e9;border-radius:6px;border:1px solid #c8e6c9;color:#2e7d32;font-size:14px;">
-            <i class="fas fa-check-circle"></i> Compatible - Suitable for this student
+        <div class="section-header">
+          <div>
+            <div class="section-title">Verify Students</div>
+            <div class="section-sub">Review submitted documents and approve or reject student registrations</div>
+          </div>
+          <div class="section-actions">
+            <button class="btn btn-outline btn-sm"><i class="fas fa-filter"></i> Filter</button>
+            <button class="btn btn-primary btn-sm"><i class="fas fa-download"></i> Export</button>
           </div>
         </div>
 
-      </div>
+        <div class="alert-banner info" style="margin-bottom:20px;">
+          <i class="fas fa-info-circle"></i>
+          <span><strong>5 students</strong> are pending verification. Please review their submitted documents (COR)
+            carefully before approving.</span>
+        </div>
 
-      <div style="margin-top:20px;padding-top:20px;border-top:1px solid #eee;">
-        <label style="display:block;font-weight:600;margin-bottom:8px;color:#333;">Reason for Suggestion</label>
-        <textarea placeholder="e.g., Strong academic record matches position requirements, schedule aligns with department needs..." style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;font-family:inherit;font-size:14px;resize:vertical;min-height:80px;"></textarea>
-      </div>
+        <div class="filter-bar">
 
-      <div style="margin-top:20px;display:flex;gap:10px;justify-content:flex-end;">
-        <button class="btn btn-outline"><i class="fas fa-times"></i> Cancel</button>
-        <button class="btn btn-primary" id="send-suggestion-btn"><i class="fas fa-paper-plane"></i> Send Suggestion to Student</button>
-      </div>
-    </div>
-  </div>
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="student-search" placeholder="Search by name or ID...">
+          </div>
 
-  <div class="card">
-    <div class="card-header">
-      <h3><i class="fas fa-history"></i> Suggestion History</h3>
-      <a href="#" class="view-all">View all <i class="fas fa-arrow-right"></i></a>
-    </div>
-    <div class="card-body">
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Student</th>
-              <th>Position Suggested</th>
-              <th>Department</th>
-              <th>Student Status</th>
-              <th>Date Suggested</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <div class="t-avatar">
-                  <div class="av av-f">MS</div>
-                  <div><div class="td-name">Maria Santos</div><div class="td-sub">2022-00145</div></div>
+          <select id="student-filter-status">
+            <option value="">All Status</option>
+            <option value="pending">Pending</option>
+            <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
+          </select>
+
+          <select id="student-filter-course">
+            <option value="">All Courses</option>
+            <option value="BSCS">BSCS</option>
+            <option value="BSED">BSED</option>
+            <option value="BSN">BSN</option>
+            <option value="BSBA">BSBA</option>
+          </select>
+        </div>
+
+        <div class="table-wrap">
+          <table id="students-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Student</th>
+                <th>Student ID</th>
+                <th>Course / Year</th>
+                <th>Date Submitted</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr data-name="Maria Santos" data-id="2022-00145" data-status="pending" data-course="BSCS">
+                <td>1</td>
+                <td>
+                  <div class="t-avatar">
+                    <div class="av av-a">MS</div>
+                    <div>
+                      <div class="td-name">Maria Santos</div>
+                      <div class="td-sub">santos.maria@wmsu.edu.ph</div>
+                    </div>
+                  </div>
+                </td>
+                <td>2022-00145</td>
+                <td>BSCS — 3rd Year</td>
+                <td>Mar 19, 2026</td>
+                <td><span class="badge pending">Pending</span></td>
+                <td>
+                  <div class="action-btns">
+                    <button class="btn-icon view">
+                <a href="#view-docs-1"><i class="fas fa-eye"></i></a>
+              </button>
+                    <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
+                    <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr data-name="Juan dela Cruz" data-id="2021-00388" data-status="pending" data-course="BSBA">
+                <td>2</td>
+                <td>
+                  <div class="t-avatar">
+                    <div class="av av-b">JD</div>
+                    <div>
+                      <div class="td-name">Juan dela Cruz</div>
+                      <div class="td-sub">delacruz.juan@wmsu.edu.ph</div>
+                    </div>
+                  </div>
+                </td>
+                <td>2021-00388</td>
+                <td>BSBA — 4th Year</td>
+                <td>Mar 19, 2026</td>
+                <td><span class="badge pending">Pending</span></td>
+                <td>
+                  <div class="action-btns">
+                    <button class="btn-icon view">
+                <a href="#view-docs-2"><i class="fas fa-eye"></i></a>
+              </button>
+                    <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
+                    <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr data-name="Ana Reyes" data-id="2023-00072" data-status="pending" data-course="BSN">
+                <td>3</td>
+                <td>
+                  <div class="t-avatar">
+                    <div class="av av-c">AR</div>
+                    <div>
+                      <div class="td-name">Ana Reyes</div>
+                      <div class="td-sub">reyes.ana@wmsu.edu.ph</div>
+                    </div>
+                  </div>
+                </td>
+                <td>2023-00072</td>
+                <td>BSN — 2nd Year</td>
+                <td>Mar 20, 2026</td>
+                <td><span class="badge pending">Pending</span></td>
+                <td>
+                  <div class="action-btns">
+                    <button class="btn-icon view"><a href="#view-docs-3"><i class="fas fa-eye"></i></a></button>
+                    <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
+                    <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr data-name="Liza Torres" data-id="2022-00299" data-status="pending" data-course="BSCS">
+                <td>4</td>
+                <td>
+                  <div class="t-avatar">
+                    <div class="av av-e">LT</div>
+                    <div>
+                      <div class="td-name">Liza Torres</div>
+                      <div class="td-sub">torres.liza@wmsu.edu.ph</div>
+                    </div>
+                  </div>
+                </td>
+                <td>2022-00299</td>
+                <td>BSCS — 3rd Year</td>
+                <td>Mar 20, 2026</td>
+                <td><span class="badge pending">Pending</span></td>
+                <td>
+                  <div class="action-btns">
+                    <button class="btn-icon view"><a href="#view-docs-4"><i class="fas fa-eye"></i></a></button>
+                    <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
+                    <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr data-name="Janricson Ompoy" data-id="2022-00319" data-status="pending" data-course="BSCS">
+                <td>5</td>
+                <td>
+                  <div class="t-avatar">
+                    <div class="av av-e">JO</div>
+                    <div>
+                      <div class="td-name">Janricson Ompoy</div>
+                      <div class="td-sub">ompoy.janricson@wmsu.edu.ph</div>
+                    </div>
+                  </div>
+                </td>
+                <td>2022-00319</td>
+                <td>BSCS — 1st Year</td>
+                <td>Mar 22, 2026</td>
+                <td><span class="badge pending">Pending</span></td>
+                <td>
+                  <div class="action-btns">
+                    <button class="btn-icon view"><a href="#view-docs-5"><i class="fas fa-eye"></i></a></button>
+                    <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
+                    <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+
+      <!-- ╔══════════════════════════════════════════════
+     § VERIFY DEPARTMENTS
+══════════════════════════════════════════════╗ -->
+      <section class="section" id="sec-departments">
+
+        <div class="section-header">
+          <div>
+            <div class="section-title">Verify Departments</div>
+            <div class="section-sub">Review department credentials and uploaded documents before approval</div>
+          </div>
+        </div>
+
+        <div class="alert-banner warn">
+          <i class="fas fa-exclamation-triangle"></i>
+          <span><strong>5 departments</strong> are awaiting legitimacy verification. Review their MOA, authorization
+            letter, and department profile.</span>
+        </div>
+
+        <div class="table-wrap" style="margin-top:20px;">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Department</th>
+                <th>Dean / Head</th>
+                <th>College</th>
+                <th>Date Submitted</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr>
+                <td>1</td>
+                <td>
+                  <div>
+                    <div class="td-name"><i class="fas fa-building"
+                        style="color:var(--maroon);margin-right:6px;"></i>College of Engineering</div>
+                    <div class="td-sub">Engineering Complex, Bldg. A</div>
+                  </div>
+                </td>
+                <td>Dean Roberto Cruz</td>
+                <td>Engineering & Tech</td>
+                <td>Mar 23, 2026</td>
+                <td><span class="badge pending">Pending</span></td>
+                <td>
+                  <div class="action-btns">
+                    <button class="btn-icon view"><a href="#view-dept-1"><i class="fas fa-eye"></i></a></button>
+                    <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
+                    <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>2</td>
+                <td>
+                  <div>
+                    <div class="td-name"><i class="fas fa-building"
+                        style="color:var(--maroon);margin-right:6px;"></i>Information Technology Dept.</div>
+                    <div class="td-sub">ICT Building, 2nd Floor</div>
+                  </div>
+                </td>
+                <td>Dean Alma Fernandez</td>
+                <td>Computing & IT</td>
+                <td>Mar 22, 2026</td>
+                <td><span class="badge pending">Pending</span></td>
+                <td>
+                  <div class="action-btns">
+                    <button class="btn-icon view"><a href="#view-dept-2"><i class="fas fa-eye"></i></a></button>
+                    <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
+                    <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>3</td>
+                <td>
+                  <div>
+                    <div class="td-name"><i class="fas fa-building"
+                        style="color:var(--maroon);margin-right:6px;"></i>College of Education</div>
+                    <div class="td-sub">Education Building, Room 101</div>
+                  </div>
+                </td>
+                <td>Dean Maria Lopez</td>
+                <td>Education</td>
+                <td>Mar 21, 2026</td>
+                <td><span class="badge pending">Pending</span></td>
+                <td>
+                  <div class="action-btns">
+                    <button class="btn-icon view"><a href="#view-dept-3"><i class="fas fa-eye"></i></a></button>
+                    <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
+                    <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>4</td>
+                <td>
+                  <div>
+                    <div class="td-name"><i class="fas fa-building"
+                        style="color:var(--maroon);margin-right:6px;"></i>Registrar Office</div>
+                    <div class="td-sub">Admin Building, Ground Floor</div>
+                  </div>
+                </td>
+                <td>Mr. Carlos Reyes</td>
+                <td>Administrative</td>
+                <td>Mar 20, 2026</td>
+                <td><span class="badge pending">Pending</span></td>
+                <td>
+                  <div class="action-btns">
+                    <button class="btn-icon view"><a href="#view-dept-4"><i class="fas fa-eye"></i></a></i></button>
+                    <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
+                    <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>5</td>
+                <td>
+                  <div>
+                    <div class="td-name"><i class="fas fa-building"
+                        style="color:var(--maroon);margin-right:6px;"></i>Guidance Office</div>
+                    <div class="td-sub">Student Services Center</div>
+                  </div>
+                </td>
+                <td>Ms. Angela Bautista</td>
+                <td>Student Services</td>
+                <td>Mar 19, 2026</td>
+                <td><span class="badge pending">Pending</span></td>
+                <td>
+                  <div class="action-btns">
+                    <button class="btn-icon view"><a href="#view-dept-5"><i class="fas fa-eye"></i></a></i></button>
+                    <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
+                    <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+
+      <!-- ╔══════════════════════════════════════════════
+     § MANAGE POSITIONS
+══════════════════════════════════════════════╗ -->
+      <section class="section" id="sec-positions">
+
+        <div class="section-header">
+          <div>
+            <div class="section-title">Manage Positions</div>
+            <div class="section-sub">Define and manage available Student Assistant positions across departments</div>
+          </div>
+          <div class="section-actions">
+            <div class="search-box">
+              <i class="fas fa-search"></i>
+              <input type="text" placeholder="Search by name or ID...">
+            </div>
+            <a href="create_post.html" class="create-btn" style="text-decoration: none; font-weight: 600;"><i
+                class="fas fa-plus"></i> New Position</a>
+            <button class="btn btn-outline btn-sm"><i class="fas fa-filter"></i> Filter</button>
+          </div>
+        </div>
+
+        <div class="positions-grid">
+
+          <div class="position-card">
+            <div class="pos-header">
+              <div>
+                <div class="pos-name">Library Assistant</div>
+                <div class="pos-dept"><i class="fas fa-building" style="font-size:10px;"></i> University Library</div>
+              </div>
+              <span class="badge pending">Pending</span>
+            </div>
+            <div class="pos-stats">
+              <div class="pos-stat">
+                <div class="pos-stat-val">5</div>
+                <div class="pos-stat-lbl">Total Slots</div>
+              </div>
+              <div class="pos-stat">
+                <div class="pos-stat-val">3</div>
+                <div class="pos-stat-lbl">Filled</div>
+              </div>
+              <div class="pos-stat">
+                <div class="pos-stat-val col-green"></div>
+                <div class="pos-stat-lbl">Available</div>
+              </div>
+              <div class="pos-stat">
+                <div class="pos-stat-val">20h</div>
+                <div class="pos-stat-lbl">Per Week</div>
+              </div>
+            </div>
+            <div class="pos-footer">
+              <div class="pos-rate"><i class="fas fa-peso-sign"></i> 4,500 / mo</div>
+              <div class="action-btns">
+                <button class="btn-icon view"><a href="#view-pos-1"><i class="fas fa-eye"></i></a></button>
+                <button class="btn-icon approve"><i class="fas fa-check"></i></button>
+                <button class="btn-icon reject"><i class="fas fa-times"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="position-card">
+            <div class="pos-header">
+              <div>
+                <div class="pos-name">Laboratory Monitor</div>
+                <div class="pos-dept"><i class="fas fa-building" style="font-size:10px;"></i> Information Technology
+                  Dept.</div>
+              </div>
+              <span class="badge pending">Pending</span>
+            </div>
+            <div class="pos-stats">
+              <div class="pos-stat">
+                <div class="pos-stat-val">8</div>
+                <div class="pos-stat-lbl">Total Slots</div>
+              </div>
+              <div class="pos-stat">
+                <div class="pos-stat-val">8</div>
+                <div class="pos-stat-lbl">Filled</div>
+              </div>
+              <div class="pos-stat">
+                <div class="pos-stat-val" style="color:var(--red);"></div>
+                <div class="pos-stat-lbl">Available</div>
+              </div>
+              <div class="pos-stat">
+                <div class="pos-stat-val">24h</div>
+                <div class="pos-stat-lbl">Per Week</div>
+              </div>
+            </div>
+            <div class="pos-footer">
+              <div class="pos-rate"><i class="fas fa-peso-sign"></i> 5,000 / mo</div>
+              <div class="action-btns">
+                <button class="btn-icon view"><a href="#view-pos-2"><i class="fas fa-eye"></i></a></button>
+                <button class="btn-icon approve"><i class="fas fa-check"></i></button>
+                <button class="btn-icon reject"><i class="fas fa-times"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="position-card">
+            <div class="pos-header">
+              <div>
+                <div class="pos-name">Office Assistant</div>
+                <div class="pos-dept"><i class="fas fa-building" style="font-size:10px;"></i> College of Education</div>
+              </div>
+              <span class="badge pending">Pending</span>
+            </div>
+            <div class="pos-stats">
+              <div class="pos-stat">
+                <div class="pos-stat-val">6</div>
+                <div class="pos-stat-lbl">Total Slots</div>
+              </div>
+              <div class="pos-stat">
+                <div class="pos-stat-val">4</div>
+                <div class="pos-stat-lbl">Filled</div>
+              </div>
+              <div class="pos-stat">
+                <div class="pos-stat-val col-green"></div>
+                <div class="pos-stat-lbl">Available</div>
+              </div>
+              <div class="pos-stat">
+                <div class="pos-stat-val">16h</div>
+                <div class="pos-stat-lbl">Per Week</div>
+              </div>
+            </div>
+            <div class="pos-footer">
+              <div class="pos-rate"><i class="fas fa-peso-sign"></i> 4,000 / mo</div>
+              <div class="action-btns">
+                <button class="btn-icon view"><a href="#view-pos-3"><i class="fas fa-eye"></i></a></button>
+                <button class="btn-icon approve"><i class="fas fa-check"></i></button>
+                <button class="btn-icon reject"><i class="fas fa-times"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="position-card">
+            <div class="pos-header">
+              <div>
+                <div class="pos-name">Research Assistant</div>
+                <div class="pos-dept"><i class="fas fa-building" style="font-size:10px;"></i> College of Engineering
                 </div>
-              </td>
-              <td><strong>Library Assistant</strong></td>
-              <td>University Library</td>
-              <td><span class="badge" style="background:#fff3cd;color:#856404;">Pending Response</span></td>
-              <td>Mar 24, 2026</td>
-              <td>
-                <button class="btn btn-sm" style="background:#f5f5f5;color:#666;border:1px solid #ddd;"><i class="fas fa-redo"></i> Resend</button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="t-avatar">
-                  <div class="av av-b">JD</div>
-                  <div><div class="td-name">Juan dela Cruz</div><div class="td-sub">2021-00388</div></div>
+              </div>
+              <span class="badge pending">Pending</span>
+            </div>
+            <div class="pos-stats">
+              <div class="pos-stat">
+                <div class="pos-stat-val">4</div>
+                <div class="pos-stat-lbl">Total Slots</div>
+              </div>
+              <div class="pos-stat">
+                <div class="pos-stat-val">2</div>
+                <div class="pos-stat-lbl">Filled</div>
+              </div>
+              <div class="pos-stat">
+                <div class="pos-stat-val col-green"></div>
+                <div class="pos-stat-lbl">Available</div>
+              </div>
+              <div class="pos-stat">
+                <div class="pos-stat-val">18h</div>
+                <div class="pos-stat-lbl">Per Week</div>
+              </div>
+            </div>
+            <div class="pos-footer">
+              <div class="pos-rate"><i class="fas fa-peso-sign"></i> 5,500 / mo</div>
+              <div class="action-btns">
+                <button class="btn-icon view"><a href="#view-pos-4"><i class="fas fa-eye"></i></a></button>
+                <button class="btn-icon approve"><i class="fas fa-check"></i></button>
+                <button class="btn-icon reject"><i class="fas fa-times"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="position-card">
+            <div class="pos-header">
+              <div>
+                <div class="pos-name">Finance Clerk</div>
+                <div class="pos-dept"><i class="fas fa-building" style="font-size:10px;"></i> Finance Office</div>
+              </div>
+              <span class="badge pending">Pending</span>
+            </div>
+            <div class="pos-stats">
+              <div class="pos-stat">
+                <div class="pos-stat-val">3</div>
+                <div class="pos-stat-lbl">Total Slots</div>
+              </div>
+              <div class="pos-stat">
+                <div class="pos-stat-val">3</div>
+                <div class="pos-stat-lbl">Filled</div>
+              </div>
+              <div class="pos-stat">
+                <div class="pos-stat-val" style="color:var(--red);"></div>
+                <div class="pos-stat-lbl">Available</div>
+              </div>
+              <div class="pos-stat">
+                <div class="pos-stat-val">20h</div>
+                <div class="pos-stat-lbl">Per Week</div>
+              </div>
+            </div>
+            <div class="pos-footer">
+              <div class="pos-rate"><i class="fas fa-peso-sign"></i> 4,200 / mo</div>
+              <div class="action-btns">
+                <button class="btn-icon view"><a href="#view-pos-5"><i class="fas fa-eye"></i></a></button>
+                <button class="btn-icon approve"><i class="fas fa-check"></i></button>
+                <button class="btn-icon reject"><i class="fas fa-times"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="position-card">
+            <div class="pos-header">
+              <div>
+                <div class="pos-name">Clinic Aide</div>
+                <div class="pos-dept"><i class="fas fa-building" style="font-size:10px;"></i> College of Nursing</div>
+              </div>
+              <span class="badge pending">Pending</span>
+            </div>
+            <div class="pos-stats">
+              <div class="pos-stat">
+                <div class="pos-stat-val">6</div>
+                <div class="pos-stat-lbl">Total Slots</div>
+              </div>
+              <div class="pos-stat">
+                <div class="pos-stat-val">0</div>
+                <div class="pos-stat-lbl">Filled</div>
+              </div>
+              <div class="pos-stat">
+                <div class="pos-stat-val col-green"></div>
+                <div class="pos-stat-lbl">Available</div>
+              </div>
+              <div class="pos-stat">
+                <div class="pos-stat-val">20h</div>
+                <div class="pos-stat-lbl">Per Week</div>
+              </div>
+            </div>
+            <div class="pos-footer">
+              <div class="pos-rate"><i class="fas fa-peso-sign"></i> 4,800 / mo</div>
+              <div class="action-btns">
+                <button class="btn-icon view"><a href="#view-pos-6"><i class="fas fa-eye"></i></a></button>
+                <button class="btn-icon approve"><i class="fas fa-check"></i></button>
+                <button class="btn-icon reject"><i class="fas fa-times"></i></button>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /positions-grid -->
+      </section>
+
+
+      <!-- ╔══════════════════════════════════════════════
+     § SUGGEST POSITIONS TO STUDENTS
+══════════════════════════════════════════════╗ -->
+      <section class="section" id="sec-suggest-positions">
+
+        <div class="section-header">
+          <div>
+            <div class="section-title">Suggest Positions to Students</div>
+            <div class="section-sub">Assign positions to students based on their academic records and schedule
+              compatibility</div>
+          </div>
+        </div>
+
+        <div class="alert-banner info" style="margin-bottom:20px;">
+          <i class="fas fa-info-circle"></i>
+          <span><strong>CPPE Workflow:</strong> Students only see positions that have been specifically suggested by
+            CPPE Admin based on their profile and schedule match. This ensures fair assignment rather than competitive
+            browsing.</span>
+        </div>
+
+        <div class="card" style="margin-bottom:20px;">
+          <div class="card-header">
+            <h3><i class="fas fa-star"></i> Create Position Suggestion</h3>
+          </div>
+          <div class="card-body" style="padding:25px;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+
+              <div>
+                <label style="display:block;font-weight:600;margin-bottom:8px;color:#333;">Select Student <span
+                    style="color:#dc2626;">*</span></label>
+                <select style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;font-size:14px;">
+                  <option value="">-- Choose a student --</option>
+                  <option value="maria">Maria Santos (2022-00145) • BSCS 3rd Year</option>
+                  <option value="juan">Juan dela Cruz (2021-00388) • BSBA 4th Year</option>
+                  <option value="ana">Ana Reyes (2023-00072) • BSN 2nd Year</option>
+                  <option value="liza">Liza Torres (2022-00299) • BSCS 3rd Year</option>
+                  <option value="pedro">Pedro Valdez (2021-00602) • BSED 4th Year</option>
+                </select>
+              </div>
+
+              <div>
+                <label style="display:block;font-weight:600;margin-bottom:8px;color:#333;">Student Schedule <span
+                    style="color:#dc2626;">*</span></label>
+                <input type="text" placeholder="e.g., Mon-Wed 1PM-4PM"
+                  style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;font-size:14px;background:#f5f5f5;">
+              </div>
+
+              <div>
+                <label style="display:block;font-weight:600;margin-bottom:8px;color:#333;">Select Position <span
+                    style="color:#dc2626;">*</span></label>
+                <select style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;font-size:14px;">
+                  <option value="">-- Choose a position --</option>
+                  <option value="lib-asst">Library Assistant • University Library (Mon-Fri, 20h/week)</option>
+                  <option value="lab-mon">Laboratory Monitor • IT Dept (Tue-Thu, 24h/week)</option>
+                  <option value="office-asst">Office Assistant • College of Education (Wed-Fri, 16h/week)</option>
+                  <option value="research">Research Assistant • College of Engineering (Mon-Wed, 18h/week)</option>
+                </select>
+              </div>
+
+              <div>
+                <label style="display:block;font-weight:600;margin-bottom:8px;color:#333;">Schedule Compatibility <span
+                    style="color:#dc2626;">*</span></label>
+                <div
+                  style="padding:10px;background:#e8f5e9;border-radius:6px;border:1px solid #c8e6c9;color:#2e7d32;font-size:14px;">
+                  <i class="fas fa-check-circle"></i> Compatible - Suitable for this student
                 </div>
-              </td>
-              <td><strong>Finance Clerk</strong></td>
-              <td>Finance Office</td>
-              <td><span class="badge approved">Accepted by Student</span></td>
-              <td>Mar 23, 2026</td>
-              <td>
-                <button class="btn btn-sm" style="background:#e8f5e9;color:#2e7d32;border:1px solid #c8e6c9;"><i class="fas fa-check"></i> Approved</button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="t-avatar">
-                  <div class="av av-c">AR</div>
-                  <div><div class="td-name">Ana Reyes</div><div class="td-sub">2023-00072</div></div>
-                </div>
-              </td>
-              <td><strong>Clinic Aide</strong></td>
-              <td>College of Nursing</td>
-              <td><span class="badge rejected">Declined by Student</span></td>
-              <td>Mar 22, 2026</td>
-              <td>
-                <button class="btn btn-sm" style="background:#fee;color:#c33;border:1px solid #fcc;"><i class="fas fa-times"></i> Declined</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+              </div>
+
+            </div>
+
+            <div style="margin-top:20px;padding-top:20px;border-top:1px solid #eee;">
+              <label style="display:block;font-weight:600;margin-bottom:8px;color:#333;">Reason for Suggestion</label>
+              <textarea
+                placeholder="e.g., Strong academic record matches position requirements, schedule aligns with department needs..."
+                style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;font-family:inherit;font-size:14px;resize:vertical;min-height:80px;"></textarea>
+            </div>
+
+            <div style="margin-top:20px;display:flex;gap:10px;justify-content:flex-end;">
+              <button class="btn btn-outline"><i class="fas fa-times"></i> Cancel</button>
+              <button class="btn btn-primary" id="send-suggestion-btn"><i class="fas fa-paper-plane"></i> Send
+                Suggestion to Student</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3><i class="fas fa-history"></i> Suggestion History</h3>
+            <a href="#" class="view-all">View all <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="card-body">
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Student</th>
+                    <th>Position Suggested</th>
+                    <th>Department</th>
+                    <th>Student Status</th>
+                    <th>Date Suggested</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="t-avatar">
+                        <div class="av av-f">MS</div>
+                        <div>
+                          <div class="td-name">Maria Santos</div>
+                          <div class="td-sub">2022-00145</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><strong>Library Assistant</strong></td>
+                    <td>University Library</td>
+                    <td><span class="badge" style="background:#fff3cd;color:#856404;">Pending Response</span></td>
+                    <td>Mar 24, 2026</td>
+                    <td>
+                      <button class="btn btn-sm" style="background:#f5f5f5;color:#666;border:1px solid #ddd;"><i
+                          class="fas fa-redo"></i> Resend</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="t-avatar">
+                        <div class="av av-b">JD</div>
+                        <div>
+                          <div class="td-name">Juan dela Cruz</div>
+                          <div class="td-sub">2021-00388</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><strong>Finance Clerk</strong></td>
+                    <td>Finance Office</td>
+                    <td><span class="badge approved">Accepted by Student</span></td>
+                    <td>Mar 23, 2026</td>
+                    <td>
+                      <button class="btn btn-sm" style="background:#e8f5e9;color:#2e7d32;border:1px solid #c8e6c9;"><i
+                          class="fas fa-check"></i> Approved</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="t-avatar">
+                        <div class="av av-c">AR</div>
+                        <div>
+                          <div class="td-name">Ana Reyes</div>
+                          <div class="td-sub">2023-00072</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><strong>Clinic Aide</strong></td>
+                    <td>College of Nursing</td>
+                    <td><span class="badge rejected">Declined by Student</span></td>
+                    <td>Mar 22, 2026</td>
+                    <td>
+                      <button class="btn btn-sm" style="background:#fee;color:#c33;border:1px solid #fcc;"><i
+                          class="fas fa-times"></i> Declined</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ╔══════════════════════════════════════════════
+     § REVIEW LOG HOURS
+══════════════════════════════════════════════╗ -->
+      <section class="section" id="sec-review-log-hours">
+
+        <div class="section-header">
+          <div>
+            <div class="section-title">Review Log Hours</div>
+            <div class="section-sub">Final validation of attendance logs before payroll — you are the last authority on
+              all time records</div>
+          </div>
+          <div class="section-actions">
+            <button class="btn btn-outline btn-sm" id="export-logs-btn"><i class="fas fa-download"></i> Export
+              CSV</button>
+            <button class="btn btn-primary btn-sm" id="bulk-approve-logs-btn"><i class="fas fa-check-double"></i>
+              Approve Selected</button>
+          </div>
+        </div>
+
+        <div class="alert-banner info" style="margin-bottom:20px;">
+          <i class="fas fa-info-circle"></i>
+          <span>
+            <strong>Workflow:</strong> Student logs hours →
+            <strong>Employer/Supervisor verifies</strong> →
+            <strong style="color:#1e3a8a;">You (Admin) do final validation</strong> →
+            Payroll is released. Only supervisor-verified logs appear here for your review.
+          </span>
+        </div>
+
+        <div class="stat-grid" style="margin-bottom:28px;">
+          <div class="stat-card orange">
+            <div class="stat-card-top">
+              <div class="stat-icon orange"><i class="fas fa-clock"></i></div>
+              <span class="stat-trend warn"><i class="fas fa-exclamation"></i> Action</span>
+            </div>
+            <div class="stat-value" id="log-pending-count">4</div>
+            <div class="stat-label">Pending Admin Review</div>
+          </div>
+          <div class="stat-card green">
+            <div class="stat-card-top">
+              <div class="stat-icon green"><i class="fas fa-check-circle"></i></div>
+              <span class="stat-trend up"><i class="fas fa-arrow-up"></i> +18h</span>
+            </div>
+            <div class="stat-value">346h</div>
+            <div class="stat-label">Approved Hours This Period</div>
+          </div>
+          <div class="stat-card maroon">
+            <div class="stat-card-top">
+              <div class="stat-icon maroon"><i class="fas fa-peso-sign"></i></div>
+              <span class="stat-trend warn" style="background:#fce4e8;color:var(--maroon);">
+                <i class="fas fa-arrow-up"></i> Pending
+              </span>
+            </div>
+            <div class="stat-value">₱17,300</div>
+            <div class="stat-label">Est. Payroll Impact (Pending)</div>
+          </div>
+          <div class="stat-card gold">
+            <div class="stat-card-top">
+              <div class="stat-icon gold"><i class="fas fa-flag"></i></div>
+              <span class="stat-trend warn"><i class="fas fa-exclamation-triangle"></i> Review</span>
+            </div>
+            <div class="stat-value" id="log-flagged-count">3</div>
+            <div class="stat-label">Flagged / Suspicious Entries</div>
+          </div>
+        </div>
+
+        <div 
+          style="background:#fff;padding:16px 20px;border-radius:12px;border:1px solid var(--gray-200);margin-bottom:20px;box-shadow:var(--shadow-sm);display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+          <div class="search-box" style="border:1.5px solid var(--gray-200); width:200px; border-radius: 10px;">
+            <i class="fas fa-search"></i>
+            <input type="text" id="log-search" placeholder="Search student or ID..." oninput="filterLogTable()">
+          </div>
+          <select id="log-filter-dept" onchange="filterLogTable()"
+            style="padding:8px 14px;border:1.5px solid var(--gray-200);border-radius:9px;font-size:13px;color:var(--gray-700);outline:none;cursor:pointer;">
+            <option value="">All Departments</option>
+            <option value="ict">ICT Building</option>
+            <option value="library">University Library</option>
+            <option value="nursing">College of Nursing</option>
+            <option value="finance">Finance Office</option>
+            <option value="education">College of Education</option>
+          </select>
+          <select id="log-filter-status" onchange="filterLogTable()"
+            style="padding:8px 14px;border:1.5px solid var(--gray-200);border-radius:9px;font-size:13px;color:var(--gray-700);outline:none;cursor:pointer;">
+            <option value="">All Status</option>
+            <option value="pending-admin">Pending Admin</option>
+            <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
+          </select>
+         
+          <div style="display:flex;align-items:center;gap:6px;margin-left:auto;">
+            <span style="font-size:12px;color:var(--gray-400);">Date:</span>
+            <input type="date" id="log-date-from" value="2026-04-01"
+              style="padding:7px 10px;border:1.5px solid var(--gray-200);border-radius:9px;font-size:12px;outline:none;color:var(--gray-700);">
+            <span style="font-size:12px;color:var(--gray-400);">→</span>
+            <input type="date" id="log-date-to" value="2026-04-24"
+              style="padding:7px 10px;border:1.5px solid var(--gray-200);border-radius:9px;font-size:12px;outline:none;color:var(--gray-700);">
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table id="attendance-log-table">
+            <thead>
+              <tr>
+                <th style="width:36px;">#</th>
+                <th>Student</th>
+                <th>Department</th>
+                <th>Date</th>
+                <th>Time In</th>
+                <th>Time Out</th>
+                <th>Hours</th>
+                <th>Supervisor</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr class="log-row" data-status="pending-admin" data-dept="ict" data-flag="clean">
+                <td>1</td>
+                <td>
+                  <div class="t-avatar">
+                    <div class="av av-a">MS</div>
+                    <div>
+                      <div class="td-name">Maria Santos</div>
+                      <div class="td-sub">2022-00145 · Library Asst.</div>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="dept-chip"><i class="fas fa-building"></i> ICT Building</span></td>
+                <td style="white-space:nowrap;">Apr 22, 2026</td>
+                <td><span class="time-chip time-in">08:00 AM</span></td>
+                <td><span class="time-chip time-out">12:00 PM</span></td>
+                <td><strong class="hours-val">4.00h</strong>
+                  <div style="font-size:10px;color:var(--green);font-weight:600;">₱200 est.</div>
+                </td>
+                <td><span class="supervisor-tag"><i class="fas fa-user-shield"></i> A. Fernandez</span></td>
+                <td><span class="badge pending-admin">Pending Admin</span></td>
+                <td>
+                  <div class="action-btns">
+                    <button class="btn-icon view" title="View Full Details"
+                      onclick="openLogDetail('Maria Santos','2022-00145','Library Asst.','ICT Building','Apr 22, 2026','08:00 AM','12:00 PM','4.00','A. Fernandez','Clean','₱50/hr','₱200.00',false)"><i
+                        class="fas fa-eye"></i></button>
+                    <button class="btn-icon approve" title="Approve" onclick="approveLogEntry(this, 'Maria Santos')"><i
+                        class="fas fa-check"></i></button>
+                    <button class="btn-icon reject" title="Reject" onclick="rejectLogEntry(this, 'Maria Santos')"><i
+                        class="fas fa-times"></i></button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr class="log-row log-row-flagged" data-status="pending-admin" data-dept="library" data-flag="flagged">
+                <td>2</td>
+                <td>
+                  <div class="t-avatar">
+                    <div class="av av-b">JD</div>
+                    <div>
+                      <div class="td-name">Juan Dela Cruz</div>
+                      <div class="td-sub">2021-00388 · Lab Monitor</div>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="dept-chip"><i class="fas fa-building"></i> University Library</span></td>
+                <td style="white-space:nowrap;">Apr 22, 2026</td>
+                <td><span class="time-chip time-in">07:00 AM</span></td>
+                <td><span class="time-chip time-out">11:00 PM</span></td>
+                <td>
+                  <strong class="hours-val">4.00h</strong>
+                  <div style="font-size:10px;color:var(--green);font-weight:600;">₱525 est.</div>
+                </td>
+                <td><span class="supervisor-tag"><i class="fas fa-user-shield"></i> R. Cruz</span></td>
+                <td><span class="badge pending-admin">Pending Admin</span></td>
+                <td>
+                  <div class="action-btns">
+                    <button class="btn-icon view" title="View Full Details"
+                      onclick="openLogDetail('Juan Dela Cruz','2021-00388','Lab Monitor','University Library','Apr 22, 2026','07:00 AM','05:30 PM','10.50','R. Cruz','Overtime (>8h)','₱50/hr','₱525.00',true)"><i
+                        class="fas fa-eye"></i></button>
+                    <button class="btn-icon approve" title="Approve"
+                      onclick="approveLogEntry(this, 'Juan Dela Cruz')"><i class="fas fa-check"></i></button>
+                    <button class="btn-icon reject" title="Reject" onclick="rejectLogEntry(this, 'Juan Dela Cruz')"><i
+                        class="fas fa-times"></i></button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr class="log-row log-row-flagged" data-status="pending-admin" data-dept="nursing" data-flag="flagged">
+                <td>3</td>
+                <td>
+                  <div class="t-avatar">
+                    <div class="av av-c">AR</div>
+                    <div>
+                      <div class="td-name">Ana Reyes</div>
+                      <div class="td-sub">2023-00072 · Clinic Aide</div>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="dept-chip"><i class="fas fa-building"></i> College of Nursing</span></td>
+                <td style="white-space:nowrap;">Apr 23, 2026</td>
+                <td><span class="time-chip time-in">01:00 PM</span></td>
+                <td><span class="time-chip time-out">05:30 PM</span></td>
+                <td>
+                  <strong class="hours-val">10.50h</strong>
+                  <div style="font-size:10px;color:var(--green);font-weight:600;">₱525 est.</div>
+                </td>
+                <td><span class="supervisor-tag"><i class="fas fa-user-shield"></i> M. Lopez</span></td>
+                <td><span class="badge pending-admin">Pending Admin</span></td>
+                <td>
+                  <div class="action-btns">
+                    <button class="btn-icon view" title="View Full Details"
+                      onclick="openLogDetail('Ana Reyes','2023-00072','Clinic Aide','College of Nursing','Apr 23, 2026','01:00 PM','N/A','—','M. Lopez','No Timeout (missing)','₱50/hr','Uncomputable',true)"><i
+                        class="fas fa-eye"></i></button>
+                    <button class="btn-icon approve" title="Approve" onclick="approveLogEntry(this, 'Ana Reyes')"><i
+                        class="fas fa-check"></i></button>
+                    <button class="btn-icon reject" title="Reject" onclick="rejectLogEntry(this, 'Ana Reyes')"><i
+                        class="fas fa-times"></i></button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr class="log-row log-row-flagged" data-status="pending-admin" data-dept="finance" data-flag="flagged">
+                <td>4</td>
+                <td>
+                  <div class="t-avatar">
+                    <div class="av av-d">LT</div>
+                    <div>
+                      <div class="td-name">Liza Torres</div>
+                      <div class="td-sub">2022-00299 · Finance Clerk</div>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="dept-chip"><i class="fas fa-building"></i> Finance Office</span></td>
+                <td style="white-space:nowrap;">Apr 23, 2026</td>
+                <td><span class="time-chip time-in">08:00 AM</span></td>
+                <td><span class="time-chip time-out">12:00 PM</span></td>
+                <td>
+                  <strong class="hours-val">4.00h</strong>
+                  <div style="font-size:10px;color:var(--green);font-weight:600;">₱200 est.</div>
+                </td>
+                <td><span class="supervisor-tag"><i class="fas fa-user-shield"></i> A. Fernandez</span></td>
+                <td><span class="badge pending-admin">Pending Admin</span></td>
+                <td>
+                  <div class="action-btns">
+                    <button class="btn-icon view" title="View Full Details"
+                      onclick="openLogDetail('Liza Torres','2022-00299','Finance Clerk','Finance Office','Apr 23, 2026','08:00 AM','12:00 PM','4.00','C. Reyes (edited)','Supervisor Edited times','₱50/hr','₱200.00',true)"><i
+                        class="fas fa-eye"></i></button>
+                    <button class="btn-icon approve" title="Approve" onclick="approveLogEntry(this, 'Liza Torres')"><i
+                        class="fas fa-check"></i></button>
+                    <button class="btn-icon reject" title="Reject" onclick="rejectLogEntry(this, 'Liza Torres')"><i
+                        class="fas fa-times"></i></button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ── LOG DETAIL SIDE PANEL ── -->
+      <div id="log-detail-overlay" onclick="closeLogDetail(event)"
+        style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:900;transition:opacity 0.25s;">
       </div>
-    </div>
-  </div>
+      <div id="log-detail-panel"
+        style="display:none;position:fixed;top:0;right:0;width:430px;max-width:95vw;height:100vh;background:#fff;z-index:901;box-shadow:-8px 0 40px rgba(0,0,0,0.18);overflow-y:auto;transform:translateX(100%);transition:transform 0.3s cubic-bezier(.4,0,.2,1);">
+        <div
+          style="background:linear-gradient(135deg,var(--maroon-deep),var(--maroon));padding:22px 24px 20px;color:#fff;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+            <span
+              style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;opacity:0.75;">Attendance
+              Log Detail</span>
+            <button onclick="closeLogDetail()"
+              style="background:rgba(255,255,255,0.15);border:none;color:#fff;width:30px;height:30px;border-radius:8px;cursor:pointer;font-size:16px;">✕</button>
+          </div>
+          <div id="detail-student-name" style="font-family:'Playfair Display',serif;font-size:22px;font-weight:800;">
+          </div>
+          <div id="detail-student-sub" style="font-size:12px;opacity:0.7;margin-top:3px;"></div>
+        </div>
 
-</section>
+        <div style="padding:22px 24px;">
 
+          <div style="margin-bottom:20px;">
+            <div
+              style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--gray-400);margin-bottom:12px;">
+              <i class="fas fa-clock" style="margin-right:5px;"></i>Attendance Details
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+              <div style="background:var(--gray-50);border-radius:8px;padding:12px;">
+                <div
+                  style="font-size:10px;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;">
+                  Department</div>
+                <div id="detail-dept" style="font-size:13px;font-weight:600;color:var(--gray-800);"></div>
+              </div>
+              <div style="background:var(--gray-50);border-radius:8px;padding:12px;">
+                <div
+                  style="font-size:10px;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;">
+                  Date</div>
+                <div id="detail-date" style="font-size:13px;font-weight:600;color:var(--gray-800);"></div>
+              </div>
+              <div style="background:#e8f5e9;border-radius:8px;padding:12px;border-left:3px solid var(--green);">
+                <div
+                  style="font-size:10px;color:var(--green);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;">
+                  Time In</div>
+                <div id="detail-timein" style="font-size:16px;font-weight:700;color:var(--gray-800);"></div>
+              </div>
+              <div style="background:#fce4e8;border-radius:8px;padding:12px;border-left:3px solid var(--maroon);">
+                <div
+                  style="font-size:10px;color:var(--maroon);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;">
+                  Time Out</div>
+                <div id="detail-timeout" style="font-size:16px;font-weight:700;color:var(--gray-800);"></div>
+              </div>
+            </div>
+          </div>
 
-<!-- ╔══════════════════════════════════════════════
+          <div
+            style="margin-bottom:20px;padding:14px 16px;background:var(--blue-light);border-radius:10px;border:1px solid #93c5fd;">
+            <div
+              style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--blue);margin-bottom:8px;">
+              <i class="fas fa-user-shield" style="margin-right:5px;"></i>Supervisor Action
+            </div>
+            <div style="font-size:13px;font-weight:600;color:var(--gray-800);" id="detail-supervisor"></div>
+            <div style="font-size:11.5px;color:var(--gray-500);margin-top:3px;">Verified: Apr 22, 2026 · 1:16 PM</div>
+          </div>
+
+          <div id="detail-flag-warning"
+            style="display:none;margin-bottom:20px;padding:14px 16px;background:#fef3c7;border-radius:10px;border:1px solid #fcd34d;">
+            <div
+              style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:#92400e;margin-bottom:5px;">
+              <i class="fas fa-exclamation-triangle" style="margin-right:5px;"></i>Flag Detected
+            </div>
+            <div id="detail-flag-text" style="font-size:13px;font-weight:600;color:#92400e;"></div>
+            <div style="font-size:11.5px;color:#92400e;margin-top:3px;opacity:0.8;">Please review carefully before
+              approving. This entry has been automatically flagged by the system.</div>
+          </div>
+
+          <div
+            style="margin-bottom:20px;padding:18px;background:linear-gradient(135deg,#1f2937,#374151);border-radius:12px;color:#fff;">
+            <div
+              style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:rgba(255,255,255,0.55);margin-bottom:14px;">
+              <i class="fas fa-peso-sign" style="margin-right:5px;"></i>Payroll Preview
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;text-align:center;">
+              <div>
+                <div style="font-size:20px;font-weight:800;font-family:'Playfair Display',serif;"
+                  id="detail-hours-disp">—</div>
+                <div style="font-size:10px;opacity:0.6;margin-top:2px;">Total Hours</div>
+              </div>
+              <div>
+                <div style="font-size:20px;font-weight:800;font-family:'Playfair Display',serif;" id="detail-rate-disp">
+                  ₱50/hr</div>
+                <div style="font-size:10px;opacity:0.6;margin-top:2px;">Rate</div>
+              </div>
+              <div style="background:rgba(201,168,76,0.2);border-radius:8px;padding:6px;">
+                <div
+                  style="font-size:18px;font-weight:800;font-family:'Playfair Display',serif;color:var(--gold-light);"
+                  id="detail-total-disp">—</div>
+                <div style="font-size:10px;opacity:0.6;margin-top:2px;color:var(--gold-light);">Total Pay</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-bottom:24px;">
+            <div
+              style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--gray-400);margin-bottom:12px;">
+              <i class="fas fa-history" style="margin-right:5px;"></i>Audit Trail
+            </div>
+            <div style="position:relative;padding-left:20px;">
+              <div
+                style="position:absolute;left:7px;top:0;bottom:0;width:2px;background:var(--gray-200);border-radius:2px;">
+              </div>
+              <div class="audit-entry" style="position:relative;margin-bottom:14px;">
+                <div
+                  style="position:absolute;left:-16px;top:4px;width:10px;height:10px;border-radius:50%;background:var(--blue);border:2px solid #fff;box-shadow:0 0 0 2px var(--blue);">
+                </div>
+                <div style="font-size:12.5px;font-weight:600;color:var(--gray-700);">Student submitted log</div>
+                <div style="font-size:11px;color:var(--gray-400);" id="detail-audit-1">Apr 22, 2026 · 08:02 AM</div>
+              </div>
+              <div class="audit-entry" style="position:relative;margin-bottom:14px;" id="detail-audit-edit-row">
+                <div
+                  style="position:absolute;left:-16px;top:4px;width:10px;height:10px;border-radius:50%;background:var(--yellow);border:2px solid #fff;box-shadow:0 0 0 2px var(--yellow);">
+                </div>
+                <div style="font-size:12.5px;font-weight:600;color:var(--gray-700);" id="detail-audit-edit-label">
+                  Supervisor edited times</div>
+                <div style="font-size:11px;color:var(--gray-400);">Apr 22, 2026 · 1:15 PM</div>
+              </div>
+              <div class="audit-entry" style="position:relative;margin-bottom:14px;">
+                <div
+                  style="position:absolute;left:-16px;top:4px;width:10px;height:10px;border-radius:50%;background:var(--green);border:2px solid #fff;box-shadow:0 0 0 2px var(--green);">
+                </div>
+                <div style="font-size:12.5px;font-weight:600;color:var(--gray-700);">Supervisor approved</div>
+                <div style="font-size:11px;color:var(--gray-400);">Apr 22, 2026 · 1:16 PM</div>
+              </div>
+              <div class="audit-entry" style="position:relative;">
+                <div
+                  style="position:absolute;left:-16px;top:4px;width:10px;height:10px;border-radius:50%;background:var(--gray-300);border:2px solid #fff;box-shadow:0 0 0 2px var(--gray-300);">
+                </div>
+                <div style="font-size:12.5px;font-weight:600;color:var(--gray-400);">Awaiting Admin validation</div>
+                <div style="font-size:11px;color:var(--gray-400);">Pending your action</div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style="display:grid;grid-template-columns:1fr 1fr;gap:10px;padding-top:16px;border-top:1px solid var(--gray-200);">
+            <button id="panel-approve-btn" onclick="panelApprove()" class="btn btn-primary"
+              style="background:var(--green-btn);justify-content:center;padding:12px;">
+              <i class="fas fa-check"></i> Approve → Payroll
+            </button>
+            <button id="panel-reject-btn" onclick="panelReject()" class="btn btn-reject"
+              style="justify-content:center;padding:12px;">
+              <i class="fas fa-times"></i> Reject Log
+            </button>
+          </div>
+          <div style="margin-top:8px;">
+            <button onclick="panelFlag()" class="btn"
+              style="width:100%;justify-content:center;background:var(--yellow-light);color:#92400e;border:1.5px solid #fcd34d;padding:10px;">
+              <i class="fas fa-flag"></i> Flag for Later Review
+            </button>
+          </div>
+
+        </div>
+      </div><!-- /log-detail-panel -->
+
+      <!-- ── Review Log Hours JavaScript ── -->
+      <script>
+        function filterLogTable() {
+          const query = (document.getElementById('log-search')?.value || '').toLowerCase().trim();
+          const dept = (document.getElementById('log-filter-dept')?.value || '').toLowerCase();
+          const status = (document.getElementById('log-filter-status')?.value || '').toLowerCase();
+          const flagFilter = (document.getElementById('log-filter-flag')?.value || '').toLowerCase();
+
+          document.querySelectorAll('#attendance-log-table tbody .log-row').forEach(row => {
+            const name = row.querySelector('.td-name')?.textContent.toLowerCase() || '';
+            const sub = row.querySelector('.td-sub')?.textContent.toLowerCase() || '';
+            const rowDept = (row.dataset.dept || '').toLowerCase();
+            const rowStatus = (row.dataset.status || '').toLowerCase();
+            const rowFlag = (row.dataset.flag || '').toLowerCase();
+
+            const matchName = !query || name.includes(query) || sub.includes(query);
+            const matchDept = !dept || rowDept === dept;
+            const matchStatus = !status || rowStatus === status;
+            const matchFlag = !flagFilter || flagFilter === rowFlag;
+
+            row.style.display = (matchName && matchDept && matchStatus && matchFlag) ? '' : 'none';
+          });
+        }
+
+        function approveLogEntry(btn, name) {
+          confirmAction(
+            'Approve Attendance Log',
+            `Approve <strong>${name}</strong>'s attendance log? This will queue it for payroll release.`,
+            () => {
+              const row = btn.closest('tr');
+              const badge = row?.querySelector('.badge');
+              if (badge) { badge.className = 'badge approved'; badge.textContent = 'Approved'; }
+              if (row) row.dataset.status = 'approved';
+              row?.querySelector('.action-btns')?.querySelectorAll('.btn-icon.approve,.btn-icon.reject').forEach(b => b.remove());
+              const doneBtn = document.createElement('button');
+              doneBtn.className = 'btn-icon';
+              doneBtn.style.cssText = 'background:#e8f5e9;color:#2e7d32;cursor:default;';
+              doneBtn.title = 'Approved';
+              doneBtn.innerHTML = '<i class="fas fa-check-double"></i>';
+              row?.querySelector('.action-btns')?.appendChild(doneBtn);
+              row?.classList.remove('log-row-flagged');
+              showAlert('Log Approved ✓', `${name}'s attendance has been approved and queued for payroll.`, 'success');
+              refreshAllCounts();
+            }, null,
+            { confirmText: 'Yes, Approve', cancelText: 'Cancel', confirmColor: 'success-btn' }
+          );
+        }
+
+        function rejectLogEntry(btn, name) {
+          showRejectionReasonModal(name, () => {
+            const row = btn.closest('tr');
+            const badge = row?.querySelector('.badge');
+            if (badge) { badge.className = 'badge rejected'; badge.textContent = 'Rejected'; }
+            if (row) row.dataset.status = 'rejected';
+            row?.classList.add('log-row-rejected');
+            row?.classList.remove('log-row-flagged');
+            row?.querySelectorAll('.btn-icon.approve,.btn-icon.reject').forEach(b => b.remove());
+            showAlert('Log Rejected', `${name}'s attendance log has been rejected and returned.`, 'success');
+            refreshAllCounts();
+          });
+        }
+
+        function updateCounts() {
+          refreshAllCounts();
+        }
+
+        function openLogDetail(name, id, position, dept, date, timeIn, timeOut, hours, supervisor, flagText, rate, total, isFlagged) {
+          document.getElementById('detail-student-name').textContent = name;
+          document.getElementById('detail-student-sub').textContent = id + ' · ' + position;
+          document.getElementById('detail-dept').textContent = dept;
+          document.getElementById('detail-date').textContent = date;
+          document.getElementById('detail-timein').textContent = timeIn;
+          document.getElementById('detail-timeout').textContent = timeOut;
+          document.getElementById('detail-supervisor').textContent = supervisor;
+          document.getElementById('detail-hours-disp').textContent = hours !== '—' ? hours + 'h' : '—';
+          document.getElementById('detail-rate-disp').textContent = rate;
+          document.getElementById('detail-total-disp').textContent = total;
+
+          const flagWarn = document.getElementById('detail-flag-warning');
+          if (isFlagged) {
+            flagWarn.style.display = 'block';
+            document.getElementById('detail-flag-text').textContent = '⚠ ' + flagText;
+          } else {
+            flagWarn.style.display = 'none';
+          }
+
+          const editRow = document.getElementById('detail-audit-edit-row');
+          if (editRow) editRow.style.display = flagText.includes('Edited') ? '' : 'none';
+
+          const overlay = document.getElementById('log-detail-overlay');
+          const panel = document.getElementById('log-detail-panel');
+          overlay.style.display = 'block';
+          panel.style.display = 'block';
+          requestAnimationFrame(() => {
+            panel.style.transform = 'translateX(0)';
+          });
+        }
+
+        function closeLogDetail(e) {
+          if (e && e.target !== document.getElementById('log-detail-overlay')) return;
+          const panel = document.getElementById('log-detail-panel');
+          panel.style.transform = 'translateX(100%)';
+          setTimeout(() => {
+            panel.style.display = 'none';
+            document.getElementById('log-detail-overlay').style.display = 'none';
+          }, 300);
+        }
+
+        function panelApprove() {
+          const name = document.getElementById('detail-student-name').textContent;
+          const total = document.getElementById('detail-total-disp').textContent;
+          confirmAction('Approve & Send to Payroll',
+            `Approve <strong>${name}</strong>'s log? <br><br>Payroll amount: <strong>${total}</strong> will be queued for release.`,
+            () => {
+              closeLogDetail(null);
+              showAlert('Approved ✓', `${name}'s attendance is approved. ${total} queued for payroll.`, 'success');
+              refreshAllCounts();
+            }, null, { confirmText: 'Approve', cancelText: 'Cancel', confirmColor: 'success-btn' });
+        }
+
+        function panelReject() {
+          const name = document.getElementById('detail-student-name').textContent;
+          showRejectionReasonModal(name, () => {
+            closeLogDetail(null);
+            showAlert('Log Rejected', `${name}'s attendance log has been rejected and returned for correction.`, 'success');
+            refreshAllCounts();
+          });
+        }
+
+        function panelFlag() {
+          const name = document.getElementById('detail-student-name').textContent;
+          showAlert('Flagged for Review', `${name}'s log has been flagged. It will remain pending until you revisit it.`, 'success');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+          const bulkBtn = document.getElementById('bulk-approve-logs-btn');
+          if (bulkBtn) {
+            bulkBtn.addEventListener('click', () => {
+              const checked = document.querySelectorAll('.log-checkbox:checked:not(:disabled)');
+              if (!checked.length) {
+                showAlert('No Selection', 'Please select at least one attendance log to approve.', 'success');
+                return;
+              }
+              confirmAction('Bulk Approve Logs',
+                `Approve <strong>${checked.length} selected</strong> attendance logs? They will be queued for payroll.`,
+                () => {
+                  checked.forEach(cb => {
+                    const row = cb.closest('tr');
+                    const badge = row?.querySelector('.badge');
+                    if (badge && row.dataset.status === 'pending-admin') {
+                      badge.className = 'badge approved';
+                      badge.textContent = 'Approved';
+                      row.dataset.status = 'approved';
+                    }
+                    cb.checked = false;
+                  });
+                  document.getElementById('select-all-logs').checked = false;
+                  showAlert('Bulk Approved ✓', `${checked.length} attendance logs have been approved and queued for payroll.`, 'success');
+                  refreshAllCounts();
+                }, null, { confirmText: 'Approve All Selected', cancelText: 'Cancel', confirmColor: 'success-btn' });
+            });
+          }
+        });
+      </script>
+
+      <!-- ╔══════════════════════════════════════════════
      § PAYROLL
 ══════════════════════════════════════════════╗ -->
-<section class="section" id="sec-payroll">
+      <section class="section" id="sec-payroll">
 
-  <div class="section-header">
-    <div>
-      <div class="section-title">Payroll Management</div>
-      <div class="section-sub">Release payments to Student Assistants based on accumulated work hours</div>
-    </div>
-    <div class="section-actions">
-      <div class="search-box">
-        <i class="fas fa-search"></i>
-        <input type="text" placeholder="Search student by name or ID..." id="payroll-search">
-      </div>
-      <button class="btn btn-outline btn-sm"><i class="fas fa-download"></i> Export Report</button>
-      <button class="btn btn-primary btn-sm" id="release-all-btn"><i class="fas fa-money-bill-check"></i> Release All Pending</button>
-    </div>
-  </div>
-
-  <div class="alert-banner info" style="margin-bottom:20px;">
-    <i class="fas fa-info-circle"></i>
-    <span><strong>5 students</strong> have pending payroll. Funds will be transferred to their designated accounts upon release.</span>
-  </div>
-
-  <!-- Payroll Summary Stats -->
-  <div class="stat-grid">
-    <div class="stat-card maroon">
-      <div class="stat-card-top">
-        <div>
-          <div class="stat-label">Total Pending</div>
-          <div class="stat-value">₱87,500</div>
+        <div class="section-header">
+          <div>
+            <div class="section-title">Payroll Management</div>
+            <div class="section-sub">Release payments to Student Assistants based on accumulated work hours</div>
+          </div>
+          <div class="section-actions">
+            <div class="search-box">
+              <i class="fas fa-search"></i>
+              <input type="text" placeholder="Search student by name or ID..." id="payroll-search">
+            </div>
+            <button class="btn btn-outline btn-sm"><i class="fas fa-download"></i> Export Report</button>
+            <button class="btn btn-primary btn-sm" id="release-all-btn"><i class="fas fa-money-bill-check"></i> Release
+              All Pending</button>
+          </div>
         </div>
-        <div class="stat-icon maroon"><i class="fas fa-hourglass-half"></i></div>
-      </div>
-      <div class="stat-bar">
-        <div class="stat-bar-fill" style="width: 60%;"></div>
-      </div>
-    </div>
 
-    <div class="stat-card gold">
-      <div class="stat-card-top">
-        <div>
-          <div class="stat-label">Released This Month</div>
-          <div class="stat-value">₱142,000</div>
+        <div class="alert-banner info" style="margin-bottom:20px;">
+          <i class="fas fa-info-circle"></i>
+          <span><strong>5 students</strong> have pending payroll. Funds will be transferred to their designated accounts
+            upon release.</span>
         </div>
-        <div class="stat-icon gold"><i class="fas fa-check-circle"></i></div>
-      </div>
-      <div class="stat-bar">
-        <div class="stat-bar-fill" style="width: 85%; background: var(--gold);"></div>
-      </div>
-    </div>
 
-    <div class="stat-card green">
-      <div class="stat-card-top">
-        <div>
-          <div class="stat-label">Total Released (AY)</div>
-          <div class="stat-value">₱580,000</div>
+        <div class="stat-grid">
+          <div class="stat-card maroon">
+            <div class="stat-card-top">
+              <div>
+                <div class="stat-label">Total Pending</div>
+                <div class="stat-value">₱87,500</div>
+              </div>
+              <div class="stat-icon maroon"><i class="fas fa-hourglass-half"></i></div>
+            </div>
+            <div class="stat-bar">
+              <div class="stat-bar-fill" style="width: 60%;"></div>
+            </div>
+          </div>
+
+          <div class="stat-card gold">
+            <div class="stat-card-top">
+              <div>
+                <div class="stat-label">Released This Month</div>
+                <div class="stat-value">₱142,000</div>
+              </div>
+              <div class="stat-icon gold"><i class="fas fa-check-circle"></i></div>
+            </div>
+            <div class="stat-bar">
+              <div class="stat-bar-fill" style="width: 85%; background: var(--gold);"></div>
+            </div>
+          </div>
+
+          <div class="stat-card green">
+            <div class="stat-card-top">
+              <div>
+                <div class="stat-label">Total Released (AY)</div>
+                <div class="stat-value">₱580,000</div>
+              </div>
+              <div class="stat-icon green"><i class="fas fa-money-bill-wave"></i></div>
+            </div>
+            <div class="stat-bar">
+              <div class="stat-bar-fill" style="width: 95%; background: var(--green);"></div>
+            </div>
+          </div>
+
+          <div class="stat-card orange">
+            <div class="stat-card-top">
+              <div>
+                <div class="stat-label">Average Hours/Week</div>
+                <div class="stat-value">18.5h</div>
+              </div>
+              <div class="stat-icon orange"><i class="fas fa-clock"></i></div>
+            </div>
+            <div class="stat-bar">
+              <div class="stat-bar-fill" style="width: 74%; background: var(--yellow);"></div>
+            </div>
+          </div>
         </div>
-        <div class="stat-icon green"><i class="fas fa-money-bill-wave"></i></div>
-      </div>
-      <div class="stat-bar">
-        <div class="stat-bar-fill" style="width: 95%; background: var(--green);"></div>
-      </div>
-    </div>
 
-    <div class="stat-card orange">
-      <div class="stat-card-top">
-        <div>
-          <div class="stat-label">Average Hours/Week</div>
-          <div class="stat-value">18.5h</div>
+        <div class="table-wrap">
+          <table id="payroll-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Student</th>
+                <th>Position</th>
+                <th>Accumulated Hours</th>
+                <th>Hourly Rate</th>
+                <th>Total Amount</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr data-name="Maria Santos" data-id="2022-00145" data-hours="78.5" data-rate="50">
+                <td>1</td>
+                <td>
+                  <div class="t-avatar">
+                    <div class="av av-a">MS</div>
+                    <div>
+                      <div class="td-name">Maria Santos</div>
+                      <div class="td-sub">2022-00145 · Library Assistant</div>
+                    </div>
+                  </div>
+                </td>
+                <td>Library Assistant</td>
+                <td><strong>78.5 hours</strong></td>
+                <td>₱50/hr</td>
+                <td class="payroll-total"><strong style="color: var(--maroon); font-size: 14px;"></strong></td>
+                <td><span class="badge pending">Pending Release</span></td>
+                <td>
+                  <div class="action-btns">
+                    <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Release Pay</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr data-name="Juan dela Cruz" data-id="2021-00388" data-hours="92" data-rate="50">
+                <td>2</td>
+                <td>
+                  <div class="t-avatar">
+                    <div class="av av-b">JD</div>
+                    <div>
+                      <div class="td-name">Juan dela Cruz</div>
+                      <div class="td-sub">2021-00388 · Finance Clerk</div>
+                    </div>
+                  </div>
+                </td>
+                <td>Finance Clerk</td>
+                <td><strong>92 hours</strong></td>
+                <td>₱50/hr</td>
+                <td class="payroll-total"><strong style="color: var(--maroon); font-size: 14px;"></strong></td>
+                <td><span class="badge pending">Pending Release</span></td>
+                <td>
+                  <div class="action-btns">
+                    <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Release Pay</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr data-name="Ana Reyes" data-id="2023-00072" data-hours="65" data-rate="50">
+                <td>3</td>
+                <td>
+                  <div class="t-avatar">
+                    <div class="av av-c">AR</div>
+                    <div>
+                      <div class="td-name">Ana Reyes</div>
+                      <div class="td-sub">2023-00072 · Clinic Aide</div>
+                    </div>
+                  </div>
+                </td>
+                <td>Clinic Aide</td>
+                <td><strong>65 hours</strong></td>
+                <td>₱50/hr</td>
+                <td class="payroll-total"><strong style="color: var(--maroon); font-size: 14px;"></strong></td>
+                <td><span class="badge pending">Pending Release</span></td>
+                <td>
+                  <div class="action-btns">
+                    <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Release Pay</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr data-name="Liza Torres" data-id="2022-00299" data-hours="88" data-rate="50">
+                <td>4</td>
+                <td>
+                  <div class="t-avatar">
+                    <div class="av av-d">LT</div>
+                    <div>
+                      <div class="td-name">Liza Torres</div>
+                      <div class="td-sub">2022-00299 · Lab Monitor</div>
+                    </div>
+                  </div>
+                </td>
+                <td>Lab Monitor</td>
+                <td><strong>88 hours</strong></td>
+                <td>₱50/hr</td>
+                <td class="payroll-total"><strong style="color: var(--maroon); font-size: 14px;"></strong></td>
+                <td><span class="badge pending">Pending Release</span></td>
+                <td>
+                  <div class="action-btns">
+                    <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Release Pay</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr data-name="Pedro Valdez" data-id="2021-00602" data-hours="71.5" data-rate="50">
+                <td>5</td>
+                <td>
+                  <div class="t-avatar">
+                    <div class="av av-e">PV</div>
+                    <div>
+                      <div class="td-name">Pedro Valdez</div>
+                      <div class="td-sub">2021-00602 · Office Assistant</div>
+                    </div>
+                  </div>
+                </td>
+                <td>Office Assistant</td>
+                <td><strong>71.5 hours</strong></td>
+                <td>₱50/hr</td>
+                <td class="payroll-total"><strong style="color: var(--maroon); font-size: 14px;"></strong></td>
+                <td><span class="badge pending">Pending Release</span></td>
+                <td>
+                  <div class="action-btns">
+                    <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Release Pay</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div class="stat-icon orange"><i class="fas fa-clock"></i></div>
-      </div>
-      <div class="stat-bar">
-        <div class="stat-bar-fill" style="width: 74%; background: var(--yellow);"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="table-wrap">
-    <table id="payroll-table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Student</th>
-          <th>Position</th>
-          <th>Accumulated Hours</th>
-          <th>Hourly Rate</th>
-          <th>Total Amount</th>
-          <th>Status</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-
-        <tr data-name="Maria Santos" data-id="2022-00145" data-hours="78.5" data-rate="50">
-          <td>1</td>
-          <td>
-            <div class="t-avatar">
-              <div class="av av-a">MS</div>
-              <div><div class="td-name">Maria Santos</div><div class="td-sub">2022-00145 · Library Assistant</div></div>
-            </div>
-          </td>
-          <td>Library Assistant</td>
-          <td><strong>78.5 hours</strong></td>
-          <td>₱50/hr</td>
-          <td class="payroll-total"><strong style="color: var(--maroon); font-size: 14px;"></strong></td>
-          <td><span class="badge pending">Pending Release</span></td>
-          <td>
-            <div class="action-btns">
-              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Release Pay</button>
-            </div>
-          </td>
-        </tr>
-
-        <tr data-name="Juan dela Cruz" data-id="2021-00388" data-hours="92" data-rate="50">
-          <td>2</td>
-          <td>
-            <div class="t-avatar">
-              <div class="av av-b">JD</div>
-              <div><div class="td-name">Juan dela Cruz</div><div class="td-sub">2021-00388 · Finance Clerk</div></div>
-            </div>
-          </td>
-          <td>Finance Clerk</td>
-          <td><strong>92 hours</strong></td>
-          <td>₱50/hr</td>
-          <td class="payroll-total"><strong style="color: var(--maroon); font-size: 14px;"></strong></td>
-          <td><span class="badge pending">Pending Release</span></td>
-          <td>
-            <div class="action-btns">
-              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Release Pay</button>
-            </div>
-          </td>
-        </tr>
-
-        <tr data-name="Ana Reyes" data-id="2023-00072" data-hours="65" data-rate="50">
-          <td>3</td>
-          <td>
-            <div class="t-avatar">
-              <div class="av av-c">AR</div>
-              <div><div class="td-name">Ana Reyes</div><div class="td-sub">2023-00072 · Clinic Aide</div></div>
-            </div>
-          </td>
-          <td>Clinic Aide</td>
-          <td><strong>65 hours</strong></td>
-          <td>₱50/hr</td>
-          <td class="payroll-total"><strong style="color: var(--maroon); font-size: 14px;"></strong></td>
-          <td><span class="badge pending">Pending Release</span></td>
-          <td>
-            <div class="action-btns">
-              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Release Pay</button>
-            </div>
-          </td>
-        </tr>
-
-        <tr data-name="Liza Torres" data-id="2022-00299" data-hours="88" data-rate="50">
-          <td>4</td>
-          <td>
-            <div class="t-avatar">
-              <div class="av av-d">LT</div>
-              <div><div class="td-name">Liza Torres</div><div class="td-sub">2022-00299 · Lab Monitor</div></div>
-            </div>
-          </td>
-          <td>Lab Monitor</td>
-          <td><strong>88 hours</strong></td>
-          <td>₱50/hr</td>
-          <td class="payroll-total"><strong style="color: var(--maroon); font-size: 14px;"></strong></td>
-          <td><span class="badge pending">Pending Release</span></td>
-          <td>
-            <div class="action-btns">
-              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Release Pay</button>
-            </div>
-          </td>
-        </tr>
-
-        <tr data-name="Pedro Valdez" data-id="2021-00602" data-hours="71.5" data-rate="50">
-          <td>5</td>
-          <td>
-            <div class="t-avatar">
-              <div class="av av-e">PV</div>
-              <div><div class="td-name">Pedro Valdez</div><div class="td-sub">2021-00602 · Office Assistant</div></div>
-            </div>
-          </td>
-          <td>Office Assistant</td>
-          <td><strong>71.5 hours</strong></td>
-          <td>₱50/hr</td>
-          <td class="payroll-total"><strong style="color: var(--maroon); font-size: 14px;"></strong></td>
-          <td><span class="badge pending">Pending Release</span></td>
-          <td>
-            <div class="action-btns">
-              <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Release Pay</button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
+      </section>
 
 
-<!-- ╔══════════════════════════════════════════════
+      <!-- ╔══════════════════════════════════════════════
      § REPORTS
 ══════════════════════════════════════════════╗ -->
-<section class="section" id="sec-reports">
+      <section class="section" id="sec-reports">
 
-  <div class="section-header">
-    <div>
-      <div class="section-title">Reports & Analytics</div>
-      <div class="section-sub">Comprehensive overview of SAMS data for Academic Year 2025–2026</div>
-    </div>
-    <div class="section-actions">
-      <select class="btn btn-outline btn-sm" style="cursor:pointer;">
-        <option>AY 2025–2026</option>
-        <option>AY 2024–2025</option>
-        <option>AY 2023–2024</option>
-      </select>
-      <button class="btn btn-primary btn-sm"><i class="fas fa-print"></i> Print Report</button>
-      <button class="btn btn-gold btn-sm"><i class="fas fa-file-excel"></i> Export Excel</button>
-    </div>
-  </div>
+        <div class="section-header">
+          <div>
+            <div class="section-title">Reports & Analytics</div>
+            <div class="section-sub">Comprehensive overview of SAMS data for Academic Year 2025–2026</div>
+          </div>
+          <div class="section-actions">
+            <select class="btn btn-outline btn-sm" style="cursor:pointer;">
+              <option>AY 2025–2026</option>
+              <option>AY 2024–2025</option>
+              <option>AY 2023–2024</option>
+            </select>
+            <button class="btn btn-primary btn-sm"><i class="fas fa-print"></i> Print Report</button>
+            <button class="btn btn-gold btn-sm"><i class="fas fa-file-excel"></i> Export Excel</button>
+          </div>
+        </div>
 
-  <!-- Top Report Stats -->
-  <div class="reports-grid">
-    <div class="report-stat">
-      <div class="report-stat-val">248</div>
-      <div class="report-stat-lbl">Total Students Registered</div>
-      <div class="report-stat-sub">↑ 12 new this semester</div>
-    </div>
-    <div class="report-stat">
-      <div class="report-stat-val">94</div>
-      <div class="report-stat-lbl">Active Student Assistants</div>
-      <div class="report-stat-sub">78% of total capacity</div>
-    </div>
-    <div class="report-stat">
-      <div class="report-stat-val">18</div>
-      <div class="report-stat-lbl">Registered Departments</div>
-      <div class="report-stat-sub">15 verified, 3 pending</div>
-    </div>
-    <div class="report-stat">
-      <div class="report-stat-val">68</div>
-      <div class="report-stat-lbl">Total Applications</div>
-      <div class="report-stat-sub">52 resolved, 16 pending</div>
-    </div>
-    <div class="report-stat">
-      <div class="report-stat-val" style="color:var(--green);">76%</div>
-      <div class="report-stat-lbl">Application Approval Rate</div>
-      <div class="report-stat-sub">52 approved out of 68</div>
-    </div>
-    <div class="report-stat">
-      <div class="report-stat-val" style="color:var(--gold);">1.87</div>
-      <div class="report-stat-lbl">Average GWA of Active SAs</div>
-      <div class="report-stat-sub">Within academic standard</div>
-    </div>
-  </div>
+        <div class="reports-grid">
+          <div class="report-stat">
+            <div class="report-stat-val">248</div>
+            <div class="report-stat-lbl">Total Students Registered</div>
+            <div class="report-stat-sub">↑ 12 new this semester</div>
+          </div>
+          <div class="report-stat">
+            <div class="report-stat-val">94</div>
+            <div class="report-stat-lbl">Active Student Assistants</div>
+            <div class="report-stat-sub">78% of total capacity</div>
+          </div>
+          <div class="report-stat">
+            <div class="report-stat-val">18</div>
+            <div class="report-stat-lbl">Registered Departments</div>
+            <div class="report-stat-sub">15 verified, 3 pending</div>
+          </div>
+          <div class="report-stat">
+            <div class="report-stat-val">68</div>
+            <div class="report-stat-lbl">Total Applications</div>
+            <div class="report-stat-sub">52 resolved, 16 pending</div>
+          </div>
+          <div class="report-stat">
+            <div class="report-stat-val" style="color:var(--green);">76%</div>
+            <div class="report-stat-lbl">Application Approval Rate</div>
+            <div class="report-stat-sub">52 approved out of 68</div>
+          </div>
+          <div class="report-stat">
+            <div class="report-stat-val" style="color:var(--gold);">1.87</div>
+            <div class="report-stat-lbl">Average GWA of Active SAs</div>
+            <div class="report-stat-sub">Within academic standard</div>
+          </div>
+        </div>
 
-  <!-- Status Summary -->
-  <div class="section-header" style="margin-bottom:16px;">
-    <div class="section-title" style="font-size:20px;">Status Summary</div>
-  </div>
+        <div class="section-header" style="margin-bottom:16px;">
+          <div class="section-title" style="font-size:20px;">Status Summary</div>
+        </div>
 
-  <div class="status-grid">
-    <div class="status-box">
-      <div class="status-box-val col-green">186</div>
-      <div class="status-box-lbl">Verified Students</div>
-    </div>
-    <div class="status-box">
-      <div class="status-box-val col-yellow">5</div>
-      <div class="status-box-lbl">Pending Verification</div>
-    </div>
-    <div class="status-box">
-      <div class="status-box-val col-red">57</div>
-      <div class="status-box-lbl">Unverified Students</div>
-    </div>
-    <div class="status-box">
-      <div class="status-box-val col-blue">15</div>
-      <div class="status-box-lbl">Approved Departments</div>
-    </div>
-    <div class="status-box">
-      <div class="status-box-val col-yellow">3</div>
-      <div class="status-box-lbl">Pending Depts.</div>
-    </div>
-    <div class="status-box">
-      <div class="status-box-val col-green">52</div>
-      <div class="status-box-lbl">Approved Applications</div>
-    </div>
-    <div class="status-box">
-      <div class="status-box-val col-yellow">16</div>
-      <div class="status-box-lbl">Pending Applications</div>
-    </div>
-    <div class="status-box">
-      <div class="status-box-val col-red">0</div>
-      <div class="status-box-lbl">Rejected Departments</div>
-    </div>
-  </div>
+        <div class="status-grid">
+          <div class="status-box">
+            <div class="status-box-val col-green">186</div>
+            <div class="status-box-lbl">Verified Students</div>
+          </div>
+          <div class="status-box">
+            <div class="status-box-val col-yellow">5</div>
+            <div class="status-box-lbl">Pending Verification</div>
+          </div>
+          <div class="status-box">
+            <div class="status-box-val col-red">57</div>
+            <div class="status-box-lbl">Unverified Students</div>
+          </div>
+          <div class="status-box">
+            <div class="status-box-val col-blue">15</div>
+            <div class="status-box-lbl">Approved Departments</div>
+          </div>
+          <div class="status-box">
+            <div class="status-box-val col-yellow">3</div>
+            <div class="status-box-lbl">Pending Depts.</div>
+          </div>
+          <div class="status-box">
+            <div class="status-box-val col-green">52</div>
+            <div class="status-box-lbl">Approved Applications</div>
+          </div>
+          <div class="status-box">
+            <div class="status-box-val col-yellow">16</div>
+            <div class="status-box-lbl">Pending Applications</div>
+          </div>
+          <div class="status-box">
+            <div class="status-box-val col-red">0</div>
+            <div class="status-box-lbl">Rejected Departments</div>
+          </div>
+        </div>
 
-  <!-- Department Distribution -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px;">
 
-    <div class="card">
-      <div class="card-header">
-        <h3><i class="fas fa-chart-bar"></i> SA Distribution by Department</h3>
-      </div>
-      <div class="card-body">
-        <ul class="dist-list">
-          <li class="dist-item">
-            <div class="dist-label">
-              <span class="dist-name">Information Technology</span>
-              <span class="dist-count">8 SAs</span>
+          <div class="card">
+            <div class="card-header">
+              <h3><i class="fas fa-chart-bar"></i> SA Distribution by Department</h3>
             </div>
-            <div class="dist-bar-wrap"><div class="dist-bar" style="width:100%;"></div></div>
-          </li>
-          <li class="dist-item">
-            <div class="dist-label">
-              <span class="dist-name">College of Engineering</span>
-              <span class="dist-count">7 SAs</span>
+            <div class="card-body">
+              <ul class="dist-list">
+                <li class="dist-item">
+                  <div class="dist-label">
+                    <span class="dist-name">Information Technology</span>
+                    <span class="dist-count">8 SAs</span>
+                  </div>
+                  <div class="dist-bar-wrap">
+                    <div class="dist-bar" style="width:100%;"></div>
+                  </div>
+                </li>
+                <li class="dist-item">
+                  <div class="dist-label">
+                    <span class="dist-name">College of Engineering</span>
+                    <span class="dist-count">7 SAs</span>
+                  </div>
+                  <div class="dist-bar-wrap">
+                    <div class="dist-bar" style="width:87%;"></div>
+                  </div>
+                </li>
+                <li class="dist-item">
+                  <div class="dist-label">
+                    <span class="dist-name">University Library</span>
+                    <span class="dist-count">5 SAs</span>
+                  </div>
+                  <div class="dist-bar-wrap">
+                    <div class="dist-bar" style="width:62%;"></div>
+                  </div>
+                </li>
+                <li class="dist-item">
+                  <div class="dist-label">
+                    <span class="dist-name">College of Education</span>
+                    <span class="dist-count">4 SAs</span>
+                  </div>
+                  <div class="dist-bar-wrap">
+                    <div class="dist-bar" style="width:50%;"></div>
+                  </div>
+                </li>
+                <li class="dist-item">
+                  <div class="dist-label">
+                    <span class="dist-name">Finance Office</span>
+                    <span class="dist-count">3 SAs</span>
+                  </div>
+                  <div class="dist-bar-wrap">
+                    <div class="dist-bar" style="width:37%;"></div>
+                  </div>
+                </li>
+                <li class="dist-item">
+                  <div class="dist-label">
+                    <span class="dist-name">Other Departments</span>
+                    <span class="dist-count">67 SAs</span>
+                  </div>
+                  <div class="dist-bar-wrap">
+                    <div class="dist-bar"
+                      style="width:84%;background:linear-gradient(90deg,var(--gray-400),var(--gray-300));"></div>
+                  </div>
+                </li>
+              </ul>
             </div>
-            <div class="dist-bar-wrap"><div class="dist-bar" style="width:87%;"></div></div>
-          </li>
-          <li class="dist-item">
-            <div class="dist-label">
-              <span class="dist-name">University Library</span>
-              <span class="dist-count">5 SAs</span>
-            </div>
-            <div class="dist-bar-wrap"><div class="dist-bar" style="width:62%;"></div></div>
-          </li>
-          <li class="dist-item">
-            <div class="dist-label">
-              <span class="dist-name">College of Education</span>
-              <span class="dist-count">4 SAs</span>
-            </div>
-            <div class="dist-bar-wrap"><div class="dist-bar" style="width:50%;"></div></div>
-          </li>
-          <li class="dist-item">
-            <div class="dist-label">
-              <span class="dist-name">Finance Office</span>
-              <span class="dist-count">3 SAs</span>
-            </div>
-            <div class="dist-bar-wrap"><div class="dist-bar" style="width:37%;"></div></div>
-          </li>
-          <li class="dist-item">
-            <div class="dist-label">
-              <span class="dist-name">Other Departments</span>
-              <span class="dist-count">67 SAs</span>
-            </div>
-            <div class="dist-bar-wrap"><div class="dist-bar" style="width:84%;background:linear-gradient(90deg,var(--gray-400),var(--gray-300));"></div></div>
-          </li>
-        </ul>
-      </div>
-    </div>
+          </div>
 
-    <div class="card">
-      <div class="card-header">
-        <h3><i class="fas fa-calendar-alt"></i> Monthly Applications Trend</h3>
-      </div>
-      <div class="card-body">
-        <ul class="dist-list">
-          <li class="dist-item">
-            <div class="dist-label">
-              <span class="dist-name">October 2025</span>
-              <span class="dist-count">12 apps</span>
+          <div class="card">
+            <div class="card-header">
+              <h3><i class="fas fa-calendar-alt"></i> Monthly Applications Trend</h3>
             </div>
-            <div class="dist-bar-wrap"><div class="dist-bar" style="width:60%;background:linear-gradient(90deg,#7c3aed,#a78bfa);"></div></div>
-          </li>
-          <li class="dist-item">
-            <div class="dist-label">
-              <span class="dist-name">November 2025</span>
-              <span class="dist-count">18 apps</span>
+            <div class="card-body">
+              <ul class="dist-list">
+                <li class="dist-item">
+                  <div class="dist-label">
+                    <span class="dist-name">October 2025</span>
+                    <span class="dist-count">12 apps</span>
+                  </div>
+                  <div class="dist-bar-wrap">
+                    <div class="dist-bar" style="width:60%;background:linear-gradient(90deg,#7c3aed,#a78bfa);"></div>
+                  </div>
+                </li>
+                <li class="dist-item">
+                  <div class="dist-label">
+                    <span class="dist-name">November 2025</span>
+                    <span class="dist-count">18 apps</span>
+                  </div>
+                  <div class="dist-bar-wrap">
+                    <div class="dist-bar" style="width:90%;background:linear-gradient(90deg,#7c3aed,#a78bfa);"></div>
+                  </div>
+                </li>
+                <li class="dist-item">
+                  <div class="dist-label">
+                    <span class="dist-name">December 2025</span>
+                    <span class="dist-count">4 apps</span>
+                  </div>
+                  <div class="dist-bar-wrap">
+                    <div class="dist-bar" style="width:20%;background:linear-gradient(90deg,#7c3aed,#a78bfa);"></div>
+                  </div>
+                </li>
+                <li class="dist-item">
+                  <div class="dist-label">
+                    <span class="dist-name">January 2026</span>
+                    <span class="dist-count">14 apps</span>
+                  </div>
+                  <div class="dist-bar-wrap">
+                    <div class="dist-bar" style="width:70%;background:linear-gradient(90deg,#7c3aed,#a78bfa);"></div>
+                  </div>
+                </li>
+                <li class="dist-item">
+                  <div class="dist-label">
+                    <span class="dist-name">February 2026</span>
+                    <span class="dist-count">12 apps</span>
+                  </div>
+                  <div class="dist-bar-wrap">
+                    <div class="dist-bar" style="width:60%;background:linear-gradient(90deg,#7c3aed,#a78bfa);"></div>
+                  </div>
+                </li>
+                <li class="dist-item">
+                  <div class="dist-label">
+                    <span class="dist-name">March 2026 (ongoing)</span>
+                    <span class="dist-count">8 apps</span>
+                  </div>
+                  <div class="dist-bar-wrap">
+                    <div class="dist-bar"
+                      style="width:40%;background:linear-gradient(90deg,var(--gold),var(--gold-light));"></div>
+                  </div>
+                </li>
+              </ul>
             </div>
-            <div class="dist-bar-wrap"><div class="dist-bar" style="width:90%;background:linear-gradient(90deg,#7c3aed,#a78bfa);"></div></div>
-          </li>
-          <li class="dist-item">
-            <div class="dist-label">
-              <span class="dist-name">December 2025</span>
-              <span class="dist-count">4 apps</span>
-            </div>
-            <div class="dist-bar-wrap"><div class="dist-bar" style="width:20%;background:linear-gradient(90deg,#7c3aed,#a78bfa);"></div></div>
-          </li>
-          <li class="dist-item">
-            <div class="dist-label">
-              <span class="dist-name">January 2026</span>
-              <span class="dist-count">14 apps</span>
-            </div>
-            <div class="dist-bar-wrap"><div class="dist-bar" style="width:70%;background:linear-gradient(90deg,#7c3aed,#a78bfa);"></div></div>
-          </li>
-          <li class="dist-item">
-            <div class="dist-label">
-              <span class="dist-name">February 2026</span>
-              <span class="dist-count">12 apps</span>
-            </div>
-            <div class="dist-bar-wrap"><div class="dist-bar" style="width:60%;background:linear-gradient(90deg,#7c3aed,#a78bfa);"></div></div>
-          </li>
-          <li class="dist-item">
-            <div class="dist-label">
-              <span class="dist-name">March 2026 (ongoing)</span>
-              <span class="dist-count">8 apps</span>
-            </div>
-            <div class="dist-bar-wrap"><div class="dist-bar" style="width:40%;background:linear-gradient(90deg,var(--gold),var(--gold-light));"></div></div>
-          </li>
-        </ul>
-      </div>
-    </div>
+          </div>
 
-  </div><!-- /reports-2col -->
+        </div>
 
-</section>
+      </section>
 
-</main><!-- /main-content -->
+    </main><!-- /main-content -->
 
 <!-- ============ MODAL ============ -->
 <div id="view-docs-1" class="modal-overlay">
@@ -2457,280 +3152,245 @@
   </div>
 </div>
 
-<script>
-// Attach confirmation modals to action buttons
-document.addEventListener('DOMContentLoaded', function() {
-    // Handle Reject buttons
-    const rejectBtns = document.querySelectorAll('.btn-reject');
-    rejectBtns.forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            const row = this.closest('tr');
-            const name = row ? row.querySelector('.td-name')?.textContent || 'Student' : 'Student';
-            const status = row ? row.querySelector('.badge')?.textContent || '' : '';
-            
-            confirmAction(
-                'Confirm Rejection',
-                `Are you sure you want to reject this ${status.toLowerCase()} application from ${name}? This action cannot be undone.`,
-                () => {
-                    showAlert('Application Rejected', `${name}'s application has been rejected successfully.`, 'success', () => {
-                        // Update status badge if exists
-                        if (row) {
-                            const badge = row.querySelector('.badge');
-                            if (badge) {
-                                badge.className = 'badge rejected';
-                                badge.textContent = 'Rejected';
-                            }
-                        }
-                    });
-                },
-                null,
-                { confirmText: 'Yes, Reject', cancelText: 'Cancel', confirmColor: 'danger-btn' }
-            );
-        });
-    });
 
-    // Handle Approve buttons
-    const approveBtns = document.querySelectorAll('.btn-approve');
-    approveBtns.forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            const row = this.closest('tr');
-            const name = row ? row.querySelector('.td-name')?.textContent || 'Student' : 'Student';
-            const status = row ? row.querySelector('.badge')?.textContent || '' : '';
-            
-            confirmAction(
-                'Confirm Approval',
-                `Are you sure you want to approve this ${status.toLowerCase()} application from ${name}?`,
-                () => {
-                    showAlert('Application Approved', `${name}'s application has been approved successfully.`, 'success', () => {
-                        // Update status badge if exists
-                        if (row) {
-                            const badge = row.querySelector('.badge');
-                            if (badge) {
-                                badge.className = 'badge approved';
-                                badge.textContent = 'Approved';
-                            }
-                        }
-                    });
-                },
-                null,
-                { confirmText: 'Yes, Approve', cancelText: 'Cancel', confirmColor: 'success-btn' }
-            );
-        });
-    });
-});
-</script>
-
-<!-- ══════════════════════════════════════════════
-     ADMIN ACTION HANDLERS
+    <!-- ══════════════════════════════════════════════
+     ██  LIVE COUNTER SYSTEM
+         Counts pending rows in each section and pushes
+         updated numbers to all display points whenever
+         an approve or reject action is completed.
 ════════════════════════════════════════════════ -->
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  // Handle Approve/Reject buttons for Verify Students and Departments
-  document.querySelectorAll('.btn-approve, .btn-reject').forEach(button => {
-    button.addEventListener('click', (e) => {
-      e.preventDefault();
-      
-      const isApprove = button.classList.contains('btn-approve');
-      let titleText = isApprove ? 'Confirm Verification' : 'Confirm Rejection';
-      let messageText = isApprove ? 'Are you sure you want to verify this item?' : 'Are you sure you want to reject this item?';
-      
-      // Check if this is a Release Pay button (Payroll section)
-      if (button.textContent.includes('Release Pay')) {
-        titleText = 'Confirm Payment Release';
-        messageText = 'Release payment to this student?';
-      } else if (button.textContent.includes('Activate')) {
-        titleText = 'Confirm Activation';
-        messageText = 'Activate this position for suggestions?';
-      }
-      
-      // Use the modal confirmation function
-      confirmAction(titleText, messageText, () => {
-        // On confirmation, hide the action buttons and update the row
-        const row = button.closest('tr');
-        const section = button.closest('section');
-        const sectionId = section ? section.id : '';
-        
-        // Only apply button hiding and status updates for Verify Students & Departments
-        const isVerificationSection = sectionId === 'sec-students' || sectionId === 'sec-departments';
-        
-        if (isVerificationSection) {
-          const actionBtns = row.querySelector('.action-btns');
-          const statusCell = row.querySelector('[class*="badge"]');
-          
-          if (actionBtns) {
-            // Hide the action buttons
-            actionBtns.style.display = 'none';
-            
-            // Update the status badge
-            if (statusCell) {
-              if (isApprove) {
-                statusCell.classList.remove('pending', 'rejected');
-                statusCell.classList.add('approved');
-                statusCell.textContent = 'Verified';
-              } else {
-                statusCell.classList.remove('pending', 'approved');
-                statusCell.classList.add('rejected');
-                statusCell.textContent = 'Rejected';
-              }
-            }
+    <script>
+      function refreshAllCounts() {
+
+        // ── 1. Students: rows where the badge still reads "Pending" ──────────
+        const studentPending = [...document.querySelectorAll('#students-table tbody tr')]
+          .filter(r => r.querySelector('.badge')?.textContent.trim() === 'Pending').length;
+
+        // ── 2. Departments: same logic ────────────────────────────────────────
+        const deptPending = [...document.querySelectorAll('#sec-departments tbody tr')]
+          .filter(r => r.querySelector('.badge')?.textContent.trim() === 'Pending').length;
+
+        // ── 3. Log hours: rows still carrying data-status="pending-admin" ─────
+        const logPending = [...document.querySelectorAll('#attendance-log-table tbody .log-row')]
+          .filter(r => r.dataset.status === 'pending-admin').length;
+
+        // ── Push → sidebar nav badges ─────────────────────────────────────────
+        const studentNavBadge = document.getElementById('sidebar-badge-students');
+        const deptNavBadge    = document.getElementById('sidebar-badge-depts');
+        if (studentNavBadge) {
+          studentNavBadge.textContent = studentPending;
+          studentNavBadge.style.display = studentPending > 0 ? '' : 'none';
+        }
+        if (deptNavBadge) {
+          deptNavBadge.textContent = deptPending;
+          deptNavBadge.style.display = deptPending > 0 ? '' : 'none';
+        }
+
+        // ── Push → dashboard Pending Actions card ─────────────────────────────
+        const dashStudents = document.getElementById('dash-count-students');
+        const dashDepts    = document.getElementById('dash-count-depts');
+        if (dashStudents) dashStudents.textContent = studentPending;
+        if (dashDepts)    dashDepts.textContent    = deptPending;
+
+        // ── Push → dashboard alert banner ─────────────────────────────────────
+        const alertSpan = document.getElementById('dash-alert-text');
+        const alertBanner = document.getElementById('dash-alert-banner');
+        if (alertSpan && alertBanner) {
+          const parts = [];
+          if (studentPending > 0)
+            parts.push(`<strong>${studentPending} student verification${studentPending !== 1 ? 's' : ''}</strong>`);
+          if (deptPending > 0)
+            parts.push(`<strong>${deptPending} department approval${deptPending !== 1 ? 's' : ''}</strong>`);
+
+          if (parts.length > 0) {
+            alertBanner.style.display = '';
+            alertSpan.innerHTML =
+              `<strong>Action Required:</strong> ${parts.join(' and ')} ` +
+              `${parts.length > 1 ? 'are' : 'is'} awaiting your review. Please resolve them before the deadline.`;
+          } else {
+            alertBanner.style.display = 'none';
           }
-          
-          // Show confirmation message
-          const successMessage = `Item has been ${isApprove ? 'verified' : 'rejected'} successfully.`;
-          showAlert('Success', successMessage, 'success');
-        } else {
-          // For other sections (Payroll, Manage Positions), just show success message
-          const successMessage = button.textContent.includes('Release Pay') 
-            ? 'Payment released successfully.' 
-            : button.textContent.includes('Activate')
-            ? 'Position activated successfully.'
-            : `Action completed successfully.`;
-          
-          showAlert('Success', successMessage, 'success');
+        }
+
+        // ── Push → Review Log Hours stat card ─────────────────────────────────
+        const logEl = document.getElementById('log-pending-count');
+        if (logEl) logEl.textContent = logPending;
+      }
+    </script>
+
+    <!-- ══════════════════════════════════════════════
+     ADMIN ACTION HANDLERS
+     (approve/reject for Students & Departments tables)
+════════════════════════════════════════════════ -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+
+        // ── Verify Students & Departments: Approve / Reject ───────────────────
+        const verificationSections = ['sec-students', 'sec-departments'];
+
+        verificationSections.forEach(secId => {
+          const section = document.getElementById(secId);
+          if (!section) return;
+
+          section.querySelectorAll('.btn-approve, .btn-reject').forEach(button => {
+            button.addEventListener('click', function (e) {
+              e.preventDefault();
+              const isApprove = button.classList.contains('btn-approve');
+              const row = button.closest('tr');
+              const name = row?.querySelector('.td-name')?.textContent || 'this entry';
+
+              confirmAction(
+                isApprove ? 'Confirm Approval' : 'Confirm Rejection',
+                isApprove
+                  ? `Are you sure you want to approve <strong>${name}</strong>?`
+                  : `Are you sure you want to reject <strong>${name}</strong>? This action cannot be undone.`,
+                () => {
+                  // Update the row's badge
+                  const badge = row?.querySelector('.badge');
+                  if (badge) {
+                    badge.className = isApprove ? 'badge approved' : 'badge rejected';
+                    badge.textContent = isApprove ? 'Verified' : 'Rejected';
+                  }
+                  // Hide the action buttons so the row can't be actioned twice
+                  const actionBtns = row?.querySelector('.action-btns');
+                  if (actionBtns) actionBtns.style.display = 'none';
+
+                  showAlert(
+                    isApprove ? 'Approved' : 'Rejected',
+                    `${name} has been ${isApprove ? 'approved' : 'rejected'} successfully.`,
+                    'success'
+                  );
+
+                  // ← Refresh all counter displays
+                  refreshAllCounts();
+                },
+                null,
+                {
+                  confirmText: isApprove ? 'Yes, Approve' : 'Yes, Reject',
+                  cancelText: 'Cancel',
+                  confirmColor: isApprove ? 'success-btn' : 'danger-btn'
+                }
+              );
+            });
+          });
+        });
+
+        // ── Payroll: Release Pay ──────────────────────────────────────────────
+        document.querySelectorAll('#sec-payroll .btn-approve').forEach(button => {
+          button.addEventListener('click', function (e) {
+            e.preventDefault();
+            const row = button.closest('tr');
+            const name = row?.querySelector('.td-name')?.textContent || 'Student';
+            confirmAction(
+              'Confirm Payment Release',
+              `Release payment to <strong>${name}</strong>?`,
+              () => {
+                showAlert('Payment Released', `Payment released to ${name} successfully.`, 'success');
+              },
+              null,
+              { confirmText: 'Release', cancelText: 'Cancel', confirmColor: 'success-btn' }
+            );
+          });
+        });
+
+      });
+    </script>
+
+    <!-- Student Search Filter -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+
+        const studentSearch = document.getElementById('student-search');
+        const studentFilterStatus = document.getElementById('student-filter-status');
+        const studentFilterCourse = document.getElementById('student-filter-course');
+        const studentsTable = document.getElementById('students-table');
+
+        function filterStudentsTable() {
+          const query = studentSearch.value.toLowerCase().trim();
+          const statusVal = studentFilterStatus.value.toLowerCase();
+          const courseVal = studentFilterCourse.value.toUpperCase();
+          studentsTable.querySelectorAll('tbody tr').forEach(function (row) {
+            const name   = (row.dataset.name   || '').toLowerCase();
+            const id     = (row.dataset.id     || '').toLowerCase();
+            const status = (row.dataset.status || '').toLowerCase();
+            const course = (row.dataset.course || '').toUpperCase();
+            row.style.display =
+              (!query     || name.includes(query) || id.includes(query)) &&
+              (!statusVal || status === statusVal) &&
+              (!courseVal || course === courseVal)
+              ? '' : 'none';
+          });
+        }
+
+        if (studentSearch)       studentSearch.addEventListener('input', filterStudentsTable);
+        if (studentFilterStatus) studentFilterStatus.addEventListener('change', filterStudentsTable);
+        if (studentFilterCourse) studentFilterCourse.addEventListener('change', filterStudentsTable);
+
+        // ── Payroll Search ────────────────────────────────────────────────────
+        const payrollSearch = document.getElementById('payroll-search');
+        const payrollTable  = document.getElementById('payroll-table');
+        if (payrollSearch) {
+          payrollSearch.addEventListener('input', function () {
+            const query = payrollSearch.value.toLowerCase().trim();
+            payrollTable.querySelectorAll('tbody tr').forEach(function (row) {
+              const name = (row.dataset.name || '').toLowerCase();
+              const id   = (row.dataset.id   || '').toLowerCase();
+              row.style.display = (!query || name.includes(query) || id.includes(query)) ? '' : 'none';
+            });
+          });
+        }
+
+      });
+    </script>
+
+    <!-- Suggest Positions send button -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const sendBtn = document.getElementById('send-suggestion-btn');
+        if (sendBtn) {
+          sendBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            confirmAction(
+              'Confirm Suggestion',
+              'Are you sure you want to send this position suggestion to the selected student?',
+              () => { showAlert('Suggestion Sent', 'The position suggestion was successfully sent to the student.', 'success'); },
+              null,
+              { confirmText: 'Send', cancelText: 'Cancel', confirmColor: 'success-btn' }
+            );
+          });
         }
       });
-    });
-  });
-});
-</script>
+    </script>
 
-<!--Student Search Filter script-->
-<script>
-document.addEventListener('DOMContentLoaded', function () {
+    <!-- Manage Positions: compute Available = Total - Filled -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.position-card').forEach(function (card) {
+          const stats = card.querySelectorAll('.pos-stat-val');
+          const total  = parseInt(stats[0]?.textContent);
+          const filled = parseInt(stats[1]?.textContent);
+          if (!isNaN(total) && !isNaN(filled) && stats[2]) {
+            stats[2].textContent = total - filled;
+          }
+        });
+      });
+    </script>
 
-  // ── Verify Students ──────────────────────────
-  const studentSearch = document.getElementById('student-search');
-  const studentFilterStatus = document.getElementById('student-filter-status');
-  const studentFilterCourse = document.getElementById('student-filter-course');
-  const studentsTable = document.getElementById('students-table');
+    <!-- Payroll: compute Total = Hours × Rate -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('#payroll-table tbody tr').forEach(function (row) {
+          const hours = parseFloat(row.dataset.hours);
+          const rate  = parseFloat(row.dataset.rate);
+          if (!isNaN(hours) && !isNaN(rate)) {
+            const cell = row.querySelector('.payroll-total strong');
+            if (cell) cell.textContent = '₱' + (hours * rate).toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+          }
+        });
+      });
+    </script>
 
-  function filterStudentsTable() {
-    const query = studentSearch.value.toLowerCase().trim();
-    const statusVal = studentFilterStatus.value.toLowerCase();
-    const courseVal = studentFilterCourse.value.toUpperCase();
-
-    const rows = studentsTable.querySelectorAll('tbody tr');
-    rows.forEach(function (row) {
-      const name = (row.dataset.name || '').toLowerCase();
-      const id = (row.dataset.id || '').toLowerCase();
-      const status = (row.dataset.status || '').toLowerCase();
-      const course = (row.dataset.course || '').toUpperCase();
-
-      const matchesQuery = !query || name.includes(query) || id.includes(query);
-      const matchesStatus = !statusVal || status === statusVal;
-      const matchesCourse = !courseVal || course === courseVal;
-
-      row.style.display = (matchesQuery && matchesStatus && matchesCourse) ? '' : 'none';
-    });
-  }
-
-  if (studentSearch)       studentSearch.addEventListener('input', filterStudentsTable);
-  if (studentFilterStatus) studentFilterStatus.addEventListener('change', filterStudentsTable);
-  if (studentFilterCourse) studentFilterCourse.addEventListener('change', filterStudentsTable);
-
-  // ── Payroll Search ───────────────────────────
-  const payrollSearch = document.getElementById('payroll-search');
-  const payrollTable = document.getElementById('payroll-table');
-
-  function filterPayrollTable() {
-    const query = payrollSearch.value.toLowerCase().trim();
-    const rows = payrollTable.querySelectorAll('tbody tr');
-    rows.forEach(function (row) {
-      const name = (row.dataset.name || '').toLowerCase();
-      const id = (row.dataset.id || '').toLowerCase();
-      const matches = !query || name.includes(query) || id.includes(query);
-      row.style.display = matches ? '' : 'none';
-    });
-  }
-
-  if (payrollSearch) payrollSearch.addEventListener('input', filterPayrollTable);
-
-});
-</script>
-
-<!-- Suggest Positions - Send button feedback-->
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  const sendBtn = document.getElementById('send-suggestion-btn');
-  if (sendBtn) {
-    sendBtn.addEventListener('click', function (e) {
-      e.preventDefault();
-      confirmAction(
-        'Confirm Suggestion',
-        'Are you sure you want to send this position suggestion to the selected student?',
-        () => {
-          showAlert('Suggestion Sent', 'The position suggestion was successfully sent to the student.', 'success');
-        },
-        null,
-        { confirmText: 'Send', cancelText: 'Cancel', confirmColor: 'success-btn' }
-      );
-    });
-  }
-});
-</script>
-
-<!-- Manage Positions - Delete button-->
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-
-  // ── Delete buttons ───────────────────────────
-  document.querySelectorAll('.btn-delete').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      const card = this.closest('.position-card');
-      const posName = card ? card.querySelector('.pos-name').textContent : 'this position';
-
-      confirmAction(
-        'Confirm Deletion',
-        `Are you sure you want to delete the position "${posName}"? This action cannot be undone.`,
-        function () {
-          card.style.transition = 'opacity 0.3s';
-          card.style.opacity = '0';
-          setTimeout(function () { card.remove(); }, 300);
-          showAlert('Position Deleted', `"${posName}" has been deleted successfully.`, 'success');
-        },
-        null,
-        { confirmText: 'Yes, Delete', cancelText: 'Cancel', confirmColor: 'danger-btn' }
-      );
-    });
-  });
-});
-</script>
-
-<!--Manage Positions Total Slots - Filled Slots = Available Slots script-->
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  document.querySelectorAll('.position-card').forEach(function (card) {
-    const stats = card.querySelectorAll('.pos-stat-val');
-    // stats[0] = Total Slots, stats[1] = Filled, stats[2] = Available
-    const total = parseInt(stats[0].textContent);
-    const filled = parseInt(stats[1].textContent);
-    if (!isNaN(total) && !isNaN(filled)) {
-      stats[2].textContent = total - filled;
-    }
-  });
-});
-</script>
-
-<!--Payroll Total computation script-->
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  document.querySelectorAll('#payroll-table tbody tr').forEach(function (row) {
-    const hours = parseFloat(row.dataset.hours);
-    const rate = parseFloat(row.dataset.rate);
-    if (!isNaN(hours) && !isNaN(rate)) {
-      const total = hours * rate;
-      const cell = row.querySelector('.payroll-total strong');
-      if (cell) {
-        cell.textContent = '₱' + total.toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-      }
-    }
-  });
-});
-</script>
-
-<script>
+  <script>
   document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('.modal-overlay').forEach(function (modal) {
     document.body.appendChild(modal);
@@ -2739,4 +3399,5 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 </div><!-- /layout -->
 </body>
+
 </html>
