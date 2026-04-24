@@ -27,11 +27,6 @@
   <input class="nav-radio" type="radio" name="nav" id="nav-payroll" />
   <input class="nav-radio" type="radio" name="nav" id="nav-reports" />
 
-  <!-- ── TAB RADIOS (Removed - Applications section removed) ─────────────────────────────────── -->
-
-  <!-- ═══════════════════════════════════════════════
-     SIDEBAR
-════════════════════════════════════════════════ -->
   <div class="layout">
 
     <aside class="sidebar">
@@ -55,14 +50,14 @@
           <label for="nav-students">
             <i class="fas fa-user-check"></i>
             Verify Students
-            <span class="nav-badge">4</span>
+            <span class="nav-badge" id="sidebar-badge-students">5</span>
           </label>
         </div>
         <div class="nav-item">
           <label for="nav-departments">
             <i class="fas fa-building"></i>
             Verify Departments
-            <span class="nav-badge">3</span>
+            <span class="nav-badge" id="sidebar-badge-depts">5</span>
           </label>
         </div>
         <div class="nav-item">
@@ -109,9 +104,6 @@
       </div>
     </aside>
 
-    <!-- ═══════════════════════════════════════════════
-     TOPBAR
-════════════════════════════════════════════════ -->
     <header class="topbar">
       <div class="topbar-left">
         <h1>Admin Panel</h1>
@@ -132,9 +124,6 @@
       </div>
     </header>
 
-    <!-- ═══════════════════════════════════════════════
-     MAIN CONTENT
-════════════════════════════════════════════════ -->
     <main class="main-content">
 
 
@@ -191,10 +180,9 @@
         </div>
 
         <!-- Alert Banner -->
-        <div class="alert-banner warn">
+        <div class="alert-banner warn" id="dash-alert-banner">
           <i class="fas fa-exclamation-triangle"></i>
-          <span><strong>Action Required:</strong> 4 student verifications and 3 department approvals are awaiting your
-            review. Please resolve them before the deadline.</span>
+          <span id="dash-alert-text"><strong>Action Required:</strong> <strong>5 student verifications</strong> and <strong>5 department approvals</strong> are awaiting your review. Please resolve them before the deadline.</span>
         </div>
 
         <!-- Dashboard Grid -->
@@ -280,7 +268,7 @@
                         <div class="pending-sub">Documents awaiting review</div>
                       </div>
                     </div>
-                    <span class="badge-count">4</span>
+                    <span class="badge-count" id="dash-count-students">5</span>
                   </li>
                   <li class="pending-item">
                     <div class="pending-left">
@@ -291,7 +279,7 @@
                         <div class="pending-sub">Awaiting legitimacy check</div>
                       </div>
                     </div>
-                    <span class="badge-count">3</span>
+                    <span class="badge-count" id="dash-count-depts">5</span>
                   </li>
                   <li class="pending-item">
                     <div class="pending-left">
@@ -1126,7 +1114,6 @@
 ══════════════════════════════════════════════╗ -->
       <section class="section" id="sec-review-log-hours">
 
-        <!-- Section Header -->
         <div class="section-header">
           <div>
             <div class="section-title">Review Log Hours</div>
@@ -1141,7 +1128,6 @@
           </div>
         </div>
 
-        <!-- Workflow Notice -->
         <div class="alert-banner info" style="margin-bottom:20px;">
           <i class="fas fa-info-circle"></i>
           <span>
@@ -1152,14 +1138,13 @@
           </span>
         </div>
 
-        <!-- ── SUMMARY STAT CARDS ── -->
         <div class="stat-grid" style="margin-bottom:28px;">
           <div class="stat-card orange">
             <div class="stat-card-top">
               <div class="stat-icon orange"><i class="fas fa-clock"></i></div>
               <span class="stat-trend warn"><i class="fas fa-exclamation"></i> Action</span>
             </div>
-            <div class="stat-value" id="log-pending-count">12</div>
+            <div class="stat-value" id="log-pending-count">4</div>
             <div class="stat-label">Pending Admin Review</div>
           </div>
           <div class="stat-card green">
@@ -1190,7 +1175,6 @@
           </div>
         </div>
 
-        <!-- ── FILTER BAR ── -->
         <div 
           style="background:#fff;padding:16px 20px;border-radius:12px;border:1px solid var(--gray-200);margin-bottom:20px;box-shadow:var(--shadow-sm);display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
           <div class="search-box" style="border:1.5px solid var(--gray-200); width:200px; border-radius: 10px;">
@@ -1224,7 +1208,6 @@
           </div>
         </div>
 
-        <!-- ── ATTENDANCE REVIEW TABLE ── -->
         <div class="table-wrap">
           <table id="attendance-log-table">
             <thead>
@@ -1243,7 +1226,6 @@
             </thead>
             <tbody>
 
-              <!-- ─── Row 1: Clean entry, pending admin ─── -->
               <tr class="log-row" data-status="pending-admin" data-dept="ict" data-flag="clean">
                 <td>1</td>
                 <td>
@@ -1277,7 +1259,6 @@
                 </td>
               </tr>
 
-              <!-- ─── Row 2: Overtime — FLAGGED ─── -->
               <tr class="log-row log-row-flagged" data-status="pending-admin" data-dept="library" data-flag="flagged">
                 <td>2</td>
                 <td>
@@ -1312,7 +1293,6 @@
                 </td>
               </tr>
 
-              <!-- ─── Row 3: Missing timeout — FLAGGED ─── -->
               <tr class="log-row log-row-flagged" data-status="pending-admin" data-dept="nursing" data-flag="flagged">
                 <td>3</td>
                 <td>
@@ -1347,7 +1327,6 @@
                 </td>
               </tr>
 
-              <!-- ─── Row 4: Supervisor edited — FLAGGED ─── -->
               <tr class="log-row log-row-flagged" data-status="pending-admin" data-dept="finance" data-flag="flagged">
                 <td>4</td>
                 <td>
@@ -1386,7 +1365,7 @@
         </div>
       </section>
 
-      <!-- ── LOG DETAIL SIDE PANEL (outside section, inside layout) ── -->
+      <!-- ── LOG DETAIL SIDE PANEL ── -->
       <div id="log-detail-overlay" onclick="closeLogDetail(event)"
         style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:900;transition:opacity 0.25s;">
       </div>
@@ -1408,7 +1387,6 @@
 
         <div style="padding:22px 24px;">
 
-          <!-- Attendance Details -->
           <div style="margin-bottom:20px;">
             <div
               style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--gray-400);margin-bottom:12px;">
@@ -1442,7 +1420,6 @@
             </div>
           </div>
 
-          <!-- Supervisor Section -->
           <div
             style="margin-bottom:20px;padding:14px 16px;background:var(--blue-light);border-radius:10px;border:1px solid #93c5fd;">
             <div
@@ -1453,7 +1430,6 @@
             <div style="font-size:11.5px;color:var(--gray-500);margin-top:3px;">Verified: Apr 22, 2026 · 1:16 PM</div>
           </div>
 
-          <!-- ⚠ Flag Warning (shown if flagged) -->
           <div id="detail-flag-warning"
             style="display:none;margin-bottom:20px;padding:14px 16px;background:#fef3c7;border-radius:10px;border:1px solid #fcd34d;">
             <div
@@ -1465,7 +1441,6 @@
               approving. This entry has been automatically flagged by the system.</div>
           </div>
 
-          <!-- Payroll Preview -->
           <div
             style="margin-bottom:20px;padding:18px;background:linear-gradient(135deg,#1f2937,#374151);border-radius:12px;color:#fff;">
             <div
@@ -1492,7 +1467,6 @@
             </div>
           </div>
 
-          <!-- Audit Trail -->
           <div style="margin-bottom:24px;">
             <div
               style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--gray-400);margin-bottom:12px;">
@@ -1534,7 +1508,6 @@
             </div>
           </div>
 
-          <!-- Admin Action Buttons -->
           <div
             style="display:grid;grid-template-columns:1fr 1fr;gap:10px;padding-top:16px;border-top:1px solid var(--gray-200);">
             <button id="panel-approve-btn" onclick="panelApprove()" class="btn btn-primary"
@@ -1558,7 +1531,6 @@
 
       <!-- ── Review Log Hours JavaScript ── -->
       <script>
-        // ── Filter table ─────────────────
         function filterLogTable() {
           const query = (document.getElementById('log-search')?.value || '').toLowerCase().trim();
           const dept = (document.getElementById('log-filter-dept')?.value || '').toLowerCase();
@@ -1581,7 +1553,6 @@
           });
         }
 
-        // ── Approve individual log ─────────────────
         function approveLogEntry(btn, name) {
           confirmAction(
             'Approve Attendance Log',
@@ -1590,6 +1561,7 @@
               const row = btn.closest('tr');
               const badge = row?.querySelector('.badge');
               if (badge) { badge.className = 'badge approved'; badge.textContent = 'Approved'; }
+              if (row) row.dataset.status = 'approved';
               row?.querySelector('.action-btns')?.querySelectorAll('.btn-icon.approve,.btn-icon.reject').forEach(b => b.remove());
               const doneBtn = document.createElement('button');
               doneBtn.className = 'btn-icon';
@@ -1599,34 +1571,30 @@
               row?.querySelector('.action-btns')?.appendChild(doneBtn);
               row?.classList.remove('log-row-flagged');
               showAlert('Log Approved ✓', `${name}'s attendance has been approved and queued for payroll.`, 'success');
-              updateCounts();
+              refreshAllCounts();
             }, null,
             { confirmText: 'Yes, Approve', cancelText: 'Cancel', confirmColor: 'success-btn' }
           );
         }
 
-        // ── Reject individual log ─────────────────
         function rejectLogEntry(btn, name) {
           showRejectionReasonModal(name, () => {
             const row = btn.closest('tr');
             const badge = row?.querySelector('.badge');
             if (badge) { badge.className = 'badge rejected'; badge.textContent = 'Rejected'; }
+            if (row) row.dataset.status = 'rejected';
             row?.classList.add('log-row-rejected');
             row?.classList.remove('log-row-flagged');
             row?.querySelectorAll('.btn-icon.approve,.btn-icon.reject').forEach(b => b.remove());
             showAlert('Log Rejected', `${name}'s attendance log has been rejected and returned.`, 'success');
-            updateCounts();
+            refreshAllCounts();
           });
         }
 
-        // ── Update summary counts ─────────────────
         function updateCounts() {
-          const pending = document.querySelectorAll('#attendance-log-table .log-row[data-status="pending-admin"]').length;
-          const pendingEl = document.getElementById('log-pending-count');
-          if (pendingEl) pendingEl.textContent = pending;
+          refreshAllCounts();
         }
 
-        // ── Open detail panel ─────────────────────
         function openLogDetail(name, id, position, dept, date, timeIn, timeOut, hours, supervisor, flagText, rate, total, isFlagged) {
           document.getElementById('detail-student-name').textContent = name;
           document.getElementById('detail-student-sub').textContent = id + ' · ' + position;
@@ -1650,7 +1618,6 @@
           const editRow = document.getElementById('detail-audit-edit-row');
           if (editRow) editRow.style.display = flagText.includes('Edited') ? '' : 'none';
 
-          // Show overlay + panel
           const overlay = document.getElementById('log-detail-overlay');
           const panel = document.getElementById('log-detail-panel');
           overlay.style.display = 'block';
@@ -1660,7 +1627,6 @@
           });
         }
 
-        // ── Close detail panel ────────────────────
         function closeLogDetail(e) {
           if (e && e.target !== document.getElementById('log-detail-overlay')) return;
           const panel = document.getElementById('log-detail-panel');
@@ -1671,7 +1637,6 @@
           }, 300);
         }
 
-        // ── Panel action buttons ─────────────────
         function panelApprove() {
           const name = document.getElementById('detail-student-name').textContent;
           const total = document.getElementById('detail-total-disp').textContent;
@@ -1680,6 +1645,7 @@
             () => {
               closeLogDetail(null);
               showAlert('Approved ✓', `${name}'s attendance is approved. ${total} queued for payroll.`, 'success');
+              refreshAllCounts();
             }, null, { confirmText: 'Approve', cancelText: 'Cancel', confirmColor: 'success-btn' });
         }
 
@@ -1688,6 +1654,7 @@
           showRejectionReasonModal(name, () => {
             closeLogDetail(null);
             showAlert('Log Rejected', `${name}'s attendance log has been rejected and returned for correction.`, 'success');
+            refreshAllCounts();
           });
         }
 
@@ -1696,7 +1663,6 @@
           showAlert('Flagged for Review', `${name}'s log has been flagged. It will remain pending until you revisit it.`, 'success');
         }
 
-        // ── Bulk approve button ─────────────────
         document.addEventListener('DOMContentLoaded', () => {
           const bulkBtn = document.getElementById('bulk-approve-logs-btn');
           if (bulkBtn) {
@@ -1721,7 +1687,7 @@
                   });
                   document.getElementById('select-all-logs').checked = false;
                   showAlert('Bulk Approved ✓', `${checked.length} attendance logs have been approved and queued for payroll.`, 'success');
-                  updateCounts();
+                  refreshAllCounts();
                 }, null, { confirmText: 'Approve All Selected', cancelText: 'Cancel', confirmColor: 'success-btn' });
             });
           }
@@ -1755,7 +1721,6 @@
             upon release.</span>
         </div>
 
-        <!-- Payroll Summary Stats -->
         <div class="stat-grid">
           <div class="stat-card maroon">
             <div class="stat-card-top">
@@ -1967,7 +1932,6 @@
           </div>
         </div>
 
-        <!-- Top Report Stats -->
         <div class="reports-grid">
           <div class="report-stat">
             <div class="report-stat-val">248</div>
@@ -2001,7 +1965,6 @@
           </div>
         </div>
 
-        <!-- Status Summary -->
         <div class="section-header" style="margin-bottom:16px;">
           <div class="section-title" style="font-size:20px;">Status Summary</div>
         </div>
@@ -2041,7 +2004,6 @@
           </div>
         </div>
 
-        <!-- Department Distribution -->
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px;">
 
           <div class="card">
@@ -2174,156 +2136,160 @@
             </div>
           </div>
 
-        </div><!-- /reports-2col -->
+        </div>
 
       </section>
 
     </main><!-- /main-content -->
 
+
+    <!-- ══════════════════════════════════════════════
+     ██  LIVE COUNTER SYSTEM
+         Counts pending rows in each section and pushes
+         updated numbers to all display points whenever
+         an approve or reject action is completed.
+════════════════════════════════════════════════ -->
     <script>
-      // Attach confirmation modals to action buttons
-      document.addEventListener('DOMContentLoaded', function () {
-        // Handle Reject buttons
-        const rejectBtns = document.querySelectorAll('.btn-reject');
-        rejectBtns.forEach(btn => {
-          btn.addEventListener('click', function (e) {
-            e.preventDefault();
-            const row = this.closest('tr');
-            const name = row ? row.querySelector('.td-name')?.textContent || 'Student' : 'Student';
-            const status = row ? row.querySelector('.badge')?.textContent || '' : '';
+      function refreshAllCounts() {
 
-            confirmAction(
-              'Confirm Rejection',
-              `Are you sure you want to reject this ${status.toLowerCase()} application from ${name}? This action cannot be undone.`,
-              () => {
-                showAlert('Application Rejected', `${name}'s application has been rejected successfully.`, 'success', () => {
-                  // Update status badge if exists
-                  if (row) {
-                    const badge = row.querySelector('.badge');
-                    if (badge) {
-                      badge.className = 'badge rejected';
-                      badge.textContent = 'Rejected';
-                    }
-                  }
-                });
-              },
-              null,
-              { confirmText: 'Yes, Reject', cancelText: 'Cancel', confirmColor: 'danger-btn' }
-            );
-          });
-        });
+        // ── 1. Students: rows where the badge still reads "Pending" ──────────
+        const studentPending = [...document.querySelectorAll('#students-table tbody tr')]
+          .filter(r => r.querySelector('.badge')?.textContent.trim() === 'Pending').length;
 
-        // Handle Approve buttons
-        const approveBtns = document.querySelectorAll('.btn-approve');
-        approveBtns.forEach(btn => {
-          btn.addEventListener('click', function (e) {
-            e.preventDefault();
-            const row = this.closest('tr');
-            const name = row ? row.querySelector('.td-name')?.textContent || 'Student' : 'Student';
-            const status = row ? row.querySelector('.badge')?.textContent || '' : '';
+        // ── 2. Departments: same logic ────────────────────────────────────────
+        const deptPending = [...document.querySelectorAll('#sec-departments tbody tr')]
+          .filter(r => r.querySelector('.badge')?.textContent.trim() === 'Pending').length;
 
-            confirmAction(
-              'Confirm Approval',
-              `Are you sure you want to approve this ${status.toLowerCase()} application from ${name}?`,
-              () => {
-                showAlert('Application Approved', `${name}'s application has been approved successfully.`, 'success', () => {
-                  // Update status badge if exists
-                  if (row) {
-                    const badge = row.querySelector('.badge');
-                    if (badge) {
-                      badge.className = 'badge approved';
-                      badge.textContent = 'Approved';
-                    }
-                  }
-                });
-              },
-              null,
-              { confirmText: 'Yes, Approve', cancelText: 'Cancel', confirmColor: 'success-btn' }
-            );
-          });
-        });
-      });
+        // ── 3. Log hours: rows still carrying data-status="pending-admin" ─────
+        const logPending = [...document.querySelectorAll('#attendance-log-table tbody .log-row')]
+          .filter(r => r.dataset.status === 'pending-admin').length;
+
+        // ── Push → sidebar nav badges ─────────────────────────────────────────
+        const studentNavBadge = document.getElementById('sidebar-badge-students');
+        const deptNavBadge    = document.getElementById('sidebar-badge-depts');
+        if (studentNavBadge) {
+          studentNavBadge.textContent = studentPending;
+          studentNavBadge.style.display = studentPending > 0 ? '' : 'none';
+        }
+        if (deptNavBadge) {
+          deptNavBadge.textContent = deptPending;
+          deptNavBadge.style.display = deptPending > 0 ? '' : 'none';
+        }
+
+        // ── Push → dashboard Pending Actions card ─────────────────────────────
+        const dashStudents = document.getElementById('dash-count-students');
+        const dashDepts    = document.getElementById('dash-count-depts');
+        if (dashStudents) dashStudents.textContent = studentPending;
+        if (dashDepts)    dashDepts.textContent    = deptPending;
+
+        // ── Push → dashboard alert banner ─────────────────────────────────────
+        const alertSpan = document.getElementById('dash-alert-text');
+        const alertBanner = document.getElementById('dash-alert-banner');
+        if (alertSpan && alertBanner) {
+          const parts = [];
+          if (studentPending > 0)
+            parts.push(`<strong>${studentPending} student verification${studentPending !== 1 ? 's' : ''}</strong>`);
+          if (deptPending > 0)
+            parts.push(`<strong>${deptPending} department approval${deptPending !== 1 ? 's' : ''}</strong>`);
+
+          if (parts.length > 0) {
+            alertBanner.style.display = '';
+            alertSpan.innerHTML =
+              `<strong>Action Required:</strong> ${parts.join(' and ')} ` +
+              `${parts.length > 1 ? 'are' : 'is'} awaiting your review. Please resolve them before the deadline.`;
+          } else {
+            alertBanner.style.display = 'none';
+          }
+        }
+
+        // ── Push → Review Log Hours stat card ─────────────────────────────────
+        const logEl = document.getElementById('log-pending-count');
+        if (logEl) logEl.textContent = logPending;
+      }
     </script>
 
     <!-- ══════════════════════════════════════════════
      ADMIN ACTION HANDLERS
+     (approve/reject for Students & Departments tables)
 ════════════════════════════════════════════════ -->
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        // Handle Approve/Reject buttons for Verify Students and Departments
-        document.querySelectorAll('.btn-approve, .btn-reject').forEach(button => {
-          button.addEventListener('click', (e) => {
-            e.preventDefault();
-
-            const isApprove = button.classList.contains('btn-approve');
-            let titleText = isApprove ? 'Confirm Verification' : 'Confirm Rejection';
-            let messageText = isApprove ? 'Are you sure you want to verify this item?' : 'Are you sure you want to reject this item?';
-
-            // Check if this is a Release Pay button (Payroll section)
-            if (button.textContent.includes('Release Pay')) {
-              titleText = 'Confirm Payment Release';
-              messageText = 'Release payment to this student?';
-            } else if (button.textContent.includes('Activate')) {
-              titleText = 'Confirm Activation';
-              messageText = 'Activate this position for suggestions?';
-            }
-
-            // Use the modal confirmation function
-            confirmAction(titleText, messageText, () => {
-              // On confirmation, hide the action buttons and update the row
-              const row = button.closest('tr');
-              const section = button.closest('section');
-              const sectionId = section ? section.id : '';
-
-              // Only apply button hiding and status updates for Verify Students & Departments
-              const isVerificationSection = sectionId === 'sec-students' || sectionId === 'sec-departments';
-
-              if (isVerificationSection) {
-                const actionBtns = row.querySelector('.action-btns');
-                const statusCell = row.querySelector('[class*="badge"]');
-
-                if (actionBtns) {
-                  // Hide the action buttons
-                  actionBtns.style.display = 'none';
-
-                  // Update the status badge
-                  if (statusCell) {
-                    if (isApprove) {
-                      statusCell.classList.remove('pending', 'rejected');
-                      statusCell.classList.add('approved');
-                      statusCell.textContent = 'Verified';
-                    } else {
-                      statusCell.classList.remove('pending', 'approved');
-                      statusCell.classList.add('rejected');
-                      statusCell.textContent = 'Rejected';
-                    }
-                  }
-                }
-
-                // Show confirmation message
-                const successMessage = `Item has been ${isApprove ? 'verified' : 'rejected'} successfully.`;
-                showAlert('Success', successMessage, 'success');
-              } else {
-                // For other sections (Payroll, Manage Positions), just show success message
-                const successMessage = button.textContent.includes('Release Pay')
-                  ? 'Payment released successfully.'
-                  : button.textContent.includes('Activate')
-                    ? 'Position activated successfully.'
-                    : `Action completed successfully.`;
-
-                showAlert('Success', successMessage, 'success');
-              }
-            });
-          });
-        });
-      });
-    </script>
-
-    <!--Student Search Filter script-->
     <script>
       document.addEventListener('DOMContentLoaded', function () {
 
-        // ── Verify Students ──────────────────────────
+        // ── Verify Students & Departments: Approve / Reject ───────────────────
+        const verificationSections = ['sec-students', 'sec-departments'];
+
+        verificationSections.forEach(secId => {
+          const section = document.getElementById(secId);
+          if (!section) return;
+
+          section.querySelectorAll('.btn-approve, .btn-reject').forEach(button => {
+            button.addEventListener('click', function (e) {
+              e.preventDefault();
+              const isApprove = button.classList.contains('btn-approve');
+              const row = button.closest('tr');
+              const name = row?.querySelector('.td-name')?.textContent || 'this entry';
+
+              confirmAction(
+                isApprove ? 'Confirm Approval' : 'Confirm Rejection',
+                isApprove
+                  ? `Are you sure you want to approve <strong>${name}</strong>?`
+                  : `Are you sure you want to reject <strong>${name}</strong>? This action cannot be undone.`,
+                () => {
+                  // Update the row's badge
+                  const badge = row?.querySelector('.badge');
+                  if (badge) {
+                    badge.className = isApprove ? 'badge approved' : 'badge rejected';
+                    badge.textContent = isApprove ? 'Verified' : 'Rejected';
+                  }
+                  // Hide the action buttons so the row can't be actioned twice
+                  const actionBtns = row?.querySelector('.action-btns');
+                  if (actionBtns) actionBtns.style.display = 'none';
+
+                  showAlert(
+                    isApprove ? 'Approved' : 'Rejected',
+                    `${name} has been ${isApprove ? 'approved' : 'rejected'} successfully.`,
+                    'success'
+                  );
+
+                  // ← Refresh all counter displays
+                  refreshAllCounts();
+                },
+                null,
+                {
+                  confirmText: isApprove ? 'Yes, Approve' : 'Yes, Reject',
+                  cancelText: 'Cancel',
+                  confirmColor: isApprove ? 'success-btn' : 'danger-btn'
+                }
+              );
+            });
+          });
+        });
+
+        // ── Payroll: Release Pay ──────────────────────────────────────────────
+        document.querySelectorAll('#sec-payroll .btn-approve').forEach(button => {
+          button.addEventListener('click', function (e) {
+            e.preventDefault();
+            const row = button.closest('tr');
+            const name = row?.querySelector('.td-name')?.textContent || 'Student';
+            confirmAction(
+              'Confirm Payment Release',
+              `Release payment to <strong>${name}</strong>?`,
+              () => {
+                showAlert('Payment Released', `Payment released to ${name} successfully.`, 'success');
+              },
+              null,
+              { confirmText: 'Release', cancelText: 'Cancel', confirmColor: 'success-btn' }
+            );
+          });
+        });
+
+      });
+    </script>
+
+    <!-- Student Search Filter -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+
         const studentSearch = document.getElementById('student-search');
         const studentFilterStatus = document.getElementById('student-filter-status');
         const studentFilterCourse = document.getElementById('student-filter-course');
@@ -2333,47 +2299,41 @@
           const query = studentSearch.value.toLowerCase().trim();
           const statusVal = studentFilterStatus.value.toLowerCase();
           const courseVal = studentFilterCourse.value.toUpperCase();
-
-          const rows = studentsTable.querySelectorAll('tbody tr');
-          rows.forEach(function (row) {
-            const name = (row.dataset.name || '').toLowerCase();
-            const id = (row.dataset.id || '').toLowerCase();
+          studentsTable.querySelectorAll('tbody tr').forEach(function (row) {
+            const name   = (row.dataset.name   || '').toLowerCase();
+            const id     = (row.dataset.id     || '').toLowerCase();
             const status = (row.dataset.status || '').toLowerCase();
             const course = (row.dataset.course || '').toUpperCase();
-
-            const matchesQuery = !query || name.includes(query) || id.includes(query);
-            const matchesStatus = !statusVal || status === statusVal;
-            const matchesCourse = !courseVal || course === courseVal;
-
-            row.style.display = (matchesQuery && matchesStatus && matchesCourse) ? '' : 'none';
+            row.style.display =
+              (!query     || name.includes(query) || id.includes(query)) &&
+              (!statusVal || status === statusVal) &&
+              (!courseVal || course === courseVal)
+              ? '' : 'none';
           });
         }
 
-        if (studentSearch) studentSearch.addEventListener('input', filterStudentsTable);
+        if (studentSearch)       studentSearch.addEventListener('input', filterStudentsTable);
         if (studentFilterStatus) studentFilterStatus.addEventListener('change', filterStudentsTable);
         if (studentFilterCourse) studentFilterCourse.addEventListener('change', filterStudentsTable);
 
-        // ── Payroll Search ───────────────────────────
+        // ── Payroll Search ────────────────────────────────────────────────────
         const payrollSearch = document.getElementById('payroll-search');
-        const payrollTable = document.getElementById('payroll-table');
-
-        function filterPayrollTable() {
-          const query = payrollSearch.value.toLowerCase().trim();
-          const rows = payrollTable.querySelectorAll('tbody tr');
-          rows.forEach(function (row) {
-            const name = (row.dataset.name || '').toLowerCase();
-            const id = (row.dataset.id || '').toLowerCase();
-            const matches = !query || name.includes(query) || id.includes(query);
-            row.style.display = matches ? '' : 'none';
+        const payrollTable  = document.getElementById('payroll-table');
+        if (payrollSearch) {
+          payrollSearch.addEventListener('input', function () {
+            const query = payrollSearch.value.toLowerCase().trim();
+            payrollTable.querySelectorAll('tbody tr').forEach(function (row) {
+              const name = (row.dataset.name || '').toLowerCase();
+              const id   = (row.dataset.id   || '').toLowerCase();
+              row.style.display = (!query || name.includes(query) || id.includes(query)) ? '' : 'none';
+            });
           });
         }
-
-        if (payrollSearch) payrollSearch.addEventListener('input', filterPayrollTable);
 
       });
     </script>
 
-    <!-- Suggest Positions - Send button feedback-->
+    <!-- Suggest Positions send button -->
     <script>
       document.addEventListener('DOMContentLoaded', function () {
         const sendBtn = document.getElementById('send-suggestion-btn');
@@ -2383,9 +2343,7 @@
             confirmAction(
               'Confirm Suggestion',
               'Are you sure you want to send this position suggestion to the selected student?',
-              () => {
-                showAlert('Suggestion Sent', 'The position suggestion was successfully sent to the student.', 'success');
-              },
+              () => { showAlert('Suggestion Sent', 'The position suggestion was successfully sent to the student.', 'success'); },
               null,
               { confirmText: 'Send', cancelText: 'Cancel', confirmColor: 'success-btn' }
             );
@@ -2394,60 +2352,29 @@
       });
     </script>
 
-    <!-- Manage Positions - Delete button-->
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-
-        // ── Delete buttons ───────────────────────────
-        document.querySelectorAll('.btn-delete').forEach(function (btn) {
-          btn.addEventListener('click', function () {
-            const card = this.closest('.position-card');
-            const posName = card ? card.querySelector('.pos-name').textContent : 'this position';
-
-            confirmAction(
-              'Confirm Deletion',
-              `Are you sure you want to delete the position "${posName}"? This action cannot be undone.`,
-              function () {
-                card.style.transition = 'opacity 0.3s';
-                card.style.opacity = '0';
-                setTimeout(function () { card.remove(); }, 300);
-                showAlert('Position Deleted', `"${posName}" has been deleted successfully.`, 'success');
-              },
-              null,
-              { confirmText: 'Yes, Delete', cancelText: 'Cancel', confirmColor: 'danger-btn' }
-            );
-          });
-        });
-      });
-    </script>
-
-    <!--Manage Positions Total Slots - Filled Slots = Available Slots script-->
+    <!-- Manage Positions: compute Available = Total - Filled -->
     <script>
       document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.position-card').forEach(function (card) {
           const stats = card.querySelectorAll('.pos-stat-val');
-          // stats[0] = Total Slots, stats[1] = Filled, stats[2] = Available
-          const total = parseInt(stats[0].textContent);
-          const filled = parseInt(stats[1].textContent);
-          if (!isNaN(total) && !isNaN(filled)) {
+          const total  = parseInt(stats[0]?.textContent);
+          const filled = parseInt(stats[1]?.textContent);
+          if (!isNaN(total) && !isNaN(filled) && stats[2]) {
             stats[2].textContent = total - filled;
           }
         });
       });
     </script>
 
-    <!--Payroll Total computation script-->
+    <!-- Payroll: compute Total = Hours × Rate -->
     <script>
       document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('#payroll-table tbody tr').forEach(function (row) {
           const hours = parseFloat(row.dataset.hours);
-          const rate = parseFloat(row.dataset.rate);
+          const rate  = parseFloat(row.dataset.rate);
           if (!isNaN(hours) && !isNaN(rate)) {
-            const total = hours * rate;
             const cell = row.querySelector('.payroll-total strong');
-            if (cell) {
-              cell.textContent = '₱' + total.toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-            }
+            if (cell) cell.textContent = '₱' + (hours * rate).toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
           }
         });
       });
