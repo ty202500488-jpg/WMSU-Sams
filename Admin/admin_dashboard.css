@@ -1107,6 +1107,7 @@
     transition: all 0.3s ease;
     z-index: 9999;
 }
+
 .modal-overlay:target{ opacity: 1; visibility: visible; }
 
 .modal-box {
@@ -1146,7 +1147,7 @@
   }
   .modal-close-btn:hover { color: #333}
 
-  
+
   .modal-body { padding: 24px 28px; }
   .doc-student-info {
     display: flex;
