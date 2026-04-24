@@ -436,7 +436,7 @@ main{
 }
 #faq p {
     color: #555;
-    margin-bottom: 50px;
+    margin-bottom: 0px;
 }
 .faq-container {
     display: flex;

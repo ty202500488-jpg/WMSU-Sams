@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Department Profile | WMSU-SAMS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="employer_profile.css">
+    <link rel="stylesheet" href="employer_edit_profile.css">
 </head>
 <body>
 
@@ -18,8 +18,8 @@
                 <div class="dept-icon-circle">
                     <i class="fa-solid fa-building-columns"></i>
                 </div>
-                <h3>Library Department</h3>
-                <p>WMSU Main Campus</p>
+                <h3>College of Computing Studies</h3>
+                <p>CCS-2023-01</p>
                 <div class="status-chip verified">Official Department</div>
             </div>
 
@@ -56,24 +56,38 @@
             <section id="dept-info" class="content-card">
                 <div class="card-title">
                     <h3>Department Information</h3>
-                    <button class="text-edit-btn">Edit All</button>
+                    <div>
+                        <button id="edit-btn-text"><a href="#cancel-confirm-1" >Confirm Changes</a></button>
+                    </div>
+                    
                 </div>
+
+                <div id="cancel-confirm-1" class="modal-overlay">
+                        <div class="modal-box">
+                            <h3>Confirm Changes</h3>
+                            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
+                                <a href="employer_profile.html" class="primary-btn" style="background: #9f0f0f;">Yes</a>
+                                <a href="#" class="secondary-btn ">No</a>
+                            </div>
+                        </div>
+                </div>
+
                 <div class="form-grid">
                     <div class="input-group">
                         <label>College Affiliation</label>
-                        <p>College of Computing Studies</p>
+                        <label><input type="text" name="College Affiliation" value="College of Computing Studies"></label>
                     </div>
                     <div class="input-group">
                         <label>Head of Department</label>
-                        <p>Dr. Juan dela Cruz</p>
+                        <label><input type="text" name="Head of Department" value="Dr. Juan dela Cruz"></label>
                     </div>
                     <div class="input-group">
                         <label>Contact Email</label>
-                        <p>ccs@wmsu.edu.ph</p>
+                        <label><input type="email" name="email" value="ccs@wmsu.edu.ph"></label>
                     </div>
                     <div class="input-group">
                         <label>Office Location</label>
-                        <p>CCS Building, WMSU Main</p>
+                        <label><input type="text" name="Office Location" value="CCS Building, WMSU Main">
                     </div>
                 </div>
             </section>
@@ -98,13 +112,13 @@
                                 <td>IT Lab Assistant</td>
                                 <td>3</td>
                                 <td><span class="badge pending">Pending</span></td>
-                                <td><button class="icon-btn"><i class="fas fa-eye"></i></button></td>
+                                <td class="doc-actions"><button title="Preview"><i class="fa-solid fa-eye"></i></button></td>
                             </tr>
                             <tr>
                                 <td>Library Aide</td>
                                 <td>2</td>
                                 <td><span class="badge approved">Approved</span></td>
-                                <td><button class="icon-btn"><i class="fas fa-eye"></i></button></td>
+                                <td class="doc-actions"><button title="Preview" ><i class="fa-solid fa-eye"></i></button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -122,10 +136,11 @@
                             <div>
                                 <strong>Registration Form</strong>
                                 <span>Missing</span>
-                            </div>
+                            </div> 
                         </div>
-                       <button class="doc-actions" id="edit-btn-text">Upload Now</button>  
+                          <button class="doc-actions" id="edit-btn-text">Upload Now</button>  
                     </div>
+
                     <div class="doc-row">
                         <div class="doc-meta">
                             <i class="fas fa-file-pdf"></i>
@@ -145,20 +160,7 @@
         </main>
 
         <aside class="sidebar-right">
-            <div class="side-stat-card">
-                <h4>Hiring Activity</h4>
-                <div class="mini-kpi">
-                    <div class="kpi-box">
-                        <strong>05</strong>
-                        <span>Total Slots</span>
-                    </div>
-                    <div class="kpi-box">
-                        <strong>0</strong>
-                        <span>Applicants</span>
-                    </div>
-                </div>
-            </div>
-
+            
             <div class="side-stat-card">
                 <h4>Account Security</h4>
                 <p class="small-text">Last password change: 2 months ago</p>

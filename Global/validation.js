@@ -178,13 +178,6 @@ function validateRegistrationForm(formId) {
         }
     }
     
-    if (middleNameInput) {
-        if (!middleNameInput.value.trim()) {
-            showError(middleNameInput, 'Middle Name is required');
-            isValid = false;
-        }
-    }
-    
     if (lastNameInput) {
         if (!lastNameInput.value.trim()) {
             showError(lastNameInput, 'Last Name is required');
