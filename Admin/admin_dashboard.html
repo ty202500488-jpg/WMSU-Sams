@@ -3297,7 +3297,7 @@
       document.addEventListener('DOMContentLoaded', function () {
 
         // ── Verify Students & Departments: Approve / Reject ───────────────────
-        const verificationSections = ['sec-students', 'sec-departments'];
+        const verificationSections = ['sec-students', 'sec-departments', 'sec-positions'];
 
         verificationSections.forEach(secId => {
           const section = document.getElementById(secId);
@@ -3307,41 +3307,74 @@
             button.addEventListener('click', function (e) {
               e.preventDefault();
               const isApprove = button.classList.contains('btn-approve');
-              const row = button.closest('tr');
-              const name = row?.querySelector('.td-name')?.textContent || 'this entry';
+              
+              let row = button.closest('tr');
+              let name = 'this entry';
+              
+              if (row) {
+                name = row.querySelector('.td-name')?.textContent || 'this entry';
+              } else {
+                row = button.closest('.position-card');
+                if (row) name = row.querySelector('.pos-name')?.textContent || 'this position';
+              }
 
-              confirmAction(
-                isApprove ? 'Confirm Approval' : 'Confirm Rejection',
-                isApprove
-                  ? `Are you sure you want to approve <strong>${name}</strong>?`
-                  : `Are you sure you want to reject <strong>${name}</strong>? This action cannot be undone.`,
-                () => {
-                  // Update the row's badge
-                  const badge = row?.querySelector('.badge');
-                  if (badge) {
-                    badge.className = isApprove ? 'badge approved' : 'badge rejected';
-                    badge.textContent = isApprove ? 'Verified' : 'Rejected';
-                  }
-                  // Hide the action buttons so the row can't be actioned twice
-                  const actionBtns = row?.querySelector('.action-btns');
-                  if (actionBtns) actionBtns.style.display = 'none';
+              if (isApprove) {
+                confirmAction(
+                  'Confirm Approval',
+                  `Are you sure you want to approve <strong>${name}</strong>?`,
+                  () => {
+                    const badge = row?.querySelector('.badge');
+                    if (badge) {
+                      badge.className = 'badge approved';
+                      badge.textContent = 'Verified';
+                    }
+                    const actionBtns = row?.querySelector('.action-btns');
+                    if (actionBtns) actionBtns.style.display = 'none';
 
-                  showAlert(
-                    isApprove ? 'Approved' : 'Rejected',
-                    `${name} has been ${isApprove ? 'approved' : 'rejected'} successfully.`,
-                    'success'
+                    showAlert('Approved', `${name} has been approved successfully.`, 'success');
+                    refreshAllCounts();
+                  },
+                  null,
+                  { confirmText: 'Yes, Approve', cancelText: 'Cancel', confirmColor: 'success-btn' }
+                );
+              } else {
+                if (typeof showRejectionReasonModal !== 'undefined') {
+                  showRejectionReasonModal(
+                    name,
+                    (rejectionData) => {
+                      const badge = row?.querySelector('.badge');
+                      if (badge) {
+                        badge.className = 'badge rejected';
+                        badge.textContent = 'Rejected';
+                      }
+                      const actionBtns = row?.querySelector('.action-btns');
+                      if (actionBtns) actionBtns.style.display = 'none';
+
+                      showAlert('Rejected', `${name} has been rejected successfully.`, 'success');
+                      refreshAllCounts();
+                    }
                   );
+                } else {
+                  confirmAction(
+                    'Confirm Rejection',
+                    `Are you sure you want to reject <strong>${name}</strong>? This action cannot be undone.`,
+                    () => {
+                      const badge = row?.querySelector('.badge');
+                      if (badge) {
+                        badge.className = 'badge rejected';
+                        badge.textContent = 'Rejected';
+                      }
+                      const actionBtns = row?.querySelector('.action-btns');
+                      if (actionBtns) actionBtns.style.display = 'none';
 
-                  // ← Refresh all counter displays
-                  refreshAllCounts();
-                },
-                null,
-                {
-                  confirmText: isApprove ? 'Yes, Approve' : 'Yes, Reject',
-                  cancelText: 'Cancel',
-                  confirmColor: isApprove ? 'success-btn' : 'danger-btn'
+                      showAlert('Rejected', `${name} has been rejected successfully.`, 'success');
+                      refreshAllCounts();
+                    },
+                    null,
+                    { confirmText: 'Yes, Reject', cancelText: 'Cancel', confirmColor: 'danger-btn' }
+                  );
                 }
-              );
+              }
             });
           });
         });
