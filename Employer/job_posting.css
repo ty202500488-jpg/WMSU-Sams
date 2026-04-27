@@ -234,7 +234,7 @@ body { background-color: var(--bg); color: var(--text); }
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
-    z-index: 9999;
+    z-index: 99999 !important;
 }
 
 /* The Logic: Show when the ID is targeted in the URL */
@@ -244,7 +244,8 @@ body { background-color: var(--bg); color: var(--text); }
 }
 
 /* Layout & Spacing */
-.modal-box {
+.modal-card {
+    position: relative;
     background: #ffffff;
     padding: 40px;
     width: 100%;
@@ -265,6 +266,20 @@ body { background-color: var(--bg); color: var(--text); }
     overflow-y: auto;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 15px;
+    left: 12px;
+    font-size: 24px;
+    color: #666;
+    text-decoration: none;
+    line-height: 1;
+    font-weight: bold;
+}
+.modal-close-btn:hover {
+    color: #333;
 }
 
 hr {
