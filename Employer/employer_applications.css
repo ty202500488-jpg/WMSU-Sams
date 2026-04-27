@@ -252,6 +252,316 @@ body { background-color: var(--bg); color: var(--text); }
 
 .help-btn:hover {background: var(--maroon-dark); transform: translateY(-1px); }
 
+/* ============ APPLICANT VIEW MODAL ============ */
+
+.modal-overlay-emp {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 9999;
+}
+
+.modal-overlay-emp:target {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-card {
+  position: relative;
+  background: #ffffff;
+  padding: 40px;
+  width: 100%;
+  max-width: 550px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  font-family: 'Segoe UI', Roboto,  sans-serif;
+}
+
+/* Header */
+.modal-card-header h2 {
+  margin: 10px 0 5px 0;
+  color: #1a202c;
+  font-size: 1.8rem;
+}
+
+.modal-card-sub {
+  color: #9ca3af;
+  margin: 0;
+}
+
+.modal-card-close {
+  position: absolute;
+  top: 15px;
+  left: 12px;
+  font-size: 24px;
+  color: #666;
+  text-decoration: none;
+  line-height: 1;
+  font-weight: bold;
+}
+.modal-card-close:hover { background: #f3f4f6; color: #333; }
+
+/* Student strip */
+.modal-card-student {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 28px;
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.modal-card-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.modal-card-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.modal-card-meta {
+  font-size: 12.5px;
+  color: #9ca3af;
+  margin-top: 3px;
+}
+
+.modal-card-badge {
+  margin-left: auto;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.modal-card-badge.pending {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fcd34d;
+}
+
+.modal-card-badge.approved {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.modal-card-badge.rejected {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* Body */
+.modal-card-body {
+  padding: 24px 28px;
+  flex: 1;
+}
+
+/* Info grid */
+.modal-card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.modal-card-cell {
+  background: #f9fafb;
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.modal-card-label {
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #9ca3af;
+  margin-bottom: 5px;
+}
+
+.modal-card-value {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #1f2937;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.modal-card-value i { color: #7B0D1E; font-size: 12px; }
+
+/* Section title */
+.modal-card-section-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #6b7280;
+  margin-bottom: 12px;
+  margin-top: 4px;
+}
+
+/* Documents */
+.modal-card-docs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.modal-card-doc-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 14px 18px;
+  transition: border-color 0.2s;
+}
+.modal-card-doc-item:hover { border-color: #7B0D1E; }
+
+.modal-card-doc-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  flex-shrink: 0;
+}
+
+.modal-card-doc-name {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #1c1e21;
+}
+
+.modal-card-doc-meta {
+  font-size: 12px;
+  color: #9ca3af;
+  margin-top: 2px;
+}
+
+.modal-card-open {
+  margin-left: auto;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1d4ed8;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.modal-card-open:hover { text-decoration: underline; }
+
+/* Remarks textarea */
+.modal-card-remarks {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 13.5px;
+  color: #374151;
+  resize: vertical;
+  min-height: 80px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.modal-card-remarks:focus { border-color: #7B0D1E; }
+
+/* Footer */
+.modal-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 28px 22px;
+  border-top: 1px solid #e5e7eb;
+  flex-wrap: nowrap;
+}
+
+.modal-card-close-btn {
+  padding: 10px 22px;
+  border-radius: 6px;
+  font-size: 13.5px;
+  font-weight: 600;
+  background: #f3f4f6;
+  color: #374151;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  white-space: nowrap;
+}
+.modal-card-close-btn:hover { background: #e5e7eb; }
+
+.modal-card-reject-btn {
+  padding: 10px 22px;
+  border-radius: 6px;
+  font-size: 13.5px;
+  font-weight: 600;
+  background: #fee2e2;
+  color: #dc2626;
+  border: 1px solid #fca5a5;
+  cursor: pointer;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s;
+}
+.modal-card-reject-btn:hover { background: #fecaca; }
+
+.modal-card-approve-btn {
+  padding: 10px 22px;
+  border-radius: 6px;
+  font-size: 13.5px;
+  font-weight: 600;
+  background: #16a34a ; 
+color: #fff;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s;
+}
+.modal-card-approve-btn:hover { background: #15803d; }
+
+@media (max-width: 700px) {
+  .modal-card { max-width: 95vw; margin: 10px; }
+  .modal-card-header, .modal-card-body, .modal-card-footer { padding: 18px 18px; }
+  .modal-card-grid { grid-template-columns: 1fr; }
+  .modal-card-student { flex-wrap: wrap; }
+  .modal-card-badge { margin-left: 0; }
+}
+
 /* RESPONSIVE */
 @media screen and (max-width: 1100px) {
     .container { grid-template-columns: clamp(200px, 28%, 160px) 1fr; gap: 16px;}
