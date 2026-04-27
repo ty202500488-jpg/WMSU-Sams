@@ -128,10 +128,16 @@
                 <div id="view-details-1" class="modal-overlay">
                     <div class="modal-box">
                         <a href="#" class="modal-close-btn">&times;</a>
-                        <div class="modal-header">
-                            <h2>IT Student Assistant</h2>
-                            <p class="subtitle"><strong>Department:</strong> IT Office</p>
-                        </div>
+                        <div class="doc-student-info">
+        <div class="avatar" style="background:#0369a1; border-radius:10px;">
+          <i class="fas fa-computer" style="font-size:20px;"></i>
+        </div>
+        <div class="info-meta">
+          <div class="info-name">IT Student Assistant</div>
+          <div class="info-sub">Information Technology Dept. &nbsp;·&nbsp; 5 Total Slots &nbsp;·&nbsp; ₱3,300 / month</div>
+        </div>
+        <span class="status-badge modal-status-badge">Status</span>
+      </div>
 
                         <hr>
 
@@ -282,10 +288,16 @@
             <div id="view-details-2" class="modal-overlay">
                     <div class="modal-box">
                         <a href="#" class="modal-close-btn">&times;</a>
-                        <div class="modal-header">
-                            <h2>Library Assistant</h2>
-                            <p class="subtitle"><strong>Department:</strong> UNiversity Library</p>
-                        </div>
+                        <div class="doc-student-info">
+        <div class="avatar" style="background:var(--maroon); border-radius:10px;">
+          <i class="fas fa-book" style="font-size:20px;"></i>
+        </div>
+        <div class="info-meta">
+          <div class="info-name">Library Assistant</div>
+          <div class="info-sub">University Library &nbsp;·&nbsp; 3 Total Slots &nbsp;·&nbsp; ₱4,500 / month</div>
+        </div>
+        <span class="status-badge modal-status-badge">Status</span>
+      </div>
 
                         <hr>
 
@@ -430,10 +442,16 @@
                  <div id="view-details-3" class="modal-overlay">
                     <div class="modal-box">
                     <a href="#" class="modal-close-btn">&times;</a>
-                        <div class="modal-header">
-                            <h2>IT Support Intern</h2>
-                            <p class="subtitle"><strong>Department:</strong> IT Office</p>
-                        </div>
+                        <div class="doc-student-info">
+        <div class="avatar" style="background:#0369a1; border-radius:10px;">
+          <i class="fas fa-computer" style="font-size:20px;"></i>
+        </div>
+        <div class="info-meta">
+          <div class="info-name">IT Support Intern</div>
+          <div class="info-sub">Information Technology Dept. &nbsp;·&nbsp; 5 Total Slots &nbsp;·&nbsp; ₱3,300 / month</div>
+        </div>
+        <span class="status-badge modal-status-badge">Status</span>
+      </div>
                         <hr>
                         <div class="modal-body">
                             <div class="info-grid">
@@ -575,10 +593,16 @@
                  <div id="view-details-4" class="modal-overlay">
         <div class="modal-box">
             <a href="#" class="modal-close-btn">&times;</a>
-            <div class="modal-header">
-                <h2>Registrar Assistant</h2>
-                <p class="subtitle"><strong>Department:</strong> Registrar's Office</p>
-            </div>
+            <div class="doc-student-info">
+        <div class="avatar" style="background:#b45309; border-radius:10px;">
+          <i class="fas fa-clipboard-list" style="font-size:20px;"></i>
+        </div>
+        <div class="info-meta">
+          <div class="info-name">Registrar Assistant</div>
+          <div class="info-sub">Finance Office &nbsp;·&nbsp; 5 Total Slots &nbsp;·&nbsp; ₱4,200 / month</div>
+        </div>
+        <span class="status-badge modal-status-badge">Status</span>
+      </div>
             <hr>
             <div class="modal-body">
                 <div class="info-grid">
@@ -728,6 +752,22 @@ function applyFilters() {
 
 document.querySelector(".primary-btn").addEventListener("click", applyFilters);
 
+function syncModalStatuses() {
+  document.querySelectorAll('.modal-overlay').forEach(modal => {
+    const modalId = modal.id;
+    if (!modalId) return;
+    const trigger = document.querySelector(`.application-action a[href="#${modalId}"]`);
+    const sourceStatus = trigger?.closest('.application-card')?.querySelector('.application-info .status-badge');
+    const modalBadge = modal.querySelector('.modal-status-badge');
+    if (sourceStatus && modalBadge) {
+      modalBadge.textContent = sourceStatus.textContent;
+      const statusClasses = Array.from(sourceStatus.classList).filter(c => c !== 'status-badge');
+      modalBadge.className = ['status-badge', 'modal-status-badge', ...statusClasses].join(' ');
+    }
+  });
+}
+
+syncModalStatuses();
 </script>
 
 </body>
