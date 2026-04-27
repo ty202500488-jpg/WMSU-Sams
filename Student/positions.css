@@ -373,6 +373,20 @@ hr {
     margin-top: 30px;
 }
 
+.modal-close-btn {
+    position: absolute;
+    top: 15px;
+    left: 12px;
+    font-size: 24px;
+    color: #666;
+    text-decoration: none;
+    line-height: 1;
+    font-weight: bold;
+}
+.modal-close-btn:hover {
+    color: #333;
+}
+
 .modal-box .secondary-btn, 
 .modal-box .primary-btn {
     display: inline-block;
