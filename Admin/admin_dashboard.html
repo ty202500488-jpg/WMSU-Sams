@@ -1567,12 +1567,6 @@
               if (badge) { badge.className = 'badge approved'; badge.textContent = 'Approved'; }
               if (row) row.dataset.status = 'approved';
               row?.querySelector('.action-btns')?.querySelectorAll('.btn-icon.approve,.btn-icon.reject').forEach(b => b.remove());
-              const doneBtn = document.createElement('button');
-              doneBtn.className = 'btn-icon';
-              doneBtn.style.cssText = 'background:#e8f5e9;color:#2e7d32;cursor:default;';
-              doneBtn.title = 'Approved';
-              doneBtn.innerHTML = '<i class="fas fa-check-double"></i>';
-              row?.querySelector('.action-btns')?.appendChild(doneBtn);
               row?.classList.remove('log-row-flagged');
               showAlert('Log Approved ✓', `${name}'s attendance has been approved and queued for payroll.`, 'success');
               refreshAllCounts();
@@ -2154,11 +2148,8 @@
 <!-- ============ MODAL ============ -->
 <div id="view-docs-1" class="modal-overlay">
   <div class="modal-card">
-    
-    <div class="modal-header">
-      <h2><i class="fas fa-file-alt"></i> Submitted Documents</h2>
+     
       <a href="#" class="modal-close-btn">&times;</a>
-    </div>
 
     <div class="modal-body">
       <div class="doc-student-info">
@@ -2189,7 +2180,7 @@
 
     <div class="modal-footer">
       <a href="#" class="btn-closed">Close</a>
-      <a href="#" class="btn-rejected">Reject & Notify</a>
+      <a href="#" class="btn-rejected">Reject</a>
       <a href="#" class="btn-approved">Approve</a>
     </div>
   </div>
@@ -2197,10 +2188,7 @@
 <div id="view-docs-2" class="modal-overlay">
   <div class="modal-card">
     
-    <div class="modal-header">
-      <h2><i class="fas fa-file-alt"></i> Submitted Documents</h2>
       <a href="#" class="modal-close-btn">&times;</a>
-    </div>
 
     <div class="modal-body">
       <div class="doc-student-info">
@@ -2231,7 +2219,7 @@
 
     <div class="modal-footer">
       <a href="#" class="btn-closed">Close</a>
-      <a href="#" class="btn-rejected">Reject & Notify</a>
+      <a href="#" class="btn-rejected">Reject</a>
       <a href="#" class="btn-approved">Approve</a>
     </div>
   </div>
@@ -2240,10 +2228,7 @@
 <div id="view-docs-3" class="modal-overlay">
   <div class="modal-card">
     
-    <div class="modal-header">
-      <h2><i class="fas fa-file-alt"></i> Submitted Documents</h2>
       <a href="#" class="modal-close-btn">&times;</a>
-    </div>
 
     <div class="modal-body">
       <div class="doc-student-info">
@@ -2274,7 +2259,7 @@
 
     <div class="modal-footer">
       <a href="#" class="btn-closed">Close</a>
-      <a href="#" class="btn-rejected">Reject & Notify</a>
+      <a href="#" class="btn-rejected">Reject</a>
       <a href="#" class="btn-approved">Approve</a>
     </div>
   </div>
@@ -2283,10 +2268,7 @@
 <div id="view-docs-4" class="modal-overlay">
   <div class="modal-card">
     
-    <div class="modal-header">
-      <h2><i class="fas fa-file-alt"></i> Submitted Documents</h2>
       <a href="#" class="modal-close-btn">&times;</a>
-    </div>
 
     <div class="modal-body">
       <div class="doc-student-info">
@@ -2317,7 +2299,7 @@
 
     <div class="modal-footer">
       <a href="#" class="btn-closed">Close</a>
-      <a href="#" class="btn-rejected">Reject & Notify</a>
+      <a href="#" class="btn-rejected">Reject</a>
       <a href="#" class="btn-approved">Approve</a>
     </div>
   </div>
@@ -2360,7 +2342,7 @@
 
     <div class="modal-footer">
       <a href="#" class="btn-closed">Close</a>
-      <a href="#" class="btn-rejected">Reject & Notify</a>
+      <a href="#" class="btn-rejected">Reject</a>
       <a href="#" class="btn-approved">Approve</a>
     </div>
   </div>
@@ -2370,10 +2352,9 @@
 
 <div id="view-dept-1" class="modal-overlay">
   <div class="modal-card">
-    <div class="modal-header">
-      <h2><i class="fas fa-building"></i> Department Documents</h2>
+    
       <a href="#" class="modal-close-btn">&times;</a>
-    </div>
+
     <div class="modal-body">
 
       <div class="doc-student-info">
@@ -2412,10 +2393,9 @@
 
 <div id="view-dept-2" class="modal-overlay">
   <div class="modal-card">
-    <div class="modal-header">
-      <h2><i class="fas fa-building"></i> Department Documents</h2>
+
       <a href="#" class="modal-close-btn">&times;</a>
-    </div>
+    
     <div class="modal-body">
 
       <div class="doc-student-info">
@@ -2453,10 +2433,7 @@
 
 <div id="view-dept-3" class="modal-overlay">
   <div class="modal-card">
-    <div class="modal-header">
-      <h2><i class="fas fa-building"></i> Department Documents</h2>
       <a href="#" class="modal-close-btn">&times;</a>
-    </div>
     <div class="modal-body">
 
       <div class="doc-student-info">
@@ -2494,10 +2471,9 @@
 
 <div id="view-dept-4" class="modal-overlay">
   <div class="modal-card">
-    <div class="modal-header">
-      <h2><i class="fas fa-building"></i> Department Documents</h2>
+  
       <a href="#" class="modal-close-btn">&times;</a>
-    </div>
+
     <div class="modal-body">
 
       <div class="doc-student-info">
@@ -2535,10 +2511,9 @@
 
 <div id="view-dept-5" class="modal-overlay">
   <div class="modal-card">
-    <div class="modal-header">
-      <h2><i class="fas fa-building"></i> Department Documents</h2>
+   
       <a href="#" class="modal-close-btn">&times;</a>
-    </div>
+   
     <div class="modal-body">
 
       <div class="doc-student-info">
@@ -2581,9 +2556,7 @@
   <div class="modal-card">
 
     <a href="#" class="modal-close-btn">&times;</a>
-    <div class="modal-header">
-      <h2> Position Details</h2>
-    </div>
+  
     <div class="modal-body">
 
       <!-- Position Title Strip -->
@@ -2683,14 +2656,21 @@
           <span class="label">Email</span>
           <span class="value">rosa.villanueva@wmsu.edu.ph</span>
         </div>
+        <div class="info-item">
+          <span class="label">Contact Number</span>
+          <span class="value">09XX-XXX-XXXX</span> 
+        </div>
+        <hr>
+        <h4>Application Deadline</h4>
+        <p style="color:#dc2626; font-weight:600;">May 28, 2026</p>
       </div>
 
     </div>
 
     <div class="modal-footer">
       <a href="#" class="btn-closed">Close</a>
-      <a href="#" class="btn-rejected">Reject Position</a>
-      <a href="#" class="btn-approved">Approve Position</a>
+      <a href="#" class="btn-rejected">Reject</a>
+      <a href="#" class="btn-approved">Approve</a>
     </div>
   </div>
 </div>
@@ -2698,10 +2678,8 @@
 <!--LABORATORY MONITOR MODAL-->
 <div id="view-pos-2" class="modal-overlay">
   <div class="modal-card">
-    <div class="modal-header">
-      <h2> Position Details</h2>
+    
       <a href="#" class="modal-close-btn">&times;</a>
-    </div>
 
     <div class="modal-body">
 
@@ -2795,13 +2773,20 @@
           <span class="label">Email</span>
           <span class="value">mario.santos@wmsu.edu.ph</span>
         </div>
+        <div class="info-item">
+          <span class="label">Contact Number</span>
+          <span class="value">09XX-XXX-XXXX</span> 
+        </div>
+        <hr>
+        <h4>Application Deadline</h4>
+        <p style="color:#dc2626; font-weight:600;">May 16, 2026</p>
       </div>
 
     </div>
     <div class="modal-footer">
       <a href="#" class="btn-closed">Close</a>
-      <a href="#" class="btn-rejected">Reject Position</a>
-      <a href="#" class="btn-approved">Approve Position</a>
+      <a href="#" class="btn-rejected">Reject</a>
+      <a href="#" class="btn-approved">Approve</a>
     </div>
   </div>
 </div>
@@ -2809,10 +2794,9 @@
 <!--OFFICE ASSISTANT-->
 <div id="view-pos-3" class="modal-overlay">
   <div class="modal-card">
-    <div class="modal-header">
-      <h2>Position Details</h2>
+    
       <a href="#" class="modal-close-btn">&times;</a>
-    </div>
+    
 
     <div class="modal-body">
 
@@ -2898,6 +2882,10 @@
             <span class="label">Email</span>
             <span class="value">lena.mercado@wmsu.edu.ph</span>
         </div>
+        <div class="info-item">
+          <span class="label">Contact Number</span>
+          <span class="value">09XX-XXX-XXXX</span> 
+        </div>
         <hr>
         <h4>Application Deadline</h4>
         <p style="color:#dc2626; font-weight:600;">May 20, 2026</p>
@@ -2905,8 +2893,8 @@
     </div>
     <div class="modal-footer">
       <a href="#" class="btn-closed">Close</a>
-      <a href="#" class="btn-rejected">Reject Position</a>
-      <a href="#" class="btn-approved">Approve Position</a>
+      <a href="#" class="btn-rejected">Reject</a>
+      <a href="#" class="btn-approved">Approve</a>
     </div>
   </div>
 </div>
@@ -2914,10 +2902,9 @@
 <!-- RESEARCH ASSISTANT-->
 <div id="view-pos-4" class="modal-overlay">
   <div class="modal-card">
-    <div class="modal-header">
-      <h2> Position Details</h2>
+    
       <a href="#" class="modal-close-btn">&times;</a>
-    </div>
+
     <div class="modal-body">
 
       <div class="doc-student-info">
@@ -3000,13 +2987,20 @@
           <span class="label">Email</span>
           <span class="value">carlo.reyes@wmsu.edu.ph</span>
         </div>
+        <div class="info-item">
+          <span class="label">Contact Number</span>
+          <span class="value">09XX-XXX-XXXX</span> 
+        </div>
+        <hr>
+        <h4>Application Deadline</h4>
+        <p style="color:#dc2626; font-weight:600;">May 20, 2026</p>
       </div>
 
     </div>
     <div class="modal-footer">
       <a href="#" class="btn-closed">Close</a>
-      <a href="#" class="btn-rejected">Reject Position</a>
-      <a href="#" class="btn-approved">Approve Position</a>
+      <a href="#" class="btn-rejected">Reject</a>
+      <a href="#" class="btn-approved">Approve</a>
     </div>
   </div>
 </div>
@@ -3014,10 +3008,7 @@
 <!-- FINANCE CLERK MODAL-->
 <div id="view-pos-5" class="modal-overlay">
   <div class="modal-card">
-    <div class="modal-header">
-      <h2>Position Details</h2>
       <a href="#" class="modal-close-btn">&times;</a>
-    </div>
     <div class="modal-body">
 
       <div class="doc-student-info">
@@ -3104,23 +3095,27 @@
           <span class="label">Email</span>
           <span class="value">carla.bautista@wmsu.edu.ph</span>
         </div>
+        <div class="info-item">
+          <span class="label">Contact Number</span>
+          <span class="value">09XX-XXX-XXXX</span> 
+        </div>
+        <hr>
+        <h4>Application Deadline</h4>
+        <p style="color:#dc2626; font-weight:600;">May 20, 2026</p>
       </div>
 
     </div>
     <div class="modal-footer">
       <a href="#" class="btn-closed">Close</a>
-      <a href="#" class="btn-rejected">Reject Position</a>
-      <a href="#" class="btn-approved">Approve Position</a>
+      <a href="#" class="btn-rejected">Reject</a>
+      <a href="#" class="btn-approved">Approve</a>
     </div>
   </div>
 </div>
 
 <div id="view-pos-6" class="modal-overlay">
   <div class="modal-card">
-    <div class="modal-header">
-      <h2>Position Details</h2>
       <a href="#" class="modal-close-btn">&times;</a>
-    </div>
     <div class="modal-body">
 
       <div class="doc-student-info">
@@ -3216,17 +3211,23 @@
           <span class="label">Email</span>
           <span class="value">grace.padilla@wmsu.edu.ph</span>
         </div>
+        <div class="info-item">
+          <span class="label">Contact Number</span>
+          <span class="value">09XX-XXX-XXXX</span> 
+        </div>
+        <hr>
+        <h4>Application Deadline</h4>
+        <p style="color:#dc2626; font-weight:600;">May 22, 2026</p>
       </div>
 
     </div>
     <div class="modal-footer">
       <a href="#" class="btn-closed">Close</a>
-      <a href="#" class="btn-rejected">Reject Position</a>
-      <a href="#" class="btn-approved">Approve Position</a>
+      <a href="#" class="btn-rejected">Reject</a>
+      <a href="#" class="btn-approved">Approve</a>
     </div>
   </div>
 </div>
-
 
     <!-- ══════════════════════════════════════════════
      ██  LIVE COUNTER SYSTEM
@@ -3332,8 +3333,8 @@
                       badge.className = 'badge approved';
                       badge.textContent = 'Verified';
                     }
-                    const actionBtns = row?.querySelector('.action-btns');
-                    if (actionBtns) actionBtns.style.display = 'none';
+                    row.dataset.status = 'approved';
+                    row?.querySelectorAll('.btn-approve, .btn-reject, .btn-icon.approve, .btn-icon.reject').forEach(b => b.remove());
 
                     showAlert('Approved', `${name} has been approved successfully.`, 'success');
                     refreshAllCounts();
@@ -3351,8 +3352,8 @@
                         badge.className = 'badge rejected';
                         badge.textContent = 'Rejected';
                       }
-                      const actionBtns = row?.querySelector('.action-btns');
-                      if (actionBtns) actionBtns.style.display = 'none';
+                      row.dataset.status = 'rejected';
+                      row?.querySelectorAll('.btn-approve, .btn-reject, .btn-icon.approve, .btn-icon.reject').forEach(b => b.remove());
 
                       showAlert('Rejected', `${name} has been rejected successfully.`, 'success');
                       refreshAllCounts();
@@ -3368,8 +3369,8 @@
                         badge.className = 'badge rejected';
                         badge.textContent = 'Rejected';
                       }
-                      const actionBtns = row?.querySelector('.action-btns');
-                      if (actionBtns) actionBtns.style.display = 'none';
+                      row.dataset.status = 'rejected';
+                      row?.querySelectorAll('.btn-approve, .btn-reject, .btn-icon.approve, .btn-icon.reject').forEach(b => b.remove());
 
                       showAlert('Rejected', `${name} has been rejected successfully.`, 'success');
                       refreshAllCounts();
@@ -3387,20 +3388,24 @@
         document.querySelectorAll('#sec-payroll .btn-approve').forEach(button => {
           button.addEventListener('click', function (e) {
             e.preventDefault();
-            const row = button.closest('tr');
-            const name = row?.querySelector('.td-name')?.textContent || 'Student';
+            const row   = button.closest('tr');
+            const name  = row?.dataset.name || 'Student';
+            const total = row?.querySelector('.payroll-total strong')?.textContent || '';
             confirmAction(
               'Confirm Payment Release',
-              `Release payment to <strong>${name}</strong>?`,
+              `Release payment of <strong>${total}</strong> to <strong>${name}</strong>? This action cannot be undone.`,
               () => {
-                showAlert('Payment Released', `Payment released to ${name} successfully.`, 'success');
+                const statusCell = row.querySelector('td:nth-child(7)');
+                if (statusCell) statusCell.innerHTML = '<span class="badge approved">Released</span>';
+                const actionCell = row.querySelector('td:nth-child(8)');
+                if (actionCell) actionCell.innerHTML = ``;
+                showAlert('Payment Released ✓', `${total} has been released to ${name} successfully.`, 'success');
               },
               null,
-              { confirmText: 'Release', cancelText: 'Cancel', confirmColor: 'success-btn' }
+              { confirmText: 'Yes, Release Payment', cancelText: 'Cancel', confirmColor: 'success-btn' }
             );
           });
         });
-
       });
     </script>
 
@@ -3467,6 +3472,18 @@
             );
           });
         }
+    //positions search
+        const posSearch = document.querySelector('#sec-positions .search-box input');
+        if (posSearch) {
+          posSearch.addEventListener('input', function () {
+            const q = this.value.toLowerCase().trim();
+            document.querySelectorAll('.position-card').forEach(function (card) {
+              const name = (card.querySelector('.pos-name')?.textContent || '').toLowerCase();
+              const dept = (card.querySelector('.pos-dept')?.textContent || '').toLowerCase();
+              card.style.display = (!q || name.includes(q) || dept.includes(q)) ? '' : 'none';
+            });
+          });
+        }
       });
     </script>
 
@@ -3486,7 +3503,7 @@
 
     <!-- Payroll: compute Total = Hours × Rate -->
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
+            document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('#payroll-table tbody tr').forEach(function (row) {
           const hours = parseFloat(row.dataset.hours);
           const rate  = parseFloat(row.dataset.rate);
@@ -3495,6 +3512,40 @@
             if (cell) cell.textContent = '₱' + (hours * rate).toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
           }
         });
+
+        const payrollTable = document.getElementById('payroll-table');
+        if (payrollTable) {
+          payrollTable.addEventListener('click', function (e) {
+            const rejectBtn = e.target.closest('.btn-reject');
+            if (!rejectBtn) return;
+
+            const row = rejectBtn.closest('tr');
+            const name = row?.dataset.name || 'this payroll entry';
+
+            showRejectionReasonModal(name, function (rejectionData) {
+              if (row) {
+                row.dataset.status = 'rejected';
+                const statusCell = row.querySelector('td:nth-child(7)');
+                if (statusCell) statusCell.innerHTML = '<span class="badge rejected">Rejected</span>';
+                const actionCell = row.querySelector('td:nth-child(8)');
+                if (actionCell) actionCell.innerHTML = '';  // ← cleared
+              }
+              showAlert('Payroll Rejected', `${name}'s payroll entry has been rejected.`, 'info');
+            }, null, {
+              title: 'Reject Payroll Entry',
+              description: `Reject payroll for <strong>${name}</strong>. Please provide a reason for rejection.`
+            });
+          });
+        }
+
+        function escapeHtml(text) {
+          return String(text)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+        }
       });
     </script>
 

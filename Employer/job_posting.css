@@ -428,6 +428,13 @@ hr {
     gap: 12px;
 }
 
+.btn-icon {border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px; transition:0.2s; white-space: nowrap;}
+.btn-icon.view { background: #e7f3ff; color: #1877f2; text-decoration: none; }
+.btn-icon.approve { background: #e7fef0; color: #2ecc71; text-decoration: none; }
+.btn-icon.reject { background: #fdf2f2; color: #e74c3c; text-decoration: none; }
+.btn-icon.edit { background: #ffedcf; color: #f59e0b; text-decoration: none; }
+.btn-icon:hover { filter: brightness(0.9); transform: translateY(-1px); }
+
 
 /* RIGHT PANEL WIDGETS */
 .right-panel { display: flex; flex-direction: column; gap: 0; }
