@@ -2570,13 +2570,14 @@
 </div>
 
 <!-- ============ POSITION MODALS ============ -->
-<!-- ============ POSITION MODALS ============ -->
 
+<!--Library Assistant-->
 <div id="view-pos-1" class="modal-overlay">
   <div class="modal-card">
+
+    <a href="#" class="modal-close-btn">&times;</a>
     <div class="modal-header">
       <h2><i class="fas fa-briefcase"></i> Position Details</h2>
-      <a href="#" class="modal-close-btn">&times;</a>
     </div>
     <div class="modal-body">
 
@@ -2592,58 +2593,95 @@
         <span class="badge pending" style="margin-left:auto;">Pending</span>
       </div>
 
+      <hr>
       <!-- Info Grid -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
-        <div style="background:var(--gray-50);border-radius:10px;padding:16px;">
-          <div style="font-size:11px;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Department</div>
-          <div style="font-weight:600;color:var(--gray-800);font-size:14px;"><i class="fas fa-building" style="color:var(--maroon);margin-right:6px;"></i>University Library</div>
+      <div class="modal-body">
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="label">Location</span>
+            <span class="value">Main Library, Ground Floor</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Pay Rate</span>
+            <span class="value">₱50 / hour</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Daily Hours</span>
+            <span class="value">3 hours / day</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Availability</span>
+            <span class="value">3 of 5 slots left</span>
+          </div>
         </div>
-        <div style="background:var(--gray-50);border-radius:10px;padding:16px;">
-          <div style="font-size:11px;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Hours Per Week</div>
-          <div style="font-weight:600;color:var(--gray-800);font-size:14px;"><i class="fas fa-clock" style="color:var(--maroon);margin-right:6px;"></i>20 hours / week</div>
-        </div>
-        <div style="background:var(--gray-50);border-radius:10px;padding:16px;">
-          <div style="font-size:11px;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Slots</div>
-          <div style="font-weight:600;color:var(--gray-800);font-size:14px;"><i class="fas fa-users" style="color:var(--maroon);margin-right:6px;"></i>3 Filled / 5 Total</div>
-        </div>
-        <div style="background:var(--gray-50);border-radius:10px;padding:16px;">
-          <div style="font-size:11px;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Monthly Rate</div>
-          <div style="font-weight:600;color:var(--green);font-size:14px;"><i class="fas fa-peso-sign" style="margin-right:6px;"></i>4,500 / month</div>
-        </div>
-      </div>
 
-      <!-- Description -->
-      <div style="margin-bottom:20px;">
-        <div style="font-size:13px;font-weight:600;color:var(--gray-600);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">Job Description</div>
-        <p style="font-size:14px;color:var(--gray-600);line-height:1.7;">Assist the University Library staff in organizing and maintaining library resources, helping students locate materials, managing book checkouts and returns, and supporting general library operations.</p>
-      </div>
+        <hr>
 
-      <!-- Requirements -->
-      <div style="margin-bottom:20px;">
-        <div style="font-size:13px;font-weight:600;color:var(--gray-600);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">Requirements</div>
-        <div class="doc-list">
-          <div class="doc-item">
-            <div class="doc-item-left">
-              <div class="doc-icon" style="background:#fef3c7;color:#92400e;"><i class="fas fa-file-alt"></i></div>
-            </div>
-            <div><div class="doc-name">Minimum GWA of 2.5 or higher</div><div class="doc-meta">Academic requirement</div></div>
-          </div>
-          <div class="doc-item">
-            <div class="doc-item-left">
-              <div class="doc-icon" style="background:#dcfce7;color:#15803d;"><i class="fas fa-calendar-check"></i></div>
-            </div>
-            <div><div class="doc-name">Available Mon–Fri, flexible schedule</div><div class="doc-meta">Schedule requirement</div></div>
-          </div>
-          <div class="doc-item">
-            <div class="doc-item-left">
-              <div class="doc-icon" style="background:#ede9fe;color:#6d28d9;"><i class="fas fa-user-check"></i></div>
-            </div>
-            <div><div class="doc-name">Must be a currently enrolled student</div><div class="doc-meta">Enrollment requirement</div></div>
-          </div>
+        <h4>Job Description</h4>
+        <p style="color: #4a5568; line-height: 1.6;">
+          Assist the Library Department in organizing and maintaining library resources. 
+          You will be responsible for shelving books, helping students and faculty locate 
+          materials, managing circulation records, and supporting library staff in 
+          day-to-day operations.
+        </p>
+
+        <hr>
+
+        <h4>Responsibilities</h4>
+        <ul class="custom-list">
+          <li>Shelve and organize books and library materials.</li>
+          <li>Assist students and faculty in locating resources.</li>
+          <li>Maintain and update borrowing and return records.</li>
+          <li>Support library staff during peak hours.</li>
+          <li>Help set up library events, exhibits, and displays.</li>
+        </ul>
+
+        <hr>
+        
+        <h4>Requirements & Qualifications</h4>
+        <ul class="custom-list">
+          <li>Must be a currently enrolled student.</li>
+          <li>Minimum GPA of 2.5 or higher.</li>
+          <li>Organized, detail-oriented, and reliable.</li>
+          <li>Basic record keeping and communication skills.</li>
+        </ul>
+
+        <hr>
+
+        <h4>Required Skills</h4>
+        <div class="skill-tags">
+          <span>Record Keeping</span>
+          <span>Customer Service</span>
+          <span>Attention to Detail</span>
+          <span>MS Excel</span>
+          <span>Filing Systems</span>
+        </div>
+
+        <hr>
+
+        <h4>Benefits</h4>
+        <ul class="custom-list">
+          <li>₱50/hour stipend paid bi-weekly.</li>
+          <li>Certificate of completion issued at end of term.</li>
+          <li>Priority access to library study rooms and resources.</li>
+          <li>Work experience credit applicable to relevant courses.</li>
+        </ul>
+
+        <hr>
+
+        <h4>Supervisor</h4>
+        <div class="info-item">
+          <span class="label">Name</span>
+          <span class="value">Ms. Rosa Villanueva</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Email</span>
+          <span class="value">rosa.villanueva@wmsu.edu.ph</span>
         </div>
       </div>
 
     </div>
+
     <div class="modal-footer">
       <a href="#" class="btn-closed">Close</a>
       <a href="#" class="btn-rejected">Reject Position</a>
@@ -2652,70 +2690,105 @@
   </div>
 </div>
 
+<!--LABORATORY MONITOR MODAL-->
 <div id="view-pos-2" class="modal-overlay">
   <div class="modal-card">
     <div class="modal-header">
       <h2><i class="fas fa-briefcase"></i> Position Details</h2>
       <a href="#" class="modal-close-btn">&times;</a>
     </div>
+
     <div class="modal-body">
 
       <div class="doc-student-info">
-        <div class="avatar" style="background:#1d4ed8; border-radius:10px;">
-          <i class="fas fa-desktop" style="font-size:20px;"></i>
+        <div class="avatar" style="background:#0369a1; border-radius:10px;">
+          <i class="fas fa-computer" style="font-size:20px;"></i>
         </div>
         <div>
-          <div class="info-name">Laboratory Monitor</div>
-          <div class="info-sub">Information Technology Dept. &nbsp;·&nbsp; 8 Total Slots &nbsp;·&nbsp; ₱5,000 / month</div>
+          <div class="info-name">Computer Laboratory Monitor</div>
+        <div class="info-sub">Information Technology Dept. &nbsp;·&nbsp; 8 Total Slots &nbsp;·&nbsp; ₱3,300 / month</div>
         </div>
         <span class="badge pending" style="margin-left:auto;">Pending</span>
       </div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
-        <div style="background:var(--gray-50);border-radius:10px;padding:16px;">
-          <div style="font-size:11px;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Department</div>
-          <div style="font-weight:600;color:var(--gray-800);font-size:14px;"><i class="fas fa-building" style="color:var(--maroon);margin-right:6px;"></i>Information Technology</div>
+      <div class="modal-body">
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="label">Location</span>
+            <span class="value">Science Building, Lab 3</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Pay Rate</span>
+            <span class="value">₱55 / hour</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Daily Hours</span>
+            <span class="value">4 hours / day</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Availability</span>
+            <span class="value">8 slots filled</span>
+          </div>
         </div>
-        <div style="background:var(--gray-50);border-radius:10px;padding:16px;">
-          <div style="font-size:11px;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Hours Per Week</div>
-          <div style="font-weight:600;color:var(--gray-800);font-size:14px;"><i class="fas fa-clock" style="color:var(--maroon);margin-right:6px;"></i>24 hours / week</div>
-        </div>
-        <div style="background:var(--gray-50);border-radius:10px;padding:16px;">
-          <div style="font-size:11px;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Slots</div>
-          <div style="font-weight:600;color:var(--red);font-size:14px;"><i class="fas fa-users" style="margin-right:6px;"></i>8 Filled / 8 Total — Full</div>
-        </div>
-        <div style="background:var(--gray-50);border-radius:10px;padding:16px;">
-          <div style="font-size:11px;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Monthly Rate</div>
-          <div style="font-weight:600;color:var(--green);font-size:14px;"><i class="fas fa-peso-sign" style="margin-right:6px;"></i>5,000 / month</div>
-        </div>
-      </div>
 
-      <div style="margin-bottom:20px;">
-        <div style="font-size:13px;font-weight:600;color:var(--gray-600);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">Job Description</div>
-        <p style="font-size:14px;color:var(--gray-600);line-height:1.7;">Monitor and maintain the IT computer laboratories, assist students with technical issues, ensure proper use of equipment, and report any hardware or software problems to the IT supervisor.</p>
-      </div>
+        <hr>
 
-      <div style="margin-bottom:20px;">
-        <div style="font-size:13px;font-weight:600;color:var(--gray-600);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">Requirements</div>
-        <div class="doc-list">
-          <div class="doc-item">
-            <div class="doc-item-left">
-              <div class="doc-icon" style="background:#fef3c7;color:#92400e;"><i class="fas fa-laptop-code"></i></div>
-            </div>
-            <div><div class="doc-name">Basic computer hardware knowledge</div><div class="doc-meta">Technical requirement</div></div>
-          </div>
-          <div class="doc-item">
-            <div class="doc-item-left">
-              <div class="doc-icon" style="background:#dcfce7;color:#15803d;"><i class="fas fa-file-alt"></i></div>
-            </div>
-            <div><div class="doc-name">Minimum GWA of 2.5 or higher</div><div class="doc-meta">Academic requirement</div></div>
-          </div>
-          <div class="doc-item">
-            <div class="doc-item-left">
-              <div class="doc-icon" style="background:#ede9fe;color:#6d28d9;"><i class="fas fa-user-check"></i></div>
-            </div>
-            <div><div class="doc-name">Must be a currently enrolled student</div><div class="doc-meta">Enrollment requirement</div></div>
-          </div>
+        <h4>Job Description</h4>
+          <p style="color:#4a5568; line-height:1.6;">
+          Monitor and maintain the cleanliness, safety, and orderliness of science laboratories. 
+          Assist faculty and students during laboratory sessions and ensure proper use of equipment.
+          </p>
+
+        <hr>
+
+        <h4>Responsibilities</h4>
+        <ul class="custom-list">
+          <li>Monitor student behavior and lab equipment usage during sessions.</li>
+          <li>Assist in setting up and cleaning up laboratory equipment.</li>
+          <li>Ensure safety protocols are followed at all times.</li>
+          <li>Record inventory of lab supplies and report shortages.</li>
+          <li>Report damaged or missing equipment to the supervisor.</li>
+        </ul>
+
+        <hr>
+
+        <h4>Requirements & Qualifications</h4>
+        <ul class="custom-list">
+          <li>Must be a currently enrolled student preferably in a science program.</li>
+          <li>Minimum GPA of 2.5 or higher.</li>
+          <li>Familiar with basic laboratory safety procedures.</li>
+          <li>Responsible, alert, and attentive to detail.</li>
+        </ul>
+
+        <hr>
+
+        <h4>Required Skills</h4>
+        <div class="skill-tags">
+          <span>Lab Safety</span>
+          <span>Equipment Handling</span>
+          <span>Inventory Management</span>
+          <span>Attention to Detail</span>
+        </div>
+
+        <hr>
+        <h4>Benefits</h4>
+        <ul class="custom-list">
+          <li>₱55/hour stipend paid bi-weekly.</li>
+          <li>Hands-on experience in laboratory operations.</li>
+          <li>Certificate of completion at end of term.</li>
+          <li>Priority scheduling for lab use during free periods.</li>
+        </ul>
+
+        <hr>
+
+        <h4>Supervisor</h4>
+        <div class="info-item">
+          <span class="label">Name</span>
+          <span class="value">Dr. Mario Santos</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Email</span>
+          <span class="value">mario.santos@wmsu.edu.ph</span>
         </div>
       </div>
 
@@ -2728,12 +2801,14 @@
   </div>
 </div>
 
+<!--OFFICE ASSISTANT-->
 <div id="view-pos-3" class="modal-overlay">
   <div class="modal-card">
     <div class="modal-header">
       <h2><i class="fas fa-briefcase"></i> Position Details</h2>
       <a href="#" class="modal-close-btn">&times;</a>
     </div>
+
     <div class="modal-body">
 
       <div class="doc-student-info">
@@ -2747,54 +2822,82 @@
         <span class="badge pending" style="margin-left:auto;">Pending</span>
       </div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
-        <div style="background:var(--gray-50);border-radius:10px;padding:16px;">
-          <div style="font-size:11px;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Department</div>
-          <div style="font-weight:600;color:var(--gray-800);font-size:14px;"><i class="fas fa-building" style="color:var(--maroon);margin-right:6px;"></i>College of Education</div>
-        </div>
-        <div style="background:var(--gray-50);border-radius:10px;padding:16px;">
-          <div style="font-size:11px;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Hours Per Week</div>
-          <div style="font-weight:600;color:var(--gray-800);font-size:14px;"><i class="fas fa-clock" style="color:var(--maroon);margin-right:6px;"></i>16 hours / week</div>
-        </div>
-        <div style="background:var(--gray-50);border-radius:10px;padding:16px;">
-          <div style="font-size:11px;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Slots</div>
-          <div style="font-weight:600;color:var(--gray-800);font-size:14px;"><i class="fas fa-users" style="color:var(--maroon);margin-right:6px;"></i>4 Filled / 6 Total</div>
-        </div>
-        <div style="background:var(--gray-50);border-radius:10px;padding:16px;">
-          <div style="font-size:11px;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Monthly Rate</div>
-          <div style="font-weight:600;color:var(--green);font-size:14px;"><i class="fas fa-peso-sign" style="margin-right:6px;"></i>4,000 / month</div>
-        </div>
-      </div>
-
-      <div style="margin-bottom:20px;">
-        <div style="font-size:13px;font-weight:600;color:var(--gray-600);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">Job Description</div>
-        <p style="font-size:14px;color:var(--gray-600);line-height:1.7;">Provide administrative support to the College of Education office, including filing documents, answering inquiries, encoding data, and assisting faculty and staff with clerical tasks.</p>
-      </div>
-
-      <div style="margin-bottom:20px;">
-        <div style="font-size:13px;font-weight:600;color:var(--gray-600);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">Requirements</div>
-        <div class="doc-list">
-          <div class="doc-item">
-            <div class="doc-item-left">
-              <div class="doc-icon" style="background:#fef3c7;color:#92400e;"><i class="fas fa-file-alt"></i></div>
-            </div>
-            <div><div class="doc-name">Minimum GWA of 2.5 or higher</div><div class="doc-meta">Academic requirement</div></div>
+      <div class="modal-body">
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="label">Location</span>
+            <span class="value">Research Center, 3rd Floor</span>
           </div>
-          <div class="doc-item">
-            <div class="doc-item-left">
-              <div class="doc-icon" style="background:#dcfce7;color:#15803d;"><i class="fas fa-keyboard"></i></div>
-            </div>
-            <div><div class="doc-name">Basic computer and typing skills</div><div class="doc-meta">Technical requirement</div></div>
+          <div class="info-item">
+            <span class="label">Pay Rate</span>
+            <span class="value">₱65 / hour</span>
           </div>
-          <div class="doc-item">
-            <div class="doc-item-left">
-              <div class="doc-icon" style="background:#ede9fe;color:#6d28d9;"><i class="fas fa-user-check"></i></div>
-            </div>
-            <div><div class="doc-name">Must be a currently enrolled student</div><div class="doc-meta">Enrollment requirement</div></div>
+          <div class="info-item">
+            <span class="label">Daily Hours</span>
+            <span class="value">4 hours / day</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Availability</span>
+            <span class="value">2 of 6 slots left</span>
           </div>
         </div>
-      </div>
 
+        <hr>
+
+        <h4>Job Description</h4>
+          <p style="color:#4a5568; line-height:1.6;">
+          Support faculty researchers in conducting academic and institutional research. 
+          Assist in data collection, literature review, documentation, and preparation 
+          of research reports and presentations.
+          </p>
+    <hr>
+    <h4>Responsibilities</h4>
+    <ul class="custom-list">
+        <li>Assist in gathering and organizing research data.</li>
+        <li>Conduct literature reviews and summarize findings.</li>
+        <li>Help prepare research reports, presentations, and publications.</li>
+        <li>Maintain and organize research files and references.</li>
+        <li>Coordinate with research team members as needed.</li>
+    </ul>
+    <h4>Requirements & Qualifications</h4>
+    <ul class="custom-list">
+        <li>Must be a currently enrolled student with strong academic standing.</li>
+        <li>Minimum GPA of 2.0 or higher.</li>
+        <li>Strong written and verbal communication skills.</li>
+        <li>Ability to work independently and meet deadlines.</li>
+    </ul>
+    <hr>
+    <h4>Required Skills</h4>
+    <div class="skill-tags">
+        <span>Research Methods</span>
+        <span>Data Analysis</span>
+        <span>MS Word / Excel</span>
+        <span>Academic Writing</span>
+        <span>Literature Review</span>
+    </div>
+    <hr>
+    <h4>Benefits</h4>
+    <ul class="custom-list">
+        <li>₱65/hour stipend paid bi-weekly.</li>
+        <li>Co-authorship opportunity on selected research outputs.</li>
+        <li>Access to university research databases and journals.</li>
+        <li>Certificate of research participation issued at end of term.</li>
+    </ul>
+    <hr>
+    <h4>Supervisor</h4>
+    <div class="info-item">
+        <span class="label">Name</span>
+        <span class="value">Prof. Lena Mercado</span>
+    </div>
+    <div class="info-item">
+        <span class="label">Email</span>
+        <span class="value">lena.mercado@wmsu.edu.ph</span>
+    </div>
+    <hr>
+    <h4>Application Deadline</h4>
+    <p style="color:#dc2626; font-weight:600;">May 20, 2026</p>
+</div>
+  </div>
     </div>
     <div class="modal-footer">
       <a href="#" class="btn-closed">Close</a>
@@ -2804,6 +2907,7 @@
   </div>
 </div>
 
+<!-- RESEARCH ASSISTANT-->
 <div id="view-pos-4" class="modal-overlay">
   <div class="modal-card">
     <div class="modal-header">
@@ -2823,51 +2927,74 @@
         <span class="badge pending" style="margin-left:auto;">Pending</span>
       </div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
-        <div style="background:var(--gray-50);border-radius:10px;padding:16px;">
-          <div style="font-size:11px;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Department</div>
-          <div style="font-weight:600;color:var(--gray-800);font-size:14px;"><i class="fas fa-building" style="color:var(--maroon);margin-right:6px;"></i>College of Engineering</div>
-        </div>
-        <div style="background:var(--gray-50);border-radius:10px;padding:16px;">
-          <div style="font-size:11px;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Hours Per Week</div>
-          <div style="font-weight:600;color:var(--gray-800);font-size:14px;"><i class="fas fa-clock" style="color:var(--maroon);margin-right:6px;"></i>18 hours / week</div>
-        </div>
-        <div style="background:var(--gray-50);border-radius:10px;padding:16px;">
-          <div style="font-size:11px;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Slots</div>
-          <div style="font-weight:600;color:var(--gray-800);font-size:14px;"><i class="fas fa-users" style="color:var(--maroon);margin-right:6px;"></i>2 Filled / 4 Total</div>
-        </div>
-        <div style="background:var(--gray-50);border-radius:10px;padding:16px;">
-          <div style="font-size:11px;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Monthly Rate</div>
-          <div style="font-weight:600;color:var(--green);font-size:14px;"><i class="fas fa-peso-sign" style="margin-right:6px;"></i>5,500 / month</div>
-        </div>
-      </div>
-
-      <div style="margin-bottom:20px;">
-        <div style="font-size:13px;font-weight:600;color:var(--gray-600);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">Job Description</div>
-        <p style="font-size:14px;color:var(--gray-600);line-height:1.7;">Support faculty researchers in data collection, literature review, laboratory testing, and documentation of ongoing engineering research projects. Assist in preparing research reports and presentations.</p>
-      </div>
-
-      <div style="margin-bottom:20px;">
-        <div style="font-size:13px;font-weight:600;color:var(--gray-600);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">Requirements</div>
-        <div class="doc-list">
-          <div class="doc-item">
-            <div class="doc-item-left">
-              <div class="doc-icon" style="background:#fef3c7;color:#92400e;"><i class="fas fa-graduation-cap"></i></div>
-            </div>
-            <div><div class="doc-name">Minimum GWA of 2.0 or higher</div><div class="doc-meta">Academic requirement</div></div>
+      <div class="modal-body">
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="label">Location</span>
+            <span class="value">Admin Building, Room 101</span>
           </div>
-          <div class="doc-item">
-            <div class="doc-item-left">
-              <div class="doc-icon" style="background:#dcfce7;color:#15803d;"><i class="fas fa-flask"></i></div>
-            </div>
-            <div><div class="doc-name">Background in engineering or sciences</div><div class="doc-meta">Technical requirement</div></div>
+          <div class="info-item">
+              <span class="label">Pay Rate</span>
+              <span class="value">₱50 / hour</span>
           </div>
-          <div class="doc-item">
-            <div class="doc-item-left">
-              <div class="doc-icon" style="background:#ede9fe;color:#6d28d9;"><i class="fas fa-user-check"></i></div>
-            </div>
-            <div><div class="doc-name">Must be a currently enrolled student</div><div class="doc-meta">Enrollment requirement</div></div>
+          <div class="info-item">
+            <span class="label">Daily Hours</span>
+            <span class="value">3 hours / day</span>
           </div>
+          <div class="info-item">
+            <span class="label">Availability</span>
+            <span class="value">2 of 4 slots left</span>
+            </div>
+          </div>
+          <hr>
+          <h4>Job Description</h4>
+          <p style="color:#4a5568; line-height:1.6;">
+            Provide general administrative and clerical support to the university's administrative 
+            office. Assist staff with document processing, filing, scheduling, and other 
+            day-to-day office operations.
+          </p>
+        <hr>
+        <h4>Responsibilities</h4>
+        <ul class="custom-list">
+          <li>Assist in encoding, filing, and organizing office documents.</li>
+          <li>Receive and route office correspondence and calls.</li>
+          <li>Prepare and photocopy documents as requested by staff.</li>
+          <li>Assist in scheduling meetings and office activities.</li>
+          <li>Maintain cleanliness and orderliness of the office area.</li>
+        </ul>
+        <h4>Requirements & Qualifications</h4>
+        <ul class="custom-list">
+          <li>Must be a currently enrolled student.</li>
+          <li>Minimum GPA of 2.5 or higher.</li>
+          <li>Professional and courteous communication skills.</li>
+          <li>Basic knowledge of Microsoft Office applications.</li>
+        </ul>
+        <hr>
+        <h4>Required Skills</h4>
+        <div class="skill-tags">
+          <span>MS Office</span>
+          <span>Filing & Organization</span>
+          <span>Communication</span>
+          <span>Data Encoding</span>
+          <span>Time Management</span>
+        </div>
+        <hr>
+        <h4>Benefits</h4>
+        <ul class="custom-list">
+          <li>₱50/hour stipend paid bi-weekly.</li>
+          <li>Exposure to professional office environment and workflows.</li>
+          <li>Certificate of completion at end of term.</li>
+          <li>Networking opportunities with university administrators.</li>
+        </ul>
+        <hr>
+        <h4>Supervisor</h4>
+        <div class="info-item">
+          <span class="label">Name</span>
+          <span class="value">Mr. Carlo Reyes</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Email</span>
+          <span class="value">carlo.reyes@wmsu.edu.ph</span>
         </div>
       </div>
 
@@ -2880,6 +3007,7 @@
   </div>
 </div>
 
+<!-- FINANCE CLERK MODAL-->
 <div id="view-pos-5" class="modal-overlay">
   <div class="modal-card">
     <div class="modal-header">
@@ -2899,51 +3027,78 @@
         <span class="badge pending" style="margin-left:auto;">Pending</span>
       </div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
-        <div style="background:var(--gray-50);border-radius:10px;padding:16px;">
-          <div style="font-size:11px;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Department</div>
-          <div style="font-weight:600;color:var(--gray-800);font-size:14px;"><i class="fas fa-building" style="color:var(--maroon);margin-right:6px;"></i>Finance Office</div>
-        </div>
-        <div style="background:var(--gray-50);border-radius:10px;padding:16px;">
-          <div style="font-size:11px;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Hours Per Week</div>
-          <div style="font-weight:600;color:var(--gray-800);font-size:14px;"><i class="fas fa-clock" style="color:var(--maroon);margin-right:6px;"></i>20 hours / week</div>
-        </div>
-        <div style="background:var(--gray-50);border-radius:10px;padding:16px;">
-          <div style="font-size:11px;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Slots</div>
-          <div style="font-weight:600;color:var(--red);font-size:14px;"><i class="fas fa-users" style="margin-right:6px;"></i>3 Filled / 3 Total — Full</div>
-        </div>
-        <div style="background:var(--gray-50);border-radius:10px;padding:16px;">
-          <div style="font-size:11px;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Monthly Rate</div>
-          <div style="font-weight:600;color:var(--green);font-size:14px;"><i class="fas fa-peso-sign" style="margin-right:6px;"></i>4,200 / month</div>
-        </div>
+      <div class="modal-body">
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="label">Location</span>
+            <span class="value">Finance Office, 2nd Floor</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Pay Rate</span>
+            <span class="value">₱60 / hour</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Daily Hours</span>
+            <span class="value">4 hours / day</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Availability</span>
+            <span class="value" > 3 out 3 spots filled</span>
+          </div>
       </div>
+      <hr>
+      <h4>Job Description</h4>
+        <p style="color:#4a5568; line-height:1.6;">
+          Support the Finance Office in processing financial transactions, maintaining 
+          records, and assisting with budget documentation. Assist staff in ensuring 
+          accuracy and completeness of financial reports and files.
+        </p>
+      <hr>
+      <h4>Responsibilities</h4>
+        <ul class="custom-list">
+          <li>Assist in encoding and verifying financial transactions.</li>
+          <li>Organize and maintain financial records and vouchers.</li>
+          <li>Help prepare financial summaries and reports.</li>
+          <li>Receive and log payment requests from departments.</li>
+          <li>Ensure confidentiality of all financial documents.</li>
+        </ul>
+        <h4>Requirements & Qualifications</h4>
+        <ul class="custom-list">
+          <li>Must be a currently enrolled student preferably in Accountancy or Finance.</li>
+          <li>Minimum GPA of 2.0 or higher.</li>
+          <li>Strong numerical and analytical skills.</li>
+          <li>High level of integrity and attention to detail.</li>
+        </ul>
+        <hr>
+        <h4>Required Skills</h4>
+        <div class="skill-tags">
+          <span>Bookkeeping</span>
+          <span>MS Excel</span>
+          <span>Data Encoding</span>
+          <span>Financial Records</span>
+          <span>Attention to Detail</span>
+        </div>
+        
+        <hr>
+      
+        <h4>Benefits</h4>
+        <ul class="custom-list">
+          <li>₱60/hour stipend paid bi-weekly.</li>
+          <li>Practical exposure to real-world financial operations.</li>
+          <li>Certificate of completion at end of term.</li>
+          <li>Professional reference letter upon satisfactory performance.</li>
+        </ul>
 
-      <div style="margin-bottom:20px;">
-        <div style="font-size:13px;font-weight:600;color:var(--gray-600);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">Job Description</div>
-        <p style="font-size:14px;color:var(--gray-600);line-height:1.7;">Assist the Finance Office in processing financial documents, encoding transactions, filing receipts and vouchers, and supporting the accounting staff with clerical and administrative tasks.</p>
-      </div>
+        <hr>
 
-      <div style="margin-bottom:20px;">
-        <div style="font-size:13px;font-weight:600;color:var(--gray-600);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">Requirements</div>
-        <div class="doc-list">
-          <div class="doc-item">
-            <div class="doc-item-left">
-              <div class="doc-icon" style="background:#fef3c7;color:#92400e;"><i class="fas fa-file-alt"></i></div>
-            </div>
-            <div><div class="doc-name">Minimum GWA of 2.5 or higher</div><div class="doc-meta">Academic requirement</div></div>
-          </div>
-          <div class="doc-item">
-            <div class="doc-item-left">
-              <div class="doc-icon" style="background:#dcfce7;color:#15803d;"><i class="fas fa-calculator"></i></div>
-            </div>
-            <div><div class="doc-name">Basic bookkeeping or accounting knowledge</div><div class="doc-meta">Technical requirement</div></div>
-          </div>
-          <div class="doc-item">
-            <div class="doc-item-left">
-              <div class="doc-icon" style="background:#ede9fe;color:#6d28d9;"><i class="fas fa-user-check"></i></div>
-            </div>
-            <div><div class="doc-name">Must be a currently enrolled student</div><div class="doc-meta">Enrollment requirement</div></div>
-          </div>
+        <h4>Supervisor</h4>
+        <div class="info-item">
+          <span class="label">Name</span>
+          <span class="value">Ms. Carla Bautista</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Email</span>
+          <span class="value">carla.bautista@wmsu.edu.ph</span>
         </div>
       </div>
 
@@ -2975,51 +3130,87 @@
         <span class="badge pending" style="margin-left:auto;">Pending</span>
       </div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
-        <div style="background:var(--gray-50);border-radius:10px;padding:16px;">
-          <div style="font-size:11px;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Department</div>
-          <div style="font-weight:600;color:var(--gray-800);font-size:14px;"><i class="fas fa-building" style="color:var(--maroon);margin-right:6px;"></i>College of Nursing</div>
+      <div class="modal-body">
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="label">Location</span>
+            <span class="value">University Clinic, Ground Floor</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Pay Rate</span>
+            <span class="value">₱55 / hour</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Daily Hours</span>
+            <span class="value">4 hours / day</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Availability</span>
+            <span class="value">No slots filled.</span>
+          </div>
         </div>
-        <div style="background:var(--gray-50);border-radius:10px;padding:16px;">
-          <div style="font-size:11px;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Hours Per Week</div>
-          <div style="font-weight:600;color:var(--gray-800);font-size:14px;"><i class="fas fa-clock" style="color:var(--maroon);margin-right:6px;"></i>20 hours / week</div>
-        </div>
-        <div style="background:var(--gray-50);border-radius:10px;padding:16px;">
-          <div style="font-size:11px;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Slots</div>
-          <div style="font-weight:600;color:var(--green);font-size:14px;"><i class="fas fa-users" style="margin-right:6px;"></i>0 Filled / 6 Total — Open</div>
-        </div>
-        <div style="background:var(--gray-50);border-radius:10px;padding:16px;">
-          <div style="font-size:11px;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Monthly Rate</div>
-          <div style="font-weight:600;color:var(--green);font-size:14px;"><i class="fas fa-peso-sign" style="margin-right:6px;"></i>4,800 / month</div>
-        </div>
-      </div>
 
-      <div style="margin-bottom:20px;">
-        <div style="font-size:13px;font-weight:600;color:var(--gray-600);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">Job Description</div>
-        <p style="font-size:14px;color:var(--gray-600);line-height:1.7;">Assist the university clinic staff in attending to student health needs, organizing medical supplies, encoding patient records, and supporting nursing faculty during health-related activities and programs.</p>
-      </div>
+        <hr>
 
-      <div style="margin-bottom:20px;">
-        <div style="font-size:13px;font-weight:600;color:var(--gray-600);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">Requirements</div>
-        <div class="doc-list">
-          <div class="doc-item">
-            <div class="doc-item-left">
-              <div class="doc-icon" style="background:#fef3c7;color:#92400e;"><i class="fas fa-file-medical"></i></div>
-            </div>
-            <div><div class="doc-name">Preferably a Nursing student</div><div class="doc-meta">Program requirement</div></div>
-          </div>
-          <div class="doc-item">
-            <div class="doc-item-left">
-              <div class="doc-icon" style="background:#dcfce7;color:#15803d;"><i class="fas fa-file-alt"></i></div>
-            </div>
-            <div><div class="doc-name">Minimum GWA of 2.5 or higher</div><div class="doc-meta">Academic requirement</div></div>
-          </div>
-          <div class="doc-item">
-            <div class="doc-item-left">
-              <div class="doc-icon" style="background:#ede9fe;color:#6d28d9;"><i class="fas fa-user-check"></i></div>
-            </div>
-            <div><div class="doc-name">Must be a currently enrolled student</div><div class="doc-meta">Enrollment requirement</div></div>
-          </div>
+        <h4>Job Description</h4>
+          <p style="color:#4a5568; line-height:1.6;">
+            Assist the University Clinic staff in providing basic health services and 
+            administrative support. Help maintain a clean, organized, and welcoming 
+            clinic environment for students and staff seeking medical attention.
+          </p>
+      
+        <hr>
+
+        <h4>Responsibilities</h4>
+        <ul class="custom-list">
+          <li>Assist clinic staff in receiving and attending to patients.</li>
+          <li>Maintain cleanliness and orderliness of the clinic area.</li>
+          <li>Help organize and update patient records and logs.</li>
+          <li>Monitor and replenish basic medical supplies as needed.</li>
+          <li>Assist in coordinating referrals to external medical facilities.</li>
+        </ul>
+
+        <hr>
+
+        <h4>Requirements & Qualifications</h4>
+        <ul class="custom-list">
+          <li>Must be a currently enrolled student preferably in Nursing or Health Sciences.</li>
+          <li>Minimum GPA of 2.5 or higher.</li>
+          <li>Compassionate, patient, and service-oriented.</li>
+          <li>Basic knowledge of first aid and health protocols.</li>
+        </ul>
+
+        <hr>
+
+        <h4>Required Skills</h4>
+        <div class="skill-tags">
+          <span>First Aid</span>
+          <span>Patient Assistance</span>
+          <span>Record Keeping</span>
+          <span>Communication</span>
+          <span>Health Protocols</span>
+        </div>
+
+        <hr>
+
+        <h4>Benefits</h4>
+        <ul class="custom-list">
+          <li>₱55/hour stipend paid bi-weekly.</li>
+          <li>Hands-on clinical exposure and experience.</li>
+          <li>Certificate of completion at end of term.</li>
+          <li>Free annual health check-up from the university clinic.</li>
+        </ul>
+
+        <hr>
+
+        <h4>Supervisor</h4>
+        <div class="info-item">
+          <span class="label">Name</span>
+          <span class="value">Nurse Grace Padilla</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Email</span>
+          <span class="value">grace.padilla@wmsu.edu.ph</span>
         </div>
       </div>
 
