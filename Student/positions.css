@@ -214,7 +214,7 @@ body {
 .status-badge.interview { background: #cce5ff; color: #004085; }
 .status-badge.approved { background: #d4edda; color: #158000; }
 
-
+.modal-status-badge { display: inline-flex; align-items: center; margin-top: 10px; }
 
 .application-action { display: flex; gap: 10px; border-top: 1px solid #eee; padding: 15px 0; margin-top: 10px; }
 
@@ -254,6 +254,44 @@ body {
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     font-family: 'Segoe UI', Roboto, sans-serif;
 }
+
+.doc-student-info {
+    display: flex;
+    align-items: center; 
+    justify-content: space-between;
+    gap: 16px;
+    background: #f9fafb; 
+    border-radius: 10px; 
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  .doc-student-info .avatar { 
+    width: 48px; 
+    height: 48px; 
+    font-size: 15px; 
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .doc-student-info .info-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .doc-student-info .info-name { font-weight: 700; font-size: 18px;  color: #1a1a1a;}
+  .doc-student-info .info-sub  { font-size: 14px; color: gray; margin-top: 4px}
+  .doc-student-info .modal-status-badge {
+    margin-top: 0;
+    align-self: flex-start;
+    white-space: nowrap;
+  }
 
 .cancel-modal-box {
     background: #ffffff;
