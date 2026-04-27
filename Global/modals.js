@@ -290,7 +290,7 @@ class ModalManager {
             const customReason = reasonTextarea.value.trim();
 
             if (!selectedReason) {
-                alertify.error('Please select a reason');
+                alert('Please select a reason');
                 return;
             }
 

@@ -3,170 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Department Profile | WMSU-SAMS</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Library Department | Profile</title>
+
+    <!-- YOUR EXISTING CSS -->
     <link rel="stylesheet" href="employer_profile.css">
+
+    <!-- ICONS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
+
 <body>
 
-    <div class="layout-wrapper">
-        
-        <aside class="sidebar-left">
-            <a href="employer_dashboard.html" class="back-btn-link"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</a>
-        
-            <div class="profile-summary-card">
-                <div class="dept-icon-circle">
-                    <i class="fa-solid fa-building-columns"></i>
-                </div>
-                <h3>Library Department</h3>
-                <p>WMSU Main Campus</p>
-                <div class="status-chip verified">Official Department</div>
+<div class="profile-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="profile-sidebar">
+
+        <a href="employer_dashboard.html" class="back-link">
+            <i class="fa-solid fa-chevron-left"></i> Dashboard
+        </a>
+
+        <div class="profile-card-mini">
+            <div class="avatar-container">
+                <img src="../Images/profile.jpg.jpg" alt="Library Department">
+                <button class="change-photo">
+                    <i class="fa-solid fa-camera"></i>
+                </button>
             </div>
 
-            <nav class="profile-nav">
-                <a href="#dept-info" class="nav-item active"><i class="fas fa-info-circle"></i> Basic Info</a>
-                <a href="#positions" class="nav-item"><i class="fas fa-user-tie"></i> Posted Positions</a>
-                <a href="#documents" class="nav-item"><i class="fas fa-file-alt"></i> Compliance Docs</a>
-                <a href="#settings" class="nav-item"><i class="fas fa-cog"></i> Account Settings</a>
-            </nav>
+            <h2>Library Department</h2>
 
-            <div class="alert-box">
-                <h4><i class="fa-solid fa-circle-exclamation"></i> Action Required</h4>
-                <p>3 documents are missing or expired. Upload them to maintain hiring eligibility.</p>
-                <ul class="mini-list">
-                    <li>Registration Form</li>
-                    <li>HOD ID Copy</li>
-                    <li>Authorization</li>
-                </ul>
+            <div class="badge verified">
+                <i class="fa-solid fa-circle-check"></i> Verified Department
             </div>
-        </aside>
+        </div>
 
-        <main class="profile-content">
-            
-            <div class="glass-card completion-header">
-                <div class="completion-text">
-                    <span>Profile Completion</span>
-                    <strong>70%</strong>
-                </div>
-                <div class="progress-container">
-                    <div class="progress-fill" style="width: 70%;"></div>
-                </div>
+        <nav class="side-nav">
+            <a href="#info" class="active"><i class="fa-solid fa-building"></i> Department Info</a>
+            <a href="#details"><i class="fa-solid fa-circle-info"></i> Details</a>
+            <a href="#services"><i class="fa-solid fa-briefcase"></i> Services</a>
+            <a href="#documents"><i class="fa-solid fa-file-lines"></i> Documents</a>
+        </nav>
+
+        <div class="eligibility-card blocked">
+            <i class="fa-solid fa-bullhorn"></i>
+            <h4>Hiring Status</h4>
+            <p>Post job openings to start receiving applicants.</p>
+        </div>
+
+    </aside>
+
+    <!-- MAIN -->
+    <main class="profile-main">
+
+        <!-- PROGRESS -->
+        <header class="content-header">
+            <div class="progress-text">
+                <span>Profile Completion</span>
+                <strong>90%</strong>
             </div>
 
-            <section id="dept-info" class="content-card">
-                <div class="card-title">
-                    <h3>Department Information</h3>
-                    <button class="text-edit-btn">Edit All</button>
-                </div>
-                <div class="form-grid">
-                    <div class="input-group">
-                        <label>College Affiliation</label>
-                        <p>College of Computing Studies</p>
-                    </div>
-                    <div class="input-group">
-                        <label>Head of Department</label>
-                        <p>Dr. Juan dela Cruz</p>
-                    </div>
-                    <div class="input-group">
-                        <label>Contact Email</label>
-                        <p>ccs@wmsu.edu.ph</p>
-                    </div>
-                    <div class="input-group">
-                        <label>Office Location</label>
-                        <p>CCS Building, WMSU Main</p>
-                    </div>
-                </div>
-            </section>
+            <div class="progress-track">
+                <div class="progress-fill" style="width: 90%;"></div>
+            </div>
+        </header>
 
-            <section id="positions" class="content-card">
-                <div class="card-title">
-                    <h3>Positions Posted</h3>
-                    <button  class="doc-actions" id="edit-btn-text"><a href="create_post.html">+ New Post</a></button>
-                </div>
-                <div class="table-responsive">
-                    <table class="dept-table">
-                        <thead>
-                            <tr>
-                                <th>Position</th>
-                                <th>Slots</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>IT Lab Assistant</td>
-                                <td>3</td>
-                                <td><span class="badge pending">Pending</span></td>
-                                <td><button class="icon-btn"><i class="fas fa-eye"></i></button></td>
-                            </tr>
-                            <tr>
-                                <td>Library Aide</td>
-                                <td>2</td>
-                                <td><span class="badge approved">Approved</span></td>
-                                <td><button class="icon-btn"><i class="fas fa-eye"></i></button></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
+        <!-- SECTION 1 -->
+        <section id="info" class="profile-section">
+            <div class="section-header">
+                <h3><i class="fa-solid fa-building"></i> Department Information</h3>
+            </div>
 
-            <section id="documents" class="content-card">
-                <div class="card-title">
-                    <h3>Compliance Documents</h3>
+            <div class="info-grid">
+                <div class="info-box">
+                    <span>Email</span>
+                    <p>library@wmsu.edu.ph</p>
                 </div>
-                <div class="doc-grid">
-                    <div class="doc-row">
-                        <div class="doc-meta">
-                            <i class="fas fa-file-pdf"></i>
-                            <div>
-                                <strong>Registration Form</strong>
-                                <span>Missing</span>
-                            </div>
-                        </div>
-                       <button class="doc-actions" id="edit-btn-text">Upload Now</button>  
-                    </div>
-                    <div class="doc-row">
-                        <div class="doc-meta">
-                            <i class="fas fa-file-pdf"></i>
-                            <div>
-                                <strong>Authorization Letter</strong>
-                                <span>Verified • 2026</span>
-                            </div>
-                        </div>
-                        <div class="doc-btns">
-                            <button title="Download" class="secondary-btn" id="add-btn"><i class="fas fa-download"></i></button>
-                            <button title="Replace" class="secondary-btn" id="add-btn"><i class="fas fa-sync"></i></button>
-                        </div>
-                    </div>
+
+                <div class="info-box">
+                    <span>Phone</span>
+                    <p>(062) 123-4567</p>
                 </div>
-            </section>
 
-        </main>
+                <div class="info-box">
+                    <span>Location</span>
+                    <p>Main Campus Library</p>
+                </div>
 
-        <aside class="sidebar-right">
-            <div class="side-stat-card">
-                <h4>Hiring Activity</h4>
-                <div class="mini-kpi">
-                    <div class="kpi-box">
-                        <strong>05</strong>
-                        <span>Total Slots</span>
-                    </div>
-                    <div class="kpi-box">
-                        <strong>0</strong>
-                        <span>Applicants</span>
-                    </div>
+                <div class="info-box">
+                    <span>Office Hours</span>
+                    <p>8:00 AM – 5:00 PM</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2 -->
+        <section id="details" class="profile-section">
+            <div class="section-header">
+                <h3><i class="fa-solid fa-circle-info"></i> Department Details</h3>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-box">
+                    <span>Head</span>
+                    <p>Dr. Maria Santos</p>
+                </div>
+
+                <div class="info-box">
+                    <span>Department Type</span>
+                    <p>Academic Support Unit</p>
+                </div>
+
+                <div class="info-box">
+                    <span>Staff Count</span>
+                    <p>12</p>
+                </div>
+
+                <div class="info-box">
+                    <span>Description</span>
+                    <p>Provides learning resources, study spaces, and research assistance.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3 -->
+        <section id="services" class="profile-section">
+            <div class="section-header">
+                <h3><i class="fa-solid fa-briefcase"></i> Services & Opportunities</h3>
+            </div>
+
+            <div class="skills-container">
+                <span class="skill-tag">Book Lending</span>
+                <span class="skill-tag">Research Assistance</span>
+                <span class="skill-tag">Archiving</span>
+                <span class="skill-tag">Student Assistant</span>
+                <span class="skill-tag">Clerical Work</span>
+            </div>
+        </section>
+
+        <!-- DOCUMENTS -->
+        <section id="documents" class="profile-section">
+            <div class="section-header">
+                <h3><i class="fa-solid fa-file-lines"></i> Documents</h3>
+                <button id="replace-btn">Upload</button>
+            </div>
+
+            <div class="doc-item">
+                <i class="fa-solid fa-file doc-icon"></i>
+                <div class="doc-info">
+                    <strong>Department Accreditation</strong>
+                    <span>Updated Jan 2026</span>
+                </div>
+                <div class="doc-actions">
+                    <button>View</button>
+                    <button>Replace</button>
                 </div>
             </div>
 
-            <div class="side-stat-card">
-                <h4>Account Security</h4>
-                <p class="small-text">Last password change: 2 months ago</p>
-                <button id="edit-btn-text">Update Password</button>
+            <div class="doc-item">
+                <i class="fa-solid fa-file doc-icon"></i>
+                <div class="doc-info">
+                    <strong>Staff List</strong>
+                    <span>Updated Feb 2026</span>
+                </div>
+                <div class="doc-actions">
+                    <button>View</button>
+                    <button>Replace</button>
+                </div>
             </div>
-        </aside>
+        </section>
 
-    </div>
+    </main>
+
+</div>
 
 </body>
 </html>

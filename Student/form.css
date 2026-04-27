@@ -1,22 +1,26 @@
 :root {
-    --wmsu-crimson: #720b0b;
-    --wmsu-dark: #500808;
-    --bg-gray: #f4f7f6;
-    --text-dark: #2d3436;
-    --border-color: #dcdde1;
+	--wmsu-crimson: #720b0b;
+	--wmsu-dark: #500808;
+	--bg-gray: #f4f7f6;
+	--text-dark: #2d3436;
+	--border-color: #dcdde1;
 }
 
 body {
-    background-color: var(--bg-gray);
-    font-family: 'Inter', 'Segoe UI', sans-serif;
-    color: var(--text-dark);
-    margin: 0; padding: 40px 20px;
+	background-color: var(--bg-gray);
+	font-family: 'Inter', 'Segoe UI', sans-serif;
+	color: var(--text-dark);
+	margin: 0;
+	padding: 40px 20px;
 }
 
-.form-wrapper { max-width: 800px; margin: 0 auto; }
+.form-wrapper {
+	max-width: 800px;
+	margin: 0 auto;
+}
 
 /*  RETURN BUTTON  */
-.return-btn{
+.return-btn {
 	position: absolute;
 	top: 40px;
 	left: 39px;
@@ -26,157 +30,374 @@ body {
 }
 
 .return-btn a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background-color: rgba(0,0,0,0.5);
-    color: #fff;
-    border-radius: 50%;
-    text-decoration: none;
-    transition: background 0.3s, transform 0.2s;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	background-color: rgba(0, 0, 0, 0.5);
+	color: #fff;
+	border-radius: 50%;
+	text-decoration: none;
+	transition: background 0.3s, transform 0.2s;
 }
 
-.return-btn a:hover {background-color: rgba(0,0,0,0.8); transform: translateY(-2px);}
+.return-btn a:hover {
+	background-color: rgba(0, 0, 0, 0.8);
+	transform: translateY(-2px);
+}
 
 /* --- BRAND HEADER --- */
 .cppeso-header {
-    background: var(--wmsu-crimson);
-    color: white;
-    padding: 30px;
-    border-radius: 15px 15px 0 0;
-    margin-bottom: 2px;
-    margin-top: 69px;
+	background: var(--wmsu-crimson);
+	color: white;
+	padding: 30px;
+	border-radius: 15px 15px 0 0;
+	margin-bottom: 2px;
+	margin-top: 69px;
 }
-.header-content { display: flex; align-items: center; gap: 20px; }
-.form-logo { width: 60px; height: 60px; background-size: cover; border-radius: 50%; }
-.title-area h1 { margin: 0; font-size: 24px; letter-spacing: 1px; }
-.title-area p { margin: 5px 0 0; font-size: 14px; opacity: 0.9; }
+
+.header-content {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+.form-logo {
+	width: 60px;
+	height: 60px;
+	background-size: cover;
+	border-radius: 50%;
+}
+
+.title-area h1 {
+	margin: 0;
+	font-size: 24px;
+	letter-spacing: 1px;
+}
+
+.title-area p {
+	margin: 5px 0 0;
+	font-size: 14px;
+	opacity: 0.9;
+}
 
 /* --- CARD SYSTEM --- */
 .form-card {
-    background: white;
-    padding: 30px;
-    margin-bottom: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+	background: white;
+	padding: 30px;
+	margin-bottom: 20px;
+	border-radius: 12px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
+
 .section-title {
-    font-size: 18px;
-    color: var(--wmsu-crimson);
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border-bottom: 2px solid #fdf2f2;
-    padding-bottom: 10px;
+	font-size: 18px;
+	color: var(--wmsu-crimson);
+	margin-bottom: 20px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	border-bottom: 2px solid #fdf2f2;
+	padding-bottom: 10px;
 }
 
 /* --- GRID LAYOUTS --- */
-.input-row { display: flex; gap: 20px; margin-bottom: 15px; }
-.field { flex: 1; display: flex; flex-direction: column; }
-.grid-3 .field { width: 33%; }
-.split-2-1 .field:first-child { flex: 2; }
-
-label { font-weight: 600; font-size: 13px; margin-bottom: 8px; color: #555; }
-
-input, select, textarea {
-    padding: 12px;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    font-size: 14px;
-    transition: 0.3s border;
+.input-row {
+	display: flex;
+	gap: 20px;
+	margin-bottom: 15px;
 }
-input:focus { border-color: var(--wmsu-crimson); outline: none; }
+
+.field {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.grid-3 .field {
+	width: 33%;
+}
+
+.split-2-1 .field:first-child {
+	flex: 2;
+}
+
+label {
+	font-weight: 600;
+	font-size: 13px;
+	margin-bottom: 8px;
+	color: #555;
+}
+
+input,
+select,
+textarea {
+	padding: 12px;
+	border: 1px solid var(--border-color);
+	border-radius: 8px;
+	font-size: 14px;
+	transition: 0.3s border;
+}
+
+input:focus {
+	border-color: var(--wmsu-crimson);
+	outline: none;
+}
 
 /* --- SCHEDULE GRID --- */
-.schedule-grid { background: #fcfcfc; border-radius: 10px; border: 1px solid #eee; }
-.day-row {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 12px 20px; border-bottom: 1px solid #eee;
+.schedule-grid {
+	background: #fcfcfc;
+	border-radius: 10px;
+	border: 1px solid #eee;
 }
-.day-row:last-child { border-bottom: none; }
-.day-label { width: 120px;}
-.time-fields { display: flex; align-items: center; gap: 10px; color: #888; font-size: 12px; }
-.time-fields input { padding: 5px; width: 110px; }
+
+.day-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 12px 20px;
+	border-bottom: 1px solid #eee;
+}
+
+.day-row:last-child {
+	border-bottom: none;
+}
+
+.day-label {
+	width: 120px;
+}
+
+.time-fields {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	color: #888;
+	font-size: 12px;
+}
+
+.time-fields input {
+	padding: 5px;
+	width: 110px;
+}
 
 /* --- UPLOAD BOX --- */
 .upload-box {
-    border: 2px dashed var(--border-color);
-    padding: 30px;
-    text-align: center;
-    display: flex; flex-direction: column;
-    border-radius: 10px; cursor: pointer;
-    transition: 0.3s;
+	border: 2px dashed var(--border-color);
+	padding: 30px;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: 0.3s;
 }
-.upload-box:hover { border-color: var(--wmsu-crimson); background: #fdf2f2; }
-.upload-box i { font-size: 30px; color: var(--wmsu-crimson); margin-bottom: 10px; }
-.upload-box input { display: none; }
+
+.upload-box:hover {
+	border-color: var(--wmsu-crimson);
+	background: #fdf2f2;
+}
+
+.upload-box i {
+	font-size: 30px;
+	color: var(--wmsu-crimson);
+	margin-bottom: 10px;
+}
+
+.upload-box input {
+	display: none;
+}
 
 /* --- SUBMIT BUTTON --- */
 .submit-btn {
-    width: 100%;
-    background: var(--wmsu-crimson);
-    color: white;
-    padding: 18px;
-    border: none;
-    border-radius: 12px;
-    font-size: 18px;
-    font-weight: 700;
-    cursor: pointer;
-    display: flex; justify-content: center; align-items: center; gap: 15px;
-    transition: 0.3s;
-    text-decoration: none;
+	width: 100%;
+	background: var(--wmsu-crimson);
+	color: white;
+	padding: 18px;
+	border: none;
+	border-radius: 12px;
+	font-size: 18px;
+	font-weight: 700;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 15px;
+	transition: 0.3s;
+	text-decoration: none;
 }
-.submit-btn:hover { background: var(--wmsu-dark); transform: translateY(-2px); }
 
-.declaration { margin-bottom: 25px; }
-.checkbox-wrapper { display: flex; gap: 12px; align-items: flex-start; cursor: pointer; }
-.checkbox-wrapper p { font-size: 13px; color: #666; margin: 0; }
+.submit-btn:hover {
+	background: var(--wmsu-dark);
+	transform: translateY(-2px);
+}
+
+.declaration {
+	margin-bottom: 25px;
+}
+
+.checkbox-wrapper {
+	display: flex;
+	gap: 12px;
+	align-items: flex-start;
+	cursor: pointer;
+}
+
+.checkbox-wrapper p {
+	font-size: 13px;
+	color: #666;
+	margin: 0;
+}
 
 /* ===== RESPONSIVE LAYOUT ===== */
 
 /* Medium Screens / Tablets */
 @media (max-width: 900px) {
-    .input-row { flex-direction: column; }
-    .day-row { flex-direction: column; gap: 10px; }
-    .grid-3 .field { width: 100%; }
-    .split-2-1 .field:first-child { flex: 1; }
-    .cppeso-header { padding: 25px; }
-    .header-content { flex-direction: column; gap: 10px; }
-    .title-area h1 { font-size: 22px; }
-    .title-area p { font-size: 13px; }
-    .form-card { padding: 25px; }
+	.input-row {
+		flex-direction: column;
+	}
+
+	.day-row {
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	.grid-3 .field {
+		width: 100%;
+	}
+
+	.split-2-1 .field:first-child {
+		flex: 1;
+	}
+
+	.cppeso-header {
+		padding: 25px;
+	}
+
+	.header-content {
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	.title-area h1 {
+		font-size: 22px;
+	}
+
+	.title-area p {
+		font-size: 13px;
+	}
+
+	.form-card {
+		padding: 25px;
+	}
 }
 
 /* Small Tablets / Large Phones */
 @media (max-width: 600px) {
-    body { padding: 20px 15px; }
-    .cppeso-header { padding: 20px; margin-top: 60px; }
-    .form-logo { width: 50px; height: 50px; }
-    .title-area h1 { font-size: 20px; }
-    .title-area p { font-size: 12px; }
-    .input-row { gap: 0; }
-    .day-label { width: 100%; }
-    .time-fields { flex-wrap: wrap; gap: 5px; }
-    .time-fields input { width: 100%; }
-    .upload-box { padding: 25px; }
-    .submit-btn { padding: 16px; font-size: 16px; }
+	body {
+		padding: 20px 15px;
+	}
+
+	.cppeso-header {
+		padding: 20px;
+		margin-top: 60px;
+	}
+
+	.form-logo {
+		width: 50px;
+		height: 50px;
+	}
+
+	.title-area h1 {
+		font-size: 20px;
+	}
+
+	.title-area p {
+		font-size: 12px;
+	}
+
+	.input-row {
+		gap: 0;
+	}
+
+	.day-label {
+		width: 100%;
+	}
+
+	.time-fields {
+		flex-wrap: wrap;
+		gap: 5px;
+	}
+
+	.time-fields input {
+		width: 100%;
+	}
+
+	.upload-box {
+		padding: 25px;
+	}
+
+	.submit-btn {
+		padding: 16px;
+		font-size: 16px;
+	}
 }
 
 /* Mobile Phones */
 @media (max-width: 420px) {
-    .return-btn { top: 20px; left: 15px; }
-    .cppeso-header { padding: 15px; border-radius: 10px; margin-top: 50px; }
-    .header-content { gap: 10px; }
-    .form-logo { width: 45px; height: 45px; }
-    .title-area h1 { font-size: 18px; }
-    .title-area p { font-size: 11px; }
-    .form-card { padding: 20px; }
-    .section-title { font-size: 16px; }
-    input, select, textarea { font-size: 13px; padding: 10px; }
-    .submit-btn { font-size: 15px; padding: 14px; }
-    .upload-box i { font-size: 28px; }
-    .checkbox-wrapper p { font-size: 12px; }
+	.return-btn {
+		top: 20px;
+		left: 15px;
+	}
+
+	.cppeso-header {
+		padding: 15px;
+		border-radius: 10px;
+		margin-top: 50px;
+	}
+
+	.header-content {
+		gap: 10px;
+	}
+
+	.form-logo {
+		width: 45px;
+		height: 45px;
+	}
+
+	.title-area h1 {
+		font-size: 18px;
+	}
+
+	.title-area p {
+		font-size: 11px;
+	}
+
+	.form-card {
+		padding: 20px;
+	}
+
+	.section-title {
+		font-size: 16px;
+	}
+
+	input,
+	select,
+	textarea {
+		font-size: 13px;
+		padding: 10px;
+	}
+
+	.submit-btn {
+		font-size: 15px;
+		padding: 14px;
+	}
+
+	.upload-box i {
+		font-size: 28px;
+	}
+
+	.checkbox-wrapper p {
+		font-size: 12px;
+	}
 }
