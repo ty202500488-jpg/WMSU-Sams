@@ -78,17 +78,16 @@
         <form id="referralForm" action="submit_referral.php" method="POST">
             
             <section class="form-card">
-                <h2 class="section-title"><i class="fa-solid fa-user"></i> 1. Student Information</h2>
-                <span class="instruction-tag">Student: Please fill in your details below.</span>
+                <h2 class="section-title"><i class="fa-solid fa-address-card"></i> Personal Information</h2>
                 
-                <div class="name-grid">
+                <div class="input-row">
                     <div class="field">
                         <label>First Name</label>
                         <input type="text" name="first_name" placeholder="Required" value="Juan">
                     </div>
                     <div class="field">
-                        <label>M.I.</label>
-                        <input type="text" name="middle_initial" maxlength="2" value="Dela">
+                        <label>Middle Name</label>
+                        <input type="text" name="middle_name" placeholder="Optional" value="Dela">
                     </div>
                     <div class="field">
                         <label>Last Name</label>
@@ -96,10 +95,63 @@
                     </div>
                 </div>
 
-                <div class="input-row" style="margin-top: 15px;">
+                <div class="input-row split-2-1">
                     <div class="field">
                         <label>Student ID Number</label>
-                        <input type="text" name="student_id" value="2023-00000" required>
+                        <input type="text" name="student_id" placeholder="e.g., 2021-01234" value="2023-10452">
+                    </div>
+                    <div class="field">
+                        <label>Date of Birth</label>
+                        <input type="date" name="dob" value="2003-01-10" required>
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <div class="field">
+                        <label>Email Address</label>
+                        <input type="email" name="email" placeholder="name@wmsu.edu.ph" value="juan@email.com">
+                    </div>
+                    <div class="field">
+                        <label>Contact Number</label>
+                        <input type="tel" name="contact" placeholder="09XXXXXXXXX" value="09123456789">
+                    </div>
+                </div>
+            </section>
+
+            <section class="form-card">
+                <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Academic Information</h2>
+                <div class="input-row">
+                    <div class="field">
+                        <label>Course</label>
+                        <select name="course" required>
+                            <option value="" disabled>Select Course</option>
+                            <option selected>Bachelor of Science in Computer Science</option>
+                            <option>Bachelor of Science in Information Technology</option>
+                            <option>Bachelor of Arts in Psychology</option>
+                            <option>College of Liberal Arts</option>
+                            </select>
+                    </div>
+                </div>
+                <div class="input-row grid-3">
+                    <div class="field">
+                        <label>Year Level</label>
+                        <select name="year_level" required>
+                            <option>1st Year</option>
+                            <option>2nd Year</option>
+                            <option selected>3rd Year</option>
+                            <option>4th Year</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>Semester</label>
+                        <select name="semester" required>
+                            <option selected>First Semester</option>
+                            <option>Second Semester</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>Latest GPA</label>
+                        <input type="number" step="0.01" name="gpa" placeholder="0.00" required>
                     </div>
                 </div>
             </section>
