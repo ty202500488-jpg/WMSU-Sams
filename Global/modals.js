@@ -198,19 +198,24 @@ class ModalManager {
     /**
      * Create and show a rejection reason modal
      * @param {string} studentName - Name of the student being rejected
-     * @param {function} onSubmit - Callback with reason when submitted (reason object with type, customReason, etc)
+     * @param {function} onSubmit - Callback with reason when submitted (reason object with type, reason, submittedAt)
      * @param {function} onCancel - Callback when cancelled (optional)
+     * @param {object} options - Optional title and description overrides
      */
-    showRejectionReasonModal(studentName, onSubmit, onCancel = null) {
+    showRejectionReasonModal(studentName, onSubmit, onCancel = null, options = {}) {
         const modalId = 'rejection-modal-' + Date.now();
+        const {
+            title = 'Reject Application',
+            description = `Rejecting application from <strong>${studentName}</strong>`
+        } = options;
         
         const modal = document.createElement('div');
         modal.id = modalId;
         modal.className = 'modal-overlay rejection-modal';
         modal.innerHTML = `
             <div class="modal-box">
-                <h3><i class="fa-solid fa-times-circle"></i> Reject Application</h3>
-                <p>Rejecting application from <strong>${studentName}</strong></p>
+                <h3><i class="fa-solid fa-times-circle"></i> ${title}</h3>
+                <p>${description}</p>
                 
                 <form class="rejection-form" id="rejection-form-${Date.now()}">
                     <div class="form-group">
@@ -364,6 +369,6 @@ function showModal(modalId) {
  * @param {function} onSubmit - Callback with rejection reason
  * @param {function} onCancel - Optional cancel callback
  */
-function showRejectionReasonModal(studentName, onSubmit, onCancel = null) {
-    modalManager.showRejectionReasonModal(studentName, onSubmit, onCancel);
+function showRejectionReasonModal(studentName, onSubmit, onCancel = null, options = {}) {
+    modalManager.showRejectionReasonModal(studentName, onSubmit, onCancel, options);
 }
