@@ -17,16 +17,14 @@
             <a href="student_dashboard.html"><i class="fas fa-home"></i> Home</a>
             <a href="notification.html"><i class="fas fa-bell"></i> Notifications</a>
             <a href="application.html" class="active"><i class="fas fa-file-alt"></i> Applications</a>
-             <a href="positions.html"><i class="fas fa-briefcase"></i> Positions</a>
+            <a href="positions.html"><i class="fas fa-briefcase"></i> Positions</a>
         </nav>
-
         <div class="top-right">
             <div class="profile-dropdown">
                 <a href="student_profile.html">
-                <img src="../images/profile.jpg.jpg" class="profile-img">
+                    <img src="../images/profile.jpg.jpg" class="profile-img">
                 </a>
             </div>
-
             <div class="settings-menu">
                 <i class="fas fa-bars menu-icon"></i>
                 <div class="settings-dropdown">
@@ -34,11 +32,11 @@
                     <a href="../Global/login.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
                 </div>
             </div>
-        </div>  
+        </div>
     </header>
 
     <div class="container">
-        
+
         <aside class="sidebar-panel">
             <div class="panel-header">
                 <h3>Applications</h3>
@@ -54,7 +52,7 @@
         </aside>
 
         <main class="app-list">
-            
+
             <div class="summary-grid">
                 <div class="stat-box"><strong>3</strong><span>Total</span></div>
                 <div class="stat-box"><strong>1</strong><span>Under Review</span></div>
@@ -64,18 +62,18 @@
 
             <div class="date-divider">Today</div>
 
+            <!-- CARD 1: IT Support Intern – MIS -->
             <div class="app-card">
                 <div class="card-header">
                     <div class="dept-icon tech"><i class="fas fa-laptop-code"></i></div>
-                        <div class="header-text">
-                            <h4>IT Support Intern – MIS</h4>
-                            <span>Applied on Feb 28, 2026</span>
+                    <div class="header-text">
+                        <h4>IT Support Intern – MIS</h4>
+                        <span>Applied on Feb 28, 2026</span>
                     </div>
                     <div class="notif-opts">
                         <button class="three-dots"><i class="fas fa-ellipsis-h"></i></button>
                     </div>
                 </div>
-
                 <div class="card-body">
                     <div class="status-line">
                         <span class="status-badge status-interview">Interview Scheduled</span>
@@ -86,21 +84,13 @@
                         <span>Interview: <strong>March 3, 10:00 AM - 12:00 PM</strong> at MIS Office</span>
                     </div>
                 </div>
-
                 <div class="card-footer">
                     <a href="Referral.html" class="footer-btn btn-confirm">Confirm Attendance</a>
-                    <a href="#view-details-1" class="footer-btn"><i class="far fa-eye"></i>View Details</a>
+                    <a href="#view-details-1" class="footer-btn"><i class="far fa-eye"></i> View Details</a>
                 </div>
-
-                    <div id="view-details-1" class="modal-overlay">
-                        <div class="modal-box">
-                            <h3>Application Description</h3>
-                            <p>Detailed information about the IT Support Intern position goes here...</p>
-                            <a href="#" class="secondary-btn" style="text-decoration: none;">Close</a>
-                        </div>
-                    </div>
             </div>
 
+            <!-- CARD 2: Student Assistant – IT Office -->
             <div class="app-card">
                 <div class="card-header">
                     <div class="dept-icon tech"><i class="fas fa-laptop-code"></i></div>
@@ -112,13 +102,11 @@
                         <button class="three-dots"><i class="fas fa-ellipsis-h"></i></button>
                     </div>
                 </div>
-
                 <div class="card-body">
                     <div class="status-line">
                         <span class="status-badge status-review">Under Review</span>
                         <span class="app-id">ID: APP-2026-0142</span>
                     </div>
-                    
                     <div class="progress-bar-container">
                         <div class="progress-step completed"></div>
                         <div class="progress-step active"></div>
@@ -127,32 +115,13 @@
                     </div>
                     <p class="step-label">Current Stage: <strong>Verification of Documents</strong></p>
                 </div>
-
                 <div class="card-footer">
-                   <a href="#view-details-1" class="footer-btn"><i class="far fa-eye"></i>View Details</a>
-                <a href="#cancel-confirm-1"class="footer-btn text-red"><i class="fas fa-times"></i> Withdraw</a>
+                    <a href="#view-details-2" class="footer-btn"><i class="far fa-eye"></i> View Details</a>
+                    <a href="#cancel-confirm-1" class="footer-btn text-red"><i class="fas fa-times"></i> Withdraw</a>
                 </div>
-
-                 <div id="view-details-1" class="modal-overlay">
-                        <div class="modal-box">
-                            <h3>Job Description</h3>
-                            <p>Detailed information about the IT Support Intern position goes here...</p>
-                            <a href="#" class="secondary-btn" style="text-decoration: none;">Close</a>
-                        </div>
-                    </div>
-
-                    <div id="cancel-confirm-1" class="modal-overlay">
-                        <div class="modal-box">
-                            <h3>Are you sure?</h3>
-                            <p>Do you really want to Withdraw this Application?</p>
-                            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
-                                <a href="#" class="primary-btn" style="text-decoration: none; background: #9f0f0f;">Withdraw</a>
-                                <a href="#" class="secondary-btn" style="text-decoration: none;">No</a>
-                            </div>
-                        </div>
-                    </div>
             </div>
 
+            <!-- CARD 3: Student Assistant – Library Dept -->
             <div class="app-card">
                 <div class="card-header">
                     <div class="dept-icon"><i class="fas fa-book"></i></div>
@@ -164,13 +133,11 @@
                         <button class="three-dots"><i class="fas fa-ellipsis-h"></i></button>
                     </div>
                 </div>
-
                 <div class="card-body">
                     <div class="status-line">
                         <span class="status-badge status-approved">Approved</span>
                         <span class="app-id">ID: APP-2026-0134</span>
                     </div>
-                    
                     <div class="progress-bar-container">
                         <div class="progress-step completed"></div>
                         <div class="progress-step completed"></div>
@@ -180,29 +147,11 @@
                     <p class="step-label">Current Stage: <strong>Waiting for Interview Schedule</strong></p>
                 </div>
                 <div class="card-footer">
-                    <a href="#view-details-1" class="footer-btn"><i class="far fa-eye"></i>View Details</a>
-                    <a href="#cancel-confirm-1"class="footer-btn text-red"><i class="fas fa-times"></i> Withdraw</a>
+                    <a href="#view-details-3" class="footer-btn"><i class="far fa-eye"></i> View Details</a>
+                    <a href="#cancel-confirm-2" class="footer-btn text-red"><i class="fas fa-times"></i> Withdraw</a>
                 </div>
-
-                 <div id="view-details-1" class="modal-overlay">
-                        <div class="modal-box">
-                            <h3>Job Description</h3>
-                            <p>Detailed information about the IT Support Intern position goes here...</p>
-                            <a href="#" class="secondary-btn" style="text-decoration: none;">Close</a>
-                        </div>
-                    </div>
-
-                    <div id="cancel-confirm-1" class="modal-overlay">
-                        <div class="modal-box">
-                            <h3>Are you sure?</h3>
-                            <p>Do you really want to Withdraw this Application?</p>
-                            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
-                                <a href="#" class="primary-btn" style="text-decoration: none; background: #9f0f0f;">Withdraw</a>
-                                <a href="#" class="secondary-btn" style="text-decoration: none;">No</a>
-                            </div>
-                        </div>
-                    </div>
             </div>
+
         </main>
 
         <aside class="right-panel">
@@ -214,7 +163,6 @@
                     <li><i class="fas fa-check"></i> Wear formal attire for interviews.</li>
                 </ul>
             </div>
-
             <div class="info-card contact-card">
                 <h4>Need Help?</h4>
                 <p>Contact the Student Affairs Office if you encounter issues with your submission.</p>
@@ -222,6 +170,253 @@
             </div>
         </aside>
 
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- ALL MODALS — outside .container, directly before </body>     -->
+    <!-- This prevents stacking context trapping behind the nav       -->
+    <!-- ============================================================ -->
+
+    <!-- Modal: IT Support Intern – MIS -->
+    <div id="view-details-1" class="modal-overlay">
+        <div class="modal-card">
+            <a href="#" class="modal-close-btn">&times;</a>
+            <div class="modal-header">
+                <h2>IT Support Intern – MIS</h2>
+                <p class="subtitle"><strong>Department:</strong> MIS Department</p>
+            </div>
+            <hr>
+            <div class="modal-body">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="label">Location</span>
+                        <span class="value">Admin Building, Room 104</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Pay Rate</span>
+                        <span class="value">₱60 / hour</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Daily Hours</span>
+                        <span class="value">4 hours / day</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Availability</span>
+                        <span class="value">3 of 5 slots left</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Supervisor</span>
+                        <span class="value">Ms. Ana Rodriguez</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Deadline</span>
+                        <span class="value">Until further notice</span>
+                    </div>
+                </div>
+                <hr>
+                <h4>Job Description</h4>
+                <p style="color: #4a5568; line-height: 1.6;">
+                    Assist the Management Information Systems Department in its day-to-day administrative and technical operations. Duties include encoding and organizing department records, supporting staff with system-related documentation, coordinating IT requests from other departments, and performing light technical tasks such as software updates and peripheral setup as directed.
+                </p>
+                <hr>
+                <h4>Requirements & Qualifications</h4>
+                <ul class="custom-list">
+                    <li>Must be a currently enrolled student (BSIT, BSCS, or related program, 2nd year and above).</li>
+                    <li>Minimum GPA of 2.5 or higher.</li>
+                    <li>Organized, reliable, and able to handle confidential information.</li>
+                    <li>Can commit to at least 15–20 hours per week during office hours.</li>
+                </ul>
+                <hr>
+                <h4>Required Skills</h4>
+                <div class="skill-tags">
+                    <span>Microsoft Office</span>
+                    <span>Data Encoding</span>
+                    <span>Technical Writing</span>
+                    <span>Database Basics</span>
+                    <span>Communication</span>
+                </div>
+                <hr>
+                <h4>Benefits</h4>
+                <ul class="custom-list">
+                    <li>Monthly stipend of ₱1,200.</li>
+                    <li>OJT/Practicum credit hours upon coordination with your college.</li>
+                    <li>Certificate of Completion from the MIS Department.</li>
+                    <li>Professional reference letter upon satisfactory performance.</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="modal-closed" style="text-decoration: none;">Close</a>
+                <a href="form.html" class="modal-applied" style="color: white; border-radius: 8px;">Apply</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Student Assistant – IT Office -->
+    <div id="view-details-2" class="modal-overlay">
+        <div class="modal-card">
+            <a href="#" class="modal-close-btn">&times;</a>
+            <div class="modal-header">
+                <h2>Student Assistant – IT Office</h2>
+                <p class="subtitle"><strong>Department:</strong> IT Office</p>
+            </div>
+            <hr>
+            <div class="modal-body">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="label">Location</span>
+                        <span class="value">IT Building, 2nd Floor</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Pay Rate</span>
+                        <span class="value">₱60 / hour</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Daily Hours</span>
+                        <span class="value">4 hours / day</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Availability</span>
+                        <span class="value">2 of 5 slots left</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Supervisor</span>
+                        <span class="value">Mr. Ricardo Santos</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Deadline</span>
+                        <span class="value">March 15, 2026</span>
+                    </div>
+                </div>
+                <hr>
+                <h4>Job Description</h4>
+                <p style="color: #4a5568; line-height: 1.6;">
+                    Assist the IT Office in its day-to-day administrative and technical operations. Duties include encoding and filing of IT service requests, managing office supplies, supporting staff during equipment distribution, and performing other clerical tasks as assigned.
+                </p>
+                <hr>
+                <h4>Requirements & Qualifications</h4>
+                <ul class="custom-list">
+                    <li>Open to all programs; preference for BSIT, BSCS, or Office Administration students.</li>
+                    <li>Proficient in Microsoft Word and Excel.</li>
+                    <li>Organized, detail-oriented, and able to handle confidential information.</li>
+                    <li>Available for at least 15 hours per week during office hours.</li>
+                </ul>
+                <hr>
+                <h4>Required Skills</h4>
+                <div class="skill-tags">
+                    <span>Microsoft Office</span>
+                    <span>Data Encoding</span>
+                    <span>Communication</span>
+                    <span>Troubleshooting</span>
+                </div>
+                <hr>
+                <h4>Benefits</h4>
+                <ul class="custom-list">
+                    <li>Monthly stipend of ₱1,200.</li>
+                    <li>OJT/Practicum credit hours upon coordination with your college.</li>
+                    <li>Professional reference letter upon completion.</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="modal-closed" style="text-decoration: none;">Close</a>
+                <a href="form.html" class="modal-applied" style="color: white; border-radius: 8px;">Apply</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Student Assistant – Library Dept -->
+    <div id="view-details-3" class="modal-overlay">
+        <div class="modal-card">
+            <a href="#" class="modal-close-btn">&times;</a>
+            <div class="modal-header">
+                <h2>Student Assistant – Library Dept</h2>
+                <p class="subtitle"><strong>Department:</strong> University Library</p>
+            </div>
+            <hr>
+            <div class="modal-body">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="label">Location</span>
+                        <span class="value">Main Library Building</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Pay Rate</span>
+                        <span class="value">₱55 / hour</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Daily Hours</span>
+                        <span class="value">4 hours / day</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Availability</span>
+                        <span class="value">1 of 3 slots left</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Supervisor</span>
+                        <span class="value">Ms. Lorna Dela Cruz</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Deadline</span>
+                        <span class="value">March 20, 2026</span>
+                    </div>
+                </div>
+                <hr>
+                <h4>Job Description</h4>
+                <p style="color: #4a5568; line-height: 1.6;">
+                    Support the day-to-day operations of the WMSU University Library by assisting library staff in maintaining a well-organized and accessible learning environment for all students and faculty members.
+                </p>
+                <hr>
+                <h4>Requirements & Qualifications</h4>
+                <ul class="custom-list">
+                    <li>Open to all college programs; Library Science or Education students preferred.</li>
+                    <li>Responsible, punctual, and a lover of books and learning.</li>
+                    <li>Good interpersonal skills; must be comfortable assisting library users.</li>
+                    <li>Available for at least 15 hours per week.</li>
+                </ul>
+                <hr>
+                <h4>Required Skills</h4>
+                <div class="skill-tags">
+                    <span>Customer Service</span>
+                    <span>Record Keeping</span>
+                    <span>Microsoft Office</span>
+                    <span>Cataloging</span>
+                </div>
+                <hr>
+                <h4>Benefits</h4>
+                <ul class="custom-list">
+                    <li>Monthly stipend of ₱1,000.</li>
+                    <li>Library access privileges and resource discounts.</li>
+                    <li>Certificate of Appreciation upon completion.</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="modal-closed" style="text-decoration: none;">Close</a>
+                <a href="form.html" class="modal-applied" style="color: white; border-radius: 8px;">Apply</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Withdraw Confirmation: Student Assistant – IT Office -->
+    <div id="cancel-confirm-1" class="modal-overlay">
+        <div class="modal-box">
+            <h3>Are you sure?</h3>
+            <p>Do you really want to withdraw your application for <strong>Student Assistant – IT Office</strong>?</p>
+            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
+                <a href="#" class="primary-btn" style="text-decoration: none; background: #9f0f0f;">Withdraw</a>
+                <a href="#" class="secondary-btn" style="text-decoration: none;">No</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Withdraw Confirmation: Student Assistant – Library Dept -->
+    <div id="cancel-confirm-2" class="modal-overlay">
+        <div class="modal-box">
+            <h3>Are you sure?</h3>
+            <p>Do you really want to withdraw your application for <strong>Student Assistant – Library Dept</strong>?</p>
+            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
+                <a href="#" class="primary-btn" style="text-decoration: none; background: #9f0f0f;">Withdraw</a>
+                <a href="#" class="secondary-btn" style="text-decoration: none;">No</a>
+            </div>
+        </div>
     </div>
 
 </body>
