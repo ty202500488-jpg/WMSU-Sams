@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="form.css">
 </head>
+
 <body>
 
     <div class="return-btn">
@@ -24,15 +26,15 @@
             </div>
         </header>
 
-        <form action="application_success.html" method="POST" enctype="multipart/form-data">
-            
+        <form id="applicationForm" action="application_success.html" method="POST" enctype="multipart/form-data">
+
             <section class="form-card">
                 <h2 class="section-title"><i class="fa-solid fa-address-card"></i> Personal Information</h2>
-                
+
                 <div class="input-row">
                     <div class="field">
                         <label>First Name</label>
-                        <input type="text" name="first_name" placeholder="Required" value="Juan">
+                        <input type="text" name="first_name" placeholder="Required" value="Juan" required>
                     </div>
                     <div class="field">
                         <label>Middle Name</label>
@@ -40,14 +42,14 @@
                     </div>
                     <div class="field">
                         <label>Last Name</label>
-                        <input type="text" name="last_name" placeholder="Required" value="Cruz">
+                        <input type="text" name="last_name" placeholder="Required" value="Cruz" required>
                     </div>
                 </div>
 
                 <div class="input-row split-2-1">
                     <div class="field">
                         <label>Student ID Number</label>
-                        <input type="text" name="student_id" placeholder="e.g., 2021-01234" value="2023-10452">
+                        <input type="text" name="student_id" placeholder="e.g., 2021-01234" value="2023-10452" required>
                     </div>
                     <div class="field">
                         <label>Date of Birth</label>
@@ -58,11 +60,11 @@
                 <div class="input-row">
                     <div class="field">
                         <label>Email Address</label>
-                        <input type="email" name="email" placeholder="name@wmsu.edu.ph" value="juan@email.com">
+                        <input type="email" name="email" placeholder="name@wmsu.edu.ph" value="juan@email.com" required>
                     </div>
                     <div class="field">
                         <label>Contact Number</label>
-                        <input type="tel" name="contact" placeholder="09XXXXXXXXX" value="09123456789">
+                        <input type="tel" name="contact" placeholder="09XXXXXXXXX" value="09123456789" required>
                     </div>
                 </div>
             </section>
@@ -78,7 +80,7 @@
                             <option>Bachelor of Science in Information Technology</option>
                             <option>Bachelor of Arts in Psychology</option>
                             <option>College of Liberal Arts</option>
-                            </select>
+                        </select>
                     </div>
                 </div>
                 <div class="input-row grid-3">
@@ -98,10 +100,6 @@
                             <option>Second Semester</option>
                         </select>
                     </div>
-                    <div class="field">
-                        <label>Latest GPA</label>
-                        <input type="number" step="0.01" name="gpa" placeholder="0.00" required>
-                    </div>
                 </div>
             </section>
 
@@ -110,23 +108,23 @@
                     <h2 class="section-title"><i class="fa-solid fa-calendar-check"></i> Duty Availability</h2>
                     <p class="section-hint">Check the days you are available and specify your class-free hours.</p>
                 </div>
-    
+
                 <div class="schedule-grid">
                     <div class="day-row">
                         <div class="day-selector">
-                            <input type="checkbox" id="mon" class="day-check">
+                            <input type="checkbox" id="mon" class="day-check" required>
                             <label for="mon" class="day-label">
                                 <span class="custom-check"></span>
                                 Monday
                             </label>
                         </div>
-            
+
                         <div class="time-fields">
                             <div class="time-input-group">
                                 <label>From</label>
                                 <input type="time" name="mon_start">
                             </div>
-        
+
                             <span class="time-separator">to</span>
                             <div class="time-input-group">
                                 <input type="time" name="mon_end">
@@ -134,7 +132,7 @@
                         </div>
                     </div>
 
-                    
+
                     <div class="day-row">
                         <div class="day-selector">
                             <input type="checkbox" id="tue" class="day-check">
@@ -143,17 +141,17 @@
                                 Tuesday
                             </label>
                         </div>
-            
+
                         <div class="time-fields">
                             <div class="time-input-group">
                                 <label>From</label>
                                 <input type="time" name="tue_start">
                             </div>
-                
+
                             <span class="time-separator">to</span>
                             <div class="time-input-group">
                                 <input type="time" name="tue_end">
-                
+
                             </div>
                         </div>
                     </div>
@@ -166,13 +164,13 @@
                                 Wednesday
                             </label>
                         </div>
-            
+
                         <div class="time-fields">
                             <div class="time-input-group">
                                 <label>From</label>
                                 <input type="time" name="wed_start">
                             </div>
-                
+
                             <span class="time-separator">to</span>
                             <div class="time-input-group">
                                 <input type="time" name="wed_end">
@@ -180,48 +178,48 @@
                         </div>
                     </div>
 
-        <div class="day-row">
-            <div class="day-selector">
-                <input type="checkbox" id="thu" class="day-check">
-                <label for="thu" class="day-label">
-                    <span class="custom-check"></span>
-                    Thursday
-                </label>
-            </div>
-            <div class="time-fields">
-                <div class="time-input-group">
-                    <label>From</label>
-                    <input type="time" name="thu_start">
-                </div>
-                <span class="time-separator">to</span>
-                <div class="time-input-group">
-                    <input type="time" name="thu_end">
-                </div>
-            </div>
-        </div>
+                    <div class="day-row">
+                        <div class="day-selector">
+                            <input type="checkbox" id="thu" class="day-check">
+                            <label for="thu" class="day-label">
+                                <span class="custom-check"></span>
+                                Thursday
+                            </label>
+                        </div>
+                        <div class="time-fields">
+                            <div class="time-input-group">
+                                <label>From</label>
+                                <input type="time" name="thu_start">
+                            </div>
+                            <span class="time-separator">to</span>
+                            <div class="time-input-group">
+                                <input type="time" name="thu_end">
+                            </div>
+                        </div>
+                    </div>
 
-                    
-        <div class="day-row">
-            <div class="day-selector">
-                <input type="checkbox" id="fri" class="day-check">
-                <label for="fri" class="day-label">
-                    <span class="custom-check"></span>
-                    Friday
-                </label>
-            </div>
-            <div class="time-fields">
-                <div class="time-input-group">
-                    <label>From</label>
-                    <input type="time" name="fri_start">
+
+                    <div class="day-row">
+                        <div class="day-selector">
+                            <input type="checkbox" id="fri" class="day-check">
+                            <label for="fri" class="day-label">
+                                <span class="custom-check"></span>
+                                Friday
+                            </label>
+                        </div>
+                        <div class="time-fields">
+                            <div class="time-input-group">
+                                <label>From</label>
+                                <input type="time" name="fri_start">
+                            </div>
+                            <span class="time-separator">to</span>
+                            <div class="time-input-group">
+                                <input type="time" name="fri_end">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <span class="time-separator">to</span>
-                <div class="time-input-group">
-                    <input type="time" name="fri_end">
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+            </section>
 
             <section class="form-card">
                 <h2 class="section-title"><i class="fa-solid fa-file-arrow-up"></i> Required Documents</h2>
@@ -233,21 +231,38 @@
                         <input type="file" name="cor_file" accept=".pdf">
                     </label>
                 </div>
+                <div class="upload-container">
+                    <label class="upload-box">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <span>Upload Latest GPA</span>
+                        <small>PDF format only • Max 5MB</small>
+                        <input type="file" name="gpa_file" accept=".pdf">
+                    </label>
+                </div>
+                <div class="upload-container">
+                    <label class="upload-box">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <span>Upload Resume</span>
+                        <small>PDF format only • Max 5MB</small>
+                        <input type="file" name="resume_file" accept=".pdf">
+                    </label>
+                </div>
             </section>
 
             <div class="declaration">
                 <label class="checkbox-wrapper">
-                    <input type="checkbox" >
+                    <input type="checkbox" id="termsCheckbox" required>
                     <span class="checkmark"></span>
-                    <p>I hereby certify that the information provided is true and correct to the best of my knowledge for CPPESO verification.</p>
+                    <p>I hereby certify that the information provided is true and correct to the best of my knowledge
+                        for CPPESO verification.</p>
                 </label>
             </div>
 
-            <a href="application_success.html" type="submit" class="submit-btn">
+            <button type="submit" class="submit-btn">
                 Submit Application
-            </a>
+            </button>
         </form>
     </div>
-
 </body>
+
 </html>
