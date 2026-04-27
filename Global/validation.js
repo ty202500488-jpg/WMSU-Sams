@@ -11,16 +11,16 @@
 function showError(inputElement, message) {
     // Remove existing error if present
     removeError(inputElement);
-    
+
     // Create error message element
     const errorEl = document.createElement('span');
     errorEl.className = 'error-message';
     errorEl.textContent = message;
-    
+
     // Add red border to input
     inputElement.classList.add('input-error');
     inputElement.style.borderColor = '#dc2626';
-    
+
     // Insert error after input
     inputElement.parentNode.insertBefore(errorEl, inputElement.nextSibling);
 }
@@ -31,7 +31,7 @@ function showError(inputElement, message) {
 function removeError(inputElement) {
     inputElement.classList.remove('input-error');
     inputElement.style.borderColor = '';
-    
+
     const errorEl = inputElement.nextElementSibling;
     if (errorEl && errorEl.classList.contains('error-message')) {
         errorEl.remove();
@@ -73,13 +73,13 @@ function passwordsMatch(pwd1, pwd2) {
 function validateLoginForm() {
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
-    
+
     let isValid = true;
-    
+
     // Clear previous errors
     removeError(emailInput);
     removeError(passwordInput);
-    
+
     // Validate email
     if (!emailInput.value.trim()) {
         showError(emailInput, 'Email is required');
@@ -88,7 +88,7 @@ function validateLoginForm() {
         showError(emailInput, 'Please enter a valid email address');
         isValid = false;
     }
-    
+
     // Validate password
     if (!passwordInput.value.trim()) {
         showError(passwordInput, 'Password is required');
@@ -97,7 +97,7 @@ function validateLoginForm() {
         showError(passwordInput, 'Password must be at least 8 characters');
         isValid = false;
     }
-    
+
     return isValid;
 }
 
@@ -108,27 +108,27 @@ function initLoginValidation() {
     const loginBtn = document.getElementById('login');
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
-    
+
     if (!loginBtn) return;
-    
+
     // Convert anchor to button-like behavior
     loginBtn.style.cursor = 'pointer';
-    loginBtn.addEventListener('click', function(e) {
+    loginBtn.addEventListener('click', function (e) {
         e.preventDefault();
-        
+
         if (validateLoginForm()) {
             // Show success message
             showSuccessMessage('Login successful - redirecting...');
-            
+
             // Redirect after short delay
             setTimeout(() => {
                 window.location.href = loginBtn.href;
             }, 800);
         }
     });
-    
+
     // Real-time validation on blur
-    emailInput.addEventListener('blur', function() {
+    emailInput.addEventListener('blur', function () {
         if (this.value.trim()) {
             if (!isValidEmail(this.value)) {
                 showError(this, 'Please enter a valid email address');
@@ -137,8 +137,8 @@ function initLoginValidation() {
             }
         }
     });
-    
-    passwordInput.addEventListener('blur', function() {
+
+    passwordInput.addEventListener('blur', function () {
         if (this.value.trim()) {
             if (!isValidPassword(this.value)) {
                 showError(this, 'Password must be at least 8 characters');
@@ -154,14 +154,14 @@ function initLoginValidation() {
 function validateRegistrationForm(formId) {
     const form = document.getElementById(formId);
     if (!form) return false;
-    
+
     let isValid = true;
     const inputs = form.querySelectorAll('input[required], select[required]');
     const allInputs = form.querySelectorAll('input, select');
-    
+
     // Clear all previous errors
     allInputs.forEach(input => removeError(input));
-    
+
     // Get specific inputs
     const firstNameInput = form.querySelector('input[name="first_name"]');
     const middleNameInput = form.querySelector('input[name="middle_name"]');
@@ -169,7 +169,7 @@ function validateRegistrationForm(formId) {
     const emailInput = form.querySelector('input[type="email"]');
     const passwordInputs = form.querySelectorAll('input[type="password"]');
     const selectInputs = form.querySelectorAll('select');
-    
+
     // Validate name fields (all required)
     if (firstNameInput) {
         if (!firstNameInput.value.trim()) {
@@ -177,14 +177,14 @@ function validateRegistrationForm(formId) {
             isValid = false;
         }
     }
-    
+
     if (lastNameInput) {
         if (!lastNameInput.value.trim()) {
             showError(lastNameInput, 'Last Name is required');
             isValid = false;
         }
     }
-    
+
     // Validate email
     if (emailInput) {
         if (!emailInput.value.trim()) {
@@ -195,16 +195,19 @@ function validateRegistrationForm(formId) {
             isValid = false;
         }
     }
-    
+
     // Validate Student ID if present
     const studentIdInput = form.querySelector('input[pattern="[0-9-]*"]');
-    if (studentIdInput && studentIdInput.value) {
-        if (!/^[0-9-]*$/.test(studentIdInput.value)) {
+    if (studentIdInput) {
+        if (!studentIdInput.value.trim()) {
+            showError(studentIdInput, 'Student ID is required');
+            isValid = false;
+        } else if (!/^[0-9-]*$/.test(studentIdInput.value)) {
             showError(studentIdInput, 'Student ID must contain only numbers and dashes');
             isValid = false;
         }
     }
-    
+
     // Validate Year Level if present (for student form)
     const yearLevelSelect = form.querySelector('select');
     if (yearLevelSelect && yearLevelSelect.name !== 'role') {
@@ -213,7 +216,32 @@ function validateRegistrationForm(formId) {
             isValid = false;
         }
     }
-    
+
+    // Validate Authorization Code if present (for CPPESO form)
+    const authCodeInput = form.querySelector('input[placeholder*="Authorization Code"]');
+    if (formId === 'cppesoForm' && authCodeInput) {
+        if (!authCodeInput.value.trim()) {
+            showError(authCodeInput, 'Authorization Code is required');
+            isValid = false;
+        }
+    }
+
+    // Validate File Upload (Student and Employer forms)
+    const fileInput = form.querySelector('input[type="file"]');
+    if (fileInput && fileInput.hasAttribute('required')) {
+        const dropzone = fileInput.closest('.dropzone');
+        if (dropzone) {
+            removeError(dropzone); // Clear previous errors
+            if (!fileInput.files || fileInput.files.length === 0) {
+                showError(dropzone, 'Please upload the required document');
+                isValid = false;
+            }
+        } else if (!fileInput.files || fileInput.files.length === 0) {
+            showError(fileInput, 'Please upload the required document');
+            isValid = false;
+        }
+    }
+
     // Validate Password
     if (passwordInputs.length >= 1) {
         const passwordInput = passwordInputs[0];
@@ -225,12 +253,12 @@ function validateRegistrationForm(formId) {
             isValid = false;
         }
     }
-    
+
     // Validate Confirm Password and match
     if (passwordInputs.length >= 2) {
         const passwordInput = passwordInputs[0];
         const confirmPasswordInput = passwordInputs[1];
-        
+
         if (!confirmPasswordInput.value.trim()) {
             showError(confirmPasswordInput, 'Please confirm your password');
             isValid = false;
@@ -239,7 +267,7 @@ function validateRegistrationForm(formId) {
             isValid = false;
         }
     }
-    
+
     return isValid;
 }
 
@@ -247,39 +275,43 @@ function validateRegistrationForm(formId) {
  * Initialize registration form validation
  */
 function initRegistrationValidation() {
-    const registerBtn = document.getElementById('register-btn');
     const forms = document.querySelectorAll('.account-form');
-    
-    if (!registerBtn || !forms.length) return;
-    
-    registerBtn.style.cursor = 'pointer';
-    registerBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        // Determine which form is visible
-        const activeForm = document.querySelector('.account-form[style*="display: flex"]') || 
-                           document.querySelector('.account-form:not([style*="display: none"])') ||
-                           (document.getElementById('student').checked ? document.getElementById('studentForm') :
-                            document.getElementById('employer').checked ? document.getElementById('employerForm') :
-                            document.getElementById('cppeso').checked ? document.getElementById('cppesoForm') : null);
-        
-        if (!activeForm) return;
-        
-        const formId = activeForm.id;
-        
-        if (validateRegistrationForm(formId)) {
-            showSuccessMessage('Registration successful - redirecting...');
-            setTimeout(() => {
-                activeForm.submit();
-            }, 800);
+
+    if (!forms.length) return;
+
+    // Attach click listener to the submit button of each form
+    forms.forEach(form => {
+        // Since there are multiple #register-btn IDs (invalid HTML but present), we find the button inside the specific form
+        const registerBtn = form.querySelector('#register-btn') || form.querySelector('a');
+
+        if (registerBtn) {
+            registerBtn.style.cursor = 'pointer';
+            registerBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                // Form is already known since we are iterating over forms
+                const formId = form.id;
+
+                if (validateRegistrationForm(formId)) {
+                    showSuccessMessage('Registration successful - redirecting...');
+                    setTimeout(() => {
+                        // Redirect to the href of the button or submit if it's a real form
+                        if (registerBtn.hasAttribute('href')) {
+                            window.location.href = registerBtn.getAttribute('href');
+                        } else {
+                            form.submit();
+                        }
+                    }, 800);
+                }
+            });
         }
     });
-    
+
     // Real-time validation on blur
     forms.forEach(form => {
         const inputs = form.querySelectorAll('input, select');
         inputs.forEach(input => {
-            input.addEventListener('blur', function() {
+            input.addEventListener('blur', function () {
                 validateSingleField(this);
             });
         });
@@ -291,14 +323,14 @@ function initRegistrationValidation() {
  */
 function validateSingleField(input) {
     removeError(input);
-    
+
     const value = input.value.trim();
-    
+
     // Skip validation for empty optional fields
     if (!value && !input.hasAttribute('required') && !input.parentElement.parentElement.querySelector('label')?.textContent.includes('*')) {
         return;
     }
-    
+
     // Check field type
     if (input.type === 'email') {
         if (value && !isValidEmail(value)) {
@@ -312,6 +344,16 @@ function validateSingleField(input) {
         if (!value && (input.name === 'first_name' || input.name === 'last_name' || input.name === 'middle_name')) {
             showError(input, input.name.replace('_', ' ').charAt(0).toUpperCase() + input.name.replace('_', ' ').slice(1) + ' is required');
         }
+    } else if (input.placeholder && input.placeholder.includes('Authorization Code')) {
+        if (!value) {
+            showError(input, 'Authorization Code is required');
+        }
+    } else if (input.pattern === '[0-9-]*') {
+        if (!value) {
+            showError(input, 'Student ID is required');
+        } else if (!/^[0-9-]*$/.test(value)) {
+            showError(input, 'Student ID must contain only numbers and dashes');
+        }
     }
 }
 
@@ -320,11 +362,11 @@ function validateSingleField(input) {
 function validateForgotPasswordEmail() {
     const emailInput = document.getElementById('forgot-email');
     if (!emailInput) return false;
-    
+
     removeError(emailInput);
-    
+
     let isValid = true;
-    
+
     if (!emailInput.value.trim()) {
         showError(emailInput, 'Email is required');
         isValid = false;
@@ -332,18 +374,18 @@ function validateForgotPasswordEmail() {
         showError(emailInput, 'Please enter a valid email address');
         isValid = false;
     }
-    
+
     return isValid;
 }
 
 function validateOTP() {
     const otpInput = document.getElementById('otp-input');
     if (!otpInput) return false;
-    
+
     removeError(otpInput);
-    
+
     let isValid = true;
-    
+
     if (!otpInput.value.trim()) {
         showError(otpInput, 'OTP is required');
         isValid = false;
@@ -351,21 +393,21 @@ function validateOTP() {
         showError(otpInput, 'OTP must be at least 6 digits');
         isValid = false;
     }
-    
+
     return isValid;
 }
 
 function validatePasswordReset() {
     const newPwdInput = document.getElementById('new-password');
     const confirmPwdInput = document.getElementById('confirm-new-password');
-    
+
     if (!newPwdInput || !confirmPwdInput) return false;
-    
+
     removeError(newPwdInput);
     removeError(confirmPwdInput);
-    
+
     let isValid = true;
-    
+
     if (!newPwdInput.value.trim()) {
         showError(newPwdInput, 'Password is required');
         isValid = false;
@@ -373,7 +415,7 @@ function validatePasswordReset() {
         showError(newPwdInput, 'Password must be at least 8 characters');
         isValid = false;
     }
-    
+
     if (!confirmPwdInput.value.trim()) {
         showError(confirmPwdInput, 'Please confirm your password');
         isValid = false;
@@ -381,7 +423,7 @@ function validatePasswordReset() {
         showError(confirmPwdInput, 'Passwords do not match');
         isValid = false;
     }
-    
+
     return isValid;
 }
 
@@ -393,9 +435,9 @@ function initForgotPasswordForm() {
     const verifyOtpBtn = document.getElementById('verify-otp-btn');
     const resetPasswordBtn = document.getElementById('reset-password-btn');
     const resendOtpLink = document.getElementById('resend-otp-link');
-    
+
     if (sendOtpBtn) {
-        sendOtpBtn.addEventListener('click', function(e) {
+        sendOtpBtn.addEventListener('click', function (e) {
             e.preventDefault();
             if (validateForgotPasswordEmail()) {
                 showSuccessMessage('OTP sent to your email');
@@ -406,9 +448,9 @@ function initForgotPasswordForm() {
             }
         });
     }
-    
+
     if (verifyOtpBtn) {
-        verifyOtpBtn.addEventListener('click', function(e) {
+        verifyOtpBtn.addEventListener('click', function (e) {
             e.preventDefault();
             if (validateOTP()) {
                 // Accept demo OTP: 123456
@@ -425,9 +467,9 @@ function initForgotPasswordForm() {
             }
         });
     }
-    
+
     if (resetPasswordBtn) {
-        resetPasswordBtn.addEventListener('click', function(e) {
+        resetPasswordBtn.addEventListener('click', function (e) {
             e.preventDefault();
             if (validatePasswordReset()) {
                 showSuccessMessage('Password reset successful - redirecting...');
@@ -437,9 +479,9 @@ function initForgotPasswordForm() {
             }
         });
     }
-    
+
     if (resendOtpLink) {
-        resendOtpLink.addEventListener('click', function(e) {
+        resendOtpLink.addEventListener('click', function (e) {
             e.preventDefault();
             showSuccessMessage('OTP resent to your email');
             document.getElementById('otp-input').value = '';
@@ -457,7 +499,7 @@ function showSuccessMessage(message) {
     // Remove existing message if present
     const existingMsg = document.querySelector('.success-message');
     if (existingMsg) existingMsg.remove();
-    
+
     const msgEl = document.createElement('div');
     msgEl.className = 'success-message';
     msgEl.textContent = message;
@@ -474,9 +516,9 @@ function showSuccessMessage(message) {
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         animation: slideIn 0.3s ease;
     `;
-    
+
     document.body.appendChild(msgEl);
-    
+
     // Auto-remove after 3 seconds
     setTimeout(() => {
         msgEl.style.animation = 'slideOut 0.3s ease';
@@ -486,10 +528,10 @@ function showSuccessMessage(message) {
 
 // ==================== INITIALIZATION ====================
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Initialize based on current page
     const currentUrl = window.location.pathname;
-    
+
     if (currentUrl.includes('login.html')) {
         initLoginValidation();
     } else if (currentUrl.includes('registration.html')) {
@@ -527,8 +569,11 @@ if (document.head) {
             display: block;
             color: #dc2626;
             font-size: 12px;
-            margin-top: -15px;
+            margin-top: -8px;
             font-weight: 500;
+        }
+        .account-form > .error-message {
+           transform: translateY(-15px);
         }
         .input-error {
             border-color: #dc2626 !important;
