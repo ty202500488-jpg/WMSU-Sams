@@ -623,20 +623,17 @@
   </div>
 </div>
 
-
-
 <script>
 // Attach confirmation modals to action buttons
 document.addEventListener('DOMContentLoaded', function() {
-    // Handle Reject buttons
     const rejectBtns = document.querySelectorAll('.btn-icon.reject');
+    // Handle Reject buttons
     rejectBtns.forEach(btn => {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
             const row = this.closest('tr');
             const name = row ? row.querySelector('strong')?.textContent || 'Applicant' : 'Applicant';
             const position = row ? row.querySelectorAll('td')[1]?.textContent || 'position' : 'position';
-            
             // Show the rejection reason modal
             showRejectionReasonModal(name, (rejectionData) => {
                 showAlert(
@@ -650,13 +647,13 @@ document.addEventListener('DOMContentLoaded', function() {
                                 status.className = 'status rejected';
                                 status.textContent = 'Rejected';
                             }
+                            row.querySelectorAll('.btn-icon.approve, .btn-icon.reject').forEach(b => b.remove());
                         }
                     }
                 );
             });
         });
     });
-
     // Handle Approve buttons
     const approveBtns = document.querySelectorAll('.btn-icon.approve');
     approveBtns.forEach(btn => {
@@ -677,6 +674,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 status.className = 'status approved';
                                 status.textContent = 'Approved';
                             }
+                            row.querySelectorAll('.btn-icon.approve, .btn-icon.reject').forEach(b => b.remove());
                         }
                     });
                 },
@@ -686,6 +684,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+//Applicants Searchbar script
+const searchInput = document.querySelector('.search-box input');
+if (searchInput) {
+    searchInput.addEventListener('input', function() {
+        const query = this.value.toLowerCase().trim();
+        document.querySelectorAll('.data-table tbody tr').forEach(function(row) {
+            const name = (row.querySelector('strong')?.textContent || '').toLowerCase();
+            row.style.display = (!query || name.includes(query)) ? '' : 'none';
+        });
+    });
+}
+
 </script>
 
 </body>

@@ -286,6 +286,14 @@
             });
         });
     });
+
+    function filterCards() {
+    const query = document.getElementById('searchInput').value.toLowerCase().trim();
+    document.querySelectorAll('#cards-container .main-card').forEach(function(card) {
+        const name = (card.dataset.name || '').toLowerCase();
+        card.style.display = (!query || name.includes(query)) ? '' : 'none';
+     });
+    }
     </script>
 
 </body>
