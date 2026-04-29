@@ -395,8 +395,69 @@ body {
             flex-wrap: nowrap;
         }
 
-        .modal-actions a,
-        .modal-actions button {
+        .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.modal-student-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #f8f9fb;
+    border: 1px solid #ececec;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-top: 16px;
+    margin-bottom: 8px;
+}
+
+.modal-avatar {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--maroon-dark), var(--maroon-light));
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    letter-spacing: 0.04em;
+}
+
+.modal-student-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.modal-student-info h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 3px;
+}
+
+.modal-student-info p {
+    font-size: 12px;
+    color: var(--muted);
+    margin: 0;
+}
+
+.modal-status-badge {
+    font-size: 12px !important;
+    padding: 5px 14px !important;
+    border-radius: 20px !important;
+    margin-left: auto !important;
+    flex-shrink: 0;
+    font-weight: 700 !important;
+    letter-spacing: 0.03em;
+}
+        .modal-footer a,
+        .modal-footer button {
             min-width: 90px;
             padding: 10px 16px;
             border-radius: 8px;
@@ -411,38 +472,38 @@ body {
             gap: 8px;
         }
 
-        .modal-actions a:hover,
-        .modal-actions button:hover {
+        .modal-footer a:hover,
+        .modal-footer button:hover {
             transform: translateY(-1px);
         }
 
-        .modal-actions .secondary-btn {
+        .modal-footer .secondary-btn {
             background: #f5f7fa;
             color: #1f2937;
             border: 1px solid #d1d5db;
         }
 
-        .modal-actions .secondary-btn:hover {
+        .modal-footer .secondary-btn:hover {
             background: #e2e8f0;
         }
 
-        .modal-actions .dangered-btn {
+        .modal-footer .dangered-btn {
             background: #fee2e2;
             color: #b91c1c;
             border: 1px solid #fca5a5;
         }
 
-        .modal-actions .dangered-btn:hover {
+        .modal-footer .dangered-btn:hover {
             background: #fca5a5;
         }
 
-        .modal-actions .confirmed-btn {
+        .modal-footer .confirmed-btn {
             background: #16a34a;
             color: white;
             border: 1px solid #15803d;
         }
 
-        .modal-actions .confirmed-btn:hover {
+        .modal-footer .confirmed-btn:hover {
             background: #15803d;
         }
 
