@@ -9,23 +9,18 @@
     <link rel="stylesheet" href="form.css"> <!-- Your existing CSS -->
     <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
     <style>
-        /* WMSU-SAMS Scanner Specific UI */
-        .scanner-section {
-            text-align: center;
-            padding: 20px 10px;
+        :root {
+            --wmsu-crimson: #720b0b;
         }
 
-        .camera-container {
-            position: relative;
-            width: 100%;
-            height: 370px;
-            max-width: 380px;
-            margin: 0 auto;
-            border-radius: 15px;
-            overflow: hidden;
-            background: #000;
-            border: 5px solid #720b0b; /* WMSU Crimson */
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f1f1f2;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         #preview {
@@ -35,7 +30,86 @@
             object-fit: cover;
         }
 
-        /* The "Scan Frame" Overlay */
+        .form-wrapper {
+            width: 100%;
+            max-width: 500px;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .cppeso-header {
+            background-color: var(--wmsu-crimson);
+            color: #fff;
+            padding: 20px;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .form-logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #fff;
+        }
+
+        .title-area h1 {
+            font-size: 18px;
+            margin: 0;
+        }
+
+        .title-area p {
+            font-size: 12px;
+            margin: 5px 0 0 0;
+            opacity: 0.85;
+        }
+
+        .form-card {
+            padding: 25px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            color: #333;
+            margin-top: 0;
+        }
+
+        .instruction-tag {
+            display: block;
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .scanner-section {
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .camera-container {
+            position: relative;
+            width: 100%;
+            height: 320px;
+            max-width: 380px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000;
+            border: 4px solid var(--wmsu-crimson);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        #preview {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
         .overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -50,22 +124,21 @@
             height: 65%;
             border: 2px solid rgba(255, 255, 255, 0.8);
             border-radius: 10px;
-            box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.6);
         }
 
-        /* Result Display (Matches your total-display style) */
         .status-card {
             background: #f4f7f6;
-            padding: 20px;
+            padding: 18px;
             border-radius: 8px;
-            margin-top: 25px;
+            margin-top: 20px;
             border: 1px solid #dcdde1;
             transition: all 0.3s ease;
         }
 
         .status-card i {
-            font-size: 28px;
-            margin-bottom: 10px;
+            font-size: 26px;
+            margin-bottom: 8px;
             display: block;
         }
 
@@ -82,16 +155,21 @@
         }
 
         .scanning-text {
-            color: #720b0b;
+            color: var(--wmsu-crimson);
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
+            font-size: 14px;
             animation: blink 1.5s infinite;
         }
 
-        @keyframes blink { 50% { opacity: 0.2; } }
+        @keyframes blink { 
+            50% { opacity: 0.2; } 
+        }
 
         .hidden { display: none; }
+
+       
     </style>
 </head>
 
@@ -102,10 +180,9 @@
     </div>
 
     <div class="form-wrapper">
-        <!-- Header copied from your design -->
         <header class="cppeso-header">
             <div class="header-content">
-                <img src="../Images/wmsu.jpg.jpg" alt="WMSU Logo" class="form-logo">
+                <img class="form-logo" src="../Images/wmsu.jpg.jpg" alt="Logo" style="display:flex; align-items:center; justify-content:center; color: var(--wmsu-crimson); font-weight:bold;">
                 <div class="title-area">
                     <h1>Daily Duty Scan</h1>
                     <p>CPPESO Student Assistant Monitoring</p>
@@ -118,7 +195,6 @@
             <span class="instruction-tag">Point your camera at the official classroom QR code.</span>
 
             <div class="scanner-section">
-                <!-- Camera Viewport -->
                 <div class="camera-container">
                     <video id="preview"></video>
                     <div class="overlay">
@@ -126,7 +202,6 @@
                     </div>
                 </div>
 
-                <!-- Status Feedback Area -->
                 <div id="feedback" class="status-card">
                     <div id="searching">
                         <i class="fa-solid fa-qrcode fa-beat-fade" style="color: #720b0b;"></i>
@@ -135,19 +210,19 @@
 
                     <div id="result-content" class="hidden">
                         <i id="result-icon"></i>
-                        <span id="result-text" style="font-size: 18px; font-weight: 700;"></span>
-                        <p id="result-subtext" style="margin-top: 5px; font-size: 14px; opacity: 0.8;"></p>
+                        <span id="result-text" style="font-size: 16px; font-weight: 700;"></span>
+                        <p id="result-subtext" style="margin-top: 5px; font-size: 13px; opacity: 0.8;"></p>
                     </div>
                 </div>
+                
+                <button id="simulate-scan-btn" onclick="simulateManualScan()" style="margin-top: 15px; padding: 10px 20px; background: var(--wmsu-crimson); color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">
+                    Simulate QR Submit
+                </button>
             </div>
         </section>
     </div>
 
     <script>
-          /**
-         * WMSU-SAMS QR Scanner Logic (Laptop Optimized)
-         */
-
         // 1. DOM Elements
         const videoPreview = document.getElementById('preview');
         const feedbackContainer = document.getElementById('feedback');
@@ -157,48 +232,46 @@
         const resultText = document.getElementById('result-text');
         const resultSubtext = document.getElementById('result-subtext');
 
-        // 2. Initialize Scanner for Laptop
-        // We set 'mirror: true' so the student sees themselves naturally
+        // 2. Initialize Instascan
         let scanner = new Instascan.Scanner({ 
             video: videoPreview,
             mirror: true 
         });
 
-        // 3. Scan Event
+        // Event for QR Read
         scanner.addListener('scan', function (content) {
             processAttendance(content);
         });
 
-        // 4. Access Laptop Camera
+        // 3. Camera Initializer
         async function initLaptopCamera() {
             try {
                 const cameras = await Instascan.Camera.getCameras();
-                
                 if (cameras.length > 0) {
-                    // Laptops usually only have 1 camera (index 0)
-                    // We use the first one detected
                     await scanner.start(cameras[0]);
                     updateUIState('searching');
                 } else {
                     showError("No WebCam Detected", "Please plug in or enable your laptop camera.");
                 }
             } catch (error) {
-                // This triggers if the student clicks 'Block' on the browser popup
-                showError("Access Denied", "Click the 'Camera Icon' in your browser address bar to allow access.");
+                showError("Access Denied", "Camera permission blocked. Check browser address bar settings.");
             }
         }
 
-        // 5. Attendance Processing
+        // 4. Attendance Processing & Feedback Loop
         async function processAttendance(token) {
             updateUIState('processing');
 
             try {
-                // Simulated Backend validation
+                // Simulated validation response
                 const result = await simulateServerResponse(token);
 
                 if (result.success) {
                     showSuccess(result.message, result.time);
-                    setTimeout(() => { window.location.href = "student_dashboard.html"; }, 3000);
+                    // Redirect simulation
+                    setTimeout(() => { 
+                        // window.location.href = "student_dashboard.html"; 
+                    }, 3000);
                 } else {
                     throw new Error(result.error);
                 }
@@ -208,7 +281,7 @@
             }
         }
 
-        // 6. UI State Controller
+        // 5. User Interface Controller
         function updateUIState(state) {
             searchingState.classList.add('hidden');
             resultContent.classList.add('hidden');
@@ -229,7 +302,7 @@
             resultContent.classList.remove('hidden');
             resultIcon.className = "fa-solid fa-circle-check";
             resultText.innerText = message;
-            resultSubtext.innerText = `Logged at: ${time}`;
+            resultSubtext.innerText = "Logged at: " + time;
         }
 
         function showError(title, message) {
@@ -240,20 +313,25 @@
             resultSubtext.innerText = message;
         }
 
-        // Mock Server Helper
+        // Mock Server Function
         function simulateServerResponse(token) {
             return new Promise((resolve) => {
                 setTimeout(() => {
                     resolve({ 
                         success: true, 
-                        message: "Time Recorded!", 
+                        message: "Attendance Time Recorded!", 
                         time: new Date().toLocaleTimeString() 
                     });
-                }, 1500);
+                }, 2000);
             });
         }
 
-        // Start on load
+        // Simulate manual submission without hardware camera access
+        function simulateManualScan() {
+            processAttendance("WMSU-CPPESO-TOKEN-98213");
+        }
+
+        // Start Scanner
         window.addEventListener('load', initLaptopCamera);
     </script>
 </body>
