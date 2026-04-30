@@ -26,13 +26,6 @@
 
             <h1>Create Account</h1>
 
-            <!-- ACCOUNT TYPE BUTTONS -->
-            <div class="account-type">
-                <label for="student" class="type-btn">Student</label>
-                <label for="employer" class="type-btn">Department</label>
-                <label for="cppeso" class="type-btn">CPPESO</label>
-            </div>
-
             <!-- STUDENT FORM -->
             <form id="studentForm" class="account-form" action="registration_submitted.html" method="POST" required>
                 <div class="input-row">
@@ -86,93 +79,6 @@
                 <input type="password" minlength="8" placeholder="Confirm Password" required>
 
                 <a id="register-btn" href="registration_submitted.html">Register</a>
-            </form>
-
-            <!-- EMPLOYER FORM -->
-            <form id="employerForm" class="account-form" action="submitted.html" method="POST" required>
-
-                <div class="input-row">
-                    <div class="field">
-                        <label>First Name<span style="color: red;"> *</span></label>
-                        <input type="text" name="first_name" placeholder="e.g. Juan" required>
-                    </div>
-                    <div class="field">
-                        <label>Middle Name</label>
-                        <input type="text" name="middle_name" placeholder="e.g. Santos(Optional)">
-                    </div>
-                    <div class="field">
-                        <label>Last Name<span style="color: red;"> *</span></label>
-                        <input type="text" name="last_name" placeholder="e.g. Dela Cruz" required>
-                    </div>
-                </div>
-
-                <label>Department/Office<span style="color: red;"> *</span></label>
-                <select required>
-                    <option>Library Department</option>
-                    <option>IT Office</option>
-                    <option>Registrar</option>
-                    <option>Student Affairs</option>
-                    <option>Research Office</option>
-                    <option>Guidance Office</option>
-                    <option>MIS</option>
-                    <option>Cashier</option>
-                    <option>Health Service</option>
-                    <option>Sports Office</option>
-                </select>
-
-                <label>Official WMSU Email<span style="color: red;"> *</span></label>
-                <input type="email" placeholder="e.g. username@wmsu.edu.ph" required>
-
-                <div class="upload-field">
-                    <label class="upload-label">Upload Staff ID<span style="color: red;"> *</span></label>
-                    <div class="dropzone">
-                        <label class="choose-btn" for="fileInput">Choose your files</label>
-                        <input type="file" id="fileInput" accept=".pdf,.jpg,.jpeg,.png" required>
-                        <span class="dropzone-text">No files chosen</span>
-                    </div>
-                </div>
-
-                <label>Password<span style="color: red;"> *</span></label>
-                <input type="password" minlength="8" placeholder="Enter Password" required>
-
-                <label>Confirm Password<span style="color: red;"> *</span></label>
-                <input type="password" minlength="8" placeholder="Confirm Password" required>
-
-                <a id="register-btn" href="registration_submitted.html">Register</a>
-            </form>
-
-            <!-- CPPESO FORM -->
-            <form id="cppesoForm" class="account-form" action="registration_submitted.html">
-
-                <div class="input-row">
-                    <div class="field">
-                        <label>First Name<span style="color: red;"> *</span></label>
-                        <input type="text" name="first_name" placeholder="e.g. Juan" required>
-                    </div>
-                    <div class="field">
-                        <label>Middle Name</label>
-                        <input type="text" name="middle_name" placeholder="e.g. Santos (Optional)">
-                    </div>
-                    <div class="field">
-                        <label>Last Name<span style="color: red;"> *</span></label>
-                        <input type="text" name="last_name" placeholder="e.g. Dela Cruz" required>
-                    </div>
-                </div>
-
-                <label> Email<span style="color: red;"> *</span></label>
-                <input type="email" placeholder="e.g. username@wmsu.edu.ph" required>
-
-                <label>Password<span style="color: red;"> *</span></label>
-                <input type="password" placeholder="Create Password" required>
-
-                <label>Confirm Password<span style="color: red;"> *</span></label>
-                <input type="password" placeholder="Confirm Password" required>
-
-                <label>Authorization Code<span style="color: red;"> *</span></label>
-                <input type="text" placeholder="Enter Authorization Code" required>
-
-                <a id="register-btn" href="registration_submitted.html">Register</a>
-
             </form>
         </div>
 
