@@ -16,352 +16,521 @@
 </head>
 
 <body>
-
-  <!-- ── RADIO INPUTS FOR NAVIGATION ───────────────── -->
-  <input class="nav-radio" type="radio" name="nav" id="nav-dashboard" checked />
-  <input class="nav-radio" type="radio" name="nav" id="nav-students" />
-  <input class="nav-radio" type="radio" name="nav" id="nav-departments" />
-  <input class="nav-radio" type="radio" name="nav" id="nav-positions" />
-  <input class="nav-radio" type="radio" name="nav" id="nav-suggest-positions" />
-  <input class="nav-radio" type="radio" name="nav" id="nav-review-log-hours" />
-  <input class="nav-radio" type="radio" name="nav" id="nav-payroll" />
-  <input class="nav-radio" type="radio" name="nav" id="nav-reports" />
-
-  <div class="layout">
-
-    <aside class="sidebar">
-      <div class="sidebar-logo">
-        <div class="logo-text">
-          <div class="abbr">WMSU-SAMS</div>
-          <div class="full">Student Assistant Management System.</div>
+<body>
+<!-- ── RADIO INPUTS FOR NAVIGATION ─────────────── -->
+<input class="nav-radio" type="radio" name="nav" id="nav-dashboard" checked />
+<input class="nav-radio" type="radio" name="nav" id="nav-students" />
+<input class="nav-radio" type="radio" name="nav" id="nav-positions" />
+<input class="nav-radio" type="radio" name="nav" id="nav-suggest-positions" />
+<input class="nav-radio" type="radio" name="nav" id="nav-attendance" />
+<input class="nav-radio" type="radio" name="nav" id="nav-qr" />
+<input class="nav-radio" type="radio" name="nav" id="nav-users" />
+<input class="nav-radio" type="radio" name="nav" id="nav-review-log-hours" />
+<input class="nav-radio" type="radio" name="nav" id="nav-payroll" />
+<input class="nav-radio" type="radio" name="nav" id="nav-audit" />
+<input class="nav-radio" type="radio" name="nav" id="nav-reports" />
+<div class="layout">
+  <!-- ══════════════════ SIDEBAR ══════════════════ -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-text">
+        <div class="abbr">WMSU-SAMS</div>
+        <div class="full">Student Assistant Management System</div>
+      </div>
+    </div>
+    <!-- School Year Badge -->
+    <div class="sidebar-sy-badge">
+      <i class="fas fa-calendar-alt"></i>
+      <span id="sidebar-sy-label">AY 2025–2026</span>
+      <span class="sy-sem-tag">2nd Sem</span>
+    </div>
+    <div class="sidebar-section-label">Main Menu</div>
+    <nav class="sidebar-nav">
+      <div class="nav-item">
+        <label for="nav-dashboard">
+          <i class="fas fa-th-large"></i> Dashboard
+        </label>
+      </div>
+      <div class="nav-item">
+        <label for="nav-students">
+          <i class="fas fa-user-check"></i> Verify Students
+          <span class="nav-badge" id="sidebar-badge-students">5</span>
+        </label>
+      </div>
+       <div class="nav-item">
+        <label for="nav-users">
+          <i class="fas fa-users-cog"></i> User Management
+        </label>
+      </div>
+      <div class="nav-item">
+        <label for="nav-positions">
+          <i class="fas fa-briefcase"></i> Manage Positions
+        </label>
+      </div>
+      <div class="nav-item">
+        <label for="nav-suggest-positions">
+          <i class="fas fa-hand-holding-heart"></i> Suggest Positions
+        </label>
+      </div>
+      <div class="nav-item">
+        <label for="nav-review-log-hours">
+          <i class="fas fa-clipboard-check"></i> Review Log Hours
+        </label>
+      </div>
+      <div class="nav-item">
+        <label for="nav-payroll">
+          <i class="fas fa-money-bill-wave"></i> Payroll
+        </label>
+      </div>
+      <div class="nav-item">
+        <label for="nav-reports">
+          <i class="fas fa-chart-bar"></i> Reports
+        </label>
+      </div>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="../index.html" class="logout-btn">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </a>
+    </div>
+  </aside>
+  <!-- ══════════════════ TOPBAR ══════════════════ -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <h1>Admin Panel</h1>
+      <p>Western Mindanao State University &mdash;
+        <strong id="topbar-sy">AY 2025–2026</strong> &bull; 2nd Semester
+      </p>
+    </div>
+    <div class="topbar-right">
+      <!-- Live Clock -->
+      <div class="topbar-clock" id="topbar-clock">--:-- --</div>
+      <!-- Notification Bell -->
+      <div class="topbar-notif" id="notif-bell" onclick="toggleNotifPanel()">
+        <i class="fas fa-bell"></i>
+        <span class="notif-dot" id="notif-dot"></span>
+      </div>
+      <!-- Notification Dropdown -->
+      <div class="notif-panel" id="notif-panel" style="display:none;">
+        <div class="notif-panel-header">
+          <span>Notifications</span>
+          <button onclick="markAllRead()" class="notif-mark-all">Mark all read</button>
+        </div>
+        <ul class="notif-list" id="notif-list">
+          <li class="notif-item unread">
+            <i class="fas fa-user-clock" style="color:var(--yellow);"></i>
+            <div>
+              <div class="notif-text">Ana Reyes has a missing time-out</div>
+              <div class="notif-time">2 min ago</div>
+            </div>
+          </li>
+          <li class="notif-item unread">
+            <i class="fas fa-file-alt" style="color:var(--blue);"></i>
+            <div>
+              <div class="notif-text">5 students pending verification</div>
+              <div class="notif-time">14 min ago</div>
+            </div>
+          </li>
+          <li class="notif-item">
+            <i class="fas fa-check-circle" style="color:var(--green);"></i>
+            <div>
+              <div class="notif-text">Carlos Mendez approved for Finance Office</div>
+              <div class="notif-time">1 hour ago</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="topbar-user">
+        <div class="user-avatar">AD</div>
+        <div>
+          <div class="user-name">Admin</div>
+          <div class="user-role">System Administrator</div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- ══════════════════ MAIN CONTENT ══════════════════ -->
+  <main class="main-content">
+    <!-- ╔══════════════════════════════
+         § DASHBOARD
+    ══════════════════════════════════╗ -->
+    <section class="section" id="sec-dashboard">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Welcome back, Administrator</div>
+          <div class="section-sub" id="dash-date-sub">
+           <input style="padding:7px 12px;border:1.5px solid var(--gray-200);border-radius:8px;font-size:13px;font-weight:600;color:var(--maroon);background:var(--cream);cursor:pointer;" type="date" name="" id="dash-date-picker" onchange="updateDashboardDate(this.value)">
+          </div>
+        </div>
+        <div class="section-actions">
+          <div class="sy-switcher">
+            <label style="font-size:12px;font-weight:600;color:var(--gray-500);">School Year</label>
+            <select id="sy-selector" onchange="switchSchoolYear(this.value)"
+              style="padding:7px 12px;border:1.5px solid var(--gray-200);border-radius:8px;font-size:13px;font-weight:600;color:var(--maroon);background:var(--cream);cursor:pointer;">
+              <option value="2025-2026" selected>AY 2025–2026</option>
+              <option value="2024-2025">AY 2024–2025</option>
+              <option value="2023-2024">AY 2023–2024</option>
+            </select>
+          </div>
+          <button class="btn btn-outline" onclick="exportReport()">
+            <i class="fas fa-download"></i> Export Report
+          </button>
+          <button class="btn btn-primary" onclick="refreshDashboard()">
+            <i class="fas fa-sync-alt"></i> Refresh
+          </button>
         </div>
       </div>
 
-      <div class="sidebar-section-label">Main Menu</div>
-
-      <nav class="sidebar-nav">
-        <div class="nav-item">
-          <label for="nav-dashboard">
-            <i class="fas fa-th-large"></i>
-            Dashboard
-          </label>
+<!-- Stat Cards (real-time) -->
+      <div class="stat-grid">
+        <div class="stat-card maroon">
+          <div class="stat-card-top">
+            <div class="stat-icon maroon"><i class="fas fa-users"></i></div>
+            <span class="stat-trend up"><i class="fas fa-arrow-up"></i> +12</span>
+          </div>
+          <div class="stat-value" id="stat-total-students">0</div>
+          <div class="stat-label">Total Students Registered</div>
         </div>
-        <div class="nav-item">
-          <label for="nav-students">
-            <i class="fas fa-user-check"></i>
-            Verify Students
-            <span class="nav-badge" id="sidebar-badge-students">5</span>
-          </label>
+        <div class="stat-card green">
+          <div class="stat-card-top">
+            <div class="stat-icon green"><i class="fas fa-wifi"></i></div>
+            <span class="stat-trend up" id="live-pulse">
+              <span class="pulse-dot"></span> Live
+            </span>
+          </div>
+          <div class="stat-value" id="stat-live-in">0</div>
+          <div class="stat-label">Currently Timed In</div>
         </div>
-        <div class="nav-item">
-          <label for="nav-departments">
-            <i class="fas fa-building"></i>
-            Verify Departments
-            <span class="nav-badge" id="sidebar-badge-depts">5</span>
-          </label>
+        <div class="stat-card gold">
+          <div class="stat-card-top">
+            <div class="stat-icon gold"><i class="fas fa-user-tie"></i></div>
+            <span class="stat-trend up"><i class="fas fa-arrow-up"></i> +7</span>
+          </div>
+          <div class="stat-value" id="stat-active-sa">0</div>
+          <div class="stat-label">Active Student Assistants</div>
         </div>
-        <div class="nav-item">
-          <label for="nav-positions">
-            <i class="fas fa-briefcase"></i>
-            Manage Positions
-          </label>
+        <div class="stat-card orange">
+          <div class="stat-card-top">
+            <div class="stat-icon orange"><i class="fas fa-hourglass-half"></i></div>
+            <span class="stat-trend warn"><i class="fas fa-exclamation"></i> Action</span>
+          </div>
+          <div class="stat-value" id="stat-pending">0</div>
+          <div class="stat-label">Pending Applications</div>
         </div>
-        <div class="nav-item">
-          <label for="nav-suggest-positions">
-            <i class="fas fa-hand-holding-heart"></i>
-            Suggest Positions
-          </label>
-        </div>
-        <div class="nav-item">
-          <label for="nav-review-log-hours">
-            <i class="fas fa-clipboard-check"></i>
-            Review Log Hours
-          </label>
-        </div>
-
-        <div class="sidebar-section-label">Operations</div>
-
-        <div class="nav-item">
-          <label for="nav-payroll">
-            <i class="fas fa-money-bill-wave"></i>
-            Payroll
-          </label>
-        </div>
-
-        <div class="nav-item">
-          <label for="nav-reports">
-            <i class="fas fa-chart-bar"></i>
-            Reports
-          </label>
-        </div>
-      </nav>
-
-      <div class="sidebar-footer">
-        <a href="../index.html" class="logout-btn">
-          <i class="fas fa-sign-out-alt"></i>
-          Logout
-        </a>
       </div>
-    </aside>
-
-    <header class="topbar">
-      <div class="topbar-left">
-        <h1>Admin Panel</h1>
-        <p>Western Mindanao State University — AY 2025–2026</p>
+      <!-- Alert Banner -->
+      <div class="alert-banner warn" id="dash-alert-banner">
+        <i class="fas fa-exclamation-triangle"></i>
+        <span id="dash-alert-text">
+          <strong>Action Required:</strong>
+          <strong>5 student verifications</strong> and
+          <strong>5 department approvals</strong> are awaiting your review.
+        </span>
       </div>
-      <div class="topbar-right">
-        <div class="topbar-notif">
-          <i class="fas fa-bell"></i>
-          <span class="notif-dot"></span>
-        </div>
-        <div class="topbar-user">
-          <div class="user-avatar">AD</div>
+      <!-- Today's Attendance Summary Strip -->
+      <div class="attendance-strip" id="attendance-strip">
+        <div class="att-strip-item">
+          <i class="fas fa-clock" style="color:var(--green);"></i>
           <div>
-            <div class="user-name">Admin</div>
-            <div class="user-role">System Administrator</div>
+            <div class="att-val" id="strip-timed-in">0</div>
+            <div class="att-lbl">Currently In</div>
+          </div>
+        </div>
+        <div class="att-strip-divider"></div>
+        <div class="att-strip-item">
+          <i class="fas fa-check" style="color:var(--blue);"></i>
+          <div>
+            <div class="att-val" id="strip-completed">0</div>
+            <div class="att-lbl">Completed Today</div>
+          </div>
+        </div>
+        <div class="att-strip-divider"></div>
+        <div class="att-strip-item">
+          <i class="fas fa-exclamation-triangle" style="color:var(--yellow);"></i>
+          <div>
+            <div class="att-val" id="strip-anomalies">3</div>
+            <div class="att-lbl">Anomalies Detected</div>
+          </div>
+        </div>
+        <div class="att-strip-divider"></div>
+        <div class="att-strip-item">
+          <i class="fas fa-user-times" style="color:var(--red);"></i>
+          <div>
+            <div class="att-val" id="strip-late">1</div>
+            <div class="att-lbl">Late Today</div>
+          </div>
+        </div>
+        <div class="att-strip-divider"></div>
+        <div class="att-strip-item">
+          <i class="fas fa-calendar-times" style="color:var(--gray-400);"></i>
+          <div>
+            <div class="att-val" id="strip-absent">2</div>
+            <div class="att-lbl">No Show</div>
           </div>
         </div>
       </div>
-    </header>
-
-    <main class="main-content">
-
-
-      <!-- ╔══════════════════════════════════════════════
-     § DASHBOARD
-══════════════════════════════════════════════╗ -->
-      <section class="section" id="sec-dashboard">
-
-        <div class="section-header">
-          <div>
-            <div class="section-title">Welcome back, Administrator</div>
-            <div class="section-sub">Here's what's happening in SAMS today — Tuesday, March 24, 2026</div>
+      <!-- Dashboard Grid -->
+      <div class="dash-grid">
+        <!-- Recent Activity -->
+        <div class="card">
+          <div class="card-header">
+            <h3><i class="fas fa-clock"></i> Recent Activity</h3>
+            <a href="#" class="view-all">View all <i class="fas fa-arrow-right"></i></a>
           </div>
-          <div class="section-actions">
-            <button class="btn btn-outline"><i class="fas fa-download"></i> Export Report</button>
-            <button class="btn btn-primary"><i class="fas fa-sync-alt"></i> Refresh</button>
-          </div>
-        </div>
-
-        <!-- Stat Cards -->
-        <div class="stat-grid">
-          <div class="stat-card maroon">
-            <div class="stat-card-top">
-              <div class="stat-icon maroon"><i class="fas fa-users"></i></div>
-              <span class="stat-trend up"><i class="fas fa-arrow-up"></i> +12</span>
-            </div>
-            <div class="stat-value">248</div>
-            <div class="stat-label">Total Students Registered</div>
-          </div>
-          <div class="stat-card gold">
-            <div class="stat-card-top">
-              <div class="stat-icon gold"><i class="fas fa-university"></i></div>
-              <span class="stat-trend up"><i class="fas fa-arrow-up"></i> +2</span>
-            </div>
-            <div class="stat-value">18</div>
-            <div class="stat-label">Total Departments</div>
-          </div>
-          <div class="stat-card green">
-            <div class="stat-card-top">
-              <div class="stat-icon green"><i class="fas fa-user-tie"></i></div>
-              <span class="stat-trend up"><i class="fas fa-arrow-up"></i> +7</span>
-            </div>
-            <div class="stat-value">94</div>
-            <div class="stat-label">Active Student Assistants</div>
-          </div>
-          <div class="stat-card orange">
-            <div class="stat-card-top">
-              <div class="stat-icon orange"><i class="fas fa-hourglass-half"></i></div>
-              <span class="stat-trend warn"><i class="fas fa-exclamation"></i> Action</span>
-            </div>
-            <div class="stat-value">16</div>
-            <div class="stat-label">Pending Applications</div>
+          <div class="card-body">
+            <ul class="activity-list" id="activity-list">
+              <!-- Populated by JS / API -->
+              <li class="activity-item">
+                <div class="activity-dot reg"><i class="fas fa-user-plus"></i></div>
+                <div>
+                  <div class="activity-text">
+                    <strong>Maria Santos</strong> registered as a new student.
+                  </div>
+                  <div class="activity-time"><i class="fas fa-clock" style="font-size:10px;"></i> 14 minutes ago</div>
+                </div>
+              </li>
+              <li class="activity-item">
+                <div class="activity-dot dept"><i class="fas fa-building"></i></div>
+                <div>
+                  <div class="activity-text">
+                    <strong>College of Nursing</strong> submitted department registration.
+                  </div>
+                  <div class="activity-time"><i class="fas fa-clock" style="font-size:10px;"></i> 1 hour ago</div>
+                </div>
+              </li>
+              <li class="activity-item">
+                <div class="activity-dot warn"><i class="fas fa-exclamation"></i></div>
+                <div>
+                  <div class="activity-text">
+                    <strong>Ana Reyes</strong> — missing time-out detected on Apr 23.
+                  </div>
+                  <div class="activity-time"><i class="fas fa-clock" style="font-size:10px;"></i> 3 hours ago</div>
+                </div>
+              </li>
+              <li class="activity-item">
+                <div class="activity-dot app"><i class="fas fa-check-circle"></i></div>
+                <div>
+                  <div class="activity-text">
+                    <strong>Carlos Mendez</strong> approved as SA for <em>Finance Office</em>.
+                  </div>
+                  <div class="activity-time"><i class="fas fa-clock" style="font-size:10px;"></i> Yesterday, 2:15 PM</div>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
-
-        <!-- Alert Banner -->
-        <div class="alert-banner warn" id="dash-alert-banner">
-          <i class="fas fa-exclamation-triangle"></i>
-          <span id="dash-alert-text"><strong>Action Required:</strong> <strong>5 student verifications</strong> and <strong>5 department approvals</strong> are awaiting your review. Please resolve them before the deadline.</span>
-        </div>
-
-        <!-- Dashboard Grid -->
-        <div class="dash-grid">
-
-          <!-- Recent Activity -->
-          <div class="card">
+        <!-- Right Column -->
+        <div>
+          <!-- Pending Actions -->
+          <div class="card" style="margin-bottom:20px;">
             <div class="card-header">
-              <h3><i class="fas fa-clock"></i> Recent Activity</h3>
-              <a href="#" class="view-all">View all <i class="fas fa-arrow-right"></i></a>
+              <h3><i class="fas fa-tasks"></i> Pending Actions</h3>
             </div>
-            <div class="card-body">
-              <ul class="activity-list">
-                <li class="activity-item">
-                  <div class="activity-dot reg"><i class="fas fa-user-plus"></i></div>
-                  <div>
-                    <div class="activity-text"><strong>Maria Santos</strong> registered as a new student and uploaded
-                      required documents.</div>
-                    <div class="activity-time"><i class="fas fa-clock" style="font-size:10px;"></i> 14 minutes ago</div>
-                  </div>
-                </li>
-                <li class="activity-item">
-                  <div class="activity-dot dept"><i class="fas fa-building"></i></div>
-                  <div>
-                    <div class="activity-text"><strong>College of Nursing</strong> submitted department registration for
-                      verification.</div>
-                    <div class="activity-time"><i class="fas fa-clock" style="font-size:10px;"></i> 1 hour ago</div>
-                  </div>
-                </li>
-                <li class="activity-item">
-                  <div class="activity-dot app"><i class="fas fa-file-alt"></i></div>
-                  <div>
-                    <div class="activity-text"><strong>Juan dela Cruz</strong> applied for <em>Library Assistant</em> at
-                      CEAS Department.</div>
-                    <div class="activity-time"><i class="fas fa-clock" style="font-size:10px;"></i> 2 hours ago</div>
-                  </div>
-                </li>
-                <li class="activity-item">
-                  <div class="activity-dot reg"><i class="fas fa-user-plus"></i></div>
-                  <div>
-                    <div class="activity-text"><strong>Ana Reyes</strong> registered and submitted COR and resume for
-                      verification.</div>
-                    <div class="activity-time"><i class="fas fa-clock" style="font-size:10px;"></i> 3 hours ago</div>
-                  </div>
-                </li>
-                <li class="activity-item">
-                  <div class="activity-dot warn"><i class="fas fa-exclamation"></i></div>
-                  <div>
-                    <div class="activity-text"><strong>IT Department</strong> application for <em>Lab Monitor</em> slot
-                      is still pending final decision.</div>
-                    <div class="activity-time"><i class="fas fa-clock" style="font-size:10px;"></i> Yesterday, 4:30 PM
+            <div class="card-body" style="padding-top:14px;">
+              <ul class="pending-list">
+                <li class="pending-item">
+                  <div class="pending-left">
+                    <div class="pending-icon" style="background:#fce4e8;color:var(--maroon);">
+                      <i class="fas fa-user-check"></i>
+                    </div>
+                    <div>
+                      <div class="pending-label">Student Verifications</div>
+                      <div class="pending-sub">Documents awaiting review</div>
                     </div>
                   </div>
+                  <span class="badge-count" id="dash-count-students">5</span>
                 </li>
-                <li class="activity-item">
-                  <div class="activity-dot app"><i class="fas fa-check-circle"></i></div>
-                  <div>
-                    <div class="activity-text"><strong>Carlos Mendez</strong> was approved as Student Assistant for the
-                      <em>Finance Office</em>.
+                <li class="pending-item">
+                  <div class="pending-left">
+                    <div class="pending-icon" style="background:#fef9ec;color:var(--yellow);">
+                      <i class="fas fa-building"></i>
                     </div>
-                    <div class="activity-time"><i class="fas fa-clock" style="font-size:10px;"></i> Yesterday, 2:15 PM
+                    <div>
+                      <div class="pending-label">Dept. Verifications</div>
+                      <div class="pending-sub">Awaiting legitimacy check</div>
                     </div>
                   </div>
+                  <span class="badge-count" id="dash-count-depts">5</span>
+                </li>
+                <li class="pending-item">
+                  <div class="pending-left">
+                    <div class="pending-icon" style="background:var(--green-light);color:var(--green);">
+                      <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <div>
+                      <div class="pending-label">SA Applications</div>
+                      <div class="pending-sub">Final approval pending</div>
+                    </div>
+                  </div>
+                  <span class="badge-count">8</span>
+                </li>
+                <li class="pending-item">
+                  <div class="pending-left">
+                    <div class="pending-icon" style="background:#fce4e8;color:var(--red);">
+                      <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div>
+                      <div class="pending-label">Attendance Anomalies</div>
+                      <div class="pending-sub">Flagged for review</div>
+                    </div>
+                  </div>
+                  <span class="badge-count" id="dash-count-anomalies">3</span>
                 </li>
               </ul>
             </div>
           </div>
-
-          <!-- Pending Actions -->
-          <div>
-            <div class="card" style="margin-bottom:20px;">
-              <div class="card-header">
-                <h3><i class="fas fa-tasks"></i> Pending Actions</h3>
-              </div>
-              <div class="card-body" style="padding-top:14px;">
-                <ul class="pending-list">
-                  <li class="pending-item">
-                    <div class="pending-left">
-                      <div class="pending-icon" style="background:#fce4e8;color:var(--maroon);"><i
-                          class="fas fa-user-check"></i></div>
-                      <div>
-                        <div class="pending-label">Student Verifications</div>
-                        <div class="pending-sub">Documents awaiting review</div>
-                      </div>
-                    </div>
-                    <span class="badge-count" id="dash-count-students">5</span>
-                  </li>
-                  <li class="pending-item">
-                    <div class="pending-left">
-                      <div class="pending-icon" style="background:#fef9ec;color:var(--yellow);"><i
-                          class="fas fa-building"></i></div>
-                      <div>
-                        <div class="pending-label">Dept. Verifications</div>
-                        <div class="pending-sub">Awaiting legitimacy check</div>
-                      </div>
-                    </div>
-                    <span class="badge-count" id="dash-count-depts">5</span>
-                  </li>
-                  <li class="pending-item">
-                    <div class="pending-left">
-                      <div class="pending-icon" style="background:var(--green-light);color:var(--green);"><i
-                          class="fas fa-clipboard-list"></i></div>
-                      <div>
-                        <div class="pending-label">SA Applications</div>
-                        <div class="pending-sub">Final approval pending</div>
-                      </div>
-                    </div>
-                    <span class="badge-count">8</span>
-                  </li>
-                  <li class="pending-item">
-                    <div class="pending-left">
-                      <div class="pending-icon" style="background:var(--blue-light);color:var(--blue);"><i
-                          class="fas fa-file-invoice"></i></div>
-                      <div>
-                        <div class="pending-label">Reports Due</div>
-                        <div class="pending-sub">Monthly summary needed</div>
-                      </div>
-                    </div>
-                    <span class="badge-count">2</span>
-                  </li>
-                </ul>
-              </div>
+          <!-- Slot Utilization -->
+          <div class="card">
+            <div class="card-header">
+              <h3><i class="fas fa-chart-pie"></i> Slot Utilization</h3>
             </div>
-
-            <!-- Quick Summary -->
-            <div class="card">
-              <div class="card-header">
-                <h3><i class="fas fa-chart-pie"></i> Quick Summary</h3>
-              </div>
-              <div class="card-body">
-                <div style="display:flex;flex-direction:column;gap:12px;">
-                  <div>
-                    <div class="dist-label">
-                      <span class="dist-name">Verified Students</span>
-                      <span class="dist-count">186 / 248</span>
-                    </div>
-                    <div class="dist-bar-wrap">
-                      <div class="dist-bar" style="width:75%;"></div>
-                    </div>
+            <div class="card-body">
+              <div style="display:flex;flex-direction:column;gap:12px;" id="slot-utilization">
+                <!-- Populated by JS -->
+                <div>
+                  <div class="dist-label">
+                    <span class="dist-name">Library Assistant</span>
+                    <span class="dist-count">3 / 5</span>
                   </div>
-                  <div>
-                    <div class="dist-label">
-                      <span class="dist-name">Active SA Slots Filled</span>
-                      <span class="dist-count">94 / 120</span>
-                    </div>
-                    <div class="dist-bar-wrap">
-                      <div class="dist-bar" style="width:78%;background:linear-gradient(90deg,var(--green),#4ade80);">
-                      </div>
-                    </div>
+                  <div class="dist-bar-wrap">
+                    <div class="dist-bar" style="width:60%;"></div>
                   </div>
-                  <div>
-                    <div class="dist-label">
-                      <span class="dist-name">Approved Departments</span>
-                      <span class="dist-count">15 / 18</span>
-                    </div>
-                    <div class="dist-bar-wrap">
-                      <div class="dist-bar" style="width:83%;background:linear-gradient(90deg,var(--blue),#60a5fa);">
-                      </div>
-                    </div>
+                </div>
+                <div>
+                  <div class="dist-label">
+                    <span class="dist-name">Lab Monitor (IT)</span>
+                    <span class="dist-count">8 / 8</span>
                   </div>
-                  <div>
-                    <div class="dist-label">
-                      <span class="dist-name">Applications Resolved</span>
-                      <span class="dist-count">52 / 68</span>
-                    </div>
-                    <div class="dist-bar-wrap">
-                      <div class="dist-bar" style="width:76%;background:linear-gradient(90deg,var(--yellow),#fbbf24);">
-                      </div>
-                    </div>
+                  <div class="dist-bar-wrap">
+                    <div class="dist-bar" style="width:100%;background:var(--red);"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="dist-label">
+                    <span class="dist-name">Office Assistant (CED)</span>
+                    <span class="dist-count">4 / 6</span>
+                  </div>
+                  <div class="dist-bar-wrap">
+                    <div class="dist-bar" style="width:67%;background:linear-gradient(90deg,var(--green),#4ade80);"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="dist-label">
+                    <span class="dist-name">Clinic Aide</span>
+                    <span class="dist-count">0 / 6</span>
+                  </div>
+                  <div class="dist-bar-wrap">
+                    <div class="dist-bar" style="width:0%;"></div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </div><!-- /dash-grid -->
+    </section>
 
-        </div><!-- /dash-grid -->
-      </section>
-
-
+    <!-- ╔══════════════════════════════
+         § USER MANAGEMENT
+    ══════════════════════════════════╗ -->
+    <section class="section" id="sec-users">
+      <div class="section-header">
+        <div>
+          <div class="section-title">User Management</div>
+          <div class="section-sub">Manage all system accounts — students, department heads, and administrators</div>
+        </div>
+        <div class="section-actions">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="user-search" placeholder="Search name or email...">
+          </div>
+          <select id="user-filter-role" class="btn btn-outline btn-sm" style="cursor:pointer;">
+            <option value="">All Roles</option>
+            <option value="student">Student</option>
+            <option value="department">Department</option>
+          </select>
+          <button class="btn btn-primary btn-sm" onclick="openCreateUserModal()">
+            <i class="fas fa-plus"></i> Add User
+          </button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table id="users-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>User</th>
+              <th>Role</th>
+              <th>Department / Course</th>
+              <th>Last Login</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>
+                <div class="t-avatar">
+                  <div class="av av-a">MS</div>
+                  <div>
+                    <div class="td-name">Maria Santos</div>
+                    <div class="td-sub">santos.maria@wmsu.edu.ph</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="badge verified">Student</span></td>
+              <td>BSCS 3rd Year</td>
+              <td>Apr 30, 2026</td>
+              <td><span class="badge active">Active</span></td>
+              <td>
+                <div class="action-btns">
+                  <button class="btn-icon view" title="View"><i class="fas fa-eye"></i></button>
+                  <button class="btn btn-sm" style="background:#fef3c7;color:#92400e;border:1px solid #fcd34d;"
+                    onclick="resetPassword('Maria Santos')">
+                    <i class="fas fa-key"></i> Reset
+                  </button>
+                  <button class="btn btn-sm btn-reject"
+                    onclick="deactivateUser('Maria Santos')">
+                    <i class="fas fa-ban"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>
+                <div class="t-avatar">
+                  <div class="av av-b">AF</div>
+                  <div>
+                    <div class="td-name">Alma Fernandez</div>
+                    <div class="td-sub">alma.fernandez@wmsu.edu.ph</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="badge" style="background:#ede9fe;color:#6d28d9;">Dept. Head</span></td>
+              <td>IT Department</td>
+              <td>Apr 29, 2026</td>
+              <td><span class="badge active">Active</span></td>
+              <td>
+                <div class="action-btns">
+                  <button class="btn-icon view" title="View"><i class="fas fa-eye"></i></button>
+                  <button class="btn btn-sm" style="background:#fef3c7;color:#92400e;border:1px solid #fcd34d;"
+                    onclick="resetPassword('Alma Fernandez')">
+                    <i class="fas fa-key"></i> Reset
+                  </button>
+                  <button class="btn btn-sm btn-reject"
+                    onclick="deactivateUser('Alma Fernandez')">
+                    <i class="fas fa-ban"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    
       <!-- ╔══════════════════════════════════════════════
      § VERIFY STUDENTS
 ══════════════════════════════════════════════╗ -->
@@ -550,155 +719,6 @@
           </table>
         </div>
       </section>
-
-
-      <!-- ╔══════════════════════════════════════════════
-     § VERIFY DEPARTMENTS
-══════════════════════════════════════════════╗ -->
-      <section class="section" id="sec-departments">
-
-        <div class="section-header">
-          <div>
-            <div class="section-title">Verify Departments</div>
-            <div class="section-sub">Review department credentials and uploaded documents before approval</div>
-          </div>
-        </div>
-
-        <div class="alert-banner warn">
-          <i class="fas fa-exclamation-triangle"></i>
-          <span><strong>5 departments</strong> are awaiting legitimacy verification. Review their MOA, authorization
-            letter, and department profile.</span>
-        </div>
-
-        <div class="table-wrap" style="margin-top:20px;">
-          <table>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Department</th>
-                <th>Dean / Head</th>
-                <th>College</th>
-                <th>Date Submitted</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-
-              <tr>
-                <td>1</td>
-                <td>
-                  <div>
-                    <div class="td-name"><i class="fas fa-building"
-                        style="color:var(--maroon);margin-right:6px;"></i>College of Engineering</div>
-                    <div class="td-sub">Engineering Complex, Bldg. A</div>
-                  </div>
-                </td>
-                <td>Dean Roberto Cruz</td>
-                <td>Engineering & Tech</td>
-                <td>Mar 23, 2026</td>
-                <td><span class="badge pending">Pending</span></td>
-                <td>
-                  <div class="action-btns">
-                    <button class="btn-icon view"><a href="#view-dept-1"><i class="fas fa-eye"></i></a></button>
-                    <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
-                    <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>2</td>
-                <td>
-                  <div>
-                    <div class="td-name"><i class="fas fa-building"
-                        style="color:var(--maroon);margin-right:6px;"></i>Information Technology Dept.</div>
-                    <div class="td-sub">ICT Building, 2nd Floor</div>
-                  </div>
-                </td>
-                <td>Dean Alma Fernandez</td>
-                <td>Computing & IT</td>
-                <td>Mar 22, 2026</td>
-                <td><span class="badge pending">Pending</span></td>
-                <td>
-                  <div class="action-btns">
-                    <button class="btn-icon view"><a href="#view-dept-2"><i class="fas fa-eye"></i></a></button>
-                    <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
-                    <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>3</td>
-                <td>
-                  <div>
-                    <div class="td-name"><i class="fas fa-building"
-                        style="color:var(--maroon);margin-right:6px;"></i>College of Education</div>
-                    <div class="td-sub">Education Building, Room 101</div>
-                  </div>
-                </td>
-                <td>Dean Maria Lopez</td>
-                <td>Education</td>
-                <td>Mar 21, 2026</td>
-                <td><span class="badge pending">Pending</span></td>
-                <td>
-                  <div class="action-btns">
-                    <button class="btn-icon view"><a href="#view-dept-3"><i class="fas fa-eye"></i></a></button>
-                    <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
-                    <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>4</td>
-                <td>
-                  <div>
-                    <div class="td-name"><i class="fas fa-building"
-                        style="color:var(--maroon);margin-right:6px;"></i>Registrar Office</div>
-                    <div class="td-sub">Admin Building, Ground Floor</div>
-                  </div>
-                </td>
-                <td>Mr. Carlos Reyes</td>
-                <td>Administrative</td>
-                <td>Mar 20, 2026</td>
-                <td><span class="badge pending">Pending</span></td>
-                <td>
-                  <div class="action-btns">
-                    <button class="btn-icon view"><a href="#view-dept-4"><i class="fas fa-eye"></i></a></i></button>
-                    <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
-                    <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>5</td>
-                <td>
-                  <div>
-                    <div class="td-name"><i class="fas fa-building"
-                        style="color:var(--maroon);margin-right:6px;"></i>Guidance Office</div>
-                    <div class="td-sub">Student Services Center</div>
-                  </div>
-                </td>
-                <td>Ms. Angela Bautista</td>
-                <td>Student Services</td>
-                <td>Mar 19, 2026</td>
-                <td><span class="badge pending">Pending</span></td>
-                <td>
-                  <div class="action-btns">
-                    <button class="btn-icon view"><a href="#view-dept-5"><i class="fas fa-eye"></i></a></i></button>
-                    <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
-                    <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
 
       <!-- ╔══════════════════════════════════════════════
      § MANAGE POSITIONS
@@ -1156,7 +1176,7 @@
               <div class="stat-icon green"><i class="fas fa-check-circle"></i></div>
               <span class="stat-trend up"><i class="fas fa-arrow-up"></i> +18h</span>
             </div>
-            <div class="stat-value">346h</div>
+            <div class="stat-value">0h</div>
             <div class="stat-label">Approved Hours This Period</div>
           </div>
           <div class="stat-card maroon">
@@ -1166,7 +1186,7 @@
                 <i class="fas fa-arrow-up"></i> Pending
               </span>
             </div>
-            <div class="stat-value">₱17,300</div>
+            <div class="stat-value">₱0</div>
             <div class="stat-label">Est. Payroll Impact (Pending)</div>
           </div>
           <div class="stat-card gold">
@@ -1724,7 +1744,7 @@
             <div class="stat-card-top">
               <div>
                 <div class="stat-label">Total Pending</div>
-                <div class="stat-value">₱87,500</div>
+                <div class="stat-value">₱0</div>
               </div>
               <div class="stat-icon maroon"><i class="fas fa-hourglass-half"></i></div>
             </div>
@@ -1737,7 +1757,7 @@
             <div class="stat-card-top">
               <div>
                 <div class="stat-label">Released This Month</div>
-                <div class="stat-value">₱142,000</div>
+                <div class="stat-value">₱0</div>
               </div>
               <div class="stat-icon gold"><i class="fas fa-check-circle"></i></div>
             </div>
@@ -1750,7 +1770,7 @@
             <div class="stat-card-top">
               <div>
                 <div class="stat-label">Total Released (AY)</div>
-                <div class="stat-value">₱580,000</div>
+                <div class="stat-value">₱0</div>
               </div>
               <div class="stat-icon green"><i class="fas fa-money-bill-wave"></i></div>
             </div>
@@ -1763,7 +1783,7 @@
             <div class="stat-card-top">
               <div>
                 <div class="stat-label">Average Hours/Week</div>
-                <div class="stat-value">18.5h</div>
+                <div class="stat-value">0h</div>
               </div>
               <div class="stat-icon orange"><i class="fas fa-clock"></i></div>
             </div>
@@ -1801,9 +1821,9 @@
                   </div>
                 </td>
                 <td>Library Assistant</td>
-                <td><strong>78.5 hours</strong></td>
+                <td><strong>0 hours</strong></td>
                 <td>₱50/hr</td>
-                <td class="payroll-total"><strong style="color: var(--maroon); font-size: 14px;"></strong></td>
+                <td class="payroll-tota"><strong style="color: var(--maroon); font-size: 14px;">₱0.00</strong></td>
                 <td><span class="badge pending">Pending Release</span></td>
                 <td>
                   <div class="action-btns">
@@ -1825,9 +1845,9 @@
                   </div>
                 </td>
                 <td>Finance Clerk</td>
-                <td><strong>92 hours</strong></td>
+                <td><strong>0 hours</strong></td>
                 <td>₱50/hr</td>
-                <td class="payroll-total"><strong style="color: var(--maroon); font-size: 14px;"></strong></td>
+                 <td class="payroll-tota"><strong style="color: var(--maroon); font-size: 14px;">₱0.00</strong></td>
                 <td><span class="badge pending">Pending Release</span></td>
                 <td>
                   <div class="action-btns">
@@ -1849,9 +1869,9 @@
                   </div>
                 </td>
                 <td>Clinic Aide</td>
-                <td><strong>65 hours</strong></td>
+                <td><strong>0 hours</strong></td>
                 <td>₱50/hr</td>
-                <td class="payroll-total"><strong style="color: var(--maroon); font-size: 14px;"></strong></td>
+                 <td class="payroll-tota"><strong style="color: var(--maroon); font-size: 14px;">₱0.00</strong></td>
                 <td><span class="badge pending">Pending Release</span></td>
                 <td>
                   <div class="action-btns">
@@ -1873,9 +1893,9 @@
                   </div>
                 </td>
                 <td>Lab Monitor</td>
-                <td><strong>88 hours</strong></td>
+                <td><strong>0 hours</strong></td>
                 <td>₱50/hr</td>
-                <td class="payroll-total"><strong style="color: var(--maroon); font-size: 14px;"></strong></td>
+                <td class="payroll-tota"><strong style="color: var(--maroon); font-size: 14px;">₱0.00</strong></td>
                 <td><span class="badge pending">Pending Release</span></td>
                 <td>
                   <div class="action-btns">
@@ -1897,9 +1917,9 @@
                   </div>
                 </td>
                 <td>Office Assistant</td>
-                <td><strong>71.5 hours</strong></td>
+                <td><strong>0 hours</strong></td>
                 <td>₱50/hr</td>
-                <td class="payroll-total"><strong style="color: var(--maroon); font-size: 14px;"></strong></td>
+                <td class="payroll-tota"><strong style="color: var(--maroon); font-size: 14px;">₱0.00</strong></td>
                 <td><span class="badge pending">Pending Release</span></td>
                 <td>
                   <div class="action-btns">
@@ -1942,7 +1962,7 @@
             <div class="report-stat-sub">↑ 12 new this semester</div>
           </div>
           <div class="report-stat">
-            <div class="report-stat-val">94</div>
+            <div class="report-stat-val">0</div>
             <div class="report-stat-lbl">Active Student Assistants</div>
             <div class="report-stat-sub">78% of total capacity</div>
           </div>
@@ -2148,16 +2168,27 @@
 <!-- ============ MODAL ============ -->
 <div id="view-docs-1" class="modal-overlay">
   <div class="modal-card">
-     
       <a href="#" class="modal-close-btn">&times;</a>
-
     <div class="modal-body">
       <div class="doc-student-info">
         <div class="avatar ava-a">MS</div>
         <div>
-          <div class="info-name">Maria Santos</div>
+          <div class="info-name-wrap"><div class="info-name">Maria Santos</div><span class="badge pending">Pending</span></div>
           <div class="info-sub">2022-00145 &nbsp;·&nbsp; BSCS 3rd Year &nbsp;·&nbsp; Submitted Mar 24, 2026</div>
         </div>
+      </div>
+
+      <div class="doc-requirements">
+        <h3>Registration Verification</h3>
+        <ul>
+          <li><strong>Last Name:</strong> Santos</li>
+          <li><strong>First Name:</strong> Maria</li>
+          <li><strong>Middle Name:</strong> N/A</li>
+          <li><strong>Official WMSU Email:</strong> santos.maria@wmsu.edu.ph</li>
+          <li><strong>Student ID:</strong> 2022-00145</li>
+          <li><strong>Year Level:</strong> 3rd Year</li>
+          <li><strong>COR Uploaded:</strong> Yes</li>
+        </ul>
       </div>
 
       <div class="doc-list">
@@ -2187,16 +2218,27 @@
 </div>
 <div id="view-docs-2" class="modal-overlay">
   <div class="modal-card">
-    
       <a href="#" class="modal-close-btn">&times;</a>
-
     <div class="modal-body">
       <div class="doc-student-info">
         <div class="avatar ava-b">JD</div>
         <div>
-          <div class="info-name">Juan dela Cruz</div>
+          <div class="info-name-wrap"><div class="info-name">Juan dela Cruz</div><span class="badge pending">Pending</span></div>
           <div class="info-sub">2021-00388&nbsp;·&nbsp; BSBA — 4th Year &nbsp;·&nbsp; Submitted Mar 19, 2026</div>
         </div>
+      </div>
+
+      <div class="doc-requirements">
+        <h3>Registration Verification</h3>
+        <ul>
+          <li><strong>Last Name:</strong> dela Cruz</li>
+          <li><strong>First Name:</strong> Juan</li>
+          <li><strong>Middle Name:</strong> N/A</li>
+          <li><strong>Official WMSU Email:</strong> delacruz.juan@wmsu.edu.ph</li>
+          <li><strong>Student ID:</strong> 2021-00388</li>
+          <li><strong>Year Level:</strong> 4th Year</li>
+          <li><strong>COR Uploaded:</strong> Yes</li>
+        </ul>
       </div>
 
       <div class="doc-list">
@@ -2227,16 +2269,27 @@
 
 <div id="view-docs-3" class="modal-overlay">
   <div class="modal-card">
-    
       <a href="#" class="modal-close-btn">&times;</a>
-
     <div class="modal-body">
       <div class="doc-student-info">
         <div class="avatar ava-c">AR</div>
         <div>
-          <div class="info-name">Ana Reyes</div>
+          <div class="info-name-wrap"><div class="info-name">Ana Reyes</div><span class="badge pending">Pending</span></div>
           <div class="info-sub">2023-00072 &nbsp;·&nbsp; BSN — 2nd Year &nbsp;·&nbsp; Submitted Mar 20, 2026</div>
         </div>
+      </div>
+
+      <div class="doc-requirements">
+        <h3>Registration Verification</h3>
+        <ul>
+          <li><strong>Last Name:</strong> Reyes</li>
+          <li><strong>First Name:</strong> Ana</li>
+          <li><strong>Middle Name:</strong> N/A</li>
+          <li><strong>Official WMSU Email:</strong> reyes.ana@wmsu.edu.ph</li>
+          <li><strong>Student ID:</strong> 2023-00072</li>
+          <li><strong>Year Level:</strong> 2nd Year</li>
+          <li><strong>COR Uploaded:</strong> Yes</li>
+        </ul>
       </div>
 
       <div class="doc-list">
@@ -2267,16 +2320,27 @@
 
 <div id="view-docs-4" class="modal-overlay">
   <div class="modal-card">
-    
       <a href="#" class="modal-close-btn">&times;</a>
-
     <div class="modal-body">
       <div class="doc-student-info">
         <div class="avatar ava-d">LT</div>
         <div>
-          <div class="info-name">Liza Torres</div>
+          <div class="info-name-wrap"><div class="info-name">Liza Torres</div><span class="badge pending">Pending</span></div>
           <div class="info-sub">2022-00299 &nbsp;·&nbsp; BSCS — 3rd Year &nbsp;·&nbsp; Submitted Mar 20, 2026</div>
         </div>
+      </div>
+
+      <div class="doc-requirements">
+        <h3>Registration Verification</h3>
+        <ul>
+          <li><strong>Last Name:</strong> Torres</li>
+          <li><strong>First Name:</strong> Liza</li>
+          <li><strong>Middle Name:</strong> N/A</li>
+          <li><strong>Official WMSU Email:</strong> torres.liza@wmsu.edu.ph</li>
+          <li><strong>Student ID:</strong> 2022-00299</li>
+          <li><strong>Year Level:</strong> 3rd Year</li>
+          <li><strong>COR Uploaded:</strong> Yes</li>
+        </ul>
       </div>
 
       <div class="doc-list">
@@ -2307,19 +2371,27 @@
 
 <div id="view-docs-5" class="modal-overlay">
   <div class="modal-card">
-    
-    <div class="modal-header">
-      <h2><i class="fas fa-file-alt"></i> Submitted Documents</h2>
       <a href="#" class="modal-close-btn">&times;</a>
-    </div>
-
     <div class="modal-body">
       <div class="doc-student-info">
         <div class="avatar ava-e">JO</div>
         <div>
-          <div class="info-name">Janricson Ompoy</div>
+          <div class="info-name-wrap"><div class="info-name">Janricson Ompoy</div><span class="badge pending">Pending</span></div>
           <div class="info-sub">2022-00319 &nbsp;·&nbsp; BSCS 1st Year &nbsp;·&nbsp; Submitted Mar 22, 2026</div>
         </div>
+      </div>
+
+      <div class="doc-requirements">
+        <h3>Registration Verification</h3>
+        <ul>
+          <li><strong>Last Name:</strong> Ompoy</li>
+          <li><strong>First Name:</strong> Janricson</li>
+          <li><strong>Middle Name:</strong> N/A</li>
+          <li><strong>Official WMSU Email:</strong> ompoy.janricson@wmsu.edu.ph</li>
+          <li><strong>Student ID:</strong> 2022-00319</li>
+          <li><strong>Year Level:</strong> 1st Year</li>
+          <li><strong>COR Uploaded:</strong> Yes</li>
+        </ul>
       </div>
 
       <div class="doc-list">
@@ -2362,9 +2434,21 @@
           <i class="fas fa-building" style="font-size:20px;"></i>
         </div>
         <div>
-          <div class="info-name">College of Engineering</div>
+          <div class="info-name-wrap"><div class="info-name">College of Engineering</div><span class="badge pending">Pending</span></div>
           <div class="info-sub">Dean Roberto Cruz &nbsp;·&nbsp; Engineering & Tech &nbsp;·&nbsp; Submitted Mar 23, 2026</div>
         </div>
+      </div>
+
+      <div class="doc-requirements">
+        <h3>Employer Registration</h3>
+        <ul>
+          <li><strong>Last Name:</strong> Cruz</li>
+          <li><strong>First Name:</strong> Roberto</li>
+          <li><strong>Middle Name:</strong> N/A</li>
+          <li><strong>Department / Office:</strong> Engineering & Tech</li>
+          <li><strong>Official WMSU Email:</strong> roberto.cruz@wmsu.edu.ph</li>
+          <li><strong>Staff ID Uploaded:</strong> Yes</li>
+        </ul>
       </div>
 
       <div class="doc-list">
@@ -2403,9 +2487,21 @@
           <i class="fas fa-building" style="font-size:20px;"></i>
         </div>
         <div>
-          <div class="info-name">Information Technology Dept.</div>
+          <div class="info-name-wrap"><div class="info-name">Information Technology Dept.</div><span class="badge pending">Pending</span></div>
           <div class="info-sub">Dean Alma Fernandez &nbsp;·&nbsp; Computing & IT &nbsp;·&nbsp; Submitted Mar 22, 2026</div>
         </div>
+      </div>
+
+      <div class="doc-requirements">
+        <h3>Employer Registration</h3>
+        <ul>
+          <li><strong>Last Name:</strong> Fernandez</li>
+          <li><strong>First Name:</strong> Alma</li>
+          <li><strong>Middle Name:</strong> N/A</li>
+          <li><strong>Department / Office:</strong> Computing & IT</li>
+          <li><strong>Official WMSU Email:</strong> alma.fernandez@wmsu.edu.ph</li>
+          <li><strong>Staff ID Uploaded:</strong> Yes</li>
+        </ul>
       </div>
 
       <div class="doc-list">
@@ -2441,9 +2537,21 @@
           <i class="fas fa-building" style="font-size:20px;"></i>
         </div>
         <div>
-          <div class="info-name">College of Education</div>
+          <div class="info-name-wrap"><div class="info-name">College of Education</div><span class="badge pending">Pending</span></div>
           <div class="info-sub">Dean Maria Lopez &nbsp;·&nbsp; Education &nbsp;·&nbsp; Submitted Mar 21, 2026</div>
         </div>
+      </div>
+
+      <div class="doc-requirements">
+        <h3>Employer Registration</h3>
+        <ul>
+          <li><strong>Last Name:</strong> Lopez</li>
+          <li><strong>First Name:</strong> Maria</li>
+          <li><strong>Middle Name:</strong> N/A</li>
+          <li><strong>Department / Office:</strong> Education</li>
+          <li><strong>Official WMSU Email:</strong> maria.lopez@wmsu.edu.ph</li>
+          <li><strong>Staff ID Uploaded:</strong> Yes</li>
+        </ul>
       </div>
 
       <div class="doc-list">
@@ -2481,9 +2589,21 @@
           <i class="fas fa-building" style="font-size:20px;"></i>
         </div>
         <div>
-          <div class="info-name">Registrar Office</div>
+          <div class="info-name-wrap"><div class="info-name">Registrar Office</div><span class="badge pending">Pending</span></div>
           <div class="info-sub">Mr. Carlos Reyes &nbsp;·&nbsp; Administrative &nbsp;·&nbsp; Submitted Mar 20, 2026</div>
         </div>
+      </div>
+
+      <div class="doc-requirements">
+        <h3>Employer Registration</h3>
+        <ul>
+          <li><strong>Last Name:</strong> Reyes</li>
+          <li><strong>First Name:</strong> Carlos</li>
+          <li><strong>Middle Name:</strong> N/A</li>
+          <li><strong>Department / Office:</strong> Administrative</li>
+          <li><strong>Official WMSU Email:</strong> carlos.reyes@wmsu.edu.ph</li>
+          <li><strong>Staff ID Uploaded:</strong> Yes</li>
+        </ul>
       </div>
 
       <div class="doc-list">
@@ -2521,9 +2641,21 @@
           <i class="fas fa-building" style="font-size:20px;"></i>
         </div>
         <div>
-          <div class="info-name">Guidance Office</div>
+          <div class="info-name-wrap"><div class="info-name">Guidance Office</div><span class="badge pending">Pending</span></div>
           <div class="info-sub">Ms. Angela Bautista &nbsp;·&nbsp; Student Services &nbsp;·&nbsp; Submitted Mar 19, 2026</div>
         </div>
+      </div>
+
+      <div class="doc-requirements">
+        <h3>Employer Registration</h3>
+        <ul>
+          <li><strong>Last Name:</strong> Bautista</li>
+          <li><strong>First Name:</strong> Angela</li>
+          <li><strong>Middle Name:</strong> N/A</li>
+          <li><strong>Department / Office:</strong> Student Services</li>
+          <li><strong>Official WMSU Email:</strong> angela.bautista@wmsu.edu.ph</li>
+          <li><strong>Staff ID Uploaded:</strong> Yes</li>
+        </ul>
       </div>
 
       <div class="doc-list">
@@ -2552,12 +2684,12 @@
 <!-- ============ POSITION MODALS ============ -->
 
 <!--Library Assistant-->
-<div id="view-pos-1" class="modal-overlay">
-  <div class="modal-card">
+<div id="view-pos-1" class="position-modal-overlay">
+  <div class="position-modal-card">
 
     <a href="#" class="modal-close-btn">&times;</a>
   
-    <div class="modal-body">
+    <div class="position-modal-body">
 
       <!-- Position Title Strip -->
       <div class="doc-student-info">
@@ -2565,29 +2697,28 @@
           <i class="fas fa-book" style="font-size:20px;"></i>
         </div>
         <div>
-          <div class="info-name">Library Assistant</div>
+          <div class="info-name-wrap"><div class="info-name">Library Assistant</div><span class="badge pending">Pending</span></div>
           <div class="info-sub">University Library &nbsp;·&nbsp; 5 Total Slots &nbsp;·&nbsp; ₱4,500 / month</div>
         </div>
-        <span class="badge pending" style="margin-left:auto;">Pending</span>
       </div>
 
       <hr>
       <!-- Info Grid -->
-      <div class="modal-body">
+      <div class="modal-section">
         <div class="info-grid">
-          <div class="info-item">
+          <div class="docs-item">
             <span class="label">Location</span>
             <span class="value">Main Library, Ground Floor</span>
           </div>
-          <div class="info-item">
+          <div class="idocs-item">
             <span class="label">Pay Rate</span>
             <span class="value">₱50 / hour</span>
           </div>
-          <div class="info-item">
+          <div class="docs-item">
             <span class="label">Daily Hours</span>
             <span class="value">3 hours / day</span>
           </div>
-          <div class="info-item">
+          <div class="docs-item">
             <span class="label">Availability</span>
             <span class="value">3 of 5 slots left</span>
           </div>
@@ -2648,15 +2779,15 @@
         <hr>
 
         <h4>Supervisor</h4>
-        <div class="info-item">
+        <div class="docs-item">
           <span class="label">Name</span>
           <span class="value">Ms. Rosa Villanueva</span>
         </div>
-        <div class="info-item">
+        <div class="docs-item">
           <span class="label">Email</span>
           <span class="value">rosa.villanueva@wmsu.edu.ph</span>
         </div>
-        <div class="info-item">
+        <div class="docs-item">
           <span class="label">Contact Number</span>
           <span class="value">09XX-XXX-XXXX</span> 
         </div>
@@ -2676,39 +2807,39 @@
 </div>
 
 <!--LABORATORY MONITOR MODAL-->
-<div id="view-pos-2" class="modal-overlay">
-  <div class="modal-card">
+<div id="view-pos-2" class="position-modal-overlay">
+  <div class="position-modal-card">
     
       <a href="#" class="modal-close-btn">&times;</a>
 
-    <div class="modal-body">
+    <div class="position-modal-body">
 
       <div class="doc-student-info">
         <div class="avatar" style="background:#0369a1; border-radius:10px;">
           <i class="fas fa-computer" style="font-size:20px;"></i>
         </div>
         <div>
-          <div class="info-name">Computer Laboratory Monitor</div>
-        <div class="info-sub">Information Technology Dept. &nbsp;·&nbsp; 8 Total Slots &nbsp;·&nbsp; ₱3,300 / month</div>
+          <div class="info-name-wrap"><div class="info-name">Computer Laboratory Monitor</div><span class="badge pending">Pending</span></div>
+          <div class="info-sub">Information Technology Dept. &nbsp;·&nbsp; 8 Total Slots &nbsp;·&nbsp; ₱3,300 / month</div>
         </div>
-        <span class="badge pending" style="margin-left:auto;">Pending</span>
       </div>
 
-      <div class="modal-body">
+      <hr>
+      <div class="modal-section">
         <div class="info-grid">
-          <div class="info-item">
+          <div class="idocs-item">
             <span class="label">Location</span>
             <span class="value">Science Building, Lab 3</span>
           </div>
-          <div class="info-item">
+          <div class="docs-item">
             <span class="label">Pay Rate</span>
             <span class="value">₱55 / hour</span>
           </div>
-          <div class="info-item">
+          <div class="docs-item">
             <span class="label">Daily Hours</span>
             <span class="value">4 hours / day</span>
           </div>
-          <div class="info-item">
+          <div class="docs-item">
             <span class="label">Availability</span>
             <span class="value">8 slots filled</span>
           </div>
@@ -2765,15 +2896,15 @@
         <hr>
 
         <h4>Supervisor</h4>
-        <div class="info-item">
+        <div class="docs-item">
           <span class="label">Name</span>
           <span class="value">Dr. Mario Santos</span>
         </div>
-        <div class="info-item">
+        <div class="docs-item">
           <span class="label">Email</span>
           <span class="value">mario.santos@wmsu.edu.ph</span>
         </div>
-        <div class="info-item">
+        <div class="docs-item">
           <span class="label">Contact Number</span>
           <span class="value">09XX-XXX-XXXX</span> 
         </div>
@@ -2792,40 +2923,40 @@
 </div>
 
 <!--OFFICE ASSISTANT-->
-<div id="view-pos-3" class="modal-overlay">
-  <div class="modal-card">
+<div id="view-pos-3" class="position-modal-overlay">
+  <div class="position-modal-card">
     
       <a href="#" class="modal-close-btn">&times;</a>
     
 
-    <div class="modal-body">
+    <div class="position-modal-body">
 
       <div class="doc-student-info">
         <div class="avatar" style="background:#059669; border-radius:10px;">
           <i class="fas fa-file-alt" style="font-size:20px;"></i>
         </div>
         <div>
-          <div class="info-name">Office Assistant</div>
+          <div class="info-name-wrap"><div class="info-name">Office Assistant</div><span class="badge pending">Pending</span></div>
           <div class="info-sub">College of Education &nbsp;·&nbsp; 6 Total Slots &nbsp;·&nbsp; ₱4,000 / month</div>
         </div>
-        <span class="badge pending" style="margin-left:auto;">Pending</span>
       </div>
 
-      <div class="modal-body">
+      <hr>
+      <div class="modal-section">
         <div class="info-grid">
-          <div class="info-item">
+          <div class="docs-item">
             <span class="label">Location</span>
             <span class="value">Research Center, 3rd Floor</span>
           </div>
-          <div class="info-item">
+          <div class="docs-item">
             <span class="label">Pay Rate</span>
             <span class="value">₱65 / hour</span>
           </div>
-          <div class="info-item">
+          <div class="docs-item">
             <span class="label">Daily Hours</span>
             <span class="value">4 hours / day</span>
           </div>
-          <div class="info-item">
+          <div class="docs-item">
             <span class="label">Availability</span>
             <span class="value">2 of 6 slots left</span>
           </div>
@@ -2874,15 +3005,15 @@
           </ul>
           <hr>
           <h4>Supervisor</h4>
-          <div class="info-item">
+          <div class="docs-item">
             <span class="label">Name</span>
             <span class="value">Prof. Lena Mercado</span>
           </div>
-          <div class="info-item">
+          <div class="docs-item">
             <span class="label">Email</span>
             <span class="value">lena.mercado@wmsu.edu.ph</span>
         </div>
-        <div class="info-item">
+        <div class="docs-item">
           <span class="label">Contact Number</span>
           <span class="value">09XX-XXX-XXXX</span> 
         </div>
@@ -2900,39 +3031,39 @@
 </div>
 
 <!-- RESEARCH ASSISTANT-->
-<div id="view-pos-4" class="modal-overlay">
-  <div class="modal-card">
+<div id="view-pos-4" class="position-modal-overlay">
+  <div class="position-modal-card">
     
       <a href="#" class="modal-close-btn">&times;</a>
 
-    <div class="modal-body">
+    <div class="position-modal-body">
 
       <div class="doc-student-info">
         <div class="avatar" style="background:#7c3aed; border-radius:10px;">
           <i class="fas fa-microscope" style="font-size:20px;"></i>
         </div>
         <div>
-          <div class="info-name">Research Assistant</div>
+          <div class="info-name-wrap"><div class="info-name">Research Assistant</div><span class="badge pending">Pending</span></div>
           <div class="info-sub">College of Engineering &nbsp;·&nbsp; 4 Total Slots &nbsp;·&nbsp; ₱5,500 / month</div>
         </div>
-        <span class="badge pending" style="margin-left:auto;">Pending</span>
       </div>
 
-      <div class="modal-body">
+      <hr>
+      <div class="modal-section">
         <div class="info-grid">
-          <div class="info-item">
+          <div class="docs-item">
             <span class="label">Location</span>
             <span class="value">Admin Building, Room 101</span>
           </div>
-          <div class="info-item">
+          <div class="docs-item">
               <span class="label">Pay Rate</span>
               <span class="value">₱50 / hour</span>
           </div>
-          <div class="info-item">
+          <div class="docs-item">
             <span class="label">Daily Hours</span>
             <span class="value">3 hours / day</span>
           </div>
-          <div class="info-item">
+          <div class="docs-item">
             <span class="label">Availability</span>
             <span class="value">2 of 4 slots left</span>
             </div>
@@ -2979,15 +3110,15 @@
         </ul>
         <hr>
         <h4>Supervisor</h4>
-        <div class="info-item">
+        <div class="docs-item">
           <span class="label">Name</span>
           <span class="value">Mr. Carlo Reyes</span>
         </div>
-        <div class="info-item">
+        <div class="docs-item">
           <span class="label">Email</span>
           <span class="value">carlo.reyes@wmsu.edu.ph</span>
         </div>
-        <div class="info-item">
+        <div class="docs-item">
           <span class="label">Contact Number</span>
           <span class="value">09XX-XXX-XXXX</span> 
         </div>
@@ -3006,39 +3137,39 @@
 </div>
 
 <!-- FINANCE CLERK MODAL-->
-<div id="view-pos-5" class="modal-overlay">
-  <div class="modal-card">
+<div id="view-pos-5" class="position-modal-overlay">
+  <div class="position-modal-card">
       <a href="#" class="modal-close-btn">&times;</a>
-    <div class="modal-body">
+    <div class="position-modal-body">
 
       <div class="doc-student-info">
         <div class="avatar" style="background:#b45309; border-radius:10px;">
           <i class="fas fa-coins" style="font-size:20px;"></i>
         </div>
         <div>
-          <div class="info-name">Finance Clerk</div>
+          <div class="info-name-wrap"><div class="info-name">Finance Clerk</div><span class="badge pending">Pending</span></div>
           <div class="info-sub">Finance Office &nbsp;·&nbsp; 3 Total Slots &nbsp;·&nbsp; ₱4,200 / month</div>
         </div>
-        <span class="badge pending" style="margin-left:auto;">Pending</span>
       </div>
 
-      <div class="modal-body">
+      <hr>
+      <div class="modal-section">
         <div class="info-grid">
-          <div class="info-item">
+          <div class="docs-item">
             <span class="label">Location</span>
             <span class="value">Finance Office, 2nd Floor</span>
           </div>
-          <div class="info-item">
+          <div class="docs-item">
             <span class="label">Pay Rate</span>
             <span class="value">₱60 / hour</span>
           </div>
-          <div class="info-item">
+          <div class="docs-item">
             <span class="label">Daily Hours</span>
             <span class="value">4 hours / day</span>
           </div>
-          <div class="info-item">
+          <div class="docs-item">
             <span class="label">Availability</span>
-            <span class="value" > 3 out 3 spots filled</span>
+            <span class="value">3 of 3 slots filled</span>
           </div>
       </div>
       <hr>
@@ -3087,15 +3218,15 @@
         <hr>
 
         <h4>Supervisor</h4>
-        <div class="info-item">
+        <div class="docs-item">
           <span class="label">Name</span>
           <span class="value">Ms. Carla Bautista</span>
         </div>
-        <div class="info-item">
+        <div class="docs-item">
           <span class="label">Email</span>
           <span class="value">carla.bautista@wmsu.edu.ph</span>
         </div>
-        <div class="info-item">
+        <div class="docs-item">
           <span class="label">Contact Number</span>
           <span class="value">09XX-XXX-XXXX</span> 
         </div>
@@ -3113,37 +3244,37 @@
   </div>
 </div>
 
-<div id="view-pos-6" class="modal-overlay">
-  <div class="modal-card">
+<div id="view-pos-6" class="position-modal-overlay">
+  <div class="position-modal-card">
       <a href="#" class="modal-close-btn">&times;</a>
-    <div class="modal-body">
+    <div class="position-modal-body">
 
       <div class="doc-student-info">
         <div class="avatar" style="background:#db2777; border-radius:10px;">
           <i class="fas fa-heartbeat" style="font-size:20px;"></i>
         </div>
         <div>
-          <div class="info-name">Clinic Aide</div>
+          <div class="info-name-wrap"><div class="info-name">Clinic Aide</div><span class="badge pending">Pending</span></div>
           <div class="info-sub">College of Nursing &nbsp;·&nbsp; 6 Total Slots &nbsp;·&nbsp; ₱4,800 / month</div>
         </div>
-        <span class="badge pending" style="margin-left:auto;">Pending</span>
       </div>
 
-      <div class="modal-body">
+      <hr>
+      <div class="modal-section">
         <div class="info-grid">
-          <div class="info-item">
+          <div class="docs-item">
             <span class="label">Location</span>
             <span class="value">University Clinic, Ground Floor</span>
           </div>
-          <div class="info-item">
+          <div class="docs-item">
             <span class="label">Pay Rate</span>
             <span class="value">₱55 / hour</span>
           </div>
-          <div class="info-item">
+          <div class="docs-item">
             <span class="label">Daily Hours</span>
             <span class="value">4 hours / day</span>
           </div>
-          <div class="info-item">
+          <div class="docs-item">
             <span class="label">Availability</span>
             <span class="value">No slots filled.</span>
           </div>
@@ -3203,15 +3334,15 @@
         <hr>
 
         <h4>Supervisor</h4>
-        <div class="info-item">
+        <div class="docs-item">
           <span class="label">Name</span>
           <span class="value">Nurse Grace Padilla</span>
         </div>
-        <div class="info-item">
+        <div class="docs-item">
           <span class="label">Email</span>
           <span class="value">grace.padilla@wmsu.edu.ph</span>
         </div>
-        <div class="info-item">
+        <div class="docs-item">
           <span class="label">Contact Number</span>
           <span class="value">09XX-XXX-XXXX</span> 
         </div>
@@ -3503,7 +3634,7 @@
 
     <!-- Payroll: compute Total = Hours × Rate -->
     <script>
-            document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('#payroll-table tbody tr').forEach(function (row) {
           const hours = parseFloat(row.dataset.hours);
           const rate  = parseFloat(row.dataset.rate);
@@ -3556,6 +3687,610 @@
   });
 });
 </script>
+<script>
+
+  /* ═══════════════════════════════════════════════════════
+   WMSU-SAMS Admin Dashboard — Core JS
+   All server-facing calls go through the API module.
+   Timestamps always come from server; never Date() for
+   business logic.
+═══════════════════════════════════════════════════════ */
+
+'use strict';
+
+const API_BASE = '/api';
+
+// ── Authenticated fetch wrapper ──────────────────────
+async function apiFetch(endpoint, options = {}) {
+  const token = localStorage.getItem('adminToken');
+  const res = await fetch(`${API_BASE}${endpoint}`, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+      ...options.headers,
+    },
+    ...options,
+  });
+  if (res.status === 401) {
+    window.location.href = '../index.html';
+    return;
+  }
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({ message: 'Unknown error' }));
+    throw new Error(err.message || `HTTP ${res.status}`);
+  }
+  return res.json();
+}
+
+// ══════════════════════════════════════════════════════
+// LIVE CLOCK (display only — NOT used for timestamps)
+// ══════════════════════════════════════════════════════
+function startClock() {
+  const el = document.getElementById('topbar-clock');
+  if (!el) return;
+  const tick = () => {
+    const now = new Date();
+    const h = now.getHours(), m = now.getMinutes(), s = now.getSeconds();
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    const hh = (h % 12 || 12).toString().padStart(2, '0');
+    const mm = m.toString().padStart(2, '0');
+    const ss = s.toString().padStart(2, '0');
+    el.textContent = `${hh}:${mm}:${ss} ${ampm}`;
+  };
+  tick();
+  setInterval(tick, 1000);
+}
+
+// ══════════════════════════════════════════════════════
+// DASHBOARD DATE (uses server time from API)
+// ══════════════════════════════════════════════════════
+async function initDashboardDate() {
+  try {
+    const { serverDate, schoolYear, semester } = await apiFetch('/admin/server-time');
+    const dateEl = document.getElementById('dash-date-sub');
+    if (dateEl) dateEl.textContent =
+      `Here's what's happening in SAMS today — ${serverDate}`;
+
+    const syLabel = `AY ${schoolYear}`;
+    document.getElementById('topbar-sy').textContent = syLabel;
+    document.getElementById('sidebar-sy-label').textContent = syLabel;
+    document.querySelector('.sy-sem-tag').textContent = semester;
+  } catch (e) {
+    console.warn('Could not fetch server time:', e.message);
+    // Fallback: show AY from the selector
+    const dash = document.getElementById('dash-date-sub');
+    if (dash) dash.textContent =
+      `Here's what's happening in SAMS today`;
+  }
+}
+
+// ══════════════════════════════════════════════════════
+// SCHOOL YEAR SWITCHER
+// ══════════════════════════════════════════════════════
+async function switchSchoolYear(value) {
+  try {
+    await apiFetch('/admin/school-year', {
+      method: 'PUT',
+      body: JSON.stringify({ schoolYear: value }),
+    });
+    const [start, end] = value.split('-');
+    const label = `AY ${start}–${end}`;
+    document.getElementById('topbar-sy').textContent = label;
+    document.getElementById('sidebar-sy-label').textContent = label;
+    await refreshDashboard();
+    showAlert('School Year Updated', `Dashboard now showing ${label}.`, 'success');
+  } catch (e) {
+    showAlert('Error', e.message, 'error');
+  }
+}
+
+// ══════════════════════════════════════════════════════
+// DASHBOARD REFRESH (polls /admin/dashboard-stats)
+// ══════════════════════════════════════════════════════
+async function refreshDashboard() {
+  try {
+    const stats = await apiFetch('/admin/dashboard-stats');
+
+    // Stat cards
+    setEl('stat-total-students', stats.totalStudents);
+    setEl('stat-live-in', stats.currentlyTimedIn);
+    setEl('stat-active-sa', stats.activeSA);
+    setEl('stat-pending', stats.pendingApplications);
+
+    // Sidebar badges
+    setEl('sidebar-badge-students', stats.pendingStudentVerif);
+    setEl('sidebar-badge-live', stats.currentlyTimedIn);
+    setEl('dash-count-students', stats.pendingStudentVerif);
+    setEl('dash-count-depts', stats.pendingDeptVerif);
+    setEl('dash-count-anomalies', stats.anomalies);
+
+    // Attendance strip
+    setEl('strip-timed-in', stats.currentlyTimedIn);
+    setEl('strip-completed', stats.completedToday);
+    setEl('strip-anomalies', stats.anomalies);
+    setEl('strip-late', stats.lateToday);
+    setEl('strip-absent', stats.absentToday);
+
+    // Alert banner
+    updateAlertBanner(stats.pendingStudentVerif, stats.pendingDeptVerif);
+
+    // Slot utilization
+    if (stats.slotUtilization) renderSlotUtilization(stats.slotUtilization);
+
+  } catch (e) {
+    console.error('Dashboard refresh failed:', e.message);
+  }
+}
+
+function setEl(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = value ?? '—';
+}
+
+function updateAlertBanner(studentPending, deptPending) {
+  const banner = document.getElementById('dash-alert-banner');
+  const text = document.getElementById('dash-alert-text');
+  if (!banner || !text) return;
+
+  const parts = [];
+  if (studentPending > 0)
+    parts.push(`<strong>${studentPending} student verification${studentPending !== 1 ? 's' : ''}</strong>`);
+  if (deptPending > 0)
+    parts.push(`<strong>${deptPending} department approval${deptPending !== 1 ? 's' : ''}</strong>`);
+
+  if (parts.length) {
+    banner.style.display = '';
+    text.innerHTML = `<strong>Action Required:</strong> ${parts.join(' and ')} ` +
+      `${parts.length > 1 ? 'are' : 'is'} awaiting your review.`;
+  } else {
+    banner.style.display = 'none';
+  }
+}
+
+function renderSlotUtilization(slots) {
+  const wrap = document.getElementById('slot-utilization');
+  if (!wrap) return;
+  wrap.innerHTML = slots.map(s => {
+    const pct = s.total > 0 ? Math.round((s.filled / s.total) * 100) : 0;
+    const barColor = pct >= 100
+      ? 'var(--red)'
+      : pct >= 80
+        ? 'var(--yellow)'
+        : 'linear-gradient(90deg,var(--green),#4ade80)';
+    return `
+      <div>
+        <div class="dist-label">
+          <span class="dist-name">${s.name}</span>
+          <span class="dist-count">${s.filled} / ${s.total}</span>
+        </div>
+        <div class="dist-bar-wrap">
+          <div class="dist-bar" style="width:${pct}%;background:${barColor};"></div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+// ══════════════════════════════════════════════════════
+// LIVE ATTENDANCE POLLING (every 30s)
+// ══════════════════════════════════════════════════════
+async function pollLiveAttendance() {
+  try {
+    const data = await apiFetch('/admin/attendance/live');
+
+    setEl('live-count-in', data.currentlyIn);
+    setEl('live-count-out', data.timedOutToday);
+    setEl('live-count-anomaly', data.anomalies);
+    setEl('live-total-hours', data.totalHoursToday + 'h');
+    setEl('stat-live-in', data.currentlyIn);
+    setEl('sidebar-badge-live', data.currentlyIn);
+    setEl('strip-timed-in', data.currentlyIn);
+
+    renderLiveTable(data.sessions);
+  } catch (e) {
+    console.warn('Live attendance poll failed:', e.message);
+  }
+}
+
+function renderLiveTable(sessions) {
+  const tbody = document.getElementById('live-att-body');
+  if (!tbody) return;
+
+  if (!sessions || sessions.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="7" style="text-align:center;padding:30px;color:var(--gray-400);">
+          <i class="fas fa-moon"></i> No students currently timed in.
+        </td>
+      </tr>`;
+    return;
+  }
+
+  tbody.innerHTML = sessions.map(s => {
+    const dur = computeDuration(s.timeIn, s.serverNow);
+    const isLong = s.hoursElapsed >= 8;
+    return `
+      <tr>
+        <td>
+          <div class="t-avatar">
+            <div class="av" style="background:var(--maroon);">
+              ${s.initials}
+            </div>
+            <div>
+              <div class="td-name">${s.name}</div>
+              <div class="td-sub">${s.studentId}</div>
+            </div>
+          </div>
+        </td>
+        <td>${s.position}</td>
+        <td><span class="dept-chip"><i class="fas fa-building"></i> ${s.department}</span></td>
+        <td><span class="time-chip time-in">${s.timeIn}</span></td>
+        <td>
+          <strong class="${isLong ? 'hours-danger' : ''}">${dur}</strong>
+          ${isLong ? '<div style="font-size:10px;color:var(--red);">⚠ Overtime</div>' : ''}
+        </td>
+        <td><span class="badge active">Timed In</span></td>
+        <td>
+          <button class="btn btn-sm btn-outline"
+            onclick="forceTimeout('${s.sessionId}','${s.name}')">
+            <i class="fas fa-sign-out-alt"></i> Force Out
+          </button>
+        </td>
+      </tr>`;
+  }).join('');
+}
+
+function computeDuration(timeInStr, nowStr) {
+  // Server provides both values; no client Date() for business logic
+  const msElapsed = new Date(nowStr) - new Date(timeInStr);
+  const h = Math.floor(msElapsed / 3600000);
+  const m = Math.floor((msElapsed % 3600000) / 60000);
+  return `${h}h ${m}m`;
+}
+
+async function forceTimeout(sessionId, name) {
+  confirmAction(
+    'Force Time-Out',
+    `Manually time out <strong>${name}</strong>? This will be logged in the audit trail.`,
+    async () => {
+      try {
+        await apiFetch(`/admin/attendance/force-timeout/${sessionId}`, { method: 'POST' });
+        showAlert('Timed Out', `${name} has been manually timed out.`, 'success');
+        await pollLiveAttendance();
+        await logAuditAction('force-timeout', name, `Manually timed out by admin`);
+      } catch (e) {
+        showAlert('Error', e.message, 'error');
+      }
+    },
+    null,
+    { confirmText: 'Force Out', cancelText: 'Cancel', confirmColor: 'danger-btn' }
+  );
+}
+
+// ══════════════════════════════════════════════════════
+// ANOMALY RESOLVER
+// ══════════════════════════════════════════════════════
+async function resolveAnomaly(name, type) {
+  confirmAction(
+    'Resolve Anomaly',
+    `Mark the <strong>${type.replace('-', ' ')}</strong> anomaly for <strong>${name}</strong> as reviewed?`,
+    async () => {
+      try {
+        await apiFetch('/admin/attendance/resolve-anomaly', {
+          method: 'POST',
+          body: JSON.stringify({ studentName: name, anomalyType: type }),
+        });
+        showAlert('Resolved', `Anomaly for ${name} marked as reviewed.`, 'success');
+        await logAuditAction('anomaly-resolved', name, `${type} anomaly reviewed`);
+        await refreshDashboard();
+      } catch (e) {
+        showAlert('Error', e.message, 'error');
+      }
+    },
+    null,
+    { confirmText: 'Mark Resolved', cancelText: 'Cancel', confirmColor: 'success-btn' }
+  );
+}
+
+// ══════════════════════════════════════════════════════
+// QR SESSION CONTROL
+// ══════════════════════════════════════════════════════
+let qrCountdownInterval = null;
+
+async function generateQR() {
+  const type = document.getElementById('qr-type').value;
+  const expiry = parseInt(document.getElementById('qr-expiry').value);
+  const dept = document.getElementById('qr-dept').value;
+
+  try {
+    const { sessionToken, qrData } = await apiFetch('/admin/qr/generate', {
+      method: 'POST',
+      body: JSON.stringify({ type, expirySeconds: expiry, department: dept }),
+    });
+
+    // Render QR (requires qrcode.js loaded separately)
+    const wrap = document.getElementById('qr-canvas-wrap');
+    wrap.innerHTML = '';
+    if (window.QRCode) {
+      new QRCode(wrap, {
+        text: qrData,
+        width: 180,
+        height: 180,
+        colorDark: '#3d0610',
+        colorLight: '#ffffff',
+      });
+    } else {
+      wrap.innerHTML = `<div style="font-size:12px;color:var(--gray-400);padding:20px;">
+        QR Code: ${qrData.substring(0, 20)}...</div>`;
+    }
+
+    document.getElementById('qr-session-type').textContent =
+      type === 'time-in' ? '⬆ Time-In Session Active' : '⬇ Time-Out Session Active';
+    document.getElementById('qr-display-wrap').style.display = '';
+    document.getElementById('qr-gen-btn').style.display = 'none';
+    document.getElementById('qr-stop-btn').style.display = '';
+
+    startQRCountdown(expiry);
+    await logAuditAction('qr-generated', `${type} · ${dept || 'All Depts'}`, `${expiry}s expiry`);
+
+  } catch (e) {
+    showAlert('Error', e.message, 'error');
+  }
+}
+
+function startQRCountdown(seconds) {
+  let remaining = seconds;
+  const countEl = document.getElementById('qr-countdown');
+  const fillEl = document.getElementById('qr-status-fill');
+  const badgeEl = document.getElementById('qr-status-badge');
+
+  clearInterval(qrCountdownInterval);
+
+  qrCountdownInterval = setInterval(() => {
+    remaining--;
+    if (countEl) countEl.textContent = remaining + 's';
+    if (fillEl) fillEl.style.width = `${(remaining / seconds) * 100}%`;
+
+    if (remaining <= 0) {
+      clearInterval(qrCountdownInterval);
+      if (countEl) countEl.textContent = 'Expired';
+      if (fillEl) { fillEl.style.width = '0%'; fillEl.style.background = 'var(--red)'; }
+      if (badgeEl) { badgeEl.className = 'badge rejected'; badgeEl.textContent = 'Expired'; }
+      document.getElementById('qr-gen-btn').style.display = '';
+      document.getElementById('qr-stop-btn').style.display = 'none';
+    }
+  }, 1000);
+}
+
+async function deactivateQR() {
+  try {
+    await apiFetch('/admin/qr/deactivate', { method: 'POST' });
+    clearInterval(qrCountdownInterval);
+    const badgeEl = document.getElementById('qr-status-badge');
+    if (badgeEl) { badgeEl.className = 'badge rejected'; badgeEl.textContent = 'Deactivated'; }
+    const fillEl = document.getElementById('qr-status-fill');
+    if (fillEl) { fillEl.style.width = '0%'; fillEl.style.background = 'var(--red)'; }
+    document.getElementById('qr-gen-btn').style.display = '';
+    document.getElementById('qr-stop-btn').style.display = 'none';
+    showAlert('Session Ended', 'QR session has been deactivated.', 'success');
+    await logAuditAction('qr-deactivated', 'QR Session', 'Admin manually deactivated session');
+  } catch (e) {
+    showAlert('Error', e.message, 'error');
+  }
+}
+
+// ══════════════════════════════════════════════════════
+// USER MANAGEMENT
+// ══════════════════════════════════════════════════════
+async function resetPassword(name) {
+  confirmAction(
+    'Reset Password',
+    `Send a password reset link to <strong>${name}</strong>?`,
+    async () => {
+      try {
+        await apiFetch('/admin/users/reset-password', {
+          method: 'POST',
+          body: JSON.stringify({ name }),
+        });
+        showAlert('Reset Sent', `Password reset email sent to ${name}.`, 'success');
+        await logAuditAction('password-reset', name, 'Password reset triggered by admin');
+      } catch (e) {
+        showAlert('Error', e.message, 'error');
+      }
+    },
+    null,
+    { confirmText: 'Send Reset', cancelText: 'Cancel', confirmColor: 'success-btn' }
+  );
+}
+
+async function deactivateUser(name) {
+  confirmAction(
+    'Deactivate Account',
+    `Deactivate <strong>${name}</strong>'s account? They will not be able to log in.`,
+    async () => {
+      try {
+        await apiFetch('/admin/users/deactivate', {
+          method: 'POST',
+          body: JSON.stringify({ name }),
+        });
+        showAlert('Deactivated', `${name}'s account has been deactivated.`, 'success');
+        await logAuditAction('user-deactivated', name, 'Account deactivated by admin');
+        // Update the row badge visually
+        const rows = document.querySelectorAll('#users-table tbody tr');
+        rows.forEach(row => {
+          if (row.querySelector('.td-name')?.textContent === name) {
+            const badge = row.querySelector('td:nth-child(6) .badge');
+            if (badge) { badge.className = 'badge rejected'; badge.textContent = 'Inactive'; }
+          }
+        });
+      } catch (e) {
+        showAlert('Error', e.message, 'error');
+      }
+    },
+    null,
+    { confirmText: 'Deactivate', cancelText: 'Cancel', confirmColor: 'danger-btn' }
+  );
+}
+
+// ══════════════════════════════════════════════════════
+// AUDIT LOG WRITER (calls server — never writes client-side)
+// ══════════════════════════════════════════════════════
+async function logAuditAction(action, target, details) {
+  try {
+    await apiFetch('/admin/audit/log', {
+      method: 'POST',
+      body: JSON.stringify({ action, target, details }),
+    });
+  } catch (e) {
+    console.warn('Audit log write failed:', e.message);
+  }
+}
+
+// ══════════════════════════════════════════════════════
+// NOTIFICATIONS
+// ══════════════════════════════════════════════════════
+function toggleNotifPanel() {
+  const panel = document.getElementById('notif-panel');
+  if (!panel) return;
+  panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+}
+
+function markAllRead() {
+  document.querySelectorAll('.notif-item.unread').forEach(el => el.classList.remove('unread'));
+  const dot = document.getElementById('notif-dot');
+  if (dot) dot.style.display = 'none';
+}
+
+// Close notif panel when clicking outside
+document.addEventListener('click', (e) => {
+  const bell = document.getElementById('notif-bell');
+  const panel = document.getElementById('notif-panel');
+  if (panel && bell && !bell.contains(e.target) && !panel.contains(e.target)) {
+    panel.style.display = 'none';
+  }
+});
+
+// ══════════════════════════════════════════════════════
+// EXPORT FUNCTIONS
+// ══════════════════════════════════════════════════════
+async function exportReport() {
+  try {
+    const res = await fetch(`${API_BASE}/admin/reports/export`, {
+      headers: { 'Authorization': `Bearer ${localStorage.getItem('adminToken')}` },
+    });
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `SAMS_Report_${new Date().toISOString().split('T')[0]}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+    await logAuditAction('export-report', 'Dashboard Report', 'CSV exported by admin');
+  } catch (e) {
+    showAlert('Export Failed', e.message, 'error');
+  }
+}
+
+async function exportAttendanceCSV() {
+  try {
+    const res = await fetch(`${API_BASE}/admin/attendance/export`, {
+      headers: { 'Authorization': `Bearer ${localStorage.getItem('adminToken')}` },
+    });
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `SAMS_Attendance_${new Date().toISOString().split('T')[0]}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  } catch (e) {
+    showAlert('Export Failed', e.message, 'error');
+  }
+}
+
+async function exportAuditCSV() {
+  try {
+    const from = document.getElementById('audit-date-from').value;
+    const to = document.getElementById('audit-date-to').value;
+    const params = new URLSearchParams({ from, to });
+    const res = await fetch(`${API_BASE}/admin/audit/export?${params}`, {
+      headers: { 'Authorization': `Bearer ${localStorage.getItem('adminToken')}` },
+    });
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `SAMS_AuditLog_${from}_to_${to}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  } catch (e) {
+    showAlert('Export Failed', e.message, 'error');
+  }
+}
+
+// ══════════════════════════════════════════════════════
+// REFRESH ALL COUNTS (existing function — kept compatible)
+// ══════════════════════════════════════════════════════
+function refreshAllCounts() {
+  const studentPending = [...document.querySelectorAll('#students-table tbody tr')]
+    .filter(r => r.querySelector('.badge')?.textContent.trim() === 'Pending').length;
+
+  const logPending = [...document.querySelectorAll('#attendance-log-table tbody .log-row')]
+    .filter(r => r.dataset.status === 'pending-admin').length;
+
+  setEl('sidebar-badge-students', studentPending || '');
+  const snb = document.getElementById('sidebar-badge-students');
+  if (snb) snb.style.display = studentPending > 0 ? '' : 'none';
+
+  setEl('dash-count-students', studentPending);
+  setEl('log-pending-count', logPending);
+  updateAlertBanner(studentPending, parseInt(document.getElementById('dash-count-depts')?.textContent) || 0);
+}
+
+// ══════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', async () => {
+  startClock();
+  await initDashboardDate();
+  await refreshDashboard();
+
+  // Set today's date as default for attendance filter
+  const attFilter = document.getElementById('att-date-filter');
+  const qrDate = document.getElementById('qr-date');
+  // Note: display-only default, not used for server calls
+  const today = new Date().toISOString().split('T')[0];
+  if (attFilter) attFilter.value = today;
+  if (qrDate) qrDate.value = today;
+
+  // Start live polling
+  await pollLiveAttendance();
+  setInterval(pollLiveAttendance, 30000);
+
+  // Set up payroll totals (existing logic)
+  document.querySelectorAll('#payroll-table tbody tr').forEach(row => {
+    const hours = parseFloat(row.dataset.hours);
+    const rate = parseFloat(row.dataset.rate);
+    if (!isNaN(hours) && !isNaN(rate)) {
+      const cell = row.querySelector('.payroll-total strong');
+      if (cell) cell.textContent = '₱' + (hours * rate)
+        .toLocaleString('en-PH', { minimumFractionDigits: 2 });
+    }
+  });
+
+  // Position card available slots
+  document.querySelectorAll('.position-card').forEach(card => {
+    const stats = card.querySelectorAll('.pos-stat-val');
+    const total = parseInt(stats[0]?.textContent);
+    const filled = parseInt(stats[1]?.textContent);
+    if (!isNaN(total) && !isNaN(filled) && stats[2]) {
+      stats[2].textContent = total - filled;
+    }
+  });
+});
+</script>
+
+
+
 </div><!-- /layout -->
 </body>
 

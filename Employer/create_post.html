@@ -35,15 +35,26 @@
                         <label>Job Title</label>
                         <input type="text" name="job_title" placeholder="e.g., Office Technical Assistant" required>
                     </div>
-
+                </div>
+                  
+                <div class="input-row split-2-1">
                     <div class="field">
                         <label>Supervisor</label>
                         <input type="text" name="supervisor" placeholder="e.g., Dr. John Doe" required>
                     </div>
-    
+
+                    <div class="field">
+                        <label>Contact Number</label>
+                        <input type="text" name="contact_number" placeholder="e.g., 0912 345 6789" required>
+                    </div>
                 </div>
 
-                <div class="field" style="margin-bottom: 20px;">
+                 <div class="field" style="margin-bottom: 15px;">
+                    <label>Email Address</label>
+                    <input type="email" name="email" placeholder="e.g., john.doe@wmsu.edu.ph" required>
+                </div>
+
+                <div class="field" style="margin-bottom: 15px;">
                     <label>Job Description</label>
                     <textarea name="description" rows="4" placeholder="Describe the role and responsibilities..." required></textarea>
                 </div>
@@ -62,25 +73,6 @@
             </section>
 
             <section class="form-card">
-                <h2 class="section-title"><i class="fa-solid fa-coins"></i> Compensation & Schedule</h2>
-                
-                <div class="input-row grid-3">
-                    <div class="field">
-                        <label>Fixed Rate</label>
-                        <input type="text" value="₱ 50.00 / hour" readonly style="background: #fdf2f2; font-weight: bold; color: var(--wmsu-crimson);">
-                    </div>
-                    <div class="field">
-                        <label>Max Hours/Month</label>
-                        <input type="text" value="100 Hours" readonly style="background: #fdf2f2; font-weight: bold; color: var(--wmsu-crimson);">
-                    </div>
-                    <div class="field">
-                        <label>Work Shift</label>
-                        <input type="text" name="shift" placeholder="e.g., AM Shift only">
-                    </div>
-                </div>
-            </section>
-
-            <section class="form-card">
                 <h2 class="section-title"><i class="fa-solid fa-list-check"></i> Job Requirements</h2>
                 
                 <div class="field" style="margin-bottom: 20px;">
@@ -88,14 +80,39 @@
                     <textarea name="tasks" rows="4" placeholder="List the daily duties of the student assistant..." required></textarea>
                 </div>
 
-                 <div class="field">
+                <div class="field">
+                    <label>Requirements & Qualifications</label>
+                    <textarea name="qualifications" rows="3" placeholder="e.g.,Must be currently enrolled student" required></textarea>
+                </div>
+
+                 <div class="field" style="margin-bottom: 15px;">
                     <label>Benefits</label>
-                    <textarea name="benefits" rows="3" placeholder="e.g., Health insurance, Meal allowance..."></textarea>
+                    <textarea name="benefits" rows="3" placeholder="e.g., Health insurance, Meal allowance..." required></textarea>
                 </div>
 
                 <div class="field">
-                    <label>Preferred Qualifications</label>
-                    <textarea name="qualifications" rows="3" placeholder="e.g., At least 2nd year, Proficient in MS Excel..."></textarea>
+                    <label>Required Skills</label>
+                    <textarea name="skills" rows="3" placeholder="e.g., At least 2nd year, Proficient in MS Excel..." required></textarea>
+                </div>
+
+            </section>
+
+            <section class="form-card">
+                <h2 class="section-title"><i class="fa-solid fa-coins"></i> Compensation & Schedule</h2>
+                
+                <div class="input-row grid-3">
+                    <div class="field">
+                        <label>Fixed Rate</label>
+                        <input type="text" value="₱ 50.00 / hour"  style="background: #fdf2f2; font-weight: bold; color: var(--wmsu-crimson);">
+                    </div>
+                    <div class="field">
+                        <label>Max Hours/Month</label>
+                        <input type="text" value="100 Hours" style="background: #fdf2f2; font-weight: bold; color: var(--wmsu-crimson);">
+                    </div>
+                    <div class="field">
+                        <label>Work Shift</label>
+                        <input type="text" name="shift" placeholder="e.g., AM Shift only">
+                    </div>
                 </div>
             </section>
 

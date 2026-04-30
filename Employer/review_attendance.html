@@ -99,7 +99,7 @@
                         <div class="grid-item highlight"><span>Total Hrs</span><strong>4.00</strong></div>
                     </div>
                     <div class="card-actions">
-                        <button class="btn-icon view"><i class="fas fa-eye"></i> Details</button>
+                        <a href="#view-log-1" class="btn-icon view" style="text-decoration: none;"><i class="fas fa-eye"></i> Details</a>
                         <button class="btn-icon approve" onclick="removeCard(this)"><i class="fas fa-check"></i> Approve</button>
                         <button class="btn-icon reject" onclick="removeCard(this)"><i class="fas fa-times"></i> Reject</button>
                     </div>
@@ -119,7 +119,7 @@
                         <div class="grid-item highlight"><span>Total Hrs</span><strong>3.75</strong></div>
                     </div>
                     <div class="card-actions">
-                        <button class="btn-icon view"><i class="fas fa-eye"></i> Details</button>
+                        <a href="#view-log-2" class="btn-icon view" style="text-decoration: none;"><i class="fas fa-eye"></i> Details</a>
                         <button class="btn-icon approve" onclick="removeCard(this)"><i class="fas fa-check"></i> Approve</button>
                         <button class="btn-icon reject" onclick="removeCard(this)"><i class="fas fa-times"></i> Reject</button>
                     </div>
@@ -139,46 +139,7 @@
                         <div class="grid-item highlight"><span>Total Hrs</span><strong>3.00</strong></div>
                     </div>
                     <div class="card-actions">
-                        <button class="btn-icon view"><i class="fas fa-eye"></i> Details</button>
-                        <button class="btn-icon approve" onclick="removeCard(this)"><i class="fas fa-check"></i> Approve</button>
-                        <button class="btn-icon reject" onclick="removeCard(this)"><i class="fas fa-times"></i> Reject</button>
-                    </div>
-                </div>
-
-                <div class="main-card card-flagged" data-name="Mark Villanueva">
-                    <div class="card-header">
-                        <div class="icon-circle">MV</div>
-                        <div class="header-text">
-                            <h4>Mark Villanueva <span class="badge badge-flagged">Missing Out</span></h4>
-                            <p>ID: 2021-00871 • Lab Monitor</p>
-                        </div>
-                    </div>
-                    <div class="attendance-grid">
-                        <div class="grid-item"><span>Time In</span><strong>01:10 PM</strong></div>
-                        <div class="grid-item"><span>Time Out</span><strong>--</strong></div>
-                        <div class="grid-item highlight"><span>Total Hrs</span><strong>--</strong></div>
-                    </div>
-                    <div class="card-actions">
-                        <button class="btn-icon view"><i class="fas fa-exclamation-triangle"></i> Contact</button>
-                        <button class="btn-icon reject" onclick="removeCard(this)"><i class="fas fa-times"></i> Invalidate</button>
-                    </div>
-                </div>
-
-                <div class="main-card card-flagged" data-name="Bryan Torres">
-                    <div class="card-header">
-                        <div class="icon-circle">BT</div>
-                        <div class="header-text">
-                            <h4>Bryan Torres <span class="badge badge-flagged">Early Log</span></h4>
-                            <p>ID: 2023-00211 • Technical Aide</p>
-                        </div>
-                    </div>
-                    <div class="attendance-grid">
-                        <div class="grid-item"><span>Time In</span><strong>03:15 AM</strong></div>
-                        <div class="grid-item"><span>Time Out</span><strong>07:20 AM</strong></div>
-                        <div class="grid-item highlight"><span>Total Hrs</span><strong>4.08</strong></div>
-                    </div>
-                    <div class="card-actions">
-                        <button class="btn-icon view"><i class="fas fa-eye"></i> Details</button>
+                        <a href="#view-log-3" class="btn-icon view" style="text-decoration: none;"><i class="fas fa-eye"></i> Details</a>
                         <button class="btn-icon approve" onclick="removeCard(this)"><i class="fas fa-check"></i> Approve</button>
                         <button class="btn-icon reject" onclick="removeCard(this)"><i class="fas fa-times"></i> Reject</button>
                     </div>
@@ -223,6 +184,144 @@
                    <a href="#" style="display: flex; justify-content: flex-end; text-decoration: none; color: rgb(0, 89, 255); font-size: small;" >View Details</a>
             </div>
         </aside>
+    </div>
+
+    <div id="view-log-1" class="modal-overlay">
+        <div class="modal-box">
+            <a href="#" class="modal-close">&times;</a>
+            <div class="modal-header">
+                <div class="modal-student-card">
+                    <div class="icon-circle"">MS</div>
+                        <div class="modal-student-info">
+                            <h3>Maria Santos</h3>
+                            <p>ID: 2022-00124 · Library Assistant · April 24, 2026</p>
+                        </div>
+                            <span class="badge badge-ontime modal-status-badge">On Time</span>
+                </div>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-item"><span>Name</span><strong>Maria Santos</strong></div>
+                <div class="info-item"><span>Student ID</span><strong>2022-00124</strong></div>
+                <div class="info-item"><span>Role</span><strong>Library Assistant</strong></div>
+                <div class="info-item"><span>Date</span><strong>April 24, 2026</strong></div>
+                <div class="info-item"><span>Time In</span><strong>08:00 AM</strong></div>
+                <div class="info-item"><span>Time Out</span><strong>12:00 PM</strong></div>
+                <div class="info-item"><span>Total Hours</span><strong>4.00</strong></div>
+                <div class="info-item"><span>Status</span><strong>On Time</strong></div>
+            </div>
+            <hr>
+            <h4>Supervisor Notes</h4>
+            <p style="color: #4a5568; line-height: 1.6;">Attendance was verified by the supervisor and all work duties were completed on schedule.</p>
+            <div class="modal-footer">
+                <a href="#" class="secondary-btn">Close</a>
+                <button class="dangered-btn">Reject</button>
+                <button class="confirmed-btn">Approve</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="view-log-2" class="modal-overlay">
+        <div class="modal-box">
+            <a href="#" class="modal-close">&times;</a>
+            <div class="modal-header">
+                <div class="modal-student-card">
+    <div class="icon-circle"">JD</div>
+    <div class="modal-student-info">
+      <h3>Juan Dela Cruz</h3>
+      <p>ID: 2022-00542 · Lab Monitor · April 24, 2026</p>
+    </div>
+    <span class="badge badge-late modal-status-badge">Late (15m)</span>
+  </div>
+            </div>
+            
+            <div class="info-grid">
+                <div class="info-item"><span>Name</span><strong>Juan Dela Cruz</strong></div>
+                <div class="info-item"><span>Student ID</span><strong>2022-00542</strong></div>
+                <div class="info-item"><span>Role</span><strong>Lab Monitor</strong></div>
+                <div class="info-item"><span>Date</span><strong>April 24, 2026</strong></div>
+                <div class="info-item"><span>Time In</span><strong>08:15 AM</strong></div>
+                <div class="info-item"><span>Time Out</span><strong>12:00 PM</strong></div>
+                <div class="info-item"><span>Total Hours</span><strong>3.75</strong></div>
+                <div class="info-item"><span>Status</span><strong>Late</strong></div>
+            </div>
+            <hr>
+            <h4>Supervisor Notes</h4>
+            <p style="color: #4a5568; line-height: 1.6;">Late arrival recorded with proper justification. Adjust time log if approved.</p>
+            <div class="modal-footer">
+                <a href="#" class="secondary-btn">Close</a>
+                <button class="dangered-btn">Reject</button>
+                <button class="confirmed-btn">Approve</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="view-log-3" class="modal-overlay">
+        <div class="modal-box">
+            <a href="#" class="modal-close">&times;</a>
+            <div class="modal-header">
+  <div class="modal-student-card">
+    <div class="icon-circle">AC</div>
+    <div class="modal-student-info">
+      <h3>Angela Cruz</h3>
+      <p>ID: 2022-11092 · Office Aide · April 24, 2026</p>
+    </div>
+    <span class="badge badge-flagged modal-status-badge">Undertime</span>
+  </div>
+</div>
+            <div class="info-grid">
+                <div class="info-item"><span>Name</span><strong>Angela Cruz</strong></div>
+                <div class="info-item"><span>Student ID</span><strong>2022-11092</strong></div>
+                <div class="info-item"><span>Role</span><strong>Office Aide</strong></div>
+                <div class="info-item"><span>Date</span><strong>April 24, 2026</strong></div>
+                <div class="info-item"><span>Time In</span><strong>01:00 PM</strong></div>
+                <div class="info-item"><span>Time Out</span><strong>04:00 PM</strong></div>
+                <div class="info-item"><span>Total Hours</span><strong>3.00</strong></div>
+                <div class="info-item"><span>Status</span><strong>Undertime</strong></div>
+            </div>
+            <hr>
+            <h4>Supervisor Notes</h4>
+            <p style="color: #4a5568; line-height: 1.6;">Under-time was logged; supervisor review required to adjust final hours.</p>
+            <div class="modal-footer">
+                <a href="#" class="secondary-btn">Close</a>
+                <button class="dangered-btn">Reject</button>
+                <button class="confirmed-btn">Approve</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="view-log-4" class="modal-overlay">
+        <div class="modal-box">
+            <a href="#" class="modal-close">&times;</a>
+            <div class="modal-header">
+  <div class="modal-student-card">
+    <div class="icon-circle">BT</div>
+    <div class="modal-student-info">
+      <h3>Bryan Torres</h3>
+      <p>ID: 2023-00211 · Technical Aide · April 24, 2026</p>
+    </div>
+    <span class="badge badge-flagged modal-status-badge">Early Log</span>
+  </div>
+</div>
+            <div class="info-grid">
+                <div class="info-item"><span>Name</span><strong>Bryan Torres</strong></div>
+                <div class="info-item"><span>Student ID</span><strong>2023-00211</strong></div>
+                <div class="info-item"><span>Role</span><strong>Technical Aide</strong></div>
+                <div class="info-item"><span>Date</span><strong>April 24, 2026</strong></div>
+                <div class="info-item"><span>Time In</span><strong>03:15 AM</strong></div>
+                <div class="info-item"><span>Time Out</span><strong>07:20 AM</strong></div>
+                <div class="info-item"><span>Total Hours</span><strong>4.08</strong></div>
+                <div class="info-item"><span>Status</span><strong>Early Log</strong></div>
+            </div>
+            <hr>
+            <h4>Supervisor Notes</h4>
+            <p style="color: #4a5568; line-height: 1.6;">Early log recorded for morning shift; verify actual attendance window.</p>
+            <div class="modal-footer">
+                <a href="#" class="secondary-btn">Close</a>
+                <button class="dangered-btn">Reject</button>
+                <button class="confirm-btn">Approve</button>
+            </div>
+        </div>
     </div>
 
     <script>
