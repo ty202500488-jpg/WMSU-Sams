@@ -715,6 +715,235 @@
     white-space: nowrap;
   }
 
+  /* ── SCHOOL YEAR BADGE IN SIDEBAR ─── */
+.sidebar-sy-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 16px;
+  padding: 10px 14px;
+  background: rgba(201, 168, 76, 0.15);
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gold-light);
+}
+.sidebar-sy-badge i { font-size: 12px; opacity: 0.8; }
+.sy-sem-tag {
+  margin-left: auto;
+  background: rgba(201, 168, 76, 0.25);
+  color: var(--gold-light);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 20px;
+}
+
+/* ── LIVE INDICATOR ─── */
+.live-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--green);
+  background: var(--green-light);
+  border: 1px solid #bbf7d0;
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+.live-indicator-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--green);
+  background: var(--green-light);
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+/* ── PULSE DOT (Live indicator) ─── */
+.pulse-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--green);
+  border-radius: 50%;
+  animation: pulse-ring 1.5s infinite;
+  flex-shrink: 0;
+}
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0 rgba(21,128,61,0.6); }
+  70%  { box-shadow: 0 0 0 8px rgba(21,128,61,0); }
+  100% { box-shadow: 0 0 0 0 rgba(21,128,61,0); }
+}
+
+/* ── TOPBAR CLOCK ─── */
+.topbar-clock {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--maroon);
+  background: var(--cream);
+  border: 1px solid var(--gray-200);
+  padding: 6px 14px;
+  border-radius: 8px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+/* ── NOTIFICATION PANEL ─── */
+.notif-panel {
+  position: absolute;
+  top: 64px;
+  right: 80px;
+  width: 320px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.14);
+  border: 1px solid var(--gray-200);
+  z-index: 999;
+  overflow: hidden;
+}
+.notif-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--gray-100);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--gray-800);
+}
+.notif-mark-all {
+  font-size: 11.5px;
+  color: var(--maroon);
+  font-weight: 600;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.notif-list { list-style: none; }
+.notif-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 13px 18px;
+  border-bottom: 1px solid var(--gray-100);
+  transition: background 0.15s;
+}
+.notif-item:last-child { border-bottom: none; }
+.notif-item.unread { background: #fffbeb; }
+.notif-item:hover { background: var(--cream); }
+.notif-text { font-size: 13px; color: var(--gray-700); font-weight: 500; }
+.notif-time { font-size: 11px; color: var(--gray-400); margin-top: 3px; }
+
+/* ── ATTENDANCE STRIP ─── */
+.attendance-strip {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid var(--gray-200);
+  box-shadow: var(--shadow-sm);
+  padding: 18px 28px;
+  margin-bottom: 28px;
+  gap: 0;
+}
+.att-strip-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+.att-strip-divider {
+  width: 1px;
+  height: 40px;
+  background: var(--gray-200);
+  margin: 0 20px;
+}
+.att-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--gray-800);
+  line-height: 1;
+}
+.att-lbl {
+  font-size: 11.5px;
+  color: var(--gray-400);
+  font-weight: 500;
+  margin-top: 3px;
+}
+
+/* ── SY SWITCHER ─── */
+.sy-switcher {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ── FORM ELEMENTS (QR / User) ─── */
+.form-label {
+  display: block;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--gray-700);
+  margin-bottom: 6px;
+}
+.form-select {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--gray-700);
+  background: var(--white);
+  outline: none;
+  transition: border-color 0.2s;
+  font-family: 'DM Sans', sans-serif;
+}
+.form-select:focus { border-color: var(--maroon); }
+
+/* ── QR STATUS BAR ─── */
+.qr-status-bar {
+  background: var(--gray-100);
+  border-radius: 3px;
+  height: 6px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+/* ── NAV BADGE VARIANTS ─── */
+.nav-badge.live-badge {
+  background: var(--green);
+  color: #fff;
+}
+.nav-badge.warn-badge {
+  background: var(--yellow);
+  color: var(--maroon-deep);
+}
+
+/* ── ADD RADIO INPUTS FOR NEW SECTIONS ─── */
+#nav-attendance:checked ~ .layout .main-content #sec-attendance { display: block; }
+#nav-qr:checked       ~ .layout .main-content #sec-qr           { display: block; }
+#nav-users:checked    ~ .layout .main-content #sec-users         { display: block; }
+#nav-audit:checked    ~ .layout .main-content #sec-audit         { display: block; }
+
+#nav-attendance:checked ~ .layout .sidebar label[for="nav-attendance"],
+#nav-qr:checked         ~ .layout .sidebar label[for="nav-qr"],
+#nav-users:checked      ~ .layout .sidebar label[for="nav-users"],
+#nav-audit:checked      ~ .layout .sidebar label[for="nav-audit"] {
+  background: rgba(255,255,255,0.13);
+  color: #fff;
+  border-left-color: var(--gold);
+  font-weight: 600;
+}
+
+
   /* ── TABLES ───────────────────────────────────────── */
   .table-wrap {
     background: var(--white);

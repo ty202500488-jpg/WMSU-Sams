@@ -16,132 +16,188 @@
 </head>
 
 <body>
-
-  <!-- ── RADIO INPUTS FOR NAVIGATION ───────────────── -->
-  <input class="nav-radio" type="radio" name="nav" id="nav-dashboard" checked />
-  <input class="nav-radio" type="radio" name="nav" id="nav-students" />
-  <input class="nav-radio" type="radio" name="nav" id="nav-departments" />
-  <input class="nav-radio" type="radio" name="nav" id="nav-positions" />
-  <input class="nav-radio" type="radio" name="nav" id="nav-suggest-positions" />
-  <input class="nav-radio" type="radio" name="nav" id="nav-review-log-hours" />
-  <input class="nav-radio" type="radio" name="nav" id="nav-payroll" />
-  <input class="nav-radio" type="radio" name="nav" id="nav-reports" />
-
-  <div class="layout">
-
-    <aside class="sidebar">
-      <div class="sidebar-logo">
-        <div class="logo-text">
-          <div class="abbr">WMSU-SAMS</div>
-          <div class="full">Student Assistant Management System.</div>
+<body>
+<!-- ── RADIO INPUTS FOR NAVIGATION ─────────────── -->
+<input class="nav-radio" type="radio" name="nav" id="nav-dashboard" checked />
+<input class="nav-radio" type="radio" name="nav" id="nav-students" />
+<input class="nav-radio" type="radio" name="nav" id="nav-positions" />
+<input class="nav-radio" type="radio" name="nav" id="nav-suggest-positions" />
+<input class="nav-radio" type="radio" name="nav" id="nav-attendance" />
+<input class="nav-radio" type="radio" name="nav" id="nav-qr" />
+<input class="nav-radio" type="radio" name="nav" id="nav-users" />
+<input class="nav-radio" type="radio" name="nav" id="nav-review-log-hours" />
+<input class="nav-radio" type="radio" name="nav" id="nav-payroll" />
+<input class="nav-radio" type="radio" name="nav" id="nav-audit" />
+<input class="nav-radio" type="radio" name="nav" id="nav-reports" />
+<div class="layout">
+  <!-- ══════════════════ SIDEBAR ══════════════════ -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-text">
+        <div class="abbr">WMSU-SAMS</div>
+        <div class="full">Student Assistant Management System</div>
+      </div>
+    </div>
+    <!-- School Year Badge -->
+    <div class="sidebar-sy-badge">
+      <i class="fas fa-calendar-alt"></i>
+      <span id="sidebar-sy-label">AY 2025–2026</span>
+      <span class="sy-sem-tag">2nd Sem</span>
+    </div>
+    <div class="sidebar-section-label">Main Menu</div>
+    <nav class="sidebar-nav">
+      <div class="nav-item">
+        <label for="nav-dashboard">
+          <i class="fas fa-th-large"></i> Dashboard
+        </label>
+      </div>
+      <div class="nav-item">
+        <label for="nav-students">
+          <i class="fas fa-user-check"></i> Verify Students
+          <span class="nav-badge" id="sidebar-badge-students">5</span>
+        </label>
+      </div>
+      <div class="nav-item">
+        <label for="nav-positions">
+          <i class="fas fa-briefcase"></i> Manage Positions
+        </label>
+      </div>
+      <div class="nav-item">
+        <label for="nav-suggest-positions">
+          <i class="fas fa-hand-holding-heart"></i> Suggest Positions
+        </label>
+      </div>
+      <div class="nav-item">
+        <label for="nav-attendance">
+          <i class="fas fa-wifi"></i> Live Attendance
+          <span class="nav-badge live-badge" id="sidebar-badge-live">0</span>
+        </label>
+      </div>
+      <div class="nav-item">
+        <label for="nav-qr">
+          <i class="fas fa-qrcode"></i> QR Session Control
+        </label>
+      </div>
+      <div class="nav-item">
+        <label for="nav-review-log-hours">
+          <i class="fas fa-clipboard-check"></i> Review Log Hours
+        </label>
+      </div>
+      <div class="sidebar-section-label">Operations</div>
+      <div class="nav-item">
+        <label for="nav-payroll">
+          <i class="fas fa-money-bill-wave"></i> Payroll
+        </label>
+      </div>
+      <div class="nav-item">
+        <label for="nav-users">
+          <i class="fas fa-users-cog"></i> User Management
+        </label>
+      </div>
+      <div class="nav-item">
+        <label for="nav-audit">
+          <i class="fas fa-shield-alt"></i> Audit Logs
+          <span class="nav-badge warn-badge" id="sidebar-badge-audit">!</span>
+        </label>
+      </div>
+      <div class="nav-item">
+        <label for="nav-reports">
+          <i class="fas fa-chart-bar"></i> Reports
+        </label>
+      </div>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="../index.html" class="logout-btn">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </a>
+    </div>
+  </aside>
+  <!-- ══════════════════ TOPBAR ══════════════════ -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <h1>Admin Panel</h1>
+      <p>Western Mindanao State University &mdash;
+        <strong id="topbar-sy">AY 2025–2026</strong> &bull; 2nd Semester
+      </p>
+    </div>
+    <div class="topbar-right">
+      <!-- Live Clock -->
+      <div class="topbar-clock" id="topbar-clock">--:-- --</div>
+      <!-- Notification Bell -->
+      <div class="topbar-notif" id="notif-bell" onclick="toggleNotifPanel()">
+        <i class="fas fa-bell"></i>
+        <span class="notif-dot" id="notif-dot"></span>
+      </div>
+      <!-- Notification Dropdown -->
+      <div class="notif-panel" id="notif-panel" style="display:none;">
+        <div class="notif-panel-header">
+          <span>Notifications</span>
+          <button onclick="markAllRead()" class="notif-mark-all">Mark all read</button>
+        </div>
+        <ul class="notif-list" id="notif-list">
+          <li class="notif-item unread">
+            <i class="fas fa-user-clock" style="color:var(--yellow);"></i>
+            <div>
+              <div class="notif-text">Ana Reyes has a missing time-out</div>
+              <div class="notif-time">2 min ago</div>
+            </div>
+          </li>
+          <li class="notif-item unread">
+            <i class="fas fa-file-alt" style="color:var(--blue);"></i>
+            <div>
+              <div class="notif-text">5 students pending verification</div>
+              <div class="notif-time">14 min ago</div>
+            </div>
+          </li>
+          <li class="notif-item">
+            <i class="fas fa-check-circle" style="color:var(--green);"></i>
+            <div>
+              <div class="notif-text">Carlos Mendez approved for Finance Office</div>
+              <div class="notif-time">1 hour ago</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="topbar-user">
+        <div class="user-avatar">AD</div>
+        <div>
+          <div class="user-name">Admin</div>
+          <div class="user-role">System Administrator</div>
         </div>
       </div>
-
-      <div class="sidebar-section-label">Main Menu</div>
-
-      <nav class="sidebar-nav">
-        <div class="nav-item">
-          <label for="nav-dashboard">
-            <i class="fas fa-th-large"></i>
-            Dashboard
-          </label>
-        </div>
-        <div class="nav-item">
-          <label for="nav-students">
-            <i class="fas fa-user-check"></i>
-            Verify Students
-            <span class="nav-badge" id="sidebar-badge-students">5</span>
-          </label>
-        </div>
-        <div class="nav-item">
-          <label for="nav-departments">
-            <i class="fas fa-building"></i>
-            Verify Departments
-            <span class="nav-badge" id="sidebar-badge-depts">5</span>
-          </label>
-        </div>
-        <div class="nav-item">
-          <label for="nav-positions">
-            <i class="fas fa-briefcase"></i>
-            Manage Positions
-          </label>
-        </div>
-        <div class="nav-item">
-          <label for="nav-suggest-positions">
-            <i class="fas fa-hand-holding-heart"></i>
-            Suggest Positions
-          </label>
-        </div>
-        <div class="nav-item">
-          <label for="nav-review-log-hours">
-            <i class="fas fa-clipboard-check"></i>
-            Review Log Hours
-          </label>
-        </div>
-
-        <div class="sidebar-section-label">Operations</div>
-
-        <div class="nav-item">
-          <label for="nav-payroll">
-            <i class="fas fa-money-bill-wave"></i>
-            Payroll
-          </label>
-        </div>
-
-        <div class="nav-item">
-          <label for="nav-reports">
-            <i class="fas fa-chart-bar"></i>
-            Reports
-          </label>
-        </div>
-      </nav>
-
-      <div class="sidebar-footer">
-        <a href="../index.html" class="logout-btn">
-          <i class="fas fa-sign-out-alt"></i>
-          Logout
-        </a>
-      </div>
-    </aside>
-
-    <header class="topbar">
-      <div class="topbar-left">
-        <h1>Admin Panel</h1>
-        <p>Western Mindanao State University — AY 2025–2026</p>
-      </div>
-      <div class="topbar-right">
-        <div class="topbar-notif">
-          <i class="fas fa-bell"></i>
-          <span class="notif-dot"></span>
-        </div>
-        <div class="topbar-user">
-          <div class="user-avatar">AD</div>
-          <div>
-            <div class="user-name">Admin</div>
-            <div class="user-role">System Administrator</div>
+    </div>
+  </header>
+  <!-- ══════════════════ MAIN CONTENT ══════════════════ -->
+  <main class="main-content">
+    <!-- ╔══════════════════════════════
+         § DASHBOARD
+    ══════════════════════════════════╗ -->
+    <section class="section" id="sec-dashboard">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Welcome back, Administrator</div>
+          <div class="section-sub" id="dash-date-sub">
+            Loading date...
           </div>
         </div>
-      </div>
-    </header>
-
-    <main class="main-content">
-
-
-      <!-- ╔══════════════════════════════════════════════
-     § DASHBOARD
-══════════════════════════════════════════════╗ -->
-      <section class="section" id="sec-dashboard">
-
-        <div class="section-header">
-          <div>
-            <div class="section-title">Welcome back, Administrator</div>
-            <div class="section-sub">Here's what's happening in SAMS today — Tuesday, March 24, 2026</div>
+        <div class="section-actions">
+          <div class="sy-switcher">
+            <label style="font-size:12px;font-weight:600;color:var(--gray-500);">School Year</label>
+            <select id="sy-selector" onchange="switchSchoolYear(this.value)"
+              style="padding:7px 12px;border:1.5px solid var(--gray-200);border-radius:8px;font-size:13px;font-weight:600;color:var(--maroon);background:var(--cream);cursor:pointer;">
+              <option value="2025-2026" selected>AY 2025–2026</option>
+              <option value="2024-2025">AY 2024–2025</option>
+              <option value="2023-2024">AY 2023–2024</option>
+            </select>
           </div>
-          <div class="section-actions">
-            <button class="btn btn-outline"><i class="fas fa-download"></i> Export Report</button>
-            <button class="btn btn-primary"><i class="fas fa-sync-alt"></i> Refresh</button>
-          </div>
+          <button class="btn btn-outline" onclick="exportReport()">
+            <i class="fas fa-download"></i> Export Report
+          </button>
+          <button class="btn btn-primary" onclick="refreshDashboard()">
+            <i class="fas fa-sync-alt"></i> Refresh
+          </button>
         </div>
+      </div>
 
         <!-- Stat Cards -->
         <div class="stat-grid">
@@ -550,155 +606,6 @@
           </table>
         </div>
       </section>
-
-
-      <!-- ╔══════════════════════════════════════════════
-     § VERIFY DEPARTMENTS
-══════════════════════════════════════════════╗ -->
-      <section class="section" id="sec-departments">
-
-        <div class="section-header">
-          <div>
-            <div class="section-title">Verify Departments</div>
-            <div class="section-sub">Review department credentials and uploaded documents before approval</div>
-          </div>
-        </div>
-
-        <div class="alert-banner warn">
-          <i class="fas fa-exclamation-triangle"></i>
-          <span><strong>5 departments</strong> are awaiting legitimacy verification. Review their MOA, authorization
-            letter, and department profile.</span>
-        </div>
-
-        <div class="table-wrap" style="margin-top:20px;">
-          <table>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Department</th>
-                <th>Dean / Head</th>
-                <th>College</th>
-                <th>Date Submitted</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-
-              <tr>
-                <td>1</td>
-                <td>
-                  <div>
-                    <div class="td-name"><i class="fas fa-building"
-                        style="color:var(--maroon);margin-right:6px;"></i>College of Engineering</div>
-                    <div class="td-sub">Engineering Complex, Bldg. A</div>
-                  </div>
-                </td>
-                <td>Dean Roberto Cruz</td>
-                <td>Engineering & Tech</td>
-                <td>Mar 23, 2026</td>
-                <td><span class="badge pending">Pending</span></td>
-                <td>
-                  <div class="action-btns">
-                    <button class="btn-icon view"><a href="#view-dept-1"><i class="fas fa-eye"></i></a></button>
-                    <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
-                    <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>2</td>
-                <td>
-                  <div>
-                    <div class="td-name"><i class="fas fa-building"
-                        style="color:var(--maroon);margin-right:6px;"></i>Information Technology Dept.</div>
-                    <div class="td-sub">ICT Building, 2nd Floor</div>
-                  </div>
-                </td>
-                <td>Dean Alma Fernandez</td>
-                <td>Computing & IT</td>
-                <td>Mar 22, 2026</td>
-                <td><span class="badge pending">Pending</span></td>
-                <td>
-                  <div class="action-btns">
-                    <button class="btn-icon view"><a href="#view-dept-2"><i class="fas fa-eye"></i></a></button>
-                    <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
-                    <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>3</td>
-                <td>
-                  <div>
-                    <div class="td-name"><i class="fas fa-building"
-                        style="color:var(--maroon);margin-right:6px;"></i>College of Education</div>
-                    <div class="td-sub">Education Building, Room 101</div>
-                  </div>
-                </td>
-                <td>Dean Maria Lopez</td>
-                <td>Education</td>
-                <td>Mar 21, 2026</td>
-                <td><span class="badge pending">Pending</span></td>
-                <td>
-                  <div class="action-btns">
-                    <button class="btn-icon view"><a href="#view-dept-3"><i class="fas fa-eye"></i></a></button>
-                    <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
-                    <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>4</td>
-                <td>
-                  <div>
-                    <div class="td-name"><i class="fas fa-building"
-                        style="color:var(--maroon);margin-right:6px;"></i>Registrar Office</div>
-                    <div class="td-sub">Admin Building, Ground Floor</div>
-                  </div>
-                </td>
-                <td>Mr. Carlos Reyes</td>
-                <td>Administrative</td>
-                <td>Mar 20, 2026</td>
-                <td><span class="badge pending">Pending</span></td>
-                <td>
-                  <div class="action-btns">
-                    <button class="btn-icon view"><a href="#view-dept-4"><i class="fas fa-eye"></i></a></i></button>
-                    <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
-                    <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>5</td>
-                <td>
-                  <div>
-                    <div class="td-name"><i class="fas fa-building"
-                        style="color:var(--maroon);margin-right:6px;"></i>Guidance Office</div>
-                    <div class="td-sub">Student Services Center</div>
-                  </div>
-                </td>
-                <td>Ms. Angela Bautista</td>
-                <td>Student Services</td>
-                <td>Mar 19, 2026</td>
-                <td><span class="badge pending">Pending</span></td>
-                <td>
-                  <div class="action-btns">
-                    <button class="btn-icon view"><a href="#view-dept-5"><i class="fas fa-eye"></i></a></i></button>
-                    <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
-                    <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
 
       <!-- ╔══════════════════════════════════════════════
      § MANAGE POSITIONS

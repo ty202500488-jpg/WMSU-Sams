@@ -48,15 +48,33 @@
 
                 <div class="row">
                     <div>
+                        <label>Phone Number<span style="color: red;"> *</span></label>
+                        <input type="text" inputmode="numeric" pattern="[0-9-]*" placeholder="e.g. 09123456789" required>
+                    </div>
+                     <div>
                         <label>Student ID<span style="color: red;"> *</span></label>
                         <input type="text" inputmode="numeric" pattern="[0-9-]*" placeholder="e.g. 2023-01234" required>
                     </div>
+                </div>
+
+                <div class="row">
                     <div>
                         <label>Year Level<span style="color: red;"> *</span></label>
                         <select required>
                             <option value="" disabled selected>Select Year</option>
                             <option value="1">1st Year</option>
                             <option value="2">2nd Year</option>
+                            <option value="3">3rd Year</option>
+                            <option value="4">4th Year</option>
+                        </select>
+                    </div>
+        
+                    <div>
+                        <label>Course<span style="color: red;"> *</span></label>
+                        <select required>
+                            <option value="" disabled selected>Select Course</option>
+                                <option value="1">1st Year</option>
+                                <option value="2">2nd Year</option>
                             <option value="3">3rd Year</option>
                             <option value="4">4th Year</option>
                         </select>
