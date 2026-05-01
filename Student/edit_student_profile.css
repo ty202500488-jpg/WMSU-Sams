@@ -142,7 +142,13 @@ body {
 
 .section-header h3 { font-size: 18px; color: #1c1e21; }
 
-.info-grid {
+.info-grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+.info-grid-2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
@@ -214,7 +220,7 @@ body {
 }
 
 /* INPUTS */
-input {
+input, select {
     padding: 12px;
     border: 1px solid #888;
     border-radius: 8px;
