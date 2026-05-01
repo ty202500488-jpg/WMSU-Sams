@@ -109,6 +109,13 @@ body {
 	margin-bottom: 15px;
 }
 
+.academic-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 20px;
+	margin-bottom: 15px;
+}
+.academic-grid .field select {width: 100%;}
 .field {
 	flex: 1;
 	display: flex;

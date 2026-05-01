@@ -86,17 +86,37 @@
 
             <section class="form-card">
                 <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Academic Information</h2>
-                <div class="input-row">
+                <div class="academic-grid">
                     <div class="field">
-                        <label>Course</label>
-                        <select name="course" required>
-                            <option value="" disabled>Select Course</option>
-                            <option selected>Bachelor of Science in Computer Science</option>
-                            <option>Bachelor of Science in Information Technology</option>
-                            <option>Bachelor of Arts in Psychology</option>
-                            <option>College of Liberal Arts</option>
+                        <label>Department</label>
+                        <select id="department" name="department" required>
+                            <option value="" disabled selected>Select Department</option>
+                            <option value="law">College of Law</option>
+                            <option value="coa">College of Agricultue</option>
+                            <option value="cla">College of Liberal Arts</option>
+                            <option value="architecture">College of Architecture</option>
+                            <option value="cn">College of Nursing</option> 
+                            <option value="cais">College of Asian & Islamic Studies</option>
+                            <option value="ccs">College of Computer Science</option>
+                            <option value="cfes">College of Forestry & Environmental Studies</option>
+                            <option value="ccje">College of Criminal Justice Education</option>
+                            <option value="che">College of Home Economics</option>
+                            <option value="coe">College of Engineering</option>
+                            <option value="cm">College of Medicine</option>
+                            <option value="cpads">College of Public Administration & Development Studies</option>
+                            <option value="csspe">College of Sports Science & Physical Education</option>
+                            <option value="csm">College of Science & Mathematics</option>
+                            <option value="cswcd">College of Social Work & Community Development</option>
+                            <option value="cte">College of Teacher Education</option>
                         </select>
-                    </div>
+                    </div>    
+
+                        <div class="field">
+                            <label>Program</label>
+                            <select id="program" name="program" required>
+                                <option value="" disabled selected>Select Program</option>
+                            </select>
+                        </div>                   
                 </div>
                 <div class="input-row grid-3">
                     <div class="field">
@@ -294,6 +314,124 @@
             </button>
         </form>
     </div>
+    <script>
+const programs = {
+    law: [
+        "BS Laws"
+    ],
+    coa: [
+        "BS Agriculture",
+        "BS Food Technology",
+        "BS Agribusiness",
+        "Bachelor of Agricultural Technology"
+    ],
+    cais: [
+        "Asian and Islamic Studies"
+    ],
+    cfes: [
+        "BS Forestry",
+        "BS Agrefoestry",
+        "BS Environment Sciece"
+    ],
+    ccje: [
+        "Criminal Justice Education"
+    ],
+  coe: [
+    "Agricultural and Biosystems Engineering",
+    "BS Civil Engineering",
+    "BS Computer Engineering",
+    "BS Electrical Engineering",
+    "BS Electronics Engineering",
+    "BS Environmental Engineering",
+    "BS Geodetiv Engineering",
+    "BS Industrial Engineering",
+    "Mechanical Engineering",
+    "BS Sanitary Engineering",
+  ],
+  ccs: [
+    "BSCS",
+    "BSIT",
+    "ACT AD",
+    "ACT NT"
+  ],
+  cn: [
+    "BS Nursing"
+  ],
+  architecture: [
+    "BS Architecture"
+  ],
+  agriculture: [
+    "BS Agriculture",
+    "BS Agribusiness"
+  ],
+  cla: [
+    "BS Accountancy",
+    "BA Histroy",
+    "BA English",
+    "BA Political Science",
+    "BA Mass Communication- Journalism",
+    "BA Mass Communication- Broadcasting",
+    "BS Economics",
+    "BS Psychology"
+  ],
+  che: [
+    "BS Home Economics",
+    "Nutrition & Dietetics",
+    "BS Hosipitality Management"
+  ],
+cm: [
+    ""
+],
+cpads: [
+    "BS Public Administration"
+],
+csspe: [
+    "BS Physical Education",
+    "BS Exercise & Sports Sciences"
+],
+csm: [
+    "BS Biology",
+    "BS Chemistry",
+    "BS Mathematics",
+    "BS Statistics",
+    "BS Physics"
+],
+cswcd: [
+    "BS Social Work",
+    "BS Community Development"
+],
+cte: [
+    "Bachelor of Culture and Arts Education",
+    "Bachelor of Early Childhood Education",
+    "Bachelor of Elementary Education",
+    "Bacher of Secondary Education- English",
+    "Bacher of Secondary Education- Filipino",
+    "Bacher of Secondary Education- Mathematics",
+    "Bacher of Secondary Education- Sciences",
+    "Bacher of Secondary Education- Social Studies",
+    "Bacher of Secondary Education- Values Education",
+    "Bachelor of Special Needs Education"
+]
+};
+
+const departmentSelect = document.getElementById("department");
+const programSelect = document.getElementById("program");
+
+departmentSelect.addEventListener("change", function () {
+  const selected = this.value;
+
+  programSelect.innerHTML = '<option value="">Select Program</option>';
+
+  if (programs[selected]) {
+    programs[selected].forEach(prog => {
+      const option = document.createElement("option");
+      option.value = prog;
+      option.textContent = prog;
+      programSelect.appendChild(option);
+    });
+  }
+});
+</script>
 </body>
 
 </html>
