@@ -65,89 +65,281 @@
         </aside>
 
         <main class="dashboard-feed">
-            
-            <div class="feed-section">
-                <h2 class="section-title">Overview</h2>
-                <div class="stats-row">
-                    <div class="mini-stat-card">
-                        <strong>2</strong>
-                        <span>Total Applicants</span>
-                    </div>
-                    <div class="mini-stat-card">
-                        <strong style="color: #f5b400;">2</strong>
-                        <span>Pending Review</span>
-                    </div>
-                    <div class="mini-stat-card">
-                        <strong style="color: #2ecc71;">0</strong>
-                        <span>Approved</span>
-                    </div>
+ 
+        <!-- OVERVIEW STATS -->
+        <div class="feed-section">
+            <h2 class="section-title">Overview</h2>
+            <div class="stats-row">
+                <div class="mini-stat-card">
+                    <strong>2</strong>
+                    <span>Total Applicants</span>
+                </div>
+                <div class="mini-stat-card">
+                    <strong style="color: #f5b400;">2</strong>
+                    <span>Pending Review</span>
+                </div>
+                <div class="mini-stat-card">
+                    <strong style="color: #2ecc71;">6</strong>
+                    <span>Active SAs</span>
                 </div>
             </div>
-
-            <div class="feed-section">
-                <div class="section-header-flex">
-                    <h2 class="section-title">Pending Applications</h2>
-                    <a href="employer_application.html">See All</a>
+        </div>
+ 
+        <!-- HIRING CAPACITY SECTION -->
+        <div class="feed-section">
+            <h2 class="section-title">Hiring Capacity</h2>
+ 
+            <div class="capacity-card">
+                <div class="capacity-header">
+                    <h3><i class="fas fa-user-check" style="color: var(--maroon); margin-right: 8px;"></i>Department Slots</h3>
+                    <span class="capacity-badge">4 of 10 Filled</span>
                 </div>
-
-                <div class="main-card">
-                    <div class="card-header">
-                        <div class="icon-circle"><i class="fas fa-user"></i></div>
-                        <div class="header-text">
-                            <small class="text-muted">ID: 2023-0142</small>
-                            <h4>Maria Santos <span>• BSIT 3rd Year</span></h4>
-                            <div class="badge-group">
-                                <span class="badge-active">GPA: 1.75</span>
-                                <span class="status-pill status-pending">Pending Review</span>
-                            </div>
+ 
+                <div class="capacity-bar-wrap">
+                    <div class="capacity-bar-fill" style="width: 40%;"></div>
+                </div>
+                <div class="capacity-labels">
+                    <span><strong>6</strong> Hired &amp; Active</span>
+                    <span><strong>4</strong> Slots Remaining</span>
+                </div>
+ 
+                <!-- Visual slot grid -->
+                <div class="sa-slots-grid">
+                    <!-- Slot 1 — Luz Mendoza -->
+                    <div class="sa-slot">
+                        <div class="sa-slot-avatar active" style="background: linear-gradient(135deg,#7B0D1E,#9e1a2e);">
+                            LM
+                            <span class="online-dot"></span>
                         </div>
+                        <div class="sa-tooltip">
+                            <strong>Luz Mendoza</strong><br>
+                            Library Assistant<br>
+                            Since Jan 2026
+                        </div>
+                        <span class="sa-slot-name">Luz M.</span>
+                    </div>
+                    <!-- Slot 2 -->
+                    <div class="sa-slot">
+                        <div class="sa-slot-avatar active" style="background: linear-gradient(135deg,#1d4ed8,#3b82f6);">
+                            JD
+                            <span class="online-dot"></span>
+                        </div>
+                        <div class="sa-tooltip">
+                            <strong>Juan Dela Cruz</strong><br>
+                            Cataloging Aide<br>
+                            Since Feb 2026
+                        </div>
+                        <span class="sa-slot-name">Juan D.</span>
+                    </div>
+                    <!-- Slot 3 -->
+                    <div class="sa-slot">
+                        <div class="sa-slot-avatar active" style="background: linear-gradient(135deg,#0f766e,#14b8a6);">
+                            RF
+                            <span class="online-dot"></span>
+                        </div>
+                        <div class="sa-tooltip">
+                            <strong>Rosa Flores</strong><br>
+                            Library Assistant<br>
+                            Since Jan 2026
+                        </div>
+                        <span class="sa-slot-name">Rosa F.</span>
+                    </div>
+                    <!-- Slot 4 -->
+                    <div class="sa-slot">
+                        <div class="sa-slot-avatar active" style="background: linear-gradient(135deg,#7c3aed,#a78bfa);">
+                            KR
+                            <span class="online-dot"></span>
+                        </div>
+                        <div class="sa-tooltip">
+                            <strong>Karl Reyes</strong><br>
+                            Records Aide<br>
+                            Since Mar 2026
+                        </div>
+                        <span class="sa-slot-name">Karl R.</span>
                     </div>
                     
-                    <div class="card-content">
-                        <p><i class="fas fa-briefcase"></i> Position: <strong>Library Assistant</strong></p>
-                        <p><i class="fas fa-clock"></i> Applied: <strong>2 hours ago</strong></p>
-                        <p><i class="fas fa-envelope"></i> <strong>m.santos@wmsu.edu.ph</strong></p>
+                    <!-- Slots 5–10 empty -->
+                     <div class="sa-slot">
+                        <div class="sa-slot-avatar empty"><i class="fas fa-plus"></i></div>
+                        <span class="sa-slot-name" style="color:#d1d5db;">Open</span>
                     </div>
-
-                    <div class="card-actions">
-                        <div class="main-btns">
-                            <button class="btn-icon view"><a href="#view-applicant-1" style="text-decoration: none; color: #1877f2;"><i class="fas fa-eye"></i> View</a></button>
-                            <button class="btn-icon approve"><i class="fas fa-check"></i> Approve</button>
-                        </div>
-                        <button class="btn-icon reject"><i class="fas fa-times"></i> Reject</button>
+                    <div class="sa-slot">
+                        <div class="sa-slot-avatar empty"><i class="fas fa-plus"></i></div>
+                        <span class="sa-slot-name" style="color:#d1d5db;">Open</span>
                     </div>
-                </div>
-
-                <div class="main-card">
-                    <div class="card-header">
-                        <div class="icon-circle"><i class="fas fa-user"></i></div>
-                        <div class="header-text">
-                            <small class="text-muted">ID: 2025-0412</small>
-                            <h4>Angela Cruz <span>• BSIT 1st Year</span></h4>
-                            <div class="badge-group">
-                                <span class="badge-active">GPA: 1.80</span>
-                                <span class="status-pill status-pending">Pending Review</span>
-                            </div>
-                        </div>
+                    <div class="sa-slot">
+                        <div class="sa-slot-avatar empty"><i class="fas fa-plus"></i></div>
+                        <span class="sa-slot-name" style="color:#d1d5db;">Open</span>
                     </div>
-
-                    <div class="card-content">
-                        <p><i class="fas fa-briefcase"></i> Position: <strong>IT Lab Assistant</strong></p>
-                        <p><i class="fas fa-clock"></i> Applied: <strong>Yesterday</strong></p>
-                        <p><i class="fas fa-envelope"></i> <strong>a.cruz@wmsu.edu.ph</strong></p>
+                    <div class="sa-slot">
+                        <div class="sa-slot-avatar empty"><i class="fas fa-plus"></i></div>
+                        <span class="sa-slot-name" style="color:#d1d5db;">Open</span>
                     </div>
-
-                    <div class="card-actions">
-                        <div class="main-btns">
-                             <button class="btn-icon view"><a href="#view-applicant-2" style="text-decoration: none; color: #1877f2;"><i class="fas fa-eye"></i> View</a></button>
-                            <button class="btn-icon approve"><i class="fas fa-check"></i> Approve</button>
-                        </div>
-                        <button class="btn-icon reject"><i class="fas fa-times"></i> Reject</button>
+                    <div class="sa-slot">
+                        <div class="sa-slot-avatar empty"><i class="fas fa-plus"></i></div>
+                        <span class="sa-slot-name" style="color:#d1d5db;">Open</span>
                     </div>
-
+                    <div class="sa-slot">
+                        <div class="sa-slot-avatar empty"><i class="fas fa-plus"></i></div>
+                        <span class="sa-slot-name" style="color:#d1d5db;">Open</span>
+                    </div>
                 </div>
             </div>
-        </main>
+        </div>
+ 
+        <!-- ACTIVE STUDENT ASSISTANTS -->
+        <div class="feed-section">
+            <div class="section-header-flex">
+                <h2 class="section-title">Active Student Assistants</h2>
+                <a href="review_attendance.html"><i class="fas fa-clock"></i> View Attendance</a>
+            </div>
+ 
+            <div class="active-sa-list">
+ 
+                <div class="sa-card">
+                    <div class="sa-avatar-circle" style="background: linear-gradient(135deg,#7B0D1E,#9e1a2e);">LM</div>
+                    <div class="sa-info">
+                        <div class="sa-info-name">Luz Mendoza</div>
+                        <div class="sa-info-meta">BSIT 3rd Year &nbsp;·&nbsp; ID: 2022-0331</div>
+                        <div class="sa-info-role"><i class="fas fa-briefcase" style="font-size:10px;"></i> Library Assistant</div>
+                    </div>
+                    <div class="sa-stats">
+                        <div class="sa-stat-item">
+                            <strong>0</strong>
+                            <span>Hrs Logged</span>
+                        </div>
+                        <div class="sa-stat-item">
+                            <strong>0</strong>
+                            <span>This Week</span>
+                        </div>
+                    </div>
+                    <span class="sa-status-badge"><i class="fas fa-circle" style="font-size:7px;margin-right:4px;"></i>Active</span>
+                </div>
+ 
+                <div class="sa-card">
+                    <div class="sa-avatar-circle" style="background: linear-gradient(135deg,#1d4ed8,#3b82f6);">JD</div>
+                    <div class="sa-info">
+                        <div class="sa-info-name">Juan Dela Cruz</div>
+                        <div class="sa-info-meta">BSED 2nd Year &nbsp;·&nbsp; ID: 2023-0089</div>
+                        <div class="sa-info-role"><i class="fas fa-briefcase" style="font-size:10px;"></i> Cataloging Aide</div>
+                    </div>
+                    <div class="sa-stats">
+                        <div class="sa-stat-item">
+                            <strong>0</strong>
+                            <span>Hrs Logged</span>
+                        </div>
+                        <div class="sa-stat-item">
+                            <strong>0</strong>
+                            <span>This Week</span>
+                        </div>
+                    </div>
+                    <span class="sa-status-badge"><i class="fas fa-circle" style="font-size:7px;margin-right:4px;"></i>Active</span>
+                </div>
+ 
+                <div class="sa-card">
+                    <div class="sa-avatar-circle" style="background: linear-gradient(135deg,#0f766e,#14b8a6);">RF</div>
+                    <div class="sa-info">
+                        <div class="sa-info-name">Rosa Flores</div>
+                        <div class="sa-info-meta">BSBA 2nd Year &nbsp;·&nbsp; ID: 2023-0215</div>
+                        <div class="sa-info-role"><i class="fas fa-briefcase" style="font-size:10px;"></i> Library Assistant</div>
+                    </div>
+                    <div class="sa-stats">
+                        <div class="sa-stat-item">
+                            <strong>0</strong>
+                            <span>Hrs Logged</span>
+                        </div>
+                        <div class="sa-stat-item">
+                            <strong>0</strong>
+                            <span>This Week</span>
+                        </div>
+                    </div>
+                    <span class="sa-status-badge"><i class="fas fa-circle" style="font-size:7px;margin-right:4px;"></i>Active</span>
+                </div>
+ 
+                <div class="sa-card">
+                    <div class="sa-avatar-circle" style="background: linear-gradient(135deg,#7c3aed,#a78bfa);">KR</div>
+                    <div class="sa-info">
+                        <div class="sa-info-name">Karl Reyes</div>
+                        <div class="sa-info-meta">BSIT 1st Year &nbsp;·&nbsp; ID: 2025-0067</div>
+                        <div class="sa-info-role"><i class="fas fa-briefcase" style="font-size:10px;"></i> Records Aide</div>
+                    </div>
+                    <div class="sa-stats">
+                        <div class="sa-stat-item">
+                            <strong>0</strong>
+                            <span>Hrs Logged</span>
+                        </div>
+                        <div class="sa-stat-item">
+                            <strong>0</strong>
+                            <span>This Week</span>
+                        </div>
+                    </div>
+                    <span class="sa-status-badge"><i class="fas fa-circle" style="font-size:7px;margin-right:4px;"></i>Active</span>
+                </div>
+ 
+            </div>
+        </div>
+ 
+        <!-- PENDING APPLICATIONS -->
+        <div class="feed-section">
+            <div class="section-header-flex">
+                <h2 class="section-title">Pending Applications</h2>
+                <a href="employer_application.html">See All</a>
+            </div>
+ 
+            <div class="main-card">
+                <div class="card-header">
+                    <div class="icon-circle"><i class="fas fa-user"></i></div>
+                    <div class="header-text">
+                        <small class="text-muted">ID: 2023-0142</small>
+                        <h4>Maria Santos <span>• BSIT 3rd Year</span></h4>
+                        <div class="badge-group">
+                            <span class="badge-active">GPA: 1.75</span>
+                            <span class="status-pill status-pending">Pending Review</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <p><i class="fas fa-briefcase"></i> Position: <strong>Library Assistant</strong></p>
+                    <p><i class="fas fa-clock"></i> Applied: <strong>2 hours ago</strong></p>
+                    <p><i class="fas fa-envelope"></i> <strong>m.santos@wmsu.edu.ph</strong></p>
+                </div>
+                <div class="card-actions">
+                    <div class="main-btns">
+                        <button class="btn-icon view"><a href="#view-applicant-1" style="text-decoration: none; color: #1877f2;"><i class="fas fa-eye"></i> View</a></button>
+                        <button class="btn-icon approve"><i class="fas fa-check"></i> Approve</button>
+                    </div>
+                    <button class="btn-icon reject"><i class="fas fa-times"></i> Reject</button>
+                </div>
+            </div>
+ 
+            <div class="main-card">
+                <div class="card-header">
+                    <div class="icon-circle"><i class="fas fa-user"></i></div>
+                    <div class="header-text">
+                        <small class="text-muted">ID: 2025-0412</small>
+                        <h4>Angela Cruz <span>• BSIT 1st Year</span></h4>
+                        <div class="badge-group">
+                            <span class="badge-active">GPA: 1.80</span>
+                            <span class="status-pill status-pending">Pending Review</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <p><i class="fas fa-briefcase"></i> Position: <strong>IT Lab Assistant</strong></p>
+                    <p><i class="fas fa-clock"></i> Applied: <strong>Yesterday</strong></p>
+                    <p><i class="fas fa-envelope"></i> <strong>a.cruz@wmsu.edu.ph</strong></p>
+                </div>
+                <div class="card-actions">
+                    <div class="main-btns">
+                        <button class="btn-icon view"><a href="#view-applicant-2" style="text-decoration: none; color: #1877f2;"><i class="fas fa-eye"></i> View</a></button>
+                        <button class="btn-icon approve"><i class="fas fa-check"></i> Approve</button>
+                    </div>
+                    <button class="btn-icon reject"><i class="fas fa-times"></i> Reject</button>
+                </div>
+            </div>
+        </div>
+ 
+    </main>
 
         <aside class="right-panel">
             <div class="side-widget">
