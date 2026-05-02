@@ -468,6 +468,8 @@ body {
 	border-color: #720b0b;
 	box-shadow: 0 0 6px rgba(172, 64, 64, 0.4);
 }
+.account-form .row > div select {margin-bottom: 0;}
+.account-form. .row {margin-bottom: 15px;}
 
 /* Ensure proper touch targets on mobile */
 @media (max-width: 768px) {
