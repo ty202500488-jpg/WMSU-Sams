@@ -69,11 +69,13 @@
                     </div>
                     
                 </div>
-                <div class="info-grid">
+                <div class="info-grid-3">
                     <div class="info-box"><label><span>Email Address</span><input type="email" name="email" value="juan@email.com"></label></div>
                     <div class="info-box"><label><span>Phone Number</span><input type="tel" name="number" value="0912 345 6789"></label></div>
-                    <div class="info-box"><label><span>Home Address</span><input type="text" name="address" value="Zamboanga City, PH"></label></div>
                     <div class="info-box"><label><span>Birth Date</span><input type="date" name="birth_date" value="2003-01-10"></label></div>
+                    <div class="info-box"><label><span>Barangay</span><input type="text" name="Barangay" value="San Roque"></label></div>
+                    <div class="info-box"><label><span>Street/House No.</span><input type="text" name="Street/House No." value="House 123"></label></div>
+                    <div class="info-box"><label><span>City</span><input type="text" name="City" value="Zamboanga City"></label></div>
                 </div>
             </section>
 
@@ -81,10 +83,31 @@
                 <div class="section-header">
                     <h3><i class="fa-solid fa-university"></i> Academic Information</h3>
                 </div>
-                <div class="info-grid">
-                    <div class="info-box"><label><span>College</span><input type="text" name="college" value="College of Computing Studies"></label></div>
-                    <div class="info-box"><label><span>Course</span><input type="text" name="course" value="BS Information Technology"></label></div>
-                    <div class="info-box"><label><span>Year Level</span><input type="text" name="year_level" value="3rd Year"></label></div>
+                <div class="info-grid-2">
+                    <div class="info-box"><label><span>College</span></label>
+                        <select name="college" required>
+                            <option value="" disabled>Select College</option>
+                            <option selected>College of Computing Studies</option>
+                            <option>College of Business Administration</option>
+                            <option>College of Education</option>
+                            <option>College of Liberal Arts</option>
+                        </select></div>
+                    <div class="info-box"><label><span>Course</span></label>
+                        <select name="course" required>
+                            <option value="" disabled>Select Course</option>
+                            <option selected>Bachelor of Science in Computer Science</option>
+                            <option>Bachelor of Science in Information Technology</option>
+                            <option>Bachelor of Arts in Psychology</option>
+                            <option>College of Liberal Arts</option>
+                        </select></div>
+                    <div class="info-box"><label><span>Year Level</span></label>
+                        <select name="year_level" required>
+                            <option value="" disabled>Select Year Level</option>
+                            <option>1st Year</option>
+                            <option>2nd Year</option>
+                            <option selected>3rd Year</option>
+                            <option>4th Year</option>
+                        </select></div>
                     <div class="info-box"><label><span>Status</span><input type="text" name="status" value="Enrolled"></label></div>
                 </div>
             </section>
