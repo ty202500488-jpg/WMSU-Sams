@@ -145,124 +145,103 @@
             </form>
         </div>
 
-        <script>
+       <script>
 const programs = {
-    law: [
-        "BS Laws"
-    ],
+    law: ["BS Laws"],
     coa: [
         "BS Agriculture",
         "BS Food Technology",
         "BS Agribusiness",
         "Bachelor of Agricultural Technology"
     ],
-    cais: [
-        "Asian and Islamic Studies"
-    ],
+    cais: ["Asian and Islamic Studies"],
     cfes: [
         "BS Forestry",
-        "BS Agrefoestry",
-        "BS Environment Sciece"
+        "BS Agroforestry",
+        "BS Environmental Science"
     ],
-    ccje: [
-        "Criminal Justice Education"
+    ccje: ["Criminal Justice Education"],
+    coe: [
+        "Agricultural and Biosystems Engineering",
+        "BS Civil Engineering",
+        "BS Computer Engineering",
+        "BS Electrical Engineering",
+        "BS Electronics Engineering",
+        "BS Environmental Engineering",
+        "BS Geodetic Engineering",
+        "BS Industrial Engineering",
+        "BS Mechanical Engineering",
+        "BS Sanitary Engineering"
     ],
-  coe: [
-    "Agricultural and Biosystems Engineering",
-    "BS Civil Engineering",
-    "BS Computer Engineering",
-    "BS Electrical Engineering",
-    "BS Electronics Engineering",
-    "BS Environmental Engineering",
-    "BS Geodetiv Engineering",
-    "BS Industrial Engineering",
-    "Mechanical Engineering",
-    "BS Sanitary Engineering",
-  ],
-  ccs: [
-    "BSCS",
-    "BSIT",
-    "ACT AD",
-    "ACT NT"
-  ],
-  cn: [
-    "BS Nursing"
-  ],
-  architecture: [
-    "BS Architecture"
-  ],
-  agriculture: [
-    "BS Agriculture",
-    "BS Agribusiness"
-  ],
-  cla: [
-    "BS Accountancy",
-    "BA Histroy",
-    "BA English",
-    "BA Political Science",
-    "BA Mass Communication- Journalism",
-    "BA Mass Communication- Broadcasting",
-    "BS Economics",
-    "BS Psychology"
-  ],
-  che: [
-    "BS Home Economics",
-    "Nutrition & Dietetics",
-    "BS Hosipitality Management"
-  ],
-cm: [
-    ""
-],
-cpads: [
-    "BS Public Administration"
-],
-csspe: [
-    "BS Physical Education",
-    "BS Exercise & Sports Sciences"
-],
-csm: [
-    "BS Biology",
-    "BS Chemistry",
-    "BS Mathematics",
-    "BS Statistics",
-    "BS Physics"
-],
-cswcd: [
-    "BS Social Work",
-    "BS Community Development"
-],
-cte: [
-    "Bachelor of Culture and Arts Education",
-    "Bachelor of Early Childhood Education",
-    "Bachelor of Elementary Education",
-    "Bacher of Secondary Education- English",
-    "Bacher of Secondary Education- Filipino",
-    "Bacher of Secondary Education- Mathematics",
-    "Bacher of Secondary Education- Sciences",
-    "Bacher of Secondary Education- Social Studies",
-    "Bacher of Secondary Education- Values Education",
-    "Bachelor of Special Needs Education"
-]
+    ccs: ["BSCS", "BSIT", "ACT AD", "ACT NT"],
+    cn: ["BS Nursing"],
+    architecture: ["BS Architecture"],
+    cla: [
+        "BS Accountancy",
+        "BA History",
+        "BA English",
+        "BA Political Science",
+        "BA Mass Communication - Journalism",
+        "BA Mass Communication - Broadcasting",
+        "BS Economics",
+        "BS Psychology"
+    ],
+    che: [
+        "BS Home Economics",
+        "BS Nutrition & Dietetics",
+        "BS Hospitality Management"
+    ],
+    cm: ["Doctor of Medicine"],
+    cpads: ["BS Public Administration"],
+    csspe: [
+        "BS Physical Education",
+        "BS Exercise & Sports Sciences"
+    ],
+    csm: [
+        "BS Biology",
+        "BS Chemistry",
+        "BS Mathematics",
+        "BS Statistics",
+        "BS Physics"
+    ],
+    cswcd: [
+        "BS Social Work",
+        "BS Community Development"
+    ],
+    cte: [
+        "Bachelor of Culture and Arts Education",
+        "Bachelor of Early Childhood Education",
+        "Bachelor of Elementary Education",
+        "Bachelor of Secondary Education - English",
+        "Bachelor of Secondary Education - Filipino",
+        "Bachelor of Secondary Education - Mathematics",
+        "Bachelor of Secondary Education - Sciences",
+        "Bachelor of Secondary Education - Social Studies",
+        "Bachelor of Secondary Education - Values Education",
+        "Bachelor of Special Needs Education"
+    ]
 };
 
-const departmentSelect = document.getElementById("department");
-const programSelect = document.getElementById("program");
+document.addEventListener("DOMContentLoaded", function () {
+    const departmentSelect = document.getElementById("department");
+    const programSelect = document.getElementById("program");
 
-departmentSelect.addEventListener("change", function () {
-  const selected = this.value;
+    departmentSelect.addEventListener("change", function () {
+        const selected = this.value;
 
-  programSelect.innerHTML = '<option value="">Select Program</option>';
+        // Reset program dropdown
+        programSelect.innerHTML = '<option value="" disabled selected>Select Program</option>';
 
-  if (programs[selected]) {
-    programs[selected].forEach(prog => {
-      const option = document.createElement("option");
-      option.value = prog;
-      option.textContent = prog;
-      programSelect.appendChild(option);
+        if (programs[selected]) {
+            programs[selected].forEach(prog => {
+                const option = document.createElement("option");
+                option.value = prog;
+                option.textContent = prog;
+                programSelect.appendChild(option);
+            });
+        }
     });
-  }
 });
 </script>
-</body>
-
+</body>  <!-- ← closing body tag goes AFTER the script -->
 </html>
