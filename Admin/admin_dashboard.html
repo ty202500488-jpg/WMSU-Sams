@@ -25,7 +25,6 @@
 <input class="nav-radio" type="radio" name="nav" id="nav-attendance" />
 <input class="nav-radio" type="radio" name="nav" id="nav-qr" />
 <input class="nav-radio" type="radio" name="nav" id="nav-users" />
-<input class="nav-radio" type="radio" name="nav" id="nav-review-log-hours" />
 <input class="nav-radio" type="radio" name="nav" id="nav-payroll" />
 <input class="nav-radio" type="radio" name="nav" id="nav-audit" />
 <input class="nav-radio" type="radio" name="nav" id="nav-reports" />
@@ -70,11 +69,6 @@
       <div class="nav-item">
         <label for="nav-suggest-positions">
           <i class="fas fa-hand-holding-heart"></i> Suggest Positions
-        </label>
-      </div>
-      <div class="nav-item">
-        <label for="nav-review-log-hours">
-          <i class="fas fa-clipboard-check"></i> Review Log Hours
         </label>
       </div>
       <div class="nav-item">
@@ -965,753 +959,205 @@
       </section>
 
 
-      <!-- ╔══════════════════════════════════════════════
-     § SUGGEST POSITIONS TO STUDENTS
-══════════════════════════════════════════════╗ -->
-      <section class="section" id="sec-suggest-positions">
+    <!-- ╔══════════════════════════════════════════════
+        § MATCHING ENGINE DASHBOARD (USER FRIENDLY)
+    ══════════════════════════════════════════════╗ -->
+    <section class="section" id="sec-suggest-positions">
 
-        <div class="section-header">
-          <div>
-            <div class="section-title">Suggest Positions to Students</div>
-            <div class="section-sub">Assign positions to students based on their academic records and schedule
-              compatibility</div>
+      <!-- HEADER -->
+      <div class="section-header">
+        <div>
+          <div class="section-title">Matching Engine Dashboard</div>
+          <div class="section-sub">
+            Clear, real-time overview of student-position matches and their current status
           </div>
         </div>
+      </div>
 
-        <div class="alert-banner info" style="margin-bottom:20px;">
-          <i class="fas fa-info-circle"></i>
-          <span><strong>CPPE Workflow:</strong> Students only see positions that have been specifically suggested by
-            CPPE Admin based on their profile and schedule match. This ensures fair assignment rather than competitive
-            browsing.</span>
+      <!-- STATUS INFO -->
+      <div class="alert-banner info" style="margin-bottom:20px;">
+        <i class="fas fa-info-circle"></i>
+        <span>
+          <strong>How this works:</strong> The system automatically finds matches. Each match is either Suggested, Auto-Sent, Queued, or Ignored.
+        </span>
+      </div>
+
+      <!-- CONTROL PANEL -->
+      <div class="card" style="margin-bottom:20px;">
+        <div class="card-header">
+          <h3><i class="fas fa-sliders-h"></i> Matching Controls</h3>
         </div>
 
-        <div class="card" style="margin-bottom:20px;">
-          <div class="card-header">
-            <h3><i class="fas fa-star"></i> Create Position Suggestion</h3>
-          </div>
-          <div class="card-body" style="padding:25px;">
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+        <div class="card-body" style="display:flex;gap:12px;flex-wrap:wrap;">
+
+          <button class="btn btn-primary">
+            <i class="fas fa-sync"></i> Update Matches
+          </button>
+
+          <select class="filter-status" style="padding:7px 12px;border:1.5px solid var(--maroon);border-radius:8px;font-size:13px;font-weight:600;color:var(--maroon);background:var(--white);cursor:pointer;max-width:220px;">
+            <option>All Students</option>
+            <option>Verified Only</option>
+            <option>High GPA Only</option>
+          </select>
+
+          <select class="filter-status" style="padding:7px 12px;border:1.5px solid var(--maroon);border-radius:8px;font-size:13px;font-weight:600;color:var(--maroon);background:var(--white);cursor:pointer;max-width:220px;">
+            <option>All Positions</option>
+            <option>Open Only</option>
+            <option>Priority Roles</option>
+          </select>
+
+        </div>
+      </div>
+
+      <!-- MATCH LIST -->
+      <div class="card">
+        <div class="card-header">
+          <h3><i class="fas fa-stream"></i> Live Matches</h3>
+        </div>
+
+        <div class="card-body">
+
+          <!-- MATCH ITEM 1 (AUTO-SENT) -->
+          <div style="border:1px solid #eee;border-radius:10px;padding:15px;margin-bottom:12px;">
+
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
 
               <div>
-                <label style="display:block;font-weight:600;margin-bottom:8px;color:#333;">Select Student <span
-                    style="color:#dc2626;">*</span></label>
-                <select style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;font-size:14px;">
-                  <option value="">-- Choose a student --</option>
-                  <option value="maria">Maria Santos (2022-00145) • BSCS 3rd Year</option>
-                  <option value="juan">Juan dela Cruz (2021-00388) • BSBA 4th Year</option>
-                  <option value="ana">Ana Reyes (2023-00072) • BSN 2nd Year</option>
-                  <option value="liza">Liza Torres (2022-00299) • BSCS 3rd Year</option>
-                  <option value="pedro">Pedro Valdez (2021-00602) • BSED 4th Year</option>
-                </select>
+                <strong>Maria Santos</strong>
+                <span style="color:#777;"> → Library Assistant</span>
+                <div style="font-size:12px;color:#888;">BSCS 3rd Year</div>
               </div>
 
-              <div>
-                <label style="display:block;font-weight:600;margin-bottom:8px;color:#333;">Student Schedule <span
-                    style="color:#dc2626;">*</span></label>
-                <input type="text" placeholder="e.g., Mon-Wed 1PM-4PM"
-                  style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;font-size:14px;background:#f5f5f5;">
-              </div>
-
-              <div>
-                <label style="display:block;font-weight:600;margin-bottom:8px;color:#333;">Select Position <span
-                    style="color:#dc2626;">*</span></label>
-                <select style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;font-size:14px;">
-                  <option value="">-- Choose a position --</option>
-                  <option value="lib-asst">Library Assistant • University Library (Mon-Fri, 20h/week)</option>
-                  <option value="lab-mon">Laboratory Monitor • IT Dept (Tue-Thu, 24h/week)</option>
-                  <option value="office-asst">Office Assistant • College of Education (Wed-Fri, 16h/week)</option>
-                  <option value="research">Research Assistant • College of Engineering (Mon-Wed, 18h/week)</option>
-                </select>
-              </div>
-
-              <div>
-                <label style="display:block;font-weight:600;margin-bottom:8px;color:#333;">Schedule Compatibility <span
-                    style="color:#dc2626;">*</span></label>
-                <div
-                  style="padding:10px;background:#e8f5e9;border-radius:6px;border:1px solid #c8e6c9;color:#2e7d32;font-size:14px;">
-                  <i class="fas fa-check-circle"></i> Compatible - Suitable for this student
-                </div>
+              <div style="text-align:right;">
+                <div style="font-size:18px;font-weight:700;color:#2e7d32;">92%</div>
+                <div style="font-size:12px;">Strong Match</div>
               </div>
 
             </div>
 
-            <div style="margin-top:20px;padding-top:20px;border-top:1px solid #eee;">
-              <label style="display:block;font-weight:600;margin-bottom:8px;color:#333;">Reason for Suggestion</label>
-              <textarea
-                placeholder="e.g., Strong academic record matches position requirements, schedule aligns with department needs..."
-                style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;font-family:inherit;font-size:14px;resize:vertical;min-height:80px;"></textarea>
-            </div>
-
-            <div style="margin-top:20px;display:flex;gap:10px;justify-content:flex-end;">
-              <button class="btn btn-outline"><i class="fas fa-times"></i> Cancel</button>
-              <button class="btn btn-primary" id="send-suggestion-btn"><i class="fas fa-paper-plane"></i> Send
-                Suggestion to Student</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <h3><i class="fas fa-history"></i> Suggestion History</h3>
-            <a href="#" class="view-all">View all <i class="fas fa-arrow-right"></i></a>
-          </div>
-          <div class="card-body">
-            <div class="table-wrap">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Student</th>
-                    <th>Position Suggested</th>
-                    <th>Department</th>
-                    <th>Student Status</th>
-                    <th>Date Suggested</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <div class="t-avatar">
-                        <div class="av av-f">MS</div>
-                        <div>
-                          <div class="td-name">Maria Santos</div>
-                          <div class="td-sub">2022-00145</div>
-                        </div>
-                      </div>
-                    </td>
-                    <td><strong>Library Assistant</strong></td>
-                    <td>University Library</td>
-                    <td><span class="badge" style="background:#fff3cd;color:#856404;">Pending Response</span></td>
-                    <td>Mar 24, 2026</td>
-                    <td>
-                      <button class="btn btn-sm" style="background:#f5f5f5;color:#666;border:1px solid #ddd;"><i
-                          class="fas fa-redo"></i> Resend</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="t-avatar">
-                        <div class="av av-b">JD</div>
-                        <div>
-                          <div class="td-name">Juan dela Cruz</div>
-                          <div class="td-sub">2021-00388</div>
-                        </div>
-                      </div>
-                    </td>
-                    <td><strong>Finance Clerk</strong></td>
-                    <td>Finance Office</td>
-                    <td><span class="badge approved">Accepted by Student</span></td>
-                    <td>Mar 23, 2026</td>
-                    <td>
-                      <button class="btn btn-sm" style="background:#e8f5e9;color:#2e7d32;border:1px solid #c8e6c9;"><i
-                          class="fas fa-check"></i> Approved</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="t-avatar">
-                        <div class="av av-c">AR</div>
-                        <div>
-                          <div class="td-name">Ana Reyes</div>
-                          <div class="td-sub">2023-00072</div>
-                        </div>
-                      </div>
-                    </td>
-                    <td><strong>Clinic Aide</strong></td>
-                    <td>College of Nursing</td>
-                    <td><span class="badge rejected">Declined by Student</span></td>
-                    <td>Mar 22, 2026</td>
-                    <td>
-                      <button class="btn btn-sm" style="background:#fee;color:#c33;border:1px solid #fcc;"><i
-                          class="fas fa-times"></i> Declined</button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ╔══════════════════════════════════════════════
-     § REVIEW LOG HOURS
-══════════════════════════════════════════════╗ -->
-      <section class="section" id="sec-review-log-hours">
-
-        <div class="section-header">
-          <div>
-            <div class="section-title">Review Log Hours</div>
-            <div class="section-sub">Final validation of attendance logs before payroll — you are the last authority on
-              all time records</div>
-          </div>
-          <div class="section-actions">
-            <button class="btn btn-outline btn-sm" id="export-logs-btn"><i class="fas fa-download"></i> Export
-              CSV</button>
-            <button class="btn btn-primary btn-sm" id="bulk-approve-logs-btn"><i class="fas fa-check-double"></i>
-              Approve Selected</button>
-          </div>
-        </div>
-
-        <div class="alert-banner info" style="margin-bottom:20px;">
-          <i class="fas fa-info-circle"></i>
-          <span>
-            <strong>Workflow:</strong> Student logs hours →
-            <strong>Employer/Supervisor verifies</strong> →
-            <strong style="color:#1e3a8a;">You (Admin) do final validation</strong> →
-            Payroll is released. Only supervisor-verified logs appear here for your review.
-          </span>
-        </div>
-
-        <div class="stat-grid" style="margin-bottom:28px;">
-          <div class="stat-card orange">
-            <div class="stat-card-top">
-              <div class="stat-icon orange"><i class="fas fa-clock"></i></div>
-              <span class="stat-trend warn"><i class="fas fa-exclamation"></i> Action</span>
-            </div>
-            <div class="stat-value" id="log-pending-count">4</div>
-            <div class="stat-label">Pending Admin Review</div>
-          </div>
-          <div class="stat-card green">
-            <div class="stat-card-top">
-              <div class="stat-icon green"><i class="fas fa-check-circle"></i></div>
-              <span class="stat-trend up"><i class="fas fa-arrow-up"></i> +18h</span>
-            </div>
-            <div class="stat-value">0h</div>
-            <div class="stat-label">Approved Hours This Period</div>
-          </div>
-          <div class="stat-card maroon">
-            <div class="stat-card-top">
-              <div class="stat-icon maroon"><i class="fas fa-peso-sign"></i></div>
-              <span class="stat-trend warn" style="background:#fce4e8;color:var(--maroon);">
-                <i class="fas fa-arrow-up"></i> Pending
+            <!-- STATUS BADGE -->
+            <div style="margin-top:10px;">
+              <span style="background:#e8f5e9;color:#2e7d32;padding:5px 10px;border-radius:20px;font-size:12px;">
+                Auto-Sent to Student
               </span>
             </div>
-            <div class="stat-value">₱0</div>
-            <div class="stat-label">Est. Payroll Impact (Pending)</div>
-          </div>
-          <div class="stat-card gold">
-            <div class="stat-card-top">
-              <div class="stat-icon gold"><i class="fas fa-flag"></i></div>
-              <span class="stat-trend warn"><i class="fas fa-exclamation-triangle"></i> Review</span>
+
+            <div style="margin-top:10px;font-size:13px;">
+              ✔ Skill Match: Strong<br>
+              ✔ Schedule: Compatible<br>
+              ✔ Course: Relevant
             </div>
-            <div class="stat-value" id="log-flagged-count">3</div>
-            <div class="stat-label">Flagged / Suspicious Entries</div>
+
+            <div style="margin-top:12px;">
+              <button class="btn btn-sm btn-outline">View Details</button>
+              <button class="btn btn-sm">Undo Send</button>
+            </div>
+
           </div>
-        </div>
 
-        <div 
-          style="background:#fff;padding:16px 20px;border-radius:12px;border:1px solid var(--gray-200);margin-bottom:20px;box-shadow:var(--shadow-sm);display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
-          <div class="search-box" style="border:1.5px solid var(--gray-200); width:200px; border-radius: 10px;">
-            <i class="fas fa-search"></i>
-            <input type="text" id="log-search" placeholder="Search student or ID..." oninput="filterLogTable()">
+          <!-- MATCH ITEM 2 (SUGGESTED ONLY) -->
+          <div style="border:1px solid #eee;border-radius:10px;padding:15px;margin-bottom:12px;">
+
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+
+              <div>
+                <strong>Juan dela Cruz</strong>
+                <span style="color:#777;"> → Finance Clerk</span>
+                <div style="font-size:12px;color:#888;">BSBA 4th Year</div>
+              </div>
+
+              <div style="text-align:right;">
+                <div style="font-size:18px;font-weight:700;color:#1e88e5;">89%</div>
+                <div style="font-size:12px;">Good Match</div>
+              </div>
+
+            </div>
+
+            <!-- STATUS BADGE -->
+            <div style="margin-top:10px;">
+              <span style="background:#e3f2fd;color:#1565c0;padding:5px 10px;border-radius:20px;font-size:12px;">
+                Suggested (Waiting Review)
+              </span>
+            </div>
+
+            <div style="margin-top:10px;font-size:13px;">
+              ✔ Skill Match: Good<br>
+              ✔ Schedule: OK<br>
+              ✔ Course: Relevant
+            </div>
+
+            <div style="margin-top:12px;display:flex;gap:10px;">
+
+              <button class="btn btn-sm btn-primary">
+                Send to Student
+              </button>
+
+              <button class="btn btn-sm btn-outline">
+                Ignore
+              </button>
+
+            </div>
+
           </div>
-          <select id="log-filter-dept" onchange="filterLogTable()"
-            style="padding:8px 14px;border:1.5px solid var(--gray-200);border-radius:9px;font-size:13px;color:var(--gray-700);outline:none;cursor:pointer;">
-            <option value="">All Departments</option>
-            <option value="ict">ICT Building</option>
-            <option value="library">University Library</option>
-            <option value="nursing">College of Nursing</option>
-            <option value="finance">Finance Office</option>
-            <option value="education">College of Education</option>
-          </select>
-          <select id="log-filter-status" onchange="filterLogTable()"
-            style="padding:8px 14px;border:1.5px solid var(--gray-200);border-radius:9px;font-size:13px;color:var(--gray-700);outline:none;cursor:pointer;">
-            <option value="">All Status</option>
-            <option value="pending-admin">Pending Admin</option>
-            <option value="approved">Approved</option>
-            <option value="rejected">Rejected</option>
-          </select>
-         
-          <div style="display:flex;align-items:center;gap:6px;margin-left:auto;">
-            <span style="font-size:12px;color:var(--gray-400);">Date:</span>
-            <input type="date" id="log-date-from" value="2026-04-01"
-              style="padding:7px 10px;border:1.5px solid var(--gray-200);border-radius:9px;font-size:12px;outline:none;color:var(--gray-700);">
-            <span style="font-size:12px;color:var(--gray-400);">→</span>
-            <input type="date" id="log-date-to" value="2026-04-24"
-              style="padding:7px 10px;border:1.5px solid var(--gray-200);border-radius:9px;font-size:12px;outline:none;color:var(--gray-700);">
+
+          <!-- MATCH ITEM 3 (IGNORED) -->
+          <div style="border:1px solid #eee;border-radius:10px;padding:15px;margin-bottom:12px;">
+
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+
+              <div>
+                <strong>Ana Reyes</strong>
+                <span style="color:#777;"> → Clinic Aide</span>
+                <div style="font-size:12px;color:#888;">BSN 2nd Year</div>
+              </div>
+
+              <div style="text-align:right;">
+                <div style="font-size:18px;font-weight:700;color:#e53935;">76%</div>
+                <div style="font-size:12px;">Low Match</div>
+              </div>
+
+            </div>
+
+            <!-- STATUS BADGE -->
+            <div style="margin-top:10px;">
+              <span style="background:#ffebee;color:#c62828;padding:5px 10px;border-radius:20px;font-size:12px;">
+                Ignored by System
+              </span>
+            </div>
+
+            <div style="margin-top:10px;font-size:13px;">
+              ✔ Skill Match: Weak<br>
+              ✖ Schedule Conflict Detected
+            </div>
+
+            <div style="margin-top:12px;">
+              <button class="btn btn-sm btn-outline">
+                Re-evaluate
+              </button>
+            </div>
+
           </div>
+
         </div>
-
-        <div class="table-wrap">
-          <table id="attendance-log-table">
-            <thead>
-              <tr>
-                <th style="width:36px;">#</th>
-                <th>Student</th>
-                <th>Department</th>
-                <th>Date</th>
-                <th>Time In</th>
-                <th>Time Out</th>
-                <th>Hours</th>
-                <th>Supervisor</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-
-              <tr class="log-row" data-status="pending-admin" data-dept="ict" data-flag="clean">
-                <td>1</td>
-                <td>
-                  <div class="t-avatar">
-                    <div class="av av-a">MS</div>
-                    <div>
-                      <div class="td-name">Maria Santos</div>
-                      <div class="td-sub">2022-00145 · Library Asst.</div>
-                    </div>
-                  </div>
-                </td>
-                <td><span class="dept-chip"><i class="fas fa-building"></i> ICT Building</span></td>
-                <td style="white-space:nowrap;">Apr 22, 2026</td>
-                <td><span class="time-chip time-in">08:00 AM</span></td>
-                <td><span class="time-chip time-out">12:00 PM</span></td>
-                <td><strong class="hours-val">4.00h</strong>
-                  <div style="font-size:10px;color:var(--green);font-weight:600;">₱200 est.</div>
-                </td>
-                <td><span class="supervisor-tag"><i class="fas fa-user-shield"></i> A. Fernandez</span></td>
-                <td><span class="badge pending-admin">Pending Admin</span></td>
-                <td>
-                  <div class="action-btns">
-                    <button class="btn-icon view" title="View Full Details"
-                      onclick="openLogDetail('Maria Santos','2022-00145','Library Asst.','ICT Building','Apr 22, 2026','08:00 AM','12:00 PM','4.00','A. Fernandez','Clean','₱50/hr','₱200.00',false)"><i
-                        class="fas fa-eye"></i></button>
-                    <button class="btn-icon approve" title="Approve" onclick="approveLogEntry(this, 'Maria Santos')"><i
-                        class="fas fa-check"></i></button>
-                    <button class="btn-icon reject" title="Reject" onclick="rejectLogEntry(this, 'Maria Santos')"><i
-                        class="fas fa-times"></i></button>
-                  </div>
-                </td>
-              </tr>
-
-              <tr class="log-row log-row-flagged" data-status="pending-admin" data-dept="library" data-flag="flagged">
-                <td>2</td>
-                <td>
-                  <div class="t-avatar">
-                    <div class="av av-b">JD</div>
-                    <div>
-                      <div class="td-name">Juan Dela Cruz</div>
-                      <div class="td-sub">2021-00388 · Lab Monitor</div>
-                    </div>
-                  </div>
-                </td>
-                <td><span class="dept-chip"><i class="fas fa-building"></i> University Library</span></td>
-                <td style="white-space:nowrap;">Apr 22, 2026</td>
-                <td><span class="time-chip time-in">07:00 AM</span></td>
-                <td><span class="time-chip time-out">11:00 PM</span></td>
-                <td>
-                  <strong class="hours-val">4.00h</strong>
-                  <div style="font-size:10px;color:var(--green);font-weight:600;">₱525 est.</div>
-                </td>
-                <td><span class="supervisor-tag"><i class="fas fa-user-shield"></i> R. Cruz</span></td>
-                <td><span class="badge pending-admin">Pending Admin</span></td>
-                <td>
-                  <div class="action-btns">
-                    <button class="btn-icon view" title="View Full Details"
-                      onclick="openLogDetail('Juan Dela Cruz','2021-00388','Lab Monitor','University Library','Apr 22, 2026','07:00 AM','05:30 PM','10.50','R. Cruz','Overtime (>8h)','₱50/hr','₱525.00',true)"><i
-                        class="fas fa-eye"></i></button>
-                    <button class="btn-icon approve" title="Approve"
-                      onclick="approveLogEntry(this, 'Juan Dela Cruz')"><i class="fas fa-check"></i></button>
-                    <button class="btn-icon reject" title="Reject" onclick="rejectLogEntry(this, 'Juan Dela Cruz')"><i
-                        class="fas fa-times"></i></button>
-                  </div>
-                </td>
-              </tr>
-
-              <tr class="log-row log-row-flagged" data-status="pending-admin" data-dept="nursing" data-flag="flagged">
-                <td>3</td>
-                <td>
-                  <div class="t-avatar">
-                    <div class="av av-c">AR</div>
-                    <div>
-                      <div class="td-name">Ana Reyes</div>
-                      <div class="td-sub">2023-00072 · Clinic Aide</div>
-                    </div>
-                  </div>
-                </td>
-                <td><span class="dept-chip"><i class="fas fa-building"></i> College of Nursing</span></td>
-                <td style="white-space:nowrap;">Apr 23, 2026</td>
-                <td><span class="time-chip time-in">01:00 PM</span></td>
-                <td><span class="time-chip time-out">05:30 PM</span></td>
-                <td>
-                  <strong class="hours-val">10.50h</strong>
-                  <div style="font-size:10px;color:var(--green);font-weight:600;">₱525 est.</div>
-                </td>
-                <td><span class="supervisor-tag"><i class="fas fa-user-shield"></i> M. Lopez</span></td>
-                <td><span class="badge pending-admin">Pending Admin</span></td>
-                <td>
-                  <div class="action-btns">
-                    <button class="btn-icon view" title="View Full Details"
-                      onclick="openLogDetail('Ana Reyes','2023-00072','Clinic Aide','College of Nursing','Apr 23, 2026','01:00 PM','N/A','—','M. Lopez','No Timeout (missing)','₱50/hr','Uncomputable',true)"><i
-                        class="fas fa-eye"></i></button>
-                    <button class="btn-icon approve" title="Approve" onclick="approveLogEntry(this, 'Ana Reyes')"><i
-                        class="fas fa-check"></i></button>
-                    <button class="btn-icon reject" title="Reject" onclick="rejectLogEntry(this, 'Ana Reyes')"><i
-                        class="fas fa-times"></i></button>
-                  </div>
-                </td>
-              </tr>
-
-              <tr class="log-row log-row-flagged" data-status="pending-admin" data-dept="finance" data-flag="flagged">
-                <td>4</td>
-                <td>
-                  <div class="t-avatar">
-                    <div class="av av-d">LT</div>
-                    <div>
-                      <div class="td-name">Liza Torres</div>
-                      <div class="td-sub">2022-00299 · Finance Clerk</div>
-                    </div>
-                  </div>
-                </td>
-                <td><span class="dept-chip"><i class="fas fa-building"></i> Finance Office</span></td>
-                <td style="white-space:nowrap;">Apr 23, 2026</td>
-                <td><span class="time-chip time-in">08:00 AM</span></td>
-                <td><span class="time-chip time-out">12:00 PM</span></td>
-                <td>
-                  <strong class="hours-val">4.00h</strong>
-                  <div style="font-size:10px;color:var(--green);font-weight:600;">₱200 est.</div>
-                </td>
-                <td><span class="supervisor-tag"><i class="fas fa-user-shield"></i> A. Fernandez</span></td>
-                <td><span class="badge pending-admin">Pending Admin</span></td>
-                <td>
-                  <div class="action-btns">
-                    <button class="btn-icon view" title="View Full Details"
-                      onclick="openLogDetail('Liza Torres','2022-00299','Finance Clerk','Finance Office','Apr 23, 2026','08:00 AM','12:00 PM','4.00','C. Reyes (edited)','Supervisor Edited times','₱50/hr','₱200.00',true)"><i
-                        class="fas fa-eye"></i></button>
-                    <button class="btn-icon approve" title="Approve" onclick="approveLogEntry(this, 'Liza Torres')"><i
-                        class="fas fa-check"></i></button>
-                    <button class="btn-icon reject" title="Reject" onclick="rejectLogEntry(this, 'Liza Torres')"><i
-                        class="fas fa-times"></i></button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <!-- ── LOG DETAIL SIDE PANEL ── -->
-      <div id="log-detail-overlay" onclick="closeLogDetail(event)"
-        style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:900;transition:opacity 0.25s;">
       </div>
-      <div id="log-detail-panel"
-        style="display:none;position:fixed;top:0;right:0;width:430px;max-width:95vw;height:100vh;background:#fff;z-index:901;box-shadow:-8px 0 40px rgba(0,0,0,0.18);overflow-y:auto;transform:translateX(100%);transition:transform 0.3s cubic-bezier(.4,0,.2,1);">
-        <div
-          style="background:linear-gradient(135deg,var(--maroon-deep),var(--maroon));padding:22px 24px 20px;color:#fff;">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
-            <span
-              style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;opacity:0.75;">Attendance
-              Log Detail</span>
-            <button onclick="closeLogDetail()"
-              style="background:rgba(255,255,255,0.15);border:none;color:#fff;width:30px;height:30px;border-radius:8px;cursor:pointer;font-size:16px;">✕</button>
-          </div>
-          <div id="detail-student-name" style="font-family:'Playfair Display',serif;font-size:22px;font-weight:800;">
-          </div>
-          <div id="detail-student-sub" style="font-size:12px;opacity:0.7;margin-top:3px;"></div>
+
+      <!-- SUMMARY PANEL -->
+      <div class="card" style="margin-top:20px;">
+        <div class="card-header">
+          <h3><i class="fas fa-chart-pie"></i> System Summary</h3>
         </div>
 
-        <div style="padding:22px 24px;">
+        <div class="card-body" style="display:flex;gap:20px;flex-wrap:wrap;">
 
-          <div style="margin-bottom:20px;">
-            <div
-              style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--gray-400);margin-bottom:12px;">
-              <i class="fas fa-clock" style="margin-right:5px;"></i>Attendance Details
-            </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-              <div style="background:var(--gray-50);border-radius:8px;padding:12px;">
-                <div
-                  style="font-size:10px;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;">
-                  Department</div>
-                <div id="detail-dept" style="font-size:13px;font-weight:600;color:var(--gray-800);"></div>
-              </div>
-              <div style="background:var(--gray-50);border-radius:8px;padding:12px;">
-                <div
-                  style="font-size:10px;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;">
-                  Date</div>
-                <div id="detail-date" style="font-size:13px;font-weight:600;color:var(--gray-800);"></div>
-              </div>
-              <div style="background:#e8f5e9;border-radius:8px;padding:12px;border-left:3px solid var(--green);">
-                <div
-                  style="font-size:10px;color:var(--green);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;">
-                  Time In</div>
-                <div id="detail-timein" style="font-size:16px;font-weight:700;color:var(--gray-800);"></div>
-              </div>
-              <div style="background:#fce4e8;border-radius:8px;padding:12px;border-left:3px solid var(--maroon);">
-                <div
-                  style="font-size:10px;color:var(--maroon);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;">
-                  Time Out</div>
-                <div id="detail-timeout" style="font-size:16px;font-weight:700;color:var(--gray-800);"></div>
-              </div>
-            </div>
-          </div>
-
-          <div
-            style="margin-bottom:20px;padding:14px 16px;background:var(--blue-light);border-radius:10px;border:1px solid #93c5fd;">
-            <div
-              style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--blue);margin-bottom:8px;">
-              <i class="fas fa-user-shield" style="margin-right:5px;"></i>Supervisor Action
-            </div>
-            <div style="font-size:13px;font-weight:600;color:var(--gray-800);" id="detail-supervisor"></div>
-            <div style="font-size:11.5px;color:var(--gray-500);margin-top:3px;">Verified: Apr 22, 2026 · 1:16 PM</div>
-          </div>
-
-          <div id="detail-flag-warning"
-            style="display:none;margin-bottom:20px;padding:14px 16px;background:#fef3c7;border-radius:10px;border:1px solid #fcd34d;">
-            <div
-              style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:#92400e;margin-bottom:5px;">
-              <i class="fas fa-exclamation-triangle" style="margin-right:5px;"></i>Flag Detected
-            </div>
-            <div id="detail-flag-text" style="font-size:13px;font-weight:600;color:#92400e;"></div>
-            <div style="font-size:11.5px;color:#92400e;margin-top:3px;opacity:0.8;">Please review carefully before
-              approving. This entry has been automatically flagged by the system.</div>
-          </div>
-
-          <div
-            style="margin-bottom:20px;padding:18px;background:linear-gradient(135deg,#1f2937,#374151);border-radius:12px;color:#fff;">
-            <div
-              style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:rgba(255,255,255,0.55);margin-bottom:14px;">
-              <i class="fas fa-peso-sign" style="margin-right:5px;"></i>Payroll Preview
-            </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;text-align:center;">
-              <div>
-                <div style="font-size:20px;font-weight:800;font-family:'Playfair Display',serif;"
-                  id="detail-hours-disp">—</div>
-                <div style="font-size:10px;opacity:0.6;margin-top:2px;">Total Hours</div>
-              </div>
-              <div>
-                <div style="font-size:20px;font-weight:800;font-family:'Playfair Display',serif;" id="detail-rate-disp">
-                  ₱50/hr</div>
-                <div style="font-size:10px;opacity:0.6;margin-top:2px;">Rate</div>
-              </div>
-              <div style="background:rgba(201,168,76,0.2);border-radius:8px;padding:6px;">
-                <div
-                  style="font-size:18px;font-weight:800;font-family:'Playfair Display',serif;color:var(--gold-light);"
-                  id="detail-total-disp">—</div>
-                <div style="font-size:10px;opacity:0.6;margin-top:2px;color:var(--gold-light);">Total Pay</div>
-              </div>
-            </div>
-          </div>
-
-          <div style="margin-bottom:24px;">
-            <div
-              style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--gray-400);margin-bottom:12px;">
-              <i class="fas fa-history" style="margin-right:5px;"></i>Audit Trail
-            </div>
-            <div style="position:relative;padding-left:20px;">
-              <div
-                style="position:absolute;left:7px;top:0;bottom:0;width:2px;background:var(--gray-200);border-radius:2px;">
-              </div>
-              <div class="audit-entry" style="position:relative;margin-bottom:14px;">
-                <div
-                  style="position:absolute;left:-16px;top:4px;width:10px;height:10px;border-radius:50%;background:var(--blue);border:2px solid #fff;box-shadow:0 0 0 2px var(--blue);">
-                </div>
-                <div style="font-size:12.5px;font-weight:600;color:var(--gray-700);">Student submitted log</div>
-                <div style="font-size:11px;color:var(--gray-400);" id="detail-audit-1">Apr 22, 2026 · 08:02 AM</div>
-              </div>
-              <div class="audit-entry" style="position:relative;margin-bottom:14px;" id="detail-audit-edit-row">
-                <div
-                  style="position:absolute;left:-16px;top:4px;width:10px;height:10px;border-radius:50%;background:var(--yellow);border:2px solid #fff;box-shadow:0 0 0 2px var(--yellow);">
-                </div>
-                <div style="font-size:12.5px;font-weight:600;color:var(--gray-700);" id="detail-audit-edit-label">
-                  Supervisor edited times</div>
-                <div style="font-size:11px;color:var(--gray-400);">Apr 22, 2026 · 1:15 PM</div>
-              </div>
-              <div class="audit-entry" style="position:relative;margin-bottom:14px;">
-                <div
-                  style="position:absolute;left:-16px;top:4px;width:10px;height:10px;border-radius:50%;background:var(--green);border:2px solid #fff;box-shadow:0 0 0 2px var(--green);">
-                </div>
-                <div style="font-size:12.5px;font-weight:600;color:var(--gray-700);">Supervisor approved</div>
-                <div style="font-size:11px;color:var(--gray-400);">Apr 22, 2026 · 1:16 PM</div>
-              </div>
-              <div class="audit-entry" style="position:relative;">
-                <div
-                  style="position:absolute;left:-16px;top:4px;width:10px;height:10px;border-radius:50%;background:var(--gray-300);border:2px solid #fff;box-shadow:0 0 0 2px var(--gray-300);">
-                </div>
-                <div style="font-size:12.5px;font-weight:600;color:var(--gray-400);">Awaiting Admin validation</div>
-                <div style="font-size:11px;color:var(--gray-400);">Pending your action</div>
-              </div>
-            </div>
-          </div>
-
-          <div
-            style="display:grid;grid-template-columns:1fr 1fr;gap:10px;padding-top:16px;border-top:1px solid var(--gray-200);">
-            <button id="panel-approve-btn" onclick="panelApprove()" class="btn btn-primary"
-              style="background:var(--green-btn);justify-content:center;padding:12px;">
-              <i class="fas fa-check"></i> Approve → Payroll
-            </button>
-            <button id="panel-reject-btn" onclick="panelReject()" class="btn btn-reject"
-              style="justify-content:center;padding:12px;">
-              <i class="fas fa-times"></i> Reject Log
-            </button>
-          </div>
-          <div style="margin-top:8px;">
-            <button onclick="panelFlag()" class="btn"
-              style="width:100%;justify-content:center;background:var(--yellow-light);color:#92400e;border:1.5px solid #fcd34d;padding:10px;">
-              <i class="fas fa-flag"></i> Flag for Later Review
-            </button>
-          </div>
+          <div><strong>Auto-Sent:</strong> 12</div>
+          <div><strong>Suggested:</strong> 28</div>
+          <div><strong>Queued:</strong> 9</div>
+          <div><strong>Ignored:</strong> 5</div>
 
         </div>
-      </div><!-- /log-detail-panel -->
+      </div>
 
-      <!-- ── Review Log Hours JavaScript ── -->
-      <script>
-        function filterLogTable() {
-          const query = (document.getElementById('log-search')?.value || '').toLowerCase().trim();
-          const dept = (document.getElementById('log-filter-dept')?.value || '').toLowerCase();
-          const status = (document.getElementById('log-filter-status')?.value || '').toLowerCase();
-          const flagFilter = (document.getElementById('log-filter-flag')?.value || '').toLowerCase();
-
-          document.querySelectorAll('#attendance-log-table tbody .log-row').forEach(row => {
-            const name = row.querySelector('.td-name')?.textContent.toLowerCase() || '';
-            const sub = row.querySelector('.td-sub')?.textContent.toLowerCase() || '';
-            const rowDept = (row.dataset.dept || '').toLowerCase();
-            const rowStatus = (row.dataset.status || '').toLowerCase();
-            const rowFlag = (row.dataset.flag || '').toLowerCase();
-
-            const matchName = !query || name.includes(query) || sub.includes(query);
-            const matchDept = !dept || rowDept === dept;
-            const matchStatus = !status || rowStatus === status;
-            const matchFlag = !flagFilter || flagFilter === rowFlag;
-
-            row.style.display = (matchName && matchDept && matchStatus && matchFlag) ? '' : 'none';
-          });
-        }
-
-        function approveLogEntry(btn, name) {
-          confirmAction(
-            'Approve Attendance Log',
-            `Approve <strong>${name}</strong>'s attendance log? This will queue it for payroll release.`,
-            () => {
-              const row = btn.closest('tr');
-              const badge = row?.querySelector('.badge');
-              if (badge) { badge.className = 'badge approved'; badge.textContent = 'Approved'; }
-              if (row) row.dataset.status = 'approved';
-              row?.querySelector('.action-btns')?.querySelectorAll('.btn-icon.approve,.btn-icon.reject').forEach(b => b.remove());
-              row?.classList.remove('log-row-flagged');
-              showAlert('Log Approved ✓', `${name}'s attendance has been approved and queued for payroll.`, 'success');
-              refreshAllCounts();
-            }, null,
-            { confirmText: 'Yes, Approve', cancelText: 'Cancel', confirmColor: 'success-btn' }
-          );
-        }
-
-        function rejectLogEntry(btn, name) {
-          showRejectionReasonModal(name, () => {
-            const row = btn.closest('tr');
-            const badge = row?.querySelector('.badge');
-            if (badge) { badge.className = 'badge rejected'; badge.textContent = 'Rejected'; }
-            if (row) row.dataset.status = 'rejected';
-            row?.classList.add('log-row-rejected');
-            row?.classList.remove('log-row-flagged');
-            row?.querySelectorAll('.btn-icon.approve,.btn-icon.reject').forEach(b => b.remove());
-            showAlert('Log Rejected', `${name}'s attendance log has been rejected and returned.`, 'success');
-            refreshAllCounts();
-          });
-        }
-
-        function updateCounts() {
-          refreshAllCounts();
-        }
-
-        function openLogDetail(name, id, position, dept, date, timeIn, timeOut, hours, supervisor, flagText, rate, total, isFlagged) {
-          document.getElementById('detail-student-name').textContent = name;
-          document.getElementById('detail-student-sub').textContent = id + ' · ' + position;
-          document.getElementById('detail-dept').textContent = dept;
-          document.getElementById('detail-date').textContent = date;
-          document.getElementById('detail-timein').textContent = timeIn;
-          document.getElementById('detail-timeout').textContent = timeOut;
-          document.getElementById('detail-supervisor').textContent = supervisor;
-          document.getElementById('detail-hours-disp').textContent = hours !== '—' ? hours + 'h' : '—';
-          document.getElementById('detail-rate-disp').textContent = rate;
-          document.getElementById('detail-total-disp').textContent = total;
-
-          const flagWarn = document.getElementById('detail-flag-warning');
-          if (isFlagged) {
-            flagWarn.style.display = 'block';
-            document.getElementById('detail-flag-text').textContent = '⚠ ' + flagText;
-          } else {
-            flagWarn.style.display = 'none';
-          }
-
-          const editRow = document.getElementById('detail-audit-edit-row');
-          if (editRow) editRow.style.display = flagText.includes('Edited') ? '' : 'none';
-
-          const overlay = document.getElementById('log-detail-overlay');
-          const panel = document.getElementById('log-detail-panel');
-          overlay.style.display = 'block';
-          panel.style.display = 'block';
-          requestAnimationFrame(() => {
-            panel.style.transform = 'translateX(0)';
-          });
-        }
-
-        function closeLogDetail(e) {
-          if (e && e.target !== document.getElementById('log-detail-overlay')) return;
-          const panel = document.getElementById('log-detail-panel');
-          panel.style.transform = 'translateX(100%)';
-          setTimeout(() => {
-            panel.style.display = 'none';
-            document.getElementById('log-detail-overlay').style.display = 'none';
-          }, 300);
-        }
-
-        function panelApprove() {
-          const name = document.getElementById('detail-student-name').textContent;
-          const total = document.getElementById('detail-total-disp').textContent;
-          confirmAction('Approve & Send to Payroll',
-            `Approve <strong>${name}</strong>'s log? <br><br>Payroll amount: <strong>${total}</strong> will be queued for release.`,
-            () => {
-              closeLogDetail(null);
-              showAlert('Approved ✓', `${name}'s attendance is approved. ${total} queued for payroll.`, 'success');
-              refreshAllCounts();
-            }, null, { confirmText: 'Approve', cancelText: 'Cancel', confirmColor: 'success-btn' });
-        }
-
-        function panelReject() {
-          const name = document.getElementById('detail-student-name').textContent;
-          showRejectionReasonModal(name, () => {
-            closeLogDetail(null);
-            showAlert('Log Rejected', `${name}'s attendance log has been rejected and returned for correction.`, 'success');
-            refreshAllCounts();
-          });
-        }
-
-        function panelFlag() {
-          const name = document.getElementById('detail-student-name').textContent;
-          showAlert('Flagged for Review', `${name}'s log has been flagged. It will remain pending until you revisit it.`, 'success');
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-          const bulkBtn = document.getElementById('bulk-approve-logs-btn');
-          if (bulkBtn) {
-            bulkBtn.addEventListener('click', () => {
-              const checked = document.querySelectorAll('.log-checkbox:checked:not(:disabled)');
-              if (!checked.length) {
-                showAlert('No Selection', 'Please select at least one attendance log to approve.', 'success');
-                return;
-              }
-              confirmAction('Bulk Approve Logs',
-                `Approve <strong>${checked.length} selected</strong> attendance logs? They will be queued for payroll.`,
-                () => {
-                  checked.forEach(cb => {
-                    const row = cb.closest('tr');
-                    const badge = row?.querySelector('.badge');
-                    if (badge && row.dataset.status === 'pending-admin') {
-                      badge.className = 'badge approved';
-                      badge.textContent = 'Approved';
-                      row.dataset.status = 'approved';
-                    }
-                    cb.checked = false;
-                  });
-                  document.getElementById('select-all-logs').checked = false;
-                  showAlert('Bulk Approved ✓', `${checked.length} attendance logs have been approved and queued for payroll.`, 'success');
-                  refreshAllCounts();
-                }, null, { confirmText: 'Approve All Selected', cancelText: 'Cancel', confirmColor: 'success-btn' });
-            });
-          }
-        });
-      </script>
-
+    </section>
       <!-- ╔══════════════════════════════════════════════
      § PAYROLL
 ══════════════════════════════════════════════╗ -->
