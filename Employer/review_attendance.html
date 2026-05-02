@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Attendance Review | WMSU-SAMS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="review_attendace.css">
+    <link rel="stylesheet" href="review_attendance.css">
     <link rel="stylesheet" href="../Global/modals.css">
     <script src="../Global/modals.js" defer></script>
     <script src="../Global/pagination.js" defer></script>
@@ -23,7 +23,7 @@
         </nav>
         <div class="top-right">
             <div class="profile">
-                <a href="student_profile.html">
+                <a href="employer_profile.html">
                 <img src="../images/profile.jpg.jpg" class="profile-img">
                 </a>
             </div>
@@ -38,356 +38,487 @@
             </div>
         </div>
     </header>
-
-    <div class="container">
-        <aside class="sidebar-panel">
-            <div class="user-mini-card">
-                <div class="cover-photo"></div>
-                <div class="user-info">
-                     <img class="avatar-replacement" src="../Images/profile.jpg.jpg" alt="Library Department">
-                    <h3>Department of Library</h3>
-                    <p>Main Campus, WMSU</p>
+    
+    <main class="dashboard-container">
+        <div class="main-panel">
+            
+            <div class="summary-cards">
+                <div class="card flagged">
+                    <div class="card-info">
+                        <h4>Flagged Today</h4>
+                        <p id="stat-flagged">3</p>
+                    </div>
+                    <div class="card-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
                 </div>
-                <div class="profile-stats">
-                    <div class="stat"><span>Hiring Capacity</span> <strong id="prog-text">6/10</strong></div>
-                    <div class="progress-container"><div id="prog-bar" class="progress-fill" style="width: 62.5%;"></div></div>
+                <div class="card approved">
+                    <div class="card-info">
+                        <h4>Verified Today</h4>
+                        <p id="stat-approved">2</p>
+                    </div>
+                    <div class="card-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                </div>
+                <div class="card stats">
+                    <div class="card-info">
+                        <h4>Total Hours Logged</h4>
+                        <p id="stat-total-hours">0hrs</p>
+                    </div>
+                    <div class="card-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
                 </div>
             </div>
 
-            <nav class="sidebar-nav">
-                <a href="#" class="sidebar-link active-link"><i class="fas fa-clock"></i> Pending Reviews</a>
-                <a href="#" class="sidebar-link"><i class="fas fa-history"></i> Log History</a>
-                <a href="#" class="sidebar-link"><i class="fas fa-cog"></i> Shift Settings</a>
-            </nav>
+            <div class="tab-nav-container">
+                <button class="main-tab-btn active" id="tab-today-btn" onclick="switchMainTab('today')">Today's Attendance</button>
+                <button class="main-tab-btn" id="tab-history-btn" onclick="switchMainTab('history')">Attendance History</button>
+            </div>
 
-            <div class="alert-box">
-                <i class="fas fa-info-circle"></i> Review logs before 5:00 PM today to ensure payroll processing.
+            <div id="view-today">
+                <div class="filter-bar">
+                    <div class="filter-group">
+                        <select class="select-custom">
+                            <option value="">2025-2026</option>
+                            <option value="">2024-2025</option>
+                        </select>
+                        <select class="select-custom">
+                            <option value="">1st Semester</option>
+                            <option value="">2nd Semester</option>
+                        </select>
+                        <select class="select-custom" onchange="setDateFilter(this.value)">
+                            <option value="today">Today</option>
+                            <option value="yesterday">Yesterday</option>
+                            <option value="custom">Custom Range</option>
+                        </select>
+                        <input type="date" class="date-input" style="display: none;" id="custom-date">
+                        <input type="text" class="search-input" placeholder="Search student...">
+                    </div>
+
+                    <div class="tabs">
+                        <button class="tab-btn active" onclick="filterBy('flagged')">Flagged</button>
+                        <button class="tab-btn" onclick="filterBy('approved')">Verified</button>
+                        <button class="tab-btn" onclick="filterBy('all')">All</button>
+                    </div>
+                </div>
+
+                <div class="table-section">
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Student Name</th>
+                                    <th>Date</th>
+                                    <th>Time In</th>
+                                    <th>Time Out</th>
+                                    <th>Total Hours</th>
+                                    <th>Status</th>
+                                    <th>Issue / Reason</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-body">
+                                <tr class="row-flagged" onclick="reviewRecord(this, '001', 'Juan Carlos', '2026-05-02', '08:00 AM', '05:00 PM', '8.0 hrs', 'Duplicate Scan', '192.168.1.1', 'Flagged', 'Suspicious duplicate scan detected')">
+                                    <td>Juan Carlos</td>
+                                    <td>May 2, 2026</td>
+                                    <td>08:00 AM</td>
+                                    <td>05:00 PM</td>
+                                    <td>8.0 hrs</td>
+                                    <td><span class="badge badge-flagged">Flagged</span></td>
+                                    <td>Duplicate Scan</td>
+                                    <td>
+                                        <button class="btn-view"><i class="fas fa-eye"></i> Review</button>
+                                    </td>
+                                </tr>
+                                <tr class="row-flagged" onclick="reviewRecord(this, '002', 'Maria Santos', '2026-05-02', '08:15 AM', '05:00 PM', '7.75 hrs', 'Late Entry', '192.168.1.5', 'Flagged', 'Time logged 15 minutes after standard schedule')">
+                                    <td>Maria Santos</td>
+                                    <td>May 2, 2026</td>
+                                    <td>08:15 AM</td>
+                                    <td>05:00 PM</td>
+                                    <td>7.75 hrs</td>
+                                    <td><span class="badge badge-flagged">Flagged</span></td>
+                                    <td>Late Entry</td>
+                                    <td>
+                                        <button class="btn-view"><i class="fas fa-eye"></i> Review</button>
+                                    </td>
+                                </tr>
+                                <tr class="row-flagged" onclick="reviewRecord(this, '003', 'Jose Rizal', '2026-05-02', '08:00 AM', 'Not Logged', '0.0 hrs', 'No Time Out', '192.168.1.9', 'Flagged', 'The student did not clock out of the session')">
+                                    <td>Jose Rizal</td>
+                                    <td>May 2, 2026</td>
+                                    <td>08:00 AM</td>
+                                    <td>--:--</td>
+                                    <td>0.0 hrs</td>
+                                    <td><span class="badge badge-flagged">Flagged</span></td>
+                                    <td>No Time Out</td>
+                                    <td>
+                                        <button class="btn-view"><i class="fas fa-eye"></i> Review</button>
+                                    </td>
+                                </tr>
+                                <tr class="row-approved hide-row" onclick="reviewRecord(this, '004', 'Anna Gomez', '2026-05-02', '08:00 AM', '05:00 PM', '8.0 hrs', 'None', '192.168.1.10', 'Verified', 'Clean transaction record')">
+                                    <td>Anna Gomez</td>
+                                    <td>May 2, 2026</td>
+                                    <td>08:00 AM</td>
+                                    <td>05:00 PM</td>
+                                    <td>8.0 hrs</td>
+                                    <td><span class="badge badge-verified">Verified</span></td>
+                                    <td>None</td>
+                                    <td>
+                                        <button class="btn-view"><i class="fas fa-eye"></i> Review</button>
+                                    </td>
+                                </tr>
+                                <tr class="row-approved hide-row" onclick="reviewRecord(this, '005', 'Carlos Slim', '2026-05-02', '08:00 AM', '05:00 PM', '8.0 hrs', 'None', '192.168.1.12', 'Verified', 'Clean transaction record')">
+                                    <td>Carlos Slim</td>
+                                    <td>May 2, 2026</td>
+                                    <td>08:00 AM</td>
+                                    <td>05:00 PM</td>
+                                    <td>8.0 hrs</td>
+                                    <td><span class="badge badge-verified">Verified</span></td>
+                                    <td>None</td>
+                                    <td>
+                                        <button class="btn-view"><i class="fas fa-eye"></i> Review</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="sticky-footer">
+                    <div>
+                        <small style="color: var(--muted);"><i class="fas fa-info-circle"></i> Pipeline: QR Scan → Attendance Log → Employer Verification → <strong>Finalization</strong></small>
+                    </div>
+                    <button class="btn-finalize" id="btn-finalize" onclick="finalizeAttendance()">
+                        <i class="fas fa-lock"></i> Finalize Today's Attendance
+                    </button>
+                </div>
+            </div>
+
+            <div id="view-history" style="display: none;">
+                <div class="table-history-section" style="padding: 24px;">
+                    
+                    <div class="history-controls" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 16px;">
+                        <input type="text" class="search-input" placeholder="Search history by date..." style="width: 100%; max-width: 300px;">
+                        <div>
+                            <button class="btn-view" style="display: inline-flex; align-items: center; gap: 8px;" onclick="exportAllHistory()">
+                                <i class="fas fa-file-excel"></i> Export All
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="history-list" style="display: flex; flex-direction: column; gap: 12px;">
+                        <div class="history-card">
+                            <div class="history-details">
+                                <div class="history-item">
+                                    <span>Date Processed</span>
+                                    <span>May 01, 2026</span>
+                                </div>
+                                <div class="history-item">
+                                    <span>Total Students</span>
+                                    <span>18</span>
+                                </div>
+                                <div class="history-item">
+                                    <span>Verified</span>
+                                    <span>16</span>
+                                </div>
+                                <div class="history-item">
+                                    <span>Flagged</span>
+                                    <span>2</span>
+                                </div>
+                                <div class="history-item">
+                                    <span>Rejected</span>
+                                    <span>0</span>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 12px; margin-top: 8px;">
+                                <span class="badge badge-verified">Sent to Admin</span>
+                                <button class="btn-view" style="margin-left: 0;" onclick="exportHistory('May-01-2026')">
+                                    <i class="fas fa-file-excel"></i> Export
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="history-card">
+                            <div class="history-details">
+                                <div class="history-item">
+                                    <span>Date Processed</span>
+                                    <span>April 30, 2026</span>
+                                </div>
+                                <div class="history-item">
+                                    <span>Total Students</span>
+                                    <span>20</span>
+                                </div>
+                                <div class="history-item">
+                                    <span>Verified</span>
+                                    <span>18</span>
+                                </div>
+                                <div class="history-item">
+                                    <span>Flagged</span>
+                                    <span>1</span>
+                                </div>
+                                <div class="history-item">
+                                    <span>Rejected</span>
+                                    <span>1</span>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 12px; margin-top: 8px;">
+                                <span class="badge" style="background-color: #d1ecf1; color: #0c5460;">Approved</span>
+                                <button class="btn-view" style="margin-left: 0;" onclick="exportHistory('April-30-2026')">
+                                    <i class="fas fa-file-excel"></i> Export
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <aside class="panel-section">
+            <div class="panel-title">
+                Record Review Panel
+                <i class="fas fa-shield-alt" style="color:var(--maroon)"></i>
+            </div>
+            
+            <div class="student-header">
+                <div class="student-avatar" id="panel-avatar">--</div>
+                <div class="student-info">
+                    <h3 id="panel-name">Select a Record</h3>
+                    <span id="panel-id">ID: N/A</span>
+                    <span id="panel-status-badge" style="font-size: 0.75rem; margin-top: 4px; display: inline-block;"></span>
+                </div>
+            </div>
+
+            <div class="issue-box" id="panel-issue-box">
+                <i class="fas fa-info-circle"></i> Click a row to inspect system flagged attendance records.
+            </div>
+
+            <div class="detail-group">
+                <span>Date</span>
+                <span id="panel-date">N/A</span>
+            </div>
+            <div class="detail-group">
+                <span>Time In</span>
+                <span id="panel-time-in">N/A</span>
+            </div>
+            <div class="detail-group">
+                <span>Time Out</span>
+                <span id="panel-time-out">N/A</span>
+            </div>
+            <div class="detail-group">
+                <span>Total Hours</span>
+                <span id="panel-total-hours">N/A</span>
+            </div>
+            <div class="detail-group">
+                <span>IP / Network</span>
+                <span id="panel-device">N/A</span>
+            </div>
+
+            <div class="action-buttons">
+                <button id="btn-approve" class="btn-action btn-approve" onclick="openModal('Verify')" disabled>
+                    <i class="fas fa-check"></i> Verify
+                </button>
+                <button id="btn-correct" class="btn-action btn-correct" onclick="openModal('Correct')" disabled>
+                    <i class="fas fa-edit"></i> Correct
+                </button>
+                <button id="btn-reject" class="btn-action btn-reject" onclick="openModal('Reject')" disabled>
+                    <i class="fas fa-times"></i> Reject
+                </button>
             </div>
         </aside>
-        
-        <main class="dashboard-feed">
-            <div class="section-header-flex">
-                <h2 class="section-title" style="font-size: 20px;">Review Student Attendance <span style="font-weight: normal; color: var(--muted); font-size: 14px;"><input type="date" value="2026-04-24"></span></h2>
-                <button class="btn-primary" onclick="bulkApprove()"><i class="fas fa-check-double"></i> Approve All</button>
-            </div>
+    </main>
 
-            <div class="filter-strip">
-                <div class="pill-group">
-                    <div class="pill active">All Logs</div>
-                    <div class="pill">Morning</div>
-                    <div class="pill">Afternoon</div>
-                    <div class="pill">Flagged</div>
+    <div class="modal-overlay" id="modal">
+        <div class="modal-card">
+            <h4 class="modal-title" id="modal-title">Action Title</h4>
+            <div id="modal-fields">
                 </div>
-                <div class="search-box">
-                    <i class="fas fa-search"></i>
-                    <input type="text" id="searchInput" placeholder="Search by student name..." onkeyup="filterCards()">
-                </div>
-            </div>
-
-            <div id="cards-container">
-                <div class="main-card" data-name="Maria Santos">
-                    <div class="card-header">
-                        <div class="icon-circle">MS</div>
-                        <div class="header-text">
-                            <h4>Maria Santos <span class="badge badge-ontime">On Time</span></h4>
-                            <p>ID: 2022-00124 • Library Assistant</p>
-                        </div>
-                    </div>
-                    <div class="attendance-grid">
-                        <div class="grid-item"><span>Time In</span><strong>08:00 AM</strong></div>
-                        <div class="grid-item"><span>Time Out</span><strong>12:00 PM</strong></div>
-                        <div class="grid-item highlight"><span>Total Hrs</span><strong>4.00</strong></div>
-                    </div>
-                    <div class="card-actions">
-                        <a href="#view-log-1" class="btn-icon view" style="text-decoration: none;"><i class="fas fa-eye"></i> Details</a>
-                        <button class="btn-icon approve" onclick="removeCard(this)"><i class="fas fa-check"></i> Approve</button>
-                        <button class="btn-icon reject" onclick="removeCard(this)"><i class="fas fa-times"></i> Reject</button>
-                    </div>
-                </div>
-
-                <div class="main-card card-warning" data-name="Juan Dela Cruz">
-                    <div class="card-header">
-                        <div class="icon-circle">JD</div>
-                        <div class="header-text">
-                            <h4>Juan Dela Cruz <span class="badge badge-late">Late (15m)</span></h4>
-                            <p>ID: 2022-00542 • Lab Monitor</p>
-                        </div>
-                    </div>
-                    <div class="attendance-grid">
-                        <div class="grid-item"><span>Time In</span><strong>08:15 AM</strong></div>
-                        <div class="grid-item"><span>Time Out</span><strong>12:00 PM</strong></div>
-                        <div class="grid-item highlight"><span>Total Hrs</span><strong>3.75</strong></div>
-                    </div>
-                    <div class="card-actions">
-                        <a href="#view-log-2" class="btn-icon view" style="text-decoration: none;"><i class="fas fa-eye"></i> Details</a>
-                        <button class="btn-icon approve" onclick="removeCard(this)"><i class="fas fa-check"></i> Approve</button>
-                        <button class="btn-icon reject" onclick="removeCard(this)"><i class="fas fa-times"></i> Reject</button>
-                    </div>
-                </div>
-
-                <div class="main-card card-flagged" data-name="Angela Cruz">
-                    <div class="card-header">
-                        <div class="icon-circle">AC</div>
-                        <div class="header-text">
-                            <h4>Angela Cruz <span class="badge badge-flagged">Undertime</span></h4>
-                            <p>ID: 2022-11092 • Office Aide</p>
-                        </div>
-                    </div>
-                    <div class="attendance-grid">
-                        <div class="grid-item"><span>Time In</span><strong>01:00 PM</strong></div>
-                        <div class="grid-item"><span>Time Out</span><strong>04:00 PM</strong></div>
-                        <div class="grid-item highlight"><span>Total Hrs</span><strong>3.00</strong></div>
-                    </div>
-                    <div class="card-actions">
-                        <a href="#view-log-3" class="btn-icon view" style="text-decoration: none;"><i class="fas fa-eye"></i> Details</a>
-                        <button class="btn-icon approve" onclick="removeCard(this)"><i class="fas fa-check"></i> Approve</button>
-                        <button class="btn-icon reject" onclick="removeCard(this)"><i class="fas fa-times"></i> Reject</button>
-                    </div>
-                </div>
-            </div>
-        </main>
-
-        <aside class="right-panel">
-            <div class="side-widget">
-                <h4>Today's Summary</h4>
-                <div class="insight-item">
-                    <div class="i-icon"><i class="fas fa-clock"></i></div>
-                    <div class="i-text">
-                        <strong>45.2 Hours</strong>
-                        <span>Total Department Worktime</span>
-                    </div>
-                </div>
-                <div class="insight-item">
-                    <div class="i-icon"><i class="fas fa-exclamation-triangle"></i></div>
-                    <div class="i-text">
-                        <strong>3 Discrepancies</strong>
-                        <span>Requires Manual Review</span>
-                    </div>
-                </div>
-                <a href="#" style="display: flex; justify-content: flex-end; text-decoration: none; color: rgb(0, 89, 255); font-size: small;" >View Details</a>
-            </div>
-
-            <div class="side-widget">
-                <h4>Recent Activity</h4>
-                <div class="insight-item">
-                    <div class="i-text">
-                        <strong>Maria Santos</strong>
-                        <span>Approved by Supervisor</span>
-                    </div>
-                </div>
-                <div class="insight-item">
-                    <div class="i-text">
-                        <strong>Liza Mendoza</strong>
-                        <span>Logged out 5m ago</span>
-                    </div>
-                </div>
-                   <a href="#" style="display: flex; justify-content: flex-end; text-decoration: none; color: rgb(0, 89, 255); font-size: small;" >View Details</a>
-            </div>
-        </aside>
-    </div>
-
-    <div id="view-log-1" class="modal-overlay">
-        <div class="modal-box">
-            <a href="#" class="modal-close">&times;</a>
-            <div class="modal-header">
-                <div class="modal-student-card">
-                    <div class="icon-circle"">MS</div>
-                        <div class="modal-student-info">
-                            <h3>Maria Santos</h3>
-                            <p>ID: 2022-00124 · Library Assistant · April 24, 2026</p>
-                        </div>
-                            <span class="badge badge-ontime modal-status-badge">On Time</span>
-                </div>
-            </div>
-
-            <div class="info-grid">
-                <div class="info-item"><span>Name</span><strong>Maria Santos</strong></div>
-                <div class="info-item"><span>Student ID</span><strong>2022-00124</strong></div>
-                <div class="info-item"><span>Role</span><strong>Library Assistant</strong></div>
-                <div class="info-item"><span>Date</span><strong>April 24, 2026</strong></div>
-                <div class="info-item"><span>Time In</span><strong>08:00 AM</strong></div>
-                <div class="info-item"><span>Time Out</span><strong>12:00 PM</strong></div>
-                <div class="info-item"><span>Total Hours</span><strong>4.00</strong></div>
-                <div class="info-item"><span>Status</span><strong>On Time</strong></div>
-            </div>
-
-            <div class="modal-footer">
-                <a href="#" class="secondary-btn">Close</a>
-                <button class="dangered-btn">Reject</button>
-                <button class="confirmed-btn">Approve</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="view-log-2" class="modal-overlay">
-        <div class="modal-box">
-            <a href="#" class="modal-close">&times;</a>
-            <div class="modal-header">
-                <div class="modal-student-card">
-    <div class="icon-circle">JD</div>
-    <div class="modal-student-info">
-      <h3>Juan Dela Cruz</h3>
-      <p>ID: 2022-00542 · Lab Monitor · April 24, 2026</p>
-    </div>
-    <span class="badge badge-late modal-status-badge">Late (15m)</span>
-  </div>
-            </div>
-            
-            <div class="info-grid">
-                <div class="info-item"><span>Name</span><strong>Juan Dela Cruz</strong></div>
-                <div class="info-item"><span>Student ID</span><strong>2022-00542</strong></div>
-                <div class="info-item"><span>Role</span><strong>Lab Monitor</strong></div>
-                <div class="info-item"><span>Date</span><strong>April 24, 2026</strong></div>
-                <div class="info-item"><span>Time In</span><strong>08:15 AM</strong></div>
-                <div class="info-item"><span>Time Out</span><strong>12:00 PM</strong></div>
-                <div class="info-item"><span>Total Hours</span><strong>3.75</strong></div>
-                <div class="info-item"><span>Status</span><strong>Late</strong></div>
-            </div>
-            
-            <div class="modal-footer">
-                <a href="#" class="secondary-btn">Close</a>
-                <button class="dangered-btn">Reject</button>
-                <button class="confirmed-btn">Approve</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="view-log-3" class="modal-overlay">
-        <div class="modal-box">
-            <a href="#" class="modal-close">&times;</a>
-            <div class="modal-header">
-  <div class="modal-student-card">
-    <div class="icon-circle">AC</div>
-    <div class="modal-student-info">
-      <h3>Angela Cruz</h3>
-      <p>ID: 2022-11092 · Office Aide · April 24, 2026</p>
-    </div>
-    <span class="badge badge-flagged modal-status-badge">Undertime</span>
-  </div>
-</div>
-            <div class="info-grid">
-                <div class="info-item"><span>Name</span><strong>Angela Cruz</strong></div>
-                <div class="info-item"><span>Student ID</span><strong>2022-11092</strong></div>
-                <div class="info-item"><span>Role</span><strong>Office Aide</strong></div>
-                <div class="info-item"><span>Date</span><strong>April 24, 2026</strong></div>
-                <div class="info-item"><span>Time In</span><strong>01:00 PM</strong></div>
-                <div class="info-item"><span>Time Out</span><strong>04:00 PM</strong></div>
-                <div class="info-item"><span>Total Hours</span><strong>3.00</strong></div>
-                <div class="info-item"><span>Status</span><strong>Undertime</strong></div>
-            </div>
-            
-            <div class="modal-footer">
-                <a href="#" class="secondary-btn">Close</a>
-                <button class="dangered-btn">Reject</button>
-                <button class="confirmed-btn">Approve</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="view-log-4" class="modal-overlay">
-        <div class="modal-box">
-            <a href="#" class="modal-close">&times;</a>
-            <div class="modal-header">
-  <div class="modal-student-card">
-    <div class="icon-circle">BT</div>
-    <div class="modal-student-info">
-      <h3>Bryan Torres</h3>
-      <p>ID: 2023-00211 · Technical Aide · April 24, 2026</p>
-    </div>
-    <span class="badge badge-flagged modal-status-badge">Early Log</span>
-  </div>
-</div>
-            <div class="info-grid">
-                <div class="info-item"><span>Name</span><strong>Bryan Torres</strong></div>
-                <div class="info-item"><span>Student ID</span><strong>2023-00211</strong></div>
-                <div class="info-item"><span>Role</span><strong>Technical Aide</strong></div>
-                <div class="info-item"><span>Date</span><strong>April 24, 2026</strong></div>
-                <div class="info-item"><span>Time In</span><strong>03:15 AM</strong></div>
-                <div class="info-item"><span>Time Out</span><strong>07:20 AM</strong></div>
-                <div class="info-item"><span>Total Hours</span><strong>4.08</strong></div>
-                <div class="info-item"><span>Status</span><strong>Early Log</strong></div>
-            </div>
-            
-            <h4>Supervisor Notes</h4>
-            <p style="color: #4a5568; line-height: 1.6;">Early log recorded for morning shift; verify actual attendance window.</p>
-            <div class="modal-footer">
-                <a href="#" class="secondary-btn">Close</a>
-                <button class="dangered-btn">Reject</button>
-                <button class="confirm-btn">Approve</button>
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+                <button class="btn-confirm" onclick="executeAction()">Confirm Action</button>
             </div>
         </div>
     </div>
 
     <script>
-    // Attach confirmation modals to action buttons
-    document.addEventListener('DOMContentLoaded', function() {
-        // Handle Reject buttons
-        const rejectBtns = document.querySelectorAll('.btn-icon.reject');
-        rejectBtns.forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const row = this.closest('tr');
-                const name = row ? row.querySelector('strong')?.textContent || 'Applicant' : 'Applicant';
-                const position = row ? row.querySelectorAll('td')[1]?.textContent || 'position' : 'position';
-                
-                // Show the rejection reason modal
-                showRejectionReasonModal(name, (rejectionData) => {
-                    showAlert(
-                        'Application Rejected',
-                        `${name}'s application has been rejected. They'll be notified of your decision.`,
-                        'success',
-                        () => {
-                            if (row) {
-                                const status = row.querySelector('.status');
-                                if (status) {
-                                    status.className = 'status rejected';
-                                    status.textContent = 'Rejected';
-                                }
-                            }
-                        }
-                    );
-                });
-            });
-        });
+        let selectedRecordStatus = '';
+        let currentActionType = '';
+        let finalized = false;
 
-        // Handle Approve buttons
-        const approveBtns = document.querySelectorAll('.btn-icon.approve');
-        approveBtns.forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const row = this.closest('tr');
-                const name = row ? row.querySelector('strong')?.textContent || 'Applicant' : 'Applicant';
-                const position = row ? row.querySelectorAll('td')[1]?.textContent || 'position' : 'position';
-                
-                confirmAction(
-                    'Confirm Approval',
-                    `Are you sure you want to approve ${name}'s application for the ${position} position?`,
-                    () => {
-                        showAlert('Application Approved', `${name}'s application has been approved successfully.`, 'success', () => {
-                            if (row) {
-                                const status = row.querySelector('.status');
-                                if (status) {
-                                    status.className = 'status approved';
-                                    status.textContent = 'Approved';
-                                }
-                            }
-                        });
-                    },
-                    null,
-                    { confirmText: 'Yes, Approve', cancelText: 'Cancel', confirmColor: 'success-btn' }
-                );
-            });
-        });
-    });
+        function switchMainTab(tabName) {
+            document.getElementById('tab-today-btn').classList.remove('active');
+            document.getElementById('tab-history-btn').classList.remove('active');
+            
+            if (tabName === 'today') {
+                document.getElementById('view-today').style.display = 'block';
+                document.getElementById('view-history').style.display = 'none';
+                document.getElementById('tab-today-btn').classList.add('active');
+            } else {
+                document.getElementById('view-today').style.display = 'none';
+                document.getElementById('view-history').style.display = 'block';
+                document.getElementById('tab-history-btn').classList.add('active');
+            }
+        }
 
-    function filterCards() {
-    const query = document.getElementById('searchInput').value.toLowerCase().trim();
-    document.querySelectorAll('#cards-container .main-card').forEach(function(card) {
-        const name = (card.dataset.name || '').toLowerCase();
-        card.style.display = (!query || name.includes(query)) ? '' : 'none';
-     });
-    }
+        function reviewRecord(rowElement, id, name, date, timeIn, timeOut, total, issue, device, status, reason) {
+            if (finalized) return;
+            
+            const rows = document.querySelectorAll('#table-body tr');
+            rows.forEach(row => row.classList.remove('selected-row'));
+            rowElement.classList.add('selected-row');
+
+            selectedRecordStatus = status;
+
+            document.getElementById('panel-name').innerText = name;
+            document.getElementById('panel-id').innerText = 'ID: STU-' + id;
+            document.getElementById('panel-date').innerText = date;
+            document.getElementById('panel-time-in').innerText = timeIn;
+            document.getElementById('panel-time-out').innerText = timeOut;
+            document.getElementById('panel-total-hours').innerText = total;
+            document.getElementById('panel-device').innerText = device;
+
+            const statusBadge = document.getElementById('panel-status-badge');
+            if (status === 'Verified') {
+                statusBadge.innerHTML = '<span class="badge badge-verified">Verified</span>';
+            } else {
+                statusBadge.innerHTML = '<span class="badge badge-flagged">Flagged</span>';
+            }
+
+            document.getElementById('panel-issue-box').innerHTML = `<i class="fas fa-info-circle"></i> <strong>Issue:</strong> ${issue} - ${reason}`;
+
+            const initials = name.split(' ').map(n => n[0]).join('');
+            document.getElementById('panel-avatar').innerText = initials.toUpperCase();
+
+            const btnApprove = document.getElementById('btn-approve');
+            const btnCorrect = document.getElementById('btn-correct');
+            const btnReject = document.getElementById('btn-reject');
+
+            if (finalized || status === 'Verified') {
+                btnApprove.disabled = true;
+                btnCorrect.disabled = true;
+                if (finalized) {
+                    btnReject.disabled = true;
+                } else {
+                    btnReject.disabled = false;
+                }
+            } else {
+                btnApprove.disabled = false;
+                btnCorrect.disabled = false;
+                btnReject.disabled = false;
+            }
+        }
+
+        function filterBy(tabName) {
+            const btns = document.querySelectorAll('.tab-btn');
+            btns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const flaggedRows = document.querySelectorAll('.row-flagged');
+            const approvedRows = document.querySelectorAll('.row-approved');
+
+            if (tabName === 'flagged') {
+                flaggedRows.forEach(row => row.classList.remove('hide-row'));
+                approvedRows.forEach(row => row.classList.add('hide-row'));
+            } else if (tabName === 'approved') {
+                flaggedRows.forEach(row => row.classList.add('hide-row'));
+                approvedRows.forEach(row => row.classList.remove('hide-row'));
+            } else if (tabName === 'all') {
+                flaggedRows.forEach(row => row.classList.remove('hide-row'));
+                approvedRows.forEach(row => row.classList.remove('hide-row'));
+            }
+        }
+
+        function setDateFilter(val) {
+            const custom = document.getElementById('custom-date');
+            if (val === 'custom') {
+                custom.style.display = 'inline-block';
+            } else {
+                custom.style.display = 'none';
+            }
+        }
+
+        function openModal(actionName) {
+            if (finalized) {
+                alert('This session is finalized. Edits are read-only until an admin returns the batch.');
+                return;
+            }
+            if (selectedRecordStatus === 'Verified' && actionName === 'Verify') {
+                alert('This record is already verified.');
+                return;
+            }
+            
+            currentActionType = actionName;
+            document.getElementById('modal').style.display = 'grid';
+            document.getElementById('modal-title').innerText = 'Confirm ' + actionName + ' Record';
+
+            const modalFields = document.getElementById('modal-fields');
+            
+            // Build dynamic controls based on button action
+            if (actionName === 'Verify') {
+                modalFields.innerHTML = `
+                    <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 6px;">Add Verification Remark / Justification:</p>
+                    <textarea class="modal-input" id="modal-remark" placeholder="Looks good! The data is consistent..."></textarea>
+                `;
+            } else if (actionName === 'Correct') {
+                modalFields.innerHTML = `
+                    <div style="margin-bottom: 12px;">
+                        <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 4px;">New Time In:</p>
+                        <input type="time" id="new-time-in" class="modal-input" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" />
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 4px;">New Time Out:</p>
+                        <input type="time" id="new-time-out" class="modal-input" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" />
+                    </div>
+                    <div>
+                        <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 4px;">Correction Remark / Reason:</p>
+                        <textarea class="modal-input" id="modal-remark" placeholder="Adjusting entry discrepancies..."></textarea>
+                    </div>
+                `;
+            } else if (actionName === 'Reject') {
+                modalFields.innerHTML = `
+                    <div style="margin-bottom: 12px;">
+                        <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 4px;">Select Rejection Reason:</p>
+                        <select id="rejection-reason" class="modal-input" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                            <option value="Invalid Attendance">Invalid Attendance</option>
+                            <option value="Suspicious IP Logs">Suspicious IP Logs</option>
+                            <option value="Incomplete Rendering of Hours">Incomplete Rendering of Hours</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
+                    <div>
+                        <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 4px;">Additional Justification Notes:</p>
+                        <textarea class="modal-input" id="modal-remark" placeholder="Add further details explaining the rejection..."></textarea>
+                    </div>
+                `;
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        function executeAction() {
+            let userRemark = document.getElementById('modal-remark').value;
+            alert(`Action "${currentType}" saved to audit trail! Remark: "${userRemark}". Database updated to employer_finalized.`);
+            closeModal();
+            location.reload();
+        }
+
+        function finalizeAttendance() {
+            if (confirm('Are you sure you want to finalize Today’s Attendance? This will lock all reviewed records and send the batch to the Admin for approval.')) {
+                finalized = true;
+                
+                document.getElementById('btn-finalize').disabled = true;
+                document.getElementById('btn-finalize').innerHTML = '<i class="fas fa-lock"></i> Attendance Finalized';
+                
+                document.getElementById('btn-approve').disabled = true;
+                document.getElementById('btn-correct').disabled = true;
+                document.getElementById('btn-reject').disabled = true;
+                
+                alert('Batch finalized and locked. Sent for payroll processing.');
+            }
+        }
     </script>
-
 </body>
 </html>
