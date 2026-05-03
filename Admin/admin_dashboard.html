@@ -1163,6 +1163,7 @@
 ══════════════════════════════════════════════╗ -->
 <section class="section" id="sec-payroll">
 
+  <!-- HEADER -->
   <div class="section-header">
     <div>
       <div class="section-title">Payroll Management</div>
@@ -1172,14 +1173,10 @@
     </div>
 
     <div class="section-actions">
-      <select id="payroll-period" class="form-control">
-        <option value="may1">May 1 - May 15</option>
-        <option value="may16">May 16 - May 31</option>
-      </select>
 
       <select id="filterStatus" class="form-control" onchange="renderPayroll()">
         <option value="ALL">All Status</option>
-        <option value="COMPUTED">Computed</option>
+        <option value="PENDING">Pending</option>
         <option value="VERIFIED">Verified</option>
         <option value="RELEASED">Released (Unclaimed)</option>
         <option value="CLAIMED">Claimed</option>
@@ -1188,53 +1185,72 @@
       <select id="filterDept" class="form-control" onchange="renderPayroll()">
         <option value="ALL">All Departments</option>
       </select>
-      
-      <input type="text" id="searchPayroll" class="form-control" placeholder="Search name..." oninput="filterPayroll()" style="max-width: 150px; display: inline-block;" />
 
-      <button class="btn btn-primary btn-sm" id="generatePayroll" onclick="generatePayroll()">
+      <button class="btn btn-primary btn-sm" onclick="generatePayroll()">
         <i class="fas fa-calculator"></i> Generate
       </button>
-      <button class="btn btn-secondary btn-sm" onclick="exportData()">
-        <i class="fas fa-file-export"></i> Export
-      </button>
+
     </div>
   </div>
 
+  <!-- STATS -->
   <div class="stat-grid">
+
     <div class="stat-card maroon">
       <div>
-        <div class="stat-label">Pending Total</div>
-        <div class="stat-value" id="totalPending">₱0.00</div>
+        <div class="stat-label">Pending</div>
+        <div class="stat-value" id="statPending">₱0</div>
       </div>
     </div>
 
     <div class="stat-card blue">
       <div>
-        <div class="stat-label">Total Student Count</div>
-        <div class="stat-value" id="studentCount">0</div>
+        <div class="stat-label">Verified</div>
+        <div class="stat-value" id="statVerified">₱0</div>
       </div>
     </div>
 
     <div class="stat-card green">
       <div>
         <div class="stat-label">Released (Cashier)</div>
-        <div class="stat-value" id="totalReleased">₱0.00</div>
+        <div class="stat-value" id="statReleased">₱0</div>
       </div>
     </div>
 
     <div class="stat-card gold">
       <div>
-        <div class="stat-label">Avg Hours</div>
-        <div class="stat-value" id="avgHours">0h</div>
+        <div class="stat-label">Claimed</div>
+        <div class="stat-value" id="statClaimed">₱0</div>
       </div>
     </div>
+
   </div>
 
+  <!-- ALERT -->
   <div class="alert-banner info">
     Payroll is strictly based on verified attendance and must be claimed physically at the cashier.
   </div>
 
-  <div id="payrollContainer"></div>
+  <!-- TABLE -->
+  <div class="table-responsive">
+    <table class="table">
+
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Dept</th>
+          <th>Hours</th>
+          <th>Total</th>
+          <th>Status</th>
+          <th>Flags</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody id="payrollBody"></tbody>
+
+    </table>
+  </div>
 
 </section>
 
@@ -1242,271 +1258,173 @@
 // ==========================
 // CONFIG (REAL RULES)
 // ==========================
-const MAX_HOURS_PER_CUTOFF = 80;
-const MAX_RELEASE_BUDGET = 10000;
+const RATE = 50;
+const MAX_HOURS = 80;
 
-// ==========================
-// ATTENDANCE SOURCE (SIMULATION)
-// ==========================
+let payroll = [];
+let batchCounter = 1;
+
+// RAW ATTENDANCE
 const attendanceLogs = [
-  { student: "Maria Santos", dept: "Library", date: "2026-05-01", hours: 4, employer_finalized: true, admin_approved: true },
-  { student: "Maria Santos", dept: "Library", date: "2026-05-02", hours: 5, employer_finalized: true, admin_approved: true },
-  { student: "Juan dela Cruz", dept: "Finance", date: "2026-05-01", hours: 6, employer_finalized: true, admin_approved: true },
-  { student: "Ana Reyes", dept: "Clinic", date: "2026-05-01", hours: 4, employer_finalized: true, admin_approved: false },
-  { student: "Liza Torres", dept: "Library", date: "2026-05-03", hours: 7, employer_finalized: true, admin_approved: true },
-  { student: "Pedro Valdez", dept: "Finance", date: "2026-05-04", hours: 5, employer_finalized: true, admin_approved: true }
+  { id: 1, name: "Maria Santos", dept: "Library", hours: 10, date: "2026-05-01", empFinal: true, adminApp: true },
+  { id: 2, name: "Juan dela Cruz", dept: "Finance", hours: 12, date: "2026-05-02", empFinal: true, adminApp: true },
+  { id: 3, name: "Ana Reyes", dept: "Clinic", hours: 8, date: "2026-05-02", empFinal: true, adminApp: false }, // flagged
 ];
 
-// ==========================
-// STATE
-// ==========================
-let payrollData = [];
-let releasedTotal = 0;
-
-// Initialize drop-down list on startup
-document.addEventListener("DOMContentLoaded", function() {
-  populateDepartments();
-});
-
-function populateDepartments() {
-  const select = document.getElementById("filterDept");
-  const depts = [...new Set(attendanceLogs.map(log => log.dept))];
-  select.innerHTML = '<option value="ALL">All Departments</option>';
-  depts.forEach(dept => {
-    select.innerHTML += `<option value="${dept}">${dept}</option>`;
-  });
-}
-
-// ==========================
-// ACTIONS
-// ==========================
+// =========================
+// GENERATE PAYROLL
+// =========================
 function generatePayroll() {
-  const period = document.getElementById("payroll-period").value;
-  const range = period === "may1"
-    ? ["2026-05-01", "2026-05-15"]
-    : ["2026-05-16", "2026-05-31"];
 
-  const [start, end] = range;
-
-  // Filter valid attendance only
-  const validLogs = attendanceLogs.filter(log =>
-    log.employer_finalized &&
-    log.admin_approved &&
-    log.date >= start &&
-    log.date <= end
-  );
-
-  // Group by student
   const grouped = {};
-  validLogs.forEach(log => {
-    if (!grouped[log.student]) {
-      grouped[log.student] = {
-        name: log.student,
+
+  attendanceLogs.forEach(log => {
+
+    const valid = log.empFinal && log.adminApp;
+
+    if (!grouped[log.name]) {
+      grouped[log.name] = {
+        id: crypto.randomUUID(),
+        name: log.name,
         dept: log.dept,
         hours: 0,
-        rate: 50
+        status: "PENDING",
+        flagged: !valid,
+        batchId: null
       };
     }
-    grouped[log.student].hours += log.hours;
+
+    grouped[log.name].hours += log.hours;
+    if (!valid) grouped[log.name].flagged = true;
   });
 
-  // Build payroll
-  payrollData = Object.values(grouped).map(s => {
-    let capped = Math.min(s.hours, MAX_HOURS_PER_CUTOFF);
+  payroll = Object.values(grouped).map(p => {
+
+    const cappedHours = Math.min(p.hours, MAX_HOURS);
+
     return {
-      ...s,
-      hours: capped,
-      total: capped * s.rate,
-      status: "computed",
-      locked: false
+      ...p,
+      hours: cappedHours,
+      total: cappedHours * RATE,
+      verifiedAt: null,
+      releasedAt: null,
+      claimedAt: null
     };
+
   });
+
+  updateDeptFilter();
+  renderPayroll();
+}
+
+// =========================
+// VERIFY
+// =========================
+function verify(id) {
+  const p = payroll.find(x => x.id === id);
+  if (!p || p.flagged) return;
+
+  p.status = "VERIFIED";
+  p.verifiedAt = new Date().toISOString();
+  renderPayroll();
+}
+
+// =========================
+// RELEASE (BATCH)
+// =========================
+function release(id) {
+  const p = payroll.find(x => x.id === id);
+
+  if (p.status !== "VERIFIED") return;
+
+  p.status = "RELEASED";
+  p.batchId = "BATCH-" + batchCounter;
+  p.releasedAt = new Date().toISOString();
+
+  batchCounter++;
+  renderPayroll();
+}
+
+// =========================
+// CLAIM (CASHIER)
+// =========================
+function claim(id) {
+  const p = payroll.find(x => x.id === id);
+
+  if (p.status !== "RELEASED") return;
+
+  p.status = "CLAIMED";
+  p.claimedAt = new Date().toISOString();
 
   renderPayroll();
 }
 
-// ==========================
+// =========================
 // RENDER
-// ==========================
+// =========================
 function renderPayroll() {
-  const container = document.getElementById("payrollContainer");
-  const filterDeptValue = document.getElementById("filterDept").value;
-  const filterStatusValue = document.getElementById("filterStatus").value;
 
-  if (payrollData.length === 0) {
-    container.innerHTML = `
-      <div class="empty-state" style="text-align: center; padding: 40px;">
-        <i class="fas fa-file-invoice-dollar fa-3x mb-2" style="color: #ccc;"></i>
-        <p>No payroll data generated yet. Click <strong>Generate</strong> above to begin.</p>
-      </div>
-    `;
-    return;
-  }
+  const statusFilter = document.getElementById("filterStatus").value;
+  const deptFilter = document.getElementById("filterDept").value;
 
-  // Filter local data
-  let filteredData = payrollData.filter(s => {
-    const deptMatch = filterDeptValue === "ALL" || s.dept === filterDeptValue;
-    const statusMatch = filterStatusValue === "ALL" || s.status.toUpperCase() === filterStatusValue;
-    return deptMatch && statusMatch;
-  });
+  const body = document.getElementById("payrollBody");
+  body.innerHTML = "";
 
-  const grouped = groupByDept(filteredData);
-  let pending = 0;
+  let stats = { pending: 0, verified: 0, released: 0, claimed: 0 };
 
-  if (Object.keys(grouped).length === 0) {
-    container.innerHTML = `<div style="text-align: center; padding: 20px;">No records match your filter criteria.</div>`;
-    return;
-  }
+  payroll.forEach(p => {
 
-  let htmlString = "";
+    if (statusFilter !== "ALL" && p.status !== statusFilter) return;
+    if (deptFilter !== "ALL" && p.dept !== deptFilter) return;
 
-  Object.keys(grouped).forEach(dept => {
-    const list = grouped[dept];
-    let deptTotal = 0;
-    list.forEach(s => {
-      if (s.status !== "released") deptTotal += s.total;
-    });
+    stats[p.status.toLowerCase()] += p.total;
 
-    pending += deptTotal;
+    body.innerHTML += `
+      <tr>
+        <td>${p.name}</td>
+        <td>${p.dept}</td>
+        <td>${p.hours}</td>
+        <td>₱${p.total.toFixed(2)}</td>
 
-    htmlString += `
-      <div class="dept-section" style="margin-bottom: 20px; border: 1px solid #ddd; padding: 15px; border-radius: 6px;">
-        <div class="dept-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-          <h3>${dept}</h3>
-          <div>
-            <span class="dept-total" style="font-weight: bold; margin-right: 15px;">₱${deptTotal.toFixed(2)}</span>
-            <button class="btn btn-primary btn-sm" onclick="releaseDept('${dept}')">Release Batch</button>
-          </div>
-        </div>
+        <td><span class="badge">${p.status}</span></td>
 
-        <div class="table-responsive">
-          <table class="table" style="width: 100%; border-collapse: collapse;">
-            <thead>
-              <tr style="border-bottom: 1px solid #ddd; text-align: left;">
-                <th>Name</th>
-                <th>Hours</th>
-                <th>Total</th>
-                <th>Status</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${list.map(s => `
-                <tr style="border-bottom: 1px solid #eee;">
-                  <td><strong>${s.name}</strong></td>
-                  <td>${s.hours} ${s.hours === MAX_HOURS_PER_CUTOFF ? '<span style="color:#d9534f; font-size:11px;">(capped)</span>' : ''}</td>
-                  <td>₱${s.total.toFixed(2)}</td>
-                  <td>
-                    <span class="badge badge-${s.status}">${s.status.toUpperCase()}</span>
-                  </td>
-                  <td>
-                    ${s.status === "computed" ? `<button class="btn btn-outline btn-sm" onclick="verify('${s.name}')"><i class="fas fa-check"></i> Verify</button>` : ""}
-                    ${s.status === "verified" ? `<span style="color:#666; font-size:13px;"><i class="fas fa-lock-open"></i> Awaiting Release</span>` : ""}
-                    ${s.status === "released" ? `<span style="color:#28a745; font-size:13px; font-weight:600;"><i class="fas fa-lock"></i> Locked</span>` : ""}
-                  </td>
-                </tr>
-              `).join("")}
-            </tbody>
-          </table>
-        </div>
-      </div>
+        <td>
+          ${p.flagged ? "⚠ FLAGGED" : "-"}
+        </td>
+
+        <td>
+          ${p.status === "PENDING" && !p.flagged
+            ? `<button onclick="verify('${p.id}')">Verify</button>` : ""}
+
+          ${p.status === "VERIFIED"
+            ? `<button onclick="release('${p.id}')">Release</button>` : ""}
+
+          ${p.status === "RELEASED"
+            ? `<button onclick="claim('${p.id}')">Claim</button>` : ""}
+
+        </td>
+      </tr>
     `;
   });
 
-  container.innerHTML = htmlString;
-
-  // Update Stats Header
-  document.getElementById("totalPending").innerText = "₱" + pending.toFixed(2);
-  document.getElementById("totalReleased").innerText = "₱" + releasedTotal.toFixed(2);
-  document.getElementById("studentCount").innerText = payrollData.length;
-
-  const totalHours = payrollData.reduce((acc, curr) => acc + curr.hours, 0);
-  const avgHours = payrollData.length > 0 ? (totalHours / payrollData.length).toFixed(1) : 0;
-  document.getElementById("avgHours").innerText = avgHours + "h";
+  document.getElementById("statPending").innerText = "₱" + stats.pending.toFixed(2);
+  document.getElementById("statVerified").innerText = "₱" + stats.verified.toFixed(2);
+  document.getElementById("statReleased").innerText = "₱" + stats.released.toFixed(2);
+  document.getElementById("statClaimed").innerText = "₱" + stats.claimed.toFixed(2);
 }
 
-// ==========================
-// ACTIONS
-// ==========================
-function verify(name) {
-  const s = payrollData.find(x => x.name === name);
-  if (s && !s.locked) {
-    s.status = "verified";
-  }
-  renderPayroll();
-}
+// =========================
+// DEPT FILTER
+// =========================
+function updateDeptFilter() {
+  const deptSet = [...new Set(payroll.map(p => p.dept))];
 
-function releaseDept(dept) {
-  const list = payrollData.filter(s => s.dept === dept);
-  const allVerified = list.every(s => s.status === "verified");
+  const select = document.getElementById("filterDept");
+  select.innerHTML = `<option value="ALL">All Departments</option>`;
 
-  if (!allVerified) {
-    alert("Verify all students in the department first.");
-    return;
-  }
-
-  const total = list.reduce((sum, s) => sum + s.total, 0);
-
-  if (total > MAX_RELEASE_BUDGET) {
-    alert("Exceeded department budget (₱10,000 limit).");
-    return;
-  }
-
-  list.forEach(s => {
-    s.status = "released";
-    s.locked = true;
+  deptSet.forEach(d => {
+    select.innerHTML += `<option value="${d}">${d}</option>`;
   });
-
-  releasedTotal += total;
-  renderPayroll();
-}
-
-// ==========================
-// FILTERING & UTILITIES
-// ==========================
-function filterPayroll() {
-  const input = document.getElementById("searchPayroll").value.toLowerCase();
-  const containers = document.querySelectorAll(".dept-section");
-
-  containers.forEach(container => {
-    const rows = container.querySelectorAll("tbody tr");
-    let visibleRows = 0;
-
-    rows.forEach(row => {
-      const name = row.querySelector("td strong").innerText.toLowerCase();
-      if (name.includes(input)) {
-        row.style.display = "";
-        visibleRows++;
-      } else {
-        row.style.display = "none";
-      }
-    });
-
-    if (visibleRows > 0) {
-      container.style.display = "";
-    } else {
-      container.style.display = "none";
-    }
-  });
-}
-
-function exportData() {
-  if (payrollData.length === 0) {
-    alert("No generated data to export.");
-    return;
-  }
-  alert("Downloading data as CSV file...");
-}
-
-// ==========================
-// HELPERS
-// ==========================
-function groupByDept(data) {
-  return data.reduce((acc, curr) => {
-    if (!acc[curr.dept]) acc[curr.dept] = [];
-    acc[curr.dept].push(curr);
-    return acc;
-  }, {});
 }
 </script>
 
