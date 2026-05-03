@@ -1379,7 +1379,26 @@
   .btn-view:focus {background: var(--blue-light); box-shadow: none; outline: none;}
 
   .btn-icon { width: 30px; height: 30px; border: none; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; font-size: 14px;}
-  .btn-icon.view { background: #e7f3ff; color: #1877f2; transform: translateY(0px); }
+  .btn-icon.view { 
+    width: auto;         /* ← was 30px, fix this */
+    height: 30px;
+    padding: 0 12px;     /* ← adds side padding */
+    background: #e7f3ff;
+    color: #1877f2;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    flex-shrink: 0;
+    white-space: nowrap;
+    transform: translateY(0px); 
+  }
   .btn-icon.approve { background: #e7fef0; color: #2ecc71; transform: translateY(0px); }
   .btn-icon.reject { background: #fdf2f2; color: #e74c3c; transform: translateY(0px); }
   .btn-icon:hover { filter: brightness(0.9); transform: translateY(-4px); }
@@ -2822,4 +2841,148 @@ hr {
   box-shadow: 0 0 4px rgba(123, 13, 30, 0.35);
 }
 
+/* ===== PAYROLL FIXES ===== */
 
+/* Form controls */
+#sec-payroll .form-control {
+    padding: 8px 12px;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--gray-700);
+    background: var(--white);
+    outline: none;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    height: 38px;
+}
+#sec-payroll .form-control:focus {
+    border-color: var(--maroon);
+}
+
+/* Section actions row */
+#sec-payroll .section-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Override global button max-width fix */
+#sec-payroll .btn {
+    max-width: none;
+    white-space: nowrap;
+}
+
+/* Generate button */
+#sec-payroll #generatePayroll {
+    background: var(--maroon);
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.2s;
+    height: 38px;
+}
+
+#sec-payroll #generatePayroll:hover {
+    background: var(--maroon-dark);
+}
+
+/* Export button */
+#sec-payroll .btn-secondary {
+    background: var(--gray-100);
+    color: var(--gray-700);
+    border: 1.5px solid var(--gray-200);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 38px;
+    transition: background 0.2s;
+}
+
+#sec-payroll .btn-secondary:hover {
+    background: var(--gray-200);
+}
+
+/* Search input */
+#sec-payroll #searchPayroll {
+    padding: 8px 12px;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 8px;
+    font-size: 13px;
+    outline: none;
+    height: 38px;
+    font-family: 'DM Sans', sans-serif;
+    transition: border-color 0.2s;
+    max-width: 150px;
+    background-image: none; /* remove dropdown arrow from selects leaking */
+}
+
+#sec-payroll #searchPayroll:focus {
+    border-color: var(--maroon);
+}
+
+/* Verify button inside generated table */
+#sec-payroll .btn-outline {
+    background: transparent;
+    color: var(--maroon);
+    border: 1.5px solid var(--maroon);
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: background 0.15s;
+    width: auto; /* override full-width rule */
+}
+
+#sec-payroll .btn-outline:hover {
+    background: #fce4e8;
+}
+
+/* Release Batch button */
+#sec-payroll .btn-primary {
+    background: var(--maroon);
+    color: #fff;
+    border: none;
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.2s;
+    width: auto; /* override full-width rule */
+}
+
+#sec-payroll .btn-primary:hover {
+    background: var(--maroon-dark);
+}
+
+/* Stat cards inside payroll */
+#sec-payroll .stat-card.blue::before {
+    background: var(--blue);
+}
+
+#sec-payroll .stat-card.blue .stat-icon {
+    background: var(--blue-light);
+    color: var(--blue);
+}
