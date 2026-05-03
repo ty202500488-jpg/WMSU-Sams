@@ -1444,6 +1444,38 @@
     flex-wrap: wrap;
   }
 
+  /* Fix long buttons inside modals and tables */
+button,
+.btn {
+  max-width: fit-content;
+}
+
+/* Center modal and limit width */
+.modal-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.modal-center .form-wrapper {
+  width: 100%;
+  max-width: 480px; /* smaller width */
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+  padding: 20px 30px 30px;
+}
+
+/* Make buttons uniform */
+#register-btn,
+.modal .btn-outline {
+  width: 100%;
+  font-size: 14px;
+  padding: 10px 14px;
+}
+
+
   /* ── SEARCH / FILTER BAR ──────────────────────────── */
   .filter-bar {
     display: flex;
@@ -2240,6 +2272,8 @@ hr {
   flex-wrap: nowrap;
 }
 
+
+
 .position-modal-overlay {
   position: fixed;
   top: 0;
@@ -2758,3 +2792,34 @@ hr {
   .modal-body { padding: 18px 20px; }
   .modal-footer { padding: 14px 20px 20px; }
 }
+
+/* ADD USER MODAL USES SAME STYLE AS EXISTING MODALS */
+#create-user-modal.modal-overlay {
+  opacity: 0;
+  visibility: hidden;
+}
+#create-user-modal:target {
+  opacity: 1;
+  visibility: visible;
+}
+
+#create-user-modal .modal-card {
+  max-width: 520px;
+  padding-bottom: 10px;
+}
+
+.modal-form input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.modal-form input:focus {
+  border-color: var(--maroon);
+  box-shadow: 0 0 4px rgba(123, 13, 30, 0.35);
+}
+
+
