@@ -328,6 +328,10 @@
     display: block;
   }
 
+  #nav-create-account:checked ~ .layout .main-content #sec-create-account {
+  display: block;
+}
+
   #nav-departments:checked~.layout .main-content #sec-departments {
     display: block;
   }
@@ -884,6 +888,196 @@
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+/* ── CREATE ACCOUNT DEPARTMENT FORM ─── */
+
+
+.form-wrapper {
+    width: 100%;
+    max-width: 650px;
+}
+
+.account-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.account-form input {
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    gap: 12px;
+}
+
+.row > div {
+    flex: 1;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid #720b0b;
+    color: #720b0b;
+    padding: 12px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #720b0b;
+  color: #fff;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid #720b0b;
+  color: #720b0b;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+  transition: 0.3s;
+}
+
+.btn-outline:hover {
+  background-color: #f5f5f5;
+}
+
+.row {
+  display: flex;
+  gap: 12px;
+}
+
+.modal-center .form-wrapper {
+  width: 100%;
+  max-width: 650px;
+}
+
+.modal-center .register-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+  padding: 40px 50px;
+}
+
+.modal-center .cppeso-header {
+  background-color: #720b0b;
+  color: #fff;
+  border-radius: 12px 12px 0 0;
+  padding: 25px;
+  text-align: center;
+}
+
+.modal-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.row {
+  display: flex;
+  gap: 12px;
+}
+
+#register-btn {
+  background-color: #720b0b;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+/* ===== FORCE FORM STYLE INSIDE MODAL ===== */
+.modal .account-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.modal .account-form label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+/* INPUT STYLE (MAIN FIX) */
+.modal .account-form input {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  margin-bottom: 15px;
+  transition: 0.2s ease;
+}
+
+/* FOCUS EFFECT */
+.modal .account-form input:focus {
+  outline: none;
+  border-color: #720b0b;
+  box-shadow: 0 0 6px rgba(172, 64, 64, 0.4);
+}
+
+/* BUTTON FIX */
+.modal #register-btn {
+  background-color: #720b0b;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+  transition: 0.3s;
+}
+
+.modal #register-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* CANCEL BUTTON */
+.modal .btn-outline {
+  background: transparent;
+  border: 1px solid #720b0b;
+  color: #720b0b;
+  padding: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+  transition: 0.2s;
+}
+
+.modal .btn-outline:hover {
+  background: #f5f5f5;
+}
+
+/* ROW FIX */
+.modal .row {
+  display: flex;
+  gap: 12px;
+}
+
+.modal .row > div {
+  flex: 1;
 }
 
 /* ── FORM ELEMENTS (QR / User) ─── */

@@ -20,6 +20,7 @@
 <!-- ── RADIO INPUTS FOR NAVIGATION ─────────────── -->
 <input class="nav-radio" type="radio" name="nav" id="nav-dashboard" checked />
 <input class="nav-radio" type="radio" name="nav" id="nav-students" />
+<input class="nav-radio" type="radio" name="nav" id="nav-create-account" />
 <input class="nav-radio" type="radio" name="nav" id="nav-positions" />
 <input class="nav-radio" type="radio" name="nav" id="nav-suggest-positions" />
 <input class="nav-radio" type="radio" name="nav" id="nav-attendance" />
@@ -54,6 +55,11 @@
         <label for="nav-students">
           <i class="fas fa-user-check"></i> Verify Students
           <span class="nav-badge" id="sidebar-badge-students">5</span>
+        </label>
+      </div>
+      <div class="nav-item">
+        <label for="nav-create-account">
+          <i class="fas fa-user-plus"></i> Create Employer Accounts
         </label>
       </div>
        <div class="nav-item">
@@ -713,6 +719,102 @@
           </table>
         </div>
       </section>
+
+      <!-- ╔══════════════════════════════
+     § CREATE EMPLOYER ACCOUNTS
+══════════════════════════════════╗ -->
+<section class="section" id="sec-create-account">
+
+  <!-- HEADER -->
+  <div class="section-header">
+    <div>
+      <div class="section-title">Create Employer Accounts</div>
+      <div class="section-sub">
+        Register departments to manage Student Assistants
+      </div>
+    </div>
+
+    <div class="section-actions">
+      <button onclick="toggleCreateAccountForm()">
+        <i class="fas fa-user-plus"></i> Create Account
+      </button>
+    </div>
+  </div>
+
+  <!-- INFO -->
+  <div class="alert-banner info" style="margin-bottom:20px;">
+    <i class="fas fa-info-circle"></i>
+    <span>
+      Use an official <strong>WMSU email</strong> when creating department accounts.
+    </span>
+  </div>
+
+  <!-- CONTENT AREA -->
+  <div class="table-wrap" id="create-account-content">
+
+    <!-- EMPTY STATE -->
+    <div id="create-empty" style="text-align:center; padding:60px 20px;">
+      <i class="fas fa-user-plus" style="font-size:40px; opacity:0.3;"></i>
+      <p style="margin-top:10px;">No account creation in progress</p>
+      <button class="btn btn-primary btn-sm" onclick="toggleCreateAccountForm()">
+        Start Creating
+      </button>
+    </div>
+
+  </div>
+
+  <!-- ✅ MODAL (ONLY ONE create-form) -->
+  <div id="create-form" class="modal" style="display:none;">
+
+    <div class="modal-center">
+
+      <div class="form-wrapper">
+
+        <!-- HEADER -->
+        <header class="cppeso-header">
+          <div class="title-area">
+            <h1>Create Department</h1>
+            <p>Fill in the details below</p>
+          </div>
+        </header>
+
+        <!-- CARD -->
+        <div class="register-card">
+
+          <form class="account-form" onsubmit="return handleCreateDept(event)">
+
+            <label>Email <span style="color:red;">*</span></label>
+            <input type="email" required>
+
+            <label>Password <span style="color:red;">*</span></label>
+            <input type="password" required>
+
+            <label>College <span style="color:red;">*</span></label>
+            <input type="text" required>
+
+            <label>Department <span style="color:red;">*</span></label>
+            <input type="text" required>
+
+            <div class="row">
+              <div>
+                <button type="submit" id="register-btn">Create</button>
+              </div>
+              <div>
+                <button type="button" class="btn-outline" onclick="toggleCreateAccountForm()">
+                  Cancel
+                </button>
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
 
       <!-- ╔══════════════════════════════════════════════
      § MANAGE POSITIONS
@@ -1425,6 +1527,107 @@ function updateDeptFilter() {
   deptSet.forEach(d => {
     select.innerHTML += `<option value="${d}">${d}</option>`;
   });
+// ==========================
+// ACTIONS
+// ==========================
+function verify(name) {
+  const s = payrollData.find(x => x.name === name);
+  if (s && !s.locked) {
+    s.status = "verified";
+  }
+  renderPayroll();
+}
+
+function releaseDept(dept) {
+  const list = payrollData.filter(s => s.dept === dept);
+  const allVerified = list.every(s => s.status === "verified");
+
+  if (!allVerified) {
+    alert("Verify all students in the department first.");
+    return;
+  }
+
+  const total = list.reduce((sum, s) => sum + s.total, 0);
+
+  if (total > MAX_RELEASE_BUDGET) {
+    alert("Exceeded department budget (₱10,000 limit).");
+    return;
+  }
+
+  list.forEach(s => {
+    s.status = "released";
+    s.locked = true;
+  });
+
+  releasedTotal += total;
+  renderPayroll();
+}
+
+// ==========================
+// CREATE ACCOUNT FORM TOGGLE
+// ==========================
+
+function toggleCreateAccountForm() {
+  const form = document.getElementById("create-form");
+  const empty = document.getElementById("create-empty");
+
+  const isHidden = window.getComputedStyle(form).display === "none";
+
+  if (isHidden) {
+    form.style.display = "block";
+    if (empty) empty.style.display = "none";
+  } else {
+    form.style.display = "none";
+    if (empty) empty.style.display = "block";
+  }
+}
+
+// ==========================
+// FILTERING & UTILITIES
+// ==========================
+function filterPayroll() {
+  const input = document.getElementById("searchPayroll").value.toLowerCase();
+  const containers = document.querySelectorAll(".dept-section");
+
+  containers.forEach(container => {
+    const rows = container.querySelectorAll("tbody tr");
+    let visibleRows = 0;
+
+    rows.forEach(row => {
+      const name = row.querySelector("td strong").innerText.toLowerCase();
+      if (name.includes(input)) {
+        row.style.display = "";
+        visibleRows++;
+      } else {
+        row.style.display = "none";
+      }
+    });
+
+    if (visibleRows > 0) {
+      container.style.display = "";
+    } else {
+      container.style.display = "none";
+    }
+  });
+}
+
+function exportData() {
+  if (payrollData.length === 0) {
+    alert("No generated data to export.");
+    return;
+  }
+  alert("Downloading data as CSV file...");
+}
+
+// ==========================
+// HELPERS
+// ==========================
+function groupByDept(data) {
+  return data.reduce((acc, curr) => {
+    if (!acc[curr.dept]) acc[curr.dept] = [];
+    acc[curr.dept].push(curr);
+    return acc;
+  }, {});
 }
 </script>
 

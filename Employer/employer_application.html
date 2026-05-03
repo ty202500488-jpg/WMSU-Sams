@@ -64,127 +64,441 @@
             </div>
         </aside>
 
-        <main class="dashboard-feed">
-            <div class="feed-section">
-                <div class="section-header-flex">
-                    <h2 class="section-title">Applicant Management</h2>
+       <main class="dashboard-feed">
+ 
+        <!-- Date Filter Bar -->
+        <div class="date-filter-bar">
+            <div class="date-meta">
+                <span><i class="fas fa-book-open"></i> S.Y.
+                    <select class="meta-select" id="sy-select">
+                        <option>2023–2024</option>
+                        <option>2024–2025</option>
+                        <option selected>2025–2026</option>
+                        <option>2026–2027</option>
+                    </select>
+                </span>
+                <span><i class="fas fa-layer-group"></i>
+                    <select class="meta-select" id="sem-select">
+                        <option>1st Semester</option>
+                        <option selected>2nd Semester</option>
+                        <option>Summer</option>
+                    </select>
+                </span>
+                <span class="divider">|</span>
+                <span><i class="fas fa-users"></i> <strong id="today-count">3</strong> applicants today</span>
+            </div>
+            <div class="date-tabs">
+                <button class="date-tab" onclick="setDateTab(this)">Today</button>
+                <button class="date-tab" onclick="setDateTab(this)">Yesterday</button>
+                <button class="date-tab active" onclick="setDateTab(this)">Last 7 days</button>
+                <button class="date-tab" onclick="setDateTab(this)">Last 30 days</button>
+                <button class="date-tab custom-tab" onclick="setDateTab(this)">Custom <i class="fas fa-chevron-down"></i></button>
+            </div>
+            <!-- Custom date range (hidden by default) -->
+            <div class="custom-range" id="custom-range" style="display:none;">
+                <input type="date" id="date-from" class="date-input">
+                <span>to</span>
+                <input type="date" id="date-to" class="date-input">
+                <button class="apply-range-btn" onclick="applyCustomRange()">Apply</button>
+            </div>
+        </div>
+ 
+        <div class="feed-section">
+            <div class="section-header-flex">
+                <h2 class="section-title">Applicant Management</h2>
+                <div class="header-right">
+                    <div class="summary-pills">
+                        <span class="pill">Total: <strong id="pill-total">4</strong></span>
+                    </div>
+                    <!-- Bulk Actions -->
+                    <div class="bulk-actions" id="bulk-actions" style="display:none;">
+                        <span id="bulk-count">0 selected</span>
+                        <button class="bulk-btn shortlist" onclick="bulkAction('shortlisted')"><i class="fas fa-user-check"></i> Shortlist</button>
+                        <button class="bulk-btn approve" onclick="bulkAction('approved')"><i class="fas fa-check"></i> Approve</button>
+                        <button class="bulk-btn reject" onclick="bulkAction('rejected')"><i class="fas fa-times"></i> Reject</button>
+                    </div>
+                    <button class="compare-btn" id="compare-btn" onclick="openCompare()" style="display:none;"><i class="fas fa-columns"></i> Compare</button>
                     <div class="search-box">
                         <i class="fas fa-search"></i>
-                        <input type="text" placeholder="Search by name or ID...">
+                        <input type="text" id="main-search" placeholder="Search by name or ID...">
+                    </div>
+                    <button class="filter-toggle-btn" onclick="toggleFilterPanel()"><i class="fas fa-sliders-h"></i> Filters</button>
+                    <select class="sort-select" onchange="sortTable(this.value)">
+                        <option value="score">Sort: Best Fit</option>
+                        <option value="gpa">Sort: GPA</option>
+                        <option value="date">Sort: Date Applied</option>
+                        <option value="name">Sort: Name</option>
+                    </select>
+                </div>
+            </div>
+ 
+            <!-- Advanced Filter Panel -->
+            <div class="filter-panel" id="filter-panel" style="display:none;">
+                <div class="filter-grid">
+                    <div class="filter-group">
+                        <label>Course</label>
+                        <select id="f-course" onchange="applyFilters()">
+                            <option value="">All</option>
+                            <option value="BSIT">BSIT</option>
+                            <option value="BSCS">BSCS</option>
+                            <option value="BSED">BSED</option>
+                            <option value="BSBA">BSBA</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Year Level</label>
+                        <select id="f-year" onchange="applyFilters()">
+                            <option value="">All</option>
+                            <option value="1st Year">1st Year</option>
+                            <option value="2nd Year">2nd Year</option>
+                            <option value="3rd Year">3rd Year</option>
+                            <option value="4th Year">4th Year</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>GPA Range: <span id="gpa-val">1.0 – 5.0</span></label>
+                        <div class="gpa-range-row">
+                            <input type="range" id="f-gpa-min" min="1.0" max="5.0" step="0.05" value="1.0" oninput="applyFilters()">
+                            <input type="range" id="f-gpa-max" min="1.0" max="5.0" step="0.05" value="5.0" oninput="applyFilters()">
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label>Availability</label>
+                        <select id="f-avail" onchange="applyFilters()">
+                            <option value="">All</option>
+                            <option value="Morning">Morning</option>
+                            <option value="Afternoon">Afternoon</option>
+                            <option value="Full day">Full day</option>
+                        </select>
+                    </div>
+                    <div class="filter-group checkbox-group">
+                        <label><input type="checkbox" id="f-exp" onchange="applyFilters()"> With experience</label>
+                        <label><input type="checkbox" id="f-verified" onchange="applyFilters()"> Verified docs only</label>
+                    </div>
+                    <div class="filter-group">
+                        <button class="clear-filters-btn" onclick="clearFilters()"><i class="fas fa-times"></i> Clear Filters</button>
                     </div>
                 </div>
-
-                <div class="main-card table-wrapper">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>Student Info</th>
-                                <th>Applied Position</th>
-                                <th>GPA</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="student-profile">
-                                        <div class="mini-avatar">MS</div>
-                                        <div class="name-stack">
-                                            <strong>Maria Santos</strong>
-                                            <span>BSIT - 3rd Year</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>Library Assistant</td>
-                                <td><span class="gpa-badge">1.75</span></td>
-                                <td><span class="status pending">Pending</span></td>
-                                <td class="action-cells">
-                                    <button class="btn-icon view" title="View Profile"><a href="#view-applicant-1" style="text-decoration: none; color: #1877f2;"><i class="fas fa-eye"></i></a></button>
-                                    <button class="btn-icon approve" title="Approve"><i class="fas fa-check"></i></button>
-                                    <button class="btn-icon reject" title="Reject"><i class="fas fa-times"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="student-profile">
-                                        <div class="mini-avatar blue">AC</div>
-                                        <div class="name-stack">
-                                            <strong>Angela Cruz</strong>
-                                            <span>BSIT - 1st Year</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>IT Lab Assistant</td>
-                                <td><span class="gpa-badge">1.80</span></td>
-                                <td><span class="status pending">Pending</span></td>
-                                <td class="action-cells">
-                                    <button class="btn-icon view"><a href="#view-applicant-2" style="text-decoration: none; color: #1877f2;"><i class="fas fa-eye"></i></a></button>
-                                    <button class="btn-icon approve"><i class="fas fa-check"></i></button>
-                                    <button class="btn-icon reject"><i class="fas fa-times"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="student-profile">
-                                        <div class="mini-avatar green">MR</div>
-                                        <div class="name-stack">
-                                            <strong>Mark Rivera</strong>
-                                            <span>BSCS - 2nd Year</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>Database Assistant</td>
-                                <td><span class="gpa-badge">1.45</span></td>
-                                <td><span class="status pending">Pending</span></td>
-                                <td class="action-cells">
-                                    <button class="btn-icon view"><a href="#view-applicant-3" style="text-decoration: none; color: #1877f2;"><i class="fas fa-eye"></i></a></button>
-                                    <button class="btn-icon approve"><i class="fas fa-check"></i></button>
-                                    <button class="btn-icon reject"><i class="fas fa-times"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="student-profile">
-                                        <div class="mini-avatar orange">SL</div>
-                                        <div class="name-stack">
-                                            <strong>Sophia Luna</strong>
-                                            <span>BSED - 4th Year</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>Office Helper</td>
-                                <td><span class="gpa-badge">1.25</span></td>
-                                <td><span class="status pending">Pending</span></td>
-                                <td class="action-cells">
-                                    <button class="btn-icon view"><a href="#view-applicant-4" style="text-decoration: none; color: #1877f2;"><i class="fas fa-eye"></i></a></button>
-                                    <button class="btn-icon approve"><i class="fas fa-check"></i></button>
-                                    <button class="btn-icon reject"><i class="fas fa-times"></i></button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
             </div>
-        </main>
+ 
+            <div class="main-card table-wrapper">
+                <table class="data-table" id="main-table">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" id="select-all" onclick="toggleSelectAll(this)"></th>
+                            <th>Student Info</th>
+                            <th>Email</th>
+                            <th>Applied Position</th>
+                            <th>Date Applied</th>
+                            <th>GPA</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="applicant-tbody">
+ 
+                        <!-- ROW 1 -->
+                        <tr class="applicant-row"
+                            data-score="87" data-gpa="1.75" data-date="May 2, 2026"
+                            data-name="Maria Santos" data-course="BSIT" data-year="3rd Year"
+                            data-status="pending" data-avail="Morning" data-exp="true" data-verified="true"
+                            data-skills="Library Management, MS Office, Research" data-hours="20hrs/week"
+                            data-intro="Passionate about library science with 1 year of volunteer shelving experience.">
+                            <td><input type="checkbox" class="row-check" onchange="onRowCheck()"></td>
+                            <td>
 
-        <aside class="right-panel">
-            <div class="side-widget">
-                <h4>Quick Filters</h4>
-                <div class="filter-option">
-                    <label><input type="checkbox"> Priority Applicants</label>
-                </div>
-                <div class="filter-option">
-                    <label><input type="checkbox"> High GPA (1.0 - 1.5)</label>
-                </div>
+                                <div class="student-profile">
+                                    <div class="mini-avatar">MS</div>
+                                    <div class="name-stack">
+                                        <strong>Maria Santos</strong>
+                                        <span>BSIT - 3rd Year</span>
+                                        <span class="compat-badge compat-high" style="color: #2ecc71;"><i class="fas fa-circle-check"></i>87% Match</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="email-cell">m.santos@wmsu.edu.ph</td>
+                            <td>Library Assistant</td>
+                            <td class="date-cell"><i class="fas fa-calendar"></i> <span>May 2, 2026</span></td>
+                            <td><span class="gpa-badge">1.75</span></td>
+                            <td><span class="status pending">Pending</span></td>
+                            <td class="action-cells">
+                                <button class="btn-icon view" title="View Profile"
+                                    onclick="openModal('view-applicant-1')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-icon approve" title="Approve">
+                                    <i class="fas fa-check"></i>
+                                </button>
+                                <button class="btn-icon reject" title="Reject">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                                <div class="kebab-wrap" id="kebab-1">
+                                    <button class="btn-icon msg" title="More options"
+                                        onclick="toggleKebab('kebab-1', event)">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="kebab-dropdown">
+                                        <button class="kebab-item"
+                                            onclick="openMessageModal('Maria Santos','Library Assistant');closeKebab()">
+                                            <i class="fas fa-envelope"></i> Send Message
+                                        </button>
+                                        <button class="kebab-item"
+                                            onclick="bulkAction('shortlisted');closeKebab()">
+                                            <i class="fas fa-user-check"></i> Shortlist
+                                        </button>
+                                        <button class="kebab-item"
+                                            onclick="openModal('view-applicant-1');closeKebab()">
+                                            <i class="fas fa-address-card"></i> Full Profile
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- Hover Preview Row 1 -->
+                        <tr class="preview-row" id="preview-1">
+                            <td colspan="9">
+                                <div class="hover-preview">
+                                    <div class="preview-col"><i class="fas fa-tools"></i><strong>Skills</strong><span>Library Management, MS Office, Research</span></div>
+                                    <div class="preview-col"><i class="fas fa-clock"></i><strong>Availability</strong><span>Morning · 20hrs/week</span></div>
+                                    <div class="preview-col"><i class="fas fa-user"></i><strong>Intro</strong><span>Passionate about library science with 1 year of volunteer shelving experience.</span></div>
+                                    <div class="preview-col"><i class="fas fa-file-check"></i><strong>Documents</strong><span class="doc-verified"><i class="fas fa-shield-check"></i> Verified by Registrar</span></div>
+                                    <div class="preview-score-card">
+                                        <div class="score-title">Match Score: 87%</div>
+                                        <div class="score-reason"><i class="fas fa-check"></i> High GPA (1.75)</div>
+                                        <div class="score-reason"><i class="fas fa-check"></i> Relevant course</div>
+                                        <div class="score-reason"><i class="fas fa-check"></i> Prior experience</div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+ 
+                        <!-- ROW 2 -->
+                        <tr class="applicant-row"
+                            data-score="61" data-gpa="1.80" data-date="May 2, 2026"
+                            data-name="Angela Cruz" data-course="BSIT" data-year="1st Year"
+                            data-status="pending" data-avail="Afternoon" data-exp="false" data-verified="true"
+                            data-skills="HTML, CSS, Basic Networking" data-hours="15hrs/week"
+                            data-intro="Eager 1st year student looking for hands-on IT exposure.">
+                            <td><input type="checkbox" class="row-check" onchange="onRowCheck()"></td>
+                            <td>
+                                <div class="student-profile">
+                                    <div class="mini-avatar blue">AC</div>
+                                    <div class="name-stack">
+                                        <strong>Angela Cruz</strong>
+                                        <span>BSIT - 1st Year</span>
+                                        <span class="compat-badge compat-low" style="color: #ec1b3a;"><i class="fas fa-circle-xmark"></i> 61% Match</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="email-cell">a.cruz@wmsu.edu.ph</td>
+                            <td>IT Lab Assistant</td>
+                            <td class="date-cell"><i class="fas fa-calendar"></i> <span>May 2, 2026</span></td>
+                            <td><span class="gpa-badge">1.80</span></td>
+                            <td><span class="status pending">Pending</span></td>
+                            <td class="action-cells">
+                                <button class="btn-icon view" title="View Profile"
+                                    onclick="openModal('view-applicant-1')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-icon approve" title="Approve">
+                                    <i class="fas fa-check"></i>
+                                </button>
+                                <button class="btn-icon reject" title="Reject">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                                <div class="kebab-wrap" id="kebab-2">
+                                    <button class="btn-icon msg" title="More options"
+                                        onclick="toggleKebab('kebab-2', event)">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="kebab-dropdown">
+                                        <button class="kebab-item"
+                                            onclick="openMessageModal('Maria Santos','Library Assistant');closeKebab()">
+                                            <i class="fas fa-envelope"></i> Send Message
+                                        </button>
+                                        <button class="kebab-item"
+                                            onclick="bulkAction('shortlisted');closeKebab()">
+                                            <i class="fas fa-user-check"></i> Shortlist
+                                        </button>
+                                        <button class="kebab-item"
+                                            onclick="openModal('view-applicant-1');closeKebab()">
+                                            <i class="fas fa-address-card"></i> Full Profile
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                          </tr>
+                        <!-- Hover Preview Row 2 -->
+                        <tr class="preview-row" id="preview-2">
+                            <td colspan="9">
+                                <div class="hover-preview">
+                                    <div class="preview-col"><i class="fas fa-tools"></i><strong>Skills</strong><span>HTML, CSS, Basic Networking</span></div>
+                                    <div class="preview-col"><i class="fas fa-clock"></i><strong>Availability</strong><span>Afternoon · 15hrs/week</span></div>
+                                    <div class="preview-col"><i class="fas fa-user"></i><strong>Intro</strong><span>Eager 1st year student looking for hands-on IT exposure.</span></div>
+                                    <div class="preview-col"><i class="fas fa-file-check"></i><strong>Documents</strong><span class="doc-verified"><i class="fas fa-shield-check"></i> Verified by Registrar</span></div>
+                                    <div class="preview-score-card">
+                                        <div class="score-title">Match Score: 61%</div>
+                                        <div class="score-reason"><i class="fas fa-check"></i> Relevant course</div>
+                                        <div class="score-reason miss"><i class="fas fa-times"></i> No experience</div>
+                                        <div class="score-reason miss"><i class="fas fa-times"></i> 1st year (lower priority)</div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+ 
+                        <!-- ROW 3 -->
+                        <tr class="applicant-row"
+                            data-score="92" data-gpa="1.45" data-date="May 2, 2026"
+                            data-name="Mark Rivera" data-course="BSCS" data-year="2nd Year"
+                            data-status="pending" data-avail="Full day" data-exp="true" data-verified="true"
+                            data-skills="SQL, Python, Database Admin" data-hours="25hrs/week"
+                            data-intro="Strong CS foundation with hands-on database project experience.">
+                            <td><input type="checkbox" class="row-check" onchange="onRowCheck()"></td>
+                            <td>
+                                <div class="student-profile">
+                                    <div class="mini-avatar green">MR</div>
+                                    <div class="name-stack">
+                                        <strong>Mark Rivera</strong>
+                                        <span>BSCS - 2nd Year</span>
+                                        <span class="compat-badge compat-high" style="color: #2ecc71;"><i class="fas fa-circle-check"></i>92% Match</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="email-cell">m.rivera@wmsu.edu.ph</td>
+                            <td>Database Assistant</td>
+                            <td class="date-cell"><i class="fas fa-calendar"></i> <span>May 2, 2026</span></td>
+                            <td><span class="gpa-badge">1.45</span></td>
+                            <td><span class="status pending">Pending</span></td>
+                            <td class="action-cells">
+                              <button class="btn-icon view" title="View Profile"
+                                onclick="openModal('view-applicant-1')">
+                                <i class="fas fa-eye"></i>
+                              </button>
+                              <button class="btn-icon approve" title="Approve">
+                                <i class="fas fa-check"></i>
+                              </button>
+                              <button class="btn-icon reject" title="Reject">
+                                <i class="fas fa-times"></i>
+                              </button>
+                              <div class="kebab-wrap" id="kebab-3">
+                                <button class="btn-icon msg" title="More options"
+                                  onclick="toggleKebab('kebab-3', event)">
+                                  <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                                <div class="kebab-dropdown">
+                                  <button class="kebab-item"
+                                    onclick="openMessageModal('Maria Santos','Library Assistant');closeKebab()">
+                                    <i class="fas fa-envelope"></i> Send Message
+                                  </button>
+                                  <button class="kebab-item"
+                                    onclick="bulkAction('shortlisted');closeKebab()">
+                                    <i class="fas fa-user-check"></i> Shortlist
+                                  </button>
+                                  <button class="kebab-item"
+                                    onclick="openModal('view-applicant-1');closeKebab()">
+                                    <i class="fas fa-address-card"></i> Full Profile
+                                  </button>
+                                </div>
+                              </div>
+                            </td>
+                        </tr>
+                        <!-- Hover Preview Row 3 -->
+                        <tr class="preview-row" id="preview-3">
+                            <td colspan="9">
+                                <div class="hover-preview">
+                                    <div class="preview-col"><i class="fas fa-tools"></i><strong>Skills</strong><span>SQL, Python, Database Admin</span></div>
+                                    <div class="preview-col"><i class="fas fa-clock"></i><strong>Availability</strong><span>Full day · 25hrs/week</span></div>
+                                    <div class="preview-col"><i class="fas fa-user"></i><strong>Intro</strong><span>Strong CS foundation with hands-on database project experience.</span></div>
+                                    <div class="preview-col"><i class="fas fa-file-check"></i><strong>Documents</strong><span class="doc-verified"><i class="fas fa-shield-check"></i> Verified by Registrar</span></div>
+                                    <div class="preview-score-card">
+                                        <div class="score-title">Match Score: 92%</div>
+                                        <div class="score-reason"><i class="fas fa-check"></i> Excellent GPA (1.45)</div>
+                                        <div class="score-reason"><i class="fas fa-check"></i> Relevant course</div>
+                                        <div class="score-reason"><i class="fas fa-check"></i> Prior experience</div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+ 
+                        <!-- ROW 4 -->
+                        <tr class="applicant-row"
+                            data-score="78" data-gpa="1.25" data-date="May 1, 2026"
+                            data-name="Sophia Luna" data-course="BSED" data-year="4th Year"
+                            data-status="pending" data-avail="Morning" data-exp="false" data-verified="false"
+                            data-skills="Teaching, Communication, MS Word" data-hours="20hrs/week"
+                            data-intro="4th year education student seeking office work experience.">
+                            <td><input type="checkbox" class="row-check" onchange="onRowCheck()"></td>
+                            <td>
+                                <div class="student-profile">
+                                    <div class="mini-avatar orange">SL</div>
+                                    <div class="name-stack">
+                                        <strong>Sophia Luna</strong>
+                                        <span>BSED - 4th Year</span>
+                                        <span class="compat-badge compat-low" style="color: #5c4609;"><i class="fas fa-circle-half-stroke"></i> 78% Match</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="email-cell">s.luna@wmsu.edu.ph</td>
+                            <td>Office Helper</td>
+                            <td class="date-cell"><i class="fas fa-calendar"></i> <span>May 1, 2026</span></td>
+                            <td><span class="gpa-badge">1.25</span></td>
+                            <td><span class="status pending">Pending</span></td>
+                            <td class="action-cells">
+                              <button class="btn-icon view" title="View Profile"
+                                  onclick="openModal('view-applicant-4')">
+                                  <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-icon approve" title="Approve">
+                                  <i class="fas fa-check"></i>
+                                </button>
+                                <button class="btn-icon reject" title="Reject">
+                                  <i class="fas fa-times"></i>
+                                </button>
+                                <div class="kebab-wrap" id="kebab-4">
+                                  <button class="btn-icon msg" title="More options"
+                                    onclick="toggleKebab('kebab-1', event)">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                  </button>
+                                  <div class="kebab-dropdown">
+                                  <button class="kebab-item"
+                                    onclick="openMessageModal('Sophia Luna','Office Helper')"></button>
+                                    <i class="fas fa-envelope"></i> Send Message
+                                  </button>
+                                  <button class="kebab-item"
+                                    onclick="bulkAction('shortlisted');closeKebab()">
+                                    <i class="fas fa-user-check"></i> Shortlist
+                                  </button>
+                                  <button class="kebab-item"
+                                    onclick="openModal('view-applicant-1');closeKebab()">
+                                    <i class="fas fa-address-card"></i> Full Profile
+                                  </button>
+                                </div>
+                              </div>
+                            </td>
+                        </tr>
+                        <!-- Hover Preview Row 4 -->
+                        <tr class="preview-row" id="preview-4">
+                            <td colspan="9">
+                                <div class="hover-preview">
+                                    <div class="preview-col"><i class="fas fa-tools"></i><strong>Skills</strong><span>Teaching, Communication, MS Word</span></div>
+                                    <div class="preview-col"><i class="fas fa-clock"></i><strong>Availability</strong><span>Morning · 20hrs/week</span></div>
+                                    <div class="preview-col"><i class="fas fa-user"></i><strong>Intro</strong><span>4th year education student seeking office work experience.</span></div>
+                                    <div class="preview-col"><i class="fas fa-file-check"></i><strong>Documents</strong><span class="doc-needs-review"><i class="fas fa-exclamation-triangle"></i> Needs Review</span></div>
+                                    <div class="preview-score-card">
+                                        <div class="score-title">Match Score: 78%</div>
+                                        <div class="score-reason"><i class="fas fa-check"></i> Excellent GPA (1.25)</div>
+                                        <div class="score-reason"><i class="fas fa-check"></i> Senior student</div>
+                                        <div class="score-reason miss"><i class="fas fa-times"></i> Docs not yet verified</div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+ 
+                    </tbody>
+                </table>
             </div>
-
-            <div class="side-widget stats-mini">
-                <h4>Hiring Summary</h4>
-                <div class="stat-item"><span>Total Apps</span> <strong>48</strong></div>
-                <div class="stat-item"><span>Remaining Slots</span> <strong style="color: #2ecc71;">3</strong></div>
-            </div>
-        </aside>
+        </div>
+    </main>
     </div>
 
      <!-- ============ VIEW APPLICANT MODALS ============ -->
@@ -283,10 +597,10 @@
 
     <div class="modal-card-footer">
       <a href="#" class="modal-card-close-btn">Close</a>
-      <button class="modal-card-reject-btn" onclick="this.closest('.modal-overlay').style.visibility='hidden';this.closest('.modal-overlay').style.opacity='0';">
+      <button class="modal-card-reject-btn" onclick="this.closest('.modal-overlay-emp').style.visibility='hidden';this.closest('.modal-overlay').style.opacity='0';">
         <i class="fas fa-times"></i> Reject
       </button>
-      <button class="modal-card-approve-btn" onclick="this.closest('.modal-overlay').style.visibility='hidden';this.closest('.modal-overlay').style.opacity='0';">
+      <button class="modal-card-approve-btn" onclick="this.closest('.modal-overlay-emp').style.visibility='hidden';this.closest('.modal-overlay').style.opacity='0';">
         <i class="fas fa-check"></i> Approve
       </button>
     </div>
@@ -383,10 +697,10 @@
 
     <div class="modal-card-footer">
       <a href="#" class="modal-card-close-btn">Close</a>
-      <button class="modal-card-reject-btn" onclick="this.closest('.modal-overlay').style.visibility='hidden';this.closest('.modal-overlay').style.opacity='0';">
+      <button class="modal-card-reject-btn" onclick="this.closest('.modal-overlay-emp').style.visibility='hidden';this.closest('.modal-overlay').style.opacity='0';">
         <i class="fas fa-times"></i> Reject
       </button>
-      <button class="modal-card-approve-btn" onclick="this.closest('.modal-overlay').style.visibility='hidden';this.closest('.modal-overlay').style.opacity='0';">
+      <button class="modal-card-approve-btn" onclick="this.closest('.modal-overlay-emp').style.visibility='hidden';this.closest('.modal-overlay').style.opacity='0';">
         <i class="fas fa-check"></i> Approve
       </button>
     </div>
@@ -487,10 +801,10 @@
 
     <div class="modal-card-footer">
       <a href="#" class="modal-card-close-btn">Close</a>
-      <button class="modal-card-reject-btn" onclick="this.closest('.modal-overlay').style.visibility='hidden';this.closest('.modal-overlay').style.opacity='0';">
+      <button class="modal-card-reject-btn" onclick="this.closest('.modal-overlay-emp').style.visibility='hidden';this.closest('.modal-overlay').style.opacity='0';">
         <i class="fas fa-times"></i> Reject
       </button>
-      <button class="modal-card-approve-btn" onclick="this.closest('.modal-overlay').style.visibility='hidden';this.closest('.modal-overlay').style.opacity='0';">
+      <button class="modal-card-approve-btn" onclick="this.closest('.modal-overlay-emp').style.visibility='hidden';this.closest('.modal-overlay').style.opacity='0';">
         <i class="fas fa-check"></i> Approve
       </button>
     </div>
@@ -592,10 +906,10 @@
 
     <div class="modal-card-footer">
       <a href="#" class="modal-card-close-btn">Close</a>
-      <button class="modal-card-reject-btn" onclick="this.closest('.modal-overlay').style.visibility='hidden';this.closest('.modal-overlay').style.opacity='0';">
+      <button class="modal-card-reject-btn" onclick="this.closest('.modal-overlay-emp').style.visibility='hidden';this.closest('.modal-overlay').style.opacity='0';">
         <i class="fas fa-times"></i> Reject
       </button>
-      <button class="modal-card-approve-btn" onclick="this.closest('.modal-overlay').style.visibility='hidden';this.closest('.modal-overlay').style.opacity='0';">
+      <button class="modal-card-approve-btn" onclick="this.closest('.modal-overlay-emp').style.visibility='hidden';this.closest('.modal-overlay').style.opacity='0';">
         <i class="fas fa-check"></i> Approve
       </button>
     </div>
@@ -604,79 +918,543 @@
 </div>
 
 <script>
-// Attach confirmation modals to action buttons
-document.addEventListener('DOMContentLoaded', function() {
-    const rejectBtns = document.querySelectorAll('.btn-icon.reject');
-    // Handle Reject buttons
-    rejectBtns.forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            const row = this.closest('tr');
-            const name = row ? row.querySelector('strong')?.textContent || 'Applicant' : 'Applicant';
-            const position = row ? row.querySelectorAll('td')[1]?.textContent || 'position' : 'position';
-            // Show the rejection reason modal
-            showRejectionReasonModal(name, (rejectionData) => {
-                showAlert(
-                    'Application Rejected',
-                    `${name}'s application has been rejected. They'll be notified of your decision.`,
-                    'success',
-                    () => {
-                        if (row) {
-                            const status = row.querySelector('.status');
-                            if (status) {
-                                status.className = 'status rejected';
-                                status.textContent = 'Rejected';
-                            }
-                            row.querySelectorAll('.btn-icon.approve, .btn-icon.reject').forEach(b => b.remove());
-                        }
-                    }
-                );
-            });
-        });
-    });
-    // Handle Approve buttons
-    const approveBtns = document.querySelectorAll('.btn-icon.approve');
-    approveBtns.forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            const row = this.closest('tr');
-            const name = row ? row.querySelector('strong')?.textContent || 'Applicant' : 'Applicant';
-            const position = row ? row.querySelectorAll('td')[1]?.textContent || 'position' : 'position';
-            
-            confirmAction(
-                'Confirm Approval',
-                `Are you sure you want to approve ${name}'s application for the ${position} position?`,
-                () => {
-                    showAlert('Application Approved', `${name}'s application has been approved successfully.`, 'success', () => {
-                        if (row) {
-                            const status = row.querySelector('.status');
-                            if (status) {
-                                status.className = 'status approved';
-                                status.textContent = 'Approved';
-                            }
-                            row.querySelectorAll('.btn-icon.approve, .btn-icon.reject').forEach(b => b.remove());
-                        }
-                    });
-                },
-                null,
-                { confirmText: 'Yes, Approve', cancelText: 'Cancel', confirmColor: 'success-btn' }
-            );
-        });
-    });
+// ==================== MODAL HELPERS ====================
+function openModal(id) {
+    const el = document.getElementById(id);
+    if (el) { el.style.display = 'flex'; }
+}
+function closeModal(id) {
+    const el = document.getElementById(id);
+    if (el) { el.style.display = 'none'; }
+}
+// Close modal on backdrop click
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('modal-overlay-emp')) closeModal(e.target.id);
 });
-
-//Applicants Searchbar script
-const searchInput = document.querySelector('.search-box input');
-if (searchInput) {
-    searchInput.addEventListener('input', function() {
-        const query = this.value.toLowerCase().trim();
-        document.querySelectorAll('.data-table tbody tr').forEach(function(row) {
-            const name = (row.querySelector('strong')?.textContent || '').toLowerCase();
-            row.style.display = (!query || name.includes(query)) ? '' : 'none';
+ 
+// ==================== MODAL ACTION (approve/reject from modal) ====================
+function modalAction(modalId, name, action) {
+    closeModal(modalId);
+    // Find row by name
+    const rows = document.querySelectorAll('.applicant-row');
+    rows.forEach(row => {
+        if (row.dataset.name === name) {
+            updateRowStatus(row, action);
+        }
+    });
+    logAction(name, action, 'Library Admin');
+    updateAnalytics();
+}
+ 
+// ==================== ROW STATUS UPDATE ====================
+function updateRowStatus(row, action) {
+    row.dataset.status = action;
+    const statusEl = row.querySelector('.status');
+    if (!statusEl) return;
+    statusEl.className = 'status ' + action;
+    const labels = { pending: 'Pending', approved: 'Approved', rejected: 'Rejected', shortlisted: 'Shortlisted' };
+    statusEl.textContent = labels[action] || action;
+    if (action !== 'pending') {
+        row.querySelectorAll('.btn-icon.approve, .btn-icon.reject').forEach(b => b.remove());
+    }
+}
+ 
+// ==================== APPROVE / REJECT BUTTONS ====================
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.btn-icon.approve').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const row = this.closest('.applicant-row');
+            const name = row?.querySelector('strong')?.textContent || 'Applicant';
+            const pos = row?.querySelectorAll('td')[4]?.textContent.trim() || 'position';
+            if (typeof confirmAction === 'function') {
+                confirmAction('Confirm Approval',
+                    `Approve ${name}'s application for ${pos}?`,
+                    () => { updateRowStatus(row, 'approved'); logAction(name, 'approved', 'Library Admin'); updateAnalytics(); },
+                    null,
+                    { confirmText: 'Yes, Approve', cancelText: 'Cancel', confirmColor: 'success-btn' }
+                );
+            } else {
+                if (confirm(`Approve ${name}?`)) { updateRowStatus(row, 'approved'); logAction(name, 'approved', 'Library Admin'); updateAnalytics(); }
+            }
         });
+    });
+ 
+    document.querySelectorAll('.btn-icon.reject').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const row = this.closest('.applicant-row');
+            const name = row?.querySelector('strong')?.textContent || 'Applicant';
+            if (typeof showRejectionReasonModal === 'function') {
+                showRejectionReasonModal(name, () => { updateRowStatus(row, 'rejected'); logAction(name, 'rejected', 'Library Admin'); updateAnalytics(); });
+            } else {
+                if (confirm(`Reject ${name}?`)) { updateRowStatus(row, 'rejected'); logAction(name, 'rejected', 'Library Admin'); updateAnalytics(); }
+            }
+        });
+    });
+ 
+    // Toggle hover preview rows
+    document.querySelectorAll('.applicant-row').forEach((row, i) => {
+        row.addEventListener('click', function (e) {
+            if (e.target.closest('button') || e.target.closest('input')) return;
+            const preview = this.nextElementSibling;
+            if (preview && preview.classList.contains('preview-row')) {
+                const isOpen = preview.style.display === 'table-row';
+                document.querySelectorAll('.preview-row').forEach(p => p.style.display = 'none');
+                if (!isOpen) preview.style.display = 'table-row';
+            }
+        });
+    });
+ 
+    // Initial sort by score
+    sortTable('score');
+    updateTodayCount();
+    setDateTab(document.querySelector('.date-tab.active'));
+    updateAnalytics();
+});
+ 
+// ==================== SEARCH ====================
+document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('main-search');
+    if (searchInput) {
+        searchInput.addEventListener('input', function () {
+            applyFilters();
+        });
+    }
+});
+ 
+// ==================== ADVANCED FILTERS ====================
+function applyFilters() {
+    const query = (document.getElementById('main-search')?.value || '').toLowerCase().trim();
+    const course = document.getElementById('f-course')?.value || '';
+    const year = document.getElementById('f-year')?.value || '';
+    const gpaMin = parseFloat(document.getElementById('f-gpa-min')?.value || 1.0);
+    const gpaMax = parseFloat(document.getElementById('f-gpa-max')?.value || 5.0);
+    const avail = document.getElementById('f-avail')?.value || '';
+    const expOnly = document.getElementById('f-exp')?.checked || false;
+    const verifiedOnly = document.getElementById('f-verified')?.checked || false;
+ 
+    document.getElementById('gpa-val').textContent = `${gpaMin.toFixed(2)} – ${gpaMax.toFixed(2)}`;
+ 
+    let visible = 0;
+    document.querySelectorAll('.applicant-row').forEach(row => {
+        const name = (row.dataset.name || '').toLowerCase();
+        const rowCourse = row.dataset.course || '';
+        const rowYear = row.dataset.year || '';
+        const rowGpa = parseFloat(row.dataset.gpa || 5.0);
+        const rowAvail = row.dataset.avail || '';
+        const rowExp = row.dataset.exp === 'true';
+        const rowVerified = row.dataset.verified === 'true';
+ 
+        const matchQuery = !query || name.includes(query);
+        const matchCourse = !course || rowCourse === course;
+        const matchYear = !year || rowYear === year;
+        const matchGpa = rowGpa >= gpaMin && rowGpa <= gpaMax;
+        const matchAvail = !avail || rowAvail === avail;
+        const matchExp = !expOnly || rowExp;
+        const matchVerified = !verifiedOnly || rowVerified;
+ 
+        const show = matchQuery && matchCourse && matchYear && matchGpa && matchAvail && matchExp && matchVerified;
+        row.style.display = show ? '' : 'none';
+        const preview = row.nextElementSibling;
+        if (preview?.classList.contains('preview-row')) preview.style.display = 'none';
+        if (show) visible++;
+    });
+ 
+    document.getElementById('showing-count').textContent = `1–${visible}`;
+    document.getElementById('total-count').textContent = visible;
+}
+ 
+function clearFilters() {
+    ['f-course','f-year','f-avail'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+    ['f-exp','f-verified'].forEach(id => { const el = document.getElementById(id); if (el) el.checked = false; });
+    document.getElementById('f-gpa-min').value = 1.0;
+    document.getElementById('f-gpa-max').value = 5.0;
+    document.getElementById('main-search').value = '';
+    applyFilters();
+}
+ 
+function toggleFilterPanel() {
+    const panel = document.getElementById('filter-panel');
+    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+}
+ 
+// ==================== SORT ====================
+function sortTable(by) {
+    const tbody = document.getElementById('applicant-tbody');
+    const rows = Array.from(tbody.querySelectorAll('.applicant-row'));
+    rows.sort((a, b) => {
+        if (by === 'score') return parseInt(b.dataset.score) - parseInt(a.dataset.score);
+        if (by === 'gpa') return parseFloat(a.dataset.gpa) - parseFloat(b.dataset.gpa);
+        if (by === 'name') return a.dataset.name.localeCompare(b.dataset.name);
+        if (by === 'date') return new Date(b.dataset.date) - new Date(a.dataset.date);
+        return 0;
+    });
+    rows.forEach(row => {
+        const preview = row.nextElementSibling;
+        tbody.appendChild(row);
+        if (preview?.classList.contains('preview-row')) tbody.appendChild(preview);
+    });
+}
+ 
+// ==================== DATE TAB ====================
+function setDateTab(el) {
+    if (!el) return;
+    document.querySelectorAll('.date-tab').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+    const tab = el.textContent.trim();
+    if (tab.includes('Custom')) {
+        document.getElementById('custom-range').style.display = 'flex';
+        return;
+    }
+    document.getElementById('custom-range').style.display = 'none';
+    filterTableByTab(tab);
+}
+ 
+function filterTableByTab(tab) {
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    let from, to;
+    if (tab === 'Today') { from = to = today; }
+    else if (tab === 'Yesterday') { const y = new Date(today); y.setDate(today.getDate() - 1); from = to = y; }
+    else if (tab.includes('7')) { from = new Date(today); from.setDate(today.getDate() - 6); to = today; }
+    else if (tab.includes('30')) { from = new Date(today); from.setDate(today.getDate() - 29); to = today; }
+    else { document.querySelectorAll('.applicant-row').forEach(r => r.style.display = ''); updateTodayCount(); return; }
+ 
+    document.querySelectorAll('.applicant-row').forEach(row => {
+        const span = row.querySelector('.date-cell span');
+        if (!span) return;
+        const parsed = new Date(span.textContent.trim());
+        const rd = new Date(parsed.getFullYear(), parsed.getMonth(), parsed.getDate());
+        row.style.display = (rd >= from && rd <= to) ? '' : 'none';
+        const preview = row.nextElementSibling;
+        if (preview?.classList.contains('preview-row')) preview.style.display = 'none';
+    });
+    updateTodayCount();
+}
+ 
+function applyCustomRange() {
+    const from = new Date(document.getElementById('date-from').value);
+    const to = new Date(document.getElementById('date-to').value);
+    if (isNaN(from) || isNaN(to)) return;
+    document.querySelectorAll('.applicant-row').forEach(row => {
+        const span = row.querySelector('.date-cell span');
+        if (!span) return;
+        const rd = new Date(span.textContent.trim());
+        row.style.display = (rd >= from && rd <= to) ? '' : 'none';
+        const preview = row.nextElementSibling;
+        if (preview?.classList.contains('preview-row')) preview.style.display = 'none';
+    });
+    updateTodayCount();
+}
+ 
+function updateTodayCount() {
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    let count = 0;
+    document.querySelectorAll('.applicant-row').forEach(row => {
+        const span = row.querySelector('.date-cell span');
+        if (!span) return;
+        const rd = new Date(span.textContent.trim());
+        const rowDate = new Date(rd.getFullYear(), rd.getMonth(), rd.getDate());
+        if (rowDate.getTime() === today.getTime()) count++;
+    });
+    const el = document.getElementById('today-count');
+    if (el) el.textContent = count;
+}
+ 
+// ==================== BULK ACTIONS ====================
+function toggleSelectAll(cb) {
+    document.querySelectorAll('.row-check').forEach(c => c.checked = cb.checked);
+    onRowCheck();
+}
+ 
+function onRowCheck() {
+    const checked = document.querySelectorAll('.row-check:checked');
+    const bulkBar = document.getElementById('bulk-actions');
+    const compareBtn = document.getElementById('compare-btn');
+    bulkBar.style.display = checked.length > 0 ? 'flex' : 'none';
+    compareBtn.style.display = (checked.length >= 2 && checked.length <= 3) ? 'inline-flex' : 'none';
+    document.getElementById('bulk-count').textContent = `${checked.length} selected`;
+}
+ 
+function bulkAction(action) {
+    document.querySelectorAll('.row-check:checked').forEach(cb => {
+        const row = cb.closest('.applicant-row');
+        if (row) {
+            const name = row.dataset.name;
+            updateRowStatus(row, action);
+            logAction(name, action, 'Library Admin (bulk)');
+        }
+    });
+    document.getElementById('select-all').checked = false;
+    document.querySelectorAll('.row-check').forEach(c => c.checked = false);
+    onRowCheck();
+    updateAnalytics();
+}
+ 
+// ==================== COMPARE ====================
+function openCompare() {
+    const checked = Array.from(document.querySelectorAll('.row-check:checked'));
+    const grid = document.getElementById('compare-grid');
+    grid.innerHTML = '';
+    checked.forEach(cb => {
+        const row = cb.closest('.applicant-row');
+        if (!row) return;
+        const card = document.createElement('div');
+        card.className = 'compare-col';
+        card.innerHTML = `
+            <div class="compare-name">${row.dataset.name}</div>
+            <div class="compare-row"><span>Course</span><strong>${row.dataset.course}</strong></div>
+            <div class="compare-row"><span>Year</span><strong>${row.dataset.year}</strong></div>
+            <div class="compare-row"><span>GPA</span><strong>${row.dataset.gpa}</strong></div>
+            <div class="compare-row"><span>Match</span><strong>${row.dataset.score}%</strong></div>
+            <div class="compare-row"><span>Experience</span><strong>${row.dataset.exp === 'true' ? 'Yes' : 'No'}</strong></div>
+            <div class="compare-row"><span>Availability</span><strong>${row.dataset.avail}</strong></div>
+            <div class="compare-row"><span>Skills</span><strong>${row.dataset.skills}</strong></div>
+        `;
+        grid.appendChild(card);
+    });
+    openModal('compare-modal');
+}
+ 
+// ==================== STATUS FILTER (sidebar) ====================
+function filterStatus(status, linkEl) {
+    document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active-link'));
+    linkEl.classList.add('active-link');
+    document.querySelectorAll('.applicant-row').forEach(row => {
+        const show = status === 'all' || row.dataset.status === status;
+        row.style.display = show ? '' : 'none';
+        const preview = row.nextElementSibling;
+        if (preview?.classList.contains('preview-row')) preview.style.display = 'none';
+    });
+    return false;
+}
+ 
+// ==================== ACTION LOG ====================
+function logAction(name, action, who) {
+    const log = document.getElementById('action-log');
+    const empty = log.querySelector('.log-empty');
+    if (empty) empty.remove();
+    const now = new Date();
+    const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const item = document.createElement('div');
+    item.className = 'log-item';
+    const colorMap = { approved: '#16a34a', rejected: '#dc2626', shortlisted: '#1d4ed8' };
+    item.innerHTML = `
+        <span class="log-action" style="color:${colorMap[action] || '#666'}">${action}</span>
+        <span class="log-name">${name}</span>
+        <span class="log-meta">${who} · ${time}</span>
+        <button class="undo-btn" onclick="undoAction(this, '${name}')">Undo</button>
+    `;
+    log.prepend(item);
+}
+ 
+function undoAction(btn, name) {
+    const rows = document.querySelectorAll('.applicant-row');
+    rows.forEach(row => {
+        if (row.dataset.name === name) {
+            updateRowStatus(row, 'pending');
+            // Restore approve/reject buttons if missing
+            const actionCell = row.querySelector('.action-cells');
+            if (actionCell && !actionCell.querySelector('.btn-icon.approve')) {
+                const approveBtn = document.createElement('button');
+                approveBtn.className = 'btn-icon approve';
+                approveBtn.title = 'Approve';
+                approveBtn.innerHTML = '<i class="fas fa-check"></i>';
+                const rejectBtn = document.createElement('button');
+                rejectBtn.className = 'btn-icon reject';
+                rejectBtn.title = 'Reject';
+                rejectBtn.innerHTML = '<i class="fas fa-times"></i>';
+                actionCell.appendChild(approveBtn);
+                actionCell.appendChild(rejectBtn);
+                // Re-attach listeners
+                approveBtn.addEventListener('click', function() {
+                    const r = this.closest('.applicant-row');
+                    const n = r?.querySelector('strong')?.textContent || 'Applicant';
+                    if (confirm(`Approve ${n}?`)) { updateRowStatus(r, 'approved'); logAction(n, 'approved', 'Library Admin'); updateAnalytics(); }
+                });
+                rejectBtn.addEventListener('click', function() {
+                    const r = this.closest('.applicant-row');
+                    const n = r?.querySelector('strong')?.textContent || 'Applicant';
+                    if (confirm(`Reject ${n}?`)) { updateRowStatus(r, 'rejected'); logAction(n, 'rejected', 'Library Admin'); updateAnalytics(); }
+                });
+            }
+        }
+    });
+    btn.closest('.log-item').remove();
+    updateAnalytics();
+}
+ 
+
+// ==================== MESSAGE MODAL ====================
+function openMessageModal(name, pos) {
+    _msgName = name; _msgPos = pos || '';
+    document.getElementById('msg-recipient').textContent = 'To: ' + name;
+    document.getElementById('msg-position').textContent = pos ? ('Re: ' + pos) : '';
+    document.getElementById('msg-body').value = '';
+    openModal('message-modal');
+}
+ 
+const templates = {
+    shortlist: 'Dear Applicant,\n\nWe are pleased to inform you that you have been shortlisted for the position you applied for. We will be in touch with further details shortly.\n\nBest regards,\nLibrary Department',
+    interview: 'Dear Applicant,\n\nYou are invited for an interview. Please report to the Library Department Office on [Date] at [Time].\n\nBest regards,\nLibrary Department',
+    reject: 'Dear Applicant,\n\nThank you for your application. After careful review, we regret to inform you that we will not be moving forward with your application at this time.\n\nBest regards,\nLibrary Department'
+};
+ 
+function useTemplate(key) {
+    document.getElementById('msg-body').value = templates[key];
+}
+ 
+function sendMessage() {
+    const body = document.getElementById('msg-body').value.trim();
+    const recipient = document.getElementById('msg-recipient').textContent;
+    if (!body) { alert('Please type a message.'); return; }
+    alert(`Message sent to ${recipient.replace('To: ', '')}!`);
+    closeModal('message-modal');
+}
+// ==================== COMPATIBILITY SCORING ====================
+function calcCompatibility(row) {
+    let score = 0;
+
+    // GPA — lower is better (PH system), max 40pts
+    const gpa = parseFloat(row.dataset.gpa || 5.0);
+    if      (gpa <= 1.25) score += 40;
+    else if (gpa <= 1.50) score += 35;
+    else if (gpa <= 1.75) score += 30;
+    else if (gpa <= 2.00) score += 22;
+    else if (gpa <= 2.50) score += 14;
+    else                  score += 5;
+
+    // Year level — max 25pts
+    const year = row.dataset.year || '';
+    if      (year === '4th Year') score += 25;
+    else if (year === '3rd Year') score += 20;
+    else if (year === '2nd Year') score += 13;
+    else if (year === '1st Year') score += 5;
+
+    // Prior experience — max 20pts
+    if (row.dataset.exp === 'true') score += 20;
+
+    // Verified documents — max 10pts
+    if (row.dataset.verified === 'true') score += 10;
+
+    // Availability — max 5pts
+    const avail = row.dataset.avail || '';
+    if      (avail === 'Full day')  score += 5;
+    else if (avail === 'Morning' || avail === 'Afternoon') score += 3;
+
+    return Math.min(score, 100);
+}
+
+function getCompatTier(score) {
+    if (score >= 85) return {
+        cls: 'compat-high', icon: 'fa-circle-check',
+        label: 'Highly Compatible',
+        bannerCls: 'high',
+        bannerIcon: 'fa-circle-check',
+        bannerTitle: 'Strong candidate — highly recommended for review',
+        bannerNote: 'Final decision remains with the employer.'
+    };
+    if (score >= 70) return {
+        cls: 'compat-good', icon: 'fa-circle-check',
+        label: 'Good Fit',
+        bannerCls: 'good',
+        bannerIcon: 'fa-thumbs-up',
+        bannerTitle: 'Good fit — meets most of your criteria',
+        bannerNote: 'Review their documents before deciding.'
+    };
+    if (score >= 55) return {
+        cls: 'compat-mid', icon: 'fa-circle-half-stroke',
+        label: 'Partial Match',
+        bannerCls: 'mid',
+        bannerIcon: 'fa-triangle-exclamation',
+        bannerTitle: 'Partial match — some criteria not fully met',
+        bannerNote: 'Consider if the role has flexibility.'
+    };
+    return {
+        cls: 'compat-low', icon: 'fa-circle-xmark',
+        label: 'Low Compatibility',
+        bannerCls: 'low',
+        bannerIcon: 'fa-circle-xmark',
+        bannerTitle: 'Low compatibility with this position',
+        bannerNote: 'You may still approve — this is a suggestion only.'
+    };
+}
+
+function renderCompatBadge(row) {
+    const score = calcCompatibility(row);
+    row.dataset.score = score; // keeps sort accurate
+
+    const tier = getCompatTier(score);
+
+    // Update or create badge in the name-stack
+    let badge = row.querySelector('.compat-badge');
+    if (!badge) {
+        badge = document.createElement('span');
+        const nameStack = row.querySelector('.name-stack');
+        if (nameStack) nameStack.appendChild(badge);
+    }
+    badge.className = 'compat-badge ' + tier.cls;
+    badge.innerHTML = `<i class="fas ${tier.icon}" style="font-size:9px;"></i> ${score}% · ${tier.label}`;
+
+    // Inject suggestion banner into the matching modal
+    // Each modal needs a data-applicant attr — we match by name
+    const name = row.dataset.name;
+    document.querySelectorAll('.modal-overlay-emp').forEach(modal => {
+        const modalName = modal.querySelector('.modal-card-name')?.textContent?.trim();
+        if (modalName !== name) return;
+
+        // Remove existing banner if any
+        modal.querySelector('.suggestion-banner')?.remove();
+        modal.querySelector('.suggestion-note')?.remove();
+
+        const body = modal.querySelector('.modal-card-body');
+        if (!body) return;
+
+        const banner = document.createElement('div');
+        banner.className = `suggestion-banner ${tier.bannerCls}`;
+        banner.innerHTML = `
+            <i class="fas ${tier.bannerIcon}"></i>
+            <div>
+                <strong>${score}% Compatibility — ${tier.label}</strong>
+                ${tier.bannerTitle}
+                <div class="suggestion-note">
+                    <i class="fas fa-info-circle"></i>
+                    ${tier.bannerNote} This is a suggestion only — not an automated decision.
+                </div>
+            </div>
+        `;
+        // Insert at top of modal body, before the grid
+        body.insertBefore(banner, body.firstChild);
     });
 }
 
+// ==================== KEBAB MENU ====================
+function toggleKebab(id, e) {
+    e.stopPropagation();
+    const wrap = document.getElementById(id);
+    const isOpen = wrap.classList.contains('open');
+    closeKebab();
+    if (!isOpen) wrap.classList.add('open');
+}
+
+function closeKebab() {
+    document.querySelectorAll('.kebab-wrap.open')
+        .forEach(w => w.classList.remove('open'));
+}
+
+document.addEventListener('click', function() { closeKebab(); });
+
+// ==================== RUN ON LOAD ====================
+document.addEventListener('DOMContentLoaded', function () {
+    // Calculate and render compatibility for all rows
+    document.querySelectorAll('.applicant-row').forEach(row => {
+        renderCompatBadge(row);
+    });
+
+    // Re-sort after scores are calculated
+    sortTable('score');
+    // ... rest of your existing DOMContentLoaded code
+});
 </script>
 
 </body>
