@@ -57,11 +57,6 @@
           <span class="nav-badge" id="sidebar-badge-students">5</span>
         </label>
       </div>
-      <div class="nav-item">
-        <label for="nav-create-account">
-          <i class="fas fa-user-plus"></i> Create Employer Accounts
-        </label>
-      </div>
        <div class="nav-item">
         <label for="nav-users">
           <i class="fas fa-users-cog"></i> User Management
@@ -449,9 +444,10 @@
             <option value="student">Student</option>
             <option value="department">Department</option>
           </select>
-          <button class="btn btn-primary btn-sm" onclick="openCreateUserModal()">
-            <i class="fas fa-plus"></i> Add User
-          </button>
+          <a href="#create-user-modal" class="btn btn-primary btn-sm">
+    <i class="fas fa-plus"></i> Add User
+</a>
+
         </div>
       </div>
       <div class="table-wrap">
@@ -720,101 +716,10 @@
         </div>
       </section>
 
-      <!-- ╔══════════════════════════════
-     § CREATE EMPLOYER ACCOUNTS
-══════════════════════════════════╗ -->
-<section class="section" id="sec-create-account">
+      
 
-  <!-- HEADER -->
-  <div class="section-header">
-    <div>
-      <div class="section-title">Create Employer Accounts</div>
-      <div class="section-sub">
-        Register departments to manage Student Assistants
-      </div>
-    </div>
 
-    <div class="section-actions">
-      <button onclick="toggleCreateAccountForm()">
-        <i class="fas fa-user-plus"></i> Create Account
-      </button>
-    </div>
-  </div>
 
-  <!-- INFO -->
-  <div class="alert-banner info" style="margin-bottom:20px;">
-    <i class="fas fa-info-circle"></i>
-    <span>
-      Use an official <strong>WMSU email</strong> when creating department accounts.
-    </span>
-  </div>
-
-  <!-- CONTENT AREA -->
-  <div class="table-wrap" id="create-account-content">
-
-    <!-- EMPTY STATE -->
-    <div id="create-empty" style="text-align:center; padding:60px 20px;">
-      <i class="fas fa-user-plus" style="font-size:40px; opacity:0.3;"></i>
-      <p style="margin-top:10px;">No account creation in progress</p>
-      <button class="btn btn-primary btn-sm" onclick="toggleCreateAccountForm()">
-        Start Creating
-      </button>
-    </div>
-
-  </div>
-
-  <!-- ✅ MODAL (ONLY ONE create-form) -->
-  <div id="create-form" class="modal" style="display:none;">
-
-    <div class="modal-center">
-
-      <div class="form-wrapper">
-
-        <!-- HEADER -->
-        <header class="cppeso-header">
-          <div class="title-area">
-            <h1>Create Department</h1>
-            <p>Fill in the details below</p>
-          </div>
-        </header>
-
-        <!-- CARD -->
-        <div class="register-card">
-
-          <form class="account-form" onsubmit="return handleCreateDept(event)">
-
-            <label>Email <span style="color:red;">*</span></label>
-            <input type="email" required>
-
-            <label>Password <span style="color:red;">*</span></label>
-            <input type="password" required>
-
-            <label>College <span style="color:red;">*</span></label>
-            <input type="text" required>
-
-            <label>Department <span style="color:red;">*</span></label>
-            <input type="text" required>
-
-            <div class="row">
-              <div>
-                <button type="submit" id="register-btn">Create</button>
-              </div>
-              <div>
-                <button type="button" class="btn-outline" onclick="toggleCreateAccountForm()">
-                  Cancel
-                </button>
-              </div>
-            </div>
-
-          </form>
-
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-</section>
 
       <!-- ╔══════════════════════════════════════════════
      § MANAGE POSITIONS
@@ -1265,7 +1170,6 @@
 ══════════════════════════════════════════════╗ -->
 <section class="section" id="sec-payroll">
 
-  <!-- HEADER -->
   <div class="section-header">
     <div>
       <div class="section-title">Payroll Management</div>
@@ -1275,10 +1179,14 @@
     </div>
 
     <div class="section-actions">
+      <select id="payroll-period" class="form-control">
+        <option value="may1">May 1 - May 15</option>
+        <option value="may16">May 16 - May 31</option>
+      </select>
 
       <select id="filterStatus" class="form-control" onchange="renderPayroll()">
         <option value="ALL">All Status</option>
-        <option value="PENDING">Pending</option>
+        <option value="COMPUTED">Computed</option>
         <option value="VERIFIED">Verified</option>
         <option value="RELEASED">Released (Unclaimed)</option>
         <option value="CLAIMED">Claimed</option>
@@ -1287,72 +1195,53 @@
       <select id="filterDept" class="form-control" onchange="renderPayroll()">
         <option value="ALL">All Departments</option>
       </select>
+      
+      <input type="text" id="searchPayroll" class="form-control" placeholder="Search name..." oninput="filterPayroll()" style="max-width: 150px; display: inline-block;" />
 
-      <button class="btn btn-primary btn-sm" onclick="generatePayroll()">
+      <button class="btn btn-primary btn-sm" id="generatePayroll" onclick="generatePayroll()">
         <i class="fas fa-calculator"></i> Generate
       </button>
-
+      <button class="btn btn-secondary btn-sm" onclick="exportData()">
+        <i class="fas fa-file-export"></i> Export
+      </button>
     </div>
   </div>
 
-  <!-- STATS -->
   <div class="stat-grid">
-
     <div class="stat-card maroon">
       <div>
-        <div class="stat-label">Pending</div>
-        <div class="stat-value" id="statPending">₱0</div>
+        <div class="stat-label">Pending Total</div>
+        <div class="stat-value" id="totalPending">₱0.00</div>
       </div>
     </div>
 
     <div class="stat-card blue">
       <div>
-        <div class="stat-label">Verified</div>
-        <div class="stat-value" id="statVerified">₱0</div>
+        <div class="stat-label">Total Student Count</div>
+        <div class="stat-value" id="studentCount">0</div>
       </div>
     </div>
 
     <div class="stat-card green">
       <div>
         <div class="stat-label">Released (Cashier)</div>
-        <div class="stat-value" id="statReleased">₱0</div>
+        <div class="stat-value" id="totalReleased">₱0.00</div>
       </div>
     </div>
 
     <div class="stat-card gold">
       <div>
-        <div class="stat-label">Claimed</div>
-        <div class="stat-value" id="statClaimed">₱0</div>
+        <div class="stat-label">Avg Hours</div>
+        <div class="stat-value" id="avgHours">0h</div>
       </div>
     </div>
-
   </div>
 
-  <!-- ALERT -->
   <div class="alert-banner info">
     Payroll is strictly based on verified attendance and must be claimed physically at the cashier.
   </div>
 
-  <!-- TABLE -->
-  <div class="table-responsive">
-    <table class="table">
-
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Dept</th>
-          <th>Hours</th>
-          <th>Total</th>
-          <th>Status</th>
-          <th>Flags</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-
-      <tbody id="payrollBody"></tbody>
-
-    </table>
-  </div>
+  <div id="payrollContainer"></div>
 
 </section>
 
@@ -1360,173 +1249,189 @@
 // ==========================
 // CONFIG (REAL RULES)
 // ==========================
-const RATE = 50;
-const MAX_HOURS = 80;
+const MAX_HOURS_PER_CUTOFF = 80;
+const MAX_RELEASE_BUDGET = 10000;
 
-let payroll = [];
-let batchCounter = 1;
-
-// RAW ATTENDANCE
+// ==========================
+// ATTENDANCE SOURCE (SIMULATION)
+// ==========================
 const attendanceLogs = [
-  { id: 1, name: "Maria Santos", dept: "Library", hours: 10, date: "2026-05-01", empFinal: true, adminApp: true },
-  { id: 2, name: "Juan dela Cruz", dept: "Finance", hours: 12, date: "2026-05-02", empFinal: true, adminApp: true },
-  { id: 3, name: "Ana Reyes", dept: "Clinic", hours: 8, date: "2026-05-02", empFinal: true, adminApp: false }, // flagged
+  { student: "Maria Santos", dept: "Library", date: "2026-05-01", hours: 4, employer_finalized: true, admin_approved: true },
+  { student: "Maria Santos", dept: "Library", date: "2026-05-02", hours: 5, employer_finalized: true, admin_approved: true },
+  { student: "Juan dela Cruz", dept: "Finance", date: "2026-05-01", hours: 6, employer_finalized: true, admin_approved: true },
+  { student: "Ana Reyes", dept: "Clinic", date: "2026-05-01", hours: 4, employer_finalized: true, admin_approved: false },
+  { student: "Liza Torres", dept: "Library", date: "2026-05-03", hours: 7, employer_finalized: true, admin_approved: true },
+  { student: "Pedro Valdez", dept: "Finance", date: "2026-05-04", hours: 5, employer_finalized: true, admin_approved: true }
 ];
 
-// =========================
-// GENERATE PAYROLL
-// =========================
+// ==========================
+// STATE
+// ==========================
+let payrollData = [];
+let releasedTotal = 0;
+
+// Initialize drop-down list on startup
+document.addEventListener("DOMContentLoaded", function() {
+  populateDepartments();
+});
+
+function populateDepartments() {
+  const select = document.getElementById("filterDept");
+  const depts = [...new Set(attendanceLogs.map(log => log.dept))];
+  select.innerHTML = '<option value="ALL">All Departments</option>';
+  depts.forEach(dept => {
+    select.innerHTML += `<option value="${dept}">${dept}</option>`;
+  });
+}
+
+// ==========================
+// ACTIONS
+// ==========================
 function generatePayroll() {
+  const period = document.getElementById("payroll-period").value;
+  const range = period === "may1"
+    ? ["2026-05-01", "2026-05-15"]
+    : ["2026-05-16", "2026-05-31"];
 
+  const [start, end] = range;
+
+  // Filter valid attendance only
+  const validLogs = attendanceLogs.filter(log =>
+    log.employer_finalized &&
+    log.admin_approved &&
+    log.date >= start &&
+    log.date <= end
+  );
+
+  // Group by student
   const grouped = {};
-
-  attendanceLogs.forEach(log => {
-
-    const valid = log.empFinal && log.adminApp;
-
-    if (!grouped[log.name]) {
-      grouped[log.name] = {
-        id: crypto.randomUUID(),
-        name: log.name,
+  validLogs.forEach(log => {
+    if (!grouped[log.student]) {
+      grouped[log.student] = {
+        name: log.student,
         dept: log.dept,
         hours: 0,
-        status: "PENDING",
-        flagged: !valid,
-        batchId: null
+        rate: 50
       };
     }
-
-    grouped[log.name].hours += log.hours;
-    if (!valid) grouped[log.name].flagged = true;
+    grouped[log.student].hours += log.hours;
   });
 
-  payroll = Object.values(grouped).map(p => {
-
-    const cappedHours = Math.min(p.hours, MAX_HOURS);
-
+  // Build payroll
+  payrollData = Object.values(grouped).map(s => {
+    let capped = Math.min(s.hours, MAX_HOURS_PER_CUTOFF);
     return {
-      ...p,
-      hours: cappedHours,
-      total: cappedHours * RATE,
-      verifiedAt: null,
-      releasedAt: null,
-      claimedAt: null
+      ...s,
+      hours: capped,
+      total: capped * s.rate,
+      status: "computed",
+      locked: false
     };
-
   });
 
-  updateDeptFilter();
   renderPayroll();
 }
 
-// =========================
-// VERIFY
-// =========================
-function verify(id) {
-  const p = payroll.find(x => x.id === id);
-  if (!p || p.flagged) return;
-
-  p.status = "VERIFIED";
-  p.verifiedAt = new Date().toISOString();
-  renderPayroll();
-}
-
-// =========================
-// RELEASE (BATCH)
-// =========================
-function release(id) {
-  const p = payroll.find(x => x.id === id);
-
-  if (p.status !== "VERIFIED") return;
-
-  p.status = "RELEASED";
-  p.batchId = "BATCH-" + batchCounter;
-  p.releasedAt = new Date().toISOString();
-
-  batchCounter++;
-  renderPayroll();
-}
-
-// =========================
-// CLAIM (CASHIER)
-// =========================
-function claim(id) {
-  const p = payroll.find(x => x.id === id);
-
-  if (p.status !== "RELEASED") return;
-
-  p.status = "CLAIMED";
-  p.claimedAt = new Date().toISOString();
-
-  renderPayroll();
-}
-
-// =========================
+// ==========================
 // RENDER
-// =========================
+// ==========================
 function renderPayroll() {
+  const container = document.getElementById("payrollContainer");
+  const filterDeptValue = document.getElementById("filterDept").value;
+  const filterStatusValue = document.getElementById("filterStatus").value;
 
-  const statusFilter = document.getElementById("filterStatus").value;
-  const deptFilter = document.getElementById("filterDept").value;
+  if (payrollData.length === 0) {
+    container.innerHTML = `
+      <div class="empty-state" style="text-align: center; padding: 40px;">
+        <i class="fas fa-file-invoice-dollar fa-3x mb-2" style="color: #ccc;"></i>
+        <p>No payroll data generated yet. Click <strong>Generate</strong> above to begin.</p>
+      </div>
+    `;
+    return;
+  }
 
-  const body = document.getElementById("payrollBody");
-  body.innerHTML = "";
+  // Filter local data
+  let filteredData = payrollData.filter(s => {
+    const deptMatch = filterDeptValue === "ALL" || s.dept === filterDeptValue;
+    const statusMatch = filterStatusValue === "ALL" || s.status.toUpperCase() === filterStatusValue;
+    return deptMatch && statusMatch;
+  });
 
-  let stats = { pending: 0, verified: 0, released: 0, claimed: 0 };
+  const grouped = groupByDept(filteredData);
+  let pending = 0;
 
-  payroll.forEach(p => {
+  if (Object.keys(grouped).length === 0) {
+    container.innerHTML = `<div style="text-align: center; padding: 20px;">No records match your filter criteria.</div>`;
+    return;
+  }
 
-    if (statusFilter !== "ALL" && p.status !== statusFilter) return;
-    if (deptFilter !== "ALL" && p.dept !== deptFilter) return;
+  let htmlString = "";
 
-    stats[p.status.toLowerCase()] += p.total;
+  Object.keys(grouped).forEach(dept => {
+    const list = grouped[dept];
+    let deptTotal = 0;
+    list.forEach(s => {
+      if (s.status !== "released") deptTotal += s.total;
+    });
 
-    body.innerHTML += `
-      <tr>
-        <td>${p.name}</td>
-        <td>${p.dept}</td>
-        <td>${p.hours}</td>
-        <td>₱${p.total.toFixed(2)}</td>
+    pending += deptTotal;
 
-        <td><span class="badge">${p.status}</span></td>
+    htmlString += `
+      <div class="dept-section" style="margin-bottom: 20px; border: 1px solid #ddd; padding: 15px; border-radius: 6px;">
+        <div class="dept-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <h3>${dept}</h3>
+          <div>
+            <span class="dept-total" style="font-weight: bold; margin-right: 15px;">₱${deptTotal.toFixed(2)}</span>
+            <button class="btn btn-primary btn-sm" onclick="releaseDept('${dept}')">Release Batch</button>
+          </div>
+        </div>
 
-        <td>
-          ${p.flagged ? "⚠ FLAGGED" : "-"}
-        </td>
-
-        <td>
-          ${p.status === "PENDING" && !p.flagged
-            ? `<button onclick="verify('${p.id}')">Verify</button>` : ""}
-
-          ${p.status === "VERIFIED"
-            ? `<button onclick="release('${p.id}')">Release</button>` : ""}
-
-          ${p.status === "RELEASED"
-            ? `<button onclick="claim('${p.id}')">Claim</button>` : ""}
-
-        </td>
-      </tr>
+        <div class="table-responsive">
+          <table class="table" style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr style="border-bottom: 1px solid #ddd; text-align: left;">
+                <th>Name</th>
+                <th>Hours</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${list.map(s => `
+                <tr style="border-bottom: 1px solid #eee;">
+                  <td><strong>${s.name}</strong></td>
+                  <td>${s.hours} ${s.hours === MAX_HOURS_PER_CUTOFF ? '<span style="color:#d9534f; font-size:11px;">(capped)</span>' : ''}</td>
+                  <td>₱${s.total.toFixed(2)}</td>
+                  <td>
+                    <span class="badge badge-${s.status}">${s.status.toUpperCase()}</span>
+                  </td>
+                  <td>
+                    ${s.status === "computed" ? `<button class="btn btn-outline btn-sm" onclick="verify('${s.name}')"><i class="fas fa-check"></i> Verify</button>` : ""}
+                    ${s.status === "verified" ? `<span style="color:#666; font-size:13px;"><i class="fas fa-lock-open"></i> Awaiting Release</span>` : ""}
+                    ${s.status === "released" ? `<span style="color:#28a745; font-size:13px; font-weight:600;"><i class="fas fa-lock"></i> Locked</span>` : ""}
+                  </td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
+      </div>
     `;
   });
 
-  document.getElementById("statPending").innerText = "₱" + stats.pending.toFixed(2);
-  document.getElementById("statVerified").innerText = "₱" + stats.verified.toFixed(2);
-  document.getElementById("statReleased").innerText = "₱" + stats.released.toFixed(2);
-  document.getElementById("statClaimed").innerText = "₱" + stats.claimed.toFixed(2);
+  container.innerHTML = htmlString;
+
+  // Update Stats Header
+  document.getElementById("totalPending").innerText = "₱" + pending.toFixed(2);
+  document.getElementById("totalReleased").innerText = "₱" + releasedTotal.toFixed(2);
+  document.getElementById("studentCount").innerText = payrollData.length;
+
+  const totalHours = payrollData.reduce((acc, curr) => acc + curr.hours, 0);
+  const avgHours = payrollData.length > 0 ? (totalHours / payrollData.length).toFixed(1) : 0;
+  document.getElementById("avgHours").innerText = avgHours + "h";
 }
 
-// =========================
-// DEPT FILTER
-// =========================
-function updateDeptFilter() {
-  const deptSet = [...new Set(payroll.map(p => p.dept))];
-
-  const select = document.getElementById("filterDept");
-  select.innerHTML = `<option value="ALL">All Departments</option>`;
-
-  deptSet.forEach(d => {
-    select.innerHTML += `<option value="${d}">${d}</option>`;
-  });
 // ==========================
 // ACTIONS
 // ==========================
@@ -1561,25 +1466,6 @@ function releaseDept(dept) {
 
   releasedTotal += total;
   renderPayroll();
-}
-
-// ==========================
-// CREATE ACCOUNT FORM TOGGLE
-// ==========================
-
-function toggleCreateAccountForm() {
-  const form = document.getElementById("create-form");
-  const empty = document.getElementById("create-empty");
-
-  const isHidden = window.getComputedStyle(form).display === "none";
-
-  if (isHidden) {
-    form.style.display = "block";
-    if (empty) empty.style.display = "none";
-  } else {
-    form.style.display = "none";
-    if (empty) empty.style.display = "block";
-  }
 }
 
 // ==========================
@@ -1858,6 +1744,55 @@ function groupByDept(data) {
           </div>
 
         </div>
+
+      </section>
+
+      <section>
+        
+  <!-- ✅ MODAL (ONLY ONE create-form) -->
+  <!-- UNIFIED DASHBOARD-STYLE MODAL -->
+<div id="create-user-modal" class="modal-overlay">
+  <div class="modal-card">
+
+      <a href="#" class="modal-close-btn">&times;</a>
+
+      <div class="modal-body">
+
+        <div class="doc-student-info">
+          <div class="avatar" style="background:#7B0D1E;">
+            <i class="fas fa-user-plus"></i>
+          </div>
+          <div>
+            <div class="info-name">Create User Account</div>
+            <div class="info-sub">Fill in the details below</div>
+          </div>
+        </div>
+
+        <form id="create-user-form" class="modal-form">
+
+          <label>Email <span style="color:red">*</span></label>
+          <input type="email" required>
+
+          <label>Password <span style="color:red">*</span></label>
+          <input type="password" required>
+
+          <label>College <span style="color:red">*</span></label>
+          <input type="text" required>
+
+          <label>Department <span style="color:red">*</span></label>
+          <input type="text" required>
+
+          <div class="modal-footer">
+            <a href="#" class="btn-closed">Cancel</a>
+            <button type="submit" class="btn-approved">Create</button>
+          </div>
+
+        </form>
+      </div>
+
+  </div>
+</div>
+
 
       </section>
 
