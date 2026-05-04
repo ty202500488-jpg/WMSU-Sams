@@ -80,52 +80,133 @@
 
         <main class="job-list">
 
-            <div class="workflow-info">
-                <i class="fas fa-info-circle"></i>
-                <p><strong>NOTE: </strong> These positions have been suggested based on your profile and schedule. Once you apply, the department will review your profile.</p>
+    <!-- SYSTEM MESSAGE -->
+    <div class="workflow-info">
+        <i class="fas fa-info-circle"></i>
+        <p><strong>Smart Suggestions:</strong> These positions are ranked based on your profile, skills, and schedule compatibility.</p>
+    </div>
+
+    <!-- ===================== -->
+    <!-- ⭐ TOP MATCHES -->
+    <!-- ===================== -->
+    <h3 class="section-title">⭐ Top Matches For You</h3>
+
+    <!-- JOB 1 -->
+    <div class="application-card suggested top-match">
+        <div class="application-header">
+            <div class="suggestion-group">
+                <h2>IT Student Assistant</h2>
+                <div class="suggestion-badge">
+                    <i class="fas fa-star"></i> 92% Match
+                </div>
             </div>
-    
-            <div class="application-card">
-                <div class="application-header">
-                    <div class="suggestion-group"> 
-                        <h2>IT Student Assistant</h2>  
-                        <div class="suggestion-badge">
-                            <i class="fas fa-star"></i> Suggested for You
-                        </div>
-                    </div>
-                    <hr>
-                    <p>Assist IT Office with website updates, documentation, and student support tasks.</p>
+            <hr>
+            <p>Assist IT Office with website updates, documentation, and student support tasks.</p>
+
+            <div class="match-reason">
+                ✔ Course aligned (BSIT)<br>
+                ✔ Skills match: HTML, CSS<br>
+                ✔ Schedule compatible
+            </div>
+        </div>
+
+        <div class="application-info">
+            <div class="column">
+                <p><i class="fas fa-building"></i> <strong>Department:</strong> IT Office</p>
+                <p><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> IT Building</p>
+                <p><i class="fas fa-money-bill-wave"></i> <strong>Pay:</strong> ₱60/hour</p>
+            </div>
+
+            <div class="column">
+                <p><i class="fas fa-hourglass-half"></i> <strong>Hours:</strong> 20 hrs/week</p>
+                <p><i class="fas fa-users"></i> <strong>Slots:</strong> 2 / 5</p>
+                <p><i class="fas fa-info-circle"></i> <strong>Status:</strong>
+                    <span class="status-badge pending">Under Review</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="application-action">
+            <a href="#view-details-1" class="secondary-btn">View Details</a>
+            <a href="#" class="primary-btn">Apply Now</a>
+        </div>
+    </div>
+
+    <!-- JOB 2 -->
+    <div class="application-card suggested top-match">
+        <div class="application-header">
+            <div class="suggestion-group">
+                <h2>IT Support Intern</h2>
+                <div class="suggestion-badge">
+                    <i class="fas fa-star"></i> 88% Match
                 </div>
+            </div>
+            <hr>
+            <p>Assist in software troubleshooting and IT support.</p>
 
-                <div class="application-info">
-                    <div class="column">
-                        <p><i class="fas fa-building"></i> <strong>Department:</strong> IT Office</p>
-                        <p><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> IT Building</p>
-                        <p><i class="fas fa-money-bill-wave"></i> <strong>Pay:</strong> ₱60/hour</p>
-                    </div>
+            <div class="match-reason">
+                ✔ Strong skill alignment<br>
+                ✔ High demand role<br>
+                ✔ Flexible schedule
+            </div>
+        </div>
 
-                    <div class="column">
-                        <p><i class="fas fa-hourglass-half"></i> <strong>Hours:</strong> 20 hrs/week</p>
-                        <p><i class="fas fa-users"></i> <strong>Slots:</strong> 2 / 5</p>
-                        <p><i class="fas fa-info-circle"></i> <strong>Status:</strong> 
-                            <span class="status-badge pending">Under Review</span>
-                        </p>
-                    </div>
+        <div class="application-info">
+            <div class="column">
+                <p><i class="fas fa-building"></i> <strong>Department:</strong> IT Office</p>
+                <p><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> IT Building</p>
+                <p><i class="fas fa-money-bill-wave"></i> <strong>Pay:</strong> ₱70/hour</p>
+            </div>
 
-                    <ul class="requirements">
-                        <p><i class="fas fa-check-circle"></i> <strong>Requirements:</strong></p>
-                        <li>Basic HTML & CSS knowledge</li>
-                        <li>Familiar with Microsoft Office</li>
-                        <li>Minimum GPA: 2.5</li>
-                    </ul>
-                </div>
+            <div class="column">
+                <p><i class="fas fa-hourglass-half"></i> <strong>Hours:</strong> 25 hrs/week</p>
+                <p><i class="fas fa-users"></i> <strong>Slots:</strong> 3 / 5</p>
+                <p><i class="fas fa-info-circle"></i> <strong>Status:</strong>
+                    <span class="status-badge none">Available</span>
+                </p>
+            </div>
+        </div>
 
-                <div class="application-action">
-                    <a href="#view-details-1" class="secondary-btn" style="text-decoration: none;">View Details</a>
-                    <a href="#cancel-confirm-1" class="primary-btn action-btn-outline" style="text-decoration: none;">Cancel Application</a>
-                </div>
+        <div class="application-action">
+            <a href="#view-details-3" class="secondary-btn">View Details</a>
+            <a href="form.html" class="primary-btn">Apply Now</a>
+        </div>
+    </div>
 
-                <div id="view-details-1" class="modal-overlay">
+    <!-- ===================== -->
+    <!-- OTHER JOBS -->
+    <!-- ===================== -->
+    <h3 class="section-title other-title">Other Opportunities</h3>
+
+    <!-- JOB 3 -->
+    <div class="application-card">
+        <div class="application-header">
+            <h2>Library Assistant</h2>
+            <hr>
+            <p>Organize books and assist students.</p>
+        </div>
+
+        <div class="application-info">
+            <div class="column">
+                <p><i class="fas fa-building"></i> Library</p>
+                <p><i class="fas fa-map-marker-alt"></i> Main Library</p>
+                <p><i class="fas fa-money-bill-wave"></i> ₱50/hour</p>
+            </div>
+
+            <div class="column">
+                <p>15 hrs/week</p>
+                <p>1 / 3 slots</p>
+                <span class="status-badge none">Available</span>
+            </div>
+        </div>
+
+        <div class="application-action">
+            <a href="#view-details-2" class="secondary-btn">View Details</a>
+            <a href="form.html" class="primary-btn">Apply</a>
+        </div>
+    </div>
+
+    <div id="view-details-1" class="modal-overlay">
                     <div class="modal-box">
                         <a href="#" class="modal-close-btn">&times;</a>
                         <div class="doc-student-info">
@@ -242,50 +323,8 @@
                             </div>
                         </div>
                     </div>
-            </div>
 
-            <div class="application-card">
-                <div class="application-header">
-                     <div class="suggestion-group"> 
-                         <h2>Library Assistant</h2> 
-                        <div class="suggestion-badge">
-                            <i class="fas fa-star"></i> Suggested for You
-                        </div>
-                    </div>        
-                    <hr>
-                    <p>Organize library books, assist students in locating resources, and maintain records.</p>
-                </div>
-
-                <div class="application-info">
-                    <div class="column">
-                        <p><i class="fas fa-building"></i> <strong>Department:</strong> Library</p>
-                        <p><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> Main Library</p>
-                        <p><i class="fas fa-money-bill-wave"></i> <strong>Pay:</strong> ₱50/hour</p>
-                    </div>
-
-                    <div class="column">
-                        <p><i class="fas fa-hourglass-half"></i> <strong>Hours:</strong> 15 hrs/week</p>
-                        <p><i class="fas fa-users"></i> <strong>Slots:</strong> 1 / 3</p>
-                        <p><i class="fas fa-info-circle"></i> <strong>Status:</strong> 
-                            <span class="status-badge none">Available</span>
-                        </p>
-                    </div>
-
-                    <ul class="requirements">
-                        <p><i class="fas fa-check-circle"></i> <strong>Requirements:</strong></p>
-                        <li>Organized and detail-oriented</li>
-                        <li>Basic record keeping skills</li>
-                        <li>Minimum GPA: 2.5</li>
-                    </ul>
-                </div>
-
-                <div class="application-action">
-                    <a href="#view-details-2" class="secondary-btn" style="text-decoration: none;">View Details</a>
-                    <a href="form.html" class="primary-btn" href="#">Apply</a>
-                </div>
-            </div>
-
-            <div id="view-details-2" class="modal-overlay">
+                    <div id="view-details-2" class="modal-overlay">
                     <div class="modal-box">
                         <a href="#" class="modal-close-btn">&times;</a>
                         <div class="doc-student-info">
@@ -395,51 +434,7 @@
                         </div>
                     </div>
                 </div>
-
-
-            <!--IT SUPPORT INTERN-->
-            <div class="application-card">
-                <div class="application-header">
-                    <div class="suggestion-group"> 
-                        <h2>IT Support Intern</h2> 
-                        <div class="suggestion-badge">
-                            <i class="fas fa-star"></i> Suggested for You
-                        </div>
-                    </div>
-                    <hr>
-                    <p>Assist in software troubleshooting, IT support for student devices, and network management.</p>
-                </div>
-
-                <div class="application-info">
-                    <div class="column">
-                        <p><i class="fas fa-building"></i> <strong>Department:</strong> IT Office</p>
-                        <p><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> IT Building</p>
-                        <p><i class="fas fa-money-bill-wave"></i> <strong>Pay:</strong> ₱70/hour</p>
-                    </div>
-
-                    <div class="column">
-
-                        <p><i class="fas fa-hourglass-half"></i> <strong>Hours:</strong> 25 hrs/week</p>
-                        <p><i class="fas fa-users"></i> <strong>Slots:</strong> 3 / 5</p>
-                        <p><i class="fas fa-info-circle"></i> <strong>Status:</strong> 
-                            <span class="status-badge none">Available</span>
-                        </p>
-                    </div>
-
-                    <ul class="requirements">
-                        <p><i class="fas fa-check-circle"></i> <strong>Requirements:</strong></p>
-                        <li>Basic troubleshooting skills</li>
-                        <li>Familiar with networking basics</li>
-                        <li>Minimum GPA: 2.75</li>
-                    </ul>
-                </div>
-
-                <div class="application-action">
-                    <a href="#view-details-3" class="secondary-btn" style="text-decoration: none;">View Details</a>
-                    <a href="form.html" class="primary-btn" href="#">Apply</a>
-                </div>
-
-                 <div id="view-details-3" class="modal-overlay">
+<div id="view-details-3" class="modal-overlay">
                     <div class="modal-box">
                     <a href="#" class="modal-close-btn">&times;</a>
                         <div class="doc-student-info">
@@ -547,155 +542,7 @@
 
                 </div>
 
-            </div>
-
-            <div class="application-card">
-                <div class="application-header">
-                    <div class="suggestion-group"> 
-                        <h2>Registrar Assistant</h2>
-                        <div class="suggestion-badge">
-                            <i class="fas fa-star"></i> Suggested for You
-                        </div>
-                    </div>
-                    <hr>
-                    <p>Assist in managing student records, processing enrollment documents, and handling front desk inquiries.</p>
-                </div>
-
-                <div class="application-info">
-                    <div class="column">
-                        <p><i class="fas fa-building"></i> <strong>Department:</strong> Registrar</p>
-                        <p><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> Registrar Office</p>
-                        <p><i class="fas fa-money-bill-wave"></i> <strong>Pay:</strong> ₱70/hour</p>
-                    </div>
-
-                    <div class="column">
-
-                        <p><i class="fas fa-hourglass-half"></i> <strong>Hours:</strong> 25 hrs/week</p>
-                        <p><i class="fas fa-users"></i> <strong>Slots:</strong> 2 / 5</p>
-                        <p><i class="fas fa-info-circle"></i> <strong>Status:</strong> 
-                            <span class="status-badge none">Available</span>
-                        </p>
-                    </div>
-
-                    <ul class="requirements">
-                        <p><i class="fas fa-check-circle"></i> <strong>Requirements:</strong></p>
-                        <li>Strong attention to detail</li>
-                        <li>Basic MS Office skills (Word/Excel)</li>
-                        <li>Minimum GPA: 2.75</li>
-                    </ul>
-                </div>
-
-                <div class="application-action">
-                    <a href="#view-details-4" class="secondary-btn" style="text-decoration: none;">View Details</a>
-                    <a href="form.html" class="primary-btn" href="#">Apply</a>
-                </div>
-
-                 <div id="view-details-4" class="modal-overlay">
-        <div class="modal-box">
-            <a href="#" class="modal-close-btn">&times;</a>
-            <div class="doc-student-info">
-        <div class="avatar" style="background:#b45309; border-radius:10px;">
-          <i class="fas fa-clipboard-list" style="font-size:20px;"></i>
-        </div>
-        <div class="info-meta">
-          <div class="info-name">Registrar Assistant</div>
-          <div class="info-sub">Finance Office &nbsp;·&nbsp; 5 Total Slots &nbsp;·&nbsp; ₱4,200 / month</div>
-        </div>
-        <span class="status-badge modal-status-badge">Status</span>
-      </div>
-            <hr>
-            <div class="modal-body">
-                <div class="info-grid">
-                    <div class="info-item">
-                        <span class="label">Location</span>
-                        <span class="value">Admin Building, Registrar Office</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="label">Pay Rate</span>
-                        <span class="value">₱70 / hour</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="label">Daily Hours</span>
-                        <span class="value">5 hours / day</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="label">Availability</span>
-                        <span class="value">2 of 5 slots left</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="label">Supervisor</span>
-                        <span class="value">Ms. Lilia Santos</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="label">Deadline</span>
-                        <span class="value">May 10, 2026</span>
-                    </div>
-                </div>
-                <hr>
-                <h4>Job Description</h4>
-                <p style="color: #4a5568; line-height: 1.6;">Assist the Registrar's Office in managing student academic records, processing enrollment and graduation-related documents, and attending to front desk inquiries from students and faculty in a professional and timely manner.</p>
-                <hr>
-                <h4>Responsibilities</h4>
-                <ul class="custom-list">
-                    <li>Assist in encoding and filing of student academic records.</li>
-                    <li>Process requests for transcripts, certifications, and enrollment forms.</li>
-                    <li>Attend to walk-in and online inquiries from students and faculty.</li>
-                    <li>Maintain confidentiality of all student records and documents.</li>
-                    <li>Support staff during enrollment periods and other peak times.</li>
-                </ul>
-                <hr>
-                <h4>Requirements & Qualifications</h4>
-                <ul class="custom-list">
-                    <li>Must be a currently enrolled student (any program, 2nd year and above).</li>
-                    <li>Minimum GPA of 2.75 or higher.</li>
-                    <li>Strong attention to detail and ability to handle confidential information.</li>
-                    <li>Basic MS Office (Word/Excel).</li>
-                </ul>
-                <hr>
-                <h4>Required Skills</h4>
-                <div class="skill-tags">
-                    <span>Microsoft Word</span>
-                    <span>Microsoft Excel</span>
-                    <span>Data Encoding</span>
-                    <span>Customer Service</span>
-                    <span>Record Management</span>
-                </div>
-                <hr>
-                <h4>Benefits</h4>
-                <ul class="custom-list">
-                    <li>₱70/hour stipend paid bi-weekly.</li>
-                    <li>Certificate of Completion from the Registrar's Office.</li>
-                    <li>Professional reference letter upon satisfactory performance.</li>
-                    <li>OJT/Practicum credit hours upon coordination with your college.</li>
-                </ul>
-                <hr>
-                <h4>Supervisor</h4>
-                <div class="info-item">
-                    <span class="label">Name</span>
-                    <span class="value">Ms. Lilia Santos</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Email</span>
-                    <span class="value">lilia.santos@wmsu.edu.ph</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Contact Number</span>
-                    <span class="value">09XX-XXX-XXXX</span> 
-                </div>
-
-                <hr>
-
-                <h4>Application Deadline</h4>
-                <p style="color: #dc2626; font-weight: 600;">Applications are accepted until further notice.</p>
-            </div>
-            <div class="modal-footer">
-                <a href="#" class="secondary-btn" style="text-decoration: none;">Close</a>
-                <a href="form.html" class="primary-btn" style="color: white; border-radius: 8px;">Apply</a>
-            </div>
-        </div>
-    </div>
-            </div>
-        </main>
+</main>
 
         <aside class="right-panel">
             <div class="stat-card">
