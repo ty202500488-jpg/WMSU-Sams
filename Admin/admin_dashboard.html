@@ -3335,6 +3335,10 @@ async function apiFetch(endpoint, options = {}) {
 function startClock() {
   const el = document.getElementById('topbar-clock');
   if (!el) return;
+
+  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
   const tick = () => {
     const now = new Date();
     const h = now.getHours(), m = now.getMinutes(), s = now.getSeconds();
@@ -3342,8 +3346,17 @@ function startClock() {
     const hh = (h % 12 || 12).toString().padStart(2, '0');
     const mm = m.toString().padStart(2, '0');
     const ss = s.toString().padStart(2, '0');
-    el.textContent = `${hh}:${mm}:${ss} ${ampm}`;
+
+    const day = days[now.getDay()];
+    const date = now.getDate();
+    const month = months[now.getMonth()];
+    const year = now.getFullYear();
+
+    el.innerHTML =
+      `<span style="font-size:11px;opacity:0.75;">${day}, ${month} ${date}, ${year}</span>` +
+      `<br>${hh}:${mm}:${ss} ${ampm}`;
   };
+
   tick();
   setInterval(tick, 1000);
 }
