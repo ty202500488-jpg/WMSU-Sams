@@ -4235,15 +4235,29 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       function arch_highlightSem(activeSem) {
         document.querySelectorAll('.arch-sem-btn').forEach(function (btn) {
-          var on = btn.dataset.sem === activeSem;
-          btn.style.border     = on ? '1.5px solid #4361ee' : '1.5px solid #e5e7eb';
-          btn.style.background = on ? '#f0f4ff'             : '#f9f9f9';
-          btn.querySelectorAll('div').forEach(function (d, i) {
+          var on             = btn.dataset.sem === activeSem;
+          var isGlobalActive = btn.dataset.sem === SYM.activeSem && ARCH.viewingSY === SYM.activeSY;
+          btn.style.border     = '1.5px solid ' + (on ? '#4361ee' : '#e5e7eb');
+          btn.style.background = on ? '#f0f4ff' : '#f9f9f9';
+          btn.querySelectorAll('div:not(.arch-active-sem-badge)').forEach(function (d, i) {
             d.style.color   = on ? '#4361ee' : (i === 2 ? '#aaa' : '#555');
             d.style.opacity = (on && i === 2) ? '0.7' : '1';
           });
+          var badge = btn.querySelector('.arch-active-sem-badge');
+          if (isGlobalActive) {
+            if (!badge) {
+              badge = document.createElement('div');
+              badge.className = 'arch-active-sem-badge';
+              badge.style.cssText = 'font-size:9px;font-weight:700;margin-top:4px;color:#15803d;';
+              badge.textContent = '● Active';
+              btn.appendChild(badge);
+            }
+          } else {
+            if (badge) badge.remove();
+          }
         });
       }
+
 
       function arch_updatePreview() {
         var el = document.getElementById('arch-preview-label');
@@ -4257,6 +4271,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         ARCH.viewingSY = el.dataset.sy;
         arch_renderYearTabs();
         arch_updatePreview();
+        arch_highlightSem(ARCH.viewingSem);
         arch_loadData();
       }
 
@@ -4380,14 +4395,21 @@ document.addEventListener('DOMContentLoaded', async () => {
         var el = document.getElementById('sym-switch-grid');
         if (!el) return;
         el.innerHTML = SYM.schoolYears.map(function (sy) {
-          var sel = SYM.pendingSY === sy.id;
+          var sel      = SYM.pendingSY === sy.id;
+          var isActive = sy.id === SYM.activeSY;
+          var border   = sel ? 'var(--maroon,#7a0020)' : '#e5e7eb';
+          var bg       = sel ? '#fce4e8' : '#f9f9f9';
+          var color    = sel ? 'var(--maroon,#7a0020)' : '#555';
           return '<div onclick="sym_pickSY(this)" data-sy="' + sy.id + '" '
-            + 'style="border:1.5px solid ' + (sel ? 'var(--maroon,#7a0020)' : '#e5e7eb') + ';'
+            + 'style="border:1.5px solid ' + border + ';'
             + 'border-radius:9px;padding:9px 10px;text-align:center;cursor:pointer;'
             + 'font-size:12px;font-weight:600;transition:all .15s;'
-            + 'color:' + (sel ? 'var(--maroon,#7a0020)' : '#555') + ';'
-            + 'background:' + (sel ? '#fce4e8' : '#f9f9f9') + '">'
-            + sy.label + '</div>';
+            + 'color:' + color + ';background:' + bg + ';">'
+            + sy.label
+            + (isActive
+                ? '<div style="font-size:9px;color:#15803d;font-weight:700;margin-top:3px;">● Active</div>'
+                : '<div style="font-size:9px;color:#aaa;margin-top:3px;">Archived</div>')
+            + '</div>';
         }).join('');
       }
 
@@ -4395,6 +4417,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         SYM.pendingSY = el.dataset.sy;
         renderSwitchGrid();
         updatePreview();
+        highlightSem(SYM.pendingSem);
       }
 
       function pickSem(el) {
@@ -4406,13 +4429,26 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       function highlightSem(active) {
         document.querySelectorAll('.sym-sem-opt').forEach(function (o) {
-          var on = o.dataset.sem === active;
-          o.style.border     = on ? '1.5px solid #1a3a8f' : '1.5px solid #e5e7eb';
+          var on          = o.dataset.sem === active;
+          var isActiveSem = o.dataset.sem === SYM.activeSem && SYM.pendingSY === SYM.activeSY;
+          o.style.border     = '1.5px solid ' + (on ? '#1a3a8f' : '#e5e7eb');
           o.style.background = on ? '#e8f0fe' : '#f9f9f9';
-          o.querySelectorAll('div').forEach(function (d, i) {
+          o.querySelectorAll('div:not(.sym-active-sem-badge)').forEach(function (d, i) {
             d.style.color   = on ? '#1a3a8f' : (i === 2 ? '#aaa' : '#555');
             d.style.opacity = (on && i === 2) ? '0.7' : '1';
           });
+          var badge = o.querySelector('.sym-active-sem-badge');
+          if (isActiveSem) {
+            if (!badge) {
+              badge = document.createElement('div');
+              badge.className = 'sym-active-sem-badge';
+              badge.style.cssText = 'font-size:9px;font-weight:700;margin-top:4px;color:#15803d;';
+              badge.textContent = '● Active';
+              o.appendChild(badge);
+            }
+          } else {
+            if (badge) badge.remove();
+          }
         });
       }
 
