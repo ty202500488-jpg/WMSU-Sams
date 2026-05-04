@@ -349,6 +349,7 @@ body { background-color: var(--bg); color: var(--text); }
     max-width: 550px;
     max-height: 90vh;
     overflow-y: auto;
+    border-radius: 10px;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     font-family: 'Segoe UI', Roboto, sans-serif;
 }
@@ -630,7 +631,7 @@ hr {
 .primary-btn { background: #9f0f0f; text-decoration: none; color: white; border: none; padding: 10px 18px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px; transition: 0.2s; }
 .primary-btn:hover { background: #7a0b0b; }
 
-.secondary-btn { background: #f8f9fa; color: #333; border: 1px solid #ddd; padding: 10px 18px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px; }
+.secondary-btn { background: #f8f9fa; color: #333; border: 1px solid #ddd; padding: 10px 18px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px; text-decoration: none;}
 .secondary-btn:hover { background: #e9ecef; }
 
  .workflow-info {
