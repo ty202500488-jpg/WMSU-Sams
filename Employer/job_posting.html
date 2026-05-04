@@ -219,82 +219,110 @@
                 </div>
 
                 <div id="edit-feedback-1" class="modal-overlay">
-    <div class="modal-card">
+                    <div class="modal-card">
 
-        <a href="#" class="modal-close-btn">&times;</a>
+                        <a href="#" class="modal-close-btn">&times;</a>
 
-        <div class="doc-student-info">
-            <div class="doc-student-meta">
-                <div class="avatar" style="background:#6f42c1;">
-                    <i class="fas fa-comment"></i>
+                        <div class="doc-student-info">
+                            <div class="doc-student-meta">
+                                <div class="avatar" style="background:#6f42c1;">
+                                    <i class="fas fa-comment"></i>
+                                </div>
+                                <div>
+                                    <div class="info-name">IT Student Assistant Reviews</div>
+                                    <div class="info-sub">Student feedback & ratings</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <!-- SUMMARY -->
+                        <div class="review-summary">
+                            <div>
+                                <div class="rating-big">4.6 / 5</div>
+                                <div class="star-rating">★★★★★</div>
+                            </div>
+                            <div style="font-size: 13px; color:#666;">
+                                Based on 18 reviews
+                            </div>
+                        </div>
+
+                        <!-- REVIEWS -->
+                        <div class="review-list">
+
+                            <div class="review-card">
+                                <div class="review-header">
+                                    <span class="reviewer-name">Juan Dela Cruz</span>
+                                    <span class="review-time">2 days ago</span>
+                                </div>
+                                <div class="star-rating">★★★★★</div>
+                                <div class="review-comment">
+                                    Very good experience. The tasks are easy and the supervisor is very accommodating.
+                                </div>
+                            </div>
+
+                            <div class="review-card">
+                                <div class="review-header">
+                                    <span class="reviewer-name">Maria Santos</span>
+                                    <span class="review-time">1 week ago</span>
+                                </div>
+                                <div class="star-rating">★★★★☆</div>
+                                <div class="review-comment">
+                                    Good workload balance, but sometimes tasks pile up during busy days.
+                                </div>
+                            </div>
+
+                            <div class="review-card">
+                                <div class="review-header">
+                                    <span class="reviewer-name">Mark Reyes</span>
+                                    <span class="review-time">2 weeks ago</span>
+                                </div>
+                                <div class="star-rating">★★★★★</div>
+                                <div class="review-comment">
+                                    Learned a lot in web development tasks. Highly recommended.
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="compose-section">
+                            <div class="compose-label">Leave a Review</div>
+
+                            <!-- Star Rating Picker -->
+                            <div class="star-input-row">
+                                <span>Your rating:</span>
+                                <div class="star-picker" id="starPicker">
+                                    <input type="radio" id="s5" name="rating" value="5">
+                                    <label for="s5">★</label>
+                                    <input type="radio" id="s4" name="rating" value="4">
+                                    <label for="s4">★</label>
+                                    <input type="radio" id="s3" name="rating" value="3">
+                                    <label for="s3">★</label>
+                                    <input type="radio" id="s2" name="rating" value="2">
+                                    <label for="s2">★</label>
+                                    <input type="radio" id="s1" name="rating" value="1">
+                                    <label for="s1">★</label>
+                                </div>
+                                <span id="ratingLabel" style="font-size:12px; color:#aaa;"></span>
+                            </div>
+
+                            <!-- Comment Input -->
+                            <div class="compose-row">
+                                <input class="compose-input" id="composeInput" type="text" placeholder="Write your feedback...">
+                                <button class="send-btn" onclick="submitReview()">
+                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M2 12L22 2 12 22 10 14z"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                        <hr>
+                        <!-- FOOTER -->
+                        <div class="modal-footer">
+                            <a href="#" class="secondary-btn">Close</a>
+                        </div>
+
+                    </div>
                 </div>
-                <div>
-                    <div class="info-name">IT Student Assistant Reviews</div>
-                    <div class="info-sub">Student feedback & ratings</div>
-                </div>
-            </div>
-        </div>
-
-        <hr>
-
-        <!-- SUMMARY -->
-        <div class="review-summary">
-            <div>
-                <div class="rating-big">4.6 / 5</div>
-                <div class="star-rating">★★★★★</div>
-            </div>
-            <div style="font-size: 13px; color:#666;">
-                Based on 18 reviews
-            </div>
-        </div>
-
-        <!-- REVIEWS -->
-        <div class="review-list">
-
-            <div class="review-card">
-                <div class="review-header">
-                    <span class="reviewer-name">Juan Dela Cruz</span>
-                    <span class="review-time">2 days ago</span>
-                </div>
-                <div class="star-rating">★★★★★</div>
-                <div class="review-comment">
-                    Very good experience. The tasks are easy and the supervisor is very accommodating.
-                </div>
-            </div>
-
-            <div class="review-card">
-                <div class="review-header">
-                    <span class="reviewer-name">Maria Santos</span>
-                    <span class="review-time">1 week ago</span>
-                </div>
-                <div class="star-rating">★★★★☆</div>
-                <div class="review-comment">
-                    Good workload balance, but sometimes tasks pile up during busy days.
-                </div>
-            </div>
-
-            <div class="review-card">
-                <div class="review-header">
-                    <span class="reviewer-name">Mark Reyes</span>
-                    <span class="review-time">2 weeks ago</span>
-                </div>
-                <div class="star-rating">★★★★★</div>
-                <div class="review-comment">
-                    Learned a lot in web development tasks. Highly recommended.
-                </div>
-            </div>
-
-        </div>
-
-        <hr>
-
-        <!-- FOOTER -->
-        <div class="modal-footer">
-            <a href="#" class="secondary-btn">Close</a>
-        </div>
-
-    </div>
-</div>
 
                     <div id="cancel-confirm-1" class="modal-overlay">
                         <div class="cancel-modal-box">
@@ -467,84 +495,114 @@
                     </div>
                 </div>
 
-                <div id="edit-feedback-1" class="modal-overlay">
-    <div class="modal-card">
+                <div id="edit-feedback-2" class="modal-overlay">
+                    <div class="modal-card">
 
-        <a href="#" class="modal-close-btn">&times;</a>
+                        <a href="#" class="modal-close-btn">&times;</a>
 
-        <div class="doc-student-info">
-            <div class="doc-student-meta">
-                <div class="avatar" style="background:#6f42c1;">
-                    <i class="fas fa-comment"></i>
+                        <div class="doc-student-info">
+                            <div class="doc-student-meta">
+                                <div class="avatar" style="background:#6f42c1;">
+                                    <i class="fas fa-comment"></i>
+                                </div>
+                                <div>
+                                    <div class="info-name">IT Student Assistant Reviews</div>
+                                    <div class="info-sub">Student feedback & ratings</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <!-- SUMMARY -->
+                        <div class="review-summary">
+                            <div>
+                                <div class="rating-big">4.6 / 5</div>
+                                <div class="star-rating">★★★★★</div>
+                            </div>
+                            <div style="font-size: 13px; color:#666;">
+                                Based on 18 reviews
+                            </div>
+                        </div>
+
+                        <!-- REVIEWS -->
+                        <div class="review-list">
+
+                            <div class="review-card">
+                                <div class="review-header">
+                                    <span class="reviewer-name">Juan Dela Cruz</span>
+                                    <span class="review-time">2 days ago</span>
+                                </div>
+                                <div class="star-rating">★★★★★</div>
+                                <div class="review-comment">
+                                    Very good experience. The tasks are easy and the supervisor is very accommodating.
+                                </div>
+                            </div>
+
+                            <div class="review-card">
+                                <div class="review-header">
+                                    <span class="reviewer-name">Maria Santos</span>
+                                    <span class="review-time">1 week ago</span>
+                                </div>
+                                <div class="star-rating">★★★★☆</div>
+                                <div class="review-comment">
+                                    Good workload balance, but sometimes tasks pile up during busy days.
+                                </div>
+                            </div>
+
+                            <div class="review-card">
+                                <div class="review-header">
+                                    <span class="reviewer-name">Mark Reyes</span>
+                                    <span class="review-time">2 weeks ago</span>
+                                </div>
+                                <div class="star-rating">★★★★★</div>
+                                <div class="review-comment">
+                                    Learned a lot in web development tasks. Highly recommended.
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <hr>
+
+                        <div class="compose-section">
+                            <div class="compose-label">Leave a Review</div>
+
+                            <!-- Star Rating Picker -->
+                            <div class="star-input-row">
+                                <span>Your rating:</span>
+                                <div class="star-picker" id="starPicker">
+                                    <input type="radio" id="s5" name="rating" value="5">
+                                    <label for="s5">★</label>
+                                    <input type="radio" id="s4" name="rating" value="4">
+                                    <label for="s4">★</label>
+                                    <input type="radio" id="s3" name="rating" value="3">
+                                    <label for="s3">★</label>
+                                    <input type="radio" id="s2" name="rating" value="2">
+                                    <label for="s2">★</label>
+                                    <input type="radio" id="s1" name="rating" value="1">
+                                    <label for="s1">★</label>
+                                </div>
+                                <span id="ratingLabel" style="font-size:12px; color:#aaa;"></span>
+                            </div>
+
+                            <!-- Comment Input -->
+                            <div class="compose-row">
+                                <input class="compose-input" id="composeInput" type="text" placeholder="Write your feedback...">
+                                <button class="send-btn" onclick="submitReview()">
+                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M2 12L22 2 12 22 10 14z"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                        <hr>
+                        <!-- FOOTER -->
+                        <div class="modal-footer">
+                            <a href="#" class="secondary-btn">Close</a>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <div class="info-name">IT Student Assistant Reviews</div>
-                    <div class="info-sub">Student feedback & ratings</div>
-                </div>
+
             </div>
-        </div>
-
-        <hr>
-
-        <!-- SUMMARY -->
-        <div class="review-summary">
-            <div>
-                <div class="rating-big">4.6 / 5</div>
-                <div class="star-rating">★★★★★</div>
-            </div>
-            <div style="font-size: 13px; color:#666;">
-                Based on 18 reviews
-            </div>
-        </div>
-
-        <!-- REVIEWS -->
-        <div class="review-list">
-
-            <div class="review-card">
-                <div class="review-header">
-                    <span class="reviewer-name">Juan Dela Cruz</span>
-                    <span class="review-time">2 days ago</span>
-                </div>
-                <div class="star-rating">★★★★★</div>
-                <div class="review-comment">
-                    Very good experience. The tasks are easy and the supervisor is very accommodating.
-                </div>
-            </div>
-
-            <div class="review-card">
-                <div class="review-header">
-                    <span class="reviewer-name">Maria Santos</span>
-                    <span class="review-time">1 week ago</span>
-                </div>
-                <div class="star-rating">★★★★☆</div>
-                <div class="review-comment">
-                    Good workload balance, but sometimes tasks pile up during busy days.
-                </div>
-            </div>
-
-            <div class="review-card">
-                <div class="review-header">
-                    <span class="reviewer-name">Mark Reyes</span>
-                    <span class="review-time">2 weeks ago</span>
-                </div>
-                <div class="star-rating">★★★★★</div>
-                <div class="review-comment">
-                    Learned a lot in web development tasks. Highly recommended.
-                </div>
-            </div>
-
-        </div>
-
-        <hr>
-
-        <!-- FOOTER -->
-        <div class="modal-footer">
-            <a href="#" class="secondary-btn">Close</a>
-        </div>
-    </div>
-    </div>
-
-</div>
             <div class="application-card">
                 <div class="dot-menu-wrap">
                     <button class="dot-btn" onclick="toggleMenu(this)">⋯</button>
@@ -701,7 +759,7 @@
 
                 </div>
 
-                <div id="edit-feedback-2" class="modal-overlay">
+                <div id="edit-feedback-3" class="modal-overlay">
                     <div class="modal-card">
 
                         <a href="#" class="modal-close-btn">&times;</a>
@@ -770,9 +828,39 @@
 
                         <hr>
 
+                        <div class="compose-section">
+                            <div class="compose-label">Leave a Review</div>
+
+                            <!-- Star Rating Picker -->
+                            <div class="star-input-row">
+                                <span>Your rating:</span>
+                                <div class="star-picker" id="starPicker">
+                                    <input type="radio" id="s5" name="rating" value="5">
+                                    <label for="s5">★</label>
+                                    <input type="radio" id="s4" name="rating" value="4">
+                                    <label for="s4">★</label>
+                                    <input type="radio" id="s3" name="rating" value="3">
+                                    <label for="s3">★</label>
+                                    <input type="radio" id="s2" name="rating" value="2">
+                                    <label for="s2">★</label>
+                                    <input type="radio" id="s1" name="rating" value="1">
+                                    <label for="s1">★</label>
+                                </div>
+                                <span id="ratingLabel" style="font-size:12px; color:#aaa;"></span>
+                            </div>
+
+                            <!-- Comment Input -->
+                            <div class="compose-row">
+                                <input class="compose-input" id="composeInput" type="text" placeholder="Write your feedback...">
+                                <button class="send-btn" onclick="submitReview()">
+                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M2 12L22 2 12 22 10 14z"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                        <hr>
                         <!-- FOOTER -->
                         <div class="modal-footer">
-                            <a href="#" class="modal-btn-close">Close</a>
+                            <a href="#" class="secondary-btn">Close</a>
                         </div>
 
                     </div>
@@ -826,131 +914,132 @@
                 </div>
 
                  <div id="view-details-3" class="modal-overlay">
-        <div class="modal-card">
-            <a href="#" class="modal-close-btn">&times;</a>
-            <div class="doc-student-info">
-              <div class="doc-student-meta">
-                <div class="avatar" style="background:#b45309; border-radius:10px;">
-                  <i class="fas fa-clipboard-list" style="font-size:20px;"></i>
+                    <div class="modal-card">
+                        <a href="#" class="modal-close-btn">&times;</a>
+                        <div class="doc-student-info">
+                    <div class="doc-student-meta">
+                        <div class="avatar" style="background:#b45309; border-radius:10px;">
+                            <i class="fas fa-clipboard-list" style="font-size:20px;"></i>
+                        </div>
+                        <div class="info-meta">
+                            <div class="info-name">Registrar Assistant</div>
+                            <div class="info-sub">Finance Office &nbsp;·&nbsp; 5 Total Slots &nbsp;·&nbsp; ₱4,200 / month</div>
+                        </div>
+                    </div>
+                        <span class="status-badge none modal-status-badge">Available</span>
+                    </div>
+                    <hr>
+                    <div class="modal-body">
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="label">Location</span>
+                                <span class="value">Admin Building, Registrar Office</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Pay Rate</span>
+                                <span class="value">₱70 / hour</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Daily Hours</span>
+                                <span class="value">5 hours / day</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Availability</span>
+                                <span class="value">2 of 5 slots left</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Supervisor</span>
+                                <span class="value">Ms. Lilia Santos</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Deadline</span>
+                                <span class="value">May 10, 2026</span>
+                            </div>
+                        </div>
+                        <hr>
+                        <h4>Job Description</h4>
+                        <p style="color: #4a5568; line-height: 1.6;">Assist the Registrar's Office in managing student academic records, processing enrollment and graduation-related documents, and attending to front desk inquiries from students and faculty in a professional and timely manner.</p>
+                        <hr>
+                        <h4>Responsibilities</h4>
+                        <ul class="custom-list">
+                            <li>Assist in encoding and filing of student academic records.</li>
+                            <li>Process requests for transcripts, certifications, and enrollment forms.</li>
+                            <li>Attend to walk-in and online inquiries from students and faculty.</li>
+                            <li>Maintain confidentiality of all student records and documents.</li>
+                            <li>Support staff during enrollment periods and other peak times.</li>
+                        </ul>
+                        <hr>
+                        <h4>Requirements & Qualifications</h4>
+                        <ul class="custom-list">
+                            <li>Must be a currently enrolled student (any program, 2nd year and above).</li>
+                            <li>Minimum GPA of 2.75 or higher.</li>
+                            <li>Strong attention to detail and ability to handle confidential information.</li>
+                            <li>Basic MS Office (Word/Excel).</li>
+                        </ul>
+                        <hr>
+                        <h4>Required Skills</h4>
+                        <div class="skill-tags">
+                            <span>Microsoft Word</span>
+                            <span>Microsoft Excel</span>
+                            <span>Data Encoding</span>
+                            <span>Customer Service</span>
+                            <span>Record Management</span>
+                        </div>
+                        <hr>
+                        <h4>Benefits</h4>
+                        <ul class="custom-list">
+                            <li>₱70/hour stipend paid bi-weekly.</li>
+                            <li>Certificate of Completion from the Registrar's Office.</li>
+                            <li>Professional reference letter upon satisfactory performance.</li>
+                            <li>OJT/Practicum credit hours upon coordination with your college.</li>
+                        </ul>
+                        <hr>
+                        <h4>Supervisor</h4>
+                        <div class="info-item">
+                            <span class="label">Name</span>
+                            <span class="value">Ms. Lilia Santos</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Email</span>
+                            <span class="value">lilia.santos@wmsu.edu.ph</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Contact Number</span>
+                            <span class="value">09XX-XXX-XXXX</span> 
+                        </div>
+
+                        <hr>
+
+                        <h4>Application Deadline</h4>
+                        <p style="color: #dc2626; font-weight: 600;">Applications are accepted until further notice.</p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <a href="#" class="secondary-btn" style="text-decoration: none;">Close</a>
+                        <a href="form.html" class="primary-btn" style="color: white; border-radius: 8px;">Apply</a>
+                    </div>
                 </div>
-                <div class="info-meta">
-                  <div class="info-name">Registrar Assistant</div>
-                  <div class="info-sub">Finance Office &nbsp;·&nbsp; 5 Total Slots &nbsp;·&nbsp; ₱4,200 / month</div>
-                </div>
-              </div>
-              <span class="status-badge none modal-status-badge">Available</span>
             </div>
+            <div id="edit-feedback-4" class="modal-overlay">
+                <div class="modal-card">
+
+                    <a href="#" class="modal-close-btn">&times;</a>
+
+                    <div class="doc-student-info">
+                        <div class="doc-student-meta">
+                        <div class="avatar" style="background:#6f42c1;">
+                        <i class="fas fa-comment"></i>
+                    </div>
+                    <div>
+                        <div class="info-name">IT Student Assistant Reviews</div>
+                        <div class="info-sub">Student feedback & ratings</div>
+                    </div>
+                </div>
+            </div>
+
             <hr>
-            <div class="modal-body">
-                <div class="info-grid">
-                    <div class="info-item">
-                        <span class="label">Location</span>
-                        <span class="value">Admin Building, Registrar Office</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="label">Pay Rate</span>
-                        <span class="value">₱70 / hour</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="label">Daily Hours</span>
-                        <span class="value">5 hours / day</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="label">Availability</span>
-                        <span class="value">2 of 5 slots left</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="label">Supervisor</span>
-                        <span class="value">Ms. Lilia Santos</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="label">Deadline</span>
-                        <span class="value">May 10, 2026</span>
-                    </div>
-                </div>
-                <hr>
-                <h4>Job Description</h4>
-                <p style="color: #4a5568; line-height: 1.6;">Assist the Registrar's Office in managing student academic records, processing enrollment and graduation-related documents, and attending to front desk inquiries from students and faculty in a professional and timely manner.</p>
-                <hr>
-                <h4>Responsibilities</h4>
-                <ul class="custom-list">
-                    <li>Assist in encoding and filing of student academic records.</li>
-                    <li>Process requests for transcripts, certifications, and enrollment forms.</li>
-                    <li>Attend to walk-in and online inquiries from students and faculty.</li>
-                    <li>Maintain confidentiality of all student records and documents.</li>
-                    <li>Support staff during enrollment periods and other peak times.</li>
-                </ul>
-                <hr>
-                <h4>Requirements & Qualifications</h4>
-                <ul class="custom-list">
-                    <li>Must be a currently enrolled student (any program, 2nd year and above).</li>
-                    <li>Minimum GPA of 2.75 or higher.</li>
-                    <li>Strong attention to detail and ability to handle confidential information.</li>
-                    <li>Basic MS Office (Word/Excel).</li>
-                </ul>
-                <hr>
-                <h4>Required Skills</h4>
-                <div class="skill-tags">
-                    <span>Microsoft Word</span>
-                    <span>Microsoft Excel</span>
-                    <span>Data Encoding</span>
-                    <span>Customer Service</span>
-                    <span>Record Management</span>
-                </div>
-                <hr>
-                <h4>Benefits</h4>
-                <ul class="custom-list">
-                    <li>₱70/hour stipend paid bi-weekly.</li>
-                    <li>Certificate of Completion from the Registrar's Office.</li>
-                    <li>Professional reference letter upon satisfactory performance.</li>
-                    <li>OJT/Practicum credit hours upon coordination with your college.</li>
-                </ul>
-                <hr>
-                <h4>Supervisor</h4>
-                <div class="info-item">
-                    <span class="label">Name</span>
-                    <span class="value">Ms. Lilia Santos</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Email</span>
-                    <span class="value">lilia.santos@wmsu.edu.ph</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Contact Number</span>
-                    <span class="value">09XX-XXX-XXXX</span> 
-                </div>
 
-                <hr>
-
-                <h4>Application Deadline</h4>
-                <p style="color: #dc2626; font-weight: 600;">Applications are accepted until further notice.</p>
-            </div>
-            <div class="modal-footer">
-                <a href="#" class="secondary-btn" style="text-decoration: none;">Close</a>
-                <a href="form.html" class="primary-btn" style="color: white; border-radius: 8px;">Apply</a>
-            </div>
-        </div>
-    </div>
-    <div id="edit-feedback-4" class="modal-overlay">
-    <div class="modal-card">
-
-        <a href="#" class="modal-close-btn">&times;</a>
-
-        <div class="doc-student-info">
-            <div class="doc-student-meta">
-                <div class="avatar" style="background:#6f42c1;">
-                    <i class="fas fa-comment"></i>
-                </div>
-                <div>
-                    <div class="info-name">IT Student Assistant Reviews</div>
-                    <div class="info-sub">Student feedback & ratings</div>
-                </div>
-            </div>
-        </div>
-
-        <hr>
-
-        <!-- SUMMARY -->
+            <!-- SUMMARY -->
         <div class="review-summary">
             <div>
                 <div class="rating-big">4.6 / 5</div>
