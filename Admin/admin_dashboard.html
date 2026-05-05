@@ -3870,6 +3870,10 @@ async function apiFetch(endpoint, options = {}) {
 function startClock() {
   const el = document.getElementById('topbar-clock');
   if (!el) return;
+
+  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
   const tick = () => {
     const now = new Date();
     const h = now.getHours(), m = now.getMinutes(), s = now.getSeconds();
@@ -3877,8 +3881,17 @@ function startClock() {
     const hh = (h % 12 || 12).toString().padStart(2, '0');
     const mm = m.toString().padStart(2, '0');
     const ss = s.toString().padStart(2, '0');
-    el.textContent = `${hh}:${mm}:${ss} ${ampm}`;
+
+    const day = days[now.getDay()];
+    const date = now.getDate();
+    const month = months[now.getMonth()];
+    const year = now.getFullYear();
+
+    el.innerHTML =
+      `<span style="font-size:11px;opacity:0.75;">${day}, ${month} ${date}, ${year}</span>` +
+      `<br>${hh}:${mm}:${ss} ${ampm}`;
   };
+
   tick();
   setInterval(tick, 1000);
 }
@@ -4552,42 +4565,109 @@ document.addEventListener('DOMContentLoaded', async () => {
     </div>
 
     <!--School Year Archive Modal (view-only, from dashboard button)-->
-    <div id="sy-archive-overlay"
-        onclick="if(event.target===this)closeSYArchive()"
-        style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:1000;
-                align-items:flex-start;justify-content:center;padding-top:60px;">
+      <div id="sy-archive-overlay"
+          onclick="if(event.target===this)closeSYArchive()"
+          style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:1000;
+                  align-items:flex-start;justify-content:center;padding-top:60px;">
 
-      <div style="background:#fff;border-radius:14px;width:500px;max-width:95vw;
-                  box-shadow:0 8px 40px rgba(0,0,0,0.18);overflow:hidden;
-                  max-height:85vh;display:flex;flex-direction:column;">
+        <div style="background:#fff;border-radius:14px;width:560px;max-width:95vw;
+                    box-shadow:0 8px 40px rgba(0,0,0,0.18);overflow:hidden;
+                    max-height:88vh;display:flex;flex-direction:column;">
 
-        <div style="padding:18px 22px 14px;border-bottom:1px solid #f0f0f0;flex-shrink:0;
-                    display:flex;align-items:flex-start;justify-content:space-between;">
-          <div>
-            <div style="font-size:16px;font-weight:700;color:#1a1a1a;
-                        font-family:'Playfair Display',serif;">School Year Archives</div>
-            <div style="font-size:12px;color:#888;margin-top:3px;">
-              View all registered school years and their current status
+          <!-- Header -->
+          <div style="padding:18px 22px 14px;border-bottom:1px solid #f0f0f0;flex-shrink:0;
+                      display:flex;align-items:flex-start;justify-content:space-between;">
+            <div>
+              <div style="font-size:16px;font-weight:700;color:#1a1a1a;
+                          font-family:'Playfair Display',serif;">School Year Archives (View Only)</div>
+              <div style="font-size:12px;color:#888;margin-top:3px;">
+                Browse past school years and semesters — view only, no changes will be made
+              </div>
             </div>
+            <button type="button" onclick="closeSYArchive()"
+              style="background:#f5f5f5;border:none;width:32px;height:32px;border-radius:8px;
+                    cursor:pointer;font-size:18px;color:#666;line-height:1;">&times;</button>
           </div>
-          <button type="button" onclick="closeSYArchive()"
-            style="background:#f5f5f5;border:none;width:32px;height:32px;border-radius:8px;
-                  cursor:pointer;font-size:18px;color:#666;line-height:1;">&times;</button>
-        </div>
 
-        <div style="overflow-y:auto;padding:22px;flex:1;">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;
-                      letter-spacing:.08em;color:#888;margin-bottom:10px;">Registered School Years</div>
-          <div id="sym-archive-list"
-              style="border:1px solid #f0f0f0;border-radius:10px;overflow:hidden;"></div>
-        </div>
+          <!-- Scrollable body -->
+          <div style="overflow-y:auto;padding:22px;flex:1;">
 
-        <div style="padding:14px 22px;border-top:1px solid #f0f0f0;
-                    display:flex;justify-content:flex-end;flex-shrink:0;">
-          <button type="button" onclick="closeSYArchive()" class="btn btn-outline">Close</button>
+            <!-- Year tabs -->
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;
+                        letter-spacing:.08em;color:#888;margin-bottom:8px;">Select School Year</div>
+            <div id="arch-year-tabs"
+                style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));
+                        gap:8px;margin-bottom:20px;"></div>
+
+            <!-- Semester buttons -->
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;
+                        letter-spacing:.08em;color:#888;margin-bottom:8px;">Select Semester</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:20px;">
+
+              <div class="arch-sem-btn" data-sem="1st Semester" data-short="1st Sem"
+                  onclick="arch_pickSem(this)"
+                  style="border:1.5px solid #e5e7eb;border-radius:9px;padding:12px 8px;
+                          text-align:center;cursor:pointer;background:#f9f9f9;transition:all .15s;">
+                <div style="font-size:18px;font-weight:800;color:#555;">1</div>
+                <div style="font-size:12px;font-weight:600;color:#555;margin-top:3px;">1st Semester</div>
+                <div style="font-size:10px;color:#aaa;margin-top:2px;">Aug – Dec</div>
+              </div>
+
+              <div class="arch-sem-btn" data-sem="2nd Semester" data-short="2nd Sem"
+                  onclick="arch_pickSem(this)"
+                  style="border:1.5px solid #e5e7eb;border-radius:9px;padding:12px 8px;
+                          text-align:center;cursor:pointer;background:#f9f9f9;transition:all .15s;">
+                <div style="font-size:18px;font-weight:800;color:#555;">2</div>
+                <div style="font-size:12px;font-weight:600;color:#555;margin-top:3px;">2nd Semester</div>
+                <div style="font-size:10px;color:#aaa;margin-top:2px;">Jan – May</div>
+              </div>
+
+              <div class="arch-sem-btn" data-sem="Summer" data-short="Summer"
+                  onclick="arch_pickSem(this)"
+                  style="border:1.5px solid #e5e7eb;border-radius:9px;padding:12px 8px;
+                          text-align:center;cursor:pointer;background:#f9f9f9;transition:all .15s;">
+                <div style="font-size:18px;font-weight:800;color:#555;">☀</div>
+                <div style="font-size:12px;font-weight:600;color:#555;margin-top:3px;">Summer</div>
+                <div style="font-size:10px;color:#aaa;margin-top:2px;">May – Jun</div>
+              </div>
+
+            </div>
+
+            <!-- Currently viewing banner -->
+            <div style="background:#f0f4ff;border:1px solid #c7d7fe;border-radius:9px;
+                        padding:12px 16px;display:flex;gap:10px;align-items:center;margin-bottom:16px;">
+              <i class="fas fa-eye" style="color:#4361ee;"></i>
+              <div>
+                <div style="font-size:11px;color:#4361ee;">Currently viewing</div>
+                <div style="font-size:14px;font-weight:700;color:#1a1a1a;" id="arch-preview-label">
+                  —
+                </div>
+              </div>
+              <span style="margin-left:auto;font-size:10px;padding:3px 10px;border-radius:100px;
+                          font-weight:600;background:#fef9ec;color:#92400e;border:1px solid #fcd34d;">
+                View Only
+              </span>
+            </div>
+
+            <!-- Archive data panel -->
+            <div id="arch-data-panel"
+                style="background:#fff;border:1.5px solid #e5e7eb;border-radius:12px;padding:20px;">
+              <div style="text-align:center;padding:24px;color:#aaa;">
+                <i class="fas fa-hand-pointer" style="font-size:22px;margin-bottom:10px;display:block;"></i>
+                <div style="font-size:13px;">Select a school year and semester above to view its data.</div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Footer -->
+          <div style="padding:14px 22px;border-top:1px solid #f0f0f0;
+                      display:flex;justify-content:flex-end;flex-shrink:0;">
+            <button type="button" onclick="closeSYArchive()" class="btn btn-outline">Close</button>
+          </div>
+
         </div>
       </div>
-    </div>
 
     <!-- ============ USER MANAGEMENT — VIEW MODAL (STUDENT) ============ -->
 <div id="view-user-student" class="modal-overlay">
@@ -5091,6 +5171,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   </div>
 </div>
     <script>
+      
     (function () {
       var SYM = {
         schoolYears: [
@@ -5114,6 +5195,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       window.sym_pickSem     = pickSem;
       window.sym_pickSY      = pickSY;
       window.sym_applySwitch = applySwitch;
+      window.arch_pickSem    = arch_pickSem;
+      window.arch_pickYear   = arch_pickYear;
 
       function openModal() {
         SYM.pendingSY    = SYM.activeSY;
@@ -5127,33 +5210,185 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (ov) ov.style.display = 'flex';
       }
 
-      function openArchive() {
-    var el = document.getElementById('sym-archive-list');
-    if (el) {
-      el.innerHTML = SYM.schoolYears.map(function (sy) {
-        return '<div style="display:flex;align-items:center;gap:10px;padding:12px 14px;'
-          + 'border-bottom:1px solid #f5f5f5;">'
-          + '<div style="width:10px;height:10px;border-radius:50%;flex-shrink:0;background:'
-          + (sy.active ? '#22c55e' : '#d1d5db') + '"></div>'
-          + '<div style="flex:1;">'
-          + '<div style="font-size:13px;font-weight:600;color:#1a1a1a;">' + sy.label + '</div>'
-          + '<div style="font-size:11px;color:#888;margin-top:2px;">'
-          + (sy.active ? 'Currently active' : 'Archived') + '</div>'
-          + '</div>'
-          + '<span style="font-size:10px;padding:2px 8px;border-radius:100px;font-weight:600;'
-          + (sy.active ? 'background:#dcfce7;color:#15803d' : 'background:#f5f5f5;color:#888')
-          + '">' + (sy.active ? 'Active' : 'Archived') + '</span>'
-          + '</div>';
-      }).join('');
-    }
-    var ov = document.getElementById('sy-archive-overlay');
-    if (ov) ov.style.display = 'flex';
-  }
+      var ARCH = {
+        viewingSY:    null,
+        viewingSem:   null,
+        viewingShort: null
+      };
 
-  function closeArchive() {
-    var ov = document.getElementById('sy-archive-overlay');
-    if (ov) ov.style.display = 'none';
-  }
+      var archiveData = {
+        '2023-2024': {
+          '1st Semester': { students:198, activeSA:74, depts:15, applications:52, approvalRate:'71%', avgGwa:'1.92' },
+          '2nd Semester': { students:204, activeSA:79, depts:15, applications:58, approvalRate:'74%', avgGwa:'1.89' },
+          'Summer':       { students:61,  activeSA:18, depts:10, applications:14, approvalRate:'64%', avgGwa:'1.95' }
+        },
+        '2024-2025': {
+          '1st Semester': { students:221, activeSA:82, depts:16, applications:60, approvalRate:'73%', avgGwa:'1.91' },
+          '2nd Semester': { students:235, activeSA:88, depts:17, applications:65, approvalRate:'75%', avgGwa:'1.88' },
+          'Summer':       { students:70,  activeSA:22, depts:11, applications:18, approvalRate:'67%', avgGwa:'1.93' }
+        },
+        '2025-2026': {
+          '1st Semester': { students:240, activeSA:90, depts:17, applications:62, approvalRate:'74%', avgGwa:'1.90' },
+          '2nd Semester': { students:248, activeSA:94, depts:18, applications:68, approvalRate:'76%', avgGwa:'1.87' },
+          'Summer':       null
+        }
+      };
+
+      function openArchive() {
+        ARCH.viewingSY    = SYM.activeSY;
+        ARCH.viewingSem   = SYM.activeSem;
+        ARCH.viewingShort = SYM.activeShort;
+        arch_renderYearTabs();
+        arch_highlightSem(ARCH.viewingSem);
+        arch_updatePreview();
+        arch_loadData();
+        var ov = document.getElementById('sy-archive-overlay');
+        if (ov) ov.style.display = 'flex';
+      }
+
+      function closeArchive() {
+        var ov = document.getElementById('sy-archive-overlay');
+        if (ov) ov.style.display = 'none';
+      }
+
+      function arch_renderYearTabs() {
+        var el = document.getElementById('arch-year-tabs');
+        if (!el) return;
+        el.innerHTML = SYM.schoolYears.map(function (sy) {
+          var sel = ARCH.viewingSY === sy.id;
+          return '<div onclick="arch_pickYear(this)" data-sy="' + sy.id + '"'
+            + ' style="border:1.5px solid ' + (sel ? '#4361ee' : '#e5e7eb') + ';'
+            + 'border-radius:9px;padding:9px 10px;text-align:center;cursor:pointer;'
+            + 'font-size:12px;font-weight:600;transition:all .15s;'
+            + 'color:' + (sel ? '#4361ee' : '#555') + ';'
+            + 'background:' + (sel ? '#f0f4ff' : '#f9f9f9') + ';">'
+            + sy.label
+            + (sy.active
+                ? '<div style="font-size:9px;color:#22c55e;font-weight:700;margin-top:3px;">\u25cf Active</div>'
+                : '<div style="font-size:9px;color:#aaa;margin-top:3px;">Archived</div>')
+            + '</div>';
+        }).join('');
+      }
+
+      function arch_highlightSem(activeSem) {
+        document.querySelectorAll('.arch-sem-btn').forEach(function (btn) {
+          var on             = btn.dataset.sem === activeSem;
+          var isGlobalActive = btn.dataset.sem === SYM.activeSem && ARCH.viewingSY === SYM.activeSY;
+          btn.style.border     = '1.5px solid ' + (on ? '#4361ee' : '#e5e7eb');
+          btn.style.background = on ? '#f0f4ff' : '#f9f9f9';
+          btn.querySelectorAll('div:not(.arch-active-sem-badge)').forEach(function (d, i) {
+            d.style.color   = on ? '#4361ee' : (i === 2 ? '#aaa' : '#555');
+            d.style.opacity = (on && i === 2) ? '0.7' : '1';
+          });
+          var badge = btn.querySelector('.arch-active-sem-badge');
+          if (isGlobalActive) {
+            if (!badge) {
+              badge = document.createElement('div');
+              badge.className = 'arch-active-sem-badge';
+              badge.style.cssText = 'font-size:9px;font-weight:700;margin-top:4px;color:#15803d;';
+              badge.textContent = '\u25cf Active';
+              btn.appendChild(badge);
+            }
+          } else {
+            if (badge) badge.remove();
+          }
+        });
+      }
+
+      function arch_updatePreview() {
+        var el = document.getElementById('arch-preview-label');
+        if (!el || !ARCH.viewingSY) return;
+        var p = ARCH.viewingSY.split('-');
+        el.textContent = 'AY ' + p[0] + '\u2013' + p[1]
+          + (ARCH.viewingSem ? ' \u00b7 ' + ARCH.viewingSem : '');
+      }
+
+      function arch_pickYear(el) {
+        ARCH.viewingSY = el.dataset.sy;
+        arch_renderYearTabs();
+        arch_updatePreview();
+        arch_highlightSem(ARCH.viewingSem);
+        arch_loadData();
+      }
+
+      function arch_pickSem(el) {
+        ARCH.viewingSem   = el.dataset.sem;
+        ARCH.viewingShort = el.dataset.short;
+        arch_highlightSem(ARCH.viewingSem);
+        arch_updatePreview();
+        arch_loadData();
+      }
+
+      function arch_loadData() {
+        var panel = document.getElementById('arch-data-panel');
+        if (!panel) return;
+
+        if (!ARCH.viewingSY || !ARCH.viewingSem) {
+          panel.innerHTML = '<div style="text-align:center;padding:24px;color:#aaa;font-size:13px;">'
+            + 'Select a school year and semester above to view data.</div>';
+          return;
+        }
+
+        var yearData = archiveData[ARCH.viewingSY] || {};
+        var semData  = Object.prototype.hasOwnProperty.call(yearData, ARCH.viewingSem)
+          ? yearData[ARCH.viewingSem]
+          : undefined;
+        var p        = ARCH.viewingSY.split('-');
+        var syLabel  = 'AY ' + p[0] + '\u2013' + p[1];
+        var isActive = SYM.schoolYears.find(function (s) { return s.id === ARCH.viewingSY; });
+        var activeFlag = isActive && isActive.active;
+
+        if (semData == null) {
+          panel.innerHTML = ''
+            + '<div style="text-align:center;padding:24px;color:#aaa;">'
+            + '<i class="fas fa-clock" style="font-size:22px;margin-bottom:10px;display:block;"></i>'
+            + '<div style="font-size:13px;">No data available for <strong>'
+            + syLabel + ' \u00b7 ' + ARCH.viewingSem + '</strong> yet.</div>'
+            + '</div>';
+          return;
+        }
+
+        panel.innerHTML = ''
+          + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">'
+          +   '<div style="font-size:14px;font-weight:700;color:#1a1a1a;">'
+          +     syLabel + ' \u00b7 ' + ARCH.viewingSem
+          +   '</div>'
+          +   '<span style="font-size:10px;padding:3px 10px;border-radius:100px;font-weight:600;'
+          +     (activeFlag ? 'background:#dcfce7;color:#15803d;' : 'background:#f5f5f5;color:#888;') + '">'
+          +     (activeFlag ? 'Currently Active' : 'Archived')
+          +   '</span>'
+          + '</div>'
+          + '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px;">'
+          +   '<div style="background:#fce4e8;border-radius:10px;padding:12px;text-align:center;">'
+          +     '<div style="font-size:22px;font-weight:800;color:#7a0020;">' + semData.students + '</div>'
+          +     '<div style="font-size:11px;color:#555;margin-top:3px;">Students Registered</div>'
+          +   '</div>'
+          +   '<div style="background:#e8f5e9;border-radius:10px;padding:12px;text-align:center;">'
+          +     '<div style="font-size:22px;font-weight:800;color:#2e7d32;">' + semData.activeSA + '</div>'
+          +     '<div style="font-size:11px;color:#555;margin-top:3px;">Active Student Assistants</div>'
+          +   '</div>'
+          +   '<div style="background:#e8f0fe;border-radius:10px;padding:12px;text-align:center;">'
+          +     '<div style="font-size:22px;font-weight:800;color:#1a3a8f;">' + semData.depts + '</div>'
+          +     '<div style="font-size:11px;color:#555;margin-top:3px;">Departments</div>'
+          +   '</div>'
+          +   '<div style="background:#fef9ec;border-radius:10px;padding:12px;text-align:center;">'
+          +     '<div style="font-size:22px;font-weight:800;color:#92400e;">' + semData.applications + '</div>'
+          +     '<div style="font-size:11px;color:#555;margin-top:3px;">Total Applications</div>'
+          +   '</div>'
+          +   '<div style="background:#f0f4ff;border-radius:10px;padding:12px;text-align:center;">'
+          +     '<div style="font-size:22px;font-weight:800;color:#4361ee;">' + semData.approvalRate + '</div>'
+          +     '<div style="font-size:11px;color:#555;margin-top:3px;">Approval Rate</div>'
+          +   '</div>'
+          +   '<div style="background:#fffbeb;border-radius:10px;padding:12px;text-align:center;">'
+          +     '<div style="font-size:22px;font-weight:800;color:#b45309;">' + semData.avgGwa + '</div>'
+          +     '<div style="font-size:11px;color:#555;margin-top:3px;">Avg GWA of SAs</div>'
+          +   '</div>'
+          + '</div>'
+          + '<div style="font-size:11px;color:#aaa;text-align:center;">'
+          +   '<i class="fas fa-lock" style="margin-right:4px;"></i>'
+          +   'Read-only snapshot \u2014 reflects end-of-period records.'
+          + '</div>';
+      }
 
       function closeModal() {
         var ov = document.getElementById('sy-manager-overlay');
@@ -5184,14 +5419,21 @@ document.addEventListener('DOMContentLoaded', async () => {
         var el = document.getElementById('sym-switch-grid');
         if (!el) return;
         el.innerHTML = SYM.schoolYears.map(function (sy) {
-          var sel = SYM.pendingSY === sy.id;
+          var sel      = SYM.pendingSY === sy.id;
+          var isActive = sy.id === SYM.activeSY;
+          var border   = sel ? 'var(--maroon,#7a0020)' : '#e5e7eb';
+          var bg       = sel ? '#fce4e8' : '#f9f9f9';
+          var color    = sel ? 'var(--maroon,#7a0020)' : '#555';
           return '<div onclick="sym_pickSY(this)" data-sy="' + sy.id + '" '
-            + 'style="border:1.5px solid ' + (sel ? 'var(--maroon,#7a0020)' : '#e5e7eb') + ';'
+            + 'style="border:1.5px solid ' + border + ';'
             + 'border-radius:9px;padding:9px 10px;text-align:center;cursor:pointer;'
             + 'font-size:12px;font-weight:600;transition:all .15s;'
-            + 'color:' + (sel ? 'var(--maroon,#7a0020)' : '#555') + ';'
-            + 'background:' + (sel ? '#fce4e8' : '#f9f9f9') + '">'
-            + sy.label + '</div>';
+            + 'color:' + color + ';background:' + bg + ';">'
+            + sy.label
+            + (isActive
+                ? '<div style="font-size:9px;color:#15803d;font-weight:700;margin-top:3px;">\u25cf Active</div>'
+                : '<div style="font-size:9px;color:#aaa;margin-top:3px;">Archived</div>')
+            + '</div>';
         }).join('');
       }
 
@@ -5199,6 +5441,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         SYM.pendingSY = el.dataset.sy;
         renderSwitchGrid();
         updatePreview();
+        highlightSem(SYM.pendingSem);
       }
 
       function pickSem(el) {
@@ -5210,13 +5453,26 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       function highlightSem(active) {
         document.querySelectorAll('.sym-sem-opt').forEach(function (o) {
-          var on = o.dataset.sem === active;
-          o.style.border     = on ? '1.5px solid #1a3a8f' : '1.5px solid #e5e7eb';
+          var on          = o.dataset.sem === active;
+          var isActiveSem = o.dataset.sem === SYM.activeSem && SYM.pendingSY === SYM.activeSY;
+          o.style.border     = '1.5px solid ' + (on ? '#1a3a8f' : '#e5e7eb');
           o.style.background = on ? '#e8f0fe' : '#f9f9f9';
-          o.querySelectorAll('div').forEach(function (d, i) {
+          o.querySelectorAll('div:not(.sym-active-sem-badge)').forEach(function (d, i) {
             d.style.color   = on ? '#1a3a8f' : (i === 2 ? '#aaa' : '#555');
             d.style.opacity = (on && i === 2) ? '0.7' : '1';
           });
+          var badge = o.querySelector('.sym-active-sem-badge');
+          if (isActiveSem) {
+            if (!badge) {
+              badge = document.createElement('div');
+              badge.className = 'sym-active-sem-badge';
+              badge.style.cssText = 'font-size:9px;font-weight:700;margin-top:4px;color:#15803d;';
+              badge.textContent = '\u25cf Active';
+              o.appendChild(badge);
+            }
+          } else {
+            if (badge) badge.remove();
+          }
         });
       }
 
