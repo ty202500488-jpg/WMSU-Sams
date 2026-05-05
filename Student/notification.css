@@ -511,30 +511,18 @@ hr {
 
 /* Small Phones */
 @media (max-width: 768px) {
-    .top-nav {
-        height: auto;
-        padding: 10px 15px;
-        flex-wrap: wrap;
-    }
-    .top-links {
-        order: 3;
-        width: 100%;
-        justify-content: space-around;
-        padding-top: 10px;
-        gap: 0;
-    }
-    .top-links a {
-        font-size: 0.75rem;
-    }
-    .notif-card {
-        padding: 12px;
-    }
-    .three-dots {
-        opacity: 1; /* Always show menu on touch */
-    }
+     .top-nav { height: auto; padding: 10px 15px; flex-wrap: wrap; }
+    .top-links { order: 3; width: 100%; justify-content: center; gap: 0; padding-top: 10px; }
+    .top-links a { font-size: 0.75rem; }
 }
 
 @media (max-width: 480px) {
+    .top-links a span { display: none; }
+    .top-links a {
+        padding: 6px;
+    }
+
+    .top-links a i { font-size: 18px; }
     .top-logo { font-size: 1rem; }
     .notif-icon { width: 40px; height: 40px; }
     .notif-content p { font-size: 0.85rem; }

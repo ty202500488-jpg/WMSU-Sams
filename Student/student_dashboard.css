@@ -1075,43 +1075,11 @@ hr {
 }
 .msg-send-btn:hover { background: var(--maroon-dark); }
 .msg-send-btn:active { transform: scale(0.92); }
+
 @media (max-width: 480px) {
     .msg-panel { right: 10px; left: 10px; width: auto; bottom: 80px; }
 }
 /* ===== RESPONSIVE NAV ===== */
-/* Hide span text on small screens */
-@media (max-width: 768px) {
-    .top-nav {
-        padding: 0 15px;
-        height: 56px;
-    }
-
-    .top-links {
-        position: static;
-        transform: none;
-        gap: 4px;
-    }
-
-    .top-links a {
-        flex-direction: column;
-        gap: 2px;
-        font-size: 10px;
-        padding: 4px 8px;
-    }
-
-    .top-links a span {
-        display: block;
-        font-size: 10px;
-    }
-
-    .top-links a i {
-        font-size: 16px;
-    }
-
-    .top-logo {
-        font-size: 1rem;
-    }
-}
 
 @media (max-width: 480px) {
     .top-links a span { display: none; }
