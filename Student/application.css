@@ -702,9 +702,9 @@ hr {
 
 /* Small Tablets / Large Phones */
 @media screen and (max-width: 768px) {
-    .top-nav { height: auto; padding: 10px 15px; flex-wrap: wrap; }
-    .top-links { order: 3; width: 100%; justify-content: space-around; gap: 0; padding-top: 10px; }
-    .top-links a { font-size: 0.8rem; }
+     .top-nav { height: auto; padding: 10px 15px; flex-wrap: wrap; }
+    .top-links { order: 3; width: 100%; justify-content: center; gap: 0; padding-top: 10px; }
+    .top-links a { font-size: 0.75rem; }
     .sidebar-item { font-size: 14px; padding: 8px 12px; gap: 10px; }
     .app-card { margin-bottom: 15px; }
     .card-body { padding: 0 12px 12px; }

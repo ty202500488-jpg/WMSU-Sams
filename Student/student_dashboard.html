@@ -63,11 +63,6 @@
         <main class="dashboard-feed">
 
             <section class="feed-section">
-                <div class="section-header-flex">
-                    <h2 class="section-title">Hours & Earnings</h2>
-                    <a href="Referral.html" style="text-decoration: none;" class="primary-btn log-btn"><i class="fas fa-qrcode"></i> Scan QR</a>
-                </div>
-
                 <div class="earnings-overview-card">
                     <div class="main-balance">
                         <span class="label">Accumulated Earnings</span>
@@ -95,6 +90,19 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="qr-scan-card">
+                    <div class="qr-scan-info">
+                        <div class="qr-icon-wrap"><i class="fas fa-qrcode"></i></div>
+                        <div>
+                            <strong>Scan to Log Attendance</strong>
+                            <span>Use your camera to scan the department QR code</span>
+                        </div>
+                    </div>
+                    <a href="referral.html" class="qr-scan-btn" style="text-decoration:none;">
+                        <i class="fas fa-qrcode"></i> Scan QR Code
+                    </a>
                 </div>
 
             </section>
@@ -152,7 +160,8 @@
                 </div>
 
                 <!--LIBRARY ASSISTANT-->
-                <article class="application-card">
+
+                <article class="main-card assignment">
                     <div class="application-header">
                         <div class="suggestion-group"> 
                             <h3>Library Assistant</h3>
@@ -428,14 +437,146 @@
     </div>
 
     <div id="cancel-confirm-1" class="modal-overlay">
-                        <div class="modal-box">
-                            <h3>Are you sure?</h3>
-                            <p>Do you really want to cancel this application?</p>
-                            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
-                                <a href="#" class="primary-btn" style="text-decoration: none; background: #9f0f0f;">Cancel</a>
-                                <a href="#" class="secondary-btn" style="text-decoration: none;">No</a>
-                            </div>
-                        </div>
-                    </div>
+        <div class="modal-box">
+            <h3>Are you sure?</h3>
+            <p>Do you really want to cancel this application?</p>
+            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
+                <a href="#" class="primary-btn" style="text-decoration: none; background: #9f0f0f;">Cancel</a>
+                <a href="#" class="secondary-btn" style="text-decoration: none;">No</a>
+            </div>
+        </div>
+    </div>
+    <button class="float-msg-btn" id="floatMsgBtn" onclick="toggleMsg()" title="Message Department">
+    <i class="fas fa-comment-dots"></i>
+    <span class="float-msg-badge" id="msgBadge">1</span>
+</button>
+
+<div class="msg-panel" id="msgPanel">
+    <div class="msg-panel-header">
+        <div class="dept-avatar"><i class="fas fa-building"></i></div>
+        <div style="flex-grow:1">
+            <div class="dept-name" id="msgDeptName">IT Office</div>
+            <div class="dept-status">Online</div>
+        </div>
+        <button class="msg-panel-close" onclick="toggleMsg()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="msg-dept-select">
+        <select id="deptSelect" onchange="switchDept(this.value)">
+            <option value="IT Office">IT Office</option>
+            <option value="Library">Library</option>
+            <option value="Registrar">Registrar</option>
+            <option value="Support Team">Support Team</option>
+        </select>
+    </div>
+    <div class="msg-body" id="msgBody"></div>
+    <div class="msg-footer">
+        <input type="text" id="msgInput" placeholder="Type a message…" onkeydown="if(event.key==='Enter')sendMsg()">
+        <button class="msg-send-btn" onclick="sendMsg()"><i class="fas fa-paper-plane"></i></button>
+    </div>
+</div>
+    
+<script>
+const conversations = {
+    'IT Office': [
+        { from: 'dept', text: 'Hello Juan! Your May 1 attendance has been approved.', time: '10:02 AM' },
+        { from: 'user', text: 'Thank you, Ms. Rodriguez!', time: '10:05 AM' }
+    ],
+    'Library': [],
+    'Registrar': [],
+    'Support Team': [
+        { from: 'dept', text: 'Hi! How can we help you today?', time: '9:00 AM' }
+    ]
+};
+
+let currentDept = 'IT Office';
+let panelOpen = false;
+
+function formatTime() {
+    const now = new Date();
+    let h = now.getHours(), m = now.getMinutes();
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    h = h % 12 || 12;
+    return h + ':' + String(m).padStart(2,'0') + ' ' + ampm;
+}
+
+function renderConversation(dept) {
+    const body = document.getElementById('msgBody');
+    const msgs = conversations[dept] || [];
+    body.innerHTML = '';
+    if (!msgs.length) {
+        body.innerHTML = '<div style="text-align:center;color:#aaa;font-size:13px;padding:24px 0">No messages yet.</div>';
+        return;
+    }
+    msgs.forEach(function(msg) {
+        const div = document.createElement('div');
+        div.className = 'msg-bubble ' + (msg.from === 'user' ? 'sent' : 'received');
+        div.innerHTML = msg.text + '<div class="msg-time">' + msg.time + '</div>';
+        body.appendChild(div);
+    });
+    body.scrollTop = body.scrollHeight;
+}
+
+function switchDept(dept) {
+    currentDept = dept;
+    document.getElementById('msgDeptName').textContent = dept;
+    renderConversation(dept);
+}
+
+function sendMsg() {
+    const input = document.getElementById('msgInput');
+    const text = input.value.trim();
+    if (!text) return;
+    if (!conversations[currentDept]) conversations[currentDept] = [];
+    conversations[currentDept].push({ from: 'user', text: text, time: formatTime() });
+    input.value = '';
+    renderConversation(currentDept);
+
+    setTimeout(function() {
+        const replies = [
+            "Thanks! We'll get back to you shortly.",
+            "Got it! Our staff will check this soon.",
+            "Noted, Juan. We'll respond as soon as possible."
+        ];
+        conversations[currentDept].push({
+            from: 'dept',
+            text: replies[Math.floor(Math.random() * replies.length)],
+            time: formatTime()
+        });
+        renderConversation(currentDept);
+        if (!panelOpen) {
+            var badge = document.getElementById('msgBadge');
+            badge.textContent = (parseInt(badge.textContent) || 0) + 1;
+        }
+    }, 1200);
+}
+
+function toggleMsg() {
+    panelOpen = !panelOpen;
+    document.getElementById('msgPanel').classList.toggle('open', panelOpen);
+    if (panelOpen) {
+        document.getElementById('msgBadge').textContent = '1';
+        renderConversation(currentDept);
+        setTimeout(function() { document.getElementById('msgInput').focus(); }, 300);
+    }
+}
+
+function openDeptMessage(dept) {
+    var select = document.getElementById('deptSelect');
+    for (var i = 0; i < select.options.length; i++) {
+        if (select.options[i].value === dept) { select.selectedIndex = i; break; }
+    }
+    switchDept(dept);
+    if (!panelOpen) toggleMsg();
+}
+
+document.addEventListener('click', function(e) {
+    var panel = document.getElementById('msgPanel');
+    var btn = document.getElementById('floatMsgBtn');
+    if (panelOpen && panel && btn && !panel.contains(e.target) && !btn.contains(e.target)) {
+        panelOpen = false;
+        panel.classList.remove('open');
+    }
+});
+</script>
 </body>
 </html>
