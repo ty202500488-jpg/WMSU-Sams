@@ -1236,8 +1236,86 @@
   <div class="alert-banner info">
     Payroll is strictly based on verified attendance and must be claimed physically at the cashier.
   </div>
+  <div id="payroll-before">
 
-  <div id="payrollContainer"></div>
+  <!-- DEPARTMENT 1 -->
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header">
+      <h3>Library Department</h3>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Student</th>
+            <th>Hours</th>
+            <th>Rate</th> <!-- ✅ ADDED -->
+            <th>Balance</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Maria Santos</td>
+            <td>9</td>
+            <td>₱50/hr</td>
+            <td>₱0</td>
+            <td class="status pending">Pending</td>
+          </tr>
+          <tr>
+            <td>Liza Torres</td>
+            <td>7</td>
+            <td>₱50/hr</td>
+            <td>₱0</td>
+            <td class="status pending">Pending</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- DEPARTMENT 2 -->
+  <div class="card">
+    <div class="card-header">
+      <h3>Finance Department</h3>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Student</th>
+            <th>Hours</th>
+            <th>Rate</th> <!-- ✅ ADDED -->
+            <th>Balance</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Juan dela Cruz</td>
+            <td>6</td>
+            <td>₱50/hr</td>
+            <td>₱0</td>
+            <td class="status pending">Pending</td>
+          </tr>
+          <tr>
+            <td>Pedro Valdez</td>
+            <td>5</td>
+            <td>₱50/hr</td>
+            <td>₱0</td>
+            <td class="status pending">Pending</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+  <div id="payrollContainer" style="display:none;"></div>
+
+  
 
 </section>
 
@@ -1284,6 +1362,9 @@ function populateDepartments() {
 // ACTIONS
 // ==========================
 function generatePayroll() {
+  document.getElementById("payroll-before").style.display = "none";
+  document.getElementById("payrollContainer").style.display = "block";
+
   const period = document.getElementById("payroll-period").value;
   const range = period === "may1"
     ? ["2026-05-01", "2026-05-15"]
@@ -1385,12 +1466,13 @@ function renderPayroll() {
         <div class="table-responsive">
           <table class="table" style="width: 100%; border-collapse: collapse;">
             <thead>
-              <tr style="border-bottom: 1px solid #ddd; text-align: left;">
-                <th>Name</th>
-                <th>Hours</th>
-                <th>Total</th>
-                <th>Status</th>
-                <th>Action</th>
+              <tr style="border-bottom: 1px solid #ddd; text-align: left; ">
+                <th style=" background: #F7F0F2 ; color: #7B0D1E;">Name</th>
+                <th style=" background: #F7F0F2 ; color: #7B0D1E;">Hours</th>
+                <th style=" background: #F7F0F2 ; color: #7B0D1E;">Rate</th>
+                <th style=" background: #F7F0F2 ; color: #7B0D1E;">Total</th>
+                <th style=" background: #F7F0F2 ; color: #7B0D1E;">Status</th>
+                <th style=" background: #F7F0F2 ; color: #7B0D1E;">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -1398,6 +1480,7 @@ function renderPayroll() {
                 <tr style="border-bottom: 1px solid #eee;">
                   <td><strong>${s.name}</strong></td>
                   <td>${s.hours} ${s.hours === MAX_HOURS_PER_CUTOFF ? '<span style="color:#d9534f; font-size:11px;">(capped)</span>' : ''}</td>
+                  <td>₱${s.rate.toFixed(2)}</td>
                   <td>₱${s.total.toFixed(2)}</td>
                   <td>
                     <span class="badge badge-${s.status}">${s.status.toUpperCase()}</span>
