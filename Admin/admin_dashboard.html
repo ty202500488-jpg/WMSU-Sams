@@ -477,7 +477,7 @@
               <td><span class="badge active">Active</span></td>
               <td>
                 <div class="action-btns">
-                  <button class="btn-icon view" title="View"><i class="fas fa-eye"></i></button>
+                  <button class="btn-icon view" onclick="location.href='#view-user-student'"><i class="fas fa-eye"></i></button>
                   <button class="btn btn-sm" style="background:#fef3c7;color:#92400e;border:1px solid #fcd34d;"
                     onclick="resetPassword('Maria Santos')">
                     <i class="fas fa-key"></i> Reset
@@ -506,7 +506,7 @@
               <td><span class="badge active">Active</span></td>
               <td>
                 <div class="action-btns">
-                  <button class="btn-icon view" title="View"><i class="fas fa-eye"></i></button>
+                  <button class="btn-icon view" onclick="location.href='#view-user-dept'"><i class="fas fa-eye"></i></button>
                   <button class="btn btn-sm" style="background:#fef3c7;color:#92400e;border:1px solid #fcd34d;"
                     onclick="resetPassword('Alma Fernandez')">
                     <i class="fas fa-key"></i> Reset
@@ -1236,8 +1236,286 @@
   <div class="alert-banner info">
     Payroll is strictly based on verified attendance and must be claimed physically at the cashier.
   </div>
+<div class="payroll-batch-card">
 
-  <div id="payrollContainer"></div>
+  <!-- Batch Header -->
+  <div class="batch-head">
+    <div>
+      <div class="batch-dept-name">University Library</div>
+      <div class="batch-dept-meta">
+        2nd Semester &nbsp;·&nbsp; AY 2025–2026 &nbsp;·&nbsp;
+        2 student assistants &nbsp;·&nbsp; Rate: ₱50/hr
+      </div>
+    </div>
+    <div class="batch-head-right">
+      <div style="text-align:right;">
+        <div class="batch-total-label">Batch Total</div>
+        <div class="batch-total-val">₱ 800.00</div>
+      </div>
+      <button class="btn-release-batch" id="release-library-btn"
+        onclick="releaseBatch('University Library', '800.00')">
+        Release Batch
+      </button>
+    </div>
+  </div>
+  
+
+  <!-- Batch Table -->
+  <div class="batch-table-scroll">
+    <table class="batch-tbl">
+      <colgroup>
+        <col style="width:22%">
+        <col style="width:8%">
+        <col style="width:9%">
+        <col style="width:10%">
+        <col style="width:11%">
+        <col style="width:11%">
+        <col style="width:13%">
+        <col style="width:16%">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Hours</th>
+          <th>Rate</th>
+          <th>Total</th>
+          <th>Period</th>
+          <th>Supervisor</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr class="batch-row" data-status="computed">
+          <td>
+            <div class="batch-name-cell">
+              <div class="batch-av av-maroon">MS</div>
+              <div>
+                <div class="batch-td-name">Maria Santos</div>
+                <div class="batch-td-sub">2022-00145 · BSIT - 2nd Year</div>
+              </div>
+            </div>
+          </td>
+          <td><span class="batch-hrs-chip">9h</span></td>
+          <td><span class="batch-rate">₱50/hr</span></td>
+          <td><strong class="batch-total-cell">₱450.00</strong></td>
+          <td class="batch-muted">Apr 22–30</td>
+          <td class="batch-muted">R. Villanueva</td>
+          <td><span class="badge batch-badge-computed">COMPUTED</span></td>
+          <td>
+            <div class="batch-action-group">
+              <button class="batch-btn-view"
+                onclick="viewPayrollDetail('Maria Santos','2022-00145','Library Asst.','9','50','450.00','Apr 22–30','R. Villanueva')">
+                  View
+              </button>
+              <button class="batch-btn-verify"
+                onclick="verifyPayrollRow(this, 'Maria Santos')">
+                &#10003; Verify
+              </button>
+            </div>
+          </td>
+        </tr>
+
+        <tr class="batch-row" data-status="computed">
+          <td>
+            <div class="batch-name-cell">
+              <div class="batch-av av-purple">LT</div>
+              <div>
+                <div class="batch-td-name">Liza Torres</div>
+                <div class="batch-td-sub">2022-00299 · BSCS - 3rd Year</div>
+              </div>
+            </div>
+          </td>
+          <td><span class="batch-hrs-chip">7h</span></td>
+          <td><span class="batch-rate">₱50/hr</span></td>
+          <td><strong class="batch-total-cell">₱350.00</strong></td>
+          <td class="batch-muted">Apr 22–30</td>
+          <td class="batch-muted">R. Villanueva</td>
+          <td><span class="badge batch-badge-computed">COMPUTED</span></td>
+          <td>
+            <div class="batch-action-group">
+              <button class="batch-btn-view"
+                onclick="viewPayrollDetail('Liza Torres','2022-00299','Library Asst.','7','50','350.00','Apr 22–30','R. Villanueva')">
+                View
+              </button>
+              <button class="batch-btn-verify"
+                onclick="verifyPayrollRow(this, 'Liza Torres')">
+                &#10003; Verify
+              </button>
+            </div>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+    <!-- ╔══════════════════════════════════════════════
+     § PAYROLL BATCH CARD — Finance Office
+════════════════════════════════════════════════╗ -->
+<div class="payroll-batch-card">
+
+  <!-- Batch Header -->
+  <div class="batch-head">
+    <div>
+      <div class="batch-dept-name">Finance Office</div>
+      <div class="batch-dept-meta">
+        2nd Semester &nbsp;·&nbsp; AY 2025–2026 &nbsp;·&nbsp;
+        3 student assistants &nbsp;·&nbsp; Rate: ₱50/hr
+      </div>
+    </div>
+    <div class="batch-head-right">
+      <div style="text-align:right;">
+        <div class="batch-total-label">Batch Total</div>
+        <div class="batch-total-val">₱ 2,275.00</div>
+      </div>
+      <button class="btn-release-batch" id="release-finance-btn" disabled
+        onclick="releaseBatch('Finance Office', '2,275.00')">
+        Release Batch
+      </button>
+    </div>
+  </div>
+  <!-- Flagged Warning Banner -->
+  <div class="batch-flag-banner">
+    <i class="fas fa-exclamation-triangle"></i>
+    <span>
+      <strong>1 flagged entry</strong> — Liza Torres' log was edited by the supervisor.
+      Please review before verifying.
+    </span>
+  </div>
+
+  <!-- Batch Table -->
+  <div class="batch-table-scroll">
+    <table class="batch-tbl">
+      <colgroup>
+        <col style="width:22%">
+        <col style="width:8%">
+        <col style="width:9%">
+        <col style="width:10%">
+        <col style="width:11%">
+        <col style="width:11%">
+        <col style="width:13%">
+        <col style="width:16%">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Hours</th>
+          <th>Rate</th>
+          <th>Total</th>
+          <th>Period</th>
+          <th>Supervisor</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- Row 1: Juan dela Cruz — normal -->
+        <tr class="batch-row" data-status="computed">
+          <td>
+            <div class="batch-name-cell">
+              <div class="batch-av av-maroon">JD</div>
+              <div>
+                <div class="batch-td-name">Juan dela Cruz</div>
+                <div class="batch-td-sub">2021-00388 · BSBA - 4th</div>
+              </div>
+            </div>
+          </td>
+          <td><span class="batch-hrs-chip">19h</span></td>
+          <td><span class="batch-rate">₱50/hr</span></td>
+          <td><strong class="batch-total-cell">₱950.00</strong></td>
+          <td class="batch-muted">Apr 22–30</td>
+          <td class="batch-muted">C. Bautista</td>
+          <td><span class="badge batch-badge-computed">COMPUTED</span></td>
+          <td>
+            <div class="batch-action-group">
+              <button class="batch-btn-view"
+                onclick="viewPayrollDetail('Juan dela Cruz','2021-00388','Finance Clerk','19','50','950.00','Apr 22–30','C. Bautista')">
+                View
+              </button>
+              <button class="batch-btn-verify"
+                onclick="verifyPayrollRow(this, 'Juan dela Cruz')">
+                &#10003; Verify
+              </button>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Row 2: Liza Torres — flagged (supervisor edited times) -->
+        <tr class="batch-row batch-row-flagged" data-status="flagged">
+          <td>
+            <div class="batch-name-cell">
+              <div class="batch-av av-purple">LT</div>
+              <div>
+                <div class="batch-td-name">Liza Torres</div>
+                <div class="batch-td-sub">2022-00299 · BSCS - 3rd Year</div>
+              </div>
+            </div>
+          </td>
+          <td><span class="batch-hrs-chip">8h</span></td>
+          <td><span class="batch-rate">₱50/hr</span></td>
+          <td><strong class="batch-total-cell">₱400.00</strong></td>
+          <td class="batch-muted">Apr 22–30</td>
+          <td class="batch-muted">C. Reyes <span class="batch-edited-tag">edited</span></td>
+          <td>
+            <span class="badge batch-badge-flagged">
+              &#9873; FLAGGED
+            </span>
+          </td>
+          <td>
+            <div class="batch-action-group">
+              <button class="batch-btn-view"
+                onclick="viewPayrollDetail('Liza Torres','2022-00299','Finance Clerk','8','50','400.00','Apr 22–30','C. Reyes (edited)')">
+                 View
+              </button>
+              <button class="batch-btn-verify"
+                onclick="verifyPayrollRow(this, 'Liza Torres')">
+                &#10003; Verify
+              </button>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Row 3: Pedro Valdez — normal -->
+        <tr class="batch-row" data-status="computed">
+          <td>
+            <div class="batch-name-cell">
+              <div class="batch-av av-teal">PV</div>
+              <div>
+                <div class="batch-td-name">Pedro Valdez</div>
+                <div class="batch-td-sub">2021-00602 · BSA - 2nd Year</div>
+              </div>
+            </div>
+          </td>
+          <td><span class="batch-hrs-chip">19h</span></td>
+          <td><span class="batch-rate">₱50/hr</span></td>
+          <td><strong class="batch-total-cell">₱950.00</strong></td>
+          <td class="batch-muted">Apr 22–30</td>
+          <td class="batch-muted">C. Bautista</td>
+          <td><span class="badge batch-badge-computed">COMPUTED</span></td>
+          <td>
+            <div class="batch-action-group">
+              <button class="batch-btn-view"
+                onclick="viewPayrollDetail('Pedro Valdez','2021-00602','Finance Clerk','19','50','950.00','Apr 22–30','C. Bautista')">
+                View
+              </button>
+              <button class="batch-btn-verify"
+                onclick="verifyPayrollRow(this, 'Pedro Valdez')">
+                &#10003; Verify
+              </button>
+            </div>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+</div>
 
 </section>
 
@@ -1284,6 +1562,9 @@ function populateDepartments() {
 // ACTIONS
 // ==========================
 function generatePayroll() {
+  document.getElementById("payroll-before").style.display = "none";
+  document.getElementById("payrollContainer").style.display = "block";
+
   const period = document.getElementById("payroll-period").value;
   const range = period === "may1"
     ? ["2026-05-01", "2026-05-15"]
@@ -1385,12 +1666,13 @@ function renderPayroll() {
         <div class="table-responsive">
           <table class="table" style="width: 100%; border-collapse: collapse;">
             <thead>
-              <tr style="border-bottom: 1px solid #ddd; text-align: left;">
-                <th>Name</th>
-                <th>Hours</th>
-                <th>Total</th>
-                <th>Status</th>
-                <th>Action</th>
+              <tr style="border-bottom: 1px solid #ddd; text-align: left; ">
+                <th style=" background: #F7F0F2 ; color: #7B0D1E;">Name</th>
+                <th style=" background: #F7F0F2 ; color: #7B0D1E;">Hours</th>
+                <th style=" background: #F7F0F2 ; color: #7B0D1E;">Rate</th>
+                <th style=" background: #F7F0F2 ; color: #7B0D1E;">Total</th>
+                <th style=" background: #F7F0F2 ; color: #7B0D1E;">Status</th>
+                <th style=" background: #F7F0F2 ; color: #7B0D1E;">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -1398,6 +1680,7 @@ function renderPayroll() {
                 <tr style="border-bottom: 1px solid #eee;">
                   <td><strong>${s.name}</strong></td>
                   <td>${s.hours} ${s.hours === MAX_HOURS_PER_CUTOFF ? '<span style="color:#d9534f; font-size:11px;">(capped)</span>' : ''}</td>
+                  <td>₱${s.rate.toFixed(2)}</td>
                   <td>₱${s.total.toFixed(2)}</td>
                   <td>
                     <span class="badge badge-${s.status}">${s.status.toUpperCase()}</span>
@@ -2967,6 +3250,258 @@ function groupByDept(data) {
   </div>
 </div>
 
+<!-- ============ PAYROLL DETAIL MODAL ============ -->
+<div id="payroll-detail-modal" class="modal-overlay" style="display:none;opacity:1;visibility:visible;">
+  <div class="modal-card" style="max-width:620px;">
+    <a href="#" class="modal-close-btn"
+      onclick="document.getElementById('payroll-detail-modal').style.display='none';return false;">
+      &times;
+    </a>
+
+    <!-- Banner -->
+    <div id="pdm-banner"
+      style="background:linear-gradient(135deg,var(--maroon-deep),var(--maroon));
+             padding:20px 24px 16px;color:#fff;border-radius:10px 10px 0 0;">
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;
+                  letter-spacing:1.5px;opacity:.65;margin-bottom:10px;">
+        Payroll Detail
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <div id="pdm-avatar"
+          style="width:50px;height:50px;border-radius:50%;
+                 border:3px solid rgba(255,255,255,0.4);
+                 background:linear-gradient(135deg,#5a0915,#9e1a2e);
+                 display:flex;align-items:center;justify-content:center;
+                 font-weight:800;font-size:15px;color:#fff;flex-shrink:0;">
+          MS
+        </div>
+        <div>
+          <div id="pdm-name"
+            style="font-size:17px;font-weight:700;">Maria Santos</div>
+          <div id="pdm-sub"
+            style="font-size:12px;opacity:.75;margin-top:2px;">
+            2022-00145 &nbsp;·&nbsp; BSCS — 3rd Year
+          </div>
+        </div>
+        <div style="margin-left:auto;text-align:right;">
+          <div id="pdm-status-badge"
+            style="font-size:11px;padding:4px 12px;border-radius:20px;
+                   font-weight:700;background:#E6F1FB;color:#0C447C;
+                   display:inline-block;">
+            COMPUTED
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="modal-body" style="padding:20px 24px;max-height:460px;overflow-y:auto;">
+
+      <!-- § 1  STUDENT IDENTITY -->
+      <p class="um-section-lbl">
+        <i class="fas fa-user" style="color:var(--maroon);margin-right:5px;"></i>
+        Student Identity
+      </p>
+      <div class="info-grid" style="margin-bottom:18px;">
+        <div class="info-item">
+          <span>Full Name</span>
+          <strong id="pdm-fullname">Maria M. Santos</strong>
+        </div>
+        <div class="info-item">
+          <span>Student ID</span>
+          <strong id="pdm-studentid" style="font-family:monospace;">2022-00145</strong>
+        </div>
+        <div class="info-item">
+          <span>Program</span>
+          <strong id="pdm-program">BSCS</strong>
+        </div>
+        <div class="info-item">
+          <span>Year Level</span>
+          <strong id="pdm-yearlevel">3rd Year</strong>
+        </div>
+      </div>
+
+      <!-- § 2  EMPLOYMENT DETAILS -->
+      <p class="um-section-lbl">
+        <i class="fas fa-briefcase" style="color:var(--maroon);margin-right:5px;"></i>
+        Employment Details
+      </p>
+      <div class="info-grid" style="margin-bottom:18px;">
+        <div class="info-item">
+          <span>Department</span>
+          <strong id="pdm-dept">University Library</strong>
+        </div>
+        <div class="info-item">
+          <span>Position</span>
+          <strong id="pdm-position">Library Assistant</strong>
+        </div>
+        <div class="info-item">
+          <span>Start Date</span>
+          <strong id="pdm-startdate">Mar 25, 2026</strong>
+        </div>
+        <div class="info-item">
+          <span>Active Status</span>
+          <strong id="pdm-activestatus" style="color:#15803d;">Active ✓</strong>
+        </div>
+      </div>
+
+      <!-- § 3  ATTENDANCE SUMMARY -->
+      <p class="um-section-lbl">
+        <i class="fas fa-calendar-check" style="color:var(--maroon);margin-right:5px;"></i>
+        Attendance Summary
+        <span id="pdm-period-label"
+          style="font-size:10px;font-weight:600;color:var(--muted);
+                 margin-left:6px;text-transform:none;letter-spacing:0;">
+          Apr 22–30, 2026
+        </span>
+      </p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);
+                  gap:8px;margin-bottom:18px;">
+        <div class="um-chip um-chip-green">
+          <div class="um-chip-val" id="pdm-total-hours">9h</div>
+          <div class="um-chip-lbl">Total Hours</div>
+        </div>
+        <div class="um-chip">
+          <div class="um-chip-val" id="pdm-days-present">5</div>
+          <div class="um-chip-lbl">Days Present</div>
+        </div>
+        <div class="um-chip um-chip-red">
+          <div class="um-chip-val" id="pdm-days-absent">0</div>
+          <div class="um-chip-lbl">Days Absent</div>
+        </div>
+        <div class="um-chip um-chip-amber">
+          <div class="um-chip-val" id="pdm-late">1</div>
+          <div class="um-chip-lbl">Late Entries</div>
+        </div>
+        <div class="um-chip um-chip-amber">
+          <div class="um-chip-val" id="pdm-undertime">0</div>
+          <div class="um-chip-lbl">Undertime</div>
+        </div>
+        <div class="um-chip um-chip-green">
+          <div class="um-chip-val" id="pdm-att-rate">100%</div>
+          <div class="um-chip-lbl">Att. Rate</div>
+        </div>
+      </div>
+
+      <!-- § 4  RATE & COMPUTATION -->
+      <p class="um-section-lbl">
+        <i class="fas fa-calculator" style="color:var(--maroon);margin-right:5px;"></i>
+        Rate & Computation
+      </p>
+      <div style="background:linear-gradient(135deg,#1f2937,#374151);
+                  border-radius:10px;padding:16px 20px;margin-bottom:18px;color:#fff;">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;
+                    gap:10px;text-align:center;">
+          <div>
+            <div style="font-size:11px;opacity:.55;text-transform:uppercase;
+                        letter-spacing:.06em;margin-bottom:5px;">Hours Worked</div>
+            <div id="pdm-comp-hours"
+              style="font-size:22px;font-weight:800;
+                     font-family:'Playfair Display',serif;">9h</div>
+          </div>
+          <div>
+            <div style="font-size:11px;opacity:.55;text-transform:uppercase;
+                        letter-spacing:.06em;margin-bottom:5px;">Rate / Hour</div>
+            <div id="pdm-comp-rate"
+              style="font-size:22px;font-weight:800;
+                     font-family:'Playfair Display',serif;">₱50</div>
+          </div>
+          <div style="background:rgba(201,168,76,0.2);border-radius:8px;padding:8px 6px;">
+            <div style="font-size:11px;opacity:.55;text-transform:uppercase;
+                        letter-spacing:.06em;margin-bottom:5px;color:#e8c97a;">Total Pay</div>
+            <div id="pdm-comp-total"
+              style="font-size:20px;font-weight:800;color:#e8c97a;
+                     font-family:'Playfair Display',serif;">₱450.00</div>
+          </div>
+        </div>
+        <div style="margin-top:12px;padding-top:10px;
+                    border-top:1px solid rgba(255,255,255,0.1);
+                    font-size:11.5px;opacity:.6;text-align:center;">
+          Computation: <span id="pdm-formula">9h × ₱50/hr = ₱450.00</span>
+        </div>
+      </div>
+
+      <!-- § 5  PAYROLL STATUS -->
+      <p class="um-section-lbl">
+        <i class="fas fa-money-bill-wave" style="color:var(--maroon);margin-right:5px;"></i>
+        Payroll Status
+      </p>
+      <div class="info-grid" style="margin-bottom:18px;">
+        <div class="info-item">
+          <span>Current Status</span>
+          <strong id="pdm-pay-status" style="color:#0C447C;">Computed</strong>
+        </div>
+        <div class="info-item">
+          <span>Cutoff Period</span>
+          <strong id="pdm-cutoff">Apr 22 – Apr 30, 2026</strong>
+        </div>
+        <div class="info-item">
+          <span>Date Processed</span>
+          <strong id="pdm-date-processed">May 1, 2026</strong>
+        </div>
+        <div class="info-item">
+          <span>Release Method</span>
+          <strong id="pdm-release-method">Cashier Claim</strong>
+        </div>
+      </div>
+
+      <!-- § 6  APPROVAL TRAIL -->
+      <p class="um-section-lbl">
+        <i class="fas fa-history" style="color:var(--maroon);margin-right:5px;"></i>
+        Approval Trail
+      </p>
+      <div class="um-timeline" id="pdm-trail">
+        <div class="um-entry">
+          <div class="um-dot um-dot-blue"></div>
+          <div class="um-entry-text">Student submitted attendance log</div>
+          <div class="um-entry-time" id="pdm-trail-1">Apr 30, 2026 · 05:01 PM</div>
+        </div>
+        <div class="um-entry">
+          <div class="um-dot um-dot-green"></div>
+          <div class="um-entry-text">
+            Supervisor verified &nbsp;
+            <span style="font-size:11px;background:#e7f3ff;color:#1d4ed8;
+                         padding:2px 8px;border-radius:10px;font-weight:600;">
+              R. Villanueva
+            </span>
+          </div>
+          <div class="um-entry-time" id="pdm-trail-2">Apr 30, 2026 · 05:45 PM</div>
+        </div>
+        <div class="um-entry">
+          <div class="um-dot um-dot-green"></div>
+          <div class="um-entry-text">
+            Payroll computed by system
+          </div>
+          <div class="um-entry-time" id="pdm-trail-3">May 1, 2026 · 08:00 AM</div>
+        </div>
+        <div class="um-entry">
+          <div class="um-dot" style="background:#d1d5db;box-shadow:0 0 0 2px #d1d5db;"></div>
+          <div class="um-entry-text" style="color:#9ca3af;">
+            Awaiting admin verification
+          </div>
+          <div class="um-entry-time">Pending your action</div>
+        </div>
+      </div>
+
+    </div><!-- /modal-body -->
+
+    <!-- Footer -->
+    <div class="modal-footer">
+      <a href="#" class="btn-closed"
+        onclick="document.getElementById('payroll-detail-modal').style.display='none';
+                 return false;">
+        Close
+      </a>
+      <button class="btn btn-sm"
+        style="background:#EAF3DE;color:#27500A;border:1px solid #C0DD97;"
+        id="pdm-verify-btn"
+        onclick="pdmVerify()">
+        <i class="fas fa-check"></i> Verify This Entry
+      </button>
+    </div>
+  </div>
+</div>
+
     <!-- ══════════════════════════════════════════════
      ██  LIVE COUNTER SYSTEM
          Counts pending rows in each section and pushes
@@ -3956,11 +4491,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             </div>
             <div class="sym-sem-opt" data-sem="2nd Semester" data-short="2nd Sem"
                 onclick="sym_pickSem(this)"
-                style="border:1.5px solid #1a3a8f;border-radius:9px;padding:14px 8px;
-                        text-align:center;cursor:pointer;background:#e8f0fe;transition:all .15s;">
-              <div style="font-size:20px;font-weight:800;color:#1a3a8f;">2</div>
-              <div style="font-size:12px;font-weight:600;color:#1a3a8f;margin-top:3px;">2nd Semester</div>
-              <div style="font-size:10px;color:#1a3a8f;opacity:.7;margin-top:2px;">Jan – May</div>
+                style="border:1.5px solid var(--maroon,#7a0020);border-radius:9px;padding:14px 8px;
+                        text-align:center;cursor:pointer;background:#fce4e8;transition:all .15s;">
+               <div style="font-size:20px;font-weight:800;color:var(--maroon,#7a0020);">2</div>
+              <div style="font-size:12px;font-weight:600;color:var(--maroon,#7a0020);margin-top:3px;">2nd Semester</div>
+              <div style="font-size:10px;color:var(--maroon,#7a0020);opacity:.7;margin-top:2px;">Jan – May</div>
             </div>
             <div class="sym-sem-opt" data-sem="Summer" data-short="Summer"
                 onclick="sym_pickSem(this)"
@@ -4030,111 +4565,613 @@ document.addEventListener('DOMContentLoaded', async () => {
     </div>
 
     <!--School Year Archive Modal (view-only, from dashboard button)-->
-    <div id="sy-archive-overlay"
-        onclick="if(event.target===this)closeSYArchive()"
-        style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:1000;
-                align-items:flex-start;justify-content:center;padding-top:60px;">
+      <div id="sy-archive-overlay"
+          onclick="if(event.target===this)closeSYArchive()"
+          style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:1000;
+                  align-items:flex-start;justify-content:center;padding-top:60px;">
 
-      <div style="background:#fff;border-radius:14px;width:560px;max-width:95vw;
-                  box-shadow:0 8px 40px rgba(0,0,0,0.18);overflow:hidden;
-                  max-height:88vh;display:flex;flex-direction:column;">
+        <div style="background:#fff;border-radius:14px;width:560px;max-width:95vw;
+                    box-shadow:0 8px 40px rgba(0,0,0,0.18);overflow:hidden;
+                    max-height:88vh;display:flex;flex-direction:column;">
 
-        <!-- Header -->
-        <div style="padding:18px 22px 14px;border-bottom:1px solid #f0f0f0;flex-shrink:0;
-                    display:flex;align-items:flex-start;justify-content:space-between;">
-          <div>
-            <div style="font-size:16px;font-weight:700;color:#1a1a1a;
-                        font-family:'Playfair Display',serif;">School Year Archives (View Only)</div>
-            <div style="font-size:12px;color:#888;margin-top:3px;">
-              Browse past school years and semesters — view only, no changes will be made
-            </div>
-          </div>
-          <button type="button" onclick="closeSYArchive()"
-            style="background:#f5f5f5;border:none;width:32px;height:32px;border-radius:8px;
-                  cursor:pointer;font-size:18px;color:#666;line-height:1;">&times;</button>
-        </div>
-
-        <!-- Scrollable body -->
-        <div style="overflow-y:auto;padding:22px;flex:1;">
-
-          <!-- Year tabs -->
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;
-                      letter-spacing:.08em;color:#888;margin-bottom:8px;">Select School Year</div>
-          <div id="arch-year-tabs"
-              style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));
-                      gap:8px;margin-bottom:20px;"></div>
-
-          <!-- Semester buttons -->
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;
-                      letter-spacing:.08em;color:#888;margin-bottom:8px;">Select Semester</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:20px;">
-
-            <div class="arch-sem-btn" data-sem="1st Semester" data-short="1st Sem"
-                onclick="arch_pickSem(this)"
-                style="border:1.5px solid #e5e7eb;border-radius:9px;padding:12px 8px;
-                        text-align:center;cursor:pointer;background:#f9f9f9;transition:all .15s;">
-              <div style="font-size:18px;font-weight:800;color:#555;">1</div>
-              <div style="font-size:12px;font-weight:600;color:#555;margin-top:3px;">1st Semester</div>
-              <div style="font-size:10px;color:#aaa;margin-top:2px;">Aug – Dec</div>
-            </div>
-
-            <div class="arch-sem-btn" data-sem="2nd Semester" data-short="2nd Sem"
-                onclick="arch_pickSem(this)"
-                style="border:1.5px solid #e5e7eb;border-radius:9px;padding:12px 8px;
-                        text-align:center;cursor:pointer;background:#f9f9f9;transition:all .15s;">
-              <div style="font-size:18px;font-weight:800;color:#555;">2</div>
-              <div style="font-size:12px;font-weight:600;color:#555;margin-top:3px;">2nd Semester</div>
-              <div style="font-size:10px;color:#aaa;margin-top:2px;">Jan – May</div>
-            </div>
-
-            <div class="arch-sem-btn" data-sem="Summer" data-short="Summer"
-                onclick="arch_pickSem(this)"
-                style="border:1.5px solid #e5e7eb;border-radius:9px;padding:12px 8px;
-                        text-align:center;cursor:pointer;background:#f9f9f9;transition:all .15s;">
-              <div style="font-size:18px;font-weight:800;color:#555;">☀</div>
-              <div style="font-size:12px;font-weight:600;color:#555;margin-top:3px;">Summer</div>
-              <div style="font-size:10px;color:#aaa;margin-top:2px;">May – Jun</div>
-            </div>
-
-          </div>
-
-          <!-- Currently viewing banner -->
-          <div style="background:#f0f4ff;border:1px solid #c7d7fe;border-radius:9px;
-                      padding:12px 16px;display:flex;gap:10px;align-items:center;margin-bottom:16px;">
-            <i class="fas fa-eye" style="color:#4361ee;"></i>
+          <!-- Header -->
+          <div style="padding:18px 22px 14px;border-bottom:1px solid #f0f0f0;flex-shrink:0;
+                      display:flex;align-items:flex-start;justify-content:space-between;">
             <div>
-              <div style="font-size:11px;color:#4361ee;">Currently viewing</div>
-              <div style="font-size:14px;font-weight:700;color:#1a1a1a;" id="arch-preview-label">
-                —
+              <div style="font-size:16px;font-weight:700;color:#1a1a1a;
+                          font-family:'Playfair Display',serif;">School Year Archives (View Only)</div>
+              <div style="font-size:12px;color:#888;margin-top:3px;">
+                Browse past school years and semesters — view only, no changes will be made
               </div>
             </div>
-            <span style="margin-left:auto;font-size:10px;padding:3px 10px;border-radius:100px;
-                        font-weight:600;background:#fef9ec;color:#92400e;border:1px solid #fcd34d;">
-              View Only
-            </span>
+            <button type="button" onclick="closeSYArchive()"
+              style="background:#f5f5f5;border:none;width:32px;height:32px;border-radius:8px;
+                    cursor:pointer;font-size:18px;color:#666;line-height:1;">&times;</button>
           </div>
 
-          <!-- Archive data panel -->
-          <div id="arch-data-panel"
-              style="background:#fff;border:1.5px solid #e5e7eb;border-radius:12px;padding:20px;">
-            <div style="text-align:center;padding:24px;color:#aaa;">
-              <i class="fas fa-hand-pointer" style="font-size:22px;margin-bottom:10px;display:block;"></i>
-              <div style="font-size:13px;">Select a school year and semester above to view its data.</div>
+          <!-- Scrollable body -->
+          <div style="overflow-y:auto;padding:22px;flex:1;">
+
+            <!-- Year tabs -->
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;
+                        letter-spacing:.08em;color:#888;margin-bottom:8px;">Select School Year</div>
+            <div id="arch-year-tabs"
+                style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));
+                        gap:8px;margin-bottom:20px;"></div>
+
+            <!-- Semester buttons -->
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;
+                        letter-spacing:.08em;color:#888;margin-bottom:8px;">Select Semester</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:20px;">
+
+              <div class="arch-sem-btn" data-sem="1st Semester" data-short="1st Sem"
+                  onclick="arch_pickSem(this)"
+                  style="border:1.5px solid #e5e7eb;border-radius:9px;padding:12px 8px;
+                          text-align:center;cursor:pointer;background:#f9f9f9;transition:all .15s;">
+                <div style="font-size:18px;font-weight:800;color:#555;">1</div>
+                <div style="font-size:12px;font-weight:600;color:#555;margin-top:3px;">1st Semester</div>
+                <div style="font-size:10px;color:#aaa;margin-top:2px;">Aug – Dec</div>
+              </div>
+
+              <div class="arch-sem-btn" data-sem="2nd Semester" data-short="2nd Sem"
+                  onclick="arch_pickSem(this)"
+                  style="border:1.5px solid #e5e7eb;border-radius:9px;padding:12px 8px;
+                          text-align:center;cursor:pointer;background:#f9f9f9;transition:all .15s;">
+                <div style="font-size:18px;font-weight:800;color:#555;">2</div>
+                <div style="font-size:12px;font-weight:600;color:#555;margin-top:3px;">2nd Semester</div>
+                <div style="font-size:10px;color:#aaa;margin-top:2px;">Jan – May</div>
+              </div>
+
+              <div class="arch-sem-btn" data-sem="Summer" data-short="Summer"
+                  onclick="arch_pickSem(this)"
+                  style="border:1.5px solid #e5e7eb;border-radius:9px;padding:12px 8px;
+                          text-align:center;cursor:pointer;background:#f9f9f9;transition:all .15s;">
+                <div style="font-size:18px;font-weight:800;color:#555;">☀</div>
+                <div style="font-size:12px;font-weight:600;color:#555;margin-top:3px;">Summer</div>
+                <div style="font-size:10px;color:#aaa;margin-top:2px;">May – Jun</div>
+              </div>
+
             </div>
+
+            <!-- Currently viewing banner -->
+            <div style="background:#f0f4ff;border:1px solid #c7d7fe;border-radius:9px;
+                        padding:12px 16px;display:flex;gap:10px;align-items:center;margin-bottom:16px;">
+              <i class="fas fa-eye" style="color:#4361ee;"></i>
+              <div>
+                <div style="font-size:11px;color:#4361ee;">Currently viewing</div>
+                <div style="font-size:14px;font-weight:700;color:#1a1a1a;" id="arch-preview-label">
+                  —
+                </div>
+              </div>
+              <span style="margin-left:auto;font-size:10px;padding:3px 10px;border-radius:100px;
+                          font-weight:600;background:#fef9ec;color:#92400e;border:1px solid #fcd34d;">
+                View Only
+              </span>
+            </div>
+
+            <!-- Archive data panel -->
+            <div id="arch-data-panel"
+                style="background:#fff;border:1.5px solid #e5e7eb;border-radius:12px;padding:20px;">
+              <div style="text-align:center;padding:24px;color:#aaa;">
+                <i class="fas fa-hand-pointer" style="font-size:22px;margin-bottom:10px;display:block;"></i>
+                <div style="font-size:13px;">Select a school year and semester above to view its data.</div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Footer -->
+          <div style="padding:14px 22px;border-top:1px solid #f0f0f0;
+                      display:flex;justify-content:flex-end;flex-shrink:0;">
+            <button type="button" onclick="closeSYArchive()" class="btn btn-outline">Close</button>
           </div>
 
         </div>
+      </div>
 
-        <!-- Footer -->
-        <div style="padding:14px 22px;border-top:1px solid #f0f0f0;
-                    display:flex;justify-content:flex-end;flex-shrink:0;">
-          <button type="button" onclick="closeSYArchive()" class="btn btn-outline">Close</button>
+    <!-- ============ USER MANAGEMENT — VIEW MODAL (STUDENT) ============ -->
+<div id="view-user-student" class="modal-overlay">
+  <div class="modal-card" style="max-width:600px;">
+    <a href="#" class="modal-close-btn">&times;</a>
+
+    <!-- Banner -->
+    <div style="background:linear-gradient(135deg,var(--maroon-deep),var(--maroon));padding:22px 24px 18px;color:#fff;border-radius:10px 10px 0 0;">
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;opacity:.65;margin-bottom:8px;">User Profile</div>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <div class="av av-a" style="width:52px;height:52px;font-size:16px;border:3px solid rgba(255,255,255,0.4);">MS</div>
+        <div>
+          <div style="font-size:17px;font-weight:700;">Maria Santos</div>
+          <div style="font-size:12px;opacity:.75;">santos.maria@wmsu.edu.ph &nbsp;·&nbsp; ID: 2022-00145</div>
         </div>
-
+      </div>
+      <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;">
+        <span class="badge" style="background:#e7f3ff;color:#1d4ed8;font-size:11px;">Student</span>
+        <span class="badge active" style="font-size:11px;">Active</span>
+        <span class="badge verified" style="font-size:11px;">Verified</span>
+        <span class="badge" style="background:#fce4e8;color:#7B0D1E;font-size:11px;">SA Assigned</span>
       </div>
     </div>
 
+    <!-- Tabs -->
+    <div style="display:flex;border-bottom:1px solid var(--border);background:#fafafa;">
+      <button class="um-tab um-tab-active" data-target="um-s-profile" onclick="umSwitchTab(this,'um-student')">Profile</button>
+      <button class="um-tab" data-target="um-s-attendance" onclick="umSwitchTab(this,'um-student')">Attendance</button>
+      <button class="um-tab" data-target="um-s-position" onclick="umSwitchTab(this,'um-student')">Position</button>
+      <button class="um-tab" data-target="um-s-activity" onclick="umSwitchTab(this,'um-student')">Activity Log</button>
+    </div>
+
+    <!-- Body -->
+    <div class="modal-body" style="padding:20px 24px;max-height:380px;overflow-y:auto;">
+
+      <!-- Profile Panel -->
+      <div id="um-s-profile" class="um-panel">
+        <p class="um-section-lbl">Personal Information</p>
+        <div class="info-grid">
+          <div class="info-item"><span>Full Name</span><strong>Maria M. Santos</strong></div>
+          <div class="info-item"><span>Student ID</span><strong>2022-00145</strong></div>
+          <div class="info-item"><span>Course &amp; Year</span><strong>BSCS — 3rd Year</strong></div>
+          <div class="info-item"><span>GWA</span><strong style="color:#15803d;">1.75</strong></div>
+          <div class="info-item"><span>WMSU Email</span><strong style="color:#1877f2;">santos.maria@wmsu.edu.ph</strong></div>
+          <div class="info-item"><span>Contact No.</span><strong>09XX-XXX-XXXX</strong></div>
+        </div>
+        <p class="um-section-lbl" style="margin-top:16px;">Account Details</p>
+        <div class="info-grid">
+          <div class="info-item"><span>Role</span><strong>Student</strong></div>
+          <div class="info-item"><span>Status</span><strong style="color:#15803d;">Active</strong></div>
+          <div class="info-item"><span>Registered On</span><strong>Mar 19, 2026</strong></div>
+          <div class="info-item"><span>Last Login</span><strong>Apr 30, 2026 · 8:02 AM</strong></div>
+          <div class="info-item"><span>Verification</span><strong style="color:#15803d;">Verified ✓</strong></div>
+          <div class="info-item"><span>COR Uploaded</span><strong>Yes · Mar 19, 2026</strong></div>
+        </div>
+      </div>
+
+      <!-- Attendance Panel -->
+      <div id="um-s-attendance" class="um-panel" style="display:none;">
+        <p class="um-section-lbl">Attendance Summary — AY 2025–2026, 2nd Sem</p>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;">
+          <div class="um-chip um-chip-green"><div class="um-chip-val">78.5h</div><div class="um-chip-lbl">Total Hours</div></div>
+          <div class="um-chip"><div class="um-chip-val">42</div><div class="um-chip-lbl">Days Present</div></div>
+          <div class="um-chip um-chip-amber"><div class="um-chip-val">3</div><div class="um-chip-lbl">Late Entries</div></div>
+          <div class="um-chip um-chip-red"><div class="um-chip-val">1</div><div class="um-chip-lbl">No-shows</div></div>
+          <div class="um-chip um-chip-amber"><div class="um-chip-val">2</div><div class="um-chip-lbl">Flagged Logs</div></div>
+          <div class="um-chip um-chip-green"><div class="um-chip-val">97%</div><div class="um-chip-lbl">Att. Rate</div></div>
+        </div>
+        <p class="um-section-lbl">Recent Logs</p>
+        <table style="width:100%;font-size:12.5px;border-collapse:collapse;">
+          <thead><tr style="background:#f9f9f9;">
+            <th class="um-th">Date</th><th class="um-th">Time In</th><th class="um-th">Time Out</th><th class="um-th">Hours</th><th class="um-th">Status</th>
+          </tr></thead>
+          <tbody>
+            <tr><td class="um-td">Apr 30, 2026</td><td class="um-td">08:02 AM</td><td class="um-td">05:00 PM</td><td class="um-td"><strong>8h</strong></td><td class="um-td"><span class="badge badge-auto">AUTO</span></td></tr>
+            <tr><td class="um-td">Apr 29, 2026</td><td class="um-td">08:30 AM</td><td class="um-td">04:30 PM</td><td class="um-td"><strong>8h</strong></td><td class="um-td"><span class="badge badge-auto">AUTO</span></td></tr>
+            <tr><td class="um-td">Apr 28, 2026</td><td class="um-td">09:10 AM</td><td class="um-td">—</td><td class="um-td" style="color:#9ca3af;">—</td><td class="um-td"><span class="badge badge-flagged">FLAGGED</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Position Panel -->
+      <div id="um-s-position" class="um-panel" style="display:none;">
+        <p class="um-section-lbl">Assigned Position</p>
+        <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:14px 16px;margin-bottom:14px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+            <strong style="font-size:15px;">Library Assistant</strong>
+            <span class="badge active">Active</span>
+          </div>
+          <div class="info-grid">
+            <div class="info-item"><span>Department</span><strong>University Library</strong></div>
+            <div class="info-item"><span>Supervisor</span><strong>Ms. Rosa Villanueva</strong></div>
+            <div class="info-item"><span>Hourly Rate</span><strong style="color:#15803d;">₱50 / hour</strong></div>
+            <div class="info-item"><span>Hours / Week</span><strong>20h</strong></div>
+            <div class="info-item"><span>Date Assigned</span><strong>Mar 25, 2026</strong></div>
+            <div class="info-item"><span>Schedule</span><strong>Mon–Fri</strong></div>
+          </div>
+        </div>
+        <p class="um-section-lbl">Payroll Status</p>
+        <div class="info-grid">
+          <div class="info-item"><span>Accumulated Hours</span><strong style="color:#15803d;font-size:15px;">78.5h</strong></div>
+          <div class="info-item"><span>Est. Total Pay</span><strong style="color:var(--maroon);font-size:15px;">₱3,925.00</strong></div>
+          <div class="info-item"><span>Last Payroll</span><strong>Apr 15, 2026</strong></div>
+          <div class="info-item"><span>Payroll Status</span><strong style="color:#92400e;">Pending Release</strong></div>
+        </div>
+      </div>
+
+      <!-- Activity Log Panel -->
+      <div id="um-s-activity" class="um-panel" style="display:none;">
+        <p class="um-section-lbl">Recent System Activity</p>
+        <div class="um-timeline">
+          <div class="um-entry"><div class="um-dot um-dot-blue"></div><div class="um-entry-text">Timed in via QR — Library</div><div class="um-entry-time">Apr 30, 2026 · 08:02 AM</div></div>
+          <div class="um-entry"><div class="um-dot um-dot-green"></div><div class="um-entry-text">Attendance approved by admin</div><div class="um-entry-time">Apr 29, 2026 · 2:15 PM</div></div>
+          <div class="um-entry"><div class="um-dot um-dot-amber"></div><div class="um-entry-text">Attendance flagged — missing time-out</div><div class="um-entry-time">Apr 28, 2026 · 5:00 PM</div></div>
+          <div class="um-entry"><div class="um-dot um-dot-green"></div><div class="um-entry-text">Position suggestion accepted</div><div class="um-entry-time">Mar 25, 2026 · 10:30 AM</div></div>
+          <div class="um-entry"><div class="um-dot um-dot-blue"></div><div class="um-entry-text">Account verified by admin</div><div class="um-entry-time">Mar 20, 2026 · 3:00 PM</div></div>
+          <div class="um-entry"><div class="um-dot"></div><div class="um-entry-text">Registered &amp; submitted COR</div><div class="um-entry-time">Mar 19, 2026 · 9:45 AM</div></div>
+        </div>
+      </div>
+
+    </div><!-- /modal-body -->
+
+    <div class="modal-footer">
+      <a href="#" class="btn-closed">Close</a>
+      <button class="btn btn-sm" style="background:#fef3c7;color:#92400e;border:1px solid #fcd34d;" onclick="resetPassword('Maria Santos')"><i class="fas fa-key"></i> Reset Password</button>
+      <button class="btn btn-sm btn-reject" onclick="deactivateUser('Maria Santos')"><i class="fas fa-ban"></i> Deactivate</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ USER MANAGEMENT — VIEW MODAL (DEPT HEAD) ============ -->
+<div id="view-user-dept" class="modal-overlay">
+  <div class="modal-card" style="max-width:600px;">
+    <a href="#" class="modal-close-btn">&times;</a>
+
+    <div style="background:linear-gradient(135deg,var(--maroon-deep),var(--maroon));padding:22px 24px 18px;color:#fff;border-radius:10px 10px 0 0;">
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;opacity:.65;margin-bottom:8px;">User Profile</div>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <div class="av av-b" style="width:52px;height:52px;font-size:16px;border:3px solid rgba(255,255,255,0.4);">AF</div>
+        <div>
+          <div style="font-size:17px;font-weight:700;">Alma Fernandez</div>
+          <div style="font-size:12px;opacity:.75;">alma.fernandez@wmsu.edu.ph &nbsp;·&nbsp; Staff ID: WMSU-S-0041</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;">
+        <span class="badge" style="background:#ede9fe;color:#6d28d9;font-size:11px;">Dept. Head</span>
+        <span class="badge active" style="font-size:11px;">Active</span>
+        <span class="badge verified" style="font-size:11px;">Verified</span>
+        <span class="badge" style="background:#e7f3ff;color:#1d4ed8;font-size:11px;">Employer</span>
+      </div>
+    </div>
+
+    <div style="display:flex;border-bottom:1px solid var(--border);background:#fafafa;">
+      <button class="um-tab um-tab-active" onclick="umSwitchTab(this,'um-dept')">Profile</button>
+      <button class="um-tab" onclick="umSwitchTab(this,'um-dept')">Department</button>
+      <button class="um-tab" onclick="umSwitchTab(this,'um-dept')">Managed SAs</button>
+      <button class="um-tab" onclick="umSwitchTab(this,'um-dept')">Activity Log</button>
+    </div>
+
+    <div class="modal-body" style="padding:20px 24px;max-height:380px;overflow-y:auto;">
+
+      <!-- Profile -->
+      <div id="um-d-0" class="um-dept-panel">
+        <p class="um-section-lbl">Personal Information</p>
+        <div class="info-grid">
+          <div class="info-item"><span>Full Name</span><strong>Alma R. Fernandez</strong></div>
+          <div class="info-item"><span>Staff ID</span><strong>WMSU-S-0041</strong></div>
+          <div class="info-item"><span>Title</span><strong>Department Head</strong></div>
+          <div class="info-item"><span>Department</span><strong>Information Technology</strong></div>
+          <div class="info-item"><span>WMSU Email</span><strong style="color:#1877f2;">alma.fernandez@wmsu.edu.ph</strong></div>
+          <div class="info-item"><span>Contact No.</span><strong>09XX-XXX-XXXX</strong></div>
+        </div>
+        <p class="um-section-lbl" style="margin-top:16px;">Account Details</p>
+        <div class="info-grid">
+          <div class="info-item"><span>Role</span><strong>Dept. Head / Employer</strong></div>
+          <div class="info-item"><span>Status</span><strong style="color:#15803d;">Active</strong></div>
+          <div class="info-item"><span>Registered On</span><strong>Jan 10, 2026</strong></div>
+          <div class="info-item"><span>Last Login</span><strong>Apr 29, 2026 · 1:15 PM</strong></div>
+          <div class="info-item"><span>Verification</span><strong style="color:#15803d;">Verified ✓</strong></div>
+          <div class="info-item"><span>Staff ID Uploaded</span><strong>Yes · Jan 10, 2026</strong></div>
+        </div>
+      </div>
+
+      <!-- Department -->
+      <div id="um-d-1" class="um-dept-panel" style="display:none;">
+        <p class="um-section-lbl">Department Info</p>
+        <div class="info-grid">
+          <div class="info-item"><span>Department</span><strong>Information Technology Dept.</strong></div>
+          <div class="info-item"><span>College / Office</span><strong>Computing &amp; IT</strong></div>
+          <div class="info-item"><span>Location</span><strong>ICT Building, 2nd Floor</strong></div>
+          <div class="info-item"><span>Dept. Status</span><strong style="color:#15803d;">Verified</strong></div>
+        </div>
+        <p class="um-section-lbl" style="margin-top:14px;">Positions Posted</p>
+        <table style="width:100%;font-size:12.5px;border-collapse:collapse;">
+          <thead><tr style="background:#f9f9f9;">
+            <th class="um-th">Position</th><th class="um-th">Slots</th><th class="um-th">Filled</th><th class="um-th">Status</th>
+          </tr></thead>
+          <tbody>
+            <tr><td class="um-td"><strong>Lab Monitor</strong></td><td class="um-td">8</td><td class="um-td" style="color:#b91c1c;font-weight:700;">8 / 8</td><td class="um-td"><span class="badge badge-flagged">Full</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Managed SAs -->
+      <div id="um-d-2" class="um-dept-panel" style="display:none;">
+        <p class="um-section-lbl">Supervised Student Assistants (8)</p>
+        <div style="background:#fffbe6;border-left:3px solid var(--gold);border-radius:0 6px 6px 0;padding:10px 12px;font-size:12px;color:#78350f;margin-bottom:12px;">
+          This dept. head verifies attendance logs for all supervised SAs before Admin review.
+        </div>
+        <table style="width:100%;font-size:12.5px;border-collapse:collapse;">
+          <thead><tr style="background:#f9f9f9;">
+            <th class="um-th">Student</th><th class="um-th">ID</th><th class="um-th">Hours</th><th class="um-th">Status</th>
+          </tr></thead>
+          <tbody>
+            <tr><td class="um-td"><strong>Juan Dela Cruz</strong></td><td class="um-td" style="font-family:monospace;color:#6b7280;">2021-00388</td><td class="um-td">92h</td><td class="um-td"><span class="badge active">Active</span></td></tr>
+            <tr><td class="um-td"><strong>Liza Torres</strong></td><td class="um-td" style="font-family:monospace;color:#6b7280;">2022-00299</td><td class="um-td">88h</td><td class="um-td"><span class="badge active">Active</span></td></tr>
+            <tr><td class="um-td" colspan="4" style="color:#9ca3af;font-style:italic;padding:8px 10px;">+ 6 more SA records</td></tr>
+          </tbody>
+        </table>
+        <p class="um-section-lbl" style="margin-top:14px;">Verification Activity</p>
+        <div class="info-grid">
+          <div class="info-item"><span>Logs Verified</span><strong style="color:#15803d;">47</strong></div>
+          <div class="info-item"><span>Logs Edited</span><strong style="color:#92400e;">3</strong></div>
+          <div class="info-item"><span>Logs Pending</span><strong style="color:#b91c1c;">2</strong></div>
+          <div class="info-item"><span>Avg. Response Time</span><strong>4.2h</strong></div>
+        </div>
+      </div>
+
+      <!-- Activity Log -->
+      <div id="um-d-3" class="um-dept-panel" style="display:none;">
+        <p class="um-section-lbl">Recent System Activity</p>
+        <div class="um-timeline">
+          <div class="um-entry"><div class="um-dot um-dot-green"></div><div class="um-entry-text">Approved attendance log — Juan Dela Cruz</div><div class="um-entry-time">Apr 29, 2026 · 1:16 PM</div></div>
+          <div class="um-entry"><div class="um-dot um-dot-amber"></div><div class="um-entry-text">Edited time-out — Liza Torres (Apr 23)</div><div class="um-entry-time">Apr 23, 2026 · 5:12 PM</div></div>
+          <div class="um-entry"><div class="um-dot um-dot-blue"></div><div class="um-entry-text">Submitted attendance verification batch</div><div class="um-entry-time">Apr 22, 2026 · 2:00 PM</div></div>
+          <div class="um-entry"><div class="um-dot um-dot-green"></div><div class="um-entry-text">Posted position — Lab Monitor (8 slots)</div><div class="um-entry-time">Mar 15, 2026 · 10:00 AM</div></div>
+          <div class="um-entry"><div class="um-dot um-dot-blue"></div><div class="um-entry-text">Account verified by admin</div><div class="um-entry-time">Jan 11, 2026 · 9:00 AM</div></div>
+          <div class="um-entry"><div class="um-dot"></div><div class="um-entry-text">Registered &amp; submitted staff ID</div><div class="um-entry-time">Jan 10, 2026 · 3:30 PM</div></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <a href="#" class="btn-closed">Close</a>
+      <button class="btn btn-sm" style="background:#fef3c7;color:#92400e;border:1px solid #fcd34d;" onclick="resetPassword('Alma Fernandez')"><i class="fas fa-key"></i> Reset Password</button>
+      <button class="btn btn-sm btn-reject" onclick="deactivateUser('Alma Fernandez')"><i class="fas fa-ban"></i> Deactivate</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PAYROLL DETAIL MODAL ============ -->
+<div id="payroll-detail-modal" class="modal-overlay" style="display:none;opacity:1;visibility:visible;">
+  <div class="modal-card" style="max-width:620px;">
+    <a href="#" class="modal-close-btn"
+      onclick="document.getElementById('payroll-detail-modal').style.display='none';return false;">
+      &times;
+    </a>
+
+    <!-- Banner -->
+    <div id="pdm-banner"
+      style="background:linear-gradient(135deg,var(--maroon-deep),var(--maroon));
+             padding:20px 24px 16px;color:#fff;border-radius:10px 10px 0 0;">
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;
+                  letter-spacing:1.5px;opacity:.65;margin-bottom:10px;">
+        Payroll Detail
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <div id="pdm-avatar"
+          style="width:50px;height:50px;border-radius:50%;
+                 border:3px solid rgba(255,255,255,0.4);
+                 background:linear-gradient(135deg,#5a0915,#9e1a2e);
+                 display:flex;align-items:center;justify-content:center;
+                 font-weight:800;font-size:15px;color:#fff;flex-shrink:0;">
+          MS
+        </div>
+        <div>
+          <div id="pdm-name"
+            style="font-size:17px;font-weight:700;">Maria Santos</div>
+          <div id="pdm-sub"
+            style="font-size:12px;opacity:.75;margin-top:2px;">
+            2022-00145 &nbsp;·&nbsp; BSCS — 3rd Year
+          </div>
+        </div>
+        <div style="margin-left:auto;text-align:right;">
+          <div id="pdm-status-badge"
+            style="font-size:11px;padding:4px 12px;border-radius:20px;
+                   font-weight:700;background:#E6F1FB;color:#0C447C;
+                   display:inline-block;">
+            COMPUTED
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="modal-body" style="padding:20px 24px;max-height:460px;overflow-y:auto;">
+
+      <!-- § 1  STUDENT IDENTITY -->
+      <p class="um-section-lbl">
+        <i class="fas fa-user" style="color:var(--maroon);margin-right:5px;"></i>
+        Student Identity
+      </p>
+      <div class="info-grid" style="margin-bottom:18px;">
+        <div class="info-item">
+          <span>Full Name</span>
+          <strong id="pdm-fullname">Maria M. Santos</strong>
+        </div>
+        <div class="info-item">
+          <span>Student ID</span>
+          <strong id="pdm-studentid" style="font-family:monospace;">2022-00145</strong>
+        </div>
+        <div class="info-item">
+          <span>Program</span>
+          <strong id="pdm-program">BSCS</strong>
+        </div>
+        <div class="info-item">
+          <span>Year Level</span>
+          <strong id="pdm-yearlevel">3rd Year</strong>
+        </div>
+      </div>
+
+      <!-- § 2  EMPLOYMENT DETAILS -->
+      <p class="um-section-lbl">
+        <i class="fas fa-briefcase" style="color:var(--maroon);margin-right:5px;"></i>
+        Employment Details
+      </p>
+      <div class="info-grid" style="margin-bottom:18px;">
+        <div class="info-item">
+          <span>Department</span>
+          <strong id="pdm-dept">University Library</strong>
+        </div>
+        <div class="info-item">
+          <span>Position</span>
+          <strong id="pdm-position">Library Assistant</strong>
+        </div>
+        <div class="info-item">
+          <span>Start Date</span>
+          <strong id="pdm-startdate">Mar 25, 2026</strong>
+        </div>
+        <div class="info-item">
+          <span>Active Status</span>
+          <strong id="pdm-activestatus" style="color:#15803d;">Active ✓</strong>
+        </div>
+      </div>
+
+      <!-- § 3  ATTENDANCE SUMMARY -->
+      <p class="um-section-lbl">
+        <i class="fas fa-calendar-check" style="color:var(--maroon);margin-right:5px;"></i>
+        Attendance Summary
+        <span id="pdm-period-label"
+          style="font-size:10px;font-weight:600;color:var(--muted);
+                 margin-left:6px;text-transform:none;letter-spacing:0;">
+          Apr 22–30, 2026
+        </span>
+      </p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);
+                  gap:8px;margin-bottom:18px;">
+        <div class="um-chip um-chip-green">
+          <div class="um-chip-val" id="pdm-total-hours">9h</div>
+          <div class="um-chip-lbl">Total Hours</div>
+        </div>
+        <div class="um-chip">
+          <div class="um-chip-val" id="pdm-days-present">5</div>
+          <div class="um-chip-lbl">Days Present</div>
+        </div>
+        <div class="um-chip um-chip-red">
+          <div class="um-chip-val" id="pdm-days-absent">0</div>
+          <div class="um-chip-lbl">Days Absent</div>
+        </div>
+        <div class="um-chip um-chip-amber">
+          <div class="um-chip-val" id="pdm-late">1</div>
+          <div class="um-chip-lbl">Late Entries</div>
+        </div>
+        <div class="um-chip um-chip-amber">
+          <div class="um-chip-val" id="pdm-undertime">0</div>
+          <div class="um-chip-lbl">Undertime</div>
+        </div>
+        <div class="um-chip um-chip-green">
+          <div class="um-chip-val" id="pdm-att-rate">100%</div>
+          <div class="um-chip-lbl">Att. Rate</div>
+        </div>
+      </div>
+
+      <!-- § 4  RATE & COMPUTATION -->
+      <p class="um-section-lbl">
+        <i class="fas fa-calculator" style="color:var(--maroon);margin-right:5px;"></i>
+        Rate & Computation
+      </p>
+      <div style="background:linear-gradient(135deg,#1f2937,#374151);
+                  border-radius:10px;padding:16px 20px;margin-bottom:18px;color:#fff;">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;
+                    gap:10px;text-align:center;">
+          <div>
+            <div style="font-size:11px;opacity:.55;text-transform:uppercase;
+                        letter-spacing:.06em;margin-bottom:5px;">Hours Worked</div>
+            <div id="pdm-comp-hours"
+              style="font-size:22px;font-weight:800;
+                     font-family:'Playfair Display',serif;">9h</div>
+          </div>
+          <div>
+            <div style="font-size:11px;opacity:.55;text-transform:uppercase;
+                        letter-spacing:.06em;margin-bottom:5px;">Rate / Hour</div>
+            <div id="pdm-comp-rate"
+              style="font-size:22px;font-weight:800;
+                     font-family:'Playfair Display',serif;">₱50</div>
+          </div>
+          <div style="background:rgba(201,168,76,0.2);border-radius:8px;padding:8px 6px;">
+            <div style="font-size:11px;opacity:.55;text-transform:uppercase;
+                        letter-spacing:.06em;margin-bottom:5px;color:#e8c97a;">Total Pay</div>
+            <div id="pdm-comp-total"
+              style="font-size:20px;font-weight:800;color:#e8c97a;
+                     font-family:'Playfair Display',serif;">₱450.00</div>
+          </div>
+        </div>
+        <div style="margin-top:12px;padding-top:10px;
+                    border-top:1px solid rgba(255,255,255,0.1);
+                    font-size:11.5px;opacity:.6;text-align:center;">
+          Computation: <span id="pdm-formula">9h × ₱50/hr = ₱450.00</span>
+        </div>
+      </div>
+
+      <!-- § 5  PAYROLL STATUS -->
+      <p class="um-section-lbl">
+        <i class="fas fa-money-bill-wave" style="color:var(--maroon);margin-right:5px;"></i>
+        Payroll Status
+      </p>
+      <div class="info-grid" style="margin-bottom:18px;">
+        <div class="info-item">
+          <span>Current Status</span>
+          <strong id="pdm-pay-status" style="color:#0C447C;">Computed</strong>
+        </div>
+        <div class="info-item">
+          <span>Cutoff Period</span>
+          <strong id="pdm-cutoff">Apr 22 – Apr 30, 2026</strong>
+        </div>
+        <div class="info-item">
+          <span>Date Processed</span>
+          <strong id="pdm-date-processed">May 1, 2026</strong>
+        </div>
+        <div class="info-item">
+          <span>Release Method</span>
+          <strong id="pdm-release-method">Cashier Claim</strong>
+        </div>
+      </div>
+
+      <!-- § 6  APPROVAL TRAIL -->
+      <p class="um-section-lbl">
+        <i class="fas fa-history" style="color:var(--maroon);margin-right:5px;"></i>
+        Approval Trail
+      </p>
+      <div class="um-timeline" id="pdm-trail">
+        <div class="um-entry">
+          <div class="um-dot um-dot-blue"></div>
+          <div class="um-entry-text">Student submitted attendance log</div>
+          <div class="um-entry-time" id="pdm-trail-1">Apr 30, 2026 · 05:01 PM</div>
+        </div>
+        <div class="um-entry">
+          <div class="um-dot um-dot-green"></div>
+          <div class="um-entry-text">
+            Supervisor verified &nbsp;
+            <span style="font-size:11px;background:#e7f3ff;color:#1d4ed8;
+                         padding:2px 8px;border-radius:10px;font-weight:600;">
+              R. Villanueva
+            </span>
+          </div>
+          <div class="um-entry-time" id="pdm-trail-2">Apr 30, 2026 · 05:45 PM</div>
+        </div>
+        <div class="um-entry">
+          <div class="um-dot um-dot-green"></div>
+          <div class="um-entry-text">
+            Payroll computed by system
+          </div>
+          <div class="um-entry-time" id="pdm-trail-3">May 1, 2026 · 08:00 AM</div>
+        </div>
+        <div class="um-entry">
+          <div class="um-dot" style="background:#d1d5db;box-shadow:0 0 0 2px #d1d5db;"></div>
+          <div class="um-entry-text" style="color:#9ca3af;">
+            Awaiting admin verification
+          </div>
+          <div class="um-entry-time">Pending your action</div>
+        </div>
+      </div>
+
+    </div><!-- /modal-body -->
+
+    <!-- Footer -->
+    <div class="modal-footer">
+      <a href="#" class="btn-closed"
+        onclick="document.getElementById('payroll-detail-modal').style.display='none';
+                 return false;">
+        Close
+      </a>
+      <button class="btn btn-sm"
+        style="background:#EAF3DE;color:#27500A;border:1px solid #C0DD97;"
+        id="pdm-verify-btn"
+        onclick="pdmVerify()">
+        <i class="fas fa-check"></i> Verify This Entry
+      </button>
+    </div>
+  </div>
+</div>
     <script>
+      
     (function () {
       var SYM = {
         schoolYears: [
@@ -4227,7 +5264,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             + 'background:' + (sel ? '#f0f4ff' : '#f9f9f9') + ';">'
             + sy.label
             + (sy.active
-                ? '<div style="font-size:9px;color:#22c55e;font-weight:700;margin-top:3px;">● Active</div>'
+                ? '<div style="font-size:9px;color:#22c55e;font-weight:700;margin-top:3px;">\u25cf Active</div>'
                 : '<div style="font-size:9px;color:#aaa;margin-top:3px;">Archived</div>')
             + '</div>';
         }).join('');
@@ -4249,7 +5286,7 @@ document.addEventListener('DOMContentLoaded', async () => {
               badge = document.createElement('div');
               badge.className = 'arch-active-sem-badge';
               badge.style.cssText = 'font-size:9px;font-weight:700;margin-top:4px;color:#15803d;';
-              badge.textContent = '● Active';
+              badge.textContent = '\u25cf Active';
               btn.appendChild(badge);
             }
           } else {
@@ -4257,7 +5294,6 @@ document.addEventListener('DOMContentLoaded', async () => {
           }
         });
       }
-
 
       function arch_updatePreview() {
         var el = document.getElementById('arch-preview-label');
@@ -4313,7 +5349,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         panel.innerHTML = ''
-          // Title row
           + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">'
           +   '<div style="font-size:14px;font-weight:700;color:#1a1a1a;">'
           +     syLabel + ' \u00b7 ' + ARCH.viewingSem
@@ -4323,46 +5358,35 @@ document.addEventListener('DOMContentLoaded', async () => {
           +     (activeFlag ? 'Currently Active' : 'Archived')
           +   '</span>'
           + '</div>'
-
-          // Stats grid
           + '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px;">'
-
           +   '<div style="background:#fce4e8;border-radius:10px;padding:12px;text-align:center;">'
           +     '<div style="font-size:22px;font-weight:800;color:#7a0020;">' + semData.students + '</div>'
           +     '<div style="font-size:11px;color:#555;margin-top:3px;">Students Registered</div>'
           +   '</div>'
-
           +   '<div style="background:#e8f5e9;border-radius:10px;padding:12px;text-align:center;">'
           +     '<div style="font-size:22px;font-weight:800;color:#2e7d32;">' + semData.activeSA + '</div>'
           +     '<div style="font-size:11px;color:#555;margin-top:3px;">Active Student Assistants</div>'
           +   '</div>'
-
           +   '<div style="background:#e8f0fe;border-radius:10px;padding:12px;text-align:center;">'
           +     '<div style="font-size:22px;font-weight:800;color:#1a3a8f;">' + semData.depts + '</div>'
           +     '<div style="font-size:11px;color:#555;margin-top:3px;">Departments</div>'
           +   '</div>'
-
           +   '<div style="background:#fef9ec;border-radius:10px;padding:12px;text-align:center;">'
           +     '<div style="font-size:22px;font-weight:800;color:#92400e;">' + semData.applications + '</div>'
           +     '<div style="font-size:11px;color:#555;margin-top:3px;">Total Applications</div>'
           +   '</div>'
-
           +   '<div style="background:#f0f4ff;border-radius:10px;padding:12px;text-align:center;">'
           +     '<div style="font-size:22px;font-weight:800;color:#4361ee;">' + semData.approvalRate + '</div>'
           +     '<div style="font-size:11px;color:#555;margin-top:3px;">Approval Rate</div>'
           +   '</div>'
-
           +   '<div style="background:#fffbeb;border-radius:10px;padding:12px;text-align:center;">'
           +     '<div style="font-size:22px;font-weight:800;color:#b45309;">' + semData.avgGwa + '</div>'
           +     '<div style="font-size:11px;color:#555;margin-top:3px;">Avg GWA of SAs</div>'
           +   '</div>'
-
           + '</div>'
-
-          // Read-only note
           + '<div style="font-size:11px;color:#aaa;text-align:center;">'
           +   '<i class="fas fa-lock" style="margin-right:4px;"></i>'
-          +   'Read-only snapshot — reflects end-of-period records.'
+          +   'Read-only snapshot \u2014 reflects end-of-period records.'
           + '</div>';
       }
 
@@ -4407,7 +5431,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             + 'color:' + color + ';background:' + bg + ';">'
             + sy.label
             + (isActive
-                ? '<div style="font-size:9px;color:#15803d;font-weight:700;margin-top:3px;">● Active</div>'
+                ? '<div style="font-size:9px;color:#15803d;font-weight:700;margin-top:3px;">\u25cf Active</div>'
                 : '<div style="font-size:9px;color:#aaa;margin-top:3px;">Archived</div>')
             + '</div>';
         }).join('');
@@ -4431,10 +5455,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.querySelectorAll('.sym-sem-opt').forEach(function (o) {
           var on          = o.dataset.sem === active;
           var isActiveSem = o.dataset.sem === SYM.activeSem && SYM.pendingSY === SYM.activeSY;
-          o.style.border     = '1.5px solid ' + (on ? '#1a3a8f' : '#e5e7eb');
-          o.style.background = on ? '#e8f0fe' : '#f9f9f9';
+          o.style.border     = '1.5px solid ' + (on ? 'var(--maroon,#7a0020)' : '#e5e7eb');
+          o.style.background = on ? '#fce4e8' : '#f9f9f9';
           o.querySelectorAll('div:not(.sym-active-sem-badge)').forEach(function (d, i) {
-            d.style.color   = on ? '#1a3a8f' : (i === 2 ? '#aaa' : '#555');
+            d.style.color   = on ? 'var(--maroon,#7a0020)' : (i === 2 ? '#aaa' : '#555');
             d.style.opacity = (on && i === 2) ? '0.7' : '1';
           });
           var badge = o.querySelector('.sym-active-sem-badge');
@@ -4443,7 +5467,7 @@ document.addEventListener('DOMContentLoaded', async () => {
               badge = document.createElement('div');
               badge.className = 'sym-active-sem-badge';
               badge.style.cssText = 'font-size:9px;font-weight:700;margin-top:4px;color:#15803d;';
-              badge.textContent = '● Active';
+              badge.textContent = '\u25cf Active';
               o.appendChild(badge);
             }
           } else {
@@ -4552,6 +5576,193 @@ document.addEventListener('DOMContentLoaded', async () => {
       var picker = document.getElementById('dash-date-picker');
       if (picker) picker.title = f;
     }
+
+   // Track verified count per batch
+const batchVerifiedCounts = {};
+
+function verifyPayrollRow(btn, name) {
+  confirmAction(
+    'Verify Payroll Entry',
+    `Verify <strong>${name}</strong>'s computed pay? This confirms the hours and amount are correct.`,
+    () => {
+      const row = btn.closest('tr');
+      const badge = row?.querySelector('.badge');
+      if (badge) {
+        badge.className = 'badge batch-badge-verified';
+        badge.textContent = 'VERIFIED';
+      }
+      row.dataset.status = 'verified';
+      btn.disabled = true;
+      btn.textContent = '✓ Verified';
+      showAlert('Verified', `${name}'s payroll entry has been verified.`, 'success');
+      updateBatchReleaseStatus(btn);
+    },
+    null,
+    { confirmText: 'Yes, Verify', cancelText: 'Cancel', confirmColor: 'success-btn' }
+  );
+}
+
+function updateBatchReleaseStatus(btn) {
+  const card = btn.closest('.payroll-batch-card');
+  if (!card) return;
+  const total = card.querySelectorAll('.batch-row').length;
+  const verified = card.querySelectorAll('.batch-row[data-status="verified"]').length;
+  const statusEl = card.querySelector('.batch-verify-status');
+  const releaseBtn = card.querySelector('.btn-release-batch');
+  if (statusEl) {
+    if (verified === total) {
+      statusEl.innerHTML = `<strong style="color:#15803d;">All ${total} entries verified — ready to release</strong>`;
+    } else {
+      statusEl.innerHTML = `${verified} of ${total} verified &nbsp;·&nbsp; <strong style="color:var(--maroon);">Release requires all verified</strong>`;
+    }
+  }
+  if (releaseBtn) releaseBtn.disabled = verified < total;
+}
+
+function releaseBatch(dept, amount) {
+  const card = event.target.closest('.payroll-batch-card');
+  const total = card?.querySelectorAll('.batch-row').length || 0;
+  const verified = card?.querySelectorAll('.batch-row[data-status="verified"]').length || 0;
+  if (verified < total) {
+    showAlert('Cannot Release', `Please verify all ${total} entries before releasing the batch.`, 'error');
+    return;
+  }
+  confirmAction(
+    'Release Payroll Batch',
+    `Release <strong>₱${amount}</strong> to all Student Assistants under <strong>${dept}</strong>? This cannot be undone.`,
+    () => {
+      card?.querySelectorAll('.batch-row').forEach(row => {
+        const badge = row.querySelector('.badge');
+        if (badge) { badge.className = 'badge batch-badge-released'; badge.textContent = 'RELEASED'; }
+        row.dataset.status = 'released';
+        row.querySelectorAll('.batch-btn-verify, .batch-btn-view').forEach(b => b.remove());
+      });
+      const releaseBtn = card?.querySelector('.btn-release-batch');
+      if (releaseBtn) { releaseBtn.disabled = true; releaseBtn.textContent = 'Released'; }
+      showAlert('Batch Released ✓', `₱${amount} has been released to all SAs under ${dept}.`, 'success');
+    },
+    null,
+    { confirmText: 'Yes, Release', cancelText: 'Cancel', confirmColor: 'success-btn' }
+  );
+}
+
+function viewPayrollDetail(name, id, position, hours, rate, total, period, supervisor) {
+  // Build initials from name
+  const initials = name.split(' ')
+    .filter(Boolean)
+    .map(w => w[0])
+    .slice(0, 2)
+    .join('');
+
+  // Derive program/year from id (fallback to position-based lookup)
+  const studentMeta = {
+    'Maria Santos':   { program:'BSCS', year:'3rd Year', start:'Mar 25, 2026' },
+    'Liza Torres':    { program:'BSCS', year:'3rd Year', start:'Mar 25, 2026' },
+    'Juan dela Cruz': { program:'BSBA', year:'4th Year', start:'Mar 26, 2026' },
+    'Pedro Valdez':   { program:'BSED', year:'4th Year', start:'Mar 26, 2026' },
+  };
+  const meta = studentMeta[name] || { program:'—', year:'—', start:'—' };
+
+  // Dept from position
+  const deptMap = {
+    'Library Asst.':  'University Library',
+    'Finance Clerk':  'Finance Office',
+  };
+  const dept = deptMap[position] || position;
+
+  // Parse hours & rate for computation
+  const h = parseFloat(hours);
+  const r = parseFloat(rate);
+  const computed = (h * r).toFixed(2);
+
+  // Populate banner
+  document.getElementById('pdm-avatar').textContent = initials;
+  document.getElementById('pdm-name').textContent   = name;
+  document.getElementById('pdm-sub').textContent    = id + ' · ' + meta.program + ' — ' + meta.year;
+
+  // § 1 Identity
+  document.getElementById('pdm-fullname').textContent  = name;
+  document.getElementById('pdm-studentid').textContent = id;
+  document.getElementById('pdm-program').textContent   = meta.program;
+  document.getElementById('pdm-yearlevel').textContent = meta.year;
+
+  // § 2 Employment
+  document.getElementById('pdm-dept').textContent         = dept;
+  document.getElementById('pdm-position').textContent     = position;
+  document.getElementById('pdm-startdate').textContent    = meta.start;
+  document.getElementById('pdm-activestatus').textContent = 'Active ✓';
+  document.getElementById('pdm-activestatus').style.color = '#15803d';
+
+  // § 3 Attendance
+  document.getElementById('pdm-period-label').textContent = period;
+  document.getElementById('pdm-total-hours').textContent  = h + 'h';
+  document.getElementById('pdm-days-present').textContent = Math.ceil(h / 4); // estimate
+  document.getElementById('pdm-days-absent').textContent  = '0';
+  document.getElementById('pdm-late').textContent         = '0';
+  document.getElementById('pdm-undertime').textContent    = '0';
+  document.getElementById('pdm-att-rate').textContent     = '100%';
+
+  // § 4 Computation
+  document.getElementById('pdm-comp-hours').textContent = h + 'h';
+  document.getElementById('pdm-comp-rate').textContent  = '₱' + r;
+  document.getElementById('pdm-comp-total').textContent = '₱' + computed;
+  document.getElementById('pdm-formula').textContent    =
+    h + 'h × ₱' + r + '/hr = ₱' + computed;
+
+  // § 5 Status
+  document.getElementById('pdm-pay-status').textContent    = 'Computed';
+  document.getElementById('pdm-cutoff').textContent        = period;
+  document.getElementById('pdm-date-processed').textContent = 'May 1, 2026';
+  document.getElementById('pdm-release-method').textContent = 'Cashier Claim';
+
+  // § 6 Trail — supervisor name in step 2
+  const trailSup = document.getElementById('pdm-trail-2');
+  if (trailSup) {
+    trailSup.closest('.um-entry').querySelector('.um-entry-text').innerHTML =
+      'Supervisor verified &nbsp;<span style="font-size:11px;background:#e7f3ff;'
+      + 'color:#1d4ed8;padding:2px 8px;border-radius:10px;font-weight:600;">'
+      + supervisor + '</span>';
+  }
+
+  // Store reference for the verify button
+  document.getElementById('pdm-verify-btn').dataset.name = name;
+
+  // Show modal
+  document.getElementById('payroll-detail-modal').style.display = 'flex';
+}
+
+function pdmVerify() {
+  const name = document.getElementById('pdm-verify-btn').dataset.name;
+  // Find the matching verify button in the batch table and trigger it
+  const rows = document.querySelectorAll('.batch-row');
+  rows.forEach(row => {
+    const rowName = row.querySelector('.batch-td-name')?.textContent?.trim();
+    if (rowName === name) {
+      const verifyBtn = row.querySelector('.batch-btn-verify');
+      if (verifyBtn && !verifyBtn.disabled) {
+        document.getElementById('payroll-detail-modal').style.display = 'none';
+        verifyBtn.click();
+      } else {
+        showAlert('Already Verified', name + "'s entry is already verified.", 'success');
+        document.getElementById('payroll-detail-modal').style.display = 'none';
+      }
+    }
+  });
+}
+
+// User Management modal tabs
+function umSwitchTab(btn, groupClass) {
+  const modal = btn.closest('.modal-card');
+  const tabs = modal.querySelectorAll('.um-tab');
+  const idx = [...tabs].indexOf(btn);
+  const prefix = groupClass === 'um-dept' ? 'um-d-' : 'um-s-';
+  const panelClass = groupClass === 'um-dept' ? 'um-dept-panel' : 'um-panel';
+  tabs.forEach(t => t.classList.remove('um-tab-active'));
+  btn.classList.add('um-tab-active');
+  modal.querySelectorAll('.' + panelClass).forEach((p, i) => {
+    p.style.display = i === idx ? 'block' : 'none';
+  });
+}
     </script>
 
 
