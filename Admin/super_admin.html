@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WMSU SAMS | Admin Dashboard</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link href="admin_dashboard.css" rel="stylesheet" />
+  <link href="../Global/modals.css" rel="stylesheet" />
+  <script src="../Global/modals.js" defer></script>
+  <script src="../Global/pagination.js" defer></script>
+</head>
+
+<body>
+<!-- ── RADIO INPUTS FOR NAVIGATION ─────────────── -->
+<input class="nav-radio" type="radio" name="nav" id="nav-dashboard" checked />
+<input class="nav-radio" type="radio" name="nav" id="nav-admin-management" />
+<input class="nav-radio" type="radio" name="nav" id="nav-global-settings" />
+<input class="nav-radio" type="radio" name="nav" id="nav-audit-logs" />
+<input class="nav-radio" type="radio" name="nav" id="nav-system-override" />
+<input class="nav-radio" type="radio" name="nav" id="nav-backup-data" />
+
+<div class="layout">
+  <!-- ══════════════════ SIDEBAR ══════════════════ -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-text">
+        <div class="abbr">WMSU-SAMS</div>
+        <div class="full">Student Assistant Management System</div>
+      </div>
+    </div>
+    <!-- School Year Badge -->
+    <div class="sidebar-sy-badge" style="cursor:pointer;" onclick="openSYManager()">
+      <i class="fas fa-calendar-alt"></i>
+      <span id="sidebar-sy-label">AY 2025–2026</span>
+      <span class="sy-sem-tag" id="sidebar-sem-tag">2nd Sem</span>
+    </div>
+    <div class="sidebar-section-label">Main Menu</div>
+    <nav class="sidebar-nav">
+      <div class="nav-item">
+        <label for="nav-dashboard">
+          <i class="fas fa-th-large"></i> Dashboard
+        </label>
+      </div>
+      <div class="nav-item">
+        <label for="nav-admin-management">
+          <i class="fas fa-user-shield"></i> Admin Management
+          <span class="nav-badge" id="sidebar-badge-students">5</span>
+        </label>
+      </div>
+       <div class="nav-item">
+        <label for="nav-global-settings">
+          <i class="fas fa-users-cog"></i> Global System Settings
+        </label>
+      </div>
+      <div class="nav-item">
+        <label for="nav-audit-logs">
+          <i class="fas fa-history"></i> Audit Logs
+        </label>
+      </div>
+      <div class="nav-item">
+        <label for="nav-system-override">
+          <i class="fas fa-cogs"></i> System Override Controls
+        </label>
+      </div>
+      <div class="nav-item">
+        <label for="nav-backup-data">
+          <i class="fas fa-save"></i> Backup & Data Protection
+        </label>
+      </div>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="../index.html" class="logout-btn">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </a>
+    </div>
+  </aside>
+  <!-- ══════════════════ TOPBAR ══════════════════ -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <h1>Super Admin Panel</h1>
+      <p>Western Mindanao State University &mdash;
+        <strong id="topbar-sy">AY 2025–2026</strong> &bull; 2nd Semester
+      </p>
+    </div>
+    <div class="topbar-right">
+      <!-- Live Clock -->
+      <div class="topbar-clock" id="topbar-clock">--:-- --</div>
+      <!-- Notification Bell -->
+      <div class="topbar-notif" id="notif-bell" onclick="toggleNotifPanel()">
+        <i class="fas fa-bell"></i>
+        <span class="notif-dot" id="notif-dot"></span>
+      </div>
+      <!-- Notification Dropdown -->
+      <div class="notif-panel" id="notif-panel" style="display:none;">
+        <div class="notif-panel-header">
+          <span>Notifications</span>
+          <button onclick="markAllRead()" class="notif-mark-all">Mark all read</button>
+        </div>
+        <ul class="notif-list" id="notif-list">
+          <li class="notif-item unread">
+            <i class="fas fa-user-clock" style="color:var(--yellow);"></i>
+            <div>
+              <div class="notif-text">Ana Reyes has a missing time-out</div>
+              <div class="notif-time">2 min ago</div>
+            </div>
+          </li>
+          <li class="notif-item unread">
+            <i class="fas fa-file-alt" style="color:var(--blue);"></i>
+            <div>
+              <div class="notif-text">5 students pending verification</div>
+              <div class="notif-time">14 min ago</div>
+            </div>
+          </li>
+          <li class="notif-item">
+            <i class="fas fa-check-circle" style="color:var(--green);"></i>
+            <div>
+              <div class="notif-text">Carlos Mendez approved for Finance Office</div>
+              <div class="notif-time">1 hour ago</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="topbar-user">
+        <div class="user-avatar">AD</div>
+        <div>
+          <div class="user-name">Super Admin</div>
+          <div class="user-role">System Administrator</div>
+        </div>
+      </div>
+    </div>
+  </header>
+    
+    <main class="main-content">
+         <!-- ══════════════════ DASHBOARD ══════════════════ -->
+        <section id="sec-dashboard" class="section">
+            <div class="section-header">
+                <div>
+                <div class="section-title">Super Admin Dashboard</div>
+                <p class="section-sub">System control summary and security posture overview.</p>
+                </div>
+            </div>
+
+            <div class="stat-grid">
+                <div class="stat-card maroon">
+                <div class="stat-card-top">
+                    <div>
+                    <div class="stat-value" id="dashboard-total-admins">0</div>
+                    <div class="stat-label">Department Admins</div>
+                    </div>
+                    <div class="stat-icon maroon"><i class="fas fa-user-shield"></i></div>
+                </div>
+                </div>
+                <div class="stat-card gold">
+                <div class="stat-card-top">
+                    <div>
+                    <div class="stat-value" id="dashboard-departments">0</div>
+                    <div class="stat-label">Departments</div>
+                    </div>
+                    <div class="stat-icon gold"><i class="fas fa-building"></i></div>
+                </div>
+                </div>
+                <div class="stat-card green">
+                <div class="stat-card-top">
+                    <div>
+                    <div class="stat-value" id="dashboard-pending-apps">0</div>
+                    <div class="stat-label">Pending Applications</div>
+                    </div>
+                    <div class="stat-icon green"><i class="fas fa-file-alt"></i></div>
+                </div>
+                </div>
+                <div class="stat-card orange">
+                <div class="stat-card-top">
+                    <div>
+                    <div class="stat-value" id="dashboard-last-backup">N/A</div>
+                    <div class="stat-label">Last Backup</div>
+                    </div>
+                    <div class="stat-icon orange"><i class="fas fa-save"></i></div>
+                </div>
+                </div>
+            </div>
+
+            <div class="dash-grid">
+                <article class="card">
+                <div class="card-header">
+                    <h3><i class="fas fa-chart-line"></i> Recent Critical Activity</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                    <thead>
+                        <tr>
+                        <th>Time</th>
+                        <th>User</th>
+                        <th>Role</th>
+                        <th>Action</th>
+                        <th>Target</th>
+                        <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dashboard-recent-activity"></tbody>
+                    </table>
+                </div>
+                </article>
+
+                <article class="card">
+                <div class="card-header">
+                    <h3><i class="fas fa-exclamation-circle"></i> Security Alerts</h3>
+                </div>
+                <div class="card-body">
+                    <ul id="dashboard-security-alerts" class="alert-list"></ul>
+                </div>
+                </article>
+            </div>
+        </section>
+
+         <!-- ══════════════════ ADMIN MANAGEMENT ══════════════════ -->
+        <section id="sec-admin-management" class="section">
+            <div class="section-header">
+                <div>
+                <div class="section-title">Admin Management</div>
+                <p class="section-sub">Create, assign, disable, and recover Department Admin accounts.</p>
+                </div>
+                <div class="section-actions">
+                <button href="#modal-admin-form" class="btn btn-primary" id="btn-create-admin">Create Admin</button>
+                <button class="btn btn-outline" id="btn-view-disabled">View Disabled Admins</button>
+                </div>
+            </div>
+
+            <article class="card">
+                <div class="card-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Department</th>
+                        <th>Status</th>
+                        <th>Last Login</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody id="admin-management-table"></tbody>
+                </table>
+                </div>
+            </article>
+        </section>
+         <!-- ══════════════════ GLOBAL SYSTEM SETTINGS ══════════════════ -->
+        <section id="sec-global-settings" class="section">
+            <div class="section-header">
+                <div>
+                <div class="section-title">Global System Settings</div>
+                <p class="section-sub">Configure school year, payroll rules, application requirements, and operational policies.</p>
+                </div>
+                <div class="section-actions">
+                <button class="btn btn-primary" id="btn-save-settings">Save Settings</button>
+                </div>
+            </div>
+
+            <article class="card">
+                <div class="card-body">
+                <form id="settings-form">
+                    <label>Current School Year</label>
+                    <input name="current_school_year" required />
+                    <label>Current Semester</label>
+                    <select name="current_semester">
+                    <option value="1st">1st</option>
+                    <option value="2nd">2nd</option>
+                    <option value="summer">Summer</option>
+                    </select>
+
+                    <label>Application Open</label>
+                    <select name="application_open">
+                    <option value="true">Open</option>
+                    <option value="false">Closed</option>
+                    </select>
+
+                    <label>Payroll Rate Per Hour</label>
+                    <input name="payroll_rate_per_hour" type="number" min="0" step="0.01" required />
+
+                    <label>Required Documents</label>
+                    <textarea name="required_documents" placeholder='["COR","Grades"]'></textarea>
+
+                    <label>Max Assistants per Department</label>
+                    <input name="max_assistants_per_department" type="number" min="1" required />
+
+                    <label>Student Application Deadline</label>
+                    <input name="application_deadline" type="date" required />
+                </form>
+                </div>
+            </article>
+        </section>
+         <!-- ══════════════════ AUDIT LOGS ══════════════════ -->
+        <section id="sec-audit-logs" class="section">
+            <div class="section-header">
+                <div>
+                <div class="section-title">Audit Logs</div>
+                <p class="section-sub">Search and inspect every critical action in the system.</p>
+                </div>
+                <div class="section-actions">
+                <button class="btn btn-primary" id="btn-export-audit">Export CSV</button>
+                <button class="btn btn-outline" id="btn-refresh-audit">Refresh</button>
+                </div>
+            </div>
+
+            <article class="card">
+                <div class="card-body">
+                <div class="filter-row">
+                    <input id="audit-filter-user" placeholder="User email or name" />
+                    <select id="audit-filter-role">
+                    <option value="">All roles</option>
+                    <option value="super_admin">Super Admin</option>
+                    <option value="department_admin">Department Admin</option>
+                    <option value="student">Student</option>
+                    </select>
+                    <select id="audit-filter-action">
+                    <option value="">All actions</option>
+                    <option value="create_user">create_user</option>
+                    <option value="update_setting">update_setting</option>
+                    <option value="system_override">system_override</option>
+                    <option value="backup_restore">backup_restore</option>
+                    </select>
+                    <input type="date" id="audit-filter-start" />
+                    <input type="date" id="audit-filter-end" />
+                </div>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>User</th>
+                        <th>Role</th>
+                        <th>Action</th>
+                        <th>Target</th>
+                        <th>Department</th>
+                        <th>Detail</th>
+                    </tr>
+                    </thead>
+                    <tbody id="audit-logs-table"></tbody>
+                </table>
+                </div>
+            </article>
+        </section>
+         <!-- ══════════════════ SYSTEM OVERRIDE ══════════════════ -->
+        <section id="sec-system-override" class="section">
+            <div class="section-header">
+                <div>
+                <div class="section-title">System Override Controls</div>
+                <p class="section-sub">Emergency controls for freezing operations, forcing logouts, and locking the system.</p>
+                </div>
+            </div>
+
+            <div class="stat-grid">
+                <div class="stat-card maroon">
+                <div class="stat-card-top">
+                    <div>
+                    <div class="stat-value" id="override-status">Normal</div>
+                    <div class="stat-label">System State</div>
+                    </div>
+                    <div class="stat-icon maroon"><i class="fas fa-power-off"></i></div>
+                </div>
+                </div>
+                <div class="stat-card gold">
+                <div class="stat-card-top">
+                    <div>
+                    <div class="stat-value" id="override-active-count">0</div>
+                    <div class="stat-label">Active Overrides</div>
+                    </div>
+                    <div class="stat-icon gold"><i class="fas fa-exclamation-triangle"></i></div>
+                </div>
+                </div>
+            </div>
+
+            <article class="card">
+                <div class="card-body">
+                <button class="btn btn-primary" id="btn-freeze-system">Freeze System</button>
+                <button class="btn btn-outline" id="btn-force-logout">Force Logout All</button>
+                <button class="btn btn-outline" id="btn-lock-admins">Lock Department Admins</button>
+                </div>
+            </article>
+        </section>
+         <!-- ══════════════════ BACKUP & DATA PROTECTION ══════════════════ -->
+        <section id="sec-backup-data" class="section">
+            <div class="section-header">
+                <div>
+                <div class="section-title">Backup & Data Protection</div>
+                <p class="section-sub">Manage backups, restore points, and system recovery operations.</p>
+                </div>
+                <div class="section-actions">
+                <button class="btn btn-primary" id="btn-manual-backup">Create Manual Backup</button>
+                <button class="btn btn-outline" id="btn-restore-point">Restore from Backup</button>
+                </div>
+            </div>
+
+            <article class="card">
+                <div class="card-body">
+                <div class="backup-summary">
+                    <div>Last Backup: <span id="backup-last-time">N/A</span></div>
+                    <div>Next Scheduled: <span id="backup-next-schedule">N/A</span></div>
+                </div>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                        <th>Created By</th>
+                        <th>Completed At</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody id="backup-table"></tbody>
+                </table>
+                </div>
+            </article>
+        </section>    
+    
+    </main>
+</body>
+
+</html>
