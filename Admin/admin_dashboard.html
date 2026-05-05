@@ -4491,11 +4491,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             </div>
             <div class="sym-sem-opt" data-sem="2nd Semester" data-short="2nd Sem"
                 onclick="sym_pickSem(this)"
-                style="border:1.5px solid #1a3a8f;border-radius:9px;padding:14px 8px;
-                        text-align:center;cursor:pointer;background:#e8f0fe;transition:all .15s;">
-              <div style="font-size:20px;font-weight:800;color:#1a3a8f;">2</div>
-              <div style="font-size:12px;font-weight:600;color:#1a3a8f;margin-top:3px;">2nd Semester</div>
-              <div style="font-size:10px;color:#1a3a8f;opacity:.7;margin-top:2px;">Jan – May</div>
+                style="border:1.5px solid var(--maroon,#7a0020);border-radius:9px;padding:14px 8px;
+                        text-align:center;cursor:pointer;background:#fce4e8;transition:all .15s;">
+               <div style="font-size:20px;font-weight:800;color:var(--maroon,#7a0020);">2</div>
+              <div style="font-size:12px;font-weight:600;color:var(--maroon,#7a0020);margin-top:3px;">2nd Semester</div>
+              <div style="font-size:10px;color:var(--maroon,#7a0020);opacity:.7;margin-top:2px;">Jan – May</div>
             </div>
             <div class="sym-sem-opt" data-sem="Summer" data-short="Summer"
                 onclick="sym_pickSem(this)"
@@ -5455,10 +5455,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.querySelectorAll('.sym-sem-opt').forEach(function (o) {
           var on          = o.dataset.sem === active;
           var isActiveSem = o.dataset.sem === SYM.activeSem && SYM.pendingSY === SYM.activeSY;
-          o.style.border     = '1.5px solid ' + (on ? '#1a3a8f' : '#e5e7eb');
-          o.style.background = on ? '#e8f0fe' : '#f9f9f9';
+          o.style.border     = '1.5px solid ' + (on ? 'var(--maroon,#7a0020)' : '#e5e7eb');
+          o.style.background = on ? '#fce4e8' : '#f9f9f9';
           o.querySelectorAll('div:not(.sym-active-sem-badge)').forEach(function (d, i) {
-            d.style.color   = on ? '#1a3a8f' : (i === 2 ? '#aaa' : '#555');
+            d.style.color   = on ? 'var(--maroon,#7a0020)' : (i === 2 ? '#aaa' : '#555');
             d.style.opacity = (on && i === 2) ? '0.7' : '1';
           });
           var badge = o.querySelector('.sym-active-sem-badge');
