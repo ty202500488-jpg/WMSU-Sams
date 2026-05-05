@@ -5544,28 +5544,35 @@ document.addEventListener('DOMContentLoaded', async () => {
     function openCreateUserModal() {
       var m = document.getElementById('create-user-modal');
       if (m) m.style.display = 'flex';
+      m.style.opacity = '1';
+      m.style.visibility = 'visible';
     }
 
     function submitCreateUser() {
-      var name  = (document.getElementById('new-user-name')  || {value:''}).value.trim();
-      var email = (document.getElementById('new-user-email') || {value:''}).value.trim();
-      var role  = (document.getElementById('new-user-role')  || {value:''}).value;
-      if (!name || !email || !role) {
+    const name  = (document.getElementById('new-user-name')  || {value:''}).value.trim();
+    const email = (document.getElementById('new-user-email') || {value:''}).value.trim();
+    const role  = (document.getElementById('new-user-role')  || {value:''}).value;
+
+    if (!name || !email || !role) {
         showAlert('Missing Fields', 'Please fill in all fields before submitting.', 'error');
         return;
-      }
-      confirmAction('Create User',
+    }
+
+    confirmAction('Create User',
         'Create account for <strong>' + name + '</strong> as <strong>' + role + '</strong>?',
         function () {
-          document.getElementById('create-user-modal').style.display = 'none';
-          ['new-user-name', 'new-user-email', 'new-user-role'].forEach(function (id) {
-            document.getElementById(id).value = '';
-          });
-          showAlert('User Created', name + "'s account has been created successfully.", 'success');
+            const m = document.getElementById('create-user-modal');
+            m.style.opacity = '0';
+            m.style.visibility = 'hidden';
+            m.style.display = 'none';
+            ['new-user-name', 'new-user-email', 'new-user-role'].forEach(function (id) {
+                document.getElementById(id).value = '';
+            });
+            showAlert('User Created', name + "'s account has been created successfully.", 'success');
         }, null,
         { confirmText: 'Create', cancelText: 'Cancel', confirmColor: 'success-btn' }
-      );
-    }
+    );
+}
 
     function updateDashboardDate(val) {
       if (!val) return;
