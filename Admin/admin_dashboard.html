@@ -1562,6 +1562,9 @@ function populateDepartments() {
 // ACTIONS
 // ==========================
 function generatePayroll() {
+  document.getElementById("payroll-before").style.display = "none";
+  document.getElementById("payrollContainer").style.display = "block";
+
   const period = document.getElementById("payroll-period").value;
   const range = period === "may1"
     ? ["2026-05-01", "2026-05-15"]
@@ -1663,12 +1666,13 @@ function renderPayroll() {
         <div class="table-responsive">
           <table class="table" style="width: 100%; border-collapse: collapse;">
             <thead>
-              <tr style="border-bottom: 1px solid #ddd; text-align: left;">
-                <th>Name</th>
-                <th>Hours</th>
-                <th>Total</th>
-                <th>Status</th>
-                <th>Action</th>
+              <tr style="border-bottom: 1px solid #ddd; text-align: left; ">
+                <th style=" background: #F7F0F2 ; color: #7B0D1E;">Name</th>
+                <th style=" background: #F7F0F2 ; color: #7B0D1E;">Hours</th>
+                <th style=" background: #F7F0F2 ; color: #7B0D1E;">Rate</th>
+                <th style=" background: #F7F0F2 ; color: #7B0D1E;">Total</th>
+                <th style=" background: #F7F0F2 ; color: #7B0D1E;">Status</th>
+                <th style=" background: #F7F0F2 ; color: #7B0D1E;">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -1676,6 +1680,7 @@ function renderPayroll() {
                 <tr style="border-bottom: 1px solid #eee;">
                   <td><strong>${s.name}</strong></td>
                   <td>${s.hours} ${s.hours === MAX_HOURS_PER_CUTOFF ? '<span style="color:#d9534f; font-size:11px;">(capped)</span>' : ''}</td>
+                  <td>₱${s.rate.toFixed(2)}</td>
                   <td>₱${s.total.toFixed(2)}</td>
                   <td>
                     <span class="badge badge-${s.status}">${s.status.toUpperCase()}</span>
