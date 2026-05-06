@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="review_attendance.css">
     <link rel="stylesheet" href="../Global/modals.css">
-    <script src="../Global/modals.js" defer></script>
     <script src="../Global/pagination.js" defer></script>
     <link rel="stylesheet" href="../Global/responsive.css">
 </head>
@@ -316,13 +315,13 @@
             </div>
 
             <div class="action-buttons">
-                <button id="btn-approve" class="btn-action btn-approve" onclick="openModal('Verify')" disabled>
+                <button id="btn-approve" class="btn-action btn-approve" onclick="openModal('Verify')">
                     <i class="fas fa-check"></i> Verify
                 </button>
-                <button id="btn-correct" class="btn-action btn-correct" onclick="openModal('Correct')" disabled>
+                <button id="btn-correct" class="btn-action btn-correct" onclick="openModal('Correct')">
                     <i class="fas fa-edit"></i> Correct
                 </button>
-                <button id="btn-reject" class="btn-action btn-reject" onclick="openModal('Reject')" disabled>
+                <button id="btn-reject" class="btn-action btn-reject" onclick="openModal('Reject')">
                     <i class="fas fa-times"></i> Reject
                 </button>
             </div>
@@ -775,184 +774,206 @@ buildTabs();
 updateBadge();
 startPolling();
 </script>
-    <script>
-        let selectedRecordStatus = '';
-        let currentActionType = '';
-        let finalized = false;
-
-        function switchMainTab(tabName) {
-            document.getElementById('tab-today-btn').classList.remove('active');
-            document.getElementById('tab-history-btn').classList.remove('active');
-            
-            if (tabName === 'today') {
-                document.getElementById('view-today').style.display = 'block';
-                document.getElementById('view-history').style.display = 'none';
-                document.getElementById('tab-today-btn').classList.add('active');
-            } else {
-                document.getElementById('view-today').style.display = 'none';
-                document.getElementById('view-history').style.display = 'block';
-                document.getElementById('tab-history-btn').classList.add('active');
-            }
+<script>
+    /* ─── ATTENDANCE REVIEW LOGIC ───────────────────────── */
+    let selectedRecordStatus = '';
+    let currentActionType = '';
+    let finalized = false;
+ 
+    function switchMainTab(tabName) {
+        document.getElementById('tab-today-btn').classList.remove('active');
+        document.getElementById('tab-history-btn').classList.remove('active');
+        if (tabName === 'today') {
+            document.getElementById('view-today').style.display = 'block';
+            document.getElementById('view-history').style.display = 'none';
+            document.getElementById('tab-today-btn').classList.add('active');
+        } else {
+            document.getElementById('view-today').style.display = 'none';
+            document.getElementById('view-history').style.display = 'block';
+            document.getElementById('tab-history-btn').classList.add('active');
         }
-
-        function reviewRecord(rowElement, id, name, date, timeIn, timeOut, total, issue, device, status, reason) {
-            if (finalized) return;
-            
-            const rows = document.querySelectorAll('#table-body tr');
-            rows.forEach(row => row.classList.remove('selected-row'));
-            rowElement.classList.add('selected-row');
-
-            selectedRecordStatus = status;
-
-            document.getElementById('panel-name').innerText = name;
-            document.getElementById('panel-id').innerText = 'ID: STU-' + id;
-            document.getElementById('panel-date').innerText = date;
-            document.getElementById('panel-time-in').innerText = timeIn;
-            document.getElementById('panel-time-out').innerText = timeOut;
-            document.getElementById('panel-total-hours').innerText = total;
-            document.getElementById('panel-device').innerText = device;
-
-            const statusBadge = document.getElementById('panel-status-badge');
-            if (status === 'Verified') {
-                statusBadge.innerHTML = '<span class="badge badge-verified">Verified</span>';
-            } else {
-                statusBadge.innerHTML = '<span class="badge badge-flagged">Flagged</span>';
-            }
-
-            document.getElementById('panel-issue-box').innerHTML = `<i class="fas fa-info-circle"></i> <strong>Issue:</strong> ${issue} - ${reason}`;
-
-            const initials = name.split(' ').map(n => n[0]).join('');
-            document.getElementById('panel-avatar').innerText = initials.toUpperCase();
-
-            const btnApprove = document.getElementById('btn-approve');
-            const btnCorrect = document.getElementById('btn-correct');
-            const btnReject = document.getElementById('btn-reject');
-
-            if (finalized || status === 'Verified') {
-                btnApprove.disabled = true;
-                btnCorrect.disabled = true;
-                if (finalized) {
-                    btnReject.disabled = true;
-                } else {
-                    btnReject.disabled = false;
-                }
-            } else {
-                btnApprove.disabled = false;
-                btnCorrect.disabled = false;
-                btnReject.disabled = false;
-            }
+    }
+ 
+    function reviewRecord(rowElement, id, name, date, timeIn, timeOut, total, issue, device, status, reason) {
+        if (finalized) return;
+ 
+        document.querySelectorAll('#table-body tr').forEach(row => row.classList.remove('selected-row'));
+        rowElement.classList.add('selected-row');
+        selectedRecordStatus = status;
+ 
+        document.getElementById('panel-name').innerText = name;
+        document.getElementById('panel-id').innerText = 'ID: STU-' + id;
+        document.getElementById('panel-date').innerText = date;
+        document.getElementById('panel-time-in').innerText = timeIn;
+        document.getElementById('panel-time-out').innerText = timeOut;
+        document.getElementById('panel-total-hours').innerText = total;
+        document.getElementById('panel-device').innerText = device;
+ 
+        const statusBadge = document.getElementById('panel-status-badge');
+        statusBadge.innerHTML = status === 'Verified'
+            ? '<span class="badge badge-verified">Verified</span>'
+            : '<span class="badge badge-flagged">Flagged</span>';
+ 
+        document.getElementById('panel-issue-box').innerHTML = `<i class="fas fa-info-circle"></i> <strong>Issue:</strong> ${issue} - ${reason}`;
+ 
+        const initials = name.split(' ').map(n => n[0]).join('');
+        document.getElementById('panel-avatar').innerText = initials.toUpperCase();
+ 
+        const isVerified = status === 'Verified';
+        document.getElementById('btn-approve').disabled = isVerified || finalized;
+        document.getElementById('btn-correct').disabled = isVerified || finalized;
+        document.getElementById('btn-reject').disabled = finalized;
+    }
+ 
+    function filterBy(tabName) {
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+ 
+        const flaggedRows = document.querySelectorAll('.row-flagged');
+        const approvedRows = document.querySelectorAll('.row-approved');
+ 
+        if (tabName === 'flagged') {
+            flaggedRows.forEach(row => row.classList.remove('hide-row'));
+            approvedRows.forEach(row => row.classList.add('hide-row'));
+        } else if (tabName === 'approved') {
+            flaggedRows.forEach(row => row.classList.add('hide-row'));
+            approvedRows.forEach(row => row.classList.remove('hide-row'));
+        } else {
+            flaggedRows.forEach(row => row.classList.remove('hide-row'));
+            approvedRows.forEach(row => row.classList.remove('hide-row'));
         }
-
-        function filterBy(tabName) {
-            const btns = document.querySelectorAll('.tab-btn');
-            btns.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-
-            const flaggedRows = document.querySelectorAll('.row-flagged');
-            const approvedRows = document.querySelectorAll('.row-approved');
-
-            if (tabName === 'flagged') {
-                flaggedRows.forEach(row => row.classList.remove('hide-row'));
-                approvedRows.forEach(row => row.classList.add('hide-row'));
-            } else if (tabName === 'approved') {
-                flaggedRows.forEach(row => row.classList.add('hide-row'));
-                approvedRows.forEach(row => row.classList.remove('hide-row'));
-            } else if (tabName === 'all') {
-                flaggedRows.forEach(row => row.classList.remove('hide-row'));
-                approvedRows.forEach(row => row.classList.remove('hide-row'));
-            }
+    }
+ 
+    function setDateFilter(val) {
+        document.getElementById('custom-date').style.display = val === 'custom' ? 'inline-block' : 'none';
+    }
+ 
+    /* ── MODAL ── */
+    function openModal(action) {
+        if (!document.querySelector('.selected-row')) {
+            alert('Please select a record first.');
+            return;
         }
-
-        function setDateFilter(val) {
-            const custom = document.getElementById('custom-date');
-            if (val === 'custom') {
-                custom.style.display = 'inline-block';
-            } else {
-                custom.style.display = 'none';
-            }
-        }
-
-        function openModal(actionName) {
-            if (finalized) {
-                alert('This session is finalized. Edits are read-only until an admin returns the batch.');
-                return;
-            }
-            if (selectedRecordStatus === 'Verified' && actionName === 'Verify') {
-                alert('This record is already verified.');
-                return;
-            }
-            
-            currentActionType = actionName;
-            document.getElementById('modal').style.display = 'grid';
-            document.getElementById('modal-title').innerText = 'Confirm ' + actionName + ' Record';
-
-            const modalFields = document.getElementById('modal-fields');
-            
-            // Build dynamic controls based on button action
-            if (actionName === 'Verify') {
-                modalFields.innerHTML = `
-                    <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 6px;">Add Verification Remark / Justification:</p>
-                    <textarea class="modal-input" id="modal-remark" placeholder="Looks good! The data is consistent..."></textarea>
-                `;
-            } else if (actionName === 'Correct') {
-                modalFields.innerHTML = `
-                    <div style="margin-bottom: 12px;">
-                        <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 4px;">New Time In:</p>
-                        <input type="time" id="new-time-in" class="modal-input" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" />
+ 
+        currentActionType = action;
+ 
+        const title = document.getElementById('modal-title');
+        const fields = document.getElementById('modal-fields');
+        const confirmBtn = document.getElementById('modal-confirm-btn');
+ 
+        // Reset classes
+        title.className = 'modal-title';
+        confirmBtn.className = 'btn-confirm';
+ 
+        if (action === 'Verify') {
+            title.innerText = 'Verify Record';
+            title.classList.add('verify');
+            confirmBtn.classList.add('verify');
+            confirmBtn.innerText = 'Confirm Verify';
+            fields.innerHTML = `<p>Are you sure you want to mark this record as <strong>Verified</strong>?</p>`;
+ 
+        } else if (action === 'Reject') {
+            title.innerText = 'Reject Record';
+            title.classList.add('reject');
+            confirmBtn.classList.add('reject');
+            confirmBtn.innerText = 'Confirm Reject';
+            fields.innerHTML = `
+                <p>Provide a reason for rejection:</p>
+                <textarea id="rejectReason" placeholder="Enter reason here..."></textarea>
+            `;
+ 
+        } else if (action === 'Correct') {
+            title.innerText = 'Correct Record';
+            title.classList.add('correct');
+            confirmBtn.classList.add('correct');
+            confirmBtn.innerText = 'Save Correction';
+            fields.innerHTML = `
+                <p>Enter corrected time values:</p>
+                <div style="display:flex; gap:12px; margin-top:10px;">
+                    <div style="flex:1;">
+                        <label style="font-size:0.82rem; color:#666; display:block; margin-bottom:4px;">Time In</label>
+                        <input type="time" id="correctTimeIn" style="width:100%; padding:8px; border:1.5px solid #ddd; border-radius:8px; font-size:0.9rem; outline:none;">
                     </div>
-                    <div style="margin-bottom: 12px;">
-                        <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 4px;">New Time Out:</p>
-                        <input type="time" id="new-time-out" class="modal-input" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" />
+                    <div style="flex:1;">
+                        <label style="font-size:0.82rem; color:#666; display:block; margin-bottom:4px;">Time Out</label>
+                        <input type="time" id="correctTimeOut" style="width:100%; padding:8px; border:1.5px solid #ddd; border-radius:8px; font-size:0.9rem; outline:none;">
                     </div>
-                    <div>
-                        <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 4px;">Correction Remark / Reason:</p>
-                        <textarea class="modal-input" id="modal-remark" placeholder="Adjusting entry discrepancies..."></textarea>
-                    </div>
-                `;
-            } else if (actionName === 'Reject') {
-                modalFields.innerHTML = `
-                    <div style="margin-bottom: 12px;">
-                        <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 4px;">Select Rejection Reason:</p>
-                        <select id="rejection-reason" class="modal-input" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
-                            <option value="Invalid Attendance">Invalid Attendance</option>
-                            <option value="Suspicious IP Logs">Suspicious IP Logs</option>
-                            <option value="Incomplete Rendering of Hours">Incomplete Rendering of Hours</option>
-                            <option value="Others">Others</option>
-                        </select>
-                    </div>
-                    <div>
-                        <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 4px;">Additional Justification Notes:</p>
-                        <textarea class="modal-input" id="modal-remark" placeholder="Add further details explaining the rejection..."></textarea>
-                    </div>
-                `;
+                </div>
+            `;
+        }
+ 
+        document.getElementById('modal').classList.add('open');
+    }
+ 
+    function closeModal() {
+        document.getElementById('modal').classList.remove('open');
+    }
+ 
+    // Close modal when clicking the backdrop
+    document.getElementById('modal').addEventListener('click', function(e) {
+        if (e.target === this) closeModal();
+    });
+ 
+    function executeAction() {
+        const selectedRow = document.querySelector('.selected-row');
+        if (!selectedRow) { alert('Select a record first.'); return; }
+ 
+        const statusCell = selectedRow.children[5];
+        const issueCell  = selectedRow.children[6];
+ 
+        if (currentActionType === 'Verify') {
+            statusCell.innerHTML = '<span class="badge badge-verified">Verified</span>';
+            selectedRow.classList.remove('row-flagged');
+            selectedRow.classList.add('row-approved');
+            issueCell.innerText = 'None';
+            document.getElementById('panel-status-badge').innerHTML = '<span class="badge badge-verified">Verified</span>';
+            document.getElementById('btn-approve').disabled = true;
+            document.getElementById('btn-correct').disabled = true;
+ 
+        } else if (currentActionType === 'Reject') {
+            const reason = document.getElementById('rejectReason').value.trim();
+            if (!reason) { alert('Please enter a reason for rejection.'); return; }
+            statusCell.innerHTML = '<span class="badge badge-rejected">Rejected</span>';
+            issueCell.innerText = reason;
+ 
+        } else if (currentActionType === 'Correct') {
+            const timeIn  = document.getElementById('correctTimeIn').value;
+            const timeOut = document.getElementById('correctTimeOut').value;
+            if (!timeIn || !timeOut) { alert('Please fill in both Time In and Time Out.'); return; }
+ 
+            // Format 24h → 12h
+            function to12h(t) {
+                let [h, m] = t.split(':').map(Number);
+                const ap = h >= 12 ? 'PM' : 'AM';
+                h = h % 12 || 12;
+                return h + ':' + String(m).padStart(2,'0') + ' ' + ap;
             }
+ 
+            selectedRow.children[2].innerText = to12h(timeIn);
+            selectedRow.children[3].innerText = to12h(timeOut);
+            document.getElementById('panel-time-in').innerText  = to12h(timeIn);
+            document.getElementById('panel-time-out').innerText = to12h(timeOut);
+ 
+            statusCell.innerHTML = '<span class="badge badge-verified">Verified</span>';
+            selectedRow.classList.remove('row-flagged');
+            selectedRow.classList.add('row-approved');
+            issueCell.innerText = 'Corrected';
         }
-
-        function closeModal() {
-            document.getElementById('modal').style.display = 'none';
+ 
+        closeModal();
+    }
+ 
+    function finalizeAttendance() {
+        if (confirm("Are you sure you want to finalize Today's Attendance? This will lock all reviewed records and send the batch to the Admin for approval.")) {
+            finalized = true;
+            document.getElementById('btn-finalize').disabled = true;
+            document.getElementById('btn-finalize').innerHTML = '<i class="fas fa-lock"></i> Attendance Finalized';
+            document.getElementById('btn-approve').disabled = true;
+            document.getElementById('btn-correct').disabled = true;
+            document.getElementById('btn-reject').disabled = true;
+            alert('Batch finalized and locked. Sent for payroll processing.');
         }
-
-        function executeAction() {
-            let userRemark = document.getElementById('modal-remark').value;
-            alert(`Action "${currentType}" saved to audit trail! Remark: "${userRemark}". Database updated to employer_finalized.`);
-            closeModal();
-            location.reload();
-        }
-
-        function finalizeAttendance() {
-            if (confirm('Are you sure you want to finalize Today’s Attendance? This will lock all reviewed records and send the batch to the Admin for approval.')) {
-                finalized = true;
-                
-                document.getElementById('btn-finalize').disabled = true;
-                document.getElementById('btn-finalize').innerHTML = '<i class="fas fa-lock"></i> Attendance Finalized';
-                
-                document.getElementById('btn-approve').disabled = true;
-                document.getElementById('btn-correct').disabled = true;
-                document.getElementById('btn-reject').disabled = true;
-                
-                alert('Batch finalized and locked. Sent for payroll processing.');
-            }
-        }
+    }
     </script>
 
     <!-- Mobile Bottom Nav -->

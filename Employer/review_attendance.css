@@ -497,9 +497,13 @@
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.5);
+            display: none;
             backdrop-filter: blur(4px);
             z-index: 10000;
             place-content: center;
+        }
+        .modal-overlay.show{
+            display: flex;
         }
 
         .modal-card {
@@ -1117,7 +1121,7 @@
   .toast-text { font-size: 13px; color: #050505; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .toast-close { background: none; border: none; cursor: pointer; color: #b0b3b8; font-size: 14px; padding: 2px; }
 
-        @media (max-width: 992px) {
+    @media (max-width: 992px) {
             .dashboard-container { grid-template-columns: 1fr; }
             .summary-cards { grid-template-columns: 1fr; }
             .history-card { flex-direction: column; gap: 16px; align-items: flex-start; }
