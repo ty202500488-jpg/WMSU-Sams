@@ -104,6 +104,7 @@
     <!-- ── RADIO INPUTS FOR NAVIGATION ─────────────── -->
     <input class="nav-radio" type="radio" name="nav" id="nav-dashboard" checked />
     <input class="nav-radio" type="radio" name="nav" id="nav-admin-management" />
+    <input class="nav-radio" type="radio" name="nav" id="nav-manage-students" />
     <input class="nav-radio" type="radio" name="nav" id="nav-global-settings" />
     <input class="nav-radio" type="radio" name="nav" id="nav-maintenance" />
     <input class="nav-radio" type="radio" name="nav" id="nav-audit-logs" />
@@ -136,6 +137,12 @@
                     <label for="nav-admin-management">
                         <i class="fas fa-user-shield"></i> Admin Management
                         <span class="nav-badge" id="sidebar-badge-students">5</span>
+                    </label>
+                </div>
+                <div class="nav-item">
+                    <label for="nav-manage-students">
+                        <i class="fas fa-user-graduate"></i> Student Management
+                        <span class="nav-badge" id="sidebar-badge-manage-students">0</span>
                     </label>
                 </div>
                 <div class="nav-item">
@@ -340,6 +347,167 @@
                     </div>
                 </article>
             </section>
+
+            <!-- ══════════════════ MANAGE STUDENTS ══════════════════ -->
+            <section id="sec-manage-students" class="section">
+            <div class="section-header">
+                <div>
+                <div class="section-title">Student Management</div>
+                <p class="section-sub">View, edit, and revert verification statuses for all registered student assistants system-wide.</p>
+                </div>
+                <div class="section-actions">
+                <button class="btn btn-outline" id="btn-export-students"><i class="fas fa-download"></i> Export CSV</button>
+                </div>
+            </div>
+
+            <!-- Stat strip -->
+            <div class="stat-grid" style="margin-bottom:24px;">
+                <div class="stat-card maroon">
+                <div class="stat-card-top">
+                    <div>
+                    <div class="stat-value" id="ms-stat-total">0</div>
+                    <div class="stat-label">Total Students</div>
+                    </div>
+                    <div class="stat-icon maroon"><i class="fas fa-users"></i></div>
+                </div>
+                </div>
+                <div class="stat-card green">
+                <div class="stat-card-top">
+                    <div>
+                    <div class="stat-value" id="ms-stat-verified">0</div>
+                    <div class="stat-label">Verified</div>
+                    </div>
+                    <div class="stat-icon green"><i class="fas fa-check-circle"></i></div>
+                </div>
+                </div>
+                <div class="stat-card gold">
+                <div class="stat-card-top">
+                    <div>
+                    <div class="stat-value" id="ms-stat-pending">0</div>
+                    <div class="stat-label">Pending</div>
+                    </div>
+                    <div class="stat-icon gold"><i class="fas fa-clock"></i></div>
+                </div>
+                </div>
+                <div class="stat-card orange">
+                <div class="stat-card-top">
+                    <div>
+                    <div class="stat-value" id="ms-stat-rejected">0</div>
+                    <div class="stat-label">Rejected</div>
+                    </div>
+                    <div class="stat-icon orange"><i class="fas fa-times-circle"></i></div>
+                </div>
+                </div>
+            </div>
+
+            <!-- Filter bar -->
+            <article class="card">
+                <div class="card-header">
+                <h3><i class="fas fa-user-graduate"></i> Student Records</h3>
+                </div>
+                <div class="card-body">
+                <div class="filter-bar" style="margin-bottom:16px;">
+                    <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="ms-search" placeholder="Search name, ID, or email…" oninput="filterStudents()" />
+                    </div>
+                    <select id="ms-filter-status" onchange="filterStudents()">
+                    <option value="">All Statuses</option>
+                    <option value="verified">Verified</option>
+                    <option value="pending">Pending</option>
+                    <option value="rejected">Rejected</option>
+                    <option value="reverted">Reverted</option>
+                    </select>
+                    <select id="ms-filter-dept" onchange="filterStudents()">
+                    <option value="">All Departments</option>
+                    </select>
+                    <select id="ms-filter-year" onchange="filterStudents()">
+                    <option value="">All Year Levels</option>
+                    <option value="1">1st Year</option>
+                    <option value="2">2nd Year</option>
+                    <option value="3">3rd Year</option>
+                    <option value="4">4th Year</option>
+                    </select>
+                </div>
+
+                <table class="table" id="ms-table">
+                    <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>SAMS ID</th>
+                        <th>Department</th>
+                        <th>Year</th>
+                        <th>GWA</th>
+                        <th>Verification Status</th>
+                        <th>Last Updated</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody id="ms-table-body"></tbody>
+                </table>
+
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-top:16px;font-size:13px;color:var(--gray-400);">
+                    <span id="ms-count-label">Showing 0 students</span>
+                </div>
+                </div>
+            </article>
+            </section>
+
+            <!-- ══ STUDENT EDIT / STATUS MODAL ══ -->
+            <div id="modal-student-status" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9000;align-items:center;justify-content:center;">
+            <div style="background:#fff;border-radius:12px;padding:28px;width:100%;max-width:520px;box-shadow:0 20px 60px rgba(0,0,0,.2);">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+                <h3 style="font-size:17px;font-weight:700;color:var(--maroon);">
+                    <i class="fas fa-user-edit"></i> Edit Student Verification
+                </h3>
+                <button onclick="closeModal('modal-student-status')" style="background:none;border:none;font-size:22px;cursor:pointer;color:#666;">&times;</button>
+                </div>
+
+                <!-- Student info banner -->
+                <div id="ms-modal-banner" style="display:flex;align-items:center;gap:14px;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:10px;padding:14px 16px;margin-bottom:20px;">
+                <div id="ms-modal-avatar" style="width:44px;height:44px;border-radius:50%;background:var(--maroon);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0;"></div>
+                <div>
+                    <div id="ms-modal-name" style="font-size:15px;font-weight:700;color:var(--gray-800);"></div>
+                    <div id="ms-modal-meta" style="font-size:12px;color:var(--gray-400);margin-top:2px;"></div>
+                </div>
+                <div style="margin-left:auto;text-align:right;">
+                    <div style="font-size:11px;color:var(--gray-400);margin-bottom:4px;">Current Status</div>
+                    <span id="ms-modal-current-badge"></span>
+                </div>
+                </div>
+
+                <input type="hidden" id="ms-modal-student-id" />
+
+                <label style="display:block;font-size:13px;font-weight:600;color:var(--gray-700);margin-bottom:5px;">New Verification Status <span style="color:red">*</span></label>
+                <select id="ms-modal-new-status" style="width:100%;padding:9px 12px;border:1.5px solid var(--gray-200);border-radius:8px;font-size:14px;box-sizing:border-box;margin-bottom:16px;" onchange="onStatusSelectChange(this)">
+                <option value="">— Select new status —</option>
+                <option value="verified">✅ Verified — Approved for deployment</option>
+                <option value="pending">🕐 Pending — Awaiting review</option>
+                <option value="rejected">❌ Rejected — Does not meet requirements</option>
+                <option value="reverted">↩ Reverted — Status rolled back by Super Admin</option>
+                </select>
+
+                <div id="ms-revert-warning" style="display:none;background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:12px 14px;margin-bottom:16px;font-size:13px;color:#92400e;">
+                <i class="fas fa-exclamation-triangle" style="margin-right:6px;"></i>
+                <strong>Revert action:</strong> This will roll back the student's verification to an earlier state. The change is permanent and logged to the audit trail.
+                </div>
+
+                <label style="display:block;font-size:13px;font-weight:600;color:var(--gray-700);margin-bottom:5px;">Mandatory Reason <span style="color:red">*</span></label>
+                <textarea id="ms-modal-reason" rows="3" placeholder="State the reason for this status change — required for audit compliance…" style="width:100%;padding:9px 12px;border:1.5px solid var(--gray-200);border-radius:8px;font-size:13px;box-sizing:border-box;resize:vertical;font-family:inherit;margin-bottom:16px;"></textarea>
+
+                <label style="display:block;font-size:13px;font-weight:600;color:var(--gray-700);margin-bottom:5px;">Notify Student via Email</label>
+                <select id="ms-modal-notify" style="width:100%;padding:9px 12px;border:1.5px solid var(--gray-200);border-radius:8px;font-size:14px;box-sizing:border-box;margin-bottom:22px;">
+                <option value="yes">Yes — send status update email</option>
+                <option value="no">No — silent update</option>
+                </select>
+
+                <div style="display:flex;gap:10px;justify-content:flex-end;">
+                <button class="btn btn-outline" onclick="closeModal('modal-student-status')">Cancel</button>
+                <button class="btn btn-primary" onclick="commitStudentStatusChange()"><i class="fas fa-save"></i> Commit Change</button>
+                </div>
+            </div>
+            </div>
+
             <!-- ══════════════════ GLOBAL SYSTEM SETTINGS ══════════════════ -->
             <section id="sec-global-settings" class="section">
             <div class="section-header">

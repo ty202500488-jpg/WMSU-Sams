@@ -156,6 +156,7 @@
   /* Active nav via radio */
   #nav-dashboard:checked~.layout .sidebar label[for="nav-dashboard"],
   #nav-admin-management:checked~.layout .sidebar label[for="nav-admin-management"],
+  #nav-manage-students:checked ~ .layout .sidebar label[for="nav-manage-students"],
   #nav-global-settings:checked~.layout .sidebar label[for="nav-global-settings"],
   #nav-maintenance:checked~.layout .sidebar label[for="nav-maintenance"],
   #nav-audit-logs:checked~.layout .sidebar label[for="nav-audit-logs"],
@@ -176,6 +177,7 @@
 
   #nav-dashboard:checked~.layout .sidebar label[for="nav-dashboard"] i,
   #nav-admin-management:checked~.layout .sidebar label[for="nav-admin-management"] i,
+  #nav-manage-students:checked ~ .layout .sidebar label[for="nav-manage-students"] i,
   #nav-global-settings:checked~.layout .sidebar label[for="nav-global-settings"] i,
   #nav-maintenance:checked~.layout .sidebar label[for="nav-maintenance"] i,
   #nav-audit-logs:checked~.layout .sidebar label[for="nav-audit-logs"] i,
@@ -378,6 +380,11 @@
   #nav-admin-management:checked~.layout .main-content #sec-admin-management {
     display: block;
   }
+  
+  #nav-manage-students:checked ~ .layout .main-content #sec-manage-students {
+  display: block;
+  }
+
 
   #nav-global-settings:checked~.layout .main-content #sec-global-settings {
     display: block;

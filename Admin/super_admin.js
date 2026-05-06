@@ -559,13 +559,12 @@ function initAll() {
   updateSecurityAlerts();
   renderAuditLogs();
   loadGlobalSettings();
+  initManageStudents(); // ← add this line
 
-  // Close modals on backdrop click
   document.querySelectorAll('.modal').forEach(m => {
     m.addEventListener('click', e => { if (e.target === m) closeModal(m.id); });
   });
 
-  // Pending apps stat
   const pending = document.getElementById('dashboard-pending-apps');
   if (pending) pending.textContent = '13';
 }
@@ -672,4 +671,247 @@ function saveMaintenance() {
   console.log('Maintenance payload:', payload);
   appendAuditLog('update_setting', 'maintenance_config', '—', 'Maintenance/announcement settings updated');
   showToast('Maintenance and announcement settings saved.', 'success');
+}
+
+// ══════════════════════════════════════════
+// MANAGE STUDENTS
+// ══════════════════════════════════════════
+
+const studentRecords = [
+  { id: 'SA-2026-001', name: 'Maria Santos',    email: 'msantos@wmsu.edu.ph',   dept: 'College of Computing Studies', year: 3, gwa: 1.75, status: 'verified',  updated: 'May 5, 2026',  history: ['pending','verified'] },
+  { id: 'SA-2026-002', name: 'Juan dela Cruz',  email: 'jdelacruz@wmsu.edu.ph', dept: 'College of Nursing',           year: 2, gwa: 1.50, status: 'pending',   updated: 'May 6, 2026',  history: ['pending'] },
+  { id: 'SA-2026-003', name: 'Ana Reyes',       email: 'areyes@wmsu.edu.ph',    dept: 'College of Engineering',       year: 4, gwa: 2.00, status: 'rejected',  updated: 'May 4, 2026',  history: ['pending','rejected'] },
+  { id: 'SA-2026-005', name: 'Liza Torres',  email: 'torres.liza@wmsu.edu.ph',dept: 'College of Education',         year: 3, gwa: 2.25, status: 'pending',   updated: 'May 6, 2026',  history: ['pending'] },
+  { id: 'SA-2026-007', name: 'Grace Tan',       email: 'tan.grace@wmsu.edu.ph',      dept: 'College of Nursing',           year: 4, gwa: 1.50, status: 'verified',  updated: 'May 1, 2026',  history: ['pending','verified'] },
+  { id: 'SA-2026-008', name: 'Erlix Borja',    email: 'borja.erlix@wmsu.edu.ph',   dept: 'College of Engineering',       year: 2, gwa: 3.00, status: 'rejected',  updated: 'Apr 30, 2026', history: ['pending','rejected'] },
+  { id: 'SA-2026-009', name: 'Sherwin Lim',    email: 'tomcruise@wmsu.edu.ph',   dept: 'College of Computing Studies',         year: 5, gwa: 1.00, status: 'verified',  updated: 'Apr 29, 2026', history: ['pending','verified'] },
+  { id: 'SA-2026-010', name: 'Janricson Ompoy',email: 'ompoy.janricson@wmsu.edu.ph',dept:'College of Business',          year: 1, gwa: 2.00, status: 'pending',   updated: 'May 6, 2026',  history: ['pending'] },
+];
+
+const msStatusConfig = {
+  verified: { cls: 'active',   label: 'Verified'  },
+  pending:  { cls: 'pending',  label: 'Pending'   },
+  rejected: { cls: 'rejected', label: 'Rejected'  },
+  reverted: { cls: 'verified', label: 'Reverted',
+              style: 'background:#ede9fe;color:#5b21b6;' },
+};
+
+function msStatusBadge(status, inline = '') {
+  const cfg = msStatusConfig[status] || { cls: 'pending', label: status };
+  const styleAttr = cfg.style ? `style="${cfg.style}"` : '';
+  return `<span class="badge ${cfg.cls}" ${styleAttr}>${cfg.label}</span>`;
+}
+
+function msAvatarColor(name) {
+  const colors = ['av-a','av-b','av-c','av-d','av-e','av-f'];
+  return colors[name.charCodeAt(0) % colors.length];
+}
+
+function msInitials(name) {
+  return name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
+}
+
+function renderStudentsTable(data) {
+  const tbody = document.getElementById('ms-table-body');
+  if (!tbody) return;
+
+  if (!data.length) {
+    tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:32px;color:var(--gray-400);">
+      <i class="fas fa-search" style="font-size:24px;display:block;margin-bottom:8px;opacity:0.4;"></i>
+      No students match the current filters.
+    </td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = data.map(s => `
+    <tr>
+      <td>
+        <div class="t-avatar">
+          <div class="av ${msAvatarColor(s.name)}">${msInitials(s.name)}</div>
+          <div>
+            <div class="td-name">${s.name}</div>
+            <div class="td-sub">${s.email}</div>
+          </div>
+        </div>
+      </td>
+      <td><code style="font-size:12px;background:var(--gray-100);padding:2px 7px;border-radius:4px;">${s.id}</code></td>
+      <td><span style="font-size:13px;">${s.dept}</span></td>
+      <td style="text-align:center;">${s.year}${['st','nd','rd','th'][Math.min(s.year-1,3)]}</td>
+      <td style="text-align:center;font-weight:700;color:${s.gwa <= 2.0 ? 'var(--green)' : s.gwa <= 2.5 ? 'var(--yellow)' : 'var(--red)'};">${s.gwa.toFixed(2)}</td>
+      <td>${msStatusBadge(s.status)}</td>
+      <td style="font-size:12.5px;color:var(--gray-400);">${s.updated}</td>
+      <td>
+        <div class="action-btns">
+          <button class="btn btn-sm btn-view" onclick="openStudentStatusModal('${s.id}')">
+            <i class="fas fa-edit"></i> Edit
+          </button>
+          ${s.history.length > 1
+            ? `<button class="btn btn-sm" style="background:#ede9fe;color:#5b21b6;" onclick="revertStudentStatus('${s.id}')">
+                <i class="fas fa-undo"></i> Revert
+               </button>`
+            : `<button class="btn btn-sm btn-outline" disabled style="opacity:0.4;cursor:not-allowed;" title="No previous status to revert to">
+                <i class="fas fa-undo"></i>
+               </button>`}
+        </div>
+      </td>
+    </tr>`).join('');
+}
+
+function populateDeptFilter() {
+  const sel = document.getElementById('ms-filter-dept');
+  if (!sel) return;
+  const depts = [...new Set(studentRecords.map(s => s.dept))].sort();
+  depts.forEach(d => {
+    const opt = document.createElement('option');
+    opt.value = d; opt.textContent = d;
+    sel.appendChild(opt);
+  });
+}
+
+function filterStudents() {
+  const search = (document.getElementById('ms-search')?.value || '').toLowerCase();
+  const status = document.getElementById('ms-filter-status')?.value || '';
+  const dept   = document.getElementById('ms-filter-dept')?.value || '';
+  const year   = document.getElementById('ms-filter-year')?.value || '';
+
+  const filtered = studentRecords.filter(s => {
+    if (search && !s.name.toLowerCase().includes(search) &&
+        !s.id.toLowerCase().includes(search) &&
+        !s.email.toLowerCase().includes(search)) return false;
+    if (status && s.status !== status) return false;
+    if (dept   && s.dept !== dept)     return false;
+    if (year   && String(s.year) !== year) return false;
+    return true;
+  });
+
+  renderStudentsTable(filtered);
+  const lbl = document.getElementById('ms-count-label');
+  if (lbl) lbl.textContent = `Showing ${filtered.length} of ${studentRecords.length} students`;
+}
+
+function updateStudentStats() {
+  document.getElementById('ms-stat-total')   && (document.getElementById('ms-stat-total').textContent    = studentRecords.length);
+  document.getElementById('ms-stat-verified')&& (document.getElementById('ms-stat-verified').textContent = studentRecords.filter(s => s.status === 'verified').length);
+  document.getElementById('ms-stat-pending') && (document.getElementById('ms-stat-pending').textContent  = studentRecords.filter(s => s.status === 'pending').length);
+  document.getElementById('ms-stat-rejected')&& (document.getElementById('ms-stat-rejected').textContent = studentRecords.filter(s => s.status === 'rejected').length);
+
+  const badge = document.getElementById('sidebar-badge-manage-students');
+  if (badge) badge.textContent = studentRecords.filter(s => s.status === 'pending').length;
+}
+
+// ── Open Edit Modal ──
+function openStudentStatusModal(id) {
+  const s = studentRecords.find(x => x.id === id);
+  if (!s) return;
+
+  document.getElementById('ms-modal-student-id').value = id;
+  document.getElementById('ms-modal-avatar').textContent = msInitials(s.name);
+  document.getElementById('ms-modal-avatar').className = '';
+  document.getElementById('ms-modal-avatar').style.cssText =
+    'width:44px;height:44px;border-radius:50%;color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0;background:var(--maroon);';
+  document.getElementById('ms-modal-name').textContent = s.name;
+  document.getElementById('ms-modal-meta').textContent = `${s.id} · ${s.dept} · Year ${s.year} · GWA ${s.gwa.toFixed(2)}`;
+  document.getElementById('ms-modal-current-badge').innerHTML = msStatusBadge(s.status);
+  document.getElementById('ms-modal-new-status').value = '';
+  document.getElementById('ms-modal-reason').value = '';
+  document.getElementById('ms-modal-notify').value = 'yes';
+  document.getElementById('ms-revert-warning').style.display = 'none';
+
+  openModal('modal-student-status');
+}
+
+function onStatusSelectChange(sel) {
+  const warn = document.getElementById('ms-revert-warning');
+  if (warn) warn.style.display = sel.value === 'reverted' ? 'block' : 'none';
+}
+
+// ── Commit status change from modal ──
+function commitStudentStatusChange() {
+  const id     = document.getElementById('ms-modal-student-id').value;
+  const status = document.getElementById('ms-modal-new-status').value;
+  const reason = document.getElementById('ms-modal-reason').value.trim();
+  const notify = document.getElementById('ms-modal-notify').value;
+
+  if (!status) { showToast('Please select a new status.', 'warn'); return; }
+  if (!reason) { showToast('A reason is required for audit compliance.', 'warn'); return; }
+
+  const s = studentRecords.find(x => x.id === id);
+  if (!s) return;
+
+  if (s.status === status) {
+    showToast('Student already has this status — no change made.', 'warn');
+    return;
+  }
+
+  const prev = s.status;
+  s.history.push(status);
+  s.status  = status;
+  s.updated = new Date().toLocaleDateString('en-PH', { month: 'short', day: 'numeric', year: 'numeric' });
+
+  appendAuditLog(
+    status === 'reverted' ? 'revert_student_status' : 'update_student_status',
+    id, s.dept,
+    `${s.name}: ${prev} → ${status} — ${reason}${notify === 'yes' ? ' (email sent)' : ''}`
+  );
+
+  closeModal('modal-student-status');
+  filterStudents();
+  updateStudentStats();
+  showToast(`${s.name}'s status updated to "${status}".`, 'success');
+}
+
+// ── Quick revert button (one step back) ──
+function revertStudentStatus(id) {
+  const s = studentRecords.find(x => x.id === id);
+  if (!s || s.history.length < 2) {
+    showToast('No previous status to revert to.', 'warn'); return;
+  }
+
+  const prev    = s.history[s.history.length - 2];
+  const current = s.status;
+
+  if (!confirm(`Revert "${s.name}" from "${current}" back to "${prev}"?\n\nThis will be logged to the audit trail.`)) return;
+
+  const reason = prompt(`Mandatory: State the reason for reverting ${s.name} to "${prev}":`)?.trim();
+  if (!reason) { showToast('Revert cancelled — reason is required.', 'warn'); return; }
+
+  s.history.push(prev);
+  s.status  = prev;
+  s.updated = new Date().toLocaleDateString('en-PH', { month: 'short', day: 'numeric', year: 'numeric' });
+
+  appendAuditLog('revert_student_status', id, s.dept,
+    `${s.name}: ${current} → ${prev} (reverted) — ${reason}`);
+
+  filterStudents();
+  updateStudentStats();
+  showToast(`${s.name} reverted to "${prev}".`, 'success');
+}
+
+// ── Export ──
+document.addEventListener('DOMContentLoaded', () => {
+  const exportBtn = document.getElementById('btn-export-students');
+  if (exportBtn) exportBtn.addEventListener('click', () => {
+    const headers = ['ID','Name','Email','Department','Year','GWA','Status','Last Updated'];
+    const rows = studentRecords.map(s =>
+      [s.id, s.name, s.email, s.dept, s.year, s.gwa, s.status, s.updated]
+        .map(v => `"${v}"`).join(',')
+    );
+    const csv  = [headers.join(','), ...rows].join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href = url;
+    a.download = `SAMS_Students_${new Date().toISOString().slice(0,10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+    appendAuditLog('export_students', 'students.csv', '—', 'Student records exported to CSV');
+    showToast('Student records exported.', 'success');
+  });
+});
+
+// ── Init ──
+function initManageStudents() {
+  populateDeptFilter();
+  updateStudentStats();
+  filterStudents();
 }
