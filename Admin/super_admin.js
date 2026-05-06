@@ -88,7 +88,7 @@ function renderAdminTable() {
     <tr>
       <td>
         <div class="t-avatar">
-          <div class="av av-a">${a.name.split(' ').map(n=>n[0]).join('').slice(0,2)}</div>
+          <div class="av av-a">${a.name.split(' ').map(n => n[0]).join('').slice(0, 2)}</div>
           <div><div class="td-name">${a.name}</div><div class="td-sub">${a.email}</div></div>
         </div>
       </td>
@@ -101,8 +101,8 @@ function renderAdminTable() {
           <button class="btn btn-sm btn-outline" onclick="editAdmin('${a.id}')"><i class="fas fa-edit"></i></button>
           <button class="btn btn-sm" style="background:#fef3c7;color:#92400e;" onclick="forceResetPassword('${a.id}','${a.name}')"><i class="fas fa-key"></i></button>
           ${a.status === 'active'
-            ? `<button class="btn btn-sm btn-reject" onclick="suspendAdmin('${a.id}','${a.name}')"><i class="fas fa-ban"></i></button>`
-            : `<button class="btn btn-sm btn-approve" onclick="activateAdmin('${a.id}','${a.name}')"><i class="fas fa-check"></i></button>`}
+      ? `<button class="btn btn-sm btn-reject" onclick="suspendAdmin('${a.id}','${a.name}')"><i class="fas fa-ban"></i></button>`
+      : `<button class="btn btn-sm btn-approve" onclick="activateAdmin('${a.id}','${a.name}')"><i class="fas fa-check"></i></button>`}
         </div>
       </td>
     </tr>`).join('');
@@ -154,8 +154,8 @@ document.addEventListener('DOMContentLoaded', () => {
     openModal('modal-admin-form');
     document.getElementById('btn-save-maintenance')?.addEventListener('click', saveMaintenance);
 
-  initAll();
-});
+    initAll();
+  });
 
   const saveBtn = document.getElementById('btn-save-admin');
   if (saveBtn) saveBtn.addEventListener('click', saveAdmin);
@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const refreshBtn = document.getElementById('btn-refresh-audit');
   if (refreshBtn) refreshBtn.addEventListener('click', () => { renderAuditLogs(); showToast('Logs refreshed.', 'success'); });
 
-  const filterInputs = ['audit-filter-user','audit-filter-role','audit-filter-action','audit-filter-start','audit-filter-end'];
+  const filterInputs = ['audit-filter-user', 'audit-filter-role', 'audit-filter-action', 'audit-filter-start', 'audit-filter-end'];
   filterInputs.forEach(id => {
     const el = document.getElementById(id);
     if (el) el.addEventListener('input', filterAuditLogs);
@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function clearAdminForm() {
-  ['modal-admin-name','modal-admin-email','modal-admin-dept','modal-admin-id'].forEach(id => {
+  ['modal-admin-name', 'modal-admin-email', 'modal-admin-dept', 'modal-admin-id'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.value = '';
   });
@@ -211,7 +211,7 @@ function saveAdmin() {
     appendAuditLog('update_admin', id, dept, `${name} account updated`);
     showToast('Admin account updated.', 'success');
   } else {
-    const newAdmin = { id: 'ADM-' + String(admins.length + 1).padStart(3,'0'), name, email, dept, status: 'active', permission, lastLogin: 'Never' };
+    const newAdmin = { id: 'ADM-' + String(admins.length + 1).padStart(3, '0'), name, email, dept, status: 'active', permission, lastLogin: 'Never' };
     admins.push(newAdmin);
     appendAuditLog('create_admin', newAdmin.id, dept, `${name} admin created`);
     showToast('Admin account created.', 'success');
@@ -291,11 +291,11 @@ function resetSettingsToDefault() {
 // AUDIT LOG FILTER & EXPORT
 // ══════════════════════════════════════════
 function filterAuditLogs() {
-  const user   = (document.getElementById('audit-filter-user')?.value || '').toLowerCase();
-  const role   = document.getElementById('audit-filter-role')?.value || '';
+  const user = (document.getElementById('audit-filter-user')?.value || '').toLowerCase();
+  const role = document.getElementById('audit-filter-role')?.value || '';
   const action = document.getElementById('audit-filter-action')?.value || '';
-  const start  = document.getElementById('audit-filter-start')?.value || '';
-  const end    = document.getElementById('audit-filter-end')?.value || '';
+  const start = document.getElementById('audit-filter-start')?.value || '';
+  const end = document.getElementById('audit-filter-end')?.value || '';
 
   const filtered = auditLogs.filter(l => {
     if (user && !l.user.toLowerCase().includes(user) && !l.target.toLowerCase().includes(user)) return false;
@@ -310,13 +310,13 @@ function filterAuditLogs() {
 }
 
 function exportAuditCSV() {
-  const headers = ['Time','User','Role','Action','Target','Department','Detail'];
+  const headers = ['Time', 'User', 'Role', 'Action', 'Target', 'Department', 'Detail'];
   const rows = auditLogs.map(l => [l.time, l.user, l.role, l.action, l.target, l.dept, l.detail].map(v => `"${v}"`).join(','));
   const csv = [headers.join(','), ...rows].join('\n');
   const blob = new Blob([csv], { type: 'text/csv' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a'); a.href = url;
-  a.download = `SAMS_AuditLog_${new Date().toISOString().slice(0,10)}.csv`;
+  a.download = `SAMS_AuditLog_${new Date().toISOString().slice(0, 10)}.csv`;
   a.click(); URL.revokeObjectURL(url);
   appendAuditLog('export_audit_log', 'audit_logs.csv', '—', 'Audit log exported to CSV');
   showToast('Audit log exported.', 'success');
@@ -328,7 +328,7 @@ function exportAuditCSV() {
 let activeOverrides = 0;
 
 function applyEnrollmentOverride() {
-  const sid    = document.getElementById('enrollment-student-id')?.value.trim();
+  const sid = document.getElementById('enrollment-student-id')?.value.trim();
   const action = document.getElementById('enrollment-action-type')?.value;
   const reason = document.getElementById('enrollment-reason-text')?.value.trim();
 
@@ -361,7 +361,7 @@ function freezePayroll() {
 // BACKUP SIMULATION
 // ══════════════════════════════════════════
 function initiateManualBackup() {
-  const label = `Manual_Backup_${new Date().toISOString().slice(0,10)}`;
+  const label = `Manual_Backup_${new Date().toISOString().slice(0, 10)}`;
   const card = document.getElementById('backup-progress-card');
   if (card) card.style.display = 'block';
 
@@ -396,7 +396,7 @@ function saveBackupSettings() {
   closeModal('backup-settings-modal');
   showToast('Backup settings saved.', 'success');
 }
-function filterBackups() {}
+function filterBackups() { }
 function viewBackupDetails(name) { showToast(`Backup: ${name}`, 'success'); }
 function deleteBackup(name) {
   if (!confirm(`Delete backup "${name}"? This cannot be undone.`)) return;
@@ -409,7 +409,7 @@ function deleteBackup(name) {
 // ══════════════════════════════════════════
 
 function commitPayrollAdjustment() {
-  const tid    = document.getElementById('payroll-transaction-id')?.value.trim();
+  const tid = document.getElementById('payroll-transaction-id')?.value.trim();
   const amount = document.getElementById('payroll-adjusted-amount')?.value.trim();
   const reason = document.getElementById('payroll-adjustment-reason')?.value.trim();
   if (!tid || !amount || !reason) { showToast('Transaction ID, adjusted value, and reason are all required.', 'warn'); return; }
@@ -428,7 +428,7 @@ function recomputePayroll() {
 }
 
 function applyRuleOverride() {
-  const key   = document.getElementById('rule-override-key')?.value.trim();
+  const key = document.getElementById('rule-override-key')?.value.trim();
   const value = document.getElementById('rule-override-value')?.value.trim();
   if (!key || !value) { showToast('Config target and override value are required.', 'warn'); return; }
   if (!confirm(`Override rule:\n${key} → ${value}\n\nThis bypasses system validation and will be logged.`)) return;
@@ -538,7 +538,7 @@ function showToast(msg, type = 'success') {
   const t = document.createElement('div');
   t.className = 'sa-toast';
   t.textContent = msg;
-  t.style.cssText = `position:fixed;top:20px;right:20px;background:${colors[type]||colors.success};color:#fff;
+  t.style.cssText = `position:fixed;top:20px;right:20px;background:${colors[type] || colors.success};color:#fff;
     padding:14px 20px;border-radius:8px;z-index:9999;font-size:14px;font-weight:500;
     box-shadow:0 4px 16px rgba(0,0,0,0.2);animation:slideIn 0.3s ease;max-width:360px;`;
   document.body.appendChild(t);
@@ -575,12 +575,12 @@ function onMaintToggle(cb) {
   const val = document.getElementById('maint-status-val');
   if (cb.checked) {
     row.style.borderColor = '#d97706';
-    row.style.background  = '#fffbeb';
+    row.style.background = '#fffbeb';
     sub.textContent = 'System will enter maintenance at the scheduled start time';
     val.textContent = 'Scheduled';
   } else {
     row.style.borderColor = '#e5e7eb';
-    row.style.background  = '#fafafa';
+    row.style.background = '#fafafa';
     sub.textContent = 'System is currently live and accepting all operations';
     val.textContent = 'Offline';
   }
@@ -596,45 +596,45 @@ function updateMaintPreview(msg) {
 }
 
 function updateAnnPreview() {
-  const msg  = document.querySelector('[name="announcement_message"]').value.trim();
+  const msg = document.querySelector('[name="announcement_message"]').value.trim();
   const type = document.querySelector('[name="announcement_type"]').value;
-  const bar  = document.getElementById('ann-preview-bar');
+  const bar = document.getElementById('ann-preview-bar');
   const icon = document.getElementById('ann-preview-icon');
   const text = document.getElementById('ann-preview-text');
   const styles = {
-    info:    { bg:'#eff6ff', border:'#bfdbfe', color:'#1e40af', iconColor:'#1d4ed8', icon:'fa-info-circle' },
-    warning: { bg:'#fffbeb', border:'#fcd34d', color:'#92400e', iconColor:'#b45309', icon:'fa-exclamation-triangle' },
-    urgent:  { bg:'#fef2f2', border:'#fecaca', color:'#991b1b', iconColor:'#dc2626', icon:'fa-exclamation-circle' },
-    success: { bg:'#ecfdf5', border:'#6ee7b7', color:'#065f46', iconColor:'#059669', icon:'fa-check-circle' },
+    info: { bg: '#eff6ff', border: '#bfdbfe', color: '#1e40af', iconColor: '#1d4ed8', icon: 'fa-info-circle' },
+    warning: { bg: '#fffbeb', border: '#fcd34d', color: '#92400e', iconColor: '#b45309', icon: 'fa-exclamation-triangle' },
+    urgent: { bg: '#fef2f2', border: '#fecaca', color: '#991b1b', iconColor: '#dc2626', icon: 'fa-exclamation-circle' },
+    success: { bg: '#ecfdf5', border: '#6ee7b7', color: '#065f46', iconColor: '#059669', icon: 'fa-check-circle' },
   };
   const s = styles[type] || styles.info;
-  bar.style.background  = s.bg;
+  bar.style.background = s.bg;
   bar.style.borderColor = s.border;
-  icon.className        = `fas ${s.icon}`;
-  icon.style.color      = s.iconColor;
-  text.style.color      = s.color;
-  text.style.fontStyle  = msg ? 'normal' : 'italic';
-  text.textContent      = msg || 'Type a message above to preview the banner.';
+  icon.className = `fas ${s.icon}`;
+  icon.style.color = s.iconColor;
+  text.style.color = s.color;
+  text.style.fontStyle = msg ? 'normal' : 'italic';
+  text.textContent = msg || 'Type a message above to preview the banner.';
 }
 
 function updateMaintStats() {
   const start = document.querySelector('[name="maintenance_start"]').value;
-  const val   = document.getElementById('maint-window-val');
+  const val = document.getElementById('maint-window-val');
   if (start) {
     const d = new Date(start);
-    val.textContent = d.toLocaleDateString('en-PH', { month:'short', day:'numeric', year:'numeric' })
-      + ' ' + d.toLocaleTimeString('en-PH', { hour:'2-digit', minute:'2-digit' });
+    val.textContent = d.toLocaleDateString('en-PH', { month: 'short', day: 'numeric', year: 'numeric' })
+      + ' ' + d.toLocaleTimeString('en-PH', { hour: '2-digit', minute: '2-digit' });
   } else {
     val.textContent = 'Not scheduled';
   }
 }
 
 function resetMaintenance() {
-  document.getElementById('maintenance_mode').checked    = false;
+  document.getElementById('maintenance_mode').checked = false;
   document.getElementById('announcement_active').checked = false;
   onMaintToggle({ checked: false });
   onAnnToggle({ checked: false });
-  document.querySelector('[name="maintenance_message"]').value  = '';
+  document.querySelector('[name="maintenance_message"]').value = '';
   document.querySelector('[name="announcement_message"]').value = '';
   updateMaintPreview('');
   updateAnnPreview();
@@ -643,30 +643,30 @@ function resetMaintenance() {
 
 function saveMaintenance() {
   const payload = {
-    maintenance_mode:         document.getElementById('maintenance_mode').checked,
-    maintenance_start:        document.querySelector('[name="maintenance_start"]').value,
-    maintenance_end:          document.querySelector('[name="maintenance_end"]').value,
-    maintenance_scope:        document.querySelector('[name="maintenance_scope"]').value,
-    maintenance_message:      document.querySelector('[name="maintenance_message"]').value,
-    announcement_active:      document.getElementById('announcement_active').checked,
-    announcement_type:        document.querySelector('[name="announcement_type"]').value,
-    announcement_message:     document.querySelector('[name="announcement_message"]').value,
-    announcement_start:       document.querySelector('[name="announcement_start"]').value,
-    announcement_expires:     document.querySelector('[name="announcement_expires"]').value,
+    maintenance_mode: document.getElementById('maintenance_mode').checked,
+    maintenance_start: document.querySelector('[name="maintenance_start"]').value,
+    maintenance_end: document.querySelector('[name="maintenance_end"]').value,
+    maintenance_scope: document.querySelector('[name="maintenance_scope"]').value,
+    maintenance_message: document.querySelector('[name="maintenance_message"]').value,
+    announcement_active: document.getElementById('announcement_active').checked,
+    announcement_type: document.querySelector('[name="announcement_type"]').value,
+    announcement_message: document.querySelector('[name="announcement_message"]').value,
+    announcement_start: document.querySelector('[name="announcement_start"]').value,
+    announcement_expires: document.querySelector('[name="announcement_expires"]').value,
     announcement_dismissible: document.querySelector('[name="announcement_dismissible"]').value,
     announcement_targets: {
-      all:      document.querySelector('[name="ann_target_all"]').checked,
+      all: document.querySelector('[name="ann_target_all"]').checked,
       students: document.querySelector('[name="ann_target_students"]').checked,
-      dept:     document.querySelector('[name="ann_target_dept"]').checked,
-      staff:    document.querySelector('[name="ann_target_staff"]').checked,
+      dept: document.querySelector('[name="ann_target_dept"]').checked,
+      staff: document.querySelector('[name="ann_target_staff"]').checked,
     },
-    notify_first:  document.querySelector('[name="notify_first"]').value,
+    notify_first: document.querySelector('[name="notify_first"]').value,
     notify_second: document.querySelector('[name="notify_second"]').value,
-    notify_final:  document.querySelector('[name="notify_final"]').value,
-    notify_inapp:  document.querySelector('[name="notify_inapp"]').checked,
-    notify_email:  document.querySelector('[name="notify_email"]').checked,
+    notify_final: document.querySelector('[name="notify_final"]').value,
+    notify_inapp: document.querySelector('[name="notify_inapp"]').checked,
+    notify_email: document.querySelector('[name="notify_email"]').checked,
     notify_banner: document.querySelector('[name="notify_banner"]').checked,
-    notify_sms:    document.querySelector('[name="notify_sms"]').checked,
+    notify_sms: document.querySelector('[name="notify_sms"]').checked,
   };
   console.log('Maintenance payload:', payload);
   appendAuditLog('update_setting', 'maintenance_config', '—', 'Maintenance/announcement settings updated');
@@ -678,22 +678,24 @@ function saveMaintenance() {
 // ══════════════════════════════════════════
 
 const studentRecords = [
-  { id: 'SA-2026-001', name: 'Maria Santos',    email: 'msantos@wmsu.edu.ph',   dept: 'College of Computing Studies', year: 3, gwa: 1.75, status: 'verified',  updated: 'May 5, 2026',  history: ['pending','verified'] },
-  { id: 'SA-2026-002', name: 'Juan dela Cruz',  email: 'jdelacruz@wmsu.edu.ph', dept: 'College of Nursing',           year: 2, gwa: 1.50, status: 'pending',   updated: 'May 6, 2026',  history: ['pending'] },
-  { id: 'SA-2026-003', name: 'Ana Reyes',       email: 'areyes@wmsu.edu.ph',    dept: 'College of Engineering',       year: 4, gwa: 2.00, status: 'rejected',  updated: 'May 4, 2026',  history: ['pending','rejected'] },
-  { id: 'SA-2026-005', name: 'Liza Torres',  email: 'torres.liza@wmsu.edu.ph',dept: 'College of Education',         year: 3, gwa: 2.25, status: 'pending',   updated: 'May 6, 2026',  history: ['pending'] },
-  { id: 'SA-2026-007', name: 'Grace Tan',       email: 'tan.grace@wmsu.edu.ph',      dept: 'College of Nursing',           year: 4, gwa: 1.50, status: 'verified',  updated: 'May 1, 2026',  history: ['pending','verified'] },
-  { id: 'SA-2026-008', name: 'Erlix Borja',    email: 'borja.erlix@wmsu.edu.ph',   dept: 'College of Engineering',       year: 2, gwa: 3.00, status: 'rejected',  updated: 'Apr 30, 2026', history: ['pending','rejected'] },
-  { id: 'SA-2026-009', name: 'Sherwin Lim',    email: 'tomcruise@wmsu.edu.ph',   dept: 'College of Computing Studies',         year: 5, gwa: 1.00, status: 'verified',  updated: 'Apr 29, 2026', history: ['pending','verified'] },
-  { id: 'SA-2026-010', name: 'Janricson Ompoy',email: 'ompoy.janricson@wmsu.edu.ph',dept:'College of Business',          year: 1, gwa: 2.00, status: 'pending',   updated: 'May 6, 2026',  history: ['pending'] },
+  { id: 'SA-2026-001', name: 'Maria Santos', email: 'msantos@wmsu.edu.ph', dept: 'College of Computing Studies', year: 3, gwa: 1.75, status: 'verified', updated: 'May 5, 2026', history: ['pending', 'verified'] },
+  { id: 'SA-2026-002', name: 'Juan dela Cruz', email: 'jdelacruz@wmsu.edu.ph', dept: 'College of Nursing', year: 2, gwa: 1.50, status: 'pending', updated: 'May 6, 2026', history: ['pending'] },
+  { id: 'SA-2026-003', name: 'Ana Reyes', email: 'areyes@wmsu.edu.ph', dept: 'College of Engineering', year: 4, gwa: 2.00, status: 'rejected', updated: 'May 4, 2026', history: ['pending', 'rejected'] },
+  { id: 'SA-2026-005', name: 'Liza Torres', email: 'torres.liza@wmsu.edu.ph', dept: 'College of Education', year: 3, gwa: 2.25, status: 'pending', updated: 'May 6, 2026', history: ['pending'] },
+  { id: 'SA-2026-007', name: 'Grace Tan', email: 'tan.grace@wmsu.edu.ph', dept: 'College of Nursing', year: 4, gwa: 1.50, status: 'verified', updated: 'May 1, 2026', history: ['pending', 'verified'] },
+  { id: 'SA-2026-008', name: 'Erlix Borja', email: 'borja.erlix@wmsu.edu.ph', dept: 'College of Engineering', year: 2, gwa: 3.00, status: 'rejected', updated: 'Apr 30, 2026', history: ['pending', 'rejected'] },
+  { id: 'SA-2026-009', name: 'Sherwin Lim', email: 'tomcruise@wmsu.edu.ph', dept: 'College of Computing Studies', year: 5, gwa: 1.00, status: 'verified', updated: 'Apr 29, 2026', history: ['pending', 'verified'] },
+  { id: 'SA-2026-010', name: 'Janricson Ompoy', email: 'ompoy.janricson@wmsu.edu.ph', dept: 'College of Business', year: 1, gwa: 2.00, status: 'pending', updated: 'May 6, 2026', history: ['pending'] },
 ];
 
 const msStatusConfig = {
-  verified: { cls: 'active',   label: 'Verified'  },
-  pending:  { cls: 'pending',  label: 'Pending'   },
-  rejected: { cls: 'rejected', label: 'Rejected'  },
-  reverted: { cls: 'verified', label: 'Reverted',
-              style: 'background:#ede9fe;color:#5b21b6;' },
+  verified: { cls: 'active', label: 'Verified' },
+  pending: { cls: 'pending', label: 'Pending' },
+  rejected: { cls: 'rejected', label: 'Rejected' },
+  reverted: {
+    cls: 'verified', label: 'Reverted',
+    style: 'background:#ede9fe;color:#5b21b6;'
+  },
 };
 
 function msStatusBadge(status, inline = '') {
@@ -703,7 +705,7 @@ function msStatusBadge(status, inline = '') {
 }
 
 function msAvatarColor(name) {
-  const colors = ['av-a','av-b','av-c','av-d','av-e','av-f'];
+  const colors = ['av-a', 'av-b', 'av-c', 'av-d', 'av-e', 'av-f'];
   return colors[name.charCodeAt(0) % colors.length];
 }
 
@@ -736,7 +738,7 @@ function renderStudentsTable(data) {
       </td>
       <td><code style="font-size:12px;background:var(--gray-100);padding:2px 7px;border-radius:4px;">${s.id}</code></td>
       <td><span style="font-size:13px;">${s.dept}</span></td>
-      <td style="text-align:center;">${s.year}${['st','nd','rd','th'][Math.min(s.year-1,3)]}</td>
+      <td style="text-align:center;">${s.year}${['st', 'nd', 'rd', 'th'][Math.min(s.year - 1, 3)]}</td>
       <td style="text-align:center;font-weight:700;color:${s.gwa <= 2.0 ? 'var(--green)' : s.gwa <= 2.5 ? 'var(--yellow)' : 'var(--red)'};">${s.gwa.toFixed(2)}</td>
       <td>${msStatusBadge(s.status)}</td>
       <td style="font-size:12.5px;color:var(--gray-400);">${s.updated}</td>
@@ -746,10 +748,10 @@ function renderStudentsTable(data) {
             <i class="fas fa-edit"></i> Edit
           </button>
           ${s.history.length > 1
-            ? `<button class="btn btn-sm" style="background:#ede9fe;color:#5b21b6;" onclick="revertStudentStatus('${s.id}')">
+      ? `<button class="btn btn-sm" style="background:#ede9fe;color:#5b21b6;" onclick="revertStudentStatus('${s.id}')">
                 <i class="fas fa-undo"></i> Revert
                </button>`
-            : `<button class="btn btn-sm btn-outline" disabled style="opacity:0.4;cursor:not-allowed;" title="No previous status to revert to">
+      : `<button class="btn btn-sm btn-outline" disabled style="opacity:0.4;cursor:not-allowed;" title="No previous status to revert to">
                 <i class="fas fa-undo"></i>
                </button>`}
         </div>
@@ -771,16 +773,16 @@ function populateDeptFilter() {
 function filterStudents() {
   const search = (document.getElementById('ms-search')?.value || '').toLowerCase();
   const status = document.getElementById('ms-filter-status')?.value || '';
-  const dept   = document.getElementById('ms-filter-dept')?.value || '';
-  const year   = document.getElementById('ms-filter-year')?.value || '';
+  const dept = document.getElementById('ms-filter-dept')?.value || '';
+  const year = document.getElementById('ms-filter-year')?.value || '';
 
   const filtered = studentRecords.filter(s => {
     if (search && !s.name.toLowerCase().includes(search) &&
-        !s.id.toLowerCase().includes(search) &&
-        !s.email.toLowerCase().includes(search)) return false;
+      !s.id.toLowerCase().includes(search) &&
+      !s.email.toLowerCase().includes(search)) return false;
     if (status && s.status !== status) return false;
-    if (dept   && s.dept !== dept)     return false;
-    if (year   && String(s.year) !== year) return false;
+    if (dept && s.dept !== dept) return false;
+    if (year && String(s.year) !== year) return false;
     return true;
   });
 
@@ -790,10 +792,10 @@ function filterStudents() {
 }
 
 function updateStudentStats() {
-  document.getElementById('ms-stat-total')   && (document.getElementById('ms-stat-total').textContent    = studentRecords.length);
-  document.getElementById('ms-stat-verified')&& (document.getElementById('ms-stat-verified').textContent = studentRecords.filter(s => s.status === 'verified').length);
-  document.getElementById('ms-stat-pending') && (document.getElementById('ms-stat-pending').textContent  = studentRecords.filter(s => s.status === 'pending').length);
-  document.getElementById('ms-stat-rejected')&& (document.getElementById('ms-stat-rejected').textContent = studentRecords.filter(s => s.status === 'rejected').length);
+  document.getElementById('ms-stat-total') && (document.getElementById('ms-stat-total').textContent = studentRecords.length);
+  document.getElementById('ms-stat-verified') && (document.getElementById('ms-stat-verified').textContent = studentRecords.filter(s => s.status === 'verified').length);
+  document.getElementById('ms-stat-pending') && (document.getElementById('ms-stat-pending').textContent = studentRecords.filter(s => s.status === 'pending').length);
+  document.getElementById('ms-stat-rejected') && (document.getElementById('ms-stat-rejected').textContent = studentRecords.filter(s => s.status === 'rejected').length);
 
   const badge = document.getElementById('sidebar-badge-manage-students');
   if (badge) badge.textContent = studentRecords.filter(s => s.status === 'pending').length;
@@ -827,7 +829,7 @@ function onStatusSelectChange(sel) {
 
 // ── Commit status change from modal ──
 function commitStudentStatusChange() {
-  const id     = document.getElementById('ms-modal-student-id').value;
+  const id = document.getElementById('ms-modal-student-id').value;
   const status = document.getElementById('ms-modal-new-status').value;
   const reason = document.getElementById('ms-modal-reason').value.trim();
   const notify = document.getElementById('ms-modal-notify').value;
@@ -845,7 +847,7 @@ function commitStudentStatusChange() {
 
   const prev = s.status;
   s.history.push(status);
-  s.status  = status;
+  s.status = status;
   s.updated = new Date().toLocaleDateString('en-PH', { month: 'short', day: 'numeric', year: 'numeric' });
 
   appendAuditLog(
@@ -867,7 +869,7 @@ function revertStudentStatus(id) {
     showToast('No previous status to revert to.', 'warn'); return;
   }
 
-  const prev    = s.history[s.history.length - 2];
+  const prev = s.history[s.history.length - 2];
   const current = s.status;
 
   if (!confirm(`Revert "${s.name}" from "${current}" back to "${prev}"?\n\nThis will be logged to the audit trail.`)) return;
@@ -876,7 +878,7 @@ function revertStudentStatus(id) {
   if (!reason) { showToast('Revert cancelled — reason is required.', 'warn'); return; }
 
   s.history.push(prev);
-  s.status  = prev;
+  s.status = prev;
   s.updated = new Date().toLocaleDateString('en-PH', { month: 'short', day: 'numeric', year: 'numeric' });
 
   appendAuditLog('revert_student_status', id, s.dept,
@@ -891,17 +893,17 @@ function revertStudentStatus(id) {
 document.addEventListener('DOMContentLoaded', () => {
   const exportBtn = document.getElementById('btn-export-students');
   if (exportBtn) exportBtn.addEventListener('click', () => {
-    const headers = ['ID','Name','Email','Department','Year','GWA','Status','Last Updated'];
+    const headers = ['ID', 'Name', 'Email', 'Department', 'Year', 'GWA', 'Status', 'Last Updated'];
     const rows = studentRecords.map(s =>
       [s.id, s.name, s.email, s.dept, s.year, s.gwa, s.status, s.updated]
         .map(v => `"${v}"`).join(',')
     );
-    const csv  = [headers.join(','), ...rows].join('\n');
+    const csv = [headers.join(','), ...rows].join('\n');
     const blob = new Blob([csv], { type: 'text/csv' });
-    const url  = URL.createObjectURL(blob);
-    const a    = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
     a.href = url;
-    a.download = `SAMS_Students_${new Date().toISOString().slice(0,10)}.csv`;
+    a.download = `SAMS_Students_${new Date().toISOString().slice(0, 10)}.csv`;
     a.click();
     URL.revokeObjectURL(url);
     appendAuditLog('export_students', 'students.csv', '—', 'Student records exported to CSV');
