@@ -155,6 +155,11 @@
 
   /* Active nav via radio */
   #nav-dashboard:checked~.layout .sidebar label[for="nav-dashboard"],
+  #nav-admin-management:checked~.layout .sidebar label[for="nav-admin-management"],
+  #nav-global-settings:checked~.layout .sidebar label[for="nav-global-settings"],
+  #nav-audit-logs:checked~.layout .sidebar label[for="nav-audit-logs"],
+  #nav-system-override:checked~.layout .sidebar label[for="nav-system-override"],
+  #nav-backup-data:checked~.layout .sidebar label[for="nav-backup-data"],
   #nav-students:checked~.layout .sidebar label[for="nav-students"],
   #nav-departments:checked~.layout .sidebar label[for="nav-departments"],
   #nav-positions:checked~.layout .sidebar label[for="nav-positions"],
@@ -169,6 +174,11 @@
   }
 
   #nav-dashboard:checked~.layout .sidebar label[for="nav-dashboard"] i,
+  #nav-admin-management:checked~.layout .sidebar label[for="nav-admin-management"] i,
+  #nav-global-settings:checked~.layout .sidebar label[for="nav-global-settings"] i,
+  #nav-audit-logs:checked~.layout .sidebar label[for="nav-audit-logs"] i,
+  #nav-system-override:checked~.layout .sidebar label[for="nav-system-override"] i,
+  #nav-backup-data:checked~.layout .sidebar label[for="nav-backup-data"] i,
   #nav-students:checked~.layout .sidebar label[for="nav-students"] i,
   #nav-departments:checked~.layout .sidebar label[for="nav-departments"] i,
   #nav-positions:checked~.layout .sidebar label[for="nav-positions"] i,
@@ -235,6 +245,13 @@
     font-weight: 700;
     color: var(--maroon);
     line-height: 1.2;
+  }
+
+  .topbar-left .page-title {
+    font-size: 13px;
+    color: var(--gray-500);
+    margin-top: 4px;
+    font-weight: 500;
   }
 
   .topbar-left p {
@@ -356,6 +373,26 @@
     display: block;
   }
 
+  #nav-admin-management:checked~.layout .main-content #sec-admin-management {
+    display: block;
+  }
+
+  #nav-global-settings:checked~.layout .main-content #sec-global-settings {
+    display: block;
+  }
+
+  #nav-audit-logs:checked~.layout .main-content #sec-audit-logs {
+    display: block;
+  }
+
+  #nav-system-override:checked~.layout .main-content #sec-system-override {
+    display: block;
+  }
+
+  #nav-backup-data:checked~.layout .main-content #sec-backup-data {
+    display: block;
+  }
+
   /* Default: show dashboard */
   #nav-dashboard:checked~.layout .topbar .page-title::before {
     content: "Dashboard";
@@ -383,6 +420,26 @@
 
   #nav-reports:checked~.layout .topbar .page-title::before {
     content: "Reports";
+  }
+
+  #nav-admin-management:checked~.layout .topbar .page-title::before {
+    content: "Admin Management";
+  }
+
+  #nav-global-settings:checked~.layout .topbar .page-title::before {
+    content: "Global System Settings";
+  }
+
+  #nav-audit-logs:checked~.layout .topbar .page-title::before {
+    content: "Audit Logs";
+  }
+
+  #nav-system-override:checked~.layout .topbar .page-title::before {
+    content: "System Override Controls";
+  }
+
+  #nav-backup-data:checked~.layout .topbar .page-title::before {
+    content: "Backup & Data Protection";
   }
 
   /* ── SECTION HEADER ───────────────────────────────── */
@@ -3320,3 +3377,4 @@ table.batch-tbl {
 .um-dot-red   { background: #e74c3c; box-shadow: 0 0 0 2px #e74c3c; }
 .um-entry-text { font-size: 12.5px; font-weight: 600; color: #374151; }
 .um-entry-time { font-size: 11px; color: #9ca3af; }
+

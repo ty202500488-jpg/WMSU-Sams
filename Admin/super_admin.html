@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WMSU SAMS | Super Admin Panel</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+    <link href="admin_dashboard.css" rel="stylesheet" />
+    <link href="../Global/modals.css" rel="stylesheet" />
+    <script src="../Global/modals.js" defer></script>
+    <script src="../Global/pagination.js" defer></script>
+    <script src="super_admin.js" defer></script>
+    <style>
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1
+            }
+        }
+
+        #modal-admin-form {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .5);
+            z-index: 9000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #modal-admin-form .modal-content {
+            background: #fff;
+            border-radius: 12px;
+            padding: 28px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, .2);
+        }
+
+        #modal-admin-form .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        #modal-admin-form h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #7a0024;
+        }
+
+        #modal-admin-form .close-btn {
+            background: none;
+            border: none;
+            font-size: 22px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        #modal-admin-form label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            margin-top: 14px;
+            color: #333;
+        }
+
+        #modal-admin-form input,
+        #modal-admin-form select {
+            width: 100%;
+            padding: 9px 12px;
+            border: 1.5px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        #modal-admin-form input:focus,
+        #modal-admin-form select:focus {
+            border-color: #7a0024;
+            outline: none;
+        }
+
+        #modal-admin-form .modal-footer {
+            margin-top: 22px;
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ── RADIO INPUTS FOR NAVIGATION ─────────────── -->
+    <input class="nav-radio" type="radio" name="nav" id="nav-dashboard" checked />
+    <input class="nav-radio" type="radio" name="nav" id="nav-admin-management" />
+    <input class="nav-radio" type="radio" name="nav" id="nav-global-settings" />
+    <input class="nav-radio" type="radio" name="nav" id="nav-audit-logs" />
+    <input class="nav-radio" type="radio" name="nav" id="nav-system-override" />
+    <input class="nav-radio" type="radio" name="nav" id="nav-backup-data" />
+
+    <div class="layout">
+        <!-- ══════════════════ SIDEBAR ══════════════════ -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <div class="logo-text">
+                    <div class="abbr">WMSU-SAMS</div>
+                    <div class="full">Student Assistant Management System</div>
+                </div>
+            </div>
+            <!-- School Year Badge -->
+            <div class="sidebar-sy-badge" style="cursor:pointer;" onclick="openSYManager()">
+                <i class="fas fa-calendar-alt"></i>
+                <span id="sidebar-sy-label">AY 2025–2026</span>
+                <span class="sy-sem-tag" id="sidebar-sem-tag">2nd Sem</span>
+            </div>
+            <div class="sidebar-section-label">Main Menu</div>
+            <nav class="sidebar-nav">
+                <div class="nav-item">
+                    <label for="nav-dashboard">
+                        <i class="fas fa-th-large"></i> Dashboard
+                    </label>
+                </div>
+                <div class="nav-item">
+                    <label for="nav-admin-management">
+                        <i class="fas fa-user-shield"></i> Admin Management
+                        <span class="nav-badge" id="sidebar-badge-students">5</span>
+                    </label>
+                </div>
+                <div class="nav-item">
+                    <label for="nav-global-settings">
+                        <i class="fas fa-users-cog"></i> Global System Settings
+                    </label>
+                </div>
+                <div class="nav-item">
+                    <label for="nav-audit-logs">
+                        <i class="fas fa-history"></i> Audit Logs
+                    </label>
+                </div>
+                <div class="nav-item">
+                    <label for="nav-system-override">
+                        <i class="fas fa-cogs"></i> System Override Controls
+                    </label>
+                </div>
+                <div class="nav-item">
+                    <label for="nav-backup-data">
+                        <i class="fas fa-save"></i> Backup & Data Protection
+                    </label>
+                </div>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="../index.html" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </aside>
+        <!-- ══════════════════ TOPBAR ══════════════════ -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <h1>Super Admin Panel</h1>
+                <p>Western Mindanao State University &mdash;
+                    <strong id="topbar-sy">AY 2025–2026</strong> &bull; 2nd Semester
+                </p>
+            </div>
+            <div class="topbar-right">
+                <!-- Live Clock -->
+                <div class="topbar-clock" id="topbar-clock">--:-- --</div>
+                <!-- Notification Bell -->
+                <div class="topbar-notif" id="notif-bell" onclick="toggleNotifPanel()">
+                    <i class="fas fa-bell"></i>
+                    <span class="notif-dot" id="notif-dot"></span>
+                </div>
+                <!-- Notification Dropdown -->
+                <div class="notif-panel" id="notif-panel" style="display:none;">
+                    <div class="notif-panel-header">
+                        <span>Notifications</span>
+                        <button onclick="markAllRead()" class="notif-mark-all">Mark all read</button>
+                    </div>
+                    <ul class="notif-list" id="notif-list">
+                        <li class="notif-item unread">
+                            <i class="fas fa-user-clock" style="color:var(--yellow);"></i>
+                            <div>
+                                <div class="notif-text">Ana Reyes has a missing time-out</div>
+                                <div class="notif-time">2 min ago</div>
+                            </div>
+                        </li>
+                        <li class="notif-item unread">
+                            <i class="fas fa-file-alt" style="color:var(--blue);"></i>
+                            <div>
+                                <div class="notif-text">5 students pending verification</div>
+                                <div class="notif-time">14 min ago</div>
+                            </div>
+                        </li>
+                        <li class="notif-item">
+                            <i class="fas fa-check-circle" style="color:var(--green);"></i>
+                            <div>
+                                <div class="notif-text">Carlos Mendez approved for Finance Office</div>
+                                <div class="notif-time">1 hour ago</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="topbar-user">
+                    <div class="user-avatar">AD</div>
+                    <div>
+                        <div class="user-name">Super Admin</div>
+                        <div class="user-role">System Administrator</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- ══════════════════ DASHBOARD ══════════════════ -->
+            <section id="sec-dashboard" class="section">
+                <div class="section-header">
+                    <div>
+                        <div class="section-title">Super Admin Dashboard</div>
+                        <p class="section-sub">System control summary and security posture overview.</p>
+                    </div>
+                </div>
+
+                <div class="stat-grid">
+                    <div class="stat-card maroon">
+                        <div class="stat-card-top">
+                            <div>
+                                <div class="stat-value" id="dashboard-total-admins">0</div>
+                                <div class="stat-label">CPPPESO Staff Admins</div>
+                            </div>
+                            <div class="stat-icon maroon"><i class="fas fa-user-shield"></i></div>
+                        </div>
+                    </div>
+                    <div class="stat-card gold">
+                        <div class="stat-card-top">
+                            <div>
+                                <div class="stat-value" id="dashboard-departments">0</div>
+                                <div class="stat-label">CPPPESO Sections</div>
+                            </div>
+                            <div class="stat-icon gold"><i class="fas fa-building"></i></div>
+                        </div>
+                    </div>
+                    <div class="stat-card green">
+                        <div class="stat-card-top">
+                            <div>
+                                <div class="stat-value" id="dashboard-pending-apps">0</div>
+                                <div class="stat-label">Pending Applications</div>
+                            </div>
+                            <div class="stat-icon green"><i class="fas fa-file-alt"></i></div>
+                        </div>
+                    </div>
+                    <div class="stat-card orange">
+                        <div class="stat-card-top">
+                            <div>
+                                <div class="stat-value" id="dashboard-last-backup">N/A</div>
+                                <div class="stat-label">Last Backup</div>
+                            </div>
+                            <div class="stat-icon orange"><i class="fas fa-save"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dash-grid">
+                    <article class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-chart-line"></i> Recent Critical Activity</h3>
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Time</th>
+                                        <th>User</th>
+                                        <th>Role</th>
+                                        <th>Action</th>
+                                        <th>Target</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dashboard-recent-activity"></tbody>
+                            </table>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-exclamation-circle"></i> Security Alerts</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul id="dashboard-security-alerts" class="alert-list"></ul>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- ══════════════════ ADMIN MANAGEMENT ══════════════════ -->
+            <section id="sec-admin-management" class="section">
+                <div class="section-header">
+                    <div>
+                        <div class="section-title">Admin Management</div>
+                        <p class="section-sub">Manage CPPPESO staff accounts who operate and monitor the Student Assistant Management System.</p>
+                    </div>
+                    <div class="section-actions">
+                        <button href="#modal-admin-form" class="btn btn-primary" id="btn-create-admin">Create
+                            Admin</button>
+                        <button class="btn btn-outline" id="btn-view-disabled">View Disabled Admins</button>
+                    </div>
+                </div>
+
+                <article class="card">
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>CPPPESO Section / Role</th>
+                                    <th>Status</th>
+                                    <th>Last Login</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-management-table"></tbody>
+                        </table>
+                    </div>
+                </article>
+            </section>
+            <!-- ══════════════════ GLOBAL SYSTEM SETTINGS ══════════════════ -->
+            <section id="sec-global-settings" class="section">
+                <div class="section-header">
+                    <div>
+                        <div class="section-title">Global System Settings</div>
+                        <p class="section-sub">Configure CPPPESO-wide rules: school year, application policies, payroll parameters, and eligibility requirements for WMSU SAMS.</p>
+                    </div>
+                    <div class="section-actions">
+                        <button class="btn btn-primary" id="btn-save-settings">Save Settings</button>
+                        <button class="btn btn-outline" onclick="resetSettingsToDefault()">Reset to Default</button>
+                    </div>
+                </div>
+
+                <article class="card">
+                    <div class="card-body">
+                        <form id="settings-form">
+
+                            <!-- Academic Period -->
+                            <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#7a0024;margin:0 0 12px;padding-bottom:6px;border-bottom:2px solid #f3f4f6;">Academic Period</div>
+                            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px;">
+                                <div>
+                                    <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Current School Year <span style="color:red">*</span></label>
+                                    <input name="current_school_year" placeholder="e.g. AY 2025-2026" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;" required />
+                                </div>
+                                <div>
+                                    <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Current Semester</label>
+                                    <select name="current_semester" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;">
+                                        <option value="1st">1st Semester</option>
+                                        <option value="2nd">2nd Semester</option>
+                                        <option value="summer">Summer</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Application Status</label>
+                                    <select name="application_open" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;">
+                                        <option value="true">Open &mdash; Accepting Applications</option>
+                                        <option value="false">Closed &mdash; Not Accepting</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Application Deadlines -->
+                            <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#7a0024;margin:0 0 12px;padding-bottom:6px;border-bottom:2px solid #f3f4f6;">Application Deadlines</div>
+                            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px;">
+                                <div>
+                                    <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Application Deadline</label>
+                                    <input name="application_deadline" type="date" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;" required />
+                                </div>
+                                <div>
+                                    <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Interview Start Date</label>
+                                    <input name="interview_start_date" type="date" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;" />
+                                </div>
+                                <div>
+                                    <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Deployment Date</label>
+                                    <input name="deployment_date" type="date" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;" />
+                                </div>
+                            </div>
+
+                            <!-- Payroll Configuration -->
+                            <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#7a0024;margin:0 0 12px;padding-bottom:6px;border-bottom:2px solid #f3f4f6;">Payroll Configuration</div>
+                            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px;">
+                                <div>
+                                    <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Hourly Rate (&#8369;) <span style="color:red">*</span></label>
+                                    <input name="payroll_rate_per_hour" type="number" min="0" step="0.01" placeholder="e.g. 45.00" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;" required />
+                                </div>
+                                <div>
+                                    <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Max Hours Per Month</label>
+                                    <input name="max_hours_per_month" type="number" min="1" placeholder="e.g. 80" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;" />
+                                </div>
+                                <div>
+                                    <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Payroll Cutoff Day</label>
+                                    <input name="payroll_cutoff_day" type="number" min="1" max="31" placeholder="e.g. 15" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;" />
+                                </div>
+                            </div>
+
+                            <!-- Student Assistant Quota -->
+                            <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#7a0024;margin:0 0 12px;padding-bottom:6px;border-bottom:2px solid #f3f4f6;">Student Assistant Quota</div>
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
+                                <div>
+                                    <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Max Student Assistants per Office/Section <span style="color:red">*</span></label>
+                                    <input name="max_assistants_per_department" type="number" min="1" placeholder="e.g. 10" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;" required />
+                                </div>
+                                <div>
+                                    <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Total System Capacity (All Offices)</label>
+                                    <input name="total_system_capacity" type="number" min="1" placeholder="e.g. 200" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;" />
+                                </div>
+                            </div>
+
+                            <!-- Required Documents -->
+                            <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#7a0024;margin:0 0 12px;padding-bottom:6px;border-bottom:2px solid #f3f4f6;">Required Documents for Application</div>
+                            <div style="margin-bottom:20px;">
+                                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+                                    <label style="display:flex;align-items:center;gap:8px;font-size:13px;"><input type="checkbox" name="req_cor" checked style="accent-color:#7a0024;"> Certificate of Registration (COR)</label>
+                                    <label style="display:flex;align-items:center;gap:8px;font-size:13px;"><input type="checkbox" name="req_grades" checked style="accent-color:#7a0024;"> Official Grades / Transcript</label>
+                                    <label style="display:flex;align-items:center;gap:8px;font-size:13px;"><input type="checkbox" name="req_medical" checked style="accent-color:#7a0024;"> Medical Certificate</label>
+                                    <label style="display:flex;align-items:center;gap:8px;font-size:13px;"><input type="checkbox" name="req_barangay" style="accent-color:#7a0024;"> Barangay Certification</label>
+                                    <label style="display:flex;align-items:center;gap:8px;font-size:13px;"><input type="checkbox" name="req_photo" checked style="accent-color:#7a0024;"> 2x2 ID Photo</label>
+                                    <label style="display:flex;align-items:center;gap:8px;font-size:13px;"><input type="checkbox" name="req_essay" style="accent-color:#7a0024;"> Motivation Essay</label>
+                                </div>
+                            </div>
+
+                            <!-- Eligibility Requirements -->
+                            <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#7a0024;margin:0 0 12px;padding-bottom:6px;border-bottom:2px solid #f3f4f6;">Eligibility Requirements</div>
+                            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:8px;">
+                                <div>
+                                    <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Minimum GWA Required</label>
+                                    <input name="minimum_gwa" type="number" min="1" max="5" step="0.01" placeholder="e.g. 2.50" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;" />
+                                </div>
+                                <div>
+                                    <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Minimum Year Level</label>
+                                    <select name="minimum_year_level" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;">
+                                        <option value="1">1st Year</option>
+                                        <option value="2" selected>2nd Year</option>
+                                        <option value="3">3rd Year</option>
+                                        <option value="4">4th Year</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Allow Concurrent Scholarship</label>
+                                    <select name="allow_concurrent_scholarship" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;">
+                                        <option value="false">No &mdash; Exclusive to SAMS only</option>
+                                        <option value="true">Yes &mdash; Allow Concurrent</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </article>
+            </section>
+
+            <!-- ══════════════════ AUDIT LOGS ══════════════════ -->
+            <section id="sec-audit-logs" class="section">
+                <div class="section-header">
+                    <div>
+                        <div class="section-title">Audit Logs</div>
+                        <p class="section-sub">Search and inspect every critical action in the system.</p>
+                    </div>
+                    <div class="section-actions">
+                        <button class="btn btn-primary" id="btn-export-audit">Export CSV</button>
+                        <button class="btn btn-outline" id="btn-refresh-audit">Refresh</button>
+                    </div>
+                </div>
+
+                <article class="card">
+                    <div class="card-body">
+                        <div class="filter-row">
+                            <input id="audit-filter-user" placeholder="User email or name" />
+                            <select id="audit-filter-role">
+                                <option value="">All roles</option>
+                                <option value="super_admin">Super Admin</option>
+                                <option value="department_admin">Department Admin</option>
+                                <option value="student">Student</option>
+                            </select>
+                            <select id="audit-filter-action">
+                                <option value="">All actions</option>
+                                <option value="create_user">create_user</option>
+                                <option value="update_setting">update_setting</option>
+                                <option value="system_override">system_override</option>
+                                <option value="backup_restore">backup_restore</option>
+                            </select>
+                            <input type="date" id="audit-filter-start" />
+                            <input type="date" id="audit-filter-end" />
+                        </div>
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Time</th>
+                                    <th>User</th>
+                                    <th>Role</th>
+                                    <th>Action</th>
+                                    <th>Target</th>
+                                    <th>Department</th>
+                                    <th>Detail</th>
+                                </tr>
+                            </thead>
+                            <tbody id="audit-logs-table"></tbody>
+                        </table>
+                    </div>
+                </article>
+            </section>
+            <!-- ══════════════════ SYSTEM OVERRIDE ══════════════════ -->
+            <section id="sec-system-override" class="section">
+                <div class="section-header">
+                    <div>
+                        <div class="section-title">System Override Controls</div>
+                        <p class="section-sub">Emergency-only surgical controls. Every action requires a mandatory
+                            reason and is permanently logged.</p>
+                    </div>
+                </div>
+
+                <div class="stat-grid">
+                    <div class="stat-card maroon">
+                        <div class="stat-card-top">
+                            <div>
+                                <div class="stat-value" id="override-status">Normal</div>
+                                <div class="stat-label">System State</div>
+                            </div>
+                            <div class="stat-icon maroon"><i class="fas fa-power-off"></i></div>
+                        </div>
+                    </div>
+                    <div class="stat-card gold">
+                        <div class="stat-card-top">
+                            <div>
+                                <div class="stat-value" id="override-active-count">0</div>
+                                <div class="stat-label">Active Overrides</div>
+                            </div>
+                            <div class="stat-icon gold"><i class="fas fa-exclamation-triangle"></i></div>
+                        </div>
+                    </div>
+                    <div class="stat-card blue">
+                        <div class="stat-card-top">
+                            <div>
+                                <div class="stat-value" id="active-sessions">0</div>
+                                <div class="stat-label">Connected Sessions</div>
+                            </div>
+                            <div class="stat-icon blue"><i class="fas fa-users"></i></div>
+                        </div>
+                    </div>
+                    <div class="stat-card green">
+                        <div class="stat-card-top">
+                            <div>
+                                <div class="stat-value" id="system-uptime">99.99%</div>
+                                <div class="stat-label">SAMS Availability</div>
+                            </div>
+                            <div class="stat-icon green"><i class="fas fa-server"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Enrollment Override -->
+                <article class="card" style="border-left:4px solid #dc2626;">
+                    <div class="card-header" style="background:#fef2f2;">
+                        <h3 style="color:#dc2626;"><i class="fas fa-id-card"></i> Enrollment Verification Override</h3>
+                        <p style="font-size:12px;color:#666;margin:4px 0 0;">Force-approve, reject, or revoke student
+                            verification. Requires a documented reason.</p>
+                    </div>
+                    <div class="card-body">
+                        <div style="display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:12px;align-items:end;">
+                            <div>
+                                <label style="font-size:12px;font-weight:600;">Student SAMS ID</label>
+                                <input type="text" id="enrollment-student-id" placeholder="e.g. 2026-09841"
+                                    style="width:100%;padding:8px 10px;border:1.5px solid #e5e7eb;border-radius:7px;font-size:13px;box-sizing:border-box;">
+                            </div>
+                            <div>
+                                <label style="font-size:12px;font-weight:600;">Override Action</label>
+                                <select id="enrollment-action-type"
+                                    style="width:100%;padding:8px 10px;border:1.5px solid #e5e7eb;border-radius:7px;font-size:13px;box-sizing:border-box;">
+                                    <option value="">Choose Action...</option>
+                                    <option value="force-approve">Force Approve (Override COR)</option>
+                                    <option value="force-reject">Force Reject Profile</option>
+                                    <option value="mark-without-docs">Verify Without Document</option>
+                                    <option value="revoke-verification">Revoke Verification</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label style="font-size:12px;font-weight:600;">Mandatory Reason <span
+                                        style="color:red">*</span></label>
+                                <input type="text" id="enrollment-reason-text"
+                                    placeholder="Required — state system reason"
+                                    style="width:100%;padding:8px 10px;border:1.5px solid #e5e7eb;border-radius:7px;font-size:13px;box-sizing:border-box;">
+                            </div>
+                            <button type="button" class="btn btn-reject" id="btn-enrollment-override"
+                                style="white-space:nowrap;">Apply Override</button>
+                        </div>
+                        <div style="margin-top:20px;overflow-x:auto;">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Student ID</th>
+                                        <th>Name</th>
+                                        <th>Status</th>
+                                        <th>Previous</th>
+                                        <th>By</th>
+                                        <th>Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="override-enrollment-log">
+                                    <tr>
+                                        <td>2026-10491</td>
+                                        <td>Santos, Juan</td>
+                                        <td><span class="badge pending">Doc Override</span></td>
+                                        <td>Pending</td>
+                                        <td>SA-001</td>
+                                        <td>May 6, 2026 11:14</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2025-08412</td>
+                                        <td>Cruz, Maria</td>
+                                        <td><span class="badge" style="background:#fce7f3;color:#9d174d;">Revoked</span>
+                                        </td>
+                                        <td>Verified</td>
+                                        <td>SA-001</td>
+                                        <td>May 5, 2026 14:02</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Payroll Override -->
+                <article class="card" style="border-left:4px solid #d97706;margin-top:16px;">
+                    <div class="card-header" style="background:#fffbeb;">
+                        <h3 style="color:#b45309;"><i class="fas fa-calculator"></i> Payroll Override &amp; Adjustment
+                        </h3>
+                        <p style="font-size:12px;color:#666;margin:4px 0 0;">Correct or freeze payroll. All changes
+                            require authorization and are immutably logged.</p>
+                    </div>
+                    <div class="card-body">
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                            <div style="padding:16px;border:1px solid #e5e7eb;border-radius:8px;background:#fafafa;">
+                                <div style="font-size:13px;font-weight:700;color:#dc2626;margin-bottom:8px;">Manual
+                                    Ledger Correction</div>
+                                <label style="font-size:12px;font-weight:600;">Transaction ID</label>
+                                <input type="text" id="payroll-transaction-id" placeholder="PAY-9210-2026"
+                                    style="width:100%;padding:7px 10px;border:1.5px solid #e5e7eb;border-radius:7px;font-size:13px;box-sizing:border-box;margin-bottom:8px;">
+                                <label style="font-size:12px;font-weight:600;">Adjusted Value (₱)</label>
+                                <input type="number" id="payroll-adjusted-amount" placeholder="0.00"
+                                    style="width:100%;padding:7px 10px;border:1.5px solid #e5e7eb;border-radius:7px;font-size:13px;box-sizing:border-box;margin-bottom:8px;">
+                                <label style="font-size:12px;font-weight:600;">Reason <span
+                                        style="color:red">*</span></label>
+                                <input type="text" id="payroll-adjustment-reason"
+                                    placeholder="Required for audit compliance"
+                                    style="width:100%;padding:7px 10px;border:1.5px solid #e5e7eb;border-radius:7px;font-size:13px;box-sizing:border-box;margin-bottom:12px;">
+                                <button type="button" class="btn btn-reject" style="width:100%;"
+                                    onclick="commitPayrollAdjustment()">Commit Adjustment</button>
+                            </div>
+                            <div
+                                style="padding:16px;border:1px solid #e5e7eb;border-radius:8px;background:#fafafa;display:flex;flex-direction:column;">
+                                <div style="font-size:13px;font-weight:700;color:#b45309;margin-bottom:8px;">Global
+                                    Payroll Control</div>
+                                <p style="font-size:12px;color:#666;flex-grow:1;">Halt all payroll routines if
+                                    manipulation is detected. Requires explicit reason before activation.</p>
+                                <button class="btn btn-reject" id="btn-freeze-payroll"
+                                    style="width:100%;margin-bottom:8px;">Freeze Payroll Globally</button>
+                                <button class="btn btn-outline" id="btn-recompute-payroll" style="width:100%;"
+                                    onclick="recomputePayroll()">Force Re-compute</button>
+                            </div>
+                        </div>
+                        <div style="margin-top:16px;overflow-x:auto;">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Payroll ID</th>
+                                        <th>Department</th>
+                                        <th>Computed</th>
+                                        <th>Overridden</th>
+                                        <th>Status</th>
+                                        <th>Operator</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>PAY-0218</td>
+                                        <td>College of Computing</td>
+                                        <td>₱145,200</td>
+                                        <td>₱132,000</td>
+                                        <td><span class="badge pending">Adjusted</span></td>
+                                        <td>SA-001</td>
+                                    </tr>
+                                    <tr>
+                                        <td>PAY-0219</td>
+                                        <td>College of Nursing</td>
+                                        <td>₱288,500</td>
+                                        <td>₱288,500</td>
+                                        <td><span class="badge active">Normal</span></td>
+                                        <td>System</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- System Lockdown -->
+                <article class="card" style="border-left:4px solid #2563eb;margin-top:16px;">
+                    <div class="card-header" style="background:#eff6ff;">
+                        <h3 style="color:#1d4ed8;"><i class="fas fa-lock"></i> System Lockdown &amp; Rule Overrides</h3>
+                        <p style="font-size:12px;color:#666;margin:4px 0 0;">Emergency read-only lockdown or bypass
+                            specific validation rules system-wide.</p>
+                    </div>
+                    <div class="card-body" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                        <div style="padding:16px;border:1px solid #e5e7eb;border-radius:8px;background:#fafafa;">
+                            <div style="font-size:13px;font-weight:700;color:#dc2626;margin-bottom:8px;">Global Lockdown
+                                Mode</div>
+                            <p style="font-size:12px;color:#666;">Freeze ALL operations — registration, attendance,
+                                payroll, approvals.</p>
+                            <div style="display:flex;align-items:center;gap:10px;margin:12px 0;">
+                                <input type="checkbox" id="system-lockdown-toggle" onchange="toggleLockdown(this)"
+                                    style="width:18px;height:18px;accent-color:#dc2626;">
+                                <label for="system-lockdown-toggle"
+                                    style="font-size:13px;font-weight:600;color:#dc2626;">Enable Read-Only
+                                    Lockdown</label>
+                            </div>
+                            <label style="font-size:12px;font-weight:600;">Justification <span
+                                    style="color:red">*</span></label>
+                            <textarea id="lockdown-comments" rows="2" placeholder="Describe the emergency event..."
+                                style="width:100%;padding:8px;border:1.5px solid #e5e7eb;border-radius:7px;font-size:13px;box-sizing:border-box;"></textarea>
+                        </div>
+                        <div style="padding:16px;border:1px solid #e5e7eb;border-radius:8px;background:#fafafa;">
+                            <div style="font-size:13px;font-weight:700;color:#1d4ed8;margin-bottom:8px;">Rule Override
+                                Parameter</div>
+                            <p style="font-size:12px;color:#666;">Bypass a specific validation rule (e.g. COR check)
+                                when system workflows are inaccessible.</p>
+                            <label style="font-size:12px;font-weight:600;">Config Target</label>
+                            <input type="text" id="rule-override-key" placeholder="e.g. system.admissions.cor_check"
+                                style="width:100%;padding:7px 10px;border:1.5px solid #e5e7eb;border-radius:7px;font-size:13px;box-sizing:border-box;margin-bottom:8px;">
+                            <label style="font-size:12px;font-weight:600;">Override Value</label>
+                            <input type="text" id="rule-override-value" placeholder="e.g. false"
+                                style="width:100%;padding:7px 10px;border:1.5px solid #e5e7eb;border-radius:7px;font-size:13px;box-sizing:border-box;margin-bottom:12px;">
+                            <button type="button" class="btn btn-primary" style="width:100%;"
+                                onclick="applyRuleOverride()">Execute Rule Override</button>
+                        </div>
+                    </div>
+                </article>
+            </section>
+
+            <!-- ══════════════════ BACKUP & DATA PROTECTION ══════════════════ -->
+            <section id="sec-backup-data" class="section">
+                <div class="section-header">
+                    <div>
+                        <div class="section-title">Backup &amp; Data Protection</div>
+                        <p class="section-sub">Manual backups, scheduled recovery points, and data export for WMSU SAMS.
+                        </p>
+                    </div>
+                    <div class="section-actions">
+                        <button class="btn btn-primary" id="btn-manual-backup">Create Manual Backup</button>
+                        <button class="btn btn-outline" onclick="openRestoreModal()">Restore from Backup</button>
+                        <button class="btn btn-outline" onclick="openBackupSettingsModal()">Configure Schedule</button>
+                    </div>
+                </div>
+
+                <!-- Progress bar (hidden until backup runs) -->
+                <article class="card" id="backup-progress-card" style="display:none;margin-bottom:16px;">
+                    <div class="card-body">
+                        <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+                            <strong id="progress-title">Creating backup...</strong>
+                            <span id="progress-percentage">0%</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" id="progress-bar" style="width:0%;"></div>
+                        </div>
+                        <p style="font-size:12px;color:#999;margin-top:6px;" id="progress-details">Writing data blocks
+                            to secure repository...</p>
+                    </div>
+                </article>
+
+                <!-- Stat cards -->
+                <div class="stat-grid" style="margin-bottom:16px;">
+                    <div class="stat-card maroon">
+                        <div class="stat-card-top">
+                            <div>
+                                <div class="stat-value" style="font-size:14px;" id="backup-last-time">May 4, 2026 02:00
+                                    AM</div>
+                                <div class="stat-label">Last Backup</div>
+                            </div>
+                            <div class="stat-icon maroon"><i class="fas fa-upload"></i></div>
+                        </div>
+                    </div>
+                    <div class="stat-card gold">
+                        <div class="stat-card-top">
+                            <div>
+                                <div class="stat-value" style="font-size:14px;" id="backup-next-schedule">May 7, 2026
+                                    02:00 AM</div>
+                                <div class="stat-label">Next Scheduled</div>
+                            </div>
+                            <div class="stat-icon gold"><i class="fas fa-calendar-check"></i></div>
+                        </div>
+                    </div>
+                    <div class="stat-card green">
+                        <div class="stat-card-top">
+                            <div>
+                                <div class="stat-value" id="dashboard-last-backup">Active</div>
+                                <div class="stat-label">Protection Status</div>
+                            </div>
+                            <div class="stat-icon green"><i class="fas fa-shield-alt"></i></div>
+                        </div>
+                    </div>
+                    <div class="stat-card blue">
+                        <div class="stat-card-top">
+                            <div>
+                                <div class="stat-value">3</div>
+                                <div class="stat-label">Stored Backups</div>
+                            </div>
+                            <div class="stat-icon blue"><i class="fas fa-database"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Backup table -->
+                <article class="card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-history"></i> Backup History</h3>
+                        <input type="text" id="backup-search" placeholder="Search backups..." oninput="filterBackups()"
+                            style="padding:7px 12px;border:1.5px solid #e5e7eb;border-radius:7px;font-size:13px;width:220px;">
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Type</th>
+                                    <th>Status</th>
+                                    <th>Created By</th>
+                                    <th>Completed At</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="backup-table">
+                                <tr>
+                                    <td>System_Backup_Full_05_04_2026</td>
+                                    <td><span class="badge active">Full Backup</span></td>
+                                    <td><span class="badge active">Completed</span></td>
+                                    <td>System (Auto)</td>
+                                    <td>May 4, 2026, 02:00 AM</td>
+                                    <td><button class="btn btn-sm btn-outline"
+                                            onclick="viewBackupDetails('System_Backup_Full_05_04_2026')">View</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>User_Data_Incremental_05_05_2026</td>
+                                    <td><span class="badge pending">Incremental</span></td>
+                                    <td><span class="badge active">Completed</span></td>
+                                    <td>SA-001</td>
+                                    <td>May 5, 2026, 03:00 PM</td>
+                                    <td><button class="btn btn-sm btn-outline"
+                                            onclick="viewBackupDetails('User_Data_Incremental_05_05_2026')">View</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>System_Backup_Full_04_28_2026</td>
+                                    <td><span class="badge active">Full Backup</span></td>
+                                    <td><span class="badge" style="background:#fce7f3;color:#9d174d;">Failed</span></td>
+                                    <td>System (Auto)</td>
+                                    <td>Apr 28, 2026, 02:00 AM</td>
+                                    <td><button class="btn btn-sm btn-outline"
+                                            onclick="viewBackupDetails('System_Backup_Full_04_28_2026')">View</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+
+                <!-- Backup Settings Modal -->
+                <div id="backup-settings-modal" class="modal" style="display:none;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>Backup Configuration</h3>
+                            <button class="close-btn" onclick="closeModal('backup-settings-modal')">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <label>Backup Frequency</label>
+                            <select id="backup-frequency"
+                                style="width:100%;padding:9px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;margin-bottom:12px;">
+                                <option value="daily">Daily</option>
+                                <option value="weekly">Weekly</option>
+                                <option value="monthly">Monthly</option>
+                            </select>
+                            <label>Retention Policy</label>
+                            <select id="backup-retention"
+                                style="width:100%;padding:9px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;margin-bottom:12px;">
+                                <option value="30">30 days</option>
+                                <option value="90">90 days</option>
+                                <option value="365">1 year</option>
+                            </select>
+                            <label style="display:flex;align-items:center;gap:8px;"><input type="checkbox" checked>
+                                Email alert on failure</label>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-outline"
+                                onclick="closeModal('backup-settings-modal')">Cancel</button>
+                            <button class="btn btn-primary" onclick="saveBackupSettings()">Save Settings</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- ══ ADMIN CREATE/EDIT MODAL ══ -->
+        <div id="modal-admin-form">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modal-admin-title">Create CPPPESO Staff Account</h3>
+                    <button class="close-btn" onclick="closeModal('modal-admin-form')">&times;</button>
+                </div>
+                <input type="hidden" id="modal-admin-id">
+                <label>Full Name <span style="color:red">*</span></label>
+                <input type="text" id="modal-admin-name" placeholder="e.g. Juan Dela Cruz">
+                <label>WMSU Email <span style="color:red">*</span></label>
+                <input type="email" id="modal-admin-email" placeholder="e.g. jdelacru@wmsu.edu.ph">
+                <label>CPPPESO Section / Role <span style="color:red">*</span></label>
+                <select id="modal-admin-dept">
+                    <option value="">Select Section...</option>
+                    <option value="Student Assistant Coordination">Student Assistant Coordination</option>
+                    <option value="Records &amp; Verification Section">Records &amp; Verification Section</option>
+                    <option value="Payroll Processing Section">Payroll Processing Section</option>
+                    <option value="Attendance Monitoring Unit">Attendance Monitoring Unit</option>
+                    <option value="Department Liaison Officer">Department Liaison Officer</option>
+                    <option value="CPPPESO Director / Head">CPPPESO Director / Head</option>
+                    <option value="IT / System Support">IT / System Support</option>
+                </select>
+                <label>Access Level</label>
+                <select id="modal-admin-permission">
+                    <option value="limited">Limited &mdash; view &amp; process only</option>
+                    <option value="full">Full &mdash; all SAMS controls</option>
+                </select>
+                <div class="modal-footer">
+                    <button class="btn btn-outline" onclick="closeModal('modal-admin-form')">Cancel</button>
+                    <button class="btn btn-primary" id="btn-save-admin">Save Account</button>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

@@ -73,11 +73,11 @@
                 <div class="row">
                     <div>
                         <label>Phone Number<span style="color: red;"> *</span></label>
-                        <input type="text" inputmode="numeric" pattern="[0-9-]*" placeholder="e.g. 09123456789" required>
+                        <input type="text" name="phone" id="phoneInput" inputmode="numeric" pattern="[0-9]*" placeholder="e.g. 09123456789" required>
                     </div>
                      <div>
                         <label>Student ID<span style="color: red;"> *</span></label>
-                        <input type="text" inputmode="numeric" pattern="[0-9-]*" placeholder="e.g. 2023-01234" required>
+                        <input type="text" name="student_id" id="studentIdInput" inputmode="numeric" pattern="[0-9-]*" placeholder="e.g. 2023-01234" required>
                     </div>
                 </div>
 
@@ -108,14 +108,14 @@
                     </div>
 
                     <div class="field">
-                            <label>Program</label>
+                            <label>Program<span style="color: red;"> *</span></label>
                             <select id="program" name="program" required>
                                 <option value="" disabled selected>Select Program</option>
                             </select>
                     </div> 
                     <div class="field">
                         <label>Year Level<span style="color: red;"> *</span></label>
-                        <select required>
+                        <select id="yearLevel" name="year_level" required>
                             <option value="" disabled selected>Select Year</option>
                             <option value="1">1st Year</option>
                             <option value="2">2nd Year</option>

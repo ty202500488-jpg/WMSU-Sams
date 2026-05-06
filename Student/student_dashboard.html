@@ -63,11 +63,6 @@
         <main class="dashboard-feed">
 
             <section class="feed-section">
-                <div class="section-header-flex">
-                    <h2 class="section-title">Hours & Earnings</h2>
-                    <a href="Referral.html" style="text-decoration: none;" class="primary-btn log-btn"><i class="fas fa-qrcode"></i> Scan QR</a>
-                </div>
-
                 <div class="earnings-overview-card">
                     <div class="main-balance">
                         <span class="label">Accumulated Earnings</span>
@@ -95,6 +90,19 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="qr-scan-card">
+                    <div class="qr-scan-info">
+                        <div class="qr-icon-wrap"><i class="fas fa-qrcode"></i></div>
+                        <div>
+                            <strong>Scan to Log Attendance</strong>
+                            <span>Use your camera to scan the department QR code</span>
+                        </div>
+                    </div>
+                    <a href="referral.html" class="qr-scan-btn" style="text-decoration:none;">
+                        <i class="fas fa-qrcode"></i> Scan QR Code
+                    </a>
                 </div>
 
             </section>
@@ -152,7 +160,8 @@
                 </div>
 
                 <!--LIBRARY ASSISTANT-->
-                <article class="application-card">
+
+                <article class="main-card assignment">
                     <div class="application-header">
                         <div class="suggestion-group"> 
                             <h3>Library Assistant</h3>
@@ -428,14 +437,263 @@
     </div>
 
     <div id="cancel-confirm-1" class="modal-overlay">
-                        <div class="modal-box">
-                            <h3>Are you sure?</h3>
-                            <p>Do you really want to cancel this application?</p>
-                            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
-                                <a href="#" class="primary-btn" style="text-decoration: none; background: #9f0f0f;">Cancel</a>
-                                <a href="#" class="secondary-btn" style="text-decoration: none;">No</a>
-                            </div>
-                        </div>
-                    </div>
+        <div class="modal-box">
+            <h3>Are you sure?</h3>
+            <p>Do you really want to cancel this application?</p>
+            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
+                <a href="#" class="primary-btn" style="text-decoration: none; background: #9f0f0f;">Cancel</a>
+                <a href="#" class="secondary-btn" style="text-decoration: none;">No</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== FLOATING MESSAGE BUTTON ===== -->
+    <button class="float-msg-btn" id="floatMsgBtn" onclick="toggleMsg()" title="Message Department">
+        <i class="fas fa-comment-dots"></i>
+        <span class="float-msg-badge" id="msgBadge">0</span>
+    </button>
+
+    <!-- ===== TOAST NOTIFICATION ===== -->
+    <div class="msg-toast" id="msgToast">
+        <div class="msg-toast-avatar" id="toastAvatar"></div>
+        <div class="msg-toast-content">
+            <div class="msg-toast-dept" id="toastDept"></div>
+            <div class="msg-toast-text" id="toastText"></div>
+        </div>
+        <button class="msg-toast-close" onclick="dismissToast()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- ===== CHAT PANEL ===== -->
+    <div class="msg-panel" id="msgPanel">
+        <div class="msg-panel-header">
+            <i class="fas fa-comments" style="font-size:18px;color:white;flex-shrink:0;"></i>
+            <div class="msg-panel-header-info">
+                <div class="msg-panel-title">Department Messages</div>
+                <div class="msg-panel-sub" id="msgDeptName">IT Office</div>
+            </div>
+            <button class="msg-panel-close" onclick="toggleMsg()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="msg-student-tabs" id="deptTabs"></div>
+        <div class="msg-body" id="msgBody">
+            <div style="text-align:center;color:#aaa;font-size:13px;padding:24px 0">
+                Select a student to view conversation
+            </div>
+        </div>
+
+        <div class="msg-footer">
+            <input type="text" id="msgInput" placeholder="Type a message…" onkeydown="if(event.key==='Enter')sendMsg()">
+            <button class="msg-send-btn" onclick="sendMsg()">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+    
+<script>
+const DEPT_ICONS = {
+        'IT Office':    'fa-computer',
+        'Library':      'fa-book',
+        'Registrar':    'fa-clipboard',
+        'Support Team': 'fa-headset'
+    };
+ 
+    const SIDE = 'student';   // this page is the student side
+ 
+    let currentDept = 'IT Office';
+    let panelOpen = false;
+    let pollTimer = null;
+    let lastMsgCount = {};
+ 
+    const DEPT_TO_STUDENT = {
+    'IT Office':    'Juan_Dela_Cruz',
+    'Library':      'Luz_Mendoza',
+    'Registrar':    'Karl_Reyes',
+    'Support Team': 'Juan_Dela_Cruz'
+};
+
+function storageKey(dept) {
+    const sid = DEPT_TO_STUDENT[dept] || dept.replace(/\s/g,'_');
+    return 'sams_chat_' + sid;
+}
+    function unreadKey()      { return 'sams_chat_unread_student'; }
+ 
+    function getConvo(dept) {
+        try { return JSON.parse(localStorage.getItem(storageKey(dept))) || []; }
+        catch(e) { return []; }
+    }
+    function saveConvo(dept, msgs) {
+        localStorage.setItem(storageKey(dept), JSON.stringify(msgs));
+    }
+ 
+    function formatTime() {
+        const now = new Date();
+        let h = now.getHours(), m = now.getMinutes();
+        const ampm = h >= 12 ? 'PM' : 'AM';
+        h = h % 12 || 12;
+        return h + ':' + String(m).padStart(2,'0') + ' ' + ampm;
+    }
+ 
+    // Seed default messages on first load
+    function seedDefaults() {
+        if (!localStorage.getItem(storageKey('IT Office'))) {
+            saveConvo('IT Office', [
+                { from: 'dept', text: 'Hello Juan! Your May 1 attendance has been approved.', time: '10:02 AM' },
+                { from: 'student', text: 'Thank you, Ms. Rodriguez!', time: '10:05 AM' }
+            ]);
+        }
+        if (!localStorage.getItem(storageKey('Support Team'))) {
+            saveConvo('Support Team', [
+                { from: 'dept', text: 'Hi! How can we help you today?', time: '9:00 AM' }
+            ]);
+        }
+    }
+ 
+    function renderConversation(dept) {
+        const body = document.getElementById('msgBody');
+        const msgs = getConvo(dept);
+        body.innerHTML = '';
+        if (!msgs.length) {
+            body.innerHTML = '<div style="text-align:center;color:#aaa;font-size:13px;padding:24px 0">No messages yet.<br><small>Start the conversation!</small></div>';
+            return;
+        }
+        msgs.forEach(function(msg) {
+            const div = document.createElement('div');
+            const isSent = (msg.from === 'student');
+            div.className = 'msg-bubble ' + (isSent ? 'sent' : 'received');
+            div.innerHTML = escapeHtml(msg.text) + '<div class="msg-time">' + msg.time + '</div>';
+            body.appendChild(div);
+        });
+        body.scrollTop = body.scrollHeight;
+        // Track last count
+        lastMsgCount[dept] = msgs.length;
+    }
+ 
+    function escapeHtml(str) {
+        return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+ 
+    const DEPT_LIST = [
+    { value: 'IT Office',    label: 'IT Office',    initials: 'IT', color: '#1d4ed8' },
+    { value: 'Library',      label: 'Library',      initials: 'LB', color: '#7B0D1E' },
+    { value: 'Registrar',    label: 'Registrar',    initials: 'RG', color: '#0f766e' },
+    { value: 'Support Team', label: 'Support Team', initials: 'ST', color: '#7c3aed' }
+];
+
+function buildDeptTabs() {
+    const container = document.getElementById('deptTabs');
+    container.innerHTML = '';
+    DEPT_LIST.forEach(function(dept) {
+        const tab = document.createElement('div');
+        tab.className = 'msg-tab' + (dept.value === currentDept ? ' active' : '');
+        tab.setAttribute('data-dept', dept.value);
+        tab.onclick = function() { switchDept(dept.value); };
+        tab.innerHTML =
+            '<div class="msg-tab-avatar" style="background:' + dept.color + '">' + dept.initials + '</div>' +
+            '<span>' + dept.label + '</span>';
+        container.appendChild(tab);
+    });
+}
+
+function switchDept(dept) {
+    currentDept = dept;
+    document.getElementById('msgDeptName').textContent = dept;
+    document.querySelectorAll('#deptTabs .msg-tab').forEach(function(t) {
+        t.classList.toggle('active', t.getAttribute('data-dept') === dept);
+    });
+    renderConversation(dept);
+    updateUnreadBadge();
+}
+ 
+    function sendMsg() {
+        const input = document.getElementById('msgInput');
+        const text = input.value.trim();
+        if (!text) return;
+ 
+        const msgs = getConvo(currentDept);
+        msgs.push({ from: 'student', text: text, time: formatTime() });
+        saveConvo(currentDept, msgs);
+        input.value = '';
+        renderConversation(currentDept);
+ 
+        const sid = DEPT_TO_STUDENT[currentDept] || currentDept.replace(/\s/g,'_');
+        const empUnread = parseInt(localStorage.getItem('sams_emp_unread_' + sid) || '0');
+        localStorage.setItem('sams_emp_unread_' + sid, empUnread + 1);
+    }
+ 
+    function updateUnreadBadge() {
+    const count = parseInt(localStorage.getItem(unreadKey()) || '0');
+    const badge = document.getElementById('msgBadge');
+    if (count > 0 && !panelOpen) {
+        badge.textContent = count > 9 ? '9+' : count;
+        badge.style.display = 'flex';
+    } else {
+        badge.style.display = 'none';
+    }
+}
+ 
+    function clearStudentUnread() {
+        localStorage.setItem(unreadKey(), '0');
+        updateUnreadBadge();
+    }
+ 
+    function toggleMsg() {
+    panelOpen = !panelOpen;
+    document.getElementById('msgPanel').classList.toggle('open', panelOpen);
+    if (panelOpen) {
+        buildDeptTabs();
+        clearStudentUnread();
+        renderConversation(currentDept);
+        setTimeout(function() { document.getElementById('msgInput').focus(); }, 260);
+    }
+}
+ 
+    // Poll for new messages from employer
+    function startPolling() {
+        pollTimer = setInterval(function() {
+            const msgs = getConvo(currentDept);
+            const prev = lastMsgCount[currentDept] || 0;
+            if (msgs.length > prev) {
+                if (panelOpen) {
+                    renderConversation(currentDept);
+                } else {
+                    // Increment student unread badge
+                    const cur = parseInt(localStorage.getItem(unreadKey()) || '0');
+                    localStorage.setItem(unreadKey(), cur + (msgs.length - prev));
+                    updateUnreadBadge();
+                    lastMsgCount[currentDept] = msgs.length;
+                }
+            }
+        }, 1500);
+    }
+ 
+    // Close on outside click
+    document.addEventListener('click', function(e) {
+        const panel = document.getElementById('msgPanel');
+        const btn   = document.getElementById('floatMsgBtn');
+        if (panelOpen && panel && btn && !panel.contains(e.target) && !btn.contains(e.target)) {
+            panelOpen = false;
+            panel.classList.remove('open');
+        }
+    });
+ 
+    // Init
+seedDefaults();
+buildDeptTabs();
+renderConversation(currentDept);
+updateUnreadBadge();
+startPolling();
+ 
+    function openDeptMessage(dept) {
+        const sel = document.getElementById('deptSelect');
+        for (var i = 0; i < sel.options.length; i++) {
+            if (sel.options[i].value === dept) { sel.selectedIndex = i; break; }
+        }
+        switchDept(dept);
+        if (!panelOpen) toggleMsg();
+    }
+    </script>
 </body>
 </html>
