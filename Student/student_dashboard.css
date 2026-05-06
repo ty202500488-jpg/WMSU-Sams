@@ -231,7 +231,7 @@ body {
 
 /* ===== DASHBOARD FEED ===== */
 .earnings-overview-card {
-    background: linear-gradient(135deg, #1877f2 0%, #0056b3 100%);
+    background: linear-gradient(135deg, var(--maroon-deep) 0%, var(--maroon) 60%, var(--maroon-light) 100%) ;
     border-radius: 15px;
     padding: 30px;
     color: white;
@@ -239,7 +239,7 @@ body {
     align-items: center;
     justify-content: space-between;
     margin-bottom: 25px;
-    box-shadow: 0 10px 20px rgba(24, 119, 242, 0.2);
+    box-shadow: 0 10px 20px rgba(123, 13, 30, 0.35);
 }
 
 .main-balance .label {
@@ -447,6 +447,15 @@ hr {
     margin: 15px 0; 
 }
 
+/* Match explanation */
+.match-reason {
+    background: #f9f9f9;
+    border-left: 3px solid #28a745;
+    padding: 10px;
+    font-size: 12px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
 /* REQUIREMENTS LIST */
 .requirements-list {
     margin-top: 5px;
