@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -449,6 +449,100 @@
       </section>
 
       <!-- ╔══════════════════════════════════════════════
+     § ATTENDANCE MONITORING
+══════════════════════════════════════════════╗ -->
+      <section id="sec-attendance" class="section">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Attendance Monitoring</div>
+            <div class="section-sub">View and audit student assistant attendance logs verified by their respective
+              departments.</div>
+          </div>
+          <div class="section-actions">
+            <button class="btn btn-outline btn-sm"><i class="fas fa-file-export"></i> Export Logs</button>
+            <button class="btn btn-primary btn-sm"><i class="fas fa-filter"></i> Filter</button>
+          </div>
+        </div>
+
+        <div class="stat-grid" style="margin-bottom:24px;">
+          <div class="stat-card maroon">
+            <div class="stat-card-top">
+              <div>
+                <div class="stat-value">1,240</div>
+                <div class="stat-label">Total Logs (This Sem)</div>
+              </div>
+              <div class="stat-icon maroon"><i class="fas fa-history"></i></div>
+            </div>
+          </div>
+          <div class="stat-card gold">
+            <div class="stat-card-top">
+              <div>
+                <div class="stat-value">48</div>
+                <div class="stat-label">Active Today</div>
+              </div>
+              <div class="stat-icon gold"><i class="fas fa-user-check"></i></div>
+            </div>
+          </div>
+          <div class="stat-card green">
+            <div class="stat-card-top">
+              <div>
+                <div class="stat-value">98%</div>
+                <div class="stat-label">Verification Rate</div>
+              </div>
+              <div class="stat-icon green"><i class="fas fa-check-double"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <article class="card">
+          <div class="table-wrap">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Student Name</th>
+                  <th>Department</th>
+                  <th>Time In</th>
+                  <th>Time Out</th>
+                  <th>Total Hours</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>May 07, 2026</td>
+                  <td class="td-name">Luz Mendoza</td>
+                  <td>Library Department</td>
+                  <td>08:02 AM</td>
+                  <td>05:05 PM</td>
+                  <td>8.0 hrs</td>
+                  <td><span class="badge approved">Verified</span></td>
+                </tr>
+                <tr>
+                  <td>May 07, 2026</td>
+                  <td class="td-name">Karl Reyes</td>
+                  <td>Library Department</td>
+                  <td>08:15 AM</td>
+                  <td>05:10 PM</td>
+                  <td>7.5 hrs</td>
+                  <td><span class="badge approved">Verified</span></td>
+                </tr>
+                <tr>
+                  <td>May 07, 2026</td>
+                  <td class="td-name">Juan Dela Cruz</td>
+                  <td>IT Office</td>
+                  <td>07:55 AM</td>
+                  <td>04:55 PM</td>
+                  <td>8.0 hrs</td>
+                  <td><span class="badge pending">Pending Dept</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <!-- ╔══════════════════════════════════════════════
      § DEPARTMENT QR MANAGEMENT
 ══════════════════════════════════════════════╗ -->
       <section id="sec-qr" class="section">
@@ -481,6 +575,17 @@
                       <option value="Finance Office">Finance Office</option>
                     </select>
                   </div>
+                  
+                  <!-- Assigned Admin Name Splitting -->
+                  <div>
+                    <label style="font-size:12px; font-weight:600; color:#555; display:block; margin-bottom:5px;">Assigned Department Head</label>
+                    <div style="display:grid; grid-template-columns: 2fr 2fr 1fr; gap:10px;">
+                      <input type="text" placeholder="Last Name" class="field-input" style="width:100%; padding:10px; border-radius:8px; border:1.5px solid #eee;">
+                      <input type="text" placeholder="First Name" class="field-input" style="width:100%; padding:10px; border-radius:8px; border:1.5px solid #eee;">
+                      <input type="text" placeholder="M.I." maxlength="2" class="field-input" style="width:100%; padding:10px; border-radius:8px; border:1.5px solid #eee;">
+                    </div>
+                  </div>
+
                   <div>
                     <label
                       style="font-size:12px; font-weight:600; color:#555; display:block; margin-bottom:5px;">Academic

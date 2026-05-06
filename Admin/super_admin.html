@@ -1628,8 +1628,11 @@
                                     </div>
                                     <div>
                                         <label>Full Name <span style="color:red">*</span></label>
-                                        <input type="text" id="modal-admin-name" placeholder="e.g. Juan Dela Cruz"
-                                            required>
+                                        <div style="display: grid; grid-template-columns: 2fr 2fr 1fr; gap: 8px;">
+                                            <input type="text" id="modal-admin-lastname" placeholder="Last Name" required>
+                                            <input type="text" id="modal-admin-firstname" placeholder="First Name" required>
+                                            <input type="text" id="modal-admin-mi" placeholder="M.I." maxlength="2">
+                                        </div>
                                     </div>
                                     <div>
                                         <label>Email Address <span style="color:red">*</span></label>
