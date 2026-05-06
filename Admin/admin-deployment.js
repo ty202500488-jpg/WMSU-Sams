@@ -359,7 +359,7 @@ class DeploymentSystem {
             <span>${message}</span>
         `;
         document.body.appendChild(notification);
-        
+
         setTimeout(() => notification.remove(), 3000);
     }
 }

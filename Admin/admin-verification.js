@@ -26,21 +26,21 @@ class VerificationSystem {
     initializeVerificationData() {
         // Student verification data
         this.studentVerifications = new Map([
-            { id: 'std-001', name: 'Maria Santos', studentId: '2022-00145', status: 'pending', gwa: 1.75 },
-            { id: 'std-002', name: 'Juan dela Cruz', studentId: '2021-00388', status: 'pending', gwa: 1.85 },
-            { id: 'std-003', name: 'Ana Reyes', studentId: '2023-00072', status: 'pending', gwa: 2.00 },
-            { id: 'std-004', name: 'Carlos Mendez', studentId: '2020-00561', status: 'approved', gwa: 1.60 },
-            { id: 'std-005', name: 'Liza Torres', studentId: '2022-00299', status: 'pending', gwa: 2.25 },
-            { id: 'std-006', name: 'Rico Garcia', studentId: '2021-00431', status: 'rejected', gwa: 2.75 }
+            { id: 'std-001', name: 'Maria Santos', email: 'maria.santos@gmail.com', studentId: '2022-00145', status: 'pending', gwa: 1.75 },
+            { id: 'std-002', name: 'Juan dela Cruz', email: 'juan.delacruz@gmail.com', studentId: '2021-00388', status: 'pending', gwa: 1.85 },
+            { id: 'std-003', name: 'Ana Reyes', email: 'ana.reyes@gmail.com', studentId: '2023-00072', status: 'pending', gwa: 2.00 },
+            { id: 'std-004', name: 'Carlos Mendez', email: 'carlos.mendez@gmail.com', studentId: '2020-00561', status: 'approved', gwa: 1.60 },
+            { id: 'std-005', name: 'Liza Torres', email: 'liza.torres@gmail.com', studentId: '2022-00299', status: 'pending', gwa: 2.25 },
+            { id: 'std-006', name: 'Rico Garcia', email: 'rico.garcia@gmail.com', studentId: '2021-00431', status: 'rejected', gwa: 2.75 }
         ].map(item => [item.id, item]));
 
         // Department verification data
         this.departmentVerifications = new Map([
-            { id: 'dept-001', name: 'College of Nursing', status: 'pending', slots: 8 },
-            { id: 'dept-002', name: 'College of Engineering', status: 'pending', slots: 12 },
-            { id: 'dept-003', name: 'Information Technology Dept.', status: 'pending', slots: 10 },
-            { id: 'dept-004', name: 'College of Education', status: 'approved', slots: 6 },
-            { id: 'dept-005', name: 'University Library', status: 'approved', slots: 5 }
+            { id: 'dept-001', name: 'College of Nursing', email: 'nursing@wmsu.edu.ph', status: 'pending', slots: 8 },
+            { id: 'dept-002', name: 'College of Engineering', email: 'engineering@wmsu.edu.ph', status: 'pending', slots: 12 },
+            { id: 'dept-003', name: 'Information Technology Dept.', email: 'it@wmsu.edu.ph', status: 'pending', slots: 10 },
+            { id: 'dept-004', name: 'College of Education', email: 'education@wmsu.edu.ph', status: 'approved', slots: 6 },
+            { id: 'dept-005', name: 'University Library', email: 'library@wmsu.edu.ph', status: 'approved', slots: 5 }
         ].map(item => [item.id, item]));
     }
 
@@ -108,31 +108,55 @@ class VerificationSystem {
         const button = document.querySelector(`.btn-approve[data-student-id="${studentId}"]`);
         if (!button) return;
 
-        try {
-            // Show loading state
-            this.setButtonLoading(button, true);
+        const modalManager = window.modalManager || new ModalManager();
+        modalManager.showConfirmation(
+            'Verify & Approve Student',
+            `<div style="text-align: center; padding: 10px 0;">
+                <div style="width: 60px; height: 60px; background: #f0fdf4; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
+                    <i class="fas fa-user-check" style="font-size: 28px; color: #15803d;"></i>
+                </div>
+                <p style="font-size: 15px; margin-bottom: 8px;">Are you sure you want to approve <strong>${student.name}</strong>?</p>
+                <p style="font-size: 13px; color: #666;">This will grant them full system access. An automated email notification will be sent to ${student.email || 'their registered email'}.</p>
+            </div>`,
+            async () => {
+                try {
+                    // Show loading state
+                    this.setButtonLoading(button, true);
 
-            // Simulate API call
-            await this.simulateApiCall(500);
+                    // Simulate API call
+                    await this.simulateApiCall(500);
 
-            // Update data
-            student.status = 'approved';
-            this.studentVerifications.set(studentId, student);
+                    // Update data
+                    student.status = 'approved';
+                    this.studentVerifications.set(studentId, student);
 
-            // Update UI
-            this.updateStudentRow(studentId, student);
-            this.showNotification('success', `${student.name} has been approved successfully`);
+                    // Update UI
+                    this.updateStudentRow(studentId, student);
+                    this.showNotification('success', `${student.name} has been approved successfully`);
 
-            // Log action
-            this.logAction('APPROVE_STUDENT', student);
+                    // Log action
+                    this.logAction('APPROVE_STUDENT', student);
 
-        } catch (error) {
-            console.error('Error approving student:', error);
-            this.showNotification('error', 'Failed to approve student. Please try again.');
-        } finally {
-            this.setButtonLoading(button, false);
-            this.processingIds.delete(studentId);
-        }
+                    // Trigger email notification immediately after database update
+                    // Non-blocking async process
+                    this.sendEmailNotification(student, 'approved');
+
+                } catch (error) {
+                    console.error('Error approving student:', error);
+                    this.showNotification('error', 'Failed to approve student. Please try again.');
+                } finally {
+                    this.setButtonLoading(button, false);
+                    this.processingIds.delete(studentId);
+                }
+            },
+            () => {
+                this.processingIds.delete(studentId);
+            },
+            {
+                confirmText: 'Yes, Approve Student',
+                confirmColor: 'success-btn'
+            }
+        );
     }
 
     /**
@@ -149,21 +173,25 @@ class VerificationSystem {
         const button = document.querySelector(`.btn-reject[data-student-id="${studentId}"]`);
         if (!button) return;
 
-        // Show confirmation
+        // Show rejection reason modal
         const modalManager = window.modalManager || new ModalManager();
-        modalManager.showConfirmation(
-            'Reject Student',
-            `Are you sure you want to reject ${student.name}'s application?`,
-            async () => {
+        modalManager.showRejectionReasonModal(
+            student.name,
+            async (rejectionData) => {
                 try {
                     this.setButtonLoading(button, true);
                     await this.simulateApiCall(500);
 
                     student.status = 'rejected';
+                    student.rejectionReason = rejectionData.reason; // Store reason
                     this.studentVerifications.set(studentId, student);
                     this.updateStudentRow(studentId, student);
                     this.showNotification('success', `${student.name}'s application has been rejected`);
                     this.logAction('REJECT_STUDENT', student);
+
+                    // Trigger email notification immediately after database update
+                    // Includes dynamically inserted rejection reason
+                    this.sendEmailNotification(student, 'rejected', rejectionData.reason);
 
                 } catch (error) {
                     console.error('Error rejecting student:', error);
@@ -175,6 +203,16 @@ class VerificationSystem {
             },
             () => {
                 this.processingIds.delete(studentId);
+            },
+            {
+                title: 'Reject Student Application',
+                description: `<div style="text-align: center; margin-bottom: 15px;">
+                    <div style="width: 60px; height: 60px; background: #fef2f2; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px;">
+                        <i class="fas fa-user-times" style="font-size: 28px; color: #dc2626;"></i>
+                    </div>
+                    <p style="font-size: 14px; color: #444; margin-bottom: 0;">Please specify why you are rejecting the application for <strong>${student.name}</strong>.</p>
+                    <p style="font-size: 12px; color: #666; margin-top: 5px;">This reason will be included in the automated rejection email.</p>
+                </div>`
             }
         );
     }
@@ -244,23 +282,46 @@ class VerificationSystem {
         const button = document.querySelector(`.btn-approve[data-dept-id="${deptId}"]`);
         if (!button) return;
 
-        try {
-            this.setButtonLoading(button, true);
-            await this.simulateApiCall(500);
+        const modalManager = window.modalManager || new ModalManager();
+        modalManager.showConfirmation(
+            'Approve Department',
+            `<div style="text-align: center; padding: 10px 0;">
+                <div style="width: 60px; height: 60px; background: #f0fdf4; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
+                    <i class="fas fa-building" style="font-size: 28px; color: #15803d;"></i>
+                </div>
+                <p style="font-size: 15px; margin-bottom: 8px;">Are you sure you want to approve <strong>${dept.name}</strong>?</p>
+                <p style="font-size: 13px; color: #666;">This will allow the department to manage student assistants. An automated notification will be sent to ${dept.email || 'their registered email'}.</p>
+            </div>`,
+            async () => {
+                try {
+                    this.setButtonLoading(button, true);
+                    await this.simulateApiCall(500);
 
-            dept.status = 'approved';
-            this.departmentVerifications.set(deptId, dept);
-            this.updateDepartmentRow(deptId, dept);
-            this.showNotification('success', `${dept.name} has been approved successfully`);
-            this.logAction('APPROVE_DEPARTMENT', dept);
+                    dept.status = 'approved';
+                    this.departmentVerifications.set(deptId, dept);
+                    this.updateDepartmentRow(deptId, dept);
+                    this.showNotification('success', `${dept.name} has been approved successfully`);
+                    this.logAction('APPROVE_DEPARTMENT', dept);
 
-        } catch (error) {
-            console.error('Error approving department:', error);
-            this.showNotification('error', 'Failed to approve department. Please try again.');
-        } finally {
-            this.setButtonLoading(button, false);
-            this.processingIds.delete(deptId);
-        }
+                    // Trigger email notification immediately after database update
+                    this.sendEmailNotification(dept, 'approved');
+
+                } catch (error) {
+                    console.error('Error approving department:', error);
+                    this.showNotification('error', 'Failed to approve department. Please try again.');
+                } finally {
+                    this.setButtonLoading(button, false);
+                    this.processingIds.delete(deptId);
+                }
+            },
+            () => {
+                this.processingIds.delete(deptId);
+            },
+            {
+                confirmText: 'Approve Department',
+                confirmColor: 'success-btn'
+            }
+        );
     }
 
     /**
@@ -277,19 +338,22 @@ class VerificationSystem {
         if (!button) return;
 
         const modalManager = window.modalManager || new ModalManager();
-        modalManager.showConfirmation(
-            'Reject Department',
-            `Are you sure you want to reject ${dept.name}'s registration?`,
-            async () => {
+        modalManager.showRejectionReasonModal(
+            dept.name,
+            async (rejectionData) => {
                 try {
                     this.setButtonLoading(button, true);
                     await this.simulateApiCall(500);
 
                     dept.status = 'rejected';
+                    dept.rejectionReason = rejectionData.reason;
                     this.departmentVerifications.set(deptId, dept);
                     this.updateDepartmentRow(deptId, dept);
                     this.showNotification('success', `${dept.name} has been rejected`);
                     this.logAction('REJECT_DEPARTMENT', dept);
+
+                    // Trigger email notification immediately after database update
+                    this.sendEmailNotification(dept, 'rejected', rejectionData.reason);
 
                 } catch (error) {
                     console.error('Error rejecting department:', error);
@@ -299,7 +363,17 @@ class VerificationSystem {
                     this.processingIds.delete(deptId);
                 }
             },
-            () => this.processingIds.delete(deptId)
+            () => this.processingIds.delete(deptId),
+            {
+                title: 'Reject Department Registration',
+                description: `<div style="text-align: center; margin-bottom: 15px;">
+                    <div style="width: 60px; height: 60px; background: #fef2f2; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px;">
+                        <i class="fas fa-building-circle-xmark" style="font-size: 28px; color: #dc2626;"></i>
+                    </div>
+                    <p style="font-size: 14px; color: #444; margin-bottom: 0;">Please specify why you are rejecting the registration for <strong>${dept.name}</strong>.</p>
+                    <p style="font-size: 12px; color: #666; margin-top: 5px;">This reason will be included in the automated rejection email.</p>
+                </div>`
+            }
         );
     }
 
@@ -364,8 +438,8 @@ class VerificationSystem {
         // Update status badge
         const statusCell = row.querySelector('[data-status-cell]');
         if (statusCell) {
-            const badgeClass = student.status === 'approved' ? 'approved' : 
-                              student.status === 'rejected' ? 'rejected' : 'pending';
+            const badgeClass = student.status === 'approved' ? 'approved' :
+                student.status === 'rejected' ? 'rejected' : 'pending';
             statusCell.innerHTML = `<span class="badge ${badgeClass}">${student.status}</span>`;
         }
 
@@ -407,8 +481,8 @@ class VerificationSystem {
 
         const statusCell = row.querySelector('[data-status-cell]');
         if (statusCell) {
-            const badgeClass = dept.status === 'approved' ? 'approved' : 
-                              dept.status === 'rejected' ? 'rejected' : 'pending';
+            const badgeClass = dept.status === 'approved' ? 'approved' :
+                dept.status === 'rejected' ? 'rejected' : 'pending';
             statusCell.innerHTML = `<span class="badge ${badgeClass}">${dept.status}</span>`;
         }
 
@@ -485,7 +559,7 @@ class VerificationSystem {
         `;
 
         document.body.appendChild(notification);
-        
+
         setTimeout(() => {
             notification.style.animation = 'slideOut 0.3s ease';
             setTimeout(() => notification.remove(), 300);
@@ -504,6 +578,47 @@ class VerificationSystem {
         };
         console.log('Action logged:', log);
         // In production, send to backend: POST /api/logs
+    }
+
+    /**
+     * Automated Email Notification System
+     * Requirement: Sends an automated email non-blocking to the user
+     */
+    async sendEmailNotification(user, status, reason = '') {
+        // Prepare the payload for the backend email service (SMTP/API)
+        const payload = {
+            userId: user.id,
+            email: user.email || 'user@wmsu.edu.ph', // Use registered email
+            name: user.name,
+            status: status,
+            reason: reason,
+            timestamp: new Date().toISOString()
+        };
+
+        console.log(`[EMAIL NOTIFICATION SYSTEM] Triggering ${status} email to ${payload.email}...`);
+
+        try {
+            // Note: In production, this hits an actual API endpoint that wraps SMTP logic.
+            // Client-side code NEVER exposes SMTP credentials directly.
+            // fetch('/api/admin/notifications/email', { ... })
+
+            // Simulating a non-blocking network request
+            setTimeout(() => {
+                // Simulate success rate
+                const success = Math.random() > 0.05;
+                if (success) {
+                    console.log(`[EMAIL NOTIFICATION SYSTEM] SUCCESS: ${status} email sent to ${payload.email}.`);
+                    this.logAction('EMAIL_SENT', payload);
+                } else {
+                    console.warn(`[EMAIL NOTIFICATION SYSTEM] FAILED: Could not send to ${payload.email}.`);
+                    this.logAction('EMAIL_FAILED', payload);
+                }
+            }, 1000);
+
+        } catch (error) {
+            console.error(`[EMAIL NOTIFICATION SYSTEM] ERROR sending email to ${payload.email}:`, error);
+            this.logAction('EMAIL_ERROR', { payload, error: error.message });
+        }
     }
 
     /**
