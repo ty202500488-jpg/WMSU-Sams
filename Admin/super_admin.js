@@ -139,9 +139,15 @@ function editAdmin(id) {
   document.getElementById('modal-admin-name').value = a.name;
   document.getElementById('modal-admin-email').value = a.email;
   document.getElementById('modal-admin-dept').value = a.dept;
-  document.getElementById('modal-admin-permission').value = a.permission;
+
+  const roleEl = document.getElementById('modal-admin-role');
+  if (roleEl) roleEl.value = a.permission === 'full' ? 'Administrator' : 'Department User';
+
+  const statusEl = document.getElementById('modal-admin-status');
+  if (statusEl) statusEl.value = a.status;
+
   document.getElementById('modal-admin-id').value = a.id;
-  document.getElementById('modal-admin-title').textContent = 'Edit CPPPESO Staff Account';
+  document.getElementById('modal-admin-title').innerHTML = '<i class="fas fa-user-edit" style="margin-right: 8px;"></i> Edit System Account';
   openModal('modal-admin-form');
 }
 
@@ -150,11 +156,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnCreate = document.getElementById('btn-create-admin');
   if (btnCreate) btnCreate.addEventListener('click', () => {
     clearAdminForm();
-    document.getElementById('modal-admin-title').textContent = 'Create CPPPESO Staff Account';
+    const titleEl = document.getElementById('modal-admin-title');
+    if (titleEl) titleEl.innerHTML = '<i class="fas fa-user-plus" style="margin-right: 8px;"></i> Create System Account';
     openModal('modal-admin-form');
     document.getElementById('btn-save-maintenance')?.addEventListener('click', saveMaintenance);
-
-    initAll();
   });
 
   const saveBtn = document.getElementById('btn-save-admin');
@@ -188,12 +193,20 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function clearAdminForm() {
-  ['modal-admin-name', 'modal-admin-email', 'modal-admin-dept', 'modal-admin-id'].forEach(id => {
+  ['modal-admin-name', 'modal-admin-email', 'modal-admin-dept', 'modal-admin-id', 'modal-admin-phone', 'modal-admin-position'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.value = '';
   });
-  const perm = document.getElementById('modal-admin-permission');
-  if (perm) perm.value = 'limited';
+  const role = document.getElementById('modal-admin-role');
+  if (role) role.value = '';
+  const status = document.getElementById('modal-admin-status');
+  if (status) status.value = 'active';
+
+  // reset checkboxes safely
+  const p1 = document.getElementById('perm-verify-att'); if (p1) p1.checked = true;
+  const p2 = document.getElementById('perm-approve-pay'); if (p2) p2.checked = false;
+  const p3 = document.getElementById('perm-edit-rec'); if (p3) p3.checked = false;
+  const p4 = document.getElementById('perm-gen-rep'); if (p4) p4.checked = true;
 }
 
 function saveAdmin() {
@@ -201,20 +214,27 @@ function saveAdmin() {
   const name = document.getElementById('modal-admin-name').value.trim();
   const email = document.getElementById('modal-admin-email').value.trim();
   const dept = document.getElementById('modal-admin-dept').value.trim();
-  const permission = document.getElementById('modal-admin-permission').value;
+  const role = document.getElementById('modal-admin-role')?.value;
+  const status = document.getElementById('modal-admin-status')?.value || 'active';
 
-  if (!name || !email || !dept) { showToast('Name, email, and CPPPESO Section are all required.', 'warn'); return; }
+  if (!name || !email || !dept || !role) {
+    showToast('Name, email, Role, and CPPPESO Section are all required.', 'warn');
+    return;
+  }
+
+  // Derive simple permission from role for compatibility with old table
+  const permission = role === 'Administrator' ? 'full' : 'limited';
 
   if (id) {
     const a = admins.find(x => x.id === id);
-    if (a) { a.name = name; a.email = email; a.dept = dept; a.permission = permission; }
+    if (a) { a.name = name; a.email = email; a.dept = dept; a.permission = permission; a.status = status; }
     appendAuditLog('update_admin', id, dept, `${name} account updated`);
     showToast('Admin account updated.', 'success');
   } else {
-    const newAdmin = { id: 'ADM-' + String(admins.length + 1).padStart(3, '0'), name, email, dept, status: 'active', permission, lastLogin: 'Never' };
+    const newAdmin = { id: 'ADM-' + String(admins.length + 1).padStart(3, '0'), name, email, dept, status: status, permission, lastLogin: 'Never' };
     admins.push(newAdmin);
-    appendAuditLog('create_admin', newAdmin.id, dept, `${name} admin created`);
-    showToast('Admin account created.', 'success');
+    appendAuditLog('create_admin', newAdmin.id, dept, `${name} admin provisioned`);
+    showToast('Admin account securely provisioned.', 'success');
   }
   closeModal('modal-admin-form');
   renderAdminTable();
@@ -514,11 +534,21 @@ function updateClock() {
 
 function openModal(id) {
   const m = document.getElementById(id);
-  if (m) { m.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+  if (m) {
+    m.style.display = 'flex';
+    m.style.opacity = '1';
+    m.style.visibility = 'visible';
+    document.body.style.overflow = 'hidden';
+  }
 }
 function closeModal(id) {
   const m = document.getElementById(id);
-  if (m) { m.style.display = 'none'; document.body.style.overflow = ''; }
+  if (m) {
+    m.style.display = 'none';
+    m.style.opacity = '0';
+    m.style.visibility = 'hidden';
+    document.body.style.overflow = '';
+  }
 }
 
 function toggleNotifPanel() {
