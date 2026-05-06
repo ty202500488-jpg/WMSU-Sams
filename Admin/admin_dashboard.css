@@ -1079,6 +1079,140 @@
   width: 100%;
 }
 
+.modal {
+  display: none; /* 🔴 IMPORTANT */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+
+  /* center content */
+  justify-content: center;
+  align-items: center;
+
+  z-index: 9999;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+
+/* MODAL OVERLAY */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(31, 41, 55, 0.45); /* matches gray-800 overlay */
+  backdrop-filter: blur(4px);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* MODAL CARD */
+.modal-card {
+  width: 420px;
+  max-width: 92%;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--gray-200);
+  overflow: hidden;
+  animation: modalFade 0.2s ease;
+}
+
+/* HEADER */
+.modal-header {
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--gray-100);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--maroon);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.modal-header i {
+  color: var(--green);
+}
+
+/* CLOSE BUTTON */
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: var(--gray-400);
+}
+
+.modal-close:hover {
+  color: var(--red);
+}
+
+/* BODY */
+.modal-body {
+  padding: 18px 20px;
+}
+
+.modal-desc {
+  font-size: 13px;
+  color: var(--gray-500);
+  margin-bottom: 10px;
+}
+
+.modal-list {
+  margin: 10px 0 16px;
+  padding-left: 18px;
+  font-size: 13px;
+  color: var(--gray-600);
+}
+
+/* TEXTAREA */
+.form-group textarea {
+  width: 100%;
+  min-height: 90px;
+  border-radius: 8px;
+  border: 1px solid var(--gray-200);
+  padding: 10px;
+  font-size: 13px;
+  background: var(--gray-50);
+}
+
+/* FOOTER */
+.modal-footer {
+  padding: 14px 20px;
+  border-top: 1px solid var(--gray-100);
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* ANIMATION */
+@keyframes modalFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 /* ===== FORCE FORM STYLE INSIDE MODAL ===== */
 .modal .account-form {
   display: flex;
@@ -3492,4 +3626,8 @@ table.batch-tbl {
   height: 15px;
   flex-shrink: 0;
   cursor: pointer;
+}
+
+.modal[style*="display: none"] {
+  display: none !important;
 }

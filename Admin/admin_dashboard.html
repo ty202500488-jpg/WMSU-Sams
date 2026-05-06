@@ -619,7 +619,7 @@
                     <button class="btn-icon view">
                 <a href="#view-docs-1"><i class="fas fa-eye"></i></a>
               </button>
-                    <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
+                    <button class="btn btn-approve btn-sm" onclick="openApproveModal(this)"><i class="fas fa-check"></i> Approve</button>
                     <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
                   </div>
                 </td>
@@ -645,7 +645,7 @@
                     <button class="btn-icon view">
                 <a href="#view-docs-2"><i class="fas fa-eye"></i></a>
               </button>
-                    <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
+                    <button class="btn btn-approve btn-sm" onclick="openApproveModal(this)"><i class="fas fa-check"></i> Approve</button>
                     <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
                   </div>
                 </td>
@@ -669,7 +669,7 @@
                 <td>
                   <div class="action-btns">
                     <button class="btn-icon view"><a href="#view-docs-3"><i class="fas fa-eye"></i></a></button>
-                    <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
+                   <button class="btn btn-approve btn-sm" onclick="openApproveModal(this)"><i class="fas fa-check"></i> Approve</button>
                     <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
                   </div>
                 </td>
@@ -693,7 +693,7 @@
                 <td>
                   <div class="action-btns">
                     <button class="btn-icon view"><a href="#view-docs-4"><i class="fas fa-eye"></i></a></button>
-                    <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
+                    <button class="btn btn-approve btn-sm" onclick="openApproveModal(this)"><i class="fas fa-check"></i> Approve</button>
                     <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
                   </div>
                 </td>
@@ -717,7 +717,7 @@
                 <td>
                   <div class="action-btns">
                     <button class="btn-icon view"><a href="#view-docs-5"><i class="fas fa-eye"></i></a></button>
-                    <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i> Approve</button>
+                    <button class="btn btn-approve btn-sm" onclick="openApproveModal(this)"><i class="fas fa-check"></i> Approve</button>
                     <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i> Reject</button>
                   </div>
                 </td>
@@ -3629,7 +3629,7 @@ function groupByDept(data) {
                     refreshAllCounts();
                   },
                   null,
-                  { confirmText: 'Yes, Approve', cancelText: 'Cancel', confirmColor: 'success-btn' }
+                  { confirmText: 'Yes, Confirm', cancelText: 'Cancel', confirmColor: 'success-btn' }
                 );
               } else {
                 if (typeof showRejectionReasonModal !== 'undefined') {
@@ -5186,6 +5186,54 @@ document.addEventListener('DOMContentLoaded', async () => {
     </div>
   </div>
 </div>
+
+  <div class="modal" id="approveModal">
+  <div class="modal-card">
+    
+    <div class="modal-header">
+      <h2><i class="fas fa-check-circle"></i> Approve Student</h2>
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+    </div>
+
+    <div class="modal-body">
+      <p class="modal-desc">
+        This action will verify the student and notify them via email.
+      </p>
+
+      <ul class="modal-list">
+        <li>✔ Mark as VERIFIED</li>
+        <li>✔ Send approval notification</li>
+      </ul>
+
+      <div class="form-group">
+        <label>Optional message</label>
+        <textarea id="approvalMessage" placeholder="Greetings from the Western Mindanao State University CPPPESO Office.
+
+Thank you for your interest in the Student Assistant Program and for taking the time to submit your application.
+
+After careful review, we regret to inform you that your application has not been approved for the Student Assistant Program at this time due to the number of academic units you currently have exceeding the required or allowable units for eligibility.
+
+We encourage you to continue monitoring the system for future opportunities, as you may become eligible for application in upcoming cycles depending on program requirements.
+
+We appreciate your understanding and your continued interest in serving the university.
+
+If you have any questions or need clarification, feel free to contact the CPPPESO Office.
+
+Sincerely,
+CPPPESO Office
+Western Mindanao State University"></textarea>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-approve" onclick="closeModal()">
+        <i class="fas fa-check"></i>Approve Student
+      </button>
+    </div>
+
+  </div>
+</div>
     <script>
       
     (function () {
@@ -5823,7 +5871,42 @@ function umSwitchTab(btn, groupClass) {
     if (e.key === 'Escape') closeSidebar();
   });
 })();
+
+let selectedStudentRow = null;
+
+function openApproveModal(button) {
+  selectedStudentRow = button.closest("tr");
+  document.getElementById("approveModal").style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("approveModal").style.display = "none";
+}
+
+function confirmApproval() {
+  const modal = document.getElementById("customApproveModal");
+
+  if (!modal) {
+    console.error("Modal not found!");
+    return;
+  }
+
+  // 🔴 FORCE HIDE (works even with conflicting CSS)
+  modal.style.display = "none";
+  modal.style.visibility = "hidden";
+  modal.style.opacity = "0";
+
+  // if your system uses classes
+  modal.classList.remove("active", "show");
+
+  // optional: clear textarea
+  const textarea = document.getElementById("approvalMessage");
+  if (textarea) textarea.value = "";
+}
+
 </script>
+
+
 </body>
 
 </html>
