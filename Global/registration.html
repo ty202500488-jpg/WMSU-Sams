@@ -40,44 +40,53 @@
                     <div class="field">
                         <label>First Name<span style="color: red;"> *</span></label>
                         <input type="text" name="first_name" placeholder="e.g. Juan" required>
+                        <span class="error-message" id="error-first_name"></span>
                     </div>
                     <div class="field">
                         <label>Middle Name</label>
                         <input type="text" name="middle_name" placeholder="e.g. Santos (Optional)">
+                        <span class="error-message" id="error-middle_name"></span>
                     </div>
                     <div class="field">
                         <label>Last Name<span style="color: red;"> *</span></label>
                         <input type="text" name="last_name" placeholder="e.g. Dela Cruz" required>
+                        <span class="error-message" id="error-last_name"></span>
                     </div>
                 </div>
 
                 
                 <label>Official WMSU Email<span style="color: red;"> *</span></label>
-                <input type="email" placeholder="e.g. username@wmsu.edu.ph" required>
+                <input type="email" name="email" placeholder="e.g. username@wmsu.edu.ph" required>
+                <span class="error-message" id="error-email"></span>
 
                 <div class="input-row">
                     <div class="field">
                         <label>Barangay<span style="color: red;"> *</span></label>
                         <input type="text" name="barangay" placeholder="e.g. San Roque" required>
+                        <span class="error-message" id="error-barangay"></span>
                     </div>
                     <div class="field">
                         <label>Street/House No.<span style="color: red;"> *</span></label>
                         <input type="text" name="street" placeholder="e.g. House 123, Street 456" required>
+                        <span class="error-message" id="error-street"></span>
                     </div>
                     <div class="field">
                         <label>City<span style="color: red;"> *</span></label>
                         <input type="text" name="city" placeholder="e.g. Zamboanga City" required>
+                        <span class="error-message" id="error-city"></span>
                     </div>
                 </div>
 
                 <div class="row">
                     <div>
                         <label>Phone Number<span style="color: red;"> *</span></label>
-                        <input type="text" name="phone" id="phoneInput" inputmode="numeric" pattern="[0-9]*" placeholder="e.g. 09123456789" required>
+                        <input type="text" name="phone_number" inputmode="numeric" pattern="[0-9-]*" placeholder="e.g. 09123456789" required>
+                        <span class="error-message" id="error-phone_number"></span>
                     </div>
                      <div>
                         <label>Student ID<span style="color: red;"> *</span></label>
-                        <input type="text" name="student_id" id="studentIdInput" inputmode="numeric" pattern="[0-9-]*" placeholder="e.g. 2023-01234" required>
+                        <input type="text" name="student_id" inputmode="numeric" pattern="[0-9-]*" placeholder="e.g. 2023-01234" required>
+                        <span class="error-message" id="error-student_id"></span>
                     </div>
                 </div>
 
@@ -108,20 +117,22 @@
                     </div>
 
                     <div class="field">
-                            <label>Program<span style="color: red;"> *</span></label>
+                            <label>Program</label>
                             <select id="program" name="program" required>
                                 <option value="" disabled selected>Select Program</option>
                             </select>
+                            <span class="error-message" id="error-program"></span>
                     </div> 
                     <div class="field">
                         <label>Year Level<span style="color: red;"> *</span></label>
-                        <select id="yearLevel" name="year_level" required>
+                        <select name="year_level" required>
                             <option value="" disabled selected>Select Year</option>
                             <option value="1">1st Year</option>
                             <option value="2">2nd Year</option>
                             <option value="3">3rd Year</option>
                             <option value="4">4th Year</option>
                         </select>
+                        <span class="error-message" id="error-year_level"></span>
                     </div>
         
                 </div>
@@ -130,22 +141,211 @@
                     <label class="upload-label">Upload COR <span style="color: red;"> *</span></label>
                     <div class="dropzone">
                         <label class="choose-btn" for="fileInput">Choose your files</label>
-                        <input type="file" id="fileInput" accept=".pdf,.jpg,.jpeg,.png" required>
+                        <input type="file" id="fileInput" name="cor_file" accept=".pdf,.jpg,.jpeg,.png" required>
                         <span class="dropzone-text">No files chosen</span>
                     </div>
+                    <span class="error-message" id="error-cor_file"></span>
                 </div>
 
                 <label>Password<span style="color: red;"> *</span></label>
-                <input type="password" minlength="8" placeholder="Enter Password" required>
+                <input type="password" name="password" minlength="8" placeholder="Enter Password" required>
+                <span class="error-message" id="error-password"></span>
 
                 <label>Confirm Password<span style="color: red;"> *</span></label>
-                <input type="password" minlength="8" placeholder="Confirm Password" required>
+                <input type="password" name="confirm_password" minlength="8" placeholder="Confirm Password" required>
+                <span class="error-message" id="error-confirm_password"></span>
 
-                <a id="register-btn" href="registration_submitted.html">Register</a>
+                <button type="submit" id="register-btn">Register</button>
             </form>
         </div>
 
        <script>
+// Validation function
+function validateField(fieldName, value) {
+    const errors = [];
+    const trimmedValue = value?.trim() || '';
+
+    switch(fieldName) {
+        case 'first_name':
+            if (!trimmedValue) errors.push('First Name is required.');
+            else if (trimmedValue.length < 2) errors.push('First Name must be at least 2 characters.');
+            else if (!/^[a-zA-Z\s]+$/.test(trimmedValue)) errors.push('First Name must contain only letters.');
+            break;
+        case 'middle_name':
+            // Optional field - only validate if provided
+            if (trimmedValue && !/^[a-zA-Z\s]+$/.test(trimmedValue)) {
+                errors.push('Middle Name must contain only letters.');
+            }
+            break;
+        case 'last_name':
+            if (!trimmedValue) errors.push('Last Name is required.');
+            else if (trimmedValue.length < 2) errors.push('Last Name must be at least 2 characters.');
+            else if (!/^[a-zA-Z\s]+$/.test(trimmedValue)) errors.push('Last Name must contain only letters.');
+            break;
+        case 'email':
+            if (!trimmedValue) errors.push('Email is required.');
+            else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedValue)) errors.push('Email must be valid.');
+            else if (!trimmedValue.includes('@wmsu.edu.ph')) errors.push('Email must be an official WMSU email (@wmsu.edu.ph).');
+            break;
+        case 'barangay':
+            if (!trimmedValue) errors.push('Barangay is required.');
+            else if (trimmedValue.length < 2) errors.push('Barangay must be at least 2 characters.');
+            break;
+        case 'street':
+            if (!trimmedValue) errors.push('Street/House No. is required.');
+            else if (trimmedValue.length < 3) errors.push('Street/House No. must be at least 3 characters.');
+            break;
+        case 'city':
+            if (!trimmedValue) errors.push('City is required.');
+            else if (trimmedValue.length < 2) errors.push('City must be at least 2 characters.');
+            break;
+        case 'phone_number':
+            if (!trimmedValue) errors.push('Phone Number is required.');
+            else if (!/^[0-9-]{10,}$/.test(trimmedValue)) errors.push('Phone Number must be at least 10 digits.');
+            else if (!/^(09|\+639)/.test(trimmedValue)) errors.push('Phone Number must start with 09 or +639.');
+            break;
+        case 'student_id':
+            if (!trimmedValue) errors.push('Student ID is required.');
+            else if (!/^[0-9-]{6,}$/.test(trimmedValue)) errors.push('Student ID format is invalid.');
+            break;
+        case 'department':
+            if (!trimmedValue) errors.push('Department is required.');
+            break;
+        case 'program':
+            if (!trimmedValue) errors.push('Program is required.');
+            break;
+        case 'year_level':
+            if (!trimmedValue) errors.push('Year Level is required.');
+            break;
+        case 'cor_file':
+            // Handled separately
+            break;
+        case 'password':
+            if (!trimmedValue) errors.push('Password is required.');
+            else if (trimmedValue.length < 8) errors.push('Password must be at least 8 characters.');
+            else if (!/[A-Z]/.test(trimmedValue)) errors.push('Password must contain at least one uppercase letter.');
+            else if (!/[a-z]/.test(trimmedValue)) errors.push('Password must contain at least one lowercase letter.');
+            else if (!/[0-9]/.test(trimmedValue)) errors.push('Password must contain at least one number.');
+            break;
+        case 'confirm_password':
+            if (!trimmedValue) errors.push('Confirm Password is required.');
+            break;
+    }
+
+    return errors;
+}
+
+// Display error message
+function showError(fieldName, errorMessage) {
+    const errorElement = document.getElementById(`error-${fieldName}`);
+    if (errorElement) {
+        errorElement.textContent = errorMessage;
+        errorElement.style.color = '#dc2626';
+        errorElement.style.fontSize = '12px';
+        errorElement.style.marginTop = '4px';
+        errorElement.style.display = 'block';
+    }
+}
+
+// Clear error message
+function clearError(fieldName) {
+    const errorElement = document.getElementById(`error-${fieldName}`);
+    if (errorElement) {
+        errorElement.textContent = '';
+        errorElement.style.display = 'none';
+    }
+}
+
+// Validate all fields
+function validateForm() {
+    const form = document.getElementById('studentForm');
+    const formData = new FormData(form);
+    let isValid = true;
+
+    const fields = ['first_name', 'middle_name', 'last_name', 'email', 'barangay', 'street', 'city', 'phone_number', 'student_id', 'department', 'program', 'year_level', 'password', 'confirm_password'];
+
+    // Clear all errors first
+    fields.forEach(field => clearError(field));
+
+    // Validate each field
+    fields.forEach(fieldName => {
+        const value = formData.get(fieldName);
+        const fieldErrors = validateField(fieldName, value);
+        
+        if (fieldErrors.length > 0) {
+            showError(fieldName, fieldErrors[0]);
+            isValid = false;
+        }
+    });
+
+    // Validate file
+    const fileInput = document.getElementById('fileInput');
+    if (!fileInput.files || fileInput.files.length === 0) {
+        showError('cor_file', 'COR file is required.');
+        isValid = false;
+    } else {
+        const file = fileInput.files[0];
+        const allowedTypes = ['application/pdf', 'image/jpeg', 'image/png', 'image/jpg'];
+        const maxSize = 5 * 1024 * 1024; // 5MB
+
+        if (!allowedTypes.includes(file.type)) {
+            showError('cor_file', 'COR file must be PDF, JPG, or PNG.');
+            isValid = false;
+        } else if (file.size > maxSize) {
+            showError('cor_file', 'COR file size must not exceed 5MB.');
+            isValid = false;
+        } else {
+            clearError('cor_file');
+        }
+    }
+
+    // Check password match
+    const password = formData.get('password');
+    const confirmPassword = formData.get('confirm_password');
+    if (password && confirmPassword && password !== confirmPassword) {
+        showError('confirm_password', 'Passwords do not match.');
+        isValid = false;
+    }
+
+    return isValid;
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('studentForm');
+    const registerBtn = document.getElementById('register-btn');
+
+    // Add real-time validation on blur
+    const inputs = form.querySelectorAll('input, select');
+    inputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            if (this.name && this.name !== 'cor_file') {
+                const value = this.value;
+                const errors = validateField(this.name, value);
+                if (errors.length > 0) {
+                    showError(this.name, errors[0]);
+                } else {
+                    clearError(this.name);
+                }
+            }
+        });
+    });
+
+    // File input change handler
+    document.getElementById('fileInput').addEventListener('change', function() {
+        clearError('cor_file');
+    });
+
+    // Form submission
+    registerBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        if (validateForm()) {
+            form.submit();
+        }
+    });
+});
+
 const programs = {
     law: ["BS Laws"],
     coa: [
