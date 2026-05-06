@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -13,9 +13,17 @@
   <link href="../Global/modals.css" rel="stylesheet" />
   <script src="../Global/modals.js" defer></script>
   <script src="../Global/pagination.js" defer></script>
+  <link rel="stylesheet" href="../Global/responsive.css">
 </head>
 
 <body>
+<!-- Mobile sidebar toggle button -->
+<button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle Sidebar">
+  <i class="fas fa-bars"></i>
+</button>
+<!-- Overlay for mobile sidebar -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
 <!-- ── RADIO INPUTS FOR NAVIGATION ─────────────── -->
 <input class="nav-radio" type="radio" name="nav" id="nav-dashboard" checked />
 <input class="nav-radio" type="radio" name="nav" id="nav-students" />
@@ -28,9 +36,18 @@
 <input class="nav-radio" type="radio" name="nav" id="nav-payroll" />
 <input class="nav-radio" type="radio" name="nav" id="nav-audit" />
 <input class="nav-radio" type="radio" name="nav" id="nav-reports" />
+<input class="nav-radio" type="radio" name="nav" id="nav-departments" />
+<input class="nav-radio" type="radio" name="nav" id="nav-review-log-hours" />
+<input class="nav-radio" type="radio" name="nav" id="nav-admin-management" />
+<input class="nav-radio" type="radio" name="nav" id="nav-global-settings" />
+<input class="nav-radio" type="radio" name="nav" id="nav-maintenance" />
+<input class="nav-radio" type="radio" name="nav" id="nav-audit-logs" />
+<input class="nav-radio" type="radio" name="nav" id="nav-system-override" />
+<input class="nav-radio" type="radio" name="nav" id="nav-backup-data" />
+
 <div class="layout">
   <!-- ══════════════════ SIDEBAR ══════════════════ -->
-  <aside class="sidebar">
+  <aside class="sidebar" id="adminSidebar">
     <div class="sidebar-logo">
       <div class="logo-text">
         <div class="abbr">WMSU-SAMS</div>
@@ -40,7 +57,7 @@
     <!-- School Year Badge -->
     <div class="sidebar-sy-badge" style="cursor:pointer;" onclick="openSYManager()">
       <i class="fas fa-calendar-alt"></i>
-      <span id="sidebar-sy-label">AY 2025–2026</span>
+      <span id="sidebar-sy-label">AY 2025&#8211;2026</span>
       <span class="sy-sem-tag" id="sidebar-sem-tag">2nd Sem</span>
     </div>
     <div class="sidebar-section-label">Main Menu</div>
@@ -5772,6 +5789,35 @@ function umSwitchTab(btn, groupClass) {
     </script>
 
 
+
+<script>
+// Admin Mobile Sidebar Toggle
+(function() {
+  var toggle  = document.getElementById('sidebarToggle');
+  var sidebar = document.getElementById('adminSidebar');
+  var overlay = document.getElementById('sidebarOverlay');
+  if (!toggle || !sidebar || !overlay) return;
+  function openSidebar() {
+    sidebar.classList.add('open');
+    overlay.style.display = 'block';
+    toggle.innerHTML = '<i class="fas fa-times"></i>';
+  }
+  function closeSidebar() {
+    sidebar.classList.remove('open');
+    overlay.style.display = 'none';
+    toggle.innerHTML = '<i class="fas fa-bars"></i>';
+  }
+  toggle.addEventListener('click', function() {
+    sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+  });
+  overlay.addEventListener('click', closeSidebar);
+  document.querySelectorAll('.nav-item label').forEach(function(lbl) {
+    lbl.addEventListener('click', function() {
+      if (window.innerWidth <= 1024) closeSidebar();
+    });
+  });
+})();
+</script>
 </body>
 
 </html>

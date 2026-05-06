@@ -2,38 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WMSU-SAMS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="Global/style.css">
-</head>
-<body>
-
-    <!-- Background -->
-    <div class="background"></div>
-
-    <!-- Layout / Navigation -->
-    <div class="layout">
-        <header>
-            <div class="logo">
-                WMSU-SAMS
-                <p class="p-logo">Student Assistant Management System</p>
-            </div>
-
-            <nav class="navbar">
-                <a class="link" href="#features">Process</a>
-                <a class="link" href="#eligibility">Requirements</a>
-                <a class="link" href="#discovery-section">Discover</a>
-                <a class="link" href="#faq">FAQs</a>
-                <a class="link" href="#about">About</a>
-            </nav>
-
-            <div class="navbar">
-                <a href="Global/login.html" id="Navbtn1">Login</a>
-                <a href="Global/registration.html" id="Navbtn2">Register</a>
-            </div>
-        </header>
-
-        <!-- Hero Section -->
-        <main>
+    <link rel="stylesheet" href="Global/responsive.css">
             <div class="hero-text">
                 <h1>Find Student Assistant Opportunities<br>at Western Mindanao State University</h1>
                 <p>Browse available campus assistant roles, apply online, and manage your applications in one system.</p>
@@ -266,5 +239,22 @@
         </div>
     </footer>
 
+
+<script>
+    // Hamburger toggle for mobile nav
+    const hamburger = document.getElementById('nav-hamburger');
+    const navCollapse = document.getElementById('nav-collapse');
+    hamburger.addEventListener('click', function() {
+        navCollapse.classList.toggle('open');
+        hamburger.classList.toggle('active');
+    });
+    // Close nav when a link is clicked
+    navCollapse.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+            navCollapse.classList.remove('open');
+            hamburger.classList.remove('active');
+        });
+    });
+</script>
 </body>
 </html>

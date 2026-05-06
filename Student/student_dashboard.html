@@ -6,6 +6,7 @@
     <title>Dashboard | WMSU-SAMS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="student_dashboard.css">
+    <link rel="stylesheet" href="../Global/responsive.css">
 </head>
 <body>
 
@@ -695,5 +696,24 @@ startPolling();
         if (!panelOpen) toggleMsg();
     }
     </script>
+    <!-- Mobile Bottom Navigation (visible on mobile only) -->
+    <nav class="mobile-bottom-nav">
+        <a href="student_dashboard.html" class="active">
+            <i class="fas fa-home"></i> Home
+        </a>
+        <a href="application.html">
+            <i class="fas fa-file-alt"></i> Apply
+        </a>
+        <a href="positions.html">
+            <i class="fas fa-briefcase"></i> Jobs
+        </a>
+        <a href="notification.html">
+            <i class="fas fa-bell"></i> Alerts
+        </a>
+        <a href="student_profile.html">
+            <i class="fas fa-user"></i> Profile
+        </a>
+    </nav>
+
 </body>
 </html>
