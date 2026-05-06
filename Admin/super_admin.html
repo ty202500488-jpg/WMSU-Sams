@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -325,8 +325,8 @@
                     </div>
                     <div class="section-actions">
                         <button href="#modal-admin-form" class="btn btn-primary" id="btn-create-admin">Create
-                            Admin</button>
-                        <button class="btn btn-outline" id="btn-view-disabled">View Disabled Admins</button>
+                            Users</button>
+                        <button class="btn btn-outline" id="btn-view-disabled">View Disabled Users</button>
                     </div>
                 </div>
 
@@ -1601,36 +1601,162 @@
         </main>
 
         <!-- ══ ADMIN CREATE/EDIT MODAL ══ -->
-        <div id="modal-admin-form">
-            <div class="modal-content">
+        <div id="modal-admin-form" class="modal-overlay">
+            <div class="modal-content" style="width: 700px; max-width: 95%;">
                 <div class="modal-header">
-                    <h3 id="modal-admin-title">Create CPPPESO Staff Account</h3>
-                    <button class="close-btn" onclick="closeModal('modal-admin-form')">&times;</button>
+                    <h2 id="modal-admin-title">
+                        <i class="fas fa-user-shield" style="margin-right: 8px;"></i> Create System Account
+                    </h2>
+                    <button class="modal-close" onclick="closeModal('modal-admin-form');return false;">&times;</button>
                 </div>
-                <input type="hidden" id="modal-admin-id">
-                <label>Full Name <span style="color:red">*</span></label>
-                <input type="text" id="modal-admin-name" placeholder="e.g. Juan Dela Cruz">
-                <label>WMSU Email <span style="color:red">*</span></label>
-                <input type="email" id="modal-admin-email" placeholder="e.g. jdelacru@wmsu.edu.ph">
-                <label>CPPPESO Section / Role <span style="color:red">*</span></label>
-                <select id="modal-admin-dept">
-                    <option value="">Select Section...</option>
-                    <option value="Student Assistant Coordination">Student Assistant Coordination</option>
-                    <option value="Records &amp; Verification Section">Records &amp; Verification Section</option>
-                    <option value="Payroll Processing Section">Payroll Processing Section</option>
-                    <option value="Attendance Monitoring Unit">Attendance Monitoring Unit</option>
-                    <option value="Department Liaison Officer">Department Liaison Officer</option>
-                    <option value="CPPPESO Director / Head">CPPPESO Director / Head</option>
-                    <option value="IT / System Support">IT / System Support</option>
-                </select>
-                <label>Access Level</label>
-                <select id="modal-admin-permission">
-                    <option value="limited">Limited &mdash; view &amp; process only</option>
-                    <option value="full">Full &mdash; all SAMS controls</option>
-                </select>
+
+                <div class="modal-body" style="padding: 20px;">
+                    <form id="adminForm" class="account-form">
+                        <input type="hidden" id="modal-admin-id">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+
+                            <!-- 1. Identity -->
+                            <div class="form-section">
+                                <h4
+                                    style="font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; color: #6b7280; margin-bottom: 12px; border-bottom: 2px solid #e5e7eb; padding-bottom: 6px;">
+                                    1. Identity</h4>
+                                <div style="display:flex;flex-direction:column;gap:12px;">
+                                    <div
+                                        style="font-size: 11px; background: #f3f4f6; color: #4b5563; padding: 6px 10px; border-radius: 4px; border: 1px solid #e5e7eb; display: flex; justify-content: space-between;">
+                                        <span>System ID:</span>
+                                        <strong style="color: #111827;">AUTO-GENERATED</strong>
+                                    </div>
+                                    <div>
+                                        <label>Full Name <span style="color:red">*</span></label>
+                                        <input type="text" id="modal-admin-name" placeholder="e.g. Juan Dela Cruz"
+                                            required>
+                                    </div>
+                                    <div>
+                                        <label>Email Address <span style="color:red">*</span></label>
+                                        <input type="email" id="modal-admin-email" placeholder="e.g. admin@wmsu.edu.ph"
+                                            required>
+                                    </div>
+                                    <div>
+                                        <label>Phone Number</label>
+                                        <input type="tel" id="modal-admin-phone" placeholder="e.g. 09123456789">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 2. Login & Role -->
+                            <div class="form-section">
+                                <h4
+                                    style="font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; color: #6b7280; margin-bottom: 12px; border-bottom: 2px solid #e5e7eb; padding-bottom: 6px;">
+                                    2. Login & Role</h4>
+                                <div style="display:flex;flex-direction:column;gap:12px;">
+                                    <div>
+                                        <label>System Role <span style="color:red">*</span></label>
+                                        <select id="modal-admin-role" required>
+                                            <option value="">-- Select Role --</option>
+                                            <option value="Administrator">Administrator</option>
+                                            <option value="Department User">Department User</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label>Account Status</label>
+                                        <select id="modal-admin-status">
+                                            <option value="active">Active</option>
+                                            <option value="inactive">Inactive</option>
+                                            <option value="suspended">Suspended</option>
+                                        </select>
+                                    </div>
+                                    <div
+                                        style="background: #eff6ff; padding: 10px; border-radius: 6px; border: 1px solid #bfdbfe; margin-top: 4px;">
+                                        <label
+                                            style="display: flex; align-items: flex-start; gap: 8px; cursor:pointer; font-size: 12px; font-weight: normal; margin: 0; color: #1e40af;">
+                                            <input type="checkbox" id="force-reset" checked
+                                                style="margin-top: 2px; width: auto; height: auto;">
+                                            <span style="line-height: 1.4;">Force password reset on first login. System
+                                                will auto-generate temporary password.</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 3. Organization -->
+                            <div class="form-section">
+                                <h4
+                                    style="font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; color: #6b7280; margin-bottom: 12px; border-bottom: 2px solid #e5e7eb; padding-bottom: 6px;">
+                                    3. Organization</h4>
+                                <div style="display:flex;flex-direction:column;gap:12px;">
+                                    <div>
+                                        <label>Department Assignment <span style="color:red">*</span></label>
+                                        <select id="modal-admin-dept" required>
+                                            <option value="">-- Select Department --</option>
+                                            <option value="Student Assistant Coordination">Student Assistant
+                                                Coordination</option>
+                                            <option value="Records &amp; Verification Section">Records &amp;
+                                                Verification Section</option>
+                                            <option value="Payroll Processing Section">Payroll Processing Section
+                                            </option>
+                                            <option value="Attendance Monitoring Unit">Attendance Monitoring Unit
+                                            </option>
+                                            <option value="Department Liaison Officer">Department Liaison Officer
+                                            </option>
+                                            <option value="CPPPESO Director / Head">CPPPESO Director / Head</option>
+                                            <option value="IT / System Support">IT / System Support</option>
+                                            <option value="College of Computing Studies">College of Computing Studies
+                                            </option>
+                                            <option value="College of Nursing">College of Nursing</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label>Position Title</label>
+                                        <input type="text" id="modal-admin-position" placeholder="e.g. Data Encoder">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 4. Permissions -->
+                            <div class="form-section">
+                                <h4
+                                    style="font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; color: #6b7280; margin-bottom: 12px; border-bottom: 2px solid #e5e7eb; padding-bottom: 6px;">
+                                    4. Permissions Layer</h4>
+                                <div
+                                    style="display:grid; grid-template-columns: 1fr; gap:10px; background: #fafafa; border: 1px solid #e5e7eb; padding: 12px; border-radius: 6px;">
+                                    <label
+                                        style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: normal; color: #374151; cursor:pointer; margin: 0;">
+                                        <input type="checkbox" id="perm-verify-att" checked
+                                            style="width: auto; height: auto;"> Can verify attendance
+                                    </label>
+                                    <label
+                                        style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: normal; color: #374151; cursor:pointer; margin: 0;">
+                                        <input type="checkbox" id="perm-approve-pay" style="width: auto; height: auto;">
+                                        Can approve payroll
+                                    </label>
+                                    <label
+                                        style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: normal; color: #374151; cursor:pointer; margin: 0;">
+                                        <input type="checkbox" id="perm-edit-rec" style="width: auto; height: auto;">
+                                        Can edit core records
+                                    </label>
+                                    <label
+                                        style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: normal; color: #374151; cursor:pointer; margin: 0;">
+                                        <input type="checkbox" id="perm-gen-rep" checked
+                                            style="width: auto; height: auto;"> Can generate reports
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 5. Audit (Read-only) -->
+                        <div
+                            style="margin-top: 25px; font-size: 11px; color: #9ca3af; display: flex; justify-content: space-between; border-top: 1px dashed #d1d5db; padding-top: 15px;">
+                            <span><i class="fas fa-user-shield"></i> Action by: Super Admin</span>
+                            <span><i class="fas fa-calendar-plus"></i> Date: <span id="audit-date">Now</span></span>
+                            <span><i class="fas fa-clock"></i> Last updated: N/A</span>
+                        </div>
+                    </form>
+                </div>
+
                 <div class="modal-footer">
-                    <button class="btn btn-outline" onclick="closeModal('modal-admin-form')">Cancel</button>
-                    <button class="btn btn-primary" id="btn-save-admin">Save Account</button>
+                    <button class="btn btn-outline"
+                        onclick="closeModal('modal-admin-form');return false;">Cancel</button>
+                    <button class="btn btn-primary" id="btn-save-admin">Provision Account</button>
                 </div>
             </div>
         </div>
