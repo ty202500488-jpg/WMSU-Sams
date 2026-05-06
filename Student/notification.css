@@ -484,14 +484,52 @@ hr {
 /* ===== RESPONSIVE DESIGN ===== */
 
 /* Desktop to Tablet */
-@media (max-width: 1200px) {
-    .container {
-        grid-template-columns: 250px 1fr;
-        gap: 20px;
-    }
-    .right-panel { display: none; }
+@media screen and (max-width: 1100px) {
+    .container { grid-template-columns: clamp(200px, 28%, 260px) 1fr; gap: 16px; }
+    .right-panel { grid-column: 1/-1; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    .right-panel .side-widget { margin-bottom: 0; }
+}
+@media screen and (max-width: 900px) {
+    .container { grid-template-columns: clamp(180px, 30%, 240px) 1fr; }
+    .stats-row { gap: 12px; }
+    .sa-slots-grid { grid-template-columns: repeat(5, 1fr); }
+
+
+/* Prevent logo from shrinking */
+.top-logo {
+    flex-shrink: 0;
+    white-space: nowrap;
 }
 
+/* Let top-right stay put */
+.top-right {
+    flex-shrink: 0;
+    margin-left: auto;
+}
+}
+
+/* Medium screens — switch from absolute center to flex flow */
+@media screen and (max-width: 860px) {
+    .top-links {
+        position: static;
+        transform: none;
+        gap: 4px;
+    }
+
+    .top-links a span {
+        display: none; /* hide text, keep icons */
+    }
+
+    .top-links a {
+        padding: 6px 8px;
+        font-size: 0; /* hides any stray text nodes */
+    }
+
+    .top-links a i {
+        font-size: 17px;
+        display: block;
+    }
+}
 /* Tablet to Large Phone */
 @media (max-width: 992px) {
     .container { 
@@ -509,9 +547,16 @@ hr {
     }
 }
 
+@media screen and (max-width: 640px) {
+    .top-nav { padding: 0 15px; }
+    .top-links { gap: 0; }
+    .top-links a { font-size: 0; padding: 6px 8px; }
+    .top-links a i { font-size: 18px; display: block; }
+    .container { grid-template-columns: 1fr; padding: 70px 12px 24px; gap: 12px; }
+}
 /* Small Phones */
 @media (max-width: 768px) {
-     .top-nav { height: auto; padding: 10px 15px; flex-wrap: wrap; }
+    .top-nav { height: auto; padding: 10px 15px; flex-wrap: wrap; }
     .top-links { order: 3; width: 100%; justify-content: center; gap: 0; padding-top: 10px; }
     .top-links a { font-size: 0.75rem; }
 }
