@@ -152,7 +152,10 @@ document.addEventListener('DOMContentLoaded', () => {
     clearAdminForm();
     document.getElementById('modal-admin-title').textContent = 'Create CPPPESO Staff Account';
     openModal('modal-admin-form');
-  });
+    document.getElementById('btn-save-maintenance')?.addEventListener('click', saveMaintenance);
+
+  initAll();
+});
 
   const saveBtn = document.getElementById('btn-save-admin');
   if (saveBtn) saveBtn.addEventListener('click', saveAdmin);
@@ -236,6 +239,10 @@ const systemSettings = {
   minimum_gwa: 2.50,
   minimum_year_level: '2',
   allow_concurrent_scholarship: 'false',
+  allow_self_registration: 'true',
+  require_dept_approval: 'true',
+  student_payroll_visibility: 'true',
+  attendance_grace_minutes: 15,
 };
 
 function loadGlobalSettings() {
@@ -561,4 +568,108 @@ function initAll() {
   // Pending apps stat
   const pending = document.getElementById('dashboard-pending-apps');
   if (pending) pending.textContent = '13';
+}
+
+function onMaintToggle(cb) {
+  const row = document.getElementById('maint-toggle-row');
+  const sub = document.getElementById('maint-toggle-sub');
+  const val = document.getElementById('maint-status-val');
+  if (cb.checked) {
+    row.style.borderColor = '#d97706';
+    row.style.background  = '#fffbeb';
+    sub.textContent = 'System will enter maintenance at the scheduled start time';
+    val.textContent = 'Scheduled';
+  } else {
+    row.style.borderColor = '#e5e7eb';
+    row.style.background  = '#fafafa';
+    sub.textContent = 'System is currently live and accepting all operations';
+    val.textContent = 'Offline';
+  }
+}
+
+function onAnnToggle(cb) {
+  document.getElementById('ann-status-val').textContent = cb.checked ? 'Active' : 'None';
+}
+
+function updateMaintPreview(msg) {
+  const el = document.getElementById('maint-preview-text');
+  el.textContent = msg.trim() ? msg : 'Enter a message above to preview it here.';
+}
+
+function updateAnnPreview() {
+  const msg  = document.querySelector('[name="announcement_message"]').value.trim();
+  const type = document.querySelector('[name="announcement_type"]').value;
+  const bar  = document.getElementById('ann-preview-bar');
+  const icon = document.getElementById('ann-preview-icon');
+  const text = document.getElementById('ann-preview-text');
+  const styles = {
+    info:    { bg:'#eff6ff', border:'#bfdbfe', color:'#1e40af', iconColor:'#1d4ed8', icon:'fa-info-circle' },
+    warning: { bg:'#fffbeb', border:'#fcd34d', color:'#92400e', iconColor:'#b45309', icon:'fa-exclamation-triangle' },
+    urgent:  { bg:'#fef2f2', border:'#fecaca', color:'#991b1b', iconColor:'#dc2626', icon:'fa-exclamation-circle' },
+    success: { bg:'#ecfdf5', border:'#6ee7b7', color:'#065f46', iconColor:'#059669', icon:'fa-check-circle' },
+  };
+  const s = styles[type] || styles.info;
+  bar.style.background  = s.bg;
+  bar.style.borderColor = s.border;
+  icon.className        = `fas ${s.icon}`;
+  icon.style.color      = s.iconColor;
+  text.style.color      = s.color;
+  text.style.fontStyle  = msg ? 'normal' : 'italic';
+  text.textContent      = msg || 'Type a message above to preview the banner.';
+}
+
+function updateMaintStats() {
+  const start = document.querySelector('[name="maintenance_start"]').value;
+  const val   = document.getElementById('maint-window-val');
+  if (start) {
+    const d = new Date(start);
+    val.textContent = d.toLocaleDateString('en-PH', { month:'short', day:'numeric', year:'numeric' })
+      + ' ' + d.toLocaleTimeString('en-PH', { hour:'2-digit', minute:'2-digit' });
+  } else {
+    val.textContent = 'Not scheduled';
+  }
+}
+
+function resetMaintenance() {
+  document.getElementById('maintenance_mode').checked    = false;
+  document.getElementById('announcement_active').checked = false;
+  onMaintToggle({ checked: false });
+  onAnnToggle({ checked: false });
+  document.querySelector('[name="maintenance_message"]').value  = '';
+  document.querySelector('[name="announcement_message"]').value = '';
+  updateMaintPreview('');
+  updateAnnPreview();
+  updateMaintStats();
+}
+
+function saveMaintenance() {
+  const payload = {
+    maintenance_mode:         document.getElementById('maintenance_mode').checked,
+    maintenance_start:        document.querySelector('[name="maintenance_start"]').value,
+    maintenance_end:          document.querySelector('[name="maintenance_end"]').value,
+    maintenance_scope:        document.querySelector('[name="maintenance_scope"]').value,
+    maintenance_message:      document.querySelector('[name="maintenance_message"]').value,
+    announcement_active:      document.getElementById('announcement_active').checked,
+    announcement_type:        document.querySelector('[name="announcement_type"]').value,
+    announcement_message:     document.querySelector('[name="announcement_message"]').value,
+    announcement_start:       document.querySelector('[name="announcement_start"]').value,
+    announcement_expires:     document.querySelector('[name="announcement_expires"]').value,
+    announcement_dismissible: document.querySelector('[name="announcement_dismissible"]').value,
+    announcement_targets: {
+      all:      document.querySelector('[name="ann_target_all"]').checked,
+      students: document.querySelector('[name="ann_target_students"]').checked,
+      dept:     document.querySelector('[name="ann_target_dept"]').checked,
+      staff:    document.querySelector('[name="ann_target_staff"]').checked,
+    },
+    notify_first:  document.querySelector('[name="notify_first"]').value,
+    notify_second: document.querySelector('[name="notify_second"]').value,
+    notify_final:  document.querySelector('[name="notify_final"]').value,
+    notify_inapp:  document.querySelector('[name="notify_inapp"]').checked,
+    notify_email:  document.querySelector('[name="notify_email"]').checked,
+    notify_banner: document.querySelector('[name="notify_banner"]').checked,
+    notify_sms:    document.querySelector('[name="notify_sms"]').checked,
+  };
+  console.log('Maintenance payload:', payload);
+  appendAuditLog('update_setting', 'maintenance_config', '—', 'Maintenance/announcement settings updated');
+  showToast('Maintenance and announcement settings saved.', 'success');
 }
