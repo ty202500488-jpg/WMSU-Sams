@@ -3459,13 +3459,6 @@ table.batch-tbl {
   margin-bottom: 24px;
 }
 
-.settings-checkbox-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-bottom: 24px;
-}
-
 .settings-check-item {
   display: flex;
   align-items: center;
@@ -3477,4 +3470,19 @@ table.batch-tbl {
   border-radius: 8px;
   background: var(--gray-50);
   cursor: pointer;
-  transition: borde
+  transition: border-color 0.18s, background 0.18s;
+  font-weight: 500;
+}
+
+.settings-check-item:hover {
+  border-color: #f8c4cc;
+  background: #fce4e8;
+}
+
+.settings-check-item input[type="checkbox"] {
+  accent-color: var(--maroon);
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
