@@ -642,6 +642,112 @@
     </button>
   </div>
 </div>
+
+<div id="edit-feedback-1" class="modal-overlay">
+                    <div class="modal-card">
+
+                        <a href="#" class="modal-close-btn">&times;</a>
+
+                        <div class="doc-student-info">
+                            <div class="doc-student-meta">
+                                <div class="avatar" style="background:#6f42c1;">
+                                    <i class="fas fa-comment"></i>
+                                </div>
+                                <div>
+                                    <div class="info-name">IT Student Assistant Reviews</div>
+                                    <div class="info-sub">Student feedback & ratings</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <!-- SUMMARY -->
+                        <div class="review-summary">
+                            <div>
+                                <div class="rating-big">4.6 / 5</div>
+                                <div class="star-rating">★★★★★</div>
+                            </div>
+                            <div style="font-size: 13px; color:#666;">
+                                Based on 18 reviews
+                            </div>
+                        </div>
+
+                        <!-- REVIEWS -->
+                        <div class="review-list">
+
+                            <div class="review-card">
+                                <div class="review-header">
+                                    <span class="reviewer-name">Juan Dela Cruz</span>
+                                    <span class="review-time">2 days ago</span>
+                                </div>
+                                <div class="star-rating">★★★★★</div>
+                                <div class="review-comment">
+                                    Very good experience. The tasks are easy and the supervisor is very accommodating.
+                                </div>
+                            </div>
+
+                            <div class="review-card">
+                                <div class="review-header">
+                                    <span class="reviewer-name">Maria Santos</span>
+                                    <span class="review-time">1 week ago</span>
+                                </div>
+                                <div class="star-rating">★★★★☆</div>
+                                <div class="review-comment">
+                                    Good workload balance, but sometimes tasks pile up during busy days.
+                                </div>
+                            </div>
+
+                            <div class="review-card">
+                                <div class="review-header">
+                                    <span class="reviewer-name">Mark Reyes</span>
+                                    <span class="review-time">2 weeks ago</span>
+                                </div>
+                                <div class="star-rating">★★★★★</div>
+                                <div class="review-comment">
+                                    Learned a lot in web development tasks. Highly recommended.
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="compose-section">
+                            <div class="compose-label">Leave a Review</div>
+
+                            <!-- Star Rating Picker -->
+                            <div class="star-input-row">
+                                <span>Your rating:</span>
+                                <div class="star-picker" id="starPicker">
+                                    <input type="radio" id="s5" name="rating" value="5">
+                                    <label for="s5">★</label>
+                                    <input type="radio" id="s4" name="rating" value="4">
+                                    <label for="s4">★</label>
+                                    <input type="radio" id="s3" name="rating" value="3">
+                                    <label for="s3">★</label>
+                                    <input type="radio" id="s2" name="rating" value="2">
+                                    <label for="s2">★</label>
+                                    <input type="radio" id="s1" name="rating" value="1">
+                                    <label for="s1">★</label>
+                                </div>
+                                <span id="ratingLabel" style="font-size:12px; color:#aaa;"></span>
+                            </div>
+
+                            <!-- Comment Input -->
+                            <div class="compose-row">
+                                <input class="compose-input" id="composeInput" type="text" placeholder="Write your feedback...">
+                                <button class="send-btn" onclick="submitReview()">
+                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M2 12L22 2 12 22 10 14z"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                        <hr>
+                        <!-- FOOTER -->
+                        <div class="modal-footer">
+                            <a href="#" class="secondary-btn">Close</a>
+                        </div>
+
+                    </div>
+                </div>
     
 <script>
     localStorage.clear();
