@@ -1415,22 +1415,49 @@ startPolling();
     // ==================== APPROVE / REJECT BUTTONS ====================
     document.addEventListener('DOMContentLoaded', function () {
       document.querySelectorAll('.btn-icon.approve').forEach(btn => {
-        btn.addEventListener('click', function () {
-          const row = this.closest('.applicant-row');
-          const name = row?.querySelector('strong')?.textContent || 'Applicant';
-          const pos = row?.querySelectorAll('td')[4]?.textContent.trim() || 'position';
-          if (typeof confirmAction === 'function') {
-            confirmAction('Confirm Approval',
-              `Approve ${name}'s application for ${pos}?`,
-              () => { updateRowStatus(row, 'approved'); logAction(name, 'approved', 'Library Admin'); updateAnalytics(); },
-              null,
-              { confirmText: 'Yes, Approve', cancelText: 'Cancel', confirmColor: 'success-btn'}
-              );
-          } else {
-            if (confirm(`Approve ${name}?`)) { updateRowStatus(row, 'approved'); logAction(name, 'approved', 'Library Admin'); updateAnalytics(); }
-          }
-        });
+  btn.addEventListener('click', function () {
+    const row = this.closest('.applicant-row');
+    const name = row.dataset.name;
+    const pos = row.querySelectorAll('td')[3]?.textContent.trim() || 'position';
+
+    confirmAction(
+  'Approve Application',
+  `Are you sure you want to approve <strong>${name}</strong> for <strong>${pos}</strong>? This will add them as an active Student Assistant.`,
+  function() {
+    const course = row.dataset.course;
+    const year = row.dataset.year;
+    const initials = row.querySelector('.mini-avatar')?.textContent.trim() || 'SA';
+    const colorMap = { 'MS': '#7B0D1E', 'AC': '#1d4ed8', 'MR': '#2ecc71', 'SL': '#f5b400' };
+    const color = colorMap[initials] || '#7B0D1E';
+
+    const approved = JSON.parse(localStorage.getItem('sams_approved_students') || '[]');
+    const exists = approved.find(s => s.id === name.replace(/\s/g, '_'));
+    if (!exists) {
+      approved.push({
+        id: name.replace(/\s/g, '_'),
+        name, initials, color,
+        dept: 'Library',
+        course, year,
+        role: pos,
+        studentId: '2025-00' + Math.floor(Math.random() * 99)
       });
+      localStorage.setItem('sams_approved_students', JSON.stringify(approved));
+    }
+
+    updateRowStatus(row, 'approved');
+    logAction(name, 'approved', 'Library Admin');
+    updateAnalytics();
+
+    // Redirect to dashboard after short delay so they see the row update first
+    setTimeout(function() {
+      window.location.href = 'employer_dashboard.html';
+    }, 800);
+  },
+  null,
+  { confirmText: 'Yes, Approve', cancelText: 'Cancel', confirmColor: 'success-btn' }
+);
+  });
+});
 
       document.querySelectorAll('.btn-icon.reject').forEach(btn => {
         btn.addEventListener('click', function () {

@@ -1010,6 +1010,114 @@ STUDENTS.forEach(s => { lastCounts[s.id] = getConvo(s).length; });
 buildTabs();
 updateBadge();
 startPolling();
+
+window.addEventListener('storage', function(e) {
+  if (e.key === 'sams_approved_students') {
+    const allApproved = JSON.parse(e.newValue || '[]');
+    const prev = JSON.parse(e.oldValue || '[]');
+
+    // Find only the newly added student
+    const newStudents = allApproved.filter(a =>
+      !prev.find(p => p.id === a.id)
+    );
+
+    newStudents.forEach(function(student) {
+
+      // 1. Add to slots grid
+      const emptyAvatar = document.querySelector('.sa-slot-avatar.empty');
+      if (emptyAvatar) {
+        const slot = emptyAvatar.closest('.sa-slot');
+        emptyAvatar.className = 'sa-slot-avatar active';
+        emptyAvatar.style.background = student.color;
+        emptyAvatar.innerHTML = student.initials + '<span class="online-dot"></span>';
+        slot.querySelector('.sa-slot-name').textContent =
+          student.name.split(' ')[0] + ' ' + student.name.split(' ')[1][0] + '.';
+        slot.querySelector('.sa-slot-name').style.color = '';
+      }
+
+      // 2. Add to Active SA list
+      const saList = document.querySelector('.active-sa-list');
+      const card = document.createElement('div');
+      card.className = 'sa-card';
+      card.innerHTML = `
+        <div class="sa-avatar-circle" style="background:${student.color};">${student.initials}</div>
+        <div class="sa-info">
+          <div class="sa-info-name">${student.name}</div>
+          <div class="sa-info-meta">${student.course} ${student.year} &nbsp;·&nbsp; ID: ${student.studentId}</div>
+          <div class="sa-info-role"><i class="fas fa-briefcase" style="font-size:10px;"></i> ${student.role}</div>
+        </div>
+        <div class="sa-stats">
+          <div class="sa-stat-item"><strong>0</strong><span>Hrs Logged</span></div>
+          <div class="sa-stat-item"><strong>0</strong><span>This Week</span></div>
+        </div>
+        <span class="sa-status-badge">
+          <i class="fas fa-circle" style="font-size:7px;margin-right:4px;"></i>Active
+        </span>
+      `;
+      saList.appendChild(card);
+
+      // 3. Add to chat STUDENTS array and rebuild tabs
+      const alreadyInChat = STUDENTS.find(s => s.id === student.id);
+      if (!alreadyInChat) {
+        STUDENTS.push(student);
+        buildTabs();
+      }
+
+    });
+  }
+});
+function loadApprovedStudents() {
+  const approved = JSON.parse(localStorage.getItem('sams_approved_students') || '[]');
+
+  approved.forEach(function(student) {
+
+    // 1. Add to slots grid
+    const emptyAvatar = document.querySelector('.sa-slot-avatar.empty');
+    if (emptyAvatar) {
+      const slot = emptyAvatar.closest('.sa-slot');
+      emptyAvatar.className = 'sa-slot-avatar active';
+      emptyAvatar.style.background = student.color;
+      emptyAvatar.innerHTML = student.initials + '<span class="online-dot"></span>';
+      slot.querySelector('.sa-slot-name').textContent =
+        student.name.split(' ')[0] + ' ' + student.name.split(' ')[1][0] + '.';
+      slot.querySelector('.sa-slot-name').style.color = '';
+    }
+
+    // 2. Add to Active SA list
+    const saList = document.querySelector('.active-sa-list');
+    const card = document.createElement('div');
+    card.className = 'sa-card';
+    card.innerHTML = `
+      <div class="sa-avatar-circle" style="background:${student.color};">${student.initials}</div>
+      <div class="sa-info">
+        <div class="sa-info-name">${student.name}</div>
+        <div class="sa-info-meta">${student.course} ${student.year} &nbsp;·&nbsp; ID: ${student.studentId}</div>
+        <div class="sa-info-role"><i class="fas fa-briefcase" style="font-size:10px;"></i> ${student.role}</div>
+      </div>
+      <div class="sa-stats">
+        <div class="sa-stat-item"><strong>0</strong><span>Hrs Logged</span></div>
+        <div class="sa-stat-item"><strong>0</strong><span>This Week</span></div>
+      </div>
+      <span class="sa-status-badge">
+        <i class="fas fa-circle" style="font-size:7px;margin-right:4px;"></i>Active
+      </span>
+    `;
+    saList.appendChild(card);
+
+    // 3. Add to chat
+    const alreadyInChat = STUDENTS.find(s => s.id === student.id);
+    if (!alreadyInChat) {
+      STUDENTS.push(student);
+    }
+
+  });
+
+  // Rebuild chat tabs after all approved students are loaded
+  buildTabs();
+}
+
+// Call it right before startPolling()
+loadApprovedStudents();
 </script>
 
     <!-- Mobile Bottom Nav -->
