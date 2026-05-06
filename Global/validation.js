@@ -156,68 +156,103 @@ function validateRegistrationForm(formId) {
     if (!form) return false;
 
     let isValid = true;
-    const inputs = form.querySelectorAll('input[required], select[required]');
     const allInputs = form.querySelectorAll('input, select');
 
     // Clear all previous errors
     allInputs.forEach(input => removeError(input));
 
-    // Get specific inputs
+    // ── Name fields ────────────────────────────────────────────
     const firstNameInput = form.querySelector('input[name="first_name"]');
-    const middleNameInput = form.querySelector('input[name="middle_name"]');
     const lastNameInput = form.querySelector('input[name="last_name"]');
+
+    if (firstNameInput && !firstNameInput.value.trim()) {
+        showError(firstNameInput, 'First Name is required');
+        isValid = false;
+    }
+    if (lastNameInput && !lastNameInput.value.trim()) {
+        showError(lastNameInput, 'Last Name is required');
+        isValid = false;
+    }
+
+    // ── Email ──────────────────────────────────────────────────
     const emailInput = form.querySelector('input[type="email"]');
-    const passwordInputs = form.querySelectorAll('input[type="password"]');
-    const selectInputs = form.querySelectorAll('select');
-
-    // Validate name fields (all required)
-    if (firstNameInput) {
-        if (!firstNameInput.value.trim()) {
-            showError(firstNameInput, 'First Name is required');
-            isValid = false;
-        }
-    }
-
-    if (lastNameInput) {
-        if (!lastNameInput.value.trim()) {
-            showError(lastNameInput, 'Last Name is required');
-            isValid = false;
-        }
-    }
-
-    // Validate email
     if (emailInput) {
         if (!emailInput.value.trim()) {
             showError(emailInput, 'Email is required');
             isValid = false;
         } else if (!isValidEmail(emailInput.value)) {
-            showError(emailInput, 'Please enter a valid email address');
+            showError(emailInput, 'Please enter a valid WMSU email (e.g. user@wmsu.edu.ph)');
             isValid = false;
         }
     }
 
-    // Validate Student ID if present
-    const studentIdInput = form.querySelector('input[pattern="[0-9-]*"]');
+    // ── Address fields ─────────────────────────────────────────
+    const barangayInput = form.querySelector('input[name="barangay"]');
+    if (barangayInput && !barangayInput.value.trim()) {
+        showError(barangayInput, 'Barangay is required');
+        isValid = false;
+    }
+
+    const streetInput = form.querySelector('input[name="street"]');
+    if (streetInput && !streetInput.value.trim()) {
+        showError(streetInput, 'Street / House No. is required');
+        isValid = false;
+    }
+
+    const cityInput = form.querySelector('input[name="city"]');
+    if (cityInput && !cityInput.value.trim()) {
+        showError(cityInput, 'City is required');
+        isValid = false;
+    }
+
+    // ── Phone ──────────────────────────────────────────────────
+    const phoneInput = form.querySelector('input[name="phone"]');
+    if (phoneInput) {
+        if (!phoneInput.value.trim()) {
+            showError(phoneInput, 'Phone Number is required');
+            isValid = false;
+        } else if (!/^[0-9]{10,11}$/.test(phoneInput.value.trim())) {
+            showError(phoneInput, 'Phone Number must be 10-11 digits (e.g. 09123456789)');
+            isValid = false;
+        }
+    }
+
+    // ── Student ID ─────────────────────────────────────────────
+    const studentIdInput = form.querySelector('input[name="student_id"]');
     if (studentIdInput) {
         if (!studentIdInput.value.trim()) {
             showError(studentIdInput, 'Student ID is required');
             isValid = false;
-        } else if (!/^[0-9-]*$/.test(studentIdInput.value)) {
-            showError(studentIdInput, 'Student ID must contain only numbers and dashes');
+        } else if (!/^\d{4}-\d{4,5}$/.test(studentIdInput.value.trim())) {
+            showError(studentIdInput, 'Student ID format must be YYYY-NNNNN (e.g. 2023-01234)');
             isValid = false;
         }
     }
 
-    // Validate Year Level if present (for student form)
-    const yearLevelSelect = form.querySelector('select');
-    if (yearLevelSelect && yearLevelSelect.name !== 'role') {
-        if (formId === 'studentForm' && !yearLevelSelect.value) {
-            showError(yearLevelSelect, 'Year Level is required');
+    // ── Department ─────────────────────────────────────────────
+    const departmentSelect = form.querySelector('select[name="department"]');
+    if (departmentSelect && !departmentSelect.value) {
+        showError(departmentSelect, 'Department is required');
+        isValid = false;
+    }
+
+    // ── Program ────────────────────────────────────────────────
+    const programSelect = form.querySelector('select[name="program"]');
+    if (programSelect) {
+        if (!programSelect.value) {
+            showError(programSelect, 'Program is required — please select a Department first');
             isValid = false;
         }
     }
 
-    // Validate Authorization Code if present (for CPPESO form)
+    // ── Year Level ─────────────────────────────────────────────
+    const yearLevelSelect = form.querySelector('select[name="year_level"]');
+    if (yearLevelSelect && !yearLevelSelect.value) {
+        showError(yearLevelSelect, 'Year Level is required');
+        isValid = false;
+    }
+
+    // ── Authorization Code (CPPESO form) ───────────────────────
     const authCodeInput = form.querySelector('input[placeholder*="Authorization Code"]');
     if (formId === 'cppesoForm' && authCodeInput) {
         if (!authCodeInput.value.trim()) {
@@ -226,12 +261,12 @@ function validateRegistrationForm(formId) {
         }
     }
 
-    // Validate File Upload (Student and Employer forms)
+    // ── File Upload ────────────────────────────────────────────
     const fileInput = form.querySelector('input[type="file"]');
     if (fileInput && fileInput.hasAttribute('required')) {
         const dropzone = fileInput.closest('.dropzone');
         if (dropzone) {
-            removeError(dropzone); // Clear previous errors
+            removeError(dropzone);
             if (!fileInput.files || fileInput.files.length === 0) {
                 showError(dropzone, 'Please upload the required document');
                 isValid = false;
@@ -242,7 +277,8 @@ function validateRegistrationForm(formId) {
         }
     }
 
-    // Validate Password
+    // ── Password ───────────────────────────────────────────────
+    const passwordInputs = form.querySelectorAll('input[type="password"]');
     if (passwordInputs.length >= 1) {
         const passwordInput = passwordInputs[0];
         if (!passwordInput.value.trim()) {
@@ -254,11 +290,10 @@ function validateRegistrationForm(formId) {
         }
     }
 
-    // Validate Confirm Password and match
+    // ── Confirm Password ───────────────────────────────────────
     if (passwordInputs.length >= 2) {
         const passwordInput = passwordInputs[0];
         const confirmPasswordInput = passwordInputs[1];
-
         if (!confirmPasswordInput.value.trim()) {
             showError(confirmPasswordInput, 'Please confirm your password');
             isValid = false;
@@ -327,33 +362,58 @@ function validateSingleField(input) {
     const value = input.value.trim();
 
     // Skip validation for empty optional fields
-    if (!value && !input.hasAttribute('required') && !input.parentElement.parentElement.querySelector('label')?.textContent.includes('*')) {
+    if (!value && !input.hasAttribute('required')) {
         return;
     }
 
-    // Check field type
+    // Email
     if (input.type === 'email') {
         if (value && !isValidEmail(value)) {
             showError(input, 'Please enter a valid email address');
         }
+        // Password
     } else if (input.type === 'password') {
         if (value && !isValidPassword(value)) {
             showError(input, 'Password must be at least 8 characters');
         }
-    } else if (input.name && input.name.includes('name')) {
-        if (!value && (input.name === 'first_name' || input.name === 'last_name' || input.name === 'middle_name')) {
-            showError(input, input.name.replace('_', ' ').charAt(0).toUpperCase() + input.name.replace('_', ' ').slice(1) + ' is required');
-        }
-    } else if (input.placeholder && input.placeholder.includes('Authorization Code')) {
-        if (!value) {
-            showError(input, 'Authorization Code is required');
-        }
-    } else if (input.pattern === '[0-9-]*') {
+        // Student ID
+    } else if (input.name === 'student_id') {
         if (!value) {
             showError(input, 'Student ID is required');
-        } else if (!/^[0-9-]*$/.test(value)) {
-            showError(input, 'Student ID must contain only numbers and dashes');
+        } else if (!/^\d{4}-\d{4,5}$/.test(value)) {
+            showError(input, 'Student ID format must be YYYY-NNNNN (e.g. 2023-01234)');
         }
+        // Phone
+    } else if (input.name === 'phone') {
+        if (!value) {
+            showError(input, 'Phone Number is required');
+        } else if (!/^[0-9]{10,11}$/.test(value)) {
+            showError(input, 'Phone Number must be 10-11 digits (e.g. 09123456789)');
+        }
+        // Barangay
+    } else if (input.name === 'barangay') {
+        if (!value) showError(input, 'Barangay is required');
+        // Street
+    } else if (input.name === 'street') {
+        if (!value) showError(input, 'Street / House No. is required');
+        // City
+    } else if (input.name === 'city') {
+        if (!value) showError(input, 'City is required');
+        // First / Last name
+    } else if (input.name === 'first_name') {
+        if (!value) showError(input, 'First Name is required');
+    } else if (input.name === 'last_name') {
+        if (!value) showError(input, 'Last Name is required');
+        // Selects (department, program, year_level)
+    } else if (input.tagName === 'SELECT') {
+        if (!value) {
+            const labels = { department: 'Department', program: 'Program', year_level: 'Year Level' };
+            const label = labels[input.name] || 'This field';
+            showError(input, `${label} is required`);
+        }
+        // Authorization Code
+    } else if (input.placeholder && input.placeholder.includes('Authorization Code')) {
+        if (!value) showError(input, 'Authorization Code is required');
     }
 }
 
