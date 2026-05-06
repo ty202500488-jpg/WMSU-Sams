@@ -342,83 +342,577 @@
             </article>
         </section>
          <!-- ══════════════════ SYSTEM OVERRIDE ══════════════════ -->
-        <section id="sec-system-override" class="section">
+       <section id="sec-system-override" class="section">
             <div class="section-header">
                 <div>
-                <div class="section-title">System Override Controls</div>
-                <p class="section-sub">Emergency controls for freezing operations, forcing logouts, and locking the system.</p>
+                    <div class="section-title">WMSU SAMS Super Admin Override Controls</div>
+                    <p class="section-sub">Surgical, rare-use disaster recovery and compliance-level controls for student, financial, and institutional records.</p>
                 </div>
             </div>
 
             <div class="stat-grid">
                 <div class="stat-card maroon">
-                <div class="stat-card-top">
-                    <div>
-                    <div class="stat-value" id="override-status">Normal</div>
-                    <div class="stat-label">System State</div>
+                    <div class="stat-card-top">
+                        <div>
+                            <div class="stat-value" id="override-status">Normal</div>
+                            <div class="stat-label">System State</div>
+                        </div>
+                        <div class="stat-icon maroon"><i class="fas fa-power-off"></i></div>
                     </div>
-                    <div class="stat-icon maroon"><i class="fas fa-power-off"></i></div>
-                </div>
                 </div>
                 <div class="stat-card gold">
-                <div class="stat-card-top">
-                    <div>
-                    <div class="stat-value" id="override-active-count">0</div>
-                    <div class="stat-label">Active Overrides</div>
+                    <div class="stat-card-top">
+                        <div>
+                            <div class="stat-value" id="override-active-count">0</div>
+                            <div class="stat-label">Active Overrides</div>
+                        </div>
+                        <div class="stat-icon gold"><i class="fas fa-exclamation-triangle"></i></div>
                     </div>
-                    <div class="stat-icon gold"><i class="fas fa-exclamation-triangle"></i></div>
                 </div>
+                <div class="stat-card blue">
+                    <div class="stat-card-top">
+                        <div>
+                            <div class="stat-value" id="active-sessions">12,450</div>
+                            <div class="stat-label">Connected Sessions</div>
+                        </div>
+                        <div class="stat-icon blue"><i class="fas fa-users"></i></div>
+                    </div>
+                </div>
+                <div class="stat-card green">
+                    <div class="stat-card-top">
+                        <div>
+                            <div class="stat-value" id="system-uptime">99.99%</div>
+                            <div class="stat-label">SAMS Core Availability</div>
+                        </div>
+                        <div class="stat-icon green"><i class="fas fa-server"></i></div>
+                    </div>
                 </div>
             </div>
 
-            <article class="card">
+            <article class="card mb-4 border-danger">
+                <div class="card-header bg-danger text-white d-flex justify-content-between align-items-center">
+                    <div>
+                        <h3 class="card-title h5 mb-0"><i class="fas fa-id-card me-2"></i>Enrollment Verification Override</h3>
+                        <p class="small mb-0 opacity-75">Manage validation logic, unblock admissions, or revoke verified status for irregular/fake student entries.</p>
+                    </div>
+                </div>
                 <div class="card-body">
-                <button class="btn btn-primary" id="btn-freeze-system">Freeze System</button>
-                <button class="btn btn-outline" id="btn-force-logout">Force Logout All</button>
-                <button class="btn btn-outline" id="btn-lock-admins">Lock Department Admins</button>
+                    <div class="row g-3 align-items-center">
+                        <div class="col-md-4">
+                            <label for="enrollment-student-id" class="form-label small fw-bold">Student SAMS ID / Reference Number</label>
+                            <input type="text" class="form-control" id="enrollment-student-id" placeholder="e.g., 2026-09841-WMSU">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="enrollment-action-type" class="form-label small fw-bold">Override Action</label>
+                            <select id="enrollment-action-type" class="form-select">
+                                <option selected>Choose Action...</option>
+                                <option value="force-approve">Force Approve (Override COR)</option>
+                                <option value="force-reject">Force Reject Student Profile</option>
+                                <option value="mark-without-docs">Verify Without Document</option>
+                                <option value="revoke-verification">Revoke Verification Status</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="enrollment-reason-text" class="form-label small fw-bold">Reason for Override</label>
+                            <input type="text" class="form-control" id="enrollment-reason-text" placeholder="State system reason, e.g., missing doc">
+                        </div>
+                        <div class="col-md-2 d-flex align-items-end">
+                            <button type="button" class="btn btn-danger w-100" id="btn-enrollment-override">Apply Action</button>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive mt-4">
+                        <table class="table table-bordered table-hover align-middle mb-0 small">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Student ID</th>
+                                    <th>Name</th>
+                                    <th>Current Status</th>
+                                    <th>Previous State</th>
+                                    <th>Triggered By</th>
+                                    <th>Timestamp</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2026-10491</td>
+                                    <td>Santos, Juan</td>
+                                    <td><span class="badge bg-warning text-dark">Document Override</span></td>
+                                    <td>Pending</td>
+                                    <td>SA-001</td>
+                                    <td>May 6, 2026, 11:14 AM</td>
+                                    <td><button class="btn btn-sm btn-outline-secondary">View Log</button></td>
+                                </tr>
+                                <tr>
+                                    <td>2025-08412</td>
+                                    <td>Cruz, Maria</td>
+                                    <td><span class="badge bg-danger">Revoked</span></td>
+                                    <td>Verified</td>
+                                    <td>SA-002</td>
+                                    <td>May 5, 2026, 14:02 PM</td>
+                                    <td><button class="btn btn-sm btn-outline-secondary">View Log</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card mb-4 border-warning">
+                <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center">
+                    <div>
+                        <h3 class="card-title h5 mb-0"><i class="fas fa-calculator me-2"></i>Payroll Override and Adjustment Module</h3>
+                        <p class="small mb-0 opacity-75">Maintain financial integrity by editing, freezing, and reversing transactional data.</p>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="p-3 border rounded bg-light h-100">
+                                <h4 class="h6 text-danger fw-bold">Manual Payroll Ledger Correction</h4>
+                                <p class="text-muted small">Update computed payroll entries due to department-level systemic data errors.</p>
+                                <form class="row g-2">
+                                    <div class="col-md-6">
+                                        <label for="payroll-transaction-id" class="form-label small">Transaction ID</label>
+                                        <input type="text" class="form-control form-control-sm" id="payroll-transaction-id" placeholder="PAY-9210-2026">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="payroll-adjusted-amount" class="form-label small">Adjusted Value (PHP)</label>
+                                        <input type="number" class="form-control form-control-sm" id="payroll-adjusted-amount" placeholder="0.00">
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="payroll-adjustment-reason" class="form-label small">Authorization/Reason for Adjustment</label>
+                                        <input type="text" class="form-control form-control-sm" id="payroll-adjustment-reason" placeholder="Required for audit compliance">
+                                    </div>
+                                    <div class="col-12 mt-2">
+                                        <button type="button" class="btn btn-sm btn-danger w-100">Commit Financial Adjustment</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="p-3 border rounded bg-light h-100 d-flex flex-column">
+                                <h4 class="h6 text-warning fw-bold">Global Payroll Control</h4>
+                                <p class="text-muted small flex-grow-1">Halt or reverse all payroll execution routines if calculation inconsistencies or unauthorized manipulations are detected.</p>
+                                <div class="d-grid gap-2 mt-3">
+                                    <button class="btn btn-sm btn-outline-danger" id="btn-freeze-payroll">Freeze Payroll Operations Globally</button>
+                                    <button class="btn btn-sm btn-outline-warning text-dark" id="btn-recompute-payroll">Force Full System Re-compute</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive mt-4">
+                        <table class="table table-bordered table-sm mb-0">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Payroll ID</th>
+                                    <th>Department</th>
+                                    <th>Computed Value</th>
+                                    <th>Overridden Value</th>
+                                    <th>Status</th>
+                                    <th>Operator</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>PAY-0218</td>
+                                    <td>College of Computing</td>
+                                    <td>₱ 145,200.00</td>
+                                    <td>₱ 132,000.00</td>
+                                    <td><span class="badge bg-warning text-dark">Adjusted</span></td>
+                                    <td>SA-001</td>
+                                </tr>
+                                <tr>
+                                    <td>PAY-0219</td>
+                                    <td>College of Nursing</td>
+                                    <td>₱ 288,500.00</td>
+                                    <td>₱ 288,500.00</td>
+                                    <td><span class="badge bg-success">Normal</span></td>
+                                    <td>System</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card mb-4">
+                <div class="card-header">
+                    <h3 class="card-title h5 mb-0"><i class="fas fa-sitemap me-2"></i>Department and Student Data Isolation</h3>
+                    <p class="text-muted small mt-1">Isolate compromised department accounts and adjust critical student data values within restricted boundaries.</p>
+                </div>
+                <div class="card-body">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="p-3 border rounded h-100">
+                                <h4 class="h6 text-secondary">Department Control Switchboard</h4>
+                                <p class="text-muted small">Suspend specific department sub-systems while maintaining the overall institutional database uptime.</p>
+                                <div class="mb-3">
+                                    <label for="department-select-id" class="form-label small">Target Department</label>
+                                    <select class="form-select form-select-sm" id="department-select-id">
+                                        <option selected>Select Department...</option>
+                                        <option>College of Engineering</option>
+                                        <option>College of Agriculture</option>
+                                        <option>College of Liberal Arts</option>
+                                        <option>High School Laboratory Department</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3 form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="dept-lockout-toggle">
+                                    <label class="form-check-label small fw-bold text-danger" for="dept-lockout-toggle">Suspend Department Sub-System</label>
+                                </div>
+                                <button class="btn btn-sm btn-secondary w-100 mt-2">Apply Configuration</button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="p-3 border rounded h-100">
+                                <h4 class="h6 text-dark">Student Data Record Override</h4>
+                                <p class="text-muted small">Unlock and edit specific fields. Editing all student fields casually is strictly restricted.</p>
+                                <form class="row g-2">
+                                    <div class="col-12">
+                                        <label for="student-record-id" class="form-label small">Target Student SAMS ID</label>
+                                        <input type="text" class="form-control form-control-sm" id="student-record-id" placeholder="e.g., 2026-0921-WMSU">
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="student-field-select" class="form-label small">Restricted Field</label>
+                                        <select class="form-select form-select-sm" id="student-field-select">
+                                            <option selected>Select Field...</option>
+                                            <option>Enrollment Status (Active/Suspended/Graduated)</option>
+                                            <option>Student Identifier / SAMS ID Generation</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="btn btn-sm btn-outline-danger w-100 mt-2">Unlock Record for Edit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card mb-4 border-info">
+                <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+                    <div>
+                        <h3 class="card-title h5 mb-0"><i class="fas fa-lock me-2"></i>Lockdown and Rule Overrides</h3>
+                        <p class="small mb-0 opacity-75">Modify validation routines, turn off broken modules, or set the institution database to a read-only state.</p>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="p-3 border rounded h-100 bg-light">
+                                <h4 class="h6 text-danger fw-bold">System Global Lockdown</h4>
+                                <p class="text-muted small">Freeze all operations across modules including registration, department processes, and transactions.</p>
+                                <div class="form-check form-switch mb-3">
+                                    <input class="form-check-input" type="checkbox" id="system-lockdown-toggle">
+                                    <label class="form-check-label fw-bold text-danger" for="system-lockdown-toggle">Enable Read-Only Lockdown Mode</label>
+                                </div>
+                                <div class="mb-2">
+                                    <label for="lockdown-comments" class="form-label small">Reason/Justification for Ledger Lockdown</label>
+                                    <textarea class="form-control form-control-sm" id="lockdown-comments" rows="2" placeholder="Describe the event..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="p-3 border rounded h-100 bg-light">
+                                <h4 class="h6 text-primary fw-bold">Rule Override Parameter</h4>
+                                <p class="text-muted small">Bypass specific validation routines (such as COR uploads) when systemic workflows are inaccessible.</p>
+                                <div class="mb-2">
+                                    <label for="rule-override-key" class="form-label small">Override Configuration Target</label>
+                                    <input type="text" class="form-control form-control-sm" id="rule-override-key" placeholder="e.g., system.admissions.cor_check">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="rule-override-value" class="form-label small">Set Override Value</label>
+                                    <input type="text" class="form-control form-control-sm" id="rule-override-value" placeholder="e.g., false">
+                                </div>
+                                <button type="button" class="btn btn-sm btn-primary w-100">Execute Rule Override</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card mb-4">
+                <div class="card-header">
+                    <h3 class="card-title h5 mb-0"><i class="fas fa-shield-alt me-2"></i>Audit Log Access Operations</h3>
+                    <p class="text-muted small mt-1">Review unrestricted logs tracking all system interventions and user operations.</p>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="input-group w-50">
+                            <input type="text" class="form-control" placeholder="Search user or operator IDs..." aria-label="Search">
+                            <button class="btn btn-outline-secondary" type="button">Search Logs</button>
+                        </div>
+                        <div>
+                            <button class="btn btn-outline-secondary btn-sm me-2"><i class="fas fa-file-export me-1"></i>Export CSV Log File</button>
+                            <button class="btn btn-danger btn-sm"><i class="fas fa-user-shield me-1"></i>Audit Review Mode</button>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-sm table-hover mb-0 small">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Timestamp</th>
+                                    <th>Actor ID</th>
+                                    <th>Action Type</th>
+                                    <th>Target Object</th>
+                                    <th>Value Before</th>
+                                    <th>Value After</th>
+                                    <th>Status Flag</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>May 6, 2026, 11:14 AM</td>
+                                    <td>SA-001</td>
+                                    <td>Override Enrollment</td>
+                                    <td>2026-0921-WMSU</td>
+                                    <td>Pending</td>
+                                    <td>Force Verified</td>
+                                    <td><span class="badge bg-success">No Discrepancy</span></td>
+                                </tr>
+                                <tr>
+                                    <td>May 5, 2026, 16:40 PM</td>
+                                    <td>SA-002</td>
+                                    <td>Rule Modification</td>
+                                    <td>system.admissions.cor_check</td>
+                                    <td>True</td>
+                                    <td>False</td>
+                                    <td><span class="badge bg-warning text-dark">Rule Suspended</span></td>
+                                </tr>
+                                <tr>
+                                    <td>May 5, 2026, 09:21 AM</td>
+                                    <td>SA-001</td>
+                                    <td>Payroll Re-computation</td>
+                                    <td>PAY-0218</td>
+                                    <td>₱ 145,200.00</td>
+                                    <td>₱ 132,000.00</td>
+                                    <td><span class="badge bg-success">No Discrepancy</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card mb-4 border-success">
+                <div class="card-header bg-success text-white">
+                    <h3 class="card-title h5 mb-0"><i class="fas fa-database me-2"></i>Disaster Recovery & Module Isolation Controls</h3>
+                </div>
+                <div class="card-body bg-light">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="p-3 bg-white border rounded h-100 d-flex flex-column">
+                                <h4 class="h6 text-secondary fw-bold">Emergency System Backup & Restore</h4>
+                                <p class="text-muted small flex-grow-1">Create an absolute system snapshot or perform a hard rollback if the SAMS database becomes corrupted.</p>
+                                <div class="mt-3">
+                                    <label for="backup-description" class="form-label small">Backup Description / Label</label>
+                                    <input type="text" class="form-control form-control-sm mb-2" id="backup-description" placeholder="e.g., Pre-System Validation 20260506">
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-sm btn-secondary w-50" id="btn-backup-now">Backup Now</button>
+                                        <button class="btn btn-sm btn-danger w-50" id="btn-restore-now">Execute Rollback</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </article>
         </section>
+
          <!-- ══════════════════ BACKUP & DATA PROTECTION ══════════════════ -->
         <section id="sec-backup-data" class="section">
             <div class="section-header">
                 <div>
-                <div class="section-title">Backup & Data Protection</div>
-                <p class="section-sub">Manage backups, restore points, and system recovery operations.</p>
+                    <div class="section-title">Backup & Data Protection</div>
+                    <p class="section-sub">Manage backups, restore points, and system recovery operations.</p>
                 </div>
                 <div class="section-actions">
-                <button class="btn btn-primary" id="btn-manual-backup">Create Manual Backup</button>
-                <button class="btn btn-outline" id="btn-restore-point">Restore from Backup</button>
+                    <button class="btn btn-primary" id="btn-manual-backup" onclick="initiateManualBackup()">Create Manual Backup</button>
+                    <button class="btn btn-outline" id="btn-restore-point" onclick="openRestoreModal()">Restore from Backup</button>
+                    <button class="btn btn-secondary" id="btn-backup-settings" onclick="openBackupSettingsModal()">Configure Settings</button>
                 </div>
             </div>
 
-            <article class="card">
+            <article class="card mb-4" id="backup-progress-card" style="display: none;">
                 <div class="card-body">
-                <div class="backup-summary">
-                    <div>Last Backup: <span id="backup-last-time">N/A</span></div>
-                    <div>Next Scheduled: <span id="backup-next-schedule">N/A</span></div>
-                </div>
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <strong id="progress-title">Creating backup...</strong>
+                        <span id="progress-percentage">45%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="progress-bar" style="width: 45%;"></div>
+                    </div>
+                    <p class="text-muted mt-1" id="progress-details">Writing data blocks to the secure cloud repository.</p>
                 </div>
             </article>
 
+            <div class="grid grid-cols-1 md-grid-cols-3 gap-4 mb-4">
+                <article class="card">
+                    <div class="card-body flex align-items-center">
+                        <div class="icon-wrapper bg-primary-light">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                        </div>
+                        <div>
+                            <div class="text-muted text-sm">Last Backup</div>
+                            <div class="h5" id="backup-last-time">Oct 24, 2025, 02:00 AM</div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-body flex align-items-center">
+                        <div class="icon-wrapper bg-secondary-light">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        </div>
+                        <div>
+                            <div class="text-muted text-sm">Next Scheduled Backup</div>
+                            <div class="h5" id="backup-next-schedule">May 7, 2026, 02:00 AM</div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-body flex align-items-center">
+                        <div class="icon-wrapper bg-success-light">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        </div>
+                        <div>
+                            <div class="text-muted text-sm">Protection Status</div>
+                            <div class="h5 text-success">Active & Secure</div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
             <article class="card">
-                <div class="card-body">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Type</th>
-                        <th>Status</th>
-                        <th>Created By</th>
-                        <th>Completed At</th>
-                        <th>Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody id="backup-table"></tbody>
-                </table>
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <div>
+                        <h3 class="card-title">Recent Backup Operations</h3>
+                        <p class="card-subtitle text-muted">A comprehensive log of all backup tasks performed.</p>
+                    </div>
+                    <div>
+                        <input type="text" class="form-control" placeholder="Search backups..." id="backup-search" oninput="filterBackups()">
+                    </div>
                 </div>
+                <div class="card-body overflow-x-auto">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th>Created By</th>
+                                <th>Completed At</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="backup-table">
+                            <tr>
+                                <td><span class="font-medium">System_Backup_Full_05_04_2026</span></td>
+                                <td><span class="badge badge-success">Full Backup</span></td>
+                                <td><span class="badge badge-success">Completed</span></td>
+                                <td><span>Admin (System)</span></td>
+                                <td><span>May 4, 2026, 02:00 AM</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline" onclick="viewBackupDetails('System_Backup_Full_05_04_2026')">View</button>
+                                    <button class="btn btn-sm btn-danger" onclick="deleteBackup('System_Backup_Full_05_04_2026')">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="font-medium">User_Data_Incremental_05_05_2026</span></td>
+                                <td><span class="badge badge-warning">Incremental</span></td>
+                                <td><span class="badge badge-success">Completed</span></td>
+                                <td><span>jdoe_admin</span></td>
+                                <td><span>May 5, 2026, 03:00 PM</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline" onclick="viewBackupDetails('User_Data_Incremental_05_05_2026')">View</button>
+                                    <button class="btn btn-sm btn-danger" onclick="deleteBackup('User_Data_Incremental_05_05_2026')">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="font-medium">System_Backup_Full_04_28_2026</span></td>
+                                <td><span class="badge badge-success">Full Backup</span></td>
+                                <td><span class="badge badge-danger">Failed</span></td>
+                                <td><span>Auto-Backup Scheduler</span></td>
+                                <td><span>April 28, 2026, 02:00 AM</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline" onclick="viewBackupDetails('System_Backup_Full_04_28_2026')">View</button>
+                                    <button class="btn btn-sm btn-danger" onclick="deleteBackup('System_Backup_Full_04_28_2026')">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
             </article>
-        </section>    
+
+            <div class="grid grid-cols-1 md-grid-cols-2 gap-4 mt-4">
+                <article class="card bg-light border-dashed">
+                    <div class="card-body">
+                        <h4 class="card-title mb-2">Documentation & Help</h4>
+                        <p class="text-muted mb-3 text-sm">Not sure which backup type to run or how to recover your data? Read our best practices and step-by-step guides.</p>
+                        <a href="#backup-help-docs" class="btn btn-link px-0">Access Help Center &rarr;</a>
+                    </div>
+                </article>
+                
+                <article class="card bg-light border-dashed">
+                    <div class="card-body">
+                        <h4 class="card-title mb-2">Error Handling</h4>
+                        <p class="text-muted mb-3 text-sm">Troubleshoot interrupted operations, disk storage issues, or server connectivity failures through our integrated diagnostic utility.</p>
+                        <a href="#diagnostic-utility" class="btn btn-link px-0">Open Diagnostics &rarr;</a>
+                    </div>
+                </article>
+            </div>
+
+            <div id="backup-settings-modal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Backup Configurations</h3>
+                        <button class="close-btn" onclick="closeModal('backup-settings-modal')">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form-backup-settings">
+                            <div class="form-group mb-3">
+                                <label for="backup-frequency">Backup Frequency</label>
+                                <select id="backup-frequency" class="form-control">
+                                    <option value="daily">Daily</option>
+                                    <option value="weekly">Weekly</option>
+                                    <option value="monthly">Monthly</option>
+                                    <option value="custom">Custom Schedule</option>
+                                </select>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="backup-retention">Retention Policy</label>
+                                <select id="backup-retention" class="form-control">
+                                    <option value="30">30 days</option>
+                                    <option value="90">90 days</option>
+                                    <option value="365">1 year</option>
+                                </select>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label>Notification Alerts</label>
+                                <div class="checkbox-group">
+                                    <label><input type="checkbox" checked> Email on Failure</label><br>
+                                    <label><input type="checkbox"> Push Notifications on Success</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-outline" onclick="closeModal('backup-settings-modal')">Cancel</button>
+                        <button class="btn btn-primary" onclick="saveBackupSettings()">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+        </section>
     
     </main>
 </body>
