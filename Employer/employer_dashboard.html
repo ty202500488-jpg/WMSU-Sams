@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,12 +10,14 @@
     <link rel="stylesheet" href="../Global/modals.css">
     <script src="../Global/modals.js" defer></script>
 </head>
+
 <body>
 
- <header class="top-nav">
+    <header class="top-nav">
         <div class="top-logo">WMSU-SAMS</div>
         <nav class="top-links">
-            <a href="employer_dashboard.html" class="active"><i class="fas fa-chart-line"></i> <span>Dashboard</span></a>
+            <a href="employer_dashboard.html" class="active"><i class="fas fa-chart-line"></i>
+                <span>Dashboard</span></a>
             <a href="employer_notifications.html"><i class="fas fa-bell"></i> <span>Notifications</span></a>
             <a href="review_attendance.html"><i class="fas fa-clock"></i> <span>Attendance</span></a>
             <a href="employer_application.html"><i class="fas fa-users"></i> <span>Applicants</span></a>
@@ -23,13 +26,13 @@
         <div class="top-right">
             <div class="profile">
                 <a href="employer_profile.html">
-                <img src="../images/profile.jpg.jpg" class="profile-img">
+                    <img src="../images/profile.jpg.jpg" class="profile-img">
                 </a>
             </div>
 
             <div class="settings-menu">
                 <i class="fas fa-bars menu-icon"></i>
-                
+
                 <div class="settings-dropdown">
                     <a href="edit_student_profile.html"><i class="fas fa-user-edit"></i> Edit Profile</a>
                     <a href="../Global/login.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
@@ -45,7 +48,7 @@
             <div class="user-mini-card">
                 <div class="cover-photo"></div>
                 <div class="user-info">
-                     <img class="avatar-replacement" src="../Images/profile.jpg.jpg" alt="Library Department">
+                    <img class="avatar-replacement" src="../Images/profile.jpg.jpg" alt="Library Department">
                     <h3>Library Department</h3>
                     <p>WMSU Main Campus</p>
                 </div>
@@ -61,260 +64,216 @@
         </aside>
 
         <main class="dashboard-feed">
-        
-        <!-- HIRING CAPACITY SECTION -->
-        <div class="feed-section">
-            <div class="capacity-card">
-                <div class="capacity-header">
-                    <h3><i class="fas fa-user-check" style="color: var(--maroon); margin-right: 8px;"></i>Department Slots</h3>
-                    <span class="capacity-badge">4 of 10 Filled</span>
-                </div>
- 
-                <div class="capacity-bar-wrap">
-                    <div class="capacity-bar-fill" style="width: 40%;"></div>
-                </div>
-                <div class="capacity-labels">
-                    <span><strong>6</strong> Hired &amp; Active</span>
-                    <span><strong>4</strong> Slots Remaining</span>
-                </div>
- 
-                <!-- Visual slot grid -->
-                <div class="sa-slots-grid">
-                    <!-- Slot 1 — Luz Mendoza -->
-                    <div class="sa-slot">
-                        <div class="sa-slot-avatar active" style="background: linear-gradient(135deg,#7B0D1E,#9e1a2e);">
-                            LM
-                            <span class="online-dot"></span>
+
+            <!-- HIRING CAPACITY SECTION -->
+            <div class="feed-section">
+                <div class="capacity-card">
+                    <div class="capacity-header">
+                        <h3><i class="fas fa-user-check" style="color: var(--maroon); margin-right: 8px;"></i>Department
+                            Slots</h3>
+                        <span class="capacity-badge">4 of 10 Filled</span>
+                    </div>
+
+                    <div class="capacity-bar-wrap">
+                        <div class="capacity-bar-fill" style="width: 40%;"></div>
+                    </div>
+                    <div class="capacity-labels">
+                        <span><strong>6</strong> Hired &amp; Active</span>
+                        <span><strong>4</strong> Slots Remaining</span>
+                    </div>
+
+                    <!-- Visual slot grid -->
+                    <div class="sa-slots-grid">
+                        <!-- Slot 1 — Luz Mendoza -->
+                        <div class="sa-slot">
+                            <div class="sa-slot-avatar active"
+                                style="background: linear-gradient(135deg,#7B0D1E,#9e1a2e);">
+                                LM
+                                <span class="online-dot"></span>
+                            </div>
+                            <div class="sa-tooltip">
+                                <strong>Luz Mendoza</strong><br>
+                                Library Assistant<br>
+                                Since Jan 2026
+                            </div>
+                            <span class="sa-slot-name">Luz M.</span>
                         </div>
-                        <div class="sa-tooltip">
-                            <strong>Luz Mendoza</strong><br>
-                            Library Assistant<br>
-                            Since Jan 2026
+                        <!-- Slot 2 -->
+                        <div class="sa-slot">
+                            <div class="sa-slot-avatar active"
+                                style="background: linear-gradient(135deg,#1d4ed8,#3b82f6);">
+                                JD
+                                <span class="online-dot"></span>
+                            </div>
+                            <div class="sa-tooltip">
+                                <strong>Juan Dela Cruz</strong><br>
+                                Cataloging Aide<br>
+                                Since Feb 2026
+                            </div>
+                            <span class="sa-slot-name">Juan D.</span>
                         </div>
-                        <span class="sa-slot-name">Luz M.</span>
-                    </div>
-                    <!-- Slot 2 -->
-                    <div class="sa-slot">
-                        <div class="sa-slot-avatar active" style="background: linear-gradient(135deg,#1d4ed8,#3b82f6);">
-                            JD
-                            <span class="online-dot"></span>
+                        <!-- Slot 3 -->
+                        <div class="sa-slot">
+                            <div class="sa-slot-avatar active"
+                                style="background: linear-gradient(135deg,#0f766e,#14b8a6);">
+                                RF
+                                <span class="online-dot"></span>
+                            </div>
+                            <div class="sa-tooltip">
+                                <strong>Rosa Flores</strong><br>
+                                Library Assistant<br>
+                                Since Jan 2026
+                            </div>
+                            <span class="sa-slot-name">Rosa F.</span>
                         </div>
-                        <div class="sa-tooltip">
-                            <strong>Juan Dela Cruz</strong><br>
-                            Cataloging Aide<br>
-                            Since Feb 2026
+                        <!-- Slot 4 -->
+                        <div class="sa-slot">
+                            <div class="sa-slot-avatar active"
+                                style="background: linear-gradient(135deg,#7c3aed,#a78bfa);">
+                                KR
+                                <span class="online-dot"></span>
+                            </div>
+                            <div class="sa-tooltip">
+                                <strong>Karl Reyes</strong><br>
+                                Records Aide<br>
+                                Since Mar 2026
+                            </div>
+                            <span class="sa-slot-name">Karl R.</span>
                         </div>
-                        <span class="sa-slot-name">Juan D.</span>
-                    </div>
-                    <!-- Slot 3 -->
-                    <div class="sa-slot">
-                        <div class="sa-slot-avatar active" style="background: linear-gradient(135deg,#0f766e,#14b8a6);">
-                            RF
-                            <span class="online-dot"></span>
+
+                        <!-- Slots 5–10 empty -->
+                        <div class="sa-slot">
+                            <div class="sa-slot-avatar empty"><i class="fas fa-plus"></i></div>
+                            <span class="sa-slot-name" style="color:#d1d5db;">Open</span>
                         </div>
-                        <div class="sa-tooltip">
-                            <strong>Rosa Flores</strong><br>
-                            Library Assistant<br>
-                            Since Jan 2026
+                        <div class="sa-slot">
+                            <div class="sa-slot-avatar empty"><i class="fas fa-plus"></i></div>
+                            <span class="sa-slot-name" style="color:#d1d5db;">Open</span>
                         </div>
-                        <span class="sa-slot-name">Rosa F.</span>
-                    </div>
-                    <!-- Slot 4 -->
-                    <div class="sa-slot">
-                        <div class="sa-slot-avatar active" style="background: linear-gradient(135deg,#7c3aed,#a78bfa);">
-                            KR
-                            <span class="online-dot"></span>
+                        <div class="sa-slot">
+                            <div class="sa-slot-avatar empty"><i class="fas fa-plus"></i></div>
+                            <span class="sa-slot-name" style="color:#d1d5db;">Open</span>
                         </div>
-                        <div class="sa-tooltip">
-                            <strong>Karl Reyes</strong><br>
-                            Records Aide<br>
-                            Since Mar 2026
+                        <div class="sa-slot">
+                            <div class="sa-slot-avatar empty"><i class="fas fa-plus"></i></div>
+                            <span class="sa-slot-name" style="color:#d1d5db;">Open</span>
                         </div>
-                        <span class="sa-slot-name">Karl R.</span>
-                    </div>
-                    
-                    <!-- Slots 5–10 empty -->
-                     <div class="sa-slot">
-                        <div class="sa-slot-avatar empty"><i class="fas fa-plus"></i></div>
-                        <span class="sa-slot-name" style="color:#d1d5db;">Open</span>
-                    </div>
-                    <div class="sa-slot">
-                        <div class="sa-slot-avatar empty"><i class="fas fa-plus"></i></div>
-                        <span class="sa-slot-name" style="color:#d1d5db;">Open</span>
-                    </div>
-                    <div class="sa-slot">
-                        <div class="sa-slot-avatar empty"><i class="fas fa-plus"></i></div>
-                        <span class="sa-slot-name" style="color:#d1d5db;">Open</span>
-                    </div>
-                    <div class="sa-slot">
-                        <div class="sa-slot-avatar empty"><i class="fas fa-plus"></i></div>
-                        <span class="sa-slot-name" style="color:#d1d5db;">Open</span>
-                    </div>
-                    <div class="sa-slot">
-                        <div class="sa-slot-avatar empty"><i class="fas fa-plus"></i></div>
-                        <span class="sa-slot-name" style="color:#d1d5db;">Open</span>
-                    </div>
-                    <div class="sa-slot">
-                        <div class="sa-slot-avatar empty"><i class="fas fa-plus"></i></div>
-                        <span class="sa-slot-name" style="color:#d1d5db;">Open</span>
+                        <div class="sa-slot">
+                            <div class="sa-slot-avatar empty"><i class="fas fa-plus"></i></div>
+                            <span class="sa-slot-name" style="color:#d1d5db;">Open</span>
+                        </div>
+                        <div class="sa-slot">
+                            <div class="sa-slot-avatar empty"><i class="fas fa-plus"></i></div>
+                            <span class="sa-slot-name" style="color:#d1d5db;">Open</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
- 
-        <!-- ACTIVE STUDENT ASSISTANTS -->
-        <div class="feed-section">
-            <div class="section-header-flex">
-                <h2 class="section-title">Active Student Assistants</h2>
-                <a href="review_attendance.html"><i class="fas fa-clock"></i> View Attendance</a>
-            </div>
- 
-            <div class="active-sa-list">
- 
-                <div class="sa-card">
-                    <div class="sa-avatar-circle" style="background: linear-gradient(135deg,#7B0D1E,#9e1a2e);">LM</div>
-                    <div class="sa-info">
-                        <div class="sa-info-name">Luz Mendoza</div>
-                        <div class="sa-info-meta">BSIT 3rd Year &nbsp;·&nbsp; ID: 2022-0331</div>
-                        <div class="sa-info-role"><i class="fas fa-briefcase" style="font-size:10px;"></i> Library Assistant</div>
-                    </div>
-                    <div class="sa-stats">
-                        <div class="sa-stat-item">
-                            <strong>0</strong>
-                            <span>Hrs Logged</span>
-                        </div>
-                        <div class="sa-stat-item">
-                            <strong>0</strong>
-                            <span>This Week</span>
-                        </div>
-                    </div>
-                    <span class="sa-status-badge"><i class="fas fa-circle" style="font-size:7px;margin-right:4px;"></i>Active</span>
+
+            <!-- ACTIVE STUDENT ASSISTANTS -->
+            <div class="feed-section">
+                <div class="section-header-flex">
+                    <h2 class="section-title">Active Student Assistants</h2>
+                    <a href="review_attendance.html"><i class="fas fa-clock"></i> View Attendance</a>
                 </div>
- 
-                <div class="sa-card">
-                    <div class="sa-avatar-circle" style="background: linear-gradient(135deg,#1d4ed8,#3b82f6);">JD</div>
-                    <div class="sa-info">
-                        <div class="sa-info-name">Juan Dela Cruz</div>
-                        <div class="sa-info-meta">BSED 2nd Year &nbsp;·&nbsp; ID: 2023-0089</div>
-                        <div class="sa-info-role"><i class="fas fa-briefcase" style="font-size:10px;"></i> Cataloging Aide</div>
-                    </div>
-                    <div class="sa-stats">
-                        <div class="sa-stat-item">
-                            <strong>0</strong>
-                            <span>Hrs Logged</span>
+
+                <div class="active-sa-list">
+
+                    <div class="sa-card">
+                        <div class="sa-avatar-circle" style="background: linear-gradient(135deg,#7B0D1E,#9e1a2e);">LM
                         </div>
-                        <div class="sa-stat-item">
-                            <strong>0</strong>
-                            <span>This Week</span>
+                        <div class="sa-info">
+                            <div class="sa-info-name">Luz Mendoza</div>
+                            <div class="sa-info-meta">BSIT 3rd Year &nbsp;·&nbsp; ID: 2022-0331</div>
+                            <div class="sa-info-role"><i class="fas fa-briefcase" style="font-size:10px;"></i> Library
+                                Assistant</div>
                         </div>
-                    </div>
-                    <span class="sa-status-badge"><i class="fas fa-circle" style="font-size:7px;margin-right:4px;"></i>Active</span>
-                </div>
- 
-                <div class="sa-card">
-                    <div class="sa-avatar-circle" style="background: linear-gradient(135deg,#0f766e,#14b8a6);">RF</div>
-                    <div class="sa-info">
-                        <div class="sa-info-name">Rosa Flores</div>
-                        <div class="sa-info-meta">BSBA 2nd Year &nbsp;·&nbsp; ID: 2023-0215</div>
-                        <div class="sa-info-role"><i class="fas fa-briefcase" style="font-size:10px;"></i> Library Assistant</div>
-                    </div>
-                    <div class="sa-stats">
-                        <div class="sa-stat-item">
-                            <strong>0</strong>
-                            <span>Hrs Logged</span>
+                        <div class="sa-stats">
+                            <div class="sa-stat-item">
+                                <strong>0</strong>
+                                <span>Hrs Logged</span>
+                            </div>
+                            <div class="sa-stat-item">
+                                <strong>0</strong>
+                                <span>This Week</span>
+                            </div>
                         </div>
-                        <div class="sa-stat-item">
-                            <strong>0</strong>
-                            <span>This Week</span>
+                        <span class="sa-status-badge"><i class="fas fa-circle"
+                                style="font-size:7px;margin-right:4px;"></i>Active</span>
+                    </div>
+
+                    <div class="sa-card">
+                        <div class="sa-avatar-circle" style="background: linear-gradient(135deg,#1d4ed8,#3b82f6);">JD
                         </div>
-                    </div>
-                    <span class="sa-status-badge"><i class="fas fa-circle" style="font-size:7px;margin-right:4px;"></i>Active</span>
-                </div>
- 
-                <div class="sa-card">
-                    <div class="sa-avatar-circle" style="background: linear-gradient(135deg,#7c3aed,#a78bfa);">KR</div>
-                    <div class="sa-info">
-                        <div class="sa-info-name">Karl Reyes</div>
-                        <div class="sa-info-meta">BSIT 1st Year &nbsp;·&nbsp; ID: 2025-0067</div>
-                        <div class="sa-info-role"><i class="fas fa-briefcase" style="font-size:10px;"></i> Records Aide</div>
-                    </div>
-                    <div class="sa-stats">
-                        <div class="sa-stat-item">
-                            <strong>0</strong>
-                            <span>Hrs Logged</span>
+                        <div class="sa-info">
+                            <div class="sa-info-name">Juan Dela Cruz</div>
+                            <div class="sa-info-meta">BSED 2nd Year &nbsp;·&nbsp; ID: 2023-0089</div>
+                            <div class="sa-info-role"><i class="fas fa-briefcase" style="font-size:10px;"></i>
+                                Cataloging Aide</div>
                         </div>
-                        <div class="sa-stat-item">
-                            <strong>0</strong>
-                            <span>This Week</span>
+                        <div class="sa-stats">
+                            <div class="sa-stat-item">
+                                <strong>0</strong>
+                                <span>Hrs Logged</span>
+                            </div>
+                            <div class="sa-stat-item">
+                                <strong>0</strong>
+                                <span>This Week</span>
+                            </div>
                         </div>
+                        <span class="sa-status-badge"><i class="fas fa-circle"
+                                style="font-size:7px;margin-right:4px;"></i>Active</span>
                     </div>
-                    <span class="sa-status-badge"><i class="fas fa-circle" style="font-size:7px;margin-right:4px;"></i>Active</span>
-                </div>
- 
-            </div>
-        </div>
- 
-        <!-- PENDING APPLICATIONS -->
-        <div class="feed-section">
-            <div class="section-header-flex">
-                <h2 class="section-title">Pending Applications</h2>
-                <a href="employer_application.html">See All</a>
-            </div>
- 
-            <div class="main-card">
-                <div class="card-header">
-                    <div class="icon-circle"><i class="fas fa-user"></i></div>
-                    <div class="header-text">
-                        <small class="text-muted">ID: 2023-0142</small>
-                        <h4>Maria Santos <span>• BSIT 3rd Year</span></h4>
-                        <div class="badge-group">
-                            <span class="badge-active">GPA: 1.75</span>
-                            <span class="status-pill status-pending">Pending Review</span>
+
+                    <div class="sa-card">
+                        <div class="sa-avatar-circle" style="background: linear-gradient(135deg,#0f766e,#14b8a6);">RF
                         </div>
+                        <div class="sa-info">
+                            <div class="sa-info-name">Rosa Flores</div>
+                            <div class="sa-info-meta">BSBA 2nd Year &nbsp;·&nbsp; ID: 2023-0215</div>
+                            <div class="sa-info-role"><i class="fas fa-briefcase" style="font-size:10px;"></i> Library
+                                Assistant</div>
+                        </div>
+                        <div class="sa-stats">
+                            <div class="sa-stat-item">
+                                <strong>0</strong>
+                                <span>Hrs Logged</span>
+                            </div>
+                            <div class="sa-stat-item">
+                                <strong>0</strong>
+                                <span>This Week</span>
+                            </div>
+                        </div>
+                        <span class="sa-status-badge"><i class="fas fa-circle"
+                                style="font-size:7px;margin-right:4px;"></i>Active</span>
                     </div>
-                </div>
-                <div class="card-content">
-                    <p><i class="fas fa-briefcase"></i> Position: <strong>Library Assistant</strong></p>
-                    <p><i class="fas fa-clock"></i> Applied: <strong>2 hours ago</strong></p>
-                    <p><i class="fas fa-envelope"></i> <strong>m.santos@wmsu.edu.ph</strong></p>
-                </div>
-                <div class="card-actions">
-                    <div class="main-btns">
-                        <button class="btn-icon view"><a href="#view-applicant-1" style="text-decoration: none; color: #1877f2;"><i class="fas fa-eye"></i> View</a></button>
-                        <button class="btn-icon approve"><i class="fas fa-check"></i> Approve</button>
+
+                    <div class="sa-card">
+                        <div class="sa-avatar-circle" style="background: linear-gradient(135deg,#7c3aed,#a78bfa);">KR
+                        </div>
+                        <div class="sa-info">
+                            <div class="sa-info-name">Karl Reyes</div>
+                            <div class="sa-info-meta">BSIT 1st Year &nbsp;·&nbsp; ID: 2025-0067</div>
+                            <div class="sa-info-role"><i class="fas fa-briefcase" style="font-size:10px;"></i> Records
+                                Aide</div>
+                        </div>
+                        <div class="sa-stats">
+                            <div class="sa-stat-item">
+                                <strong>0</strong>
+                                <span>Hrs Logged</span>
+                            </div>
+                            <div class="sa-stat-item">
+                                <strong>0</strong>
+                                <span>This Week</span>
+                            </div>
+                        </div>
+                        <span class="sa-status-badge"><i class="fas fa-circle"
+                                style="font-size:7px;margin-right:4px;"></i>Active</span>
                     </div>
-                    <button class="btn-icon reject"><i class="fas fa-times"></i> Reject</button>
+
                 </div>
             </div>
- 
-            <div class="main-card">
-                <div class="card-header">
-                    <div class="icon-circle"><i class="fas fa-user"></i></div>
-                    <div class="header-text">
-                        <small class="text-muted">ID: 2025-0412</small>
-                        <h4>Angela Cruz <span>• BSIT 1st Year</span></h4>
-                        <div class="badge-group">
-                            <span class="badge-active">GPA: 1.80</span>
-                            <span class="status-pill status-pending">Pending Review</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-content">
-                    <p><i class="fas fa-briefcase"></i> Position: <strong>IT Lab Assistant</strong></p>
-                    <p><i class="fas fa-clock"></i> Applied: <strong>Yesterday</strong></p>
-                    <p><i class="fas fa-envelope"></i> <strong>a.cruz@wmsu.edu.ph</strong></p>
-                </div>
-                <div class="card-actions">
-                    <div class="main-btns">
-                        <button class="btn-icon view"><a href="#view-applicant-2" style="text-decoration: none; color: #1877f2;"><i class="fas fa-eye"></i> View</a></button>
-                        <button class="btn-icon approve"><i class="fas fa-check"></i> Approve</button>
-                    </div>
-                    <button class="btn-icon reject"><i class="fas fa-times"></i> Reject</button>
-                </div>
-            </div>
-        </div>
- 
-    </main>
+        </main>
 
         <aside class="right-panel">
             <div class="side-widget">
@@ -344,211 +303,225 @@
 
     </div>
 
-       <!-- ============ VIEW APPLICANT MODALS ============ -->
+    <!-- ============ VIEW APPLICANT MODALS ============ -->
 
-<!-- Maria Santos Modal -->
-<div id="view-applicant-1" class="modal-overlay-emp">
-  <div class="modal-card">
+    <!-- Maria Santos Modal -->
+    <div id="view-applicant-1" class="modal-overlay-emp">
+        <div class="modal-card">
 
-    <a href="#" class="modal-card-close">&times;</a>
+            <a href="#" class="modal-card-close">&times;</a>
 
-    <!-- Student Info Strip -->
-    <div class="modal-card-student">
-      <div class="modal-card-avatar" style="background:#7B0D1E;">MS</div>
-      <div class="modal-card-identity">
-        <div class="modal-card-name">Maria Santos</div>
-        <div class="modal-card-meta">ID: 2023-0142 &nbsp;·&nbsp; BSIT — 3rd Year &nbsp;·&nbsp; m.santos@wmsu.edu.ph</div>
-      </div>
-      <span class="modal-card-badge pending">Pending Review</span>
+            <!-- Student Info Strip -->
+            <div class="modal-card-student">
+                <div class="modal-card-avatar" style="background:#7B0D1E;">MS</div>
+                <div class="modal-card-identity">
+                    <div class="modal-card-name">Maria Santos</div>
+                    <div class="modal-card-meta">ID: 2023-0142 &nbsp;·&nbsp; BSIT — 3rd Year &nbsp;·&nbsp;
+                        m.santos@wmsu.edu.ph</div>
+                </div>
+                <span class="modal-card-badge pending">Pending Review</span>
+            </div>
+
+            <!-- Info Grid -->
+            <div class="modal-card-body">
+
+                <div class="modal-card-grid">
+                    <div class="modal-card-cell">
+                        <div class="modal-card-label">Position Applied</div>
+                        <div class="modal-card-value"><i class="fas fa-briefcase"></i> Library Assistant</div>
+                    </div>
+                    <div class="modal-card-cell">
+                        <div class="modal-card-label">Date Applied</div>
+                        <div class="modal-card-value"><i class="fas fa-calendar"></i> April 22, 2026 — 2 hours ago</div>
+                    </div>
+                    <div class="modal-card-cell">
+                        <div class="modal-card-label">GPA / GWA</div>
+                        <div class="modal-card-value" style="color:#15803d;font-weight:700;"><i
+                                class="fas fa-graduation-cap"></i> 1.75</div>
+                    </div>
+                    <div class="modal-card-cell">
+                        <div class="modal-card-label">Year Level</div>
+                        <div class="modal-card-value"><i class="fas fa-school"></i> 3rd Year</div>
+                    </div>
+                    <div class="modal-card-cell">
+                        <div class="modal-card-label">Course</div>
+                        <div class="modal-card-value"><i class="fas fa-book"></i> Bachelor of Science in Information
+                            Technology</div>
+                    </div>
+                    <div class="modal-card-cell">
+                        <div class="modal-card-label">Contact</div>
+                        <div class="modal-card-value"><i class="fas fa-envelope"></i> m.santos@wmsu.edu.ph</div>
+                    </div>
+                </div>
+
+                <!-- Submitted Documents -->
+                <div class="modal-card-section-title">Submitted Documents</div>
+                <div class="modal-card-docs">
+
+                    <div class="modal-card-doc-item">
+                        <div class="modal-card-doc-icon" style="background:#fef3c7;color:#92400e;">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div>
+                            <div class="modal-card-doc-name">Certificate of Registration (COR)</div>
+                            <div class="modal-card-doc-meta">COR_MariaSantos_2026.pdf • 1.2 MB</div>
+                        </div>
+                        <a href="#" class="modal-card-open"><i class="fas fa-external-link-alt"></i> Open</a>
+                    </div>
+
+                    <div class="modal-card-doc-item">
+                        <div class="modal-card-doc-icon" style="background:#dcfce7;color:#15803d;">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div>
+                            <div class="modal-card-doc-name">Summary of Grades</div>
+                            <div class="modal-card-doc-meta">Grades_MariaSantos_2ndSem.pdf • 890 KB</div>
+                        </div>
+                        <a href="#" class="modal-card-open"><i class="fas fa-external-link-alt"></i> Open</a>
+                    </div>
+
+                    <div class="modal-card-doc-item">
+                        <div class="modal-card-doc-icon" style="background:#ede9fe;color:#6d28d9;">
+                            <i class="fas fa-file"></i>
+                        </div>
+                        <div>
+                            <div class="modal-card-doc-name">Resume / CV</div>
+                            <div class="modal-card-doc-meta">Resume_MariaSantos.pdf • 456 KB</div>
+                        </div>
+                        <a href="#" class="modal-card-open"><i class="fas fa-external-link-alt"></i> Open</a>
+                    </div>
+
+                </div>
+
+                <!-- Employer Remarks -->
+                <div class="modal-card-section-title">Remarks <span
+                        style="font-weight:400;font-size:12px;color:#9ca3af;">(optional)</span></div>
+                <textarea class="modal-card-remarks"
+                    placeholder="Add notes about this applicant before approving or rejecting..."></textarea>
+
+            </div>
+
+            <div class="modal-card-footer">
+                <a href="#" class="modal-card-close-btn">Close</a>
+                <button class="modal-card-reject-btn"
+                    onclick="this.closest('.modal-overlay').style.visibility='hidden';this.closest('.modal-overlay').style.opacity='0';">
+                    <i class="fas fa-times"></i> Reject
+                </button>
+                <button class="modal-card-approve-btn"
+                    onclick="this.closest('.modal-overlay').style.visibility='hidden';this.closest('.modal-overlay').style.opacity='0';">
+                    <i class="fas fa-check"></i> Approve
+                </button>
+            </div>
+
+        </div>
     </div>
 
-    <!-- Info Grid -->
-    <div class="modal-card-body">
+    <!-- Angela Cruz Modal -->
+    <div id="view-applicant-2" class="modal-overlay-emp">
+        <div class="modal-card">
 
-      <div class="modal-card-grid">
-        <div class="modal-card-cell">
-          <div class="modal-card-label">Position Applied</div>
-          <div class="modal-card-value"><i class="fas fa-briefcase"></i> Library Assistant</div>
-        </div>
-        <div class="modal-card-cell">
-          <div class="modal-card-label">Date Applied</div>
-          <div class="modal-card-value"><i class="fas fa-calendar"></i> April 22, 2026 — 2 hours ago</div>
-        </div>
-        <div class="modal-card-cell">
-          <div class="modal-card-label">GPA / GWA</div>
-          <div class="modal-card-value" style="color:#15803d;font-weight:700;"><i class="fas fa-graduation-cap"></i> 1.75</div>
-        </div>
-        <div class="modal-card-cell">
-          <div class="modal-card-label">Year Level</div>
-          <div class="modal-card-value"><i class="fas fa-school"></i> 3rd Year</div>
-        </div>
-        <div class="modal-card-cell">
-          <div class="modal-card-label">Course</div>
-          <div class="modal-card-value"><i class="fas fa-book"></i> Bachelor of Science in Information Technology</div>
-        </div>
-        <div class="modal-card-cell">
-          <div class="modal-card-label">Contact</div>
-          <div class="modal-card-value"><i class="fas fa-envelope"></i> m.santos@wmsu.edu.ph</div>
-        </div>
-      </div>
+            <a href="#" class="modal-card-close">&times;</a>
 
-      <!-- Submitted Documents -->
-      <div class="modal-card-section-title">Submitted Documents</div>
-      <div class="modal-card-docs">
+            <div class="modal-card-student">
+                <div class="modal-card-avatar" style="background:#1d4ed8;">AC</div>
+                <div class="modal-card-identity">
+                    <div class="modal-card-name">Angela Cruz</div>
+                    <div class="modal-card-meta">ID: 2025-0412 &nbsp;·&nbsp; BSIT — 1st Year &nbsp;·&nbsp;
+                        a.cruz@wmsu.edu.ph</div>
+                </div>
+                <span class="modal-card-badge pending">Pending Review</span>
+            </div>
 
-        <div class="modal-card-doc-item">
-          <div class="modal-card-doc-icon" style="background:#fef3c7;color:#92400e;">
-            <i class="fas fa-file-pdf"></i>
-          </div>
-          <div>
-            <div class="modal-card-doc-name">Certificate of Registration (COR)</div>
-            <div class="modal-card-doc-meta">COR_MariaSantos_2026.pdf • 1.2 MB</div>
-          </div>
-          <a href="#" class="modal-card-open"><i class="fas fa-external-link-alt"></i> Open</a>
+            <div class="modal-card-body">
+
+                <div class="modal-card-grid">
+                    <div class="modal-card-cell">
+                        <div class="modal-card-label">Position Applied</div>
+                        <div class="modal-card-value"><i class="fas fa-briefcase"></i> IT Lab Assistant</div>
+                    </div>
+                    <div class="modal-card-cell">
+                        <div class="modal-card-label">Date Applied</div>
+                        <div class="modal-card-value"><i class="fas fa-calendar"></i> April 21, 2026 — Yesterday</div>
+                    </div>
+                    <div class="modal-card-cell">
+                        <div class="modal-card-label">GPA / GWA</div>
+                        <div class="modal-card-value" style="color:#15803d;font-weight:700;"><i
+                                class="fas fa-graduation-cap"></i> 1.80</div>
+                    </div>
+                    <div class="modal-card-cell">
+                        <div class="modal-card-label">Year Level</div>
+                        <div class="modal-card-value"><i class="fas fa-school"></i> 1st Year</div>
+                    </div>
+                    <div class="modal-card-cell">
+                        <div class="modal-card-label">Course</div>
+                        <div class="modal-card-value"><i class="fas fa-book"></i> Bachelor of Science in Information
+                            Technology</div>
+                    </div>
+                    <div class="modal-card-cell">
+                        <div class="modal-card-label">Contact</div>
+                        <div class="modal-card-value"><i class="fas fa-envelope"></i> a.cruz@wmsu.edu.ph</div>
+                    </div>
+                </div>
+
+                <div class="modal-card-section-title">Submitted Documents</div>
+                <div class="modal-card-docs">
+
+                    <div class="modal-card-doc-item">
+                        <div class="modal-card-doc-icon" style="background:#fef3c7;color:#92400e;">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div>
+                            <div class="modal-card-doc-name">Certificate of Registration (COR)</div>
+                            <div class="modal-card-doc-meta">COR_AngelaCruz_2026.pdf • 1.1 MB</div>
+                        </div>
+                        <a href="#" class="modal-card-open"><i class="fas fa-external-link-alt"></i> Open</a>
+                    </div>
+
+                    <div class="modal-card-doc-item">
+                        <div class="modal-card-doc-icon" style="background:#dcfce7;color:#15803d;">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div>
+                            <div class="modal-card-doc-name">Summary of Grades</div>
+                            <div class="modal-card-doc-meta">Grades_AngelaCruz_1stSem.pdf • 760 KB</div>
+                        </div>
+                        <a href="#" class="modal-card-open"><i class="fas fa-external-link-alt"></i> Open</a>
+                    </div>
+
+                    <div class="modal-card-doc-item">
+                        <div class="modal-card-doc-icon" style="background:#ede9fe;color:#6d28d9;">
+                            <i class="fas fa-file"></i>
+                        </div>
+                        <div>
+                            <div class="modal-card-doc-name">Resume / CV</div>
+                            <div class="modal-card-doc-meta">Resume_AngelaCruz.pdf • 380 KB</div>
+                        </div>
+                        <a href="#" class="modal-card-open"><i class="fas fa-external-link-alt"></i> Open</a>
+                    </div>
+
+                </div>
+
+                <div class="modal-card-section-title">Remarks <span
+                        style="font-weight:400;font-size:12px;color:#9ca3af;">(optional)</span></div>
+                <textarea class="modal-card-remarks"
+                    placeholder="Add notes about this applicant before approving or rejecting..."></textarea>
+
+            </div>
+
+            <div class="modal-card-footer">
+                <a href="#" class="modal-card-close-btn">Close</a>
+                <button class="modal-card-reject-btn"
+                    onclick="this.closest('.modal-overlay').style.visibility='hidden';this.closest('.modal-overlay').style.opacity='0';">
+                    <i class="fas fa-times"></i> Reject
+                </button>
+                <button class="modal-card-approve-btn"
+                    onclick="this.closest('.modal-overlay').style.visibility='hidden';this.closest('.modal-overlay').style.opacity='0';">
+                    <i class="fas fa-check"></i> Approve
+                </button>
+            </div>
+
         </div>
-
-        <div class="modal-card-doc-item">
-          <div class="modal-card-doc-icon" style="background:#dcfce7;color:#15803d;">
-            <i class="fas fa-file-alt"></i>
-          </div>
-          <div>
-            <div class="modal-card-doc-name">Summary of Grades</div>
-            <div class="modal-card-doc-meta">Grades_MariaSantos_2ndSem.pdf • 890 KB</div>
-          </div>
-          <a href="#" class="modal-card-open"><i class="fas fa-external-link-alt"></i> Open</a>
-        </div>
-
-        <div class="modal-card-doc-item">
-          <div class="modal-card-doc-icon" style="background:#ede9fe;color:#6d28d9;">
-            <i class="fas fa-file"></i>
-          </div>
-          <div>
-            <div class="modal-card-doc-name">Resume / CV</div>
-            <div class="modal-card-doc-meta">Resume_MariaSantos.pdf • 456 KB</div>
-          </div>
-          <a href="#" class="modal-card-open"><i class="fas fa-external-link-alt"></i> Open</a>
-        </div>
-
-      </div>
-
-      <!-- Employer Remarks -->
-      <div class="modal-card-section-title">Remarks <span style="font-weight:400;font-size:12px;color:#9ca3af;">(optional)</span></div>
-      <textarea class="modal-card-remarks" placeholder="Add notes about this applicant before approving or rejecting..."></textarea>
-
     </div>
-
-    <div class="modal-card-footer">
-      <a href="#" class="modal-card-close-btn">Close</a>
-      <button class="modal-card-reject-btn" onclick="this.closest('.modal-overlay').style.visibility='hidden';this.closest('.modal-overlay').style.opacity='0';">
-        <i class="fas fa-times"></i> Reject
-      </button>
-      <button class="modal-card-approve-btn" onclick="this.closest('.modal-overlay').style.visibility='hidden';this.closest('.modal-overlay').style.opacity='0';">
-        <i class="fas fa-check"></i> Approve
-      </button>
-    </div>
-
-  </div>
-</div>
-
-<!-- Angela Cruz Modal -->
-<div id="view-applicant-2" class="modal-overlay-emp">
-  <div class="modal-card">
-
-      <a href="#" class="modal-card-close">&times;</a>
-
-    <div class="modal-card-student">
-      <div class="modal-card-avatar" style="background:#1d4ed8;">AC</div>
-      <div class="modal-card-identity">
-        <div class="modal-card-name">Angela Cruz</div>
-        <div class="modal-card-meta">ID: 2025-0412 &nbsp;·&nbsp; BSIT — 1st Year &nbsp;·&nbsp; a.cruz@wmsu.edu.ph</div>
-      </div>
-      <span class="modal-card-badge pending">Pending Review</span>
-    </div>
-
-    <div class="modal-card-body">
-
-      <div class="modal-card-grid">
-        <div class="modal-card-cell">
-          <div class="modal-card-label">Position Applied</div>
-          <div class="modal-card-value"><i class="fas fa-briefcase"></i> IT Lab Assistant</div>
-        </div>
-        <div class="modal-card-cell">
-          <div class="modal-card-label">Date Applied</div>
-          <div class="modal-card-value"><i class="fas fa-calendar"></i> April 21, 2026 — Yesterday</div>
-        </div>
-        <div class="modal-card-cell">
-          <div class="modal-card-label">GPA / GWA</div>
-          <div class="modal-card-value" style="color:#15803d;font-weight:700;"><i class="fas fa-graduation-cap"></i> 1.80</div>
-        </div>
-        <div class="modal-card-cell">
-          <div class="modal-card-label">Year Level</div>
-          <div class="modal-card-value"><i class="fas fa-school"></i> 1st Year</div>
-        </div>
-        <div class="modal-card-cell">
-          <div class="modal-card-label">Course</div>
-          <div class="modal-card-value"><i class="fas fa-book"></i> Bachelor of Science in Information Technology</div>
-        </div>
-        <div class="modal-card-cell">
-          <div class="modal-card-label">Contact</div>
-          <div class="modal-card-value"><i class="fas fa-envelope"></i> a.cruz@wmsu.edu.ph</div>
-        </div>
-      </div>
-
-      <div class="modal-card-section-title">Submitted Documents</div>
-      <div class="modal-card-docs">
-
-        <div class="modal-card-doc-item">
-          <div class="modal-card-doc-icon" style="background:#fef3c7;color:#92400e;">
-            <i class="fas fa-file-pdf"></i>
-          </div>
-          <div>
-            <div class="modal-card-doc-name">Certificate of Registration (COR)</div>
-            <div class="modal-card-doc-meta">COR_AngelaCruz_2026.pdf • 1.1 MB</div>
-          </div>
-          <a href="#" class="modal-card-open"><i class="fas fa-external-link-alt"></i> Open</a>
-        </div>
-
-        <div class="modal-card-doc-item">
-          <div class="modal-card-doc-icon" style="background:#dcfce7;color:#15803d;">
-            <i class="fas fa-file-alt"></i>
-          </div>
-          <div>
-            <div class="modal-card-doc-name">Summary of Grades</div>
-            <div class="modal-card-doc-meta">Grades_AngelaCruz_1stSem.pdf • 760 KB</div>
-          </div>
-          <a href="#" class="modal-card-open"><i class="fas fa-external-link-alt"></i> Open</a>
-        </div>
-
-        <div class="modal-card-doc-item">
-          <div class="modal-card-doc-icon" style="background:#ede9fe;color:#6d28d9;">
-            <i class="fas fa-file"></i>
-          </div>
-          <div>
-            <div class="modal-card-doc-name">Resume / CV</div>
-            <div class="modal-card-doc-meta">Resume_AngelaCruz.pdf • 380 KB</div>
-          </div>
-          <a href="#" class="modal-card-open"><i class="fas fa-external-link-alt"></i> Open</a>
-        </div>
-
-      </div>
-
-      <div class="modal-card-section-title">Remarks <span style="font-weight:400;font-size:12px;color:#9ca3af;">(optional)</span></div>
-      <textarea class="modal-card-remarks" placeholder="Add notes about this applicant before approving or rejecting..."></textarea>
-
-    </div>
-
-    <div class="modal-card-footer">
-      <a href="#" class="modal-card-close-btn">Close</a>
-      <button class="modal-card-reject-btn" onclick="this.closest('.modal-overlay').style.visibility='hidden';this.closest('.modal-overlay').style.opacity='0';">
-        <i class="fas fa-times"></i> Reject
-      </button>
-      <button class="modal-card-approve-btn" onclick="this.closest('.modal-overlay').style.visibility='hidden';this.closest('.modal-overlay').style.opacity='0';">
-        <i class="fas fa-check"></i> Approve
-      </button>
-    </div>
-
-  </div>
-</div>
 
     <!-- ===== FLOATING MESSAGE BUTTON ===== -->
     <button class="float-msg-btn" id="floatMsgBtn" onclick="toggleMsg()">
@@ -566,327 +539,327 @@
             <i class="fas fa-times"></i>
         </button>
     </div>
-<!-- ===== CHAT PANEL ===== -->
-<div class="msg-panel" id="msgPanel">
-    <div class="msg-panel-header">
-        <i class="fas fa-comments" style="font-size:18px;color:white;flex-shrink:0;"></i>
-        <div class="msg-panel-header-info">
-            <div class="msg-panel-title">Student Messages</div>
-            <div class="msg-panel-sub" id="empPanelSub">Library Department</div>
+    <!-- ===== CHAT PANEL ===== -->
+    <div class="msg-panel" id="msgPanel">
+        <div class="msg-panel-header">
+            <i class="fas fa-comments" style="font-size:18px;color:white;flex-shrink:0;"></i>
+            <div class="msg-panel-header-info">
+                <div class="msg-panel-title">Student Messages</div>
+                <div class="msg-panel-sub" id="empPanelSub">Library Department</div>
+            </div>
+            <button class="msg-panel-close" onclick="toggleMsg()">
+                <i class="fas fa-times"></i>
+            </button>
         </div>
-        <button class="msg-panel-close" onclick="toggleMsg()">
-            <i class="fas fa-times"></i>
-        </button>
-    </div>
 
-    <!-- Student tabs -->
-    <div class="msg-student-tabs" id="studentTabs">
-        <!-- Dynamically populated -->
-    </div>
+        <!-- Student tabs -->
+        <div class="msg-student-tabs" id="studentTabs">
+            <!-- Dynamically populated -->
+        </div>
 
-    <div class="msg-body" id="msgBody">
-        <div style="text-align:center;color:#aaa;font-size:13px;padding:24px 0">
-            Select a student to view conversation
+        <div class="msg-body" id="msgBody">
+            <div style="text-align:center;color:#aaa;font-size:13px;padding:24px 0">
+                Select a student to view conversation
+            </div>
+        </div>
+
+        <div class="msg-footer">
+            <input type="text" id="msgInput" placeholder="Reply…" onkeydown="if(event.key==='Enter')sendEmpMsg()">
+            <button class="msg-send-btn" onclick="sendEmpMsg()">
+                <i class="fas fa-paper-plane"></i>
+            </button>
         </div>
     </div>
+    <script>
+        // ===== EMPLOYER CHAT ENGINE =====
 
-    <div class="msg-footer">
-        <input type="text" id="msgInput" placeholder="Reply…" 
-               onkeydown="if(event.key==='Enter')sendEmpMsg()">
-        <button class="msg-send-btn" onclick="sendEmpMsg()">
-            <i class="fas fa-paper-plane"></i>
-        </button>
-    </div>
-</div>
-<script>
-    // ===== EMPLOYER CHAT ENGINE =====
+        const STUDENTS = [
+            { id: 'Juan_Dela_Cruz', initials: 'JD', name: 'Juan Dela Cruz', dept: 'IT Office', color: '#1d4ed8' },
+            { id: 'Luz_Mendoza', initials: 'LM', name: 'Luz Mendoza', dept: 'Library', color: '#7B0D1E' },
+            { id: 'Rosa_Flores', initials: 'RF', name: 'Rosa Flores', dept: 'Library', color: '#0f766e' },
+            { id: 'Karl_Reyes', initials: 'KR', name: 'Karl Reyes', dept: 'Registrar', color: '#7c3aed' }
+        ];
 
-const STUDENTS = [
-    { id: 'Juan_Dela_Cruz',  initials: 'JD', name: 'Juan Dela Cruz',  dept: 'IT Office',  color: '#1d4ed8' },
-    { id: 'Luz_Mendoza',     initials: 'LM', name: 'Luz Mendoza',     dept: 'Library',    color: '#7B0D1E' },
-    { id: 'Rosa_Flores',     initials: 'RF', name: 'Rosa Flores',     dept: 'Library',    color: '#0f766e' },
-    { id: 'Karl_Reyes',      initials: 'KR', name: 'Karl Reyes',      dept: 'Registrar',  color: '#7c3aed' }
-];
+        let currentStudentId = STUDENTS[0].id;
+        let panelOpen = false;
+        let lastMsgCount = {};
+        let toastTimer = null;
 
-let currentStudentId = STUDENTS[0].id;
-let panelOpen = false;
-let lastMsgCount = {};
-let toastTimer = null;
+        function storageKey(studentId) { return 'sams_chat_' + studentId; }
 
-function storageKey(studentId) { return 'sams_chat_' + studentId; }
-
-function getConvo(studentId) {
-    try { return JSON.parse(localStorage.getItem(storageKey(studentId))) || []; }
-    catch(e) { return []; }
-}
-function saveConvo(studentId, msgs) {
-    localStorage.setItem(storageKey(studentId), JSON.stringify(msgs));
-}
-
-function formatTime() {
-    const now = new Date();
-    let h = now.getHours(), m = now.getMinutes();
-    const ampm = h >= 12 ? 'PM' : 'AM';
-    h = h % 12 || 12;
-    return h + ':' + String(m).padStart(2,'0') + ' ' + ampm;
-}
-
-function escapeHtml(str) {
-    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-
-// Build student tabs — one per student
-function buildTabs() {
-    const container = document.getElementById('studentTabs');
-    container.innerHTML = '';
-
-    STUDENTS.forEach(function(student) {
-        const unread = getUnreadForStudent(student.id);
-        const tab = document.createElement('div');
-        tab.className = 'msg-tab' + (student.id === currentStudentId ? ' active' : '');
-        tab.setAttribute('data-id', student.id);
-        tab.onclick = function() { switchStudent(student.id); };
-
-        tab.innerHTML =
-            '<div class="msg-tab-avatar" style="background:' + student.color + '">' + student.initials + '</div>' +
-            '<span>' + student.name + '</span>' +
-            '<span class="msg-tab-unread' + (unread > 0 ? '' : ' hidden') + '" id="tab-unread-' + student.id + '">' + (unread > 0 ? unread : '') + '</span>';
-        container.appendChild(tab);
-    });
-}
-
-function getUnreadForStudent(studentId) {
-    try { return parseInt(localStorage.getItem('sams_emp_unread_' + studentId) || '0'); }
-    catch(e) { return 0; }
-}
-function clearUnreadForStudent(studentId) {
-    localStorage.setItem('sams_emp_unread_' + studentId, '0');
-}
-
-function switchStudent(studentId) {
-    currentStudentId = studentId;
-    clearUnreadForStudent(studentId);
-
-    document.querySelectorAll('.msg-tab').forEach(function(t) {
-        t.classList.toggle('active', t.getAttribute('data-id') === studentId);
-    });
-
-    const unreadEl = document.getElementById('tab-unread-' + studentId);
-    if (unreadEl) { unreadEl.textContent = ''; unreadEl.classList.add('hidden'); }
-
-    // Update subheader to show student name
-    const student = STUDENTS.find(s => s.id === studentId);
-    if (student) {
-        document.getElementById('empPanelSub').textContent = student.name + ' · ' + student.dept;
-    }
-
-    renderConvo(studentId);
-    updateMainBadge();
-}
-
-function renderConvo(studentId) {
-    const body = document.getElementById('msgBody');
-    const msgs = getConvo(studentId);
-    const student = STUDENTS.find(s => s.id === studentId);
-    body.innerHTML = '';
-
-    if (!msgs.length) {
-        body.innerHTML = '<div style="text-align:center;color:#aaa;font-size:13px;padding:24px 0">No messages yet with ' + (student ? student.name : 'this student') + '.</div>';
-        lastMsgCount[studentId] = 0;
-        return;
-    }
-
-    msgs.forEach(function(msg) {
-        const isSent = (msg.from === 'dept');
-        const wrap = document.createElement('div');
-        wrap.className = 'msg-bubble-wrap ' + (isSent ? 'sent' : 'received');
-
-        if (!isSent && student) {
-            const label = document.createElement('div');
-            label.className = 'msg-sender-label';
-            label.textContent = student.name;
-            wrap.appendChild(label);
+        function getConvo(studentId) {
+            try { return JSON.parse(localStorage.getItem(storageKey(studentId))) || []; }
+            catch (e) { return []; }
+        }
+        function saveConvo(studentId, msgs) {
+            localStorage.setItem(storageKey(studentId), JSON.stringify(msgs));
         }
 
-        const bubble = document.createElement('div');
-        bubble.className = 'msg-bubble ' + (isSent ? 'sent' : 'received');
-        bubble.innerHTML = escapeHtml(msg.text) + '<div class="msg-time">' + msg.time + '</div>';
-        wrap.appendChild(bubble);
-        body.appendChild(wrap);
-    });
-
-    body.scrollTop = body.scrollHeight;
-    lastMsgCount[studentId] = msgs.length;
-}
-
-function sendEmpMsg() {
-    const input = document.getElementById('msgInput');
-    const text = input.value.trim();
-    if (!text) return;
-
-    const msgs = getConvo(currentStudentId);
-    msgs.push({ from: 'dept', text: text, time: formatTime() });
-    saveConvo(currentStudentId, msgs);
-    input.value = '';
-    renderConvo(currentStudentId);
-
-    // Notify the student side
-    const cur = parseInt(localStorage.getItem('sams_chat_unread_student') || '0');
-    localStorage.setItem('sams_chat_unread_student', cur + 1);
-    localStorage.setItem('sams_chat_active_student', currentStudentId);
-}
-
-function updateMainBadge() {
-    let total = 0;
-    STUDENTS.forEach(function(s) { total += getUnreadForStudent(s.id); });
-    const badge = document.getElementById('msgBadge');
-    if (total > 0 && !panelOpen) {
-        badge.textContent = total > 9 ? '9+' : total;
-        badge.classList.remove('hidden');
-    } else {
-        badge.classList.add('hidden');
-    }
-}
-
-function toggleMsg() {
-    panelOpen = !panelOpen;
-    document.getElementById('msgPanel').classList.toggle('open', panelOpen);
-    if (panelOpen) {
-        buildTabs();
-        switchStudent(currentStudentId);
-        dismissToast();
-        setTimeout(function() { document.getElementById('msgInput').focus(); }, 260);
-    }
-}
-
-// Toast notification
-function showToast(student, text) {
-    const toast = document.getElementById('msgToast');
-    document.getElementById('toastAvatar').textContent = student.initials;
-    document.getElementById('toastAvatar').style.background = student.color;
-    document.getElementById('toastDept').textContent = student.name + ' · ' + student.dept;
-    document.getElementById('toastText').textContent = text;
-    toast.classList.add('show');
-    toast.onclick = function(e) {
-        if (!e.target.closest('.msg-toast-close')) {
-            dismissToast();
-            currentStudentId = student.id;
-            if (!panelOpen) toggleMsg();
-            else { buildTabs(); switchStudent(student.id); }
+        function formatTime() {
+            const now = new Date();
+            let h = now.getHours(), m = now.getMinutes();
+            const ampm = h >= 12 ? 'PM' : 'AM';
+            h = h % 12 || 12;
+            return h + ':' + String(m).padStart(2, '0') + ' ' + ampm;
         }
-    };
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(dismissToast, 5000);
-}
-function dismissToast() {
-    document.getElementById('msgToast').classList.remove('show');
-}
 
-// Polling — detect new messages from students
-function startPolling() {
-    setInterval(function() {
-        STUDENTS.forEach(function(student) {
-            const msgs = getConvo(student.id);
-            const prev = lastMsgCount[student.id] !== undefined ? lastMsgCount[student.id] : msgs.length;
+        function escapeHtml(str) {
+            return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
 
-            if (msgs.length > prev) {
-                const newMsgs = msgs.slice(prev);
-                const studentMsgs = newMsgs.filter(m => m.from === 'student');
+        // Build student tabs — one per student
+        function buildTabs() {
+            const container = document.getElementById('studentTabs');
+            container.innerHTML = '';
 
-                if (studentMsgs.length > 0) {
-                    const cur = getUnreadForStudent(student.id);
-                    localStorage.setItem('sams_emp_unread_' + student.id, cur + studentMsgs.length);
+            STUDENTS.forEach(function (student) {
+                const unread = getUnreadForStudent(student.id);
+                const tab = document.createElement('div');
+                tab.className = 'msg-tab' + (student.id === currentStudentId ? ' active' : '');
+                tab.setAttribute('data-id', student.id);
+                tab.onclick = function () { switchStudent(student.id); };
 
-                    if (panelOpen && student.id === currentStudentId) {
-                        renderConvo(student.id);
-                        clearUnreadForStudent(student.id);
-                    } else {
-                        const lastMsg = studentMsgs[studentMsgs.length - 1];
-                        showToast(student, lastMsg.text);
-                        if (panelOpen) buildTabs();
-                        updateMainBadge();
-                    }
+                tab.innerHTML =
+                    '<div class="msg-tab-avatar" style="background:' + student.color + '">' + student.initials + '</div>' +
+                    '<span>' + student.name + '</span>' +
+                    '<span class="msg-tab-unread' + (unread > 0 ? '' : ' hidden') + '" id="tab-unread-' + student.id + '">' + (unread > 0 ? unread : '') + '</span>';
+                container.appendChild(tab);
+            });
+        }
+
+        function getUnreadForStudent(studentId) {
+            try { return parseInt(localStorage.getItem('sams_emp_unread_' + studentId) || '0'); }
+            catch (e) { return 0; }
+        }
+        function clearUnreadForStudent(studentId) {
+            localStorage.setItem('sams_emp_unread_' + studentId, '0');
+        }
+
+        function switchStudent(studentId) {
+            currentStudentId = studentId;
+            clearUnreadForStudent(studentId);
+
+            document.querySelectorAll('.msg-tab').forEach(function (t) {
+                t.classList.toggle('active', t.getAttribute('data-id') === studentId);
+            });
+
+            const unreadEl = document.getElementById('tab-unread-' + studentId);
+            if (unreadEl) { unreadEl.textContent = ''; unreadEl.classList.add('hidden'); }
+
+            // Update subheader to show student name
+            const student = STUDENTS.find(s => s.id === studentId);
+            if (student) {
+                document.getElementById('empPanelSub').textContent = student.name + ' · ' + student.dept;
+            }
+
+            renderConvo(studentId);
+            updateMainBadge();
+        }
+
+        function renderConvo(studentId) {
+            const body = document.getElementById('msgBody');
+            const msgs = getConvo(studentId);
+            const student = STUDENTS.find(s => s.id === studentId);
+            body.innerHTML = '';
+
+            if (!msgs.length) {
+                body.innerHTML = '<div style="text-align:center;color:#aaa;font-size:13px;padding:24px 0">No messages yet with ' + (student ? student.name : 'this student') + '.</div>';
+                lastMsgCount[studentId] = 0;
+                return;
+            }
+
+            msgs.forEach(function (msg) {
+                const isSent = (msg.from === 'dept');
+                const wrap = document.createElement('div');
+                wrap.className = 'msg-bubble-wrap ' + (isSent ? 'sent' : 'received');
+
+                if (!isSent && student) {
+                    const label = document.createElement('div');
+                    label.className = 'msg-sender-label';
+                    label.textContent = student.name;
+                    wrap.appendChild(label);
                 }
-                lastMsgCount[student.id] = msgs.length;
+
+                const bubble = document.createElement('div');
+                bubble.className = 'msg-bubble ' + (isSent ? 'sent' : 'received');
+                bubble.innerHTML = escapeHtml(msg.text) + '<div class="msg-time">' + msg.time + '</div>';
+                wrap.appendChild(bubble);
+                body.appendChild(wrap);
+            });
+
+            body.scrollTop = body.scrollHeight;
+            lastMsgCount[studentId] = msgs.length;
+        }
+
+        function sendEmpMsg() {
+            const input = document.getElementById('msgInput');
+            const text = input.value.trim();
+            if (!text) return;
+
+            const msgs = getConvo(currentStudentId);
+            msgs.push({ from: 'dept', text: text, time: formatTime() });
+            saveConvo(currentStudentId, msgs);
+            input.value = '';
+            renderConvo(currentStudentId);
+
+            // Notify the student side
+            const cur = parseInt(localStorage.getItem('sams_chat_unread_student') || '0');
+            localStorage.setItem('sams_chat_unread_student', cur + 1);
+            localStorage.setItem('sams_chat_active_student', currentStudentId);
+        }
+
+        function updateMainBadge() {
+            let total = 0;
+            STUDENTS.forEach(function (s) { total += getUnreadForStudent(s.id); });
+            const badge = document.getElementById('msgBadge');
+            if (total > 0 && !panelOpen) {
+                badge.textContent = total > 9 ? '9+' : total;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        function toggleMsg() {
+            panelOpen = !panelOpen;
+            document.getElementById('msgPanel').classList.toggle('open', panelOpen);
+            if (panelOpen) {
+                buildTabs();
+                switchStudent(currentStudentId);
+                dismissToast();
+                setTimeout(function () { document.getElementById('msgInput').focus(); }, 260);
+            }
+        }
+
+        // Toast notification
+        function showToast(student, text) {
+            const toast = document.getElementById('msgToast');
+            document.getElementById('toastAvatar').textContent = student.initials;
+            document.getElementById('toastAvatar').style.background = student.color;
+            document.getElementById('toastDept').textContent = student.name + ' · ' + student.dept;
+            document.getElementById('toastText').textContent = text;
+            toast.classList.add('show');
+            toast.onclick = function (e) {
+                if (!e.target.closest('.msg-toast-close')) {
+                    dismissToast();
+                    currentStudentId = student.id;
+                    if (!panelOpen) toggleMsg();
+                    else { buildTabs(); switchStudent(student.id); }
+                }
+            };
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(dismissToast, 5000);
+        }
+        function dismissToast() {
+            document.getElementById('msgToast').classList.remove('show');
+        }
+
+        // Polling — detect new messages from students
+        function startPolling() {
+            setInterval(function () {
+                STUDENTS.forEach(function (student) {
+                    const msgs = getConvo(student.id);
+                    const prev = lastMsgCount[student.id] !== undefined ? lastMsgCount[student.id] : msgs.length;
+
+                    if (msgs.length > prev) {
+                        const newMsgs = msgs.slice(prev);
+                        const studentMsgs = newMsgs.filter(m => m.from === 'student');
+
+                        if (studentMsgs.length > 0) {
+                            const cur = getUnreadForStudent(student.id);
+                            localStorage.setItem('sams_emp_unread_' + student.id, cur + studentMsgs.length);
+
+                            if (panelOpen && student.id === currentStudentId) {
+                                renderConvo(student.id);
+                                clearUnreadForStudent(student.id);
+                            } else {
+                                const lastMsg = studentMsgs[studentMsgs.length - 1];
+                                showToast(student, lastMsg.text);
+                                if (panelOpen) buildTabs();
+                                updateMainBadge();
+                            }
+                        }
+                        lastMsgCount[student.id] = msgs.length;
+                    }
+                });
+            }, 1500);
+        }
+
+        // Close panel on outside click
+        document.addEventListener('click', function (e) {
+            const panel = document.getElementById('msgPanel');
+            const btn = document.getElementById('floatMsgBtn');
+            if (panelOpen && panel && btn && !panel.contains(e.target) && !btn.contains(e.target)) {
+                panelOpen = false;
+                panel.classList.remove('open');
             }
         });
-    }, 1500);
-}
 
-// Close panel on outside click
-document.addEventListener('click', function(e) {
-    const panel = document.getElementById('msgPanel');
-    const btn = document.getElementById('floatMsgBtn');
-    if (panelOpen && panel && btn && !panel.contains(e.target) && !btn.contains(e.target)) {
-        panelOpen = false;
-        panel.classList.remove('open');
-    }
-});
+        // Init
+        STUDENTS.forEach(function (s) { lastMsgCount[s.id] = getConvo(s.id).length; });
+        buildTabs();
+        updateMainBadge();
+        startPolling();
+        // Attach handlers to reject and approve buttons
+        document.addEventListener('DOMContentLoaded', function () {
+            // Handle Reject buttons
+            const rejectBtns = document.querySelectorAll('.btn-icon.reject');
+            rejectBtns.forEach(btn => {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const card = this.closest('.main-card');
+                    const name = card ? card.querySelector('h4')?.textContent.split('•')[0].trim() || 'Applicant' : 'Applicant';
 
-// Init
-STUDENTS.forEach(function(s) { lastMsgCount[s.id] = getConvo(s.id).length; });
-buildTabs();
-updateMainBadge();
-startPolling();
-// Attach handlers to reject and approve buttons
-document.addEventListener('DOMContentLoaded', function() {
-    // Handle Reject buttons
-    const rejectBtns = document.querySelectorAll('.btn-icon.reject');
-    rejectBtns.forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            const card = this.closest('.main-card');
-            const name = card ? card.querySelector('h4')?.textContent.split('•')[0].trim() || 'Applicant' : 'Applicant';
-            
-            // Show the rejection reason modal
-            showRejectionReasonModal(name, (rejectionData) => {
-                showAlert(
-                    'Application Rejected',
-                    `${name}'s application has been rejected. They'll be notified of your decision.`,
-                    'success',
-                    () => {
-                        if (card) {
-                            const statusPill = card.querySelector('.status-pill');
-                            if (statusPill) {
-                                statusPill.className = 'status-pill status-rejected';
-                                statusPill.textContent = 'Rejected';
+                    // Show the rejection reason modal
+                    showRejectionReasonModal(name, (rejectionData) => {
+                        showAlert(
+                            'Application Rejected',
+                            `${name}'s application has been rejected. They'll be notified of your decision.`,
+                            'success',
+                            () => {
+                                if (card) {
+                                    const statusPill = card.querySelector('.status-pill');
+                                    if (statusPill) {
+                                        statusPill.className = 'status-pill status-rejected';
+                                        statusPill.textContent = 'Rejected';
+                                    }
+                                }
                             }
-                        }
-                    }
-                );
+                        );
+                    });
+                });
+            });
+
+            // Handle Approve buttons
+            const approveBtns = document.querySelectorAll('.btn-icon.approve');
+            approveBtns.forEach(btn => {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const card = this.closest('.main-card');
+                    const name = card ? card.querySelector('h4')?.textContent.split('•')[0].trim() || 'Applicant' : 'Applicant';
+
+                    confirmAction(
+                        'Confirm Approval',
+                        `Are you sure you want to approve ${name}'s application?`,
+                        () => {
+                            showAlert('Application Approved', `${name}'s application has been approved successfully.`, 'success', () => {
+                                if (card) {
+                                    const statusPill = card.querySelector('.status-pill');
+                                    if (statusPill) {
+                                        statusPill.className = 'status-pill status-approved';
+                                        statusPill.textContent = 'Approved';
+                                    }
+                                }
+                            });
+                        },
+                        null,
+                        { confirmText: 'Yes, Approve', cancelText: 'Cancel', confirmColor: 'success-btn' }
+                    );
+                });
             });
         });
-    });
-
-    // Handle Approve buttons
-    const approveBtns = document.querySelectorAll('.btn-icon.approve');
-    approveBtns.forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            const card = this.closest('.main-card');
-            const name = card ? card.querySelector('h4')?.textContent.split('•')[0].trim() || 'Applicant' : 'Applicant';
-            
-            confirmAction(
-                'Confirm Approval',
-                `Are you sure you want to approve ${name}'s application?`,
-                () => {
-                    showAlert('Application Approved', `${name}'s application has been approved successfully.`, 'success', () => {
-                        if (card) {
-                            const statusPill = card.querySelector('.status-pill');
-                            if (statusPill) {
-                                statusPill.className = 'status-pill status-approved';
-                                statusPill.textContent = 'Approved';
-                            }
-                        }
-                    });
-                },
-                null,
-                { confirmText: 'Yes, Approve', cancelText: 'Cancel', confirmColor: 'success-btn' }
-            );
-        });
-    });
-});
-</script>
+    </script>
 
 </body>
+
 </html>
