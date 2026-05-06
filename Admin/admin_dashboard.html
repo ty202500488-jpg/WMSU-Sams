@@ -86,6 +86,16 @@
           </label>
         </div>
         <div class="nav-item">
+          <label for="nav-attendance">
+            <i class="fas fa-clock"></i> Attendance
+          </label>
+        </div>
+        <div class="nav-item">
+          <label for="nav-qr">
+            <i class="fas fa-qrcode"></i> QR Management
+          </label>
+        </div>
+        <div class="nav-item">
           <label for="nav-payroll">
             <i class="fas fa-money-bill-wave"></i> Payroll
           </label>
@@ -438,9 +448,198 @@
         </div><!-- /dash-grid -->
       </section>
 
-      <!-- ╔══════════════════════════════
-         § USER MANAGEMENT
-    ══════════════════════════════════╗ -->
+      <!-- ╔══════════════════════════════════════════════
+     § DEPARTMENT QR MANAGEMENT
+══════════════════════════════════════════════╗ -->
+      <section id="sec-qr" class="section">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Department QR Management</div>
+            <div class="section-sub">Generate, distribute, and audit semester-based attendance entry points for all
+              departments.</div>
+          </div>
+        </div>
+
+        <div class="dash-grid">
+          <!-- QR Generation Form -->
+          <article class="card">
+            <div class="card-header">
+              <h3><i class="fas fa-cog"></i> Generate Semester QR</h3>
+            </div>
+            <div class="card-body">
+              <form id="qr-gen-form" onsubmit="return false;">
+                <div style="display:flex; flex-direction:column; gap:15px;">
+                  <div>
+                    <label style="font-size:12px; font-weight:600; color:#555; display:block; margin-bottom:5px;">Select
+                      Department</label>
+                    <select class="field-input" id="qr-dept-select"
+                      style="width:100%; padding:10px; border-radius:8px; border:1.5px solid #eee;">
+                      <option value="">-- Choose Department --</option>
+                      <option value="Library">Library Department</option>
+                      <option value="IT Office">IT Office</option>
+                      <option value="Registrar's Office">Registrar's Office</option>
+                      <option value="Finance Office">Finance Office</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label
+                      style="font-size:12px; font-weight:600; color:#555; display:block; margin-bottom:5px;">Academic
+                      Semester</label>
+                    <input type="text" class="field-input" value="1st Semester 2026" readonly
+                      style="width:100%; background:#f9f9f9; padding:10px; border-radius:8px; border:1.5px solid #eee;">
+                  </div>
+                  <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+                    <div>
+                      <label style="font-size:12px; font-weight:600; color:#555; display:block; margin-bottom:5px;">Start
+                        Date</label>
+                      <input type="date" class="field-input" value="2026-06-01"
+                        style="width:100%; padding:10px; border-radius:8px; border:1.5px solid #eee;">
+                    </div>
+                    <div>
+                      <label style="font-size:12px; font-weight:600; color:#555; display:block; margin-bottom:5px;">End
+                        Date</label>
+                      <input type="date" class="field-input" value="2026-10-30"
+                        style="width:100%; padding:10px; border-radius:8px; border:1.5px solid #eee;">
+                    </div>
+                  </div>
+                  <button class="btn btn-primary" onclick="admin_generateQR()" style="width:100%; margin-top:10px;">
+                    <i class="fas fa-qrcode"></i> Generate QR Code
+                  </button>
+                </div>
+              </form>
+            </div>
+          </article>
+
+          <!-- QR Preview Card (Centered style) -->
+          <article class="card" id="admin-qr-preview-card" style="display:none; text-align:center;">
+            <div class="card-header">
+              <h3><i class="fas fa-eye"></i> Generated QR Preview</h3>
+            </div>
+            <div class="card-body" style="display:flex; flex-direction:column; align-items:center; gap:20px; padding:30px;">
+              <div
+                style="padding:15px; border:2px solid #f0f0f0; border-radius:15px; background:white; box-shadow:inset 0 0 10px rgba(0,0,0,0.02);">
+                <img id="admin-qr-img" src="" alt="QR Code" style="width:200px; height:200px; display:block;">
+              </div>
+              <div>
+                <h4 id="admin-qr-dept-label" style="color:var(--maroon); font-size:18px;">Department Name</h4>
+                <p style="font-size:13px; color:#666;">Valid for 1st Sem 2026</p>
+              </div>
+              <div style="display:flex; gap:10px; width:100%;">
+                <button class="btn btn-outline" style="flex:1;" onclick="window.print()"><i
+                    class="fas fa-print"></i> Print</button>
+                <button class="btn btn-primary" style="flex:1;" onclick="admin_sendQR()"><i
+                    class="fas fa-paper-plane"></i> Send to Dept</button>
+              </div>
+              <div id="send-status-label" style="display:none; font-size:12px; color:var(--green); font-weight:700;">
+                <i class="fas fa-check-circle"></i> Sent to Department Successfully
+              </div>
+            </div>
+          </article>
+
+          <!-- Placeholder for Preview -->
+          <article class="card" id="admin-qr-placeholder"
+            style="text-align:center; display:flex; flex-direction:column; justify-content:center; color:#ccc; min-height:400px;">
+            <i class="fas fa-qrcode fa-5x" style="opacity:0.2; margin-bottom:20px;"></i>
+            <p>Fill out the form to generate and distribute a department QR code.</p>
+          </article>
+        </div>
+
+        <!-- QR Inventory Table -->
+        <article class="card" style="margin-top:24px;">
+          <div class="card-header">
+            <h3><i class="fas fa-list"></i> Department QR Inventory</h3>
+          </div>
+          <div class="card-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Department</th>
+                  <th>Semester</th>
+                  <th>Status</th>
+                  <th>Distribution</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="td-name">Library Department</td>
+                  <td>1st Sem 2026</td>
+                  <td><span class="badge approved">Active</span></td>
+                  <td><span class="badge approved" style="background:#e0f2fe; color:#0369a1; border-color:#bae6fd;">✅
+                      Sent</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-outline" onclick="admin_showQR('Library')">View</button>
+                    <button class="btn btn-sm btn-outline"
+                      style="color:var(--red-btn); border-color:var(--red-btn);">Disable</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="td-name">IT Office</td>
+                  <td>1st Sem 2026</td>
+                  <td><span class="badge approved">Active</span></td>
+                  <td><span class="badge approved" style="background:#e0f2fe; color:#0369a1; border-color:#bae6fd;">✅
+                      Sent</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-outline" onclick="admin_showQR('IT Office')">View</button>
+                    <button class="btn btn-sm btn-outline"
+                      style="color:var(--red-btn); border-color:var(--red-btn);">Disable</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="td-name">Registrar's Office</td>
+                  <td>1st Sem 2026</td>
+                  <td><span class="badge pending">Pending</span></td>
+                  <td><span class="badge" style="background:#f3f4f6; color:#4b5563; border-color:#e5e7eb;">Not
+                      Sent</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-primary">Generate</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <script>
+        function admin_generateQR() {
+          const dept = document.getElementById('qr-dept-select').value;
+          if (!dept) {
+            if (window.showAlert) showAlert('Selection Required', 'Please select a department first.', 'error');
+            return;
+          }
+
+          document.getElementById('admin-qr-placeholder').style.display = 'none';
+          document.getElementById('admin-qr-preview-card').style.display = 'block';
+          document.getElementById('admin-qr-img').src = 'https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=DEPT-' + dept.replace(/\s/g, '_') + '-SEM1_2026';
+          document.getElementById('admin-qr-dept-label').textContent = dept + ' QR Code';
+          document.getElementById('send-status-label').style.display = 'none';
+        }
+
+        function admin_sendQR() {
+          const btn = event.currentTarget;
+          btn.disabled = true;
+          btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+          setTimeout(() => {
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send to Dept';
+            document.getElementById('send-status-label').style.display = 'block';
+            if (window.showAlert) showAlert('Success', 'QR Code distributed to department dashboard.', 'success');
+          }, 1000);
+        }
+
+        function admin_showQR(dept) {
+          document.getElementById('qr-dept-select').value = dept;
+          admin_generateQR();
+          // Mark as already sent for existing ones
+          document.getElementById('send-status-label').style.display = 'block';
+        }
+      </script>
+
+      <!-- ╔══════════════════════════════════════════════
+     § USER MANAGEMENT
+══════════════════════════════════════════════╗ -->
       <section class="section" id="sec-users">
         <div class="section-header">
           <div>
