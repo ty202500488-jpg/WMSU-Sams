@@ -924,6 +924,440 @@
     </div>
   </div>
 
+  <button class="float-msg-btn" id="floatMsgBtn" onclick="togglePanel()" title="Messages">
+  <i class="fas fa-comment-dots"></i>
+  <span class="float-msg-badge" id="msgBadge"></span>
+</button>
+ 
+<!-- Toast -->
+<div class="msg-toast" id="msgToast">
+  <div class="toast-avatar" id="toastAvatar"></div>
+  <div class="toast-content">
+    <div class="toast-dept" id="toastDept"></div>
+    <div class="toast-text" id="toastText"></div>
+  </div>
+  <button class="toast-close" onclick="hideToast()"><i class="fas fa-times"></i></button>
+</div>
+ 
+<!-- Chat Panel -->
+<div class="msg-panel" id="msgPanel">
+ 
+  <!-- Header -->
+  <div class="msg-header">
+    <div class="msg-header-avatar" id="headerAvatar">
+      JD
+      <span class="online-dot"></span>
+    </div>
+    <div class="msg-header-info">
+      <div class="msg-header-name" id="headerName">Juan Dela Cruz</div>
+      <div class="msg-header-status">Active now</div>
+    </div>
+    <div class="msg-header-actions">
+      <button title="Call"><i class="fas fa-phone"></i></button>
+      <button title="Video"><i class="fas fa-video"></i></button>
+      <button title="Info"><i class="fas fa-info-circle"></i></button>
+      <button title="Close" onclick="togglePanel()"><i class="fas fa-times"></i></button>
+    </div>
+  </div>
+ 
+  <!-- Student Tabs -->
+  <div class="msg-dept-tabs" id="deptTabs"></div>
+ 
+  <!-- Body -->
+  <div class="msg-body" id="msgBody"></div>
+ 
+  <!-- Emoji Picker -->
+  <div class="emoji-picker" id="emojiPicker">
+    <span onclick="addEmoji('😊')">😊</span>
+    <span onclick="addEmoji('😂')">😂</span>
+    <span onclick="addEmoji('❤️')">❤️</span>
+    <span onclick="addEmoji('👍')">👍</span>
+    <span onclick="addEmoji('🔥')">🔥</span>
+    <span onclick="addEmoji('😍')">😍</span>
+    <span onclick="addEmoji('🎉')">🎉</span>
+    <span onclick="addEmoji('😢')">😢</span>
+    <span onclick="addEmoji('😎')">😎</span>
+    <span onclick="addEmoji('🙏')">🙏</span>
+    <span onclick="addEmoji('💯')">💯</span>
+    <span onclick="addEmoji('✅')">✅</span>
+  </div>
+ 
+  <!-- Footer -->
+  <div class="msg-footer">
+    <div class="msg-footer-actions">
+      <button title="Attach"><i class="fas fa-plus-circle"></i></button>
+    </div>
+    <div class="msg-input-wrap">
+      <input type="text" id="msgInput" placeholder="Aa"
+        oninput="onInputChange()"
+        onkeydown="if(event.key==='Enter') sendMsg()">
+      <button class="msg-emoji-btn" onclick="toggleEmoji()" title="Emoji">
+        <i class="fas fa-smile"></i>
+      </button>
+    </div>
+    <button class="msg-send-btn" id="sendBtn" onclick="sendMsg()" title="Send">
+      <i class="fas fa-paper-plane"></i>
+    </button>
+    <button class="msg-like-btn" id="likeBtn" onclick="sendLike()" title="Like">👍</button>
+  </div>
+</div>
+ 
+<script>
+/* ─── CONFIG ───────────────────────────────────────────── */
+/*
+  KEY ALIGNMENT:
+  Student side uses: sams_chat_IT_Office, sams_chat_Library, etc.
+  Employer side must use the SAME keys.
+  Each student maps to their assigned department channel.
+*/
+  localStorage.clear();
+const STUDENTS = [
+  { id: 'Juan_Dela_Cruz', initials: 'JD', name: 'Juan Dela Cruz', dept: 'IT Office',    color: '#1d4ed8' },
+  { id: 'Luz_Mendoza',    initials: 'LM', name: 'Luz Mendoza',    dept: 'Library',      color: '#7B0D1E' },
+  { id: 'Rosa_Flores',    initials: 'RF', name: 'Rosa Flores',    dept: 'Library',      color: '#0f766e' },
+  { id: 'Karl_Reyes',     initials: 'KR', name: 'Karl Reyes',     dept: 'Registrar',    color: '#7c3aed' }
+];
+ 
+/* Storage key matches the student side exactly */
+function storageKey(student) {
+  return 'sams_chat_' + student.dept.replace(/\s/g, '_');
+}
+function empUnreadKey(student) {
+  return 'sams_emp_unread_' + student.dept.replace(/\s/g, '_');
+}
+ 
+const STUDENT_UNREAD_KEY = 'sams_chat_unread_student';
+ 
+let currentStudentId = STUDENTS[0].id;
+let panelOpen = false;
+let lastCounts = {};
+ 
+/* ─── STORAGE ───────────────────────────────────────────── */
+function getConvo(student) {
+  try { return JSON.parse(localStorage.getItem(storageKey(student))) || []; }
+  catch(e) { return []; }
+}
+function saveConvo(student, msgs) {
+  localStorage.setItem(storageKey(student), JSON.stringify(msgs));
+}
+function currentStudent() {
+  return STUDENTS.find(s => s.id === currentStudentId);
+}
+ 
+/* ─── SEED ─── */
+function seedDefaults() {
+  if (!localStorage.getItem(STUDENTS_TO_KEY('IT Office'))) {
+    saveConvo('Juan Dela Cruz', [
+      { from:'dept', text:'Hello Juan! Your May 1 attendance has been approved.', time:'10:02 AM' },
+      { from:'student', text:'Thank you, Ms. Rodriguez!', time:'10:05 AM' }
+    ]);
+  }
+}
+/* ─── TIME ───────────────────────────────────────────────── */
+function formatTime() {
+  const now = new Date();
+  let h = now.getHours(), m = now.getMinutes();
+  const ap = h >= 12 ? 'PM' : 'AM';
+  h = h % 12 || 12;
+  return h + ':' + String(m).padStart(2,'0') + ' ' + ap;
+}
+function todayLabel() {
+  return new Date().toLocaleDateString('en-US', { weekday:'long', month:'short', day:'numeric' });
+}
+ 
+/* ─── RENDER ─────────────────────────────────────────────── */
+function renderConversation(student) {
+  const body = document.getElementById('msgBody');
+  const msgs = getConvo(student);
+ 
+  if (!msgs.length) {
+    body.innerHTML = `
+      <div class="empty-state">
+        <i class="fas fa-comments"></i>
+        <p>No messages yet with ${student.name}.<br>Start the conversation!</p>
+      </div>`;
+    lastCounts[student.id] = 0;
+    return;
+  }
+ 
+  body.innerHTML = '';
+ 
+  /* Date separator */
+  const sep = document.createElement('div');
+  sep.className = 'msg-date-sep';
+  sep.textContent = todayLabel();
+  body.appendChild(sep);
+ 
+  /* Group consecutive messages by sender */
+  let i = 0;
+  while (i < msgs.length) {
+    const sender = msgs[i].from;
+    const group = [];
+    while (i < msgs.length && msgs[i].from === sender) { group.push(msgs[i]); i++; }
+ 
+    /* employer sent = 'dept', student sent = 'student' */
+    const isSent = sender === 'dept';
+ 
+    const groupEl = document.createElement('div');
+    groupEl.className = 'bubble-group ' + (isSent ? 'sent' : 'received');
+ 
+    let bubblesWrap = groupEl;
+ 
+    if (!isSent) {
+      const avatarEl = document.createElement('div');
+      avatarEl.className = 'group-avatar';
+      avatarEl.style.background = student.color;
+      avatarEl.textContent = student.initials;
+      groupEl.appendChild(avatarEl);
+ 
+      bubblesWrap = document.createElement('div');
+      bubblesWrap.className = 'bubbles';
+      groupEl.appendChild(bubblesWrap);
+    } else {
+      const bubblesDiv = document.createElement('div');
+      bubblesDiv.className = 'bubbles';
+      groupEl.appendChild(bubblesDiv);
+      bubblesWrap = bubblesDiv;
+    }
+ 
+    group.forEach(function(msg) {
+      const bubble = document.createElement('div');
+      bubble.className = 'msg-bubble ' + (isSent ? 'sent' : 'received');
+ 
+      /* Reaction bar */
+      const reactions = document.createElement('div');
+      reactions.className = 'reaction-trigger';
+      reactions.innerHTML = ['❤️','😂','😮','😢','😡','👍'].map(e =>
+        `<span onclick="reactTo(this,'${e}')">${e}</span>`
+      ).join('');
+      bubble.appendChild(reactions);
+ 
+      bubble.appendChild(document.createTextNode(msg.text));
+      bubblesWrap.appendChild(bubble);
+    });
+ 
+    /* Time label */
+    const timeEl = document.createElement('div');
+    timeEl.className = 'msg-time-label';
+    timeEl.textContent = group[group.length - 1].time;
+    bubblesWrap.appendChild(timeEl);
+ 
+    /* Seen indicator for last sent group */
+    if (isSent && i >= msgs.length) {
+      body.appendChild(groupEl);
+      const seen = document.createElement('div');
+      seen.className = 'msg-seen';
+      seen.innerHTML = `<span class="seen-dot"><i class="fas fa-check"></i></span> Seen`;
+      body.appendChild(seen);
+      lastCounts[student.id] = msgs.length;
+      continue;
+    }
+ 
+    body.appendChild(groupEl);
+  }
+ 
+  lastCounts[student.id] = msgs.length;
+  body.scrollTop = body.scrollHeight;
+}
+ 
+/* ─── TABS ───────────────────────────────────────────────── */
+function buildTabs() {
+  const container = document.getElementById('deptTabs');
+  container.innerHTML = '';
+ 
+  STUDENTS.forEach(function(student) {
+    const tab = document.createElement('div');
+    tab.className = 'msg-dept-tab' + (student.id === currentStudentId ? ' active' : '');
+    tab.setAttribute('data-id', student.id);
+    tab.onclick = () => switchStudent(student.id);
+ 
+    const unread = getEmpUnread(student);
+    tab.innerHTML = `
+      <div class="tab-avatar" style="background:${student.color}">${student.initials}</div>
+      <span>${student.name.split(' ')[0]}</span>
+      <span class="tab-unread-badge" id="tab-badge-${student.id}" style="display:${unread > 0 ? 'flex' : 'none'}">${unread || ''}</span>
+    `;
+    container.appendChild(tab);
+  });
+}
+ 
+function switchStudent(id) {
+  currentStudentId = id;
+  const student = STUDENTS.find(s => s.id === id);
+ 
+  /* Update header */
+  const avatarEl = document.getElementById('headerAvatar');
+  avatarEl.innerHTML = student.initials + '<span class="online-dot"></span>';
+  avatarEl.style.background = 'rgba(255,255,255,.22)';
+  document.getElementById('headerName').textContent = student.name;
+ 
+  /* Update tabs */
+  document.querySelectorAll('.msg-dept-tab').forEach(t => {
+    t.classList.toggle('active', t.getAttribute('data-id') === id);
+  });
+ 
+  /* Clear unread */
+  clearEmpUnread(student);
+  const badge = document.getElementById('tab-badge-' + id);
+  if (badge) { badge.style.display = 'none'; badge.textContent = ''; }
+ 
+  renderConversation(student);
+}
+ 
+/* ─── UNREAD ─────────────────────────────────────────────── */
+function getEmpUnread(student) {
+  return parseInt(localStorage.getItem(empUnreadKey(student)) || '0');
+}
+function clearEmpUnread(student) {
+  localStorage.setItem(empUnreadKey(student), '0');
+  updateBadge();
+}
+ 
+function updateBadge() {
+  let total = STUDENTS.reduce((sum, s) => sum + getEmpUnread(s), 0);
+  const badge = document.getElementById('msgBadge');
+  if (total > 0 && !panelOpen) {
+    badge.textContent = total > 9 ? '9+' : total;
+    badge.style.display = 'flex';
+  } else {
+    badge.style.display = 'none';
+  }
+}
+ 
+/* ─── SEND ───────────────────────────────────────────────── */
+function sendMsg() {
+  const input = document.getElementById('msgInput');
+  const text = input.value.trim();
+  if (!text) return;
+ 
+  const student = currentStudent();
+  const msgs = getConvo(student);
+  msgs.push({ from: 'dept', text, time: formatTime() });
+  saveConvo(student, msgs);
+  input.value = '';
+  onInputChange();
+  renderConversation(student);
+ 
+  /* Notify student side */
+  const cur = parseInt(localStorage.getItem(STUDENT_UNREAD_KEY) || '0');
+  localStorage.setItem(STUDENT_UNREAD_KEY, cur + 1);
+}
+ 
+function sendLike() {
+  const student = currentStudent();
+  const msgs = getConvo(student);
+  msgs.push({ from: 'dept', text: '👍', time: formatTime() });
+  saveConvo(student, msgs);
+  renderConversation(student);
+}
+ 
+/* ─── EMOJI ──────────────────────────────────────────────── */
+function toggleEmoji() {
+  document.getElementById('emojiPicker').classList.toggle('open');
+}
+function addEmoji(e) {
+  const input = document.getElementById('msgInput');
+  input.value += e;
+  document.getElementById('emojiPicker').classList.remove('open');
+  input.focus();
+  onInputChange();
+}
+ 
+/* ─── INPUT ──────────────────────────────────────────────── */
+function onInputChange() {
+  const hasText = document.getElementById('msgInput').value.trim().length > 0;
+  document.getElementById('sendBtn').style.display = hasText ? 'flex' : 'none';
+  document.getElementById('likeBtn').style.display = hasText ? 'none' : 'flex';
+}
+ 
+/* ─── REACTION ───────────────────────────────────────────── */
+function reactTo(el, emoji) {
+  const bubble = el.closest('.msg-bubble');
+  let react = bubble.querySelector('.bubble-react');
+  if (!react) {
+    react = document.createElement('span');
+    react.className = 'bubble-react';
+    react.style.cssText = 'position:absolute;bottom:-16px;right:6px;font-size:14px;background:#fff;border-radius:10px;padding:1px 4px;box-shadow:0 1px 4px rgba(0,0,0,.2)';
+    bubble.appendChild(react);
+  }
+  react.textContent = emoji;
+}
+ 
+/* ─── TOAST ──────────────────────────────────────────────── */
+function showToast(student, text) {
+  const avatar = document.getElementById('toastAvatar');
+  avatar.textContent = student.initials;
+  avatar.style.background = student.color;
+  document.getElementById('toastDept').textContent = student.name;
+  document.getElementById('toastText').textContent = text;
+  document.getElementById('msgToast').classList.add('show');
+  setTimeout(hideToast, 4000);
+}
+function hideToast() {
+  document.getElementById('msgToast').classList.remove('show');
+}
+ 
+/* ─── PANEL ──────────────────────────────────────────────── */
+function togglePanel() {
+  panelOpen = !panelOpen;
+  document.getElementById('msgPanel').classList.toggle('open', panelOpen);
+  if (panelOpen) {
+    buildTabs();
+    switchStudent(currentStudentId);
+    setTimeout(() => document.getElementById('msgInput').focus(), 260);
+    updateBadge();
+  }
+}
+ 
+/* ─── POLLING (detect new student messages) ──────────────── */
+function startPolling() {
+  setInterval(() => {
+    STUDENTS.forEach(function(student) {
+      const msgs = getConvo(student);
+      const prev = lastCounts[student.id] !== undefined ? lastCounts[student.id] : msgs.length;
+ 
+      if (msgs.length > prev) {
+        const newMsgs = msgs.slice(prev).filter(m => m.from === 'student');
+        if (newMsgs.length > 0) {
+          const cur = getEmpUnread(student);
+          localStorage.setItem(empUnreadKey(student), cur + newMsgs.length);
+ 
+          if (panelOpen && student.id === currentStudentId) {
+            renderConversation(student);
+            clearEmpUnread(student);
+          } else {
+            showToast(student, newMsgs[newMsgs.length - 1].text);
+            buildTabs();
+            updateBadge();
+          }
+        }
+        lastCounts[student.id] = msgs.length;
+      }
+    });
+  }, 1500);
+}
+ 
+/* ─── CLOSE ON OUTSIDE CLICK ─────────────────────────────── */
+document.addEventListener('click', e => {
+  const panel = document.getElementById('msgPanel');
+  const btn = document.getElementById('floatMsgBtn');
+  const picker = document.getElementById('emojiPicker');
+ 
+  if (picker.classList.contains('open') && !picker.contains(e.target)) {
+    picker.classList.remove('open');
+  }
+  if (panelOpen && !panel.contains(e.target) && !btn.contains(e.target)) {
+    panelOpen = false;
+    panel.classList.remove('open');
+  }
+});
+ 
+/* ─── INIT ───────────────────────────────────────────────── */
+STUDENTS.forEach(s => { lastCounts[s.id] = getConvo(s).length; });
+buildTabs();
+updateBadge();
+startPolling();
+</script>
   <script>
     // ==================== MODAL HELPERS ====================
     function openModal(id) {
