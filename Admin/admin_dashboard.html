@@ -5797,15 +5797,18 @@ function umSwitchTab(btn, groupClass) {
   var sidebar = document.getElementById('adminSidebar');
   var overlay = document.getElementById('sidebarOverlay');
   if (!toggle || !sidebar || !overlay) return;
+
   function openSidebar() {
     sidebar.classList.add('open');
-    overlay.style.display = 'block';
+    overlay.classList.add('active');
     toggle.innerHTML = '<i class="fas fa-times"></i>';
+    document.body.style.overflow = 'hidden';
   }
   function closeSidebar() {
     sidebar.classList.remove('open');
-    overlay.style.display = 'none';
+    overlay.classList.remove('active');
     toggle.innerHTML = '<i class="fas fa-bars"></i>';
+    document.body.style.overflow = '';
   }
   toggle.addEventListener('click', function() {
     sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
@@ -5815,6 +5818,9 @@ function umSwitchTab(btn, groupClass) {
     lbl.addEventListener('click', function() {
       if (window.innerWidth <= 1024) closeSidebar();
     });
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeSidebar();
   });
 })();
 </script>

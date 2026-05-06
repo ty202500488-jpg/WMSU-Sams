@@ -219,53 +219,53 @@ html, body { overflow-x: hidden; }
 .sidebar-toggle {
     display: none;
     position: fixed;
-    top: 16px;
-    left: 16px;
-    z-index: 200;
-    background: var(--maroon, #7B0D1E);
+    top: 14px;
+    left: 14px;
+    z-index: 160;             /* above overlay (149) and sidebar (150) */
+    background: #7B0D1E;
     color: #fff;
     border: none;
     border-radius: 8px;
-    padding: 10px 12px;
-    font-size: 16px;
+    padding: 10px 13px;
+    font-size: 17px;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    transition: background 0.2s;
 }
+.sidebar-toggle:hover { background: #5a0915; }
+
+/* Overlay — always in DOM, toggled by JS */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 149;
+    cursor: pointer;
+}
+.sidebar-overlay.active { display: block; }
 
 @media screen and (max-width: 1200px) {
-    /* Admin: stat grid 4→2 */
     .stat-grid { grid-template-columns: repeat(2, 1fr) !important; }
     .dash-grid { grid-template-columns: 1fr !important; }
 }
 
 @media screen and (max-width: 1024px) {
-    /* Admin sidebar collapses */
-    .sidebar-toggle { display: block; }
+    .sidebar-toggle { display: flex; align-items: center; justify-content: center; }
     .sidebar {
         transform: translateX(-100%);
         transition: transform 0.3s ease;
         z-index: 150 !important;
     }
-    .sidebar.open { transform: translateX(0); }
-    /* Overlay when sidebar open */
-    .sidebar-overlay {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.45);
-        z-index: 140;
-    }
-    .sidebar.open ~ .sidebar-overlay { display: block; }
-
+    .sidebar.open { transform: translateX(0) !important; }
     .layout { margin-left: 0 !important; }
-    .topbar { padding: 0 16px 0 60px !important; }
+    .topbar { padding: 0 16px 0 62px !important; }
     .main-content { padding: 20px 16px !important; }
-
     .stat-grid { grid-template-columns: repeat(2, 1fr) !important; }
 }
 
 @media screen and (max-width: 768px) {
-    .topbar { height: 56px !important; padding: 0 12px 0 56px !important; }
+    .topbar { height: 56px !important; padding: 0 12px 0 58px !important; }
     .topbar-left h1 { font-size: 16px !important; }
     .topbar-left .page-title { display: none; }
     .topbar-right .topbar-notif { display: none; }
@@ -273,17 +273,14 @@ html, body { overflow-x: hidden; }
     .main-content { padding: 16px 12px !important; }
     .section-header { flex-direction: column; align-items: flex-start !important; gap: 12px !important; }
     .section-actions { flex-wrap: wrap; width: 100%; }
-    /* Tables scroll horizontally */
     .table-wrap, .data-table-wrap { overflow-x: auto; }
     table { min-width: 600px; }
-    /* Admin modal */
     .modal-overlay { padding: 12px !important; }
-    .modal-content,
-    .modal-body { max-width: 95vw !important; }
+    .modal-content, .modal-body { max-width: 95vw !important; }
 }
 
 @media screen and (max-width: 480px) {
-    .topbar { padding: 0 8px 0 52px !important; }
+    .topbar { padding: 0 8px 0 54px !important; }
     .user-name, .user-role { display: none; }
     .topbar-user { padding: 6px !important; }
     .stat-value { font-size: 26px !important; }
@@ -414,46 +411,133 @@ html, body { overflow-x: hidden; }
 
 /* ============================================================
    14. BOTTOM MOBILE NAVIGATION BAR
-   (Shown on mobile for Student & Employer dashboards)
+   Consistent across ALL Student & Employer pages.
    ============================================================ */
+
+/* ── Base bar (hidden on desktop) ── */
 .mobile-bottom-nav {
     display: none;
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    height: 58px;
+    /* Respect iPhone home-indicator safe area */
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    height: calc(62px + env(safe-area-inset-bottom, 0px));
     background: #fff;
-    box-shadow: 0 -2px 12px rgba(0,0,0,0.10);
-    z-index: 1000;
+    border-top: 1px solid #e8eaed;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+    z-index: 1050;
     flex-direction: row;
-    align-items: center;
+    align-items: stretch;
     justify-content: space-around;
-    border-top: 1px solid #e4e6eb;
 }
 
+/* ── Each nav item ── */
 .mobile-bottom-nav a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3px;
+    justify-content: center;
+    gap: 4px;
+    flex: 1;
     text-decoration: none;
-    color: #65676b;
+    color: #9ca3af;
     font-size: 10px;
     font-weight: 600;
-    padding: 6px 10px;
-    flex: 1;
-    transition: color 0.2s;
+    letter-spacing: 0.2px;
+    padding: 8px 4px 6px;
+    position: relative;
+    transition: color 0.18s ease;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.mobile-bottom-nav a i { font-size: 18px; }
-.mobile-bottom-nav a.active,
-.mobile-bottom-nav a:hover { color: #7B0D1E; }
+/* ── Icon size ── */
+.mobile-bottom-nav a i {
+    font-size: 19px;
+    line-height: 1;
+    transition: transform 0.18s ease, color 0.18s ease;
+}
 
+/* ── Label text ── */
+.mobile-bottom-nav a span {
+    font-size: 10px;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+/* ── Hover state ── */
+.mobile-bottom-nav a:hover {
+    color: #9e1a2e;
+}
+.mobile-bottom-nav a:hover i {
+    transform: translateY(-2px);
+}
+
+/* ── Active state — maroon top pip + colored icon ── */
+.mobile-bottom-nav a.active {
+    color: #7B0D1E;
+}
+.mobile-bottom-nav a.active i {
+    color: #7B0D1E;
+}
+.mobile-bottom-nav a.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20%;
+    right: 20%;
+    height: 3px;
+    background: #7B0D1E;
+    border-radius: 0 0 4px 4px;
+}
+
+/* ── Show on mobile ── */
 @media screen and (max-width: 768px) {
     .mobile-bottom-nav { display: flex; }
-    /* Add bottom padding to body so content isn't hidden behind nav */
-    body { padding-bottom: 58px; }
+    /* Push page content above the nav bar */
+    body { padding-bottom: calc(62px + env(safe-area-inset-bottom, 0px)); }
+
+    /* ── Float chat button — lift above bottom nav ── */
+    .float-msg-btn {
+        bottom: calc(62px + env(safe-area-inset-bottom, 0px) + 14px) !important;
+        right: 16px !important;
+        width: 50px !important;
+        height: 50px !important;
+        font-size: 20px !important;
+        z-index: 1100 !important;  /* above mobile-bottom-nav (1050) */
+    }
+
+    /* ── Chat panel — bottom sheet above nav bar ── */
+    .msg-panel {
+        bottom: calc(62px + env(safe-area-inset-bottom, 0px)) !important;
+        right: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 78vh !important;
+        border-radius: 20px 20px 0 0 !important;
+        z-index: 1200 !important;  /* above everything */
+    }
+
+    /* ── Toast notification — above the panel ── */
+    .msg-toast {
+        bottom: calc(62px + env(safe-area-inset-bottom, 0px) + 80px) !important;
+        z-index: 1300 !important;
+    }
+}
+
+/* ── Extra small phones: tighter icon ── */
+@media screen and (max-width: 360px) {
+    .mobile-bottom-nav a { padding: 6px 2px 4px; }
+    .mobile-bottom-nav a i { font-size: 17px; }
+    .mobile-bottom-nav a span { font-size: 9px; }
+    .float-msg-btn {
+        bottom: calc(62px + 10px) !important;
+        right: 10px !important;
+        width: 44px !important;
+        height: 44px !important;
+        font-size: 18px !important;
+    }
 }
 
 /* ============================================================
