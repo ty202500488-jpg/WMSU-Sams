@@ -48,7 +48,7 @@
   }
 
   body {
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
     background: var(--gray-100);
     color: var(--gray-700);
     min-height: 100vh;
@@ -86,7 +86,7 @@
   }
 
   .logo-text .abbr {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
     font-size: 27px;
     font-weight: 800;
     color: var(--gold-light);
@@ -244,7 +244,7 @@
   }
 
   .topbar-left h1 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
     font-size: 20px;
     font-weight: 700;
     color: var(--maroon);
@@ -474,7 +474,7 @@
   }
 
   .section-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
     font-size: 26px;
     font-weight: 700;
     color: var(--maroon);
@@ -599,7 +599,7 @@
   }
 
   .stat-value {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
     font-size: 36px;
     font-weight: 800;
     color: var(--gray-800);
@@ -638,7 +638,7 @@
   }
 
   .card-header h3 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
     font-size: 17px;
     font-weight: 700;
     color: var(--gray-800);
@@ -1726,7 +1726,7 @@ button,
   }
 
   .pos-name {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
     font-size: 17px;
     font-weight: 700;
     color: var(--maroon);
@@ -1799,7 +1799,7 @@ button,
   }
 
   .report-stat-val {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
     font-size: 42px;
     font-weight: 800;
     color: var(--maroon);
@@ -1883,7 +1883,7 @@ button,
   }
 
   .status-box-val {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
     font-size: 30px;
     font-weight: 800;
     line-height: 1;
