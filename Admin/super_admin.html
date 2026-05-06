@@ -104,6 +104,7 @@
     <input class="nav-radio" type="radio" name="nav" id="nav-dashboard" checked />
     <input class="nav-radio" type="radio" name="nav" id="nav-admin-management" />
     <input class="nav-radio" type="radio" name="nav" id="nav-global-settings" />
+    <input class="nav-radio" type="radio" name="nav" id="nav-maintenance" />
     <input class="nav-radio" type="radio" name="nav" id="nav-audit-logs" />
     <input class="nav-radio" type="radio" name="nav" id="nav-system-override" />
     <input class="nav-radio" type="radio" name="nav" id="nav-backup-data" />
@@ -139,6 +140,11 @@
                 <div class="nav-item">
                     <label for="nav-global-settings">
                         <i class="fas fa-users-cog"></i> Global System Settings
+                    </label>
+                </div>
+                <div class="nav-item">
+                    <label for="nav-maintenance">
+                        <i class="fas fa-tools"></i> Maintenance & Announcements
                     </label>
                 </div>
                 <div class="nav-item">
@@ -335,131 +341,420 @@
             </section>
             <!-- ══════════════════ GLOBAL SYSTEM SETTINGS ══════════════════ -->
             <section id="sec-global-settings" class="section">
+            <div class="section-header">
+                <div>
+                <div class="section-title">Global System Settings</div>
+                <p class="section-sub">Configure CPPPESO-wide rules: school year, application policies, payroll parameters, and eligibility requirements for WMSU SAMS.</p>
+                </div>
+                <div class="section-actions">
+                <button class="btn btn-outline" onclick="resetSettingsToDefault()">Reset to Default</button>
+                <button class="btn btn-primary" id="btn-save-settings">Save Settings</button>
+                </div>
+            </div>
+
+            <form id="settings-form">
+
+                <!-- ── Academic Period ── -->
+                <article class="card" style="margin-bottom:20px;">
+                <div class="card-header">
+                    <h3><i class="fas fa-calendar-alt"></i> Academic Period</h3>
+                </div>
+                <div class="card-body">
+                    <div class="settings-grid-3">
+                    <div class="settings-field-group">
+                        <label class="field-label">Current School Year <span style="color:red">*</span></label>
+                        <input name="current_school_year" placeholder="e.g. AY 2025-2026" class="field-input" required />
+                    </div>
+                    <div class="settings-field-group">
+                        <label class="field-label">Current Semester</label>
+                        <select name="current_semester" class="field-input">
+                        <option value="1st">1st Semester</option>
+                        <option value="2nd">2nd Semester</option>
+                        <option value="summer">Summer</option>
+                        </select>
+                    </div>
+                    <div class="settings-field-group">
+                        <label class="field-label">Application Status</label>
+                        <select name="application_open" class="field-input">
+                        <option value="true">Open — Accepting Applications</option>
+                        <option value="false">Closed — Not Accepting</option>
+                        </select>
+                    </div>
+                    </div>
+                </div>
+                </article>
+
+                <!-- ── Application Deadlines ── -->
+                <article class="card" style="margin-bottom:20px;">
+                <div class="card-header">
+                    <h3><i class="fas fa-calendar-check"></i> Application Deadlines</h3>
+                </div>
+                <div class="card-body">
+                    <div class="settings-grid-3">
+                    <div class="settings-field-group">
+                        <label class="field-label">Application Deadline</label>
+                        <input name="application_deadline" type="date" class="field-input" />
+                    </div>
+                    <div class="settings-field-group">
+                        <label class="field-label">Interview Start Date</label>
+                        <input name="interview_start_date" type="date" class="field-input" />
+                    </div>
+                    <div class="settings-field-group">
+                        <label class="field-label">Deployment Date</label>
+                        <input name="deployment_date" type="date" class="field-input" />
+                    </div>
+                    </div>
+                </div>
+                </article>
+
+                <!-- ── System Behavior ── -->
+                <article class="card" style="margin-bottom:20px;">
+                <div class="card-header">
+                    <h3><i class="fas fa-sliders-h"></i> System Behavior</h3>
+                </div>
+                <div class="card-body">
+                    <div class="settings-grid-2">
+                    <div class="settings-field-group">
+                        <label class="field-label">Allow Student Self-Registration</label>
+                        <select name="allow_self_registration" class="field-input">
+                        <option value="true">Yes — Students can register themselves</option>
+                        <option value="false">No — Admin creates accounts only</option>
+                        </select>
+                    </div>
+                    <div class="settings-field-group">
+                        <label class="field-label">Require Department Approval for SA Assignment</label>
+                        <select name="require_dept_approval" class="field-input">
+                        <option value="true">Yes — Department head must approve</option>
+                        <option value="false">No — Admin approval only</option>
+                        </select>
+                    </div>
+                    <div class="settings-field-group">
+                        <label class="field-label">Allow Students to View Payroll Details</label>
+                        <select name="student_payroll_visibility" class="field-input">
+                        <option value="true">Yes — Students can see their own payroll</option>
+                        <option value="false">No — Hidden from students</option>
+                        </select>
+                    </div>
+                    <div class="settings-field-group">
+                        <label class="field-label">Attendance Grace Period (minutes)</label>
+                        <input name="attendance_grace_minutes" type="number" min="0" max="60" placeholder="e.g. 15" class="field-input" />
+                    </div>
+                    </div>
+                </div>
+                </article>
+
+                <!-- ── Payroll Configuration ── -->
+                <article class="card" style="margin-bottom:20px;">
+                <div class="card-header">
+                    <h3><i class="fas fa-calculator"></i> Payroll Configuration</h3>
+                </div>
+                <div class="card-body">
+                    <div class="settings-grid-3">
+                    <div class="settings-field-group">
+                        <label class="field-label">Hourly Rate (₱) <span style="color:red">*</span></label>
+                        <input name="payroll_rate_per_hour" type="number" min="0" step="0.01" placeholder="e.g. 45.00" class="field-input" required />
+                    </div>
+                    <div class="settings-field-group">
+                        <label class="field-label">Max Hours Per Month</label>
+                        <input name="max_hours_per_month" type="number" min="1" placeholder="e.g. 80" class="field-input" />
+                    </div>
+                    <div class="settings-field-group">
+                        <label class="field-label">Payroll Cutoff Day</label>
+                        <input name="payroll_cutoff_day" type="number" min="1" max="31" placeholder="e.g. 15" class="field-input" />
+                    </div>
+                    </div>
+                </div>
+                </article>
+
+                <!-- ── Student Assistant Quota ── -->
+                <article class="card" style="margin-bottom:20px;">
+                <div class="card-header">
+                    <h3><i class="fas fa-users"></i> Student Assistant Quota</h3>
+                </div>
+                <div class="card-body">
+                    <div class="settings-grid-2">
+                    <div class="settings-field-group">
+                        <label class="field-label">Max Student Assistants per Office / Section <span style="color:red">*</span></label>
+                        <input name="max_assistants_per_department" type="number" min="1" placeholder="e.g. 10" class="field-input" required />
+                    </div>
+                    <div class="settings-field-group">
+                        <label class="field-label">Total System Capacity (All Offices)</label>
+                        <input name="total_system_capacity" type="number" min="1" placeholder="e.g. 200" class="field-input" />
+                    </div>
+                    </div>
+                </div>
+                </article>
+
+                <!-- ── Eligibility Requirements ── -->
+                <article class="card" style="margin-bottom:20px;">
+                <div class="card-header">
+                    <h3><i class="fas fa-graduation-cap"></i> Eligibility Requirements</h3>
+                </div>
+                <div class="card-body">
+                    <div class="settings-grid-3" style="margin-bottom:0;">
+                    <div class="settings-field-group">
+                        <label class="field-label">Minimum GWA Required</label>
+                        <input name="minimum_gwa" type="number" min="1" max="5" step="0.01" placeholder="e.g. 2.50" class="field-input" />
+                    </div>
+                    <div class="settings-field-group">
+                        <label class="field-label">Minimum Year Level</label>
+                        <select name="minimum_year_level" class="field-input">
+                        <option value="1">1st Year</option>
+                        <option value="2" selected>2nd Year</option>
+                        <option value="3">3rd Year</option>
+                        <option value="4">4th Year</option>
+                        </select>
+                    </div>
+                    <div class="settings-field-group">
+                        <label class="field-label">Allow Concurrent Scholarship</label>
+                        <select name="allow_concurrent_scholarship" class="field-input">
+                        <option value="false">No — Exclusive to SAMS only</option>
+                        <option value="true">Yes — Allow Concurrent</option>
+                        </select>
+                    </div>
+                    </div>
+                </div>
+                </article>
+
+                <!-- ── Required Documents ── -->
+                <article class="card" style="margin-bottom:20px;">
+                <div class="card-header">
+                    <h3><i class="fas fa-file-alt"></i> Required Documents for Application</h3>
+                </div>
+                <div class="card-body">
+                    <div class="settings-checkbox-grid">
+                    <label class="settings-check-item"><input type="checkbox" name="req_cor" checked> Certificate of Registration (COR)</label>
+                    <label class="settings-check-item"><input type="checkbox" name="req_grades" checked> Official Grades / Transcript</label>
+                    <label class="settings-check-item"><input type="checkbox" name="req_medical" checked> Medical Certificate</label>
+                    <label class="settings-check-item"><input type="checkbox" name="req_barangay"> Barangay Certification</label>
+                    <label class="settings-check-item"><input type="checkbox" name="req_photo" checked> 2×2 ID Photo</label>
+                    <label class="settings-check-item"><input type="checkbox" name="req_essay"> Motivation Essay</label>
+                    </div>
+                </div>
+                </article>
+
+                <!-- ── Notification Settings ── -->
+                <article class="card">
+                <div class="card-header">
+                    <h3><i class="fas fa-bell"></i> Notification Settings</h3>
+                </div>
+                <div class="card-body">
+                    <div class="settings-checkbox-grid">
+                    <label class="settings-check-item"><input type="checkbox" name="notify_student_on_approval" checked> Email student on approval</label>
+                    <label class="settings-check-item"><input type="checkbox" name="notify_student_on_rejection" checked> Email student on rejection</label>
+                    <label class="settings-check-item"><input type="checkbox" name="notify_admin_on_new_application" checked> Email admin on new application</label>
+                    <label class="settings-check-item"><input type="checkbox" name="notify_payroll_release" checked> Notify students when payroll releases</label>
+                    <label class="settings-check-item"><input type="checkbox" name="notify_attendance_anomaly" checked> Alert admin on attendance anomaly</label>
+                    <label class="settings-check-item"><input type="checkbox" name="notify_deadline_reminder"> Send deadline reminders to students</label>
+                    </div>
+                </div>
+                </article>
+
+            </form>
+            </section>
+
+            <!-- ══════════════════ MAINTENANCE & ANNOUNCEMENTS ══════════════════ -->
+            <section id="sec-maintenance" class="section">
                 <div class="section-header">
                     <div>
-                        <div class="section-title">Global System Settings</div>
-                        <p class="section-sub">Configure CPPPESO-wide rules: school year, application policies, payroll parameters, and eligibility requirements for WMSU SAMS.</p>
+                        <div class="section-title">Maintenance & Announcements</div>
+                        <p class="section-sub">Schedule downtime windows and broadcast system-wide messages to all users.</p>
                     </div>
                     <div class="section-actions">
-                        <button class="btn btn-primary" id="btn-save-settings">Save Settings</button>
-                        <button class="btn btn-outline" onclick="resetSettingsToDefault()">Reset to Default</button>
+                        <button class="btn btn-primary" id="btn-save-maintenance">Save Settings</button>
+                        <button class="btn btn-outline" onclick="resetMaintenance()">Reset</button>
                     </div>
                 </div>
 
-                <article class="card">
+                <!-- Status strip -->
+                <div class="stat-grid" style="margin-bottom:16px;">
+                    <div class="stat-card maroon">
+                        <div class="stat-card-top">
+                            <div>
+                                <div class="stat-value" style="font-size:14px;" id="maint-status-val">Offline</div>
+                                <div class="stat-label">Maintenance Status</div>
+                            </div>
+                            <div class="stat-icon maroon"><i class="fas fa-tools"></i></div>
+                        </div>
+                    </div>
+                    <div class="stat-card gold">
+                        <div class="stat-card-top">
+                            <div>
+                                <div class="stat-value" style="font-size:14px;" id="maint-window-val">Not scheduled</div>
+                                <div class="stat-label">Next Window</div>
+                            </div>
+                            <div class="stat-icon gold"><i class="fas fa-clock"></i></div>
+                        </div>
+                    </div>
+                    <div class="stat-card green">
+                        <div class="stat-card-top">
+                            <div>
+                                <div class="stat-value" id="ann-status-val">None</div>
+                                <div class="stat-label">Active Announcement</div>
+                            </div>
+                            <div class="stat-icon green"><i class="fas fa-bullhorn"></i></div>
+                        </div>
+                    </div>
+                    <div class="stat-card blue">
+                        <div class="stat-card-top">
+                            <div>
+                                <div class="stat-value" id="ann-history-count">3</div>
+                                <div class="stat-label">Past Announcements</div>
+                            </div>
+                            <div class="stat-icon blue"><i class="fas fa-history"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Maintenance window card -->
+                <article class="card" style="border-left:4px solid #d97706;margin-bottom:16px;">
+                    <div class="card-header" style="background:#fffbeb;">
+                        <h3 style="color:#b45309;"><i class="fas fa-tools"></i> Maintenance Window</h3>
+                        <p style="font-size:12px;color:#666;margin:4px 0 0;">Schedule when the system enters read-only or full offline mode.</p>
+                    </div>
                     <div class="card-body">
-                        <form id="settings-form">
-
-                            <!-- Academic Period -->
-                            <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#7a0024;margin:0 0 12px;padding-bottom:6px;border-bottom:2px solid #f3f4f6;">Academic Period</div>
-                            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px;">
-                                <div>
-                                    <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Current School Year <span style="color:red">*</span></label>
-                                    <input name="current_school_year" placeholder="e.g. AY 2025-2026" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;" required />
-                                </div>
-                                <div>
-                                    <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Current Semester</label>
-                                    <select name="current_semester" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;">
-                                        <option value="1st">1st Semester</option>
-                                        <option value="2nd">2nd Semester</option>
-                                        <option value="summer">Summer</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Application Status</label>
-                                    <select name="application_open" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;">
-                                        <option value="true">Open &mdash; Accepting Applications</option>
-                                        <option value="false">Closed &mdash; Not Accepting</option>
-                                    </select>
-                                </div>
+                        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border:1.5px solid #e5e7eb;border-radius:8px;background:#fafafa;margin-bottom:16px;" id="maint-toggle-row">
+                            <div>
+                                <div style="font-size:13px;font-weight:600;">Enable maintenance mode</div>
+                                <div style="font-size:12px;color:#666;margin-top:2px;" id="maint-toggle-sub">System is currently live and accepting all operations</div>
                             </div>
-
-                            <!-- Application Deadlines -->
-                            <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#7a0024;margin:0 0 12px;padding-bottom:6px;border-bottom:2px solid #f3f4f6;">Application Deadlines</div>
-                            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px;">
-                                <div>
-                                    <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Application Deadline</label>
-                                    <input name="application_deadline" type="date" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;" required />
-                                </div>
-                                <div>
-                                    <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Interview Start Date</label>
-                                    <input name="interview_start_date" type="date" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;" />
-                                </div>
-                                <div>
-                                    <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Deployment Date</label>
-                                    <input name="deployment_date" type="date" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;" />
-                                </div>
+                            <input type="checkbox" id="maintenance_mode" style="width:18px;height:18px;accent-color:#b45309;cursor:pointer;" onchange="onMaintToggle(this)">
+                        </div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px;">
+                            <div>
+                                <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Start date & time <span style="color:red">*</span></label>
+                                <input name="maintenance_start" type="datetime-local" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;" onchange="updateMaintStats()">
                             </div>
-
-                            <!-- Payroll Configuration -->
-                            <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#7a0024;margin:0 0 12px;padding-bottom:6px;border-bottom:2px solid #f3f4f6;">Payroll Configuration</div>
-                            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px;">
-                                <div>
-                                    <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Hourly Rate (&#8369;) <span style="color:red">*</span></label>
-                                    <input name="payroll_rate_per_hour" type="number" min="0" step="0.01" placeholder="e.g. 45.00" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;" required />
-                                </div>
-                                <div>
-                                    <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Max Hours Per Month</label>
-                                    <input name="max_hours_per_month" type="number" min="1" placeholder="e.g. 80" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;" />
-                                </div>
-                                <div>
-                                    <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Payroll Cutoff Day</label>
-                                    <input name="payroll_cutoff_day" type="number" min="1" max="31" placeholder="e.g. 15" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;" />
-                                </div>
+                            <div>
+                                <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">End date & time <span style="color:red">*</span></label>
+                                <input name="maintenance_end" type="datetime-local" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;" onchange="updateMaintStats()">
                             </div>
-
-                            <!-- Student Assistant Quota -->
-                            <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#7a0024;margin:0 0 12px;padding-bottom:6px;border-bottom:2px solid #f3f4f6;">Student Assistant Quota</div>
-                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
-                                <div>
-                                    <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Max Student Assistants per Office/Section <span style="color:red">*</span></label>
-                                    <input name="max_assistants_per_department" type="number" min="1" placeholder="e.g. 10" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;" required />
-                                </div>
-                                <div>
-                                    <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Total System Capacity (All Offices)</label>
-                                    <input name="total_system_capacity" type="number" min="1" placeholder="e.g. 200" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;" />
-                                </div>
+                            <div>
+                                <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Scope</label>
+                                <select name="maintenance_scope" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;">
+                                    <option value="readonly">Read-only</option>
+                                    <option value="full">Full offline</option>
+                                    <option value="partial">Partial modules</option>
+                                </select>
                             </div>
-
-                            <!-- Required Documents -->
-                            <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#7a0024;margin:0 0 12px;padding-bottom:6px;border-bottom:2px solid #f3f4f6;">Required Documents for Application</div>
-                            <div style="margin-bottom:20px;">
-                                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
-                                    <label style="display:flex;align-items:center;gap:8px;font-size:13px;"><input type="checkbox" name="req_cor" checked style="accent-color:#7a0024;"> Certificate of Registration (COR)</label>
-                                    <label style="display:flex;align-items:center;gap:8px;font-size:13px;"><input type="checkbox" name="req_grades" checked style="accent-color:#7a0024;"> Official Grades / Transcript</label>
-                                    <label style="display:flex;align-items:center;gap:8px;font-size:13px;"><input type="checkbox" name="req_medical" checked style="accent-color:#7a0024;"> Medical Certificate</label>
-                                    <label style="display:flex;align-items:center;gap:8px;font-size:13px;"><input type="checkbox" name="req_barangay" style="accent-color:#7a0024;"> Barangay Certification</label>
-                                    <label style="display:flex;align-items:center;gap:8px;font-size:13px;"><input type="checkbox" name="req_photo" checked style="accent-color:#7a0024;"> 2x2 ID Photo</label>
-                                    <label style="display:flex;align-items:center;gap:8px;font-size:13px;"><input type="checkbox" name="req_essay" style="accent-color:#7a0024;"> Motivation Essay</label>
-                                </div>
+                        </div>
+                        <div style="margin-bottom:16px;">
+                            <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Message shown to users <span style="color:red">*</span></label>
+                            <textarea name="maintenance_message" maxlength="280" rows="3" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;resize:vertical;font-family:inherit;" placeholder="e.g. WMSU SAMS is currently undergoing scheduled maintenance..." oninput="updateMaintPreview(this.value)"></textarea>
+                        </div>
+                        <div>
+                            <label style="font-size:12px;font-weight:600;display:block;margin-bottom:6px;color:#666;">Preview — what users will see</label>
+                            <div style="background:#fffbeb;border:1px solid #fcd34d;border-radius:8px;padding:12px 16px;display:flex;align-items:center;gap:10px;font-size:13px;">
+                                <i class="fas fa-tools" style="color:#b45309;"></i>
+                                <span id="maint-preview-text" style="color:#92400e;">Enter a message above to preview it here.</span>
                             </div>
+                        </div>
+                    </div>
+                </article>
 
-                            <!-- Eligibility Requirements -->
-                            <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#7a0024;margin:0 0 12px;padding-bottom:6px;border-bottom:2px solid #f3f4f6;">Eligibility Requirements</div>
-                            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:8px;">
-                                <div>
-                                    <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Minimum GWA Required</label>
-                                    <input name="minimum_gwa" type="number" min="1" max="5" step="0.01" placeholder="e.g. 2.50" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;" />
-                                </div>
-                                <div>
-                                    <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Minimum Year Level</label>
-                                    <select name="minimum_year_level" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;">
-                                        <option value="1">1st Year</option>
-                                        <option value="2" selected>2nd Year</option>
-                                        <option value="3">3rd Year</option>
-                                        <option value="4">4th Year</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Allow Concurrent Scholarship</label>
-                                    <select name="allow_concurrent_scholarship" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;">
-                                        <option value="false">No &mdash; Exclusive to SAMS only</option>
-                                        <option value="true">Yes &mdash; Allow Concurrent</option>
-                                    </select>
-                                </div>
+                <!-- Announcement banner card -->
+                <article class="card" style="border-left:4px solid #2563eb;margin-bottom:16px;">
+                    <div class="card-header" style="background:#eff6ff;">
+                        <h3 style="color:#1d4ed8;"><i class="fas fa-bullhorn"></i> System Announcement Banner</h3>
+                        <p style="font-size:12px;color:#666;margin:4px 0 0;">Pinned banner displayed across all dashboards until dismissed or expired.</p>
+                    </div>
+                    <div class="card-body">
+                        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border:1.5px solid #e5e7eb;border-radius:8px;background:#fafafa;margin-bottom:16px;">
+                            <div>
+                                <div style="font-size:13px;font-weight:600;">Show announcement banner</div>
+                                <div style="font-size:12px;color:#666;margin-top:2px;">No announcement banner is currently active</div>
                             </div>
+                            <input type="checkbox" id="announcement_active" style="width:18px;height:18px;accent-color:#2563eb;cursor:pointer;" onchange="onAnnToggle(this)">
+                        </div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px;">
+                            <div>
+                                <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Banner type</label>
+                                <select name="announcement_type" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;" onchange="updateAnnPreview()">
+                                    <option value="info">Info (blue)</option>
+                                    <option value="warning">Warning (yellow)</option>
+                                    <option value="urgent">Urgent (red)</option>
+                                    <option value="success">Success (green)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Show from</label>
+                                <input name="announcement_start" type="datetime-local" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;">
+                            </div>
+                            <div>
+                                <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Auto-expire on</label>
+                                <input name="announcement_expires" type="datetime-local" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;">
+                            </div>
+                        </div>
+                        <div style="margin-bottom:16px;">
+                            <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Announcement message <span style="color:red">*</span></label>
+                            <textarea name="announcement_message" maxlength="200" rows="2" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;resize:vertical;font-family:inherit;" placeholder="e.g. Payroll for May 1–15 has been released." oninput="updateAnnPreview()"></textarea>
+                        </div>
+                        <div style="margin-bottom:16px;">
+                            <label style="font-size:13px;font-weight:600;display:block;margin-bottom:6px;">Target audience</label>
+                            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                                <label style="display:flex;align-items:center;gap:6px;font-size:13px;padding:6px 12px;border:1.5px solid #e5e7eb;border-radius:100px;cursor:pointer;background:#fafafa;"><input type="checkbox" name="ann_target_all" checked style="accent-color:#2563eb;"> All users</label>
+                                <label style="display:flex;align-items:center;gap:6px;font-size:13px;padding:6px 12px;border:1.5px solid #e5e7eb;border-radius:100px;cursor:pointer;background:#fafafa;"><input type="checkbox" name="ann_target_students" style="accent-color:#2563eb;"> Students</label>
+                                <label style="display:flex;align-items:center;gap:6px;font-size:13px;padding:6px 12px;border:1.5px solid #e5e7eb;border-radius:100px;cursor:pointer;background:#fafafa;"><input type="checkbox" name="ann_target_dept" style="accent-color:#2563eb;"> Dept. admins</label>
+                                <label style="display:flex;align-items:center;gap:6px;font-size:13px;padding:6px 12px;border:1.5px solid #e5e7eb;border-radius:100px;cursor:pointer;background:#fafafa;"><input type="checkbox" name="ann_target_staff" style="accent-color:#2563eb;"> CPPPESO staff</label>
+                            </div>
+                        </div>
+                        <div style="margin-bottom:16px;">
+                            <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Allow users to dismiss</label>
+                            <select name="announcement_dismissible" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;">
+                                <option value="yes">Yes — users can close the banner</option>
+                                <option value="no">No — always visible until expiry</option>
+                                <option value="session">Once per session</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style="font-size:12px;font-weight:600;display:block;margin-bottom:6px;color:#666;">Live preview</label>
+                            <div id="ann-preview-bar" style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:12px 16px;display:flex;align-items:center;gap:10px;font-size:13px;">
+                                <i id="ann-preview-icon" class="fas fa-info-circle" style="color:#1d4ed8;"></i>
+                                <span id="ann-preview-text" style="color:#1e40af;font-style:italic;">Type a message above to preview the banner.</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
 
-                        </form>
+                <!-- Notify admins card -->
+                <article class="card" style="border-left:4px solid #059669;">
+                    <div class="card-header" style="background:#ecfdf5;">
+                        <h3 style="color:#065f46;"><i class="fas fa-bell"></i> Notify Admins Before Maintenance</h3>
+                        <p style="font-size:12px;color:#666;margin:4px 0 0;">Auto-send alerts to CPPPESO staff before the maintenance window starts.</p>
+                    </div>
+                    <div class="card-body">
+                        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px;">
+                            <div>
+                                <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">First notice</label>
+                                <select name="notify_first" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;">
+                                    <option value="24h">24 hours before</option>
+                                    <option value="12h" selected>12 hours before</option>
+                                    <option value="6h">6 hours before</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Second notice</label>
+                                <select name="notify_second" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;">
+                                    <option value="2h" selected>2 hours before</option>
+                                    <option value="1h">1 hour before</option>
+                                    <option value="none">None</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">Final notice</label>
+                                <select name="notify_final" style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;box-sizing:border-box;">
+                                    <option value="15m" selected>15 minutes before</option>
+                                    <option value="30m">30 minutes before</option>
+                                    <option value="none">None</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;">
+                            <label style="display:flex;align-items:center;gap:8px;font-size:13px;padding:10px 12px;border:1.5px solid #e5e7eb;border-radius:8px;cursor:pointer;background:#fafafa;"><input type="checkbox" name="notify_inapp" checked style="accent-color:#059669;"> In-app notification (bell)</label>
+                            <label style="display:flex;align-items:center;gap:8px;font-size:13px;padding:10px 12px;border:1.5px solid #e5e7eb;border-radius:8px;cursor:pointer;background:#fafafa;"><input type="checkbox" name="notify_email" checked style="accent-color:#059669;"> Email alert to all admins</label>
+                            <label style="display:flex;align-items:center;gap:8px;font-size:13px;padding:10px 12px;border:1.5px solid #e5e7eb;border-radius:8px;cursor:pointer;background:#fafafa;"><input type="checkbox" name="notify_banner" style="accent-color:#059669;"> Dashboard banner warning</label>
+                            <label style="display:flex;align-items:center;gap:8px;font-size:13px;padding:10px 12px;border:1.5px solid #e5e7eb;border-radius:8px;cursor:pointer;background:#fafafa;"><input type="checkbox" name="notify_sms" style="accent-color:#059669;"> SMS (requires gateway setup)</label>
+                        </div>
                     </div>
                 </article>
             </section>
