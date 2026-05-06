@@ -524,57 +524,119 @@
             <form id="settings-form">
 
                 <!-- ── Academic Period ── -->
-                <article class="card" style="margin-bottom:20px;">
-                <div class="card-header">
-                    <h3><i class="fas fa-calendar-alt"></i> Academic Period</h3>
-                </div>
-                <div class="card-body">
-                    <div class="settings-grid-3">
-                    <div class="settings-field-group">
-                        <label class="field-label">Current School Year <span style="color:red">*</span></label>
-                        <input name="current_school_year" placeholder="e.g. AY 2025-2026" class="field-input" required />
-                    </div>
-                    <div class="settings-field-group">
-                        <label class="field-label">Current Semester</label>
-                        <select name="current_semester" class="field-input">
-                        <option value="1st">1st Semester</option>
-                        <option value="2nd">2nd Semester</option>
-                        <option value="summer">Summer</option>
-                        </select>
-                    </div>
-                    <div class="settings-field-group">
-                        <label class="field-label">Application Status</label>
-                        <select name="application_open" class="field-input">
-                        <option value="true">Open — Accepting Applications</option>
-                        <option value="false">Closed — Not Accepting</option>
-                        </select>
-                    </div>
-                    </div>
-                </div>
-                </article>
+<article class="card" style="margin-bottom:20px;">
+  <div class="card-header">
+    <h3><i class="fas fa-calendar-alt"></i> Academic Period & Deadlines</h3>
+  </div>
+  <div class="card-body">
 
-                <!-- ── Application Deadlines ── -->
-                <article class="card" style="margin-bottom:20px;">
-                <div class="card-header">
-                    <h3><i class="fas fa-calendar-check"></i> Application Deadlines</h3>
-                </div>
-                <div class="card-body">
-                    <div class="settings-grid-3">
-                    <div class="settings-field-group">
-                        <label class="field-label">Application Deadline</label>
-                        <input name="application_deadline" type="date" class="field-input" />
-                    </div>
-                    <div class="settings-field-group">
-                        <label class="field-label">Interview Start Date</label>
-                        <input name="interview_start_date" type="date" class="field-input" />
-                    </div>
-                    <div class="settings-field-group">
-                        <label class="field-label">Deployment Date</label>
-                        <input name="deployment_date" type="date" class="field-input" />
-                    </div>
-                    </div>
-                </div>
-                </article>
+    <!-- School Year + Semester grid (uniform sizing) -->
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#888;margin-bottom:8px;">School Year</div>
+    <div id="gs-switch-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-bottom:16px;"></div>
+
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#888;margin-bottom:8px;">Semester</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-bottom:16px;" id="gs-sem-grid">
+    <div class="gs-sem-opt" data-sem="1st Semester" data-short="1st Sem" onclick="gs_pickSem(this)"
+        style="border:1.5px solid #e5e7eb;border-radius:9px;padding:9px 10px;text-align:center;cursor:pointer;background:#f9f9f9;transition:all .15s;">
+        <div style="font-size:12px;font-weight:600;color:#555;">1st Semester</div>
+        <div style="font-size:10px;color:#aaa;margin-top:2px;">Aug – Dec</div>
+        <div class="gs-sem-active-badge" style="display:none;font-size:9px;color:#22c55e;font-weight:700;margin-top:3px;">&#9679; Active</div>
+    </div>
+    <div class="gs-sem-opt" data-sem="2nd Semester" data-short="2nd Sem" onclick="gs_pickSem(this)"
+        style="border:1.5px solid var(--maroon,#7a0020);border-radius:9px;padding:9px 10px;text-align:center;cursor:pointer;background:#fce4e8;transition:all .15s;">
+        <div style="font-size:12px;font-weight:600;color:var(--maroon,#7a0020);">2nd Semester</div>
+        <div style="font-size:10px;color:var(--maroon,#7a0020);opacity:.7;margin-top:2px;">Jan – May</div>
+        <div class="gs-sem-active-badge" style="display:none;font-size:9px;color:#22c55e;font-weight:700;margin-top:3px;">&#9679; Active</div>
+    </div>
+    <div class="gs-sem-opt" data-sem="Summer" data-short="Summer" onclick="gs_pickSem(this)"
+        style="border:1.5px solid #e5e7eb;border-radius:9px;padding:9px 10px;text-align:center;cursor:pointer;background:#f9f9f9;transition:all .15s;">
+        <div style="font-size:12px;font-weight:600;color:#555;">Summer</div>
+        <div style="font-size:10px;color:#aaa;margin-top:2px;">May – Jun</div>
+        <div class="gs-sem-active-badge" style="display:none;font-size:9px;color:#22c55e;font-weight:700;margin-top:3px;">&#9679; Active</div>
+    </div>
+    </div>
+
+    <!-- Preview banner -->
+    <div style="background:#f8f8f8;border:1px solid #e5e7eb;border-radius:9px;padding:12px 16px;display:flex;gap:10px;align-items:center;margin-bottom:12px;">
+    <i class="fas fa-calendar-check" style="color:var(--maroon);"></i>
+    <div>
+        <div style="font-size:11px;color:#888;">Will switch all labels to</div>
+        <div style="font-size:14px;font-weight:700;color:#1a1a1a;" id="gs-preview">AY 2025–2026 · 2nd Semester</div>
+    </div>
+    </div>
+
+    <!-- Warning note -->
+    <div style="margin-bottom:16px;padding:10px 14px;background:#fef9ec;border:1px solid #fcd34d;border-radius:8px;font-size:12px;color:#92400e;display:flex;gap:8px;">
+    <i class="fas fa-exclamation-triangle" style="margin-top:1px;flex-shrink:0;"></i>
+    <span>Switching re-scopes all logs, payroll, and records shown in the dashboard. No data is deleted — switch back anytime.</span>
+    </div>
+
+    <!-- Apply & Switch button -->
+    <button type="button" onclick="gs_applySwitch()" class="btn btn-primary" style="margin-bottom:20px;">
+    <i class="fas fa-check"></i> Apply &amp; Switch
+    </button>
+
+    <!-- Add new school year -->
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#888;margin-bottom:10px;">Add New School Year</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;align-items:flex-end;margin-bottom:16px;">
+      <div>
+        <div style="font-size:12px;color:#666;margin-bottom:5px;">Start Year</div>
+        <input type="number" id="gs-start" placeholder="e.g. 2026" min="2020" max="2099"
+          style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:13px;font-weight:600;color:#1a1a1a;outline:none;box-sizing:border-box;"
+          oninput="document.getElementById('gs-end').value=parseInt(this.value||0)+1">
+      </div>
+      <div>
+        <div style="font-size:12px;color:#666;margin-bottom:5px;">End Year (auto)</div>
+        <input type="number" id="gs-end" placeholder="e.g. 2027" readonly
+          style="width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:13px;font-weight:600;color:#888;background:#f9f9f9;outline:none;box-sizing:border-box;cursor:not-allowed;">
+      </div>
+      <div>
+        <div style="font-size:12px;color:#666;margin-bottom:5px;">&nbsp;</div>
+        <button type="button" onclick="gs_addYear()" class="btn btn-primary" style="width:100%;padding:9px 12px;box-sizing:border-box;">
+          <i class="fas fa-plus"></i> Add Year
+        </button>
+      </div>
+    </div>
+
+    <!-- Registered years list -->
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#888;margin-bottom:8px;">Registered School Years</div>
+    <div id="gs-sy-list" style="border:1px solid #f0f0f0;border-radius:10px;overflow:hidden;margin-bottom:20px;"></div>
+
+    <hr style="border:none;border-top:1px solid #f0f0f0;margin:0 0 20px;">
+
+    <!-- Application Status -->
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#888;margin-bottom:12px;">Application Settings</div>
+    <div class="settings-grid-3" style="margin-bottom:20px;">
+      <div class="settings-field-group">
+        <label class="field-label">Application Status</label>
+        <select name="application_open" class="field-input">
+          <option value="true">Open — Accepting Applications</option>
+          <option value="false">Closed — Not Accepting</option>
+        </select>
+      </div>
+    </div>
+
+    <hr style="border:none;border-top:1px solid #f0f0f0;margin:0 0 20px;">
+
+    <!-- Application Deadlines (kept from original) -->
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#888;margin-bottom:12px;">Application Deadlines</div>
+    <div class="settings-grid-3">
+      <div class="settings-field-group">
+        <label class="field-label">Application Deadline</label>
+        <input name="application_deadline" type="date" class="field-input" />
+      </div>
+      <div class="settings-field-group">
+        <label class="field-label">Interview Start Date</label>
+        <input name="interview_start_date" type="date" class="field-input" />
+      </div>
+      <div class="settings-field-group">
+        <label class="field-label">Deployment Date</label>
+        <input name="deployment_date" type="date" class="field-input" />
+      </div>
+    </div>
+
+  </div>
+</article>
 
                 <!-- ── System Behavior ── -->
                 <article class="card" style="margin-bottom:20px;">
@@ -1412,6 +1474,185 @@
                 </div>
             </div>
         </div>
+
+
+        <script>
+            (function () {
+            var GS = {
+                schoolYears: [
+                { id: '2023-2024', label: 'AY 2023\u20132024', active: false },
+                { id: '2024-2025', label: 'AY 2024\u20132025', active: false },
+                { id: '2025-2026', label: 'AY 2025\u20132026', active: true }
+                ],
+                activeSY:     '2025-2026',
+                activeSem:    '2nd Semester',
+                activeShort:  '2nd Sem',
+                pendingSY:    '2025-2026',
+                pendingSem:   '2nd Semester',
+                pendingShort: '2nd Sem'
+            };
+
+            window.gs_pickSem    = pickSem;
+            window.gs_pickSY     = pickSY;
+            window.gs_addYear    = addYear;
+            window.gs_applySwitch = applySwitch;
+
+            function init() {
+                renderSwitchGrid();
+                highlightSem(GS.pendingSem);
+                updateSemActiveBadge();
+                updatePreview();
+                renderList();
+            }
+
+            function renderSwitchGrid() {
+                var el = document.getElementById('gs-switch-grid');
+                if (!el) return;
+                el.innerHTML = GS.schoolYears.map(function(sy) {
+                var sel = GS.pendingSY === sy.id;
+                return '<div onclick="gs_pickSY(this)" data-sy="' + sy.id + '"'
+                    + ' style="border:1.5px solid ' + (sel ? 'var(--maroon,#7a0020)' : '#e5e7eb') + ';'
+                    + 'border-radius:9px;padding:9px 10px;text-align:center;cursor:pointer;'
+                    + 'font-size:12px;font-weight:600;transition:all .15s;'
+                    + 'color:' + (sel ? 'var(--maroon,#7a0020)' : '#555') + ';'
+                    + 'background:' + (sel ? '#fce4e8' : '#f9f9f9') + ';">'
+                    + sy.label
+                    + (sy.active
+                        ? '<div style="font-size:9px;color:#22c55e;font-weight:700;margin-top:3px;">\u25cf Active</div>'
+                        : '<div style="font-size:9px;color:#aaa;margin-top:3px;">Archived</div>')
+                    + '</div>';
+                }).join('');
+            }
+
+            function renderList() {
+                var el = document.getElementById('gs-sy-list');
+                if (!el) return;
+                el.innerHTML = GS.schoolYears.map(function(sy) {
+                return '<div style="display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid #f5f5f5;">'
+                    + '<div style="width:10px;height:10px;border-radius:50%;flex-shrink:0;background:'
+                    + (sy.active ? '#22c55e' : '#d1d5db') + '"></div>'
+                    + '<div style="flex:1;">'
+                    + '<div style="font-size:13px;font-weight:600;color:#1a1a1a;">' + sy.label + '</div>'
+                    + '<div style="font-size:11px;color:#888;margin-top:2px;">' + (sy.active ? 'Currently active' : 'Archived') + '</div>'
+                    + '</div>'
+                    + '<span style="font-size:10px;padding:2px 8px;border-radius:100px;font-weight:600;'
+                    + (sy.active ? 'background:#dcfce7;color:#15803d' : 'background:#f5f5f5;color:#888')
+                    + '">' + (sy.active ? 'Active' : 'Archived') + '</span>'
+                    + '</div>';
+                }).join('');
+            }
+
+            function pickSY(el) {
+                GS.pendingSY = el.dataset.sy;
+                renderSwitchGrid();
+                updatePreview();
+            }
+
+            function pickSem(el) {
+                GS.pendingSem   = el.dataset.sem;
+                GS.pendingShort = el.dataset.short;
+                highlightSem(GS.pendingSem);
+                updatePreview();
+            }
+
+            function highlightSem(active) {
+                document.querySelectorAll('.gs-sem-opt').forEach(function(o) {
+                var isPending  = o.dataset.sem === active;
+                var isActive   = o.dataset.sem === GS.activeSem && GS.pendingSY === GS.activeSY;
+                var badge      = o.querySelector('.gs-sem-active-badge');
+
+                o.style.border     = '1.5px solid ' + (isPending ? 'var(--maroon,#7a0020)' : '#e5e7eb');
+                o.style.background = isPending ? '#fce4e8' : '#f9f9f9';
+
+                var label = o.querySelector('div:nth-child(1)');
+                var sub   = o.querySelector('div:nth-child(2)');
+                if (label) label.style.color = isPending ? 'var(--maroon,#7a0020)' : '#555';
+                if (sub)   { sub.style.color = isPending ? 'var(--maroon,#7a0020)' : '#aaa'; sub.style.opacity = isPending ? '0.7' : '1'; }
+
+                if (badge) badge.style.display = isActive ? 'block' : 'none';
+                });
+            }
+
+            // Called after applySwitch to re-stamp the green active dot on the correct sem button
+            function updateSemActiveBadge() {
+                document.querySelectorAll('.gs-sem-opt').forEach(function(o) {
+                var badge = o.querySelector('.gs-sem-active-badge');
+                if (badge) badge.style.display = (o.dataset.sem === GS.activeSem) ? 'block' : 'none';
+                });
+            }
+
+            function updatePreview() {
+                var p  = GS.pendingSY.split('-');
+                var el = document.getElementById('gs-preview');
+                if (el) el.textContent = 'AY ' + p[0] + '\u2013' + p[1] + ' \u00b7 ' + GS.pendingSem;
+            }
+
+            function addYear() {
+                var startEl = document.getElementById('gs-start');
+                var start   = parseInt(startEl ? startEl.value : '');
+                if (!start || start < 2020 || start > 2099) {
+                if (window.showAlert) showAlert('Invalid Year', 'Enter a valid start year (2020\u20132099).', 'error');
+                return;
+                }
+                var end = start + 1;
+                var id  = start + '-' + end;
+                if (GS.schoolYears.find(function(s) { return s.id === id; })) {
+                if (window.showAlert) showAlert('Already Exists', 'AY ' + start + '\u2013' + end + ' is already registered.', 'error');
+                return;
+                }
+                GS.schoolYears.push({ id: id, label: 'AY ' + start + '\u2013' + end, active: false });
+                if (startEl) startEl.value = end;
+                var endEl = document.getElementById('gs-end');
+                if (endEl) endEl.value = end + 1;
+                renderList();
+                renderSwitchGrid();
+                if (window.showAlert) showAlert('School Year Added', 'AY ' + start + '\u2013' + end + ' is now available.', 'success');
+            }
+
+            function applySwitch() {
+                GS.activeSY    = GS.pendingSY;
+                GS.activeSem   = GS.pendingSem;
+                GS.activeShort = GS.pendingShort;
+                GS.schoolYears.forEach(function(s) { s.active = s.id === GS.activeSY; });
+
+                var p     = GS.activeSY.split('-');
+                var label = 'AY ' + p[0] + '\u2013' + p[1];
+                var short = label + ' \u00b7 ' + GS.activeShort;
+
+                ['sidebar-sy-label', 'topbar-sy'].forEach(function(id) {
+                var el = document.getElementById(id); if (el) el.textContent = label;
+                });
+                var semTag = document.getElementById('sidebar-sem-tag');
+                if (semTag) semTag.textContent = GS.activeShort;
+
+                var topbarP = document.querySelector('.topbar-left p');
+                if (topbarP) topbarP.innerHTML =
+                'Western Mindanao State University &mdash; <strong>' + label
+                + '</strong> &bull; ' + GS.activeSem;
+
+                renderList();
+                renderSwitchGrid();
+                highlightSem(GS.activeSem);
+                updateSemActiveBadge();
+
+                if (window.showAlert) showAlert('Period Switched',
+                'Dashboard is now scoped to ' + short + '.', 'success');
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+                init();
+
+                var saveBtn = document.getElementById('btn-save-settings');
+                if (saveBtn) {
+                saveBtn.addEventListener('click', function() {
+                    applySwitch();
+                });
+                }
+            });
+            })();
+            </script>
 </body>
+
+
 
 </html>
