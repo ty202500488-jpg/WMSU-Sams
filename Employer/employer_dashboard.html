@@ -171,6 +171,59 @@
                 </div>
             </div>
 
+            <!-- MY DEPARTMENT QR CODE SECTION -->
+            <div class="feed-section">
+                <div class="section-header-flex">
+                    <h2 class="section-title">My Department QR Code</h2>
+                </div>
+
+                <!-- Case: QR Assigned -->
+                <div class="capacity-card" id="dept-qr-card" style="display:block;">
+                    <div style="display:grid; grid-template-columns:1fr 2fr; gap:30px; align-items:center;">
+                        <!-- QR Image Container -->
+                        <div style="text-align:center;">
+                            <div style="padding:15px; border:2px solid #f0f0f0; border-radius:15px; background:white; box-shadow:inset 0 0 10px rgba(0,0,0,0.02); display:inline-block;">
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=DEPT_Library_SEM1_2026" alt="Department QR" style="width:160px; height:160px; display:block;">
+                            </div>
+                            <div style="margin-top:10px;">
+                                <button class="help-btn" style="width:100%;" onclick="openFullQR()"><i class="fas fa-expand"></i> Show QR for Scanning</button>
+                            </div>
+                        </div>
+
+                        <!-- Info & Schedule -->
+                        <div>
+                            <div style="margin-bottom:20px;">
+                                <h3 style="color:var(--maroon); margin-bottom:5px; font-size:18px;">Library Department</h3>
+                                <p style="font-size:13px; color:#666;">Valid for <strong>1st Semester 2026</strong> &nbsp;·&nbsp; Jun 01 - Oct 30</p>
+                            </div>
+
+                            <div style="background:#f9f9f9; padding:15px; border-radius:12px; border:1px solid #eee;">
+                                <h4 style="font-size:12px; color:#888; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px;"><i class="fas fa-clock"></i> Attendance Schedule</h4>
+                                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                                    <span style="font-size:13px; font-weight:600;">Time In Window:</span>
+                                    <span style="font-size:13px; color:var(--maroon); font-weight:700;">8:00 AM – 9:00 AM</span>
+                                </div>
+                                <div style="display:flex; justify-content:space-between; align-items:center;">
+                                    <span style="font-size:13px; font-weight:600;">Time Out Window:</span>
+                                    <span style="font-size:13px; color:var(--maroon); font-weight:700;">5:00 PM – 6:00 PM</span>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-top:15px; font-size:11px; color:#999;">
+                                <i class="fas fa-info-circle"></i> Students must scan this QR twice daily for a valid attendance record.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case: No QR Assigned -->
+                <div class="capacity-card" id="no-qr-card" style="display:none; text-align:center; padding:40px;">
+                    <i class="fas fa-qrcode fa-4x" style="color:#eee; margin-bottom:20px;"></i>
+                    <h3 style="color:#999;">No QR assigned yet.</h3>
+                    <p style="color:#bbb; font-size:13px;">Please wait for the Super Admin to distribute your department's attendance QR.</p>
+                </div>
+            </div>
+
             <!-- ACTIVE STUDENT ASSISTANTS -->
             <div class="feed-section">
                 <div class="section-header-flex">
@@ -982,6 +1035,47 @@ startPolling();
             <span>Alerts</span>
         </a>
     </nav>
+    <!-- Full Screen QR Scanning Modal -->
+    <div id="modal-full-qr" class="modal-overlay-emp" style="z-index: 9999;">
+        <div class="modal-card" style="max-width: 600px; text-align: center; padding: 50px;">
+            <a href="javascript:void(0)" class="modal-card-close" onclick="closeFullQR()">&times;</a>
+            <div style="margin-bottom: 20px;">
+                <h1 style="color: var(--maroon); font-size: 28px; font-weight: 800; margin-bottom: 5px;">Library Department</h1>
+                <p style="color: #666; font-size: 16px;">Scan for <strong>Time In / Time Out</strong></p>
+            </div>
+            
+            <div style="padding: 25px; background: white; border: 4px solid var(--maroon); border-radius: 20px; display: inline-block; box-shadow: 0 20px 50px rgba(0,0,0,0.1);">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=DEPT_Library_SEM1_2026" alt="Large QR" style="width: 350px; height: 350px; display: block;">
+            </div>
+            
+            <div style="margin-top: 30px; background: #fef2f2; padding: 20px; border-radius: 15px; border: 1.5px dashed var(--maroon-light);">
+                <div style="display: flex; justify-content: space-around; gap: 20px;">
+                    <div>
+                        <div style="font-size: 12px; color: #888; text-transform: uppercase;">Morning In</div>
+                        <div style="font-size: 20px; font-weight: 800; color: var(--maroon);">8AM – 9AM</div>
+                    </div>
+                    <div style="width: 1px; background: #ddd;"></div>
+                    <div>
+                        <div style="font-size: 12px; color: #888; text-transform: uppercase;">Afternoon Out</div>
+                        <div style="font-size: 20px; font-weight: 800; color: var(--maroon);">5PM – 6PM</div>
+                    </div>
+                </div>
+            </div>
+            
+            <p style="margin-top: 25px; color: #999; font-size: 14px; font-style: italic;">"Excellence through service and knowledge."</p>
+        </div>
+    </div>
+
+    <script>
+        function openFullQR() {
+            document.getElementById('modal-full-qr').style.visibility = 'visible';
+            document.getElementById('modal-full-qr').style.opacity = '1';
+        }
+        function closeFullQR() {
+            document.getElementById('modal-full-qr').style.visibility = 'hidden';
+            document.getElementById('modal-full-qr').style.opacity = '0';
+        }
+    </script>
 </body>
 
 </html>
