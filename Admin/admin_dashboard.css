@@ -167,6 +167,7 @@
   #nav-positions:checked~.layout .sidebar label[for="nav-positions"],
   #nav-suggest-positions:checked~.layout .sidebar label[for="nav-suggest-positions"],
   #nav-review-log-hours:checked~.layout .sidebar label[for="nav-review-log-hours"],
+  #nav-attendance:checked~.layout .sidebar label[for="nav-attendance"],
   #nav-payroll:checked~.layout .sidebar label[for="nav-payroll"],
   #nav-reports:checked~.layout .sidebar label[for="nav-reports"] {
     background: rgba(255, 255, 255, 0.13);
@@ -188,6 +189,7 @@
   #nav-positions:checked~.layout .sidebar label[for="nav-positions"] i,
   #nav-suggest-positions:checked~.layout .sidebar label[for="nav-suggest-positions"] i,
   #nav-review-log-hours:checked~.layout .sidebar label[for="nav-review-log-hours"] i,
+  #nav-attendance:checked~.layout .sidebar label[for="nav-attendance"] i,
   #nav-payroll:checked~.layout .sidebar label[for="nav-payroll"] i,
   #nav-reports:checked~.layout .sidebar label[for="nav-reports"] i {
     color: var(--gold-light);
@@ -373,6 +375,10 @@
     display: block;
   }
 
+  #nav-attendance:checked~.layout .main-content #sec-attendance {
+    display: block;
+  }
+
   #nav-reports:checked~.layout .main-content #sec-reports {
     display: block;
   }
@@ -429,6 +435,10 @@
 
   #nav-payroll:checked~.layout .topbar .page-title::before {
     content: "Payroll Management";
+  }
+
+  #nav-attendance:checked~.layout .topbar .page-title::before {
+    content: "Attendance Log";
   }
 
   #nav-reports:checked~.layout .topbar .page-title::before {

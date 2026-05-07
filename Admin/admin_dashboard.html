@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -83,6 +83,11 @@
         <div class="nav-item">
           <label for="nav-qr">
             <i class="fas fa-qrcode"></i> QR Management
+          </label>
+        </div>
+        <div class="nav-item">
+          <label for="nav-attendance">
+            <i class="fas fa-clipboard-list"></i> Attendance Log
           </label>
         </div>
         <div class="nav-item">
@@ -439,26 +444,26 @@
       </section>
 
       <!-- ╔══════════════════════════════════════════════
-     § ATTENDANCE MONITORING
+     § ATTENDANCE LOG (BY BATCH & DEPARTMENT)
 ══════════════════════════════════════════════╗ -->
       <section id="sec-attendance" class="section">
         <div class="section-header">
           <div>
-            <div class="section-title">Attendance Monitoring</div>
-            <div class="section-sub">View and audit student assistant attendance logs verified by their respective
-              departments.</div>
+            <div class="section-title">Attendance Log</div>
+            <div class="section-sub">Track and audit department-submitted attendance records, grouped by batch and department.</div>
           </div>
           <div class="section-actions">
-            <button class="btn btn-outline btn-sm"><i class="fas fa-file-export"></i> Export Logs</button>
-            <button class="btn btn-primary btn-sm"><i class="fas fa-filter"></i> Filter</button>
+            <button class="btn btn-outline btn-sm" onclick="attLog_exportCSV()"><i class="fas fa-file-csv"></i> Export CSV</button>
+            <button class="btn btn-primary btn-sm" onclick="attLog_applyFilters()"><i class="fas fa-filter"></i> Apply Filter</button>
           </div>
         </div>
 
-        <div class="stat-grid" style="margin-bottom:24px;">
+        <!-- ── Summary Stat Cards ── -->
+        <div class="stat-grid" style="margin-bottom:24px;" id="attlog-stats">
           <div class="stat-card maroon">
             <div class="stat-card-top">
               <div>
-                <div class="stat-value">1,240</div>
+                <div class="stat-value" id="attlog-stat-total">0</div>
                 <div class="stat-label">Total Logs (This Sem)</div>
               </div>
               <div class="stat-icon maroon"><i class="fas fa-history"></i></div>
@@ -467,70 +472,300 @@
           <div class="stat-card gold">
             <div class="stat-card-top">
               <div>
-                <div class="stat-value">48</div>
-                <div class="stat-label">Active Today</div>
+                <div class="stat-value" id="attlog-stat-depts">0</div>
+                <div class="stat-label">Departments Reporting</div>
               </div>
-              <div class="stat-icon gold"><i class="fas fa-user-check"></i></div>
+              <div class="stat-icon gold"><i class="fas fa-building"></i></div>
             </div>
           </div>
           <div class="stat-card green">
             <div class="stat-card-top">
               <div>
-                <div class="stat-value">98%</div>
-                <div class="stat-label">Verification Rate</div>
+                <div class="stat-value" id="attlog-stat-verified">0</div>
+                <div class="stat-label">Verified Entries</div>
               </div>
               <div class="stat-icon green"><i class="fas fa-check-double"></i></div>
             </div>
           </div>
+          <div class="stat-card orange">
+            <div class="stat-card-top">
+              <div>
+                <div class="stat-value" id="attlog-stat-pending">0</div>
+                <div class="stat-label">Pending / Unverified</div>
+              </div>
+              <div class="stat-icon orange"><i class="fas fa-hourglass-half"></i></div>
+            </div>
+          </div>
         </div>
 
-        <article class="card">
-          <div class="table-wrap">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Student Name</th>
-                  <th>Department</th>
-                  <th>Time In</th>
-                  <th>Time Out</th>
-                  <th>Total Hours</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>May 07, 2026</td>
-                  <td class="td-name">Luz Mendoza</td>
-                  <td>Library Department</td>
-                  <td>08:02 AM</td>
-                  <td>05:05 PM</td>
-                  <td>8.0 hrs</td>
-                  <td><span class="badge approved">Verified</span></td>
-                </tr>
-                <tr>
-                  <td>May 07, 2026</td>
-                  <td class="td-name">Karl Reyes</td>
-                  <td>Library Department</td>
-                  <td>08:15 AM</td>
-                  <td>05:10 PM</td>
-                  <td>7.5 hrs</td>
-                  <td><span class="badge approved">Verified</span></td>
-                </tr>
-                <tr>
-                  <td>May 07, 2026</td>
-                  <td class="td-name">Juan Dela Cruz</td>
-                  <td>IT Office</td>
-                  <td>07:55 AM</td>
-                  <td>04:55 PM</td>
-                  <td>8.0 hrs</td>
-                  <td><span class="badge pending">Pending Dept</span></td>
-                </tr>
-              </tbody>
-            </table>
+        <!-- ── Filter Panel ── -->
+        <article class="card" style="margin-bottom:20px;">
+          <div class="card-header">
+            <h3><i class="fas fa-sliders-h"></i> Filter Attendance Logs</h3>
+          </div>
+          <div class="card-body">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;align-items:end;">
+              <div>
+                <label style="font-size:11px;font-weight:700;color:#777;display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px;">Department</label>
+                <select id="attlog-filter-dept" class="field-input" style="width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid var(--gray-200);font-size:13px;">
+                  <option value="">All Departments</option>
+                  <option value="Library Department">Library Department</option>
+                  <option value="IT Office">IT Office</option>
+                  <option value="Registrar's Office">Registrar's Office</option>
+                  <option value="Finance Office">Finance Office</option>
+                  <option value="College of Nursing">College of Nursing</option>
+                  <option value="CED Office">CED Office</option>
+                  <option value="CPPPESO Office">CPPPESO Office</option>
+                </select>
+              </div>
+              <div>
+                <label style="font-size:11px;font-weight:700;color:#777;display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px;">Batch / Semester</label>
+                <select id="attlog-filter-batch" class="field-input" style="width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid var(--gray-200);font-size:13px;">
+                  <option value="">All Batches</option>
+                  <option value="1st Sem 2026">1st Sem 2026</option>
+                  <option value="2nd Sem 2026">2nd Sem 2026</option>
+                  <option value="1st Sem 2025">1st Sem 2025</option>
+                  <option value="2nd Sem 2025">2nd Sem 2025</option>
+                </select>
+              </div>
+              <div>
+                <label style="font-size:11px;font-weight:700;color:#777;display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px;">Date From</label>
+                <input type="date" id="attlog-filter-from" class="field-input" style="width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid var(--gray-200);font-size:13px;">
+              </div>
+              <div>
+                <label style="font-size:11px;font-weight:700;color:#777;display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px;">Date To</label>
+                <input type="date" id="attlog-filter-to" class="field-input" style="width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid var(--gray-200);font-size:13px;">
+              </div>
+              <div>
+                <label style="font-size:11px;font-weight:700;color:#777;display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px;">Status</label>
+                <select id="attlog-filter-status" class="field-input" style="width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid var(--gray-200);font-size:13px;">
+                  <option value="">All Statuses</option>
+                  <option value="Verified">Verified</option>
+                  <option value="Pending Dept">Pending Dept</option>
+                  <option value="Anomaly">Anomaly</option>
+                </select>
+              </div>
+              <div style="display:flex;gap:8px;align-items:flex-end;">
+                <button class="btn btn-primary btn-sm" style="flex:1;" onclick="attLog_applyFilters()"><i class="fas fa-search"></i> Search</button>
+                <button class="btn btn-outline btn-sm" style="flex:1;" onclick="attLog_resetFilters()"><i class="fas fa-times"></i> Reset</button>
+              </div>
+            </div>
           </div>
         </article>
+
+        <!-- ── Grouped View Toggle ── -->
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+          <span style="font-size:13px;font-weight:600;color:var(--gray-600);">View by:</span>
+          <div style="display:flex;gap:6px;">
+            <button id="attlog-view-dept" class="btn btn-primary btn-sm" onclick="attLog_setView('dept')"><i class="fas fa-building"></i> Department</button>
+            <button id="attlog-view-batch" class="btn btn-outline btn-sm" onclick="attLog_setView('batch')"><i class="fas fa-layer-group"></i> Batch</button>
+            <button id="attlog-view-flat" class="btn btn-outline btn-sm" onclick="attLog_setView('flat')"><i class="fas fa-list"></i> All Records</button>
+          </div>
+          <span style="margin-left:auto;font-size:12px;color:#999;" id="attlog-result-count">Showing all records</span>
+        </div>
+
+        <!-- ── Log Output Container ── -->
+        <div id="attlog-output"></div>
+
       </section>
+
+      <script>
+        /* ═══════════════════════════════════════════════════════
+           ATTENDANCE LOG — DATA & LOGIC
+        ═══════════════════════════════════════════════════════ */
+        const ATTLOG_DATA = [
+          // Library — 2nd Sem 2026
+          { id:1, date:'2026-05-07', student:'Luz Mendoza',    dept:'Library Department',   batch:'2nd Sem 2026', timeIn:'08:02 AM', timeOut:'05:05 PM', hours:8.0, status:'Verified' },
+          { id:2, date:'2026-05-07', student:'Karl Reyes',     dept:'Library Department',   batch:'2nd Sem 2026', timeIn:'08:15 AM', timeOut:'05:10 PM', hours:7.5, status:'Verified' },
+          { id:3, date:'2026-05-06', student:'Luz Mendoza',    dept:'Library Department',   batch:'2nd Sem 2026', timeIn:'08:00 AM', timeOut:'05:00 PM', hours:8.0, status:'Verified' },
+          { id:4, date:'2026-05-06', student:'Karl Reyes',     dept:'Library Department',   batch:'2nd Sem 2026', timeIn:'08:10 AM', timeOut:'04:50 PM', hours:7.5, status:'Anomaly' },
+          { id:5, date:'2026-05-05', student:'Luz Mendoza',    dept:'Library Department',   batch:'2nd Sem 2026', timeIn:'08:05 AM', timeOut:'05:00 PM', hours:7.9, status:'Verified' },
+          // IT Office — 2nd Sem 2026
+          { id:6, date:'2026-05-07', student:'Juan Dela Cruz', dept:'IT Office',            batch:'2nd Sem 2026', timeIn:'07:55 AM', timeOut:'04:55 PM', hours:8.0, status:'Pending Dept' },
+          { id:7, date:'2026-05-07', student:'Ana Reyes',      dept:'IT Office',            batch:'2nd Sem 2026', timeIn:'08:00 AM', timeOut:'—',        hours:0,   status:'Anomaly' },
+          { id:8, date:'2026-05-06', student:'Juan Dela Cruz', dept:'IT Office',            batch:'2nd Sem 2026', timeIn:'08:00 AM', timeOut:'05:00 PM', hours:8.0, status:'Verified' },
+          // Finance Office — 2nd Sem 2026
+          { id:9, date:'2026-05-07', student:'Carlos Mendez',  dept:'Finance Office',       batch:'2nd Sem 2026', timeIn:'08:30 AM', timeOut:'05:30 PM', hours:8.0, status:'Verified' },
+          { id:10, date:'2026-05-06', student:'Carlos Mendez', dept:'Finance Office',       batch:'2nd Sem 2026', timeIn:'08:25 AM', timeOut:'05:25 PM', hours:8.0, status:'Verified' },
+          { id:11, date:'2026-05-05', student:'Maria Santos',  dept:'Finance Office',       batch:'2nd Sem 2026', timeIn:'08:00 AM', timeOut:'05:00 PM', hours:8.0, status:'Verified' },
+          // Registrar's Office — 2nd Sem 2026
+          { id:12, date:'2026-05-07', student:'Rose Caballero',dept:"Registrar's Office",   batch:'2nd Sem 2026', timeIn:'08:10 AM', timeOut:'05:10 PM', hours:8.0, status:'Pending Dept' },
+          { id:13, date:'2026-05-06', student:'Rose Caballero',dept:"Registrar's Office",   batch:'2nd Sem 2026', timeIn:'08:05 AM', timeOut:'05:05 PM', hours:8.0, status:'Verified' },
+          // CED Office — 1st Sem 2026
+          { id:14, date:'2026-01-10', student:'Ben Torres',    dept:'CED Office',           batch:'1st Sem 2026', timeIn:'08:00 AM', timeOut:'05:00 PM', hours:8.0, status:'Verified' },
+          { id:15, date:'2026-01-11', student:'Ben Torres',    dept:'CED Office',           batch:'1st Sem 2026', timeIn:'08:15 AM', timeOut:'05:00 PM', hours:7.8, status:'Verified' },
+          { id:16, date:'2026-01-12', student:'Lea Gomez',     dept:'CED Office',           batch:'1st Sem 2026', timeIn:'08:00 AM', timeOut:'05:00 PM', hours:8.0, status:'Anomaly' },
+          // College of Nursing — 1st Sem 2026
+          { id:17, date:'2026-01-10', student:'Nina Flores',   dept:'College of Nursing',   batch:'1st Sem 2026', timeIn:'07:45 AM', timeOut:'04:45 PM', hours:8.0, status:'Verified' },
+          { id:18, date:'2026-01-11', student:'Nina Flores',   dept:'College of Nursing',   batch:'1st Sem 2026', timeIn:'07:50 AM', timeOut:'04:50 PM', hours:8.0, status:'Verified' },
+          // CPPPESO — 2nd Sem 2026
+          { id:19, date:'2026-05-07', student:'Mark Tan',      dept:'CPPPESO Office',       batch:'2nd Sem 2026', timeIn:'08:00 AM', timeOut:'05:00 PM', hours:8.0, status:'Verified' },
+          { id:20, date:'2026-05-06', student:'Mark Tan',      dept:'CPPPESO Office',       batch:'2nd Sem 2026', timeIn:'08:00 AM', timeOut:'05:00 PM', hours:8.0, status:'Verified' },
+        ];
+
+        let attLogView = 'dept';
+        let attLogFiltered = [...ATTLOG_DATA];
+
+        function attLog_init() {
+          attLogFiltered = [...ATTLOG_DATA];
+          attLog_updateStats();
+          attLog_render();
+        }
+
+        function attLog_updateStats() {
+          const total = attLogFiltered.length;
+          const depts = new Set(attLogFiltered.map(r => r.dept)).size;
+          const verified = attLogFiltered.filter(r => r.status === 'Verified').length;
+          const pending = attLogFiltered.filter(r => r.status !== 'Verified').length;
+          document.getElementById('attlog-stat-total').textContent = total.toLocaleString();
+          document.getElementById('attlog-stat-depts').textContent = depts;
+          document.getElementById('attlog-stat-verified').textContent = verified;
+          document.getElementById('attlog-stat-pending').textContent = pending;
+          document.getElementById('attlog-result-count').textContent = `Showing ${total} record${total !== 1 ? 's' : ''}`;
+        }
+
+        function attLog_applyFilters() {
+          const dept   = document.getElementById('attlog-filter-dept').value;
+          const batch  = document.getElementById('attlog-filter-batch').value;
+          const from   = document.getElementById('attlog-filter-from').value;
+          const to     = document.getElementById('attlog-filter-to').value;
+          const status = document.getElementById('attlog-filter-status').value;
+          attLogFiltered = ATTLOG_DATA.filter(r => {
+            if (dept   && r.dept   !== dept)   return false;
+            if (batch  && r.batch  !== batch)  return false;
+            if (status && r.status !== status) return false;
+            if (from   && r.date   < from)     return false;
+            if (to     && r.date   > to)       return false;
+            return true;
+          });
+          attLog_updateStats();
+          attLog_render();
+        }
+
+        function attLog_resetFilters() {
+          ['attlog-filter-dept','attlog-filter-batch','attlog-filter-status'].forEach(id => document.getElementById(id).value = '');
+          document.getElementById('attlog-filter-from').value = '';
+          document.getElementById('attlog-filter-to').value = '';
+          attLogFiltered = [...ATTLOG_DATA];
+          attLog_updateStats();
+          attLog_render();
+        }
+
+        function attLog_setView(v) {
+          attLogView = v;
+          ['dept','batch','flat'].forEach(k => {
+            const btn = document.getElementById('attlog-view-' + k);
+            if (btn) { btn.className = k === v ? 'btn btn-primary btn-sm' : 'btn btn-outline btn-sm'; }
+          });
+          attLog_render();
+        }
+
+        function attLog_statusBadge(s) {
+          const map = { 'Verified': 'approved', 'Pending Dept': 'pending', 'Anomaly': 'rejected' };
+          return `<span class="badge ${map[s] || ''}">${s}</span>`;
+        }
+
+        function attLog_tableRows(rows) {
+          if (!rows.length) return `<tr><td colspan="7" style="text-align:center;color:#aaa;padding:28px;">No records found.</td></tr>`;
+          return rows.map(r => `
+            <tr>
+              <td>${new Date(r.date + 'T00:00:00').toLocaleDateString('en-PH',{year:'numeric',month:'short',day:'2-digit'})}</td>
+              <td class="td-name">${r.student}</td>
+              <td>${r.dept}</td>
+              <td>${r.batch}</td>
+              <td>${r.timeIn}</td>
+              <td>${r.timeOut}</td>
+              <td>${r.hours > 0 ? r.hours.toFixed(1) + ' hrs' : '—'}</td>
+              <td>${attLog_statusBadge(r.status)}</td>
+            </tr>`).join('');
+        }
+
+        function attLog_tableHTML(rows) {
+          return `
+            <div class="table-wrap">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Date</th><th>Student Name</th><th>Department</th><th>Batch</th>
+                    <th>Time In</th><th>Time Out</th><th>Hours</th><th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>${attLog_tableRows(rows)}</tbody>
+              </table>
+            </div>`;
+        }
+
+        function attLog_groupHeader(icon, title, count, color) {
+          return `
+            <div style="display:flex;align-items:center;gap:10px;padding:10px 16px;background:var(--cream);border-left:4px solid ${color};border-radius:8px 8px 0 0;margin-top:18px;">
+              <i class="fas ${icon}" style="color:${color};font-size:14px;"></i>
+              <strong style="font-size:14px;color:#2d2d2d;">${title}</strong>
+              <span style="margin-left:auto;font-size:12px;font-weight:600;background:${color}22;color:${color};border-radius:20px;padding:2px 10px;">${count} record${count!==1?'s':''}</span>
+            </div>`;
+        }
+
+        function attLog_render() {
+          const out = document.getElementById('attlog-output');
+          if (!out) return;
+
+          if (attLogView === 'flat') {
+            out.innerHTML = `<article class="card">${attLog_tableHTML(attLogFiltered)}</article>`;
+            return;
+          }
+
+          const groupKey = attLogView === 'dept' ? 'dept' : 'batch';
+          const groupColors = [
+            'var(--maroon)','#2563eb','#059669','#d97706','#7c3aed','#db2777','#0891b2'
+          ];
+          const groups = {};
+          attLogFiltered.forEach(r => {
+            const k = r[groupKey];
+            if (!groups[k]) groups[k] = [];
+            groups[k].push(r);
+          });
+
+          const keys = Object.keys(groups).sort();
+          if (!keys.length) {
+            out.innerHTML = `<article class="card"><div style="text-align:center;padding:40px;color:#aaa;"><i class="fas fa-inbox fa-3x" style="opacity:.3;margin-bottom:14px;display:block;"></i>No attendance records match your filters.</div></article>`;
+            return;
+          }
+
+          const icon = attLogView === 'dept' ? 'fa-building' : 'fa-layer-group';
+          out.innerHTML = keys.map((k, i) => {
+            const color = groupColors[i % groupColors.length];
+            const rows = groups[k];
+            const verified = rows.filter(r => r.status === 'Verified').length;
+            const anomalies = rows.filter(r => r.status === 'Anomaly').length;
+            return `
+              <article class="card" style="padding:0;overflow:hidden;margin-bottom:6px;">
+                ${attLog_groupHeader(icon, k, rows.length, color)}
+                <div style="padding:0 0 4px;">
+                  <div style="display:flex;gap:24px;padding:10px 18px 8px;font-size:12px;color:#666;border-bottom:1px solid #f3f4f6;">
+                    <span><i class="fas fa-check-circle" style="color:var(--green);margin-right:4px;"></i>${verified} Verified</span>
+                    <span><i class="fas fa-hourglass-half" style="color:var(--yellow);margin-right:4px;"></i>${rows.filter(r=>r.status==='Pending Dept').length} Pending</span>
+                    ${anomalies ? `<span><i class="fas fa-exclamation-triangle" style="color:var(--red);margin-right:4px;"></i>${anomalies} Anomal${anomalies>1?'ies':'y'}</span>` : ''}
+                  </div>
+                  ${attLog_tableHTML(rows)}
+                </div>
+              </article>`;
+          }).join('');
+        }
+
+        function attLog_exportCSV() {
+          if (!attLogFiltered.length) { if(window.showAlert) showAlert('No Data', 'No records to export.', 'error'); return; }
+          const headers = ['Date','Student','Department','Batch','Time In','Time Out','Hours','Status'];
+          const rows = attLogFiltered.map(r => [r.date, r.student, r.dept, r.batch, r.timeIn, r.timeOut, r.hours || '—', r.status].map(v => `"${v}"`).join(','));
+          const csv = [headers.join(','), ...rows].join('\n');
+          const blob = new Blob([csv], { type: 'text/csv' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a'); a.href = url;
+          a.download = `attendance_log_${new Date().toISOString().slice(0,10)}.csv`;
+          a.click(); URL.revokeObjectURL(url);
+        }
+
+        // Initialize on DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', attLog_init);
+      </script>
 
       <!-- ╔══════════════════════════════════════════════
      § DEPARTMENT QR MANAGEMENT
@@ -565,14 +800,19 @@
                       <option value="Finance Office">Finance Office</option>
                     </select>
                   </div>
-                  
+
                   <!-- Assigned Admin Name Splitting -->
                   <div>
-                    <label style="font-size:12px; font-weight:600; color:#555; display:block; margin-bottom:5px;">Assigned Department Head</label>
+                    <label
+                      style="font-size:12px; font-weight:600; color:#555; display:block; margin-bottom:5px;">Assigned
+                      Department Head</label>
                     <div style="display:grid; grid-template-columns: 2fr 2fr 1fr; gap:10px;">
-                      <input type="text" placeholder="Last Name" class="field-input" style="width:100%; padding:10px; border-radius:8px; border:1.5px solid #eee;">
-                      <input type="text" placeholder="First Name" class="field-input" style="width:100%; padding:10px; border-radius:8px; border:1.5px solid #eee;">
-                      <input type="text" placeholder="M.I." maxlength="2" class="field-input" style="width:100%; padding:10px; border-radius:8px; border:1.5px solid #eee;">
+                      <input type="text" placeholder="Last Name" class="field-input"
+                        style="width:100%; padding:10px; border-radius:8px; border:1.5px solid #eee;">
+                      <input type="text" placeholder="First Name" class="field-input"
+                        style="width:100%; padding:10px; border-radius:8px; border:1.5px solid #eee;">
+                      <input type="text" placeholder="M.I." maxlength="2" class="field-input"
+                        style="width:100%; padding:10px; border-radius:8px; border:1.5px solid #eee;">
                     </div>
                   </div>
 
@@ -585,7 +825,8 @@
                   </div>
                   <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
                     <div>
-                      <label style="font-size:12px; font-weight:600; color:#555; display:block; margin-bottom:5px;">Start
+                      <label
+                        style="font-size:12px; font-weight:600; color:#555; display:block; margin-bottom:5px;">Start
                         Date</label>
                       <input type="date" class="field-input" value="2026-06-01"
                         style="width:100%; padding:10px; border-radius:8px; border:1.5px solid #eee;">
@@ -610,7 +851,8 @@
             <div class="card-header">
               <h3><i class="fas fa-eye"></i> Generated QR Preview</h3>
             </div>
-            <div class="card-body" style="display:flex; flex-direction:column; align-items:center; gap:20px; padding:30px;">
+            <div class="card-body"
+              style="display:flex; flex-direction:column; align-items:center; gap:20px; padding:30px;">
               <div
                 style="padding:15px; border:2px solid #f0f0f0; border-radius:15px; background:white; box-shadow:inset 0 0 10px rgba(0,0,0,0.02);">
                 <img id="admin-qr-img" src="" alt="QR Code" style="width:200px; height:200px; display:block;">
@@ -620,8 +862,8 @@
                 <p style="font-size:13px; color:#666;">Valid for 1st Sem 2026</p>
               </div>
               <div style="display:flex; gap:10px; width:100%;">
-                <button class="btn btn-outline" style="flex:1;" onclick="window.print()"><i
-                    class="fas fa-print"></i> Print</button>
+                <button class="btn btn-outline" style="flex:1;" onclick="window.print()"><i class="fas fa-print"></i>
+                  Print</button>
                 <button class="btn btn-primary" style="flex:1;" onclick="admin_sendQR()"><i
                     class="fas fa-paper-plane"></i> Send to Dept</button>
               </div>
@@ -1086,13 +1328,11 @@
               </div>
             </div>
             <div class="pos-footer">
-              <div class="pos-rate"><i class="fas fa-peso-sign"></i> 4,500 / mo</div>
+              <div class="pos-rate"><i class="fas fa-peso-sign"></i> 5,000 / mo</div>
               <div class="action-btns">
-                <button class="btn-icon view"><a href="#view-pos-1"><i class="fas fa-eye"></i></a></button>
-                <button class="btn btn-approve btn-sm" onclick="openApproveModal(this)"><i
-                    class="fas fa-check"></i></button>
-                <button class="btn btn-reject btn-sm" onclick="openRejectModal(this)"><i
-                    class="fas fa-times"></i></button>
+                <button class="btn-icon view"><a href="#view-pos-2"><i class="fas fa-eye"></i></a></button>
+                <button class="btn btn-approve btn-sm"><i class="fas fa-check"></i></button>
+                <button class="btn btn-reject btn-sm"><i class="fas fa-times"></i></button>
               </div>
             </div>
           </div>
