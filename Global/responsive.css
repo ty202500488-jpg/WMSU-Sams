@@ -1,0 +1,553 @@
+/* ============================================================
+   WMSU-SAMS — SYSTEM-WIDE RESPONSIVE STYLESHEET
+   Applies across ALL pages: index, login, registration,
+   student, employer, admin dashboards, and sub-pages.
+   Breakpoints:
+     1024px  — small desktop / large tablet (landscape)
+      768px  — tablet (portrait)
+      480px  — large mobile
+      360px  — small mobile
+   ============================================================ */
+
+/* ── 0. BASE HELPERS ───────────────────────────────────────── */
+img, video, iframe { max-width: 100%; height: auto; }
+table { width: 100%; border-collapse: collapse; }
+
+/* Prevent horizontal overflow site-wide */
+html, body { overflow-x: hidden; }
+
+/* ============================================================
+   1. INDEX / LANDING PAGE  (style.css)
+   ============================================================ */
+
+/* Hamburger toggle (hidden on desktop) */
+.nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 6px;
+    margin-left: auto;
+}
+.nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: 0.3s;
+}
+/* Nav collapse target */
+.nav-collapse { display: flex; align-items: center; gap: 15px; }
+
+@media screen and (max-width: 1024px) {
+    /* Landing page */
+    .hero-text { left: 40px; top: 70px; }
+    .hero-benefits { top: 190px; gap: 60px; }
+    #features h2, .section-header h2, #faq h2 { font-size: 32px; }
+    #cta h2 { font-size: 40px; }
+}
+
+@media screen and (max-width: 768px) {
+    /* Header becomes column on mobile */
+    header {
+        flex-wrap: wrap;
+        padding: 10px 20px !important;
+        min-height: auto !important;
+        gap: 8px;
+    }
+    .logo { padding: 5px 0 !important; font-size: 24px !important; }
+    .nav-hamburger { display: flex; }
+    .nav-collapse {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        align-items: flex-start;
+        padding: 10px 0;
+        gap: 8px;
+    }
+    .nav-collapse.open { display: flex; }
+    .navbar .link { margin-left: 0; font-size: 13px; }
+    #Navbtn1, #Navbtn2 { padding: 8px 14px; font-size: 13px; }
+
+    /* Hero */
+    .hero-text { left: 16px; top: 40px; max-width: calc(100% - 32px); }
+    .hero-text > h1 { font-size: 26px; }
+    .hero-text > p { font-size: 14px; }
+    .hero-benefits { top: 130px; gap: 20px; flex-direction: column; font-size: 13px; }
+    #btn1, #btn2 { padding: 9px 22px; font-size: 14px; }
+    #btn2 { margin-left: 8px; }
+
+    /* Sections */
+    #features, #eligibility, #faq { padding: 80px 16px; }
+    #discovery-section { padding: 60px 16px; }
+    #cta { padding: 80px 16px; }
+    #cta h2 { font-size: 30px; }
+    #cta p { font-size: 17px; }
+    .feature-container .card,
+    .benefits-container .card,
+    .faq-item { width: 100% !important; max-width: 100% !important; }
+    .job-grid { grid-template-columns: 1fr; gap: 20px; }
+    footer { padding: 40px 20px; }
+}
+
+@media screen and (max-width: 480px) {
+    .hero-text > h1 { font-size: 22px; }
+    #cta h2 { font-size: 24px; }
+    #cta p { font-size: 15px; }
+    #ctabut1, #ctabut2 { padding: 12px 20px; font-size: 14px; display: block; width: 100%; text-align: center; }
+    #ctabut2 { margin-left: 0; margin-top: 10px; }
+    .section-header h2, #features h2, #faq h2 { font-size: 26px; }
+}
+
+/* ============================================================
+   2. LOGIN PAGE  (login.css)
+   ============================================================ */
+@media screen and (max-width: 768px) {
+    .login-wrapper,
+    .login-card,
+    .login-container { width: 95% !important; padding: 30px 20px !important; }
+}
+@media screen and (max-width: 480px) {
+    .login-wrapper,
+    .login-card,
+    .login-container { width: 100% !important; padding: 24px 16px !important; border-radius: 10px !important; }
+}
+
+/* ============================================================
+   3. REGISTRATION PAGE  (registration.css)
+   ============================================================ */
+@media screen and (max-width: 768px) {
+    .container { top: 30px !important; padding: 12px !important; }
+    .form-wrapper { max-width: 100% !important; }
+    .register-card { padding: 24px 16px !important; }
+    .input-row { flex-direction: column !important; gap: 0 !important; }
+    .field { min-width: 100% !important; }
+    .account-form .row { flex-direction: column; }
+}
+@media screen and (max-width: 480px) {
+    .cppeso-header { padding: 20px 14px !important; }
+    .title-area h1 { font-size: 22px !important; }
+}
+
+/* ============================================================
+   4. STUDENT DASHBOARD  (student_dashboard.css)
+   ============================================================ */
+
+/* Top nav — collapse centre links */
+@media screen and (max-width: 1024px) {
+    .container {
+        grid-template-columns: 260px 1fr !important;
+    }
+    .right-panel { display: none; } /* hide right panel — content goes to feed */
+}
+
+@media screen and (max-width: 768px) {
+    /* Full-width single column */
+    .container {
+        grid-template-columns: 1fr !important;
+        padding: 74px 12px 20px !important;
+        gap: 16px !important;
+    }
+    .sidebar-panel { display: none; } /* replaced by mobile bottom nav */
+    .top-links { display: none !important; }
+
+    /* Earnings card stacks */
+    .earnings-overview-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    .stats-divider { display: none; }
+    .secondary-stats { flex-direction: row; flex-wrap: wrap; gap: 16px; }
+
+    /* Application info columns */
+    .application-info { flex-direction: column; gap: 8px; }
+    .card-actions, .application-action { flex-wrap: wrap; }
+    .info-grid { grid-template-columns: 1fr !important; }
+}
+
+@media screen and (max-width: 480px) {
+    .container { padding: 70px 8px 16px !important; }
+    .top-nav { padding: 0 14px !important; }
+    .top-logo { font-size: 1rem !important; }
+    .modal-box { padding: 24px 16px !important; max-width: 95vw !important; }
+    .earnings-overview-card { padding: 20px !important; }
+    .main-balance .amount { font-size: 2rem !important; }
+}
+
+/* ============================================================
+   5. EMPLOYER DASHBOARD  (employer_dashboard.css + sub-pages)
+   ============================================================ */
+@media screen and (max-width: 1024px) {
+    /* Employer 3-col → 2-col */
+    .container {
+        grid-template-columns: clamp(220px, 28%, 280px) 1fr !important;
+    }
+    .right-panel { display: none !important; }
+    .stats-row { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr !important;
+        padding: 74px 12px 20px !important;
+        gap: 16px !important;
+    }
+    .sidebar-panel { display: none !important; }
+    .top-links { display: none !important; }
+    .stats-row { grid-template-columns: 1fr !important; }
+    .sa-slots-grid { grid-template-columns: repeat(4, 1fr) !important; }
+    .modal-card { padding: 24px 16px !important; max-width: 95vw !important; }
+    .modal-card-footer { flex-wrap: wrap; gap: 8px; }
+    .modal-card-grid { grid-template-columns: 1fr !important; }
+}
+
+@media screen and (max-width: 480px) {
+    .top-nav { padding: 0 14px !important; }
+    .top-logo { font-size: 1rem !important; }
+    .sa-slots-grid { grid-template-columns: repeat(3, 1fr) !important; }
+    .card-actions { flex-wrap: wrap; }
+    .btn-icon { flex: 1; text-align: center; }
+}
+
+/* ============================================================
+   6. ADMIN DASHBOARD  (admin_dashboard.css)
+   ============================================================ */
+
+/* Mobile sidebar toggle */
+.sidebar-toggle {
+    display: none;
+    position: fixed;
+    top: 14px;
+    left: 14px;
+    z-index: 160;             /* above overlay (149) and sidebar (150) */
+    background: #7B0D1E;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 13px;
+    font-size: 17px;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    transition: background 0.2s;
+}
+.sidebar-toggle:hover { background: #5a0915; }
+
+/* Overlay — always in DOM, toggled by JS */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 149;
+    cursor: pointer;
+}
+.sidebar-overlay.active { display: block; }
+
+@media screen and (max-width: 1200px) {
+    .stat-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    .dash-grid { grid-template-columns: 1fr !important; }
+}
+
+@media screen and (max-width: 1024px) {
+    .sidebar-toggle { display: flex; align-items: center; justify-content: center; }
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 150 !important;
+    }
+    .sidebar.open { transform: translateX(0) !important; }
+    .layout { margin-left: 0 !important; }
+    .topbar { padding: 0 16px 0 62px !important; }
+    .main-content { padding: 20px 16px !important; }
+    .stat-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+@media screen and (max-width: 768px) {
+    .topbar { height: 56px !important; padding: 0 12px 0 58px !important; }
+    .topbar-left h1 { font-size: 16px !important; }
+    .topbar-left .page-title { display: none; }
+    .topbar-right .topbar-notif { display: none; }
+    .stat-grid { grid-template-columns: 1fr !important; }
+    .main-content { padding: 16px 12px !important; }
+    .section-header { flex-direction: column; align-items: flex-start !important; gap: 12px !important; }
+    .section-actions { flex-wrap: wrap; width: 100%; }
+    .table-wrap, .data-table-wrap { overflow-x: auto; }
+    table { min-width: 600px; }
+    .modal-overlay { padding: 12px !important; }
+    .modal-content, .modal-body { max-width: 95vw !important; }
+}
+
+@media screen and (max-width: 480px) {
+    .topbar { padding: 0 8px 0 54px !important; }
+    .user-name, .user-role { display: none; }
+    .topbar-user { padding: 6px !important; }
+    .stat-value { font-size: 26px !important; }
+    .section-title { font-size: 20px !important; }
+}
+
+/* ============================================================
+   7. STUDENT SUB-PAGES
+   (positions, application, notification, profile, form, referral)
+   ============================================================ */
+
+/* Positions page — job card grid */
+@media screen and (max-width: 1024px) {
+    .positions-grid,
+    .job-positions-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+@media screen and (max-width: 768px) {
+    /* shared 3-col layout → 1 col */
+    .page-layout,
+    .positions-layout { grid-template-columns: 1fr !important; }
+    .positions-sidebar,
+    .filter-sidebar { display: none; }
+    .positions-grid,
+    .job-positions-grid { grid-template-columns: 1fr !important; }
+    /* Forms */
+    .form-row,
+    .field-row { flex-direction: column !important; gap: 12px !important; }
+    .form-col { flex: 1 !important; min-width: 100% !important; }
+    /* Notification list */
+    .notif-list { padding: 0 !important; }
+    .notif-item { flex-wrap: wrap; gap: 8px; }
+    /* Profile card */
+    .profile-layout { flex-direction: column !important; }
+    .profile-sidebar-card { width: 100% !important; }
+}
+
+@media screen and (max-width: 480px) {
+    .application-header { flex-direction: column; align-items: flex-start !important; }
+    .application-info { flex-direction: column; }
+    .application-action { flex-wrap: wrap; }
+}
+
+/* ============================================================
+   8. EMPLOYER SUB-PAGES
+   (job_posting, review_attendance, create_post, profile)
+   ============================================================ */
+
+@media screen and (max-width: 768px) {
+    /* Job posting filter bar */
+    .filter-bar,
+    .search-filter-row { flex-direction: column !important; gap: 10px !important; }
+    .filter-bar input,
+    .filter-bar select { width: 100% !important; }
+    /* Attendance table */
+    .attendance-table-wrap { overflow-x: auto; }
+    .attendance-table { min-width: 640px; }
+    /* Create post form */
+    .create-post-card { padding: 20px 14px !important; }
+    /* Employer profile */
+    .employer-profile-layout { flex-direction: column !important; }
+    .employer-profile-aside { width: 100% !important; }
+}
+
+@media screen and (max-width: 480px) {
+    .job-card-actions { flex-wrap: wrap; }
+    .job-card-actions button,
+    .job-card-actions a { flex: 1; text-align: center; }
+}
+
+/* ============================================================
+   9. MODALS  (modals.css — used across all pages)
+   ============================================================ */
+@media screen and (max-width: 768px) {
+    .modal-box,
+    .modal-content,
+    .modal-card {
+        width: 95vw !important;
+        max-width: 95vw !important;
+        padding: 24px 16px !important;
+        border-radius: 12px !important;
+        max-height: 92vh !important;
+    }
+    .modal-footer { flex-wrap: wrap; gap: 8px; }
+    .modal-footer button,
+    .modal-footer a { flex: 1; text-align: center; }
+    .info-grid { grid-template-columns: 1fr !important; }
+    .modal-card-footer { flex-wrap: wrap; justify-content: center !important; }
+}
+
+/* ============================================================
+   10. SHARED UTILITY — TABLES
+   ============================================================ */
+@media screen and (max-width: 768px) {
+    /* All data tables scroll */
+    .table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .data-table { min-width: 560px; }
+    /* Compact table cells */
+    th, td { padding: 8px 10px !important; font-size: 12px !important; }
+}
+
+/* ============================================================
+   11. SUPER ADMIN PAGE  (super_admin.html)
+   Same layout as admin — piggyback on admin rules
+   ============================================================ */
+@media screen and (max-width: 1024px) {
+    .super-admin-layout { grid-template-columns: 1fr !important; }
+}
+
+/* ============================================================
+   12. SUCCESS / SUBMITTED / CLAIM PAGES
+   ============================================================ */
+@media screen and (max-width: 480px) {
+    .success-card,
+    .submitted-card,
+    .claim-card { padding: 30px 20px !important; }
+    .success-card h1,
+    .submitted-card h1 { font-size: 22px !important; }
+}
+
+/* ============================================================
+   13. FORGOT PASSWORD / RESET PAGES
+   ============================================================ */
+@media screen and (max-width: 480px) {
+    .fp-card,
+    .reset-card { width: 95% !important; padding: 28px 16px !important; }
+}
+
+/* ============================================================
+   14. BOTTOM MOBILE NAVIGATION BAR
+   Consistent across ALL Student & Employer pages.
+   ============================================================ */
+
+/* ── Base bar (hidden on desktop) ── */
+.mobile-bottom-nav {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* Respect iPhone home-indicator safe area */
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    height: calc(62px + env(safe-area-inset-bottom, 0px));
+    background: #fff;
+    border-top: 1px solid #e8eaed;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+    z-index: 1050;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-around;
+}
+
+/* ── Each nav item ── */
+.mobile-bottom-nav a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    flex: 1;
+    text-decoration: none;
+    color: #9ca3af;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    padding: 8px 4px 6px;
+    position: relative;
+    transition: color 0.18s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* ── Icon size ── */
+.mobile-bottom-nav a i {
+    font-size: 19px;
+    line-height: 1;
+    transition: transform 0.18s ease, color 0.18s ease;
+}
+
+/* ── Label text ── */
+.mobile-bottom-nav a span {
+    font-size: 10px;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+/* ── Hover state ── */
+.mobile-bottom-nav a:hover {
+    color: #9e1a2e;
+}
+.mobile-bottom-nav a:hover i {
+    transform: translateY(-2px);
+}
+
+/* ── Active state — maroon top pip + colored icon ── */
+.mobile-bottom-nav a.active {
+    color: #7B0D1E;
+}
+.mobile-bottom-nav a.active i {
+    color: #7B0D1E;
+}
+.mobile-bottom-nav a.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20%;
+    right: 20%;
+    height: 3px;
+    background: #7B0D1E;
+    border-radius: 0 0 4px 4px;
+}
+
+/* ── Show on mobile ── */
+@media screen and (max-width: 768px) {
+    .mobile-bottom-nav { display: flex; }
+    /* Push page content above the nav bar */
+    body { padding-bottom: calc(62px + env(safe-area-inset-bottom, 0px)); }
+
+    /* ── Float chat button — lift above bottom nav ── */
+    .float-msg-btn {
+        bottom: calc(62px + env(safe-area-inset-bottom, 0px) + 14px) !important;
+        right: 16px !important;
+        width: 50px !important;
+        height: 50px !important;
+        font-size: 20px !important;
+        z-index: 1100 !important;  /* above mobile-bottom-nav (1050) */
+    }
+
+    /* ── Chat panel — bottom sheet above nav bar ── */
+    .msg-panel {
+        bottom: calc(62px + env(safe-area-inset-bottom, 0px)) !important;
+        right: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 78vh !important;
+        border-radius: 20px 20px 0 0 !important;
+        z-index: 1200 !important;  /* above everything */
+    }
+
+    /* ── Toast notification — above the panel ── */
+    .msg-toast {
+        bottom: calc(62px + env(safe-area-inset-bottom, 0px) + 80px) !important;
+        z-index: 1300 !important;
+    }
+}
+
+/* ── Extra small phones: tighter icon ── */
+@media screen and (max-width: 360px) {
+    .mobile-bottom-nav a { padding: 6px 2px 4px; }
+    .mobile-bottom-nav a i { font-size: 17px; }
+    .mobile-bottom-nav a span { font-size: 9px; }
+    .float-msg-btn {
+        bottom: calc(62px + 10px) !important;
+        right: 10px !important;
+        width: 44px !important;
+        height: 44px !important;
+        font-size: 18px !important;
+    }
+}
+
+/* ============================================================
+   15. PRINT STYLES (claim receipts, payslips, reports)
+   ============================================================ */
+@media print {
+    .sidebar, .top-nav, .topbar, .sidebar-toggle,
+    .mobile-bottom-nav, .card-actions,
+    .action-btn, .primary-btn, .secondary-btn { display: none !important; }
+    body { background: #fff !important; color: #000 !important; }
+    .main-content, .layout { margin: 0 !important; padding: 0 !important; }
+    .claim-card, .payslip-card { box-shadow: none !important; border: 1px solid #ccc !important; }
+}

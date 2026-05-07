@@ -409,7 +409,7 @@ class PositionSuggestionSystem {
 
             this.studentApplications.set(applicationId, application);
 
-            const message = action === 'approve' 
+            const message = action === 'approve'
                 ? `${application.studentName} approved for ${application.positionName}`
                 : `${application.studentName} rejected for ${application.positionName}`;
 
@@ -464,7 +464,7 @@ class PositionSuggestionSystem {
             <span>${message}</span>
         `;
         document.body.appendChild(notification);
-        
+
         setTimeout(() => notification.remove(), 4000);
     }
 }

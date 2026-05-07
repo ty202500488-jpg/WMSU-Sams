@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +6,7 @@
     <title>Dashboard | WMSU-SAMS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="student_dashboard.css">
+    <link rel="stylesheet" href="../Global/responsive.css">
 </head>
 <body>
 
@@ -113,13 +114,18 @@
                 <div class="main-card assignment">
                    <div class="application-header">
                         <div class="suggestion-group"> 
-                            <h3>IT Student Assistant</h3>  
+                            <h3>IT Student Assistant</h3>
                             <div class="suggestion-badge">
-                                <i class="fas fa-star"></i> Suggested for You
+                                <i class="fas fa-star"></i> 92% Match
                             </div>
                         </div>
                         <hr>
                         <p>Assist IT Office with website updates, documentation, and student support tasks.</p>
+                        <div class="match-reason">
+                            ✔ Course aligned (BSIT)<br>
+                            ✔ Skills match: HTML, CSS<br>
+                            ✔ Schedule compatible
+                        </div>
                     </div>
 
                 <div class="application-info">
@@ -161,14 +167,9 @@
 
                 <!--LIBRARY ASSISTANT-->
 
-                <article class="main-card assignment">
-                    <div class="application-header">
-                        <div class="suggestion-group"> 
-                            <h3>Library Assistant</h3>
-                            <div class="suggestion-badge">
-                                <i class="fas fa-star"></i> Suggested for You
-                            </div>
-                        </div>
+                <article class="application-card">
+                    <div class="application-header"> 
+                        <h3>Library Assistant</h3>                           
                         <hr>
                         <p>Organize library books, assist students in locating resources, and maintain records.</p>
                     </div>
@@ -447,253 +448,452 @@
         </div>
     </div>
 
-    <!-- ===== FLOATING MESSAGE BUTTON ===== -->
-    <button class="float-msg-btn" id="floatMsgBtn" onclick="toggleMsg()" title="Message Department">
-        <i class="fas fa-comment-dots"></i>
-        <span class="float-msg-badge" id="msgBadge">0</span>
+    <button class="float-msg-btn" id="floatMsgBtn" onclick="togglePanel()" title="Messages">
+  <i class="fas fa-comment-dots"></i>
+  <span class="float-msg-badge" id="msgBadge"></span>
+</button>
+ 
+<!-- Toast -->
+<div class="msg-toast" id="msgToast">
+  <div class="toast-avatar" id="toastAvatar"></div>
+  <div class="toast-content">
+    <div class="toast-dept" id="toastDept"></div>
+    <div class="toast-text" id="toastText"></div>
+  </div>
+  <button class="toast-close" onclick="hideToast()"><i class="fas fa-times"></i></button>
+</div>
+ 
+<!-- Messenger Panel -->
+<div class="msg-panel" id="msgPanel">
+ 
+  <!-- Header -->
+  <div class="msg-header">
+    <div class="msg-header-avatar" id="headerAvatar">
+      IT
+      <span class="online-dot"></span>
+    </div>
+    <div class="msg-header-info">
+      <div class="msg-header-name" id="headerName">IT Office</div>
+      <div class="msg-header-status">Active now</div>
+    </div>
+    <div class="msg-header-actions">
+      <button title="Call"><i class="fas fa-phone"></i></button>
+      <button title="Video"><i class="fas fa-video"></i></button>
+      <button title="Info"><i class="fas fa-info-circle"></i></button>
+      <button class="close-btn" title="Close" onclick="togglePanel()"><i class="fas fa-times"></i></button>
+    </div>
+  </div>
+ 
+  <!-- Dept Tabs -->
+  <div class="msg-dept-tabs" id="deptTabs"></div>
+ 
+  <!-- Body -->
+  <div class="msg-body" id="msgBody"></div>
+ 
+  <!-- Emoji Picker -->
+  <div class="emoji-picker" id="emojiPicker">
+    <span onclick="addEmoji('😊')">😊</span>
+    <span onclick="addEmoji('😂')">😂</span>
+    <span onclick="addEmoji('❤️')">❤️</span>
+    <span onclick="addEmoji('👍')">👍</span>
+    <span onclick="addEmoji('🔥')">🔥</span>
+    <span onclick="addEmoji('😍')">😍</span>
+    <span onclick="addEmoji('🎉')">🎉</span>
+    <span onclick="addEmoji('😢')">😢</span>
+    <span onclick="addEmoji('😎')">😎</span>
+    <span onclick="addEmoji('🙏')">🙏</span>
+    <span onclick="addEmoji('💯')">💯</span>
+    <span onclick="addEmoji('✅')">✅</span>
+  </div>
+ 
+  <!-- Footer -->
+  <div class="msg-footer">
+    <div class="msg-footer-actions">
+      <button title="Attach"><i class="fas fa-plus-circle"></i></button>
+    </div>
+    <div class="msg-input-wrap">
+      <input type="text" id="msgInput" placeholder="Aa" oninput="onInputChange()" onkeydown="if(event.key==='Enter')sendMsg()">
+      <button class="msg-emoji-btn" onclick="toggleEmoji()" title="Emoji"><i class="fas fa-smile"></i></button>
+    </div>
+    <button class="msg-send-btn" id="sendBtn" onclick="sendMsg()" style="display:none" title="Send">
+      <i class="fas fa-paper-plane"></i>
     </button>
-
-    <!-- ===== TOAST NOTIFICATION ===== -->
-    <div class="msg-toast" id="msgToast">
-        <div class="msg-toast-avatar" id="toastAvatar"></div>
-        <div class="msg-toast-content">
-            <div class="msg-toast-dept" id="toastDept"></div>
-            <div class="msg-toast-text" id="toastText"></div>
-        </div>
-        <button class="msg-toast-close" onclick="dismissToast()">
-            <i class="fas fa-times"></i>
-        </button>
-    </div>
-
-    <!-- ===== CHAT PANEL ===== -->
-    <div class="msg-panel" id="msgPanel">
-        <div class="msg-panel-header">
-            <i class="fas fa-comments" style="font-size:18px;color:white;flex-shrink:0;"></i>
-            <div class="msg-panel-header-info">
-                <div class="msg-panel-title">Department Messages</div>
-                <div class="msg-panel-sub" id="msgDeptName">IT Office</div>
-            </div>
-            <button class="msg-panel-close" onclick="toggleMsg()">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <div class="msg-student-tabs" id="deptTabs"></div>
-        <div class="msg-body" id="msgBody">
-            <div style="text-align:center;color:#aaa;font-size:13px;padding:24px 0">
-                Select a student to view conversation
-            </div>
-        </div>
-
-        <div class="msg-footer">
-            <input type="text" id="msgInput" placeholder="Type a message…" onkeydown="if(event.key==='Enter')sendMsg()">
-            <button class="msg-send-btn" onclick="sendMsg()">
-                <i class="fas fa-paper-plane"></i>
-            </button>
-        </div>
-    </div>
+    <button class="msg-like-btn" id="likeBtn" onclick="sendLike()" title="Like">
+      👍
+    </button>
+  </div>
+</div>
     
 <script>
-const DEPT_ICONS = {
-        'IT Office':    'fa-computer',
-        'Library':      'fa-book',
-        'Registrar':    'fa-clipboard',
-        'Support Team': 'fa-headset'
-    };
+    localStorage.clear();
+/* ─── CONFIG ─── */
+const DEPT_LIST = ['IT Office', 'Library', 'Registrar', 'Support Team'];
+const DEPT_INITIALS = { 'IT Office':'IT', 'Library':'LB', 'Registrar':'RG', 'Support Team':'ST' };
+const DEPT_TO_KEY = d => 'sams_chat_' + d.replace(/\s/g,'_');
+const UNREAD_KEY = 'sams_chat_unread_student';
  
-    const SIDE = 'student';   // this page is the student side
+let currentDept = 'IT Office';
+let panelOpen = false;
+let pollTimer = null;
+let lastCounts = {};
  
-    let currentDept = 'IT Office';
-    let panelOpen = false;
-    let pollTimer = null;
-    let lastMsgCount = {};
- 
-    const DEPT_TO_STUDENT = {
-    'IT Office':    'Juan_Dela_Cruz',
-    'Library':      'Luz_Mendoza',
-    'Registrar':    'Karl_Reyes',
-    'Support Team': 'Juan_Dela_Cruz'
-};
-
-function storageKey(dept) {
-    const sid = DEPT_TO_STUDENT[dept] || dept.replace(/\s/g,'_');
-    return 'sams_chat_' + sid;
+/* ─── STORAGE ─── */
+function getConvo(dept) {
+  try { return JSON.parse(localStorage.getItem(DEPT_TO_KEY(dept))) || []; }
+  catch(e) { return []; }
 }
-    function unreadKey()      { return 'sams_chat_unread_student'; }
+function saveConvo(dept, msgs) {
+  localStorage.setItem(DEPT_TO_KEY(dept), JSON.stringify(msgs));
+}
  
-    function getConvo(dept) {
-        try { return JSON.parse(localStorage.getItem(storageKey(dept))) || []; }
-        catch(e) { return []; }
-    }
-    function saveConvo(dept, msgs) {
-        localStorage.setItem(storageKey(dept), JSON.stringify(msgs));
+/* ─── SEED ─── */
+function seedDefaults() {
+  if (!localStorage.getItem(DEPT_TO_KEY('IT Office'))) {
+    saveConvo('IT Office', [
+      { from:'dept', text:'Hello Juan! Your May 1 attendance has been approved.', time:'10:02 AM' },
+      { from:'student', text:'Thank you, Ms. Rodriguez!', time:'10:05 AM' }
+    ]);
+  }
+}
+ 
+/* ─── TIME ─── */
+function formatTime() {
+  const now = new Date();
+  let h = now.getHours(), m = now.getMinutes();
+  const ap = h >= 12 ? 'PM' : 'AM';
+  h = h % 12 || 12;
+  return h + ':' + String(m).padStart(2,'0') + ' ' + ap;
+}
+function todayLabel() {
+  return new Date().toLocaleDateString('en-US', { weekday:'long', month:'short', day:'numeric' });
+}
+ 
+/* ─── RENDER MESSAGES ─── */
+function renderConversation(dept) {
+  const body = document.getElementById('msgBody');
+  const msgs = getConvo(dept);
+ 
+  if (!msgs.length) {
+    body.innerHTML = `
+      <div class="empty-state">
+        <i class="fas fa-comments"></i>
+        <p>No messages yet.<br>Start the conversation!</p>
+      </div>`;
+    lastCounts[dept] = 0;
+    return;
+  }
+ 
+  body.innerHTML = '';
+ 
+  // Date separator
+  const sep = document.createElement('div');
+  sep.className = 'msg-date-sep';
+  sep.textContent = todayLabel();
+  body.appendChild(sep);
+ 
+  // Group consecutive messages by sender
+  let i = 0;
+  while (i < msgs.length) {
+    const sender = msgs[i].from;
+    const group = [];
+    while (i < msgs.length && msgs[i].from === sender) {
+      group.push(msgs[i]);
+      i++;
     }
  
-    function formatTime() {
-        const now = new Date();
-        let h = now.getHours(), m = now.getMinutes();
-        const ampm = h >= 12 ? 'PM' : 'AM';
-        h = h % 12 || 12;
-        return h + ':' + String(m).padStart(2,'0') + ' ' + ampm;
+    const isSent = sender === 'student';
+    const groupEl = document.createElement('div');
+    groupEl.className = 'bubble-group ' + (isSent ? 'sent' : 'received');
+ 
+    // For received: avatar on left
+    let avatarEl = null;
+    let bubblesWrap = groupEl;
+ 
+    if (!isSent) {
+      avatarEl = document.createElement('div');
+      avatarEl.className = 'group-avatar';
+      avatarEl.textContent = DEPT_INITIALS[dept] || dept[0];
+      groupEl.appendChild(avatarEl);
+ 
+      bubblesWrap = document.createElement('div');
+      bubblesWrap.className = 'bubbles';
+      groupEl.appendChild(bubblesWrap);
     }
  
-    // Seed default messages on first load
-    function seedDefaults() {
-        if (!localStorage.getItem(storageKey('IT Office'))) {
-            saveConvo('IT Office', [
-                { from: 'dept', text: 'Hello Juan! Your May 1 attendance has been approved.', time: '10:02 AM' },
-                { from: 'student', text: 'Thank you, Ms. Rodriguez!', time: '10:05 AM' }
-            ]);
-        }
-        if (!localStorage.getItem(storageKey('Support Team'))) {
-            saveConvo('Support Team', [
-                { from: 'dept', text: 'Hi! How can we help you today?', time: '9:00 AM' }
-            ]);
-        }
-    }
+    group.forEach(function(msg, idx) {
+      const bubble = document.createElement('div');
+      bubble.className = 'msg-bubble ' + (isSent ? 'sent' : 'received');
  
-    function renderConversation(dept) {
-        const body = document.getElementById('msgBody');
-        const msgs = getConvo(dept);
-        body.innerHTML = '';
-        if (!msgs.length) {
-            body.innerHTML = '<div style="text-align:center;color:#aaa;font-size:13px;padding:24px 0">No messages yet.<br><small>Start the conversation!</small></div>';
-            return;
-        }
-        msgs.forEach(function(msg) {
-            const div = document.createElement('div');
-            const isSent = (msg.from === 'student');
-            div.className = 'msg-bubble ' + (isSent ? 'sent' : 'received');
-            div.innerHTML = escapeHtml(msg.text) + '<div class="msg-time">' + msg.time + '</div>';
-            body.appendChild(div);
-        });
-        body.scrollTop = body.scrollHeight;
-        // Track last count
-        lastMsgCount[dept] = msgs.length;
-    }
+      // Reaction bar
+      const reactions = document.createElement('div');
+      reactions.className = 'reaction-trigger';
+      reactions.innerHTML = ['❤️','😂','😮','😢','😡','👍'].map(e =>
+        `<span onclick="reactTo(this,'${e}')">${e}</span>`
+      ).join('');
+      bubble.appendChild(reactions);
  
-    function escapeHtml(str) {
-        return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-    }
- 
-    const DEPT_LIST = [
-    { value: 'IT Office',    label: 'IT Office',    initials: 'IT', color: '#1d4ed8' },
-    { value: 'Library',      label: 'Library',      initials: 'LB', color: '#7B0D1E' },
-    { value: 'Registrar',    label: 'Registrar',    initials: 'RG', color: '#0f766e' },
-    { value: 'Support Team', label: 'Support Team', initials: 'ST', color: '#7c3aed' }
-];
-
-function buildDeptTabs() {
-    const container = document.getElementById('deptTabs');
-    container.innerHTML = '';
-    DEPT_LIST.forEach(function(dept) {
-        const tab = document.createElement('div');
-        tab.className = 'msg-tab' + (dept.value === currentDept ? ' active' : '');
-        tab.setAttribute('data-dept', dept.value);
-        tab.onclick = function() { switchDept(dept.value); };
-        tab.innerHTML =
-            '<div class="msg-tab-avatar" style="background:' + dept.color + '">' + dept.initials + '</div>' +
-            '<span>' + dept.label + '</span>';
-        container.appendChild(tab);
+      const textNode = document.createTextNode(msg.text);
+      bubble.appendChild(textNode);
+      bubblesWrap.appendChild(bubble);
     });
+ 
+    // Time label after group
+    const timeEl = document.createElement('div');
+    timeEl.className = 'msg-time-label';
+    timeEl.textContent = group[group.length - 1].time;
+    bubblesWrap.appendChild(timeEl);
+ 
+    // "Seen" for last sent group
+    if (isSent && i >= msgs.length) {
+      const seen = document.createElement('div');
+      seen.className = 'msg-seen';
+      seen.innerHTML = `<span class="seen-dot"><i class="fas fa-check"></i></span> Seen`;
+      body.appendChild(groupEl);
+      body.appendChild(seen);
+      lastCounts[dept] = msgs.length;
+      continue;
+    }
+ 
+    body.appendChild(groupEl);
+  }
+ 
+  lastCounts[dept] = msgs.length;
+  body.scrollTop = body.scrollHeight;
 }
-
+ 
+/* ─── TABS ─── */
+function buildTabs() {
+  const container = document.getElementById('deptTabs');
+  container.innerHTML = '';
+  DEPT_LIST.forEach(dept => {
+    const tab = document.createElement('div');
+    tab.className = 'msg-dept-tab' + (dept === currentDept ? ' active' : '');
+    tab.setAttribute('data-dept', dept);
+    tab.onclick = () => switchDept(dept);
+ 
+    const initials = DEPT_INITIALS[dept] || dept[0];
+    tab.innerHTML = `
+      <div class="tab-avatar">${initials}</div>
+      <span>${dept.replace(' Team','')}</span>
+    `;
+    container.appendChild(tab);
+  });
+}
+ 
 function switchDept(dept) {
-    currentDept = dept;
-    document.getElementById('msgDeptName').textContent = dept;
-    document.querySelectorAll('#deptTabs .msg-tab').forEach(function(t) {
-        t.classList.toggle('active', t.getAttribute('data-dept') === dept);
-    });
-    renderConversation(dept);
-    updateUnreadBadge();
+  currentDept = dept;
+  document.getElementById('headerName').textContent = dept;
+  document.getElementById('headerAvatar').textContent = DEPT_INITIALS[dept] || dept[0];
+  document.getElementById('headerAvatar').insertAdjacentHTML('beforeend','<span class="online-dot"></span>');
+ 
+  document.querySelectorAll('.msg-dept-tab').forEach(t => {
+    t.classList.toggle('active', t.getAttribute('data-dept') === dept);
+  });
+ 
+  renderConversation(dept);
 }
  
-    function sendMsg() {
-        const input = document.getElementById('msgInput');
-        const text = input.value.trim();
-        if (!text) return;
+/* ─── SEND ─── */
+function sendMsg() {
+  const input = document.getElementById('msgInput');
+  const text = input.value.trim();
+  if (!text) return;
  
-        const msgs = getConvo(currentDept);
-        msgs.push({ from: 'student', text: text, time: formatTime() });
-        saveConvo(currentDept, msgs);
-        input.value = '';
-        renderConversation(currentDept);
+  const msgs = getConvo(currentDept);
+  msgs.push({ from:'student', text, time: formatTime() });
+  saveConvo(currentDept, msgs);
+  input.value = '';
+  onInputChange();
+  renderConversation(currentDept);
  
-        const sid = DEPT_TO_STUDENT[currentDept] || currentDept.replace(/\s/g,'_');
-        const empUnread = parseInt(localStorage.getItem('sams_emp_unread_' + sid) || '0');
-        localStorage.setItem('sams_emp_unread_' + sid, empUnread + 1);
-    }
+  // notify employer
+  const key = 'sams_emp_unread_' + currentDept.replace(/\s/g,'_');
+  localStorage.setItem(key, (parseInt(localStorage.getItem(key)||'0') + 1));
  
-    function updateUnreadBadge() {
-    const count = parseInt(localStorage.getItem(unreadKey()) || '0');
-    const badge = document.getElementById('msgBadge');
-    if (count > 0 && !panelOpen) {
-        badge.textContent = count > 9 ? '9+' : count;
-        badge.style.display = 'flex';
+  // simulate reply after 1.5s
+  simulateReply(currentDept);
+}
+ 
+function sendLike() {
+  const msgs = getConvo(currentDept);
+  msgs.push({ from:'student', text:'👍', time: formatTime() });
+  saveConvo(currentDept, msgs);
+  renderConversation(currentDept);
+}
+ 
+/* ─── TYPING SIMULATION ─── */
+function simulateReply(dept) {
+  const body = document.getElementById('msgBody');
+  const indicator = document.createElement('div');
+  indicator.className = 'typing-indicator';
+  indicator.id = 'typingIndicator';
+  indicator.innerHTML = `
+    <div class="group-avatar">${DEPT_INITIALS[dept]||dept[0]}</div>
+    <div class="typing-dots">
+      <span></span><span></span><span></span>
+    </div>`;
+  body.appendChild(indicator);
+  body.scrollTop = body.scrollHeight;
+ 
+  const replies = [
+    'Got it, thank you!',
+    'Noted. We will get back to you shortly.',
+    'Thanks for reaching out!',
+    'Sure, no problem!',
+    'We will check and update you soon.',
+  ];
+  const reply = replies[Math.floor(Math.random() * replies.length)];
+ 
+  setTimeout(() => {
+    const ind = document.getElementById('typingIndicator');
+    if (ind) ind.remove();
+ 
+    const msgs = getConvo(dept);
+    msgs.push({ from:'dept', text: reply, time: formatTime() });
+    saveConvo(dept, msgs);
+    if (panelOpen && dept === currentDept) {
+      renderConversation(dept);
     } else {
-        badge.style.display = 'none';
+      showToast(dept, reply);
+      const cur = parseInt(localStorage.getItem(UNREAD_KEY)||'0');
+      localStorage.setItem(UNREAD_KEY, cur + 1);
+      updateBadge();
     }
+  }, 1800);
 }
  
-    function clearStudentUnread() {
-        localStorage.setItem(unreadKey(), '0');
-        updateUnreadBadge();
-    }
- 
-    function toggleMsg() {
-    panelOpen = !panelOpen;
-    document.getElementById('msgPanel').classList.toggle('open', panelOpen);
-    if (panelOpen) {
-        buildDeptTabs();
-        clearStudentUnread();
-        renderConversation(currentDept);
-        setTimeout(function() { document.getElementById('msgInput').focus(); }, 260);
-    }
+/* ─── EMOJI ─── */
+function toggleEmoji() {
+  document.getElementById('emojiPicker').classList.toggle('open');
+}
+function addEmoji(e) {
+  document.getElementById('msgInput').value += e;
+  document.getElementById('emojiPicker').classList.remove('open');
+  document.getElementById('msgInput').focus();
+  onInputChange();
 }
  
-    // Poll for new messages from employer
-    function startPolling() {
-        pollTimer = setInterval(function() {
-            const msgs = getConvo(currentDept);
-            const prev = lastMsgCount[currentDept] || 0;
-            if (msgs.length > prev) {
-                if (panelOpen) {
-                    renderConversation(currentDept);
-                } else {
-                    // Increment student unread badge
-                    const cur = parseInt(localStorage.getItem(unreadKey()) || '0');
-                    localStorage.setItem(unreadKey(), cur + (msgs.length - prev));
-                    updateUnreadBadge();
-                    lastMsgCount[currentDept] = msgs.length;
-                }
-            }
-        }, 1500);
+/* ─── INPUT TOGGLE SEND/LIKE ─── */
+function onInputChange() {
+  const hasText = document.getElementById('msgInput').value.trim().length > 0;
+  document.getElementById('sendBtn').style.display = hasText ? 'flex' : 'none';
+  document.getElementById('likeBtn').style.display = hasText ? 'none' : 'flex';
+}
+ 
+/* ─── REACTION ─── */
+function reactTo(el, emoji) {
+  const bubble = el.closest('.msg-bubble');
+  let react = bubble.querySelector('.bubble-react');
+  if (!react) {
+    react = document.createElement('span');
+    react.className = 'bubble-react';
+    react.style.cssText = 'position:absolute;bottom:-16px;right:6px;font-size:14px;background:#fff;border-radius:10px;padding:1px 4px;box-shadow:0 1px 4px rgba(0,0,0,.2)';
+    bubble.appendChild(react);
+  }
+  react.textContent = emoji;
+}
+ 
+/* ─── BADGE ─── */
+function updateBadge() {
+  const count = parseInt(localStorage.getItem(UNREAD_KEY)||'0');
+  const badge = document.getElementById('msgBadge');
+  if (count > 0 && !panelOpen) {
+    badge.textContent = count > 9 ? '9+' : count;
+    badge.style.display = 'flex';
+  } else {
+    badge.style.display = 'none';
+  }
+}
+function clearUnread() {
+  localStorage.setItem(UNREAD_KEY, '0');
+  updateBadge();
+}
+ 
+/* ─── TOAST ─── */
+function showToast(dept, text) {
+  document.getElementById('toastAvatar').textContent = DEPT_INITIALS[dept] || dept[0];
+  document.getElementById('toastDept').textContent = dept;
+  document.getElementById('toastText').textContent = text;
+  const toast = document.getElementById('msgToast');
+  toast.classList.add('show');
+  setTimeout(() => hideToast(), 4000);
+}
+function hideToast() {
+  document.getElementById('msgToast').classList.remove('show');
+}
+ 
+/* ─── PANEL TOGGLE ─── */
+function togglePanel() {
+  panelOpen = !panelOpen;
+  document.getElementById('msgPanel').classList.toggle('open', panelOpen);
+  if (panelOpen) {
+    buildTabs();
+    clearUnread();
+    renderConversation(currentDept);
+    setTimeout(() => document.getElementById('msgInput').focus(), 260);
+  }
+}
+ 
+/* ─── POLL ─── */
+function startPolling() {
+  setInterval(() => {
+    const msgs = getConvo(currentDept);
+    const prev = lastCounts[currentDept] || 0;
+    if (msgs.length > prev) {
+      if (panelOpen) renderConversation(currentDept);
+      else {
+        const cur = parseInt(localStorage.getItem(UNREAD_KEY)||'0');
+        localStorage.setItem(UNREAD_KEY, cur + (msgs.length - prev));
+        lastCounts[currentDept] = msgs.length;
+        updateBadge();
+      }
     }
+  }, 1500);
+}
  
-    // Close on outside click
-    document.addEventListener('click', function(e) {
-        const panel = document.getElementById('msgPanel');
-        const btn   = document.getElementById('floatMsgBtn');
-        if (panelOpen && panel && btn && !panel.contains(e.target) && !btn.contains(e.target)) {
-            panelOpen = false;
-            panel.classList.remove('open');
-        }
-    });
+/* ─── CLOSE ON OUTSIDE CLICK ─── */
+document.addEventListener('click', e => {
+  const panel = document.getElementById('msgPanel');
+  const btn = document.getElementById('floatMsgBtn');
+  const picker = document.getElementById('emojiPicker');
+  if (picker.classList.contains('open') && !picker.contains(e.target)) {
+    picker.classList.remove('open');
+  }
+  if (panelOpen && !panel.contains(e.target) && !btn.contains(e.target)) {
+    panelOpen = false;
+    panel.classList.remove('open');
+  }
+});
  
-    // Init
+/* ─── INIT ─── */
 seedDefaults();
-buildDeptTabs();
-renderConversation(currentDept);
-updateUnreadBadge();
+buildTabs();
+updateBadge();
 startPolling();
- 
-    function openDeptMessage(dept) {
-        const sel = document.getElementById('deptSelect');
-        for (var i = 0; i < sel.options.length; i++) {
-            if (sel.options[i].value === dept) { sel.selectedIndex = i; break; }
-        }
-        switchDept(dept);
-        if (!panelOpen) toggleMsg();
-    }
-    </script>
+</script>
+
+    <!-- Mobile Bottom Nav -->
+    <nav class="mobile-bottom-nav">
+        <a href="student_dashboard.html" class="active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="application.html">
+            <i class="fas fa-file-alt"></i>
+            <span>Apply</span>
+        </a>
+        <a href="positions.html">
+            <i class="fas fa-briefcase"></i>
+            <span>Jobs</span>
+        </a>
+        <a href="notification.html">
+            <i class="fas fa-bell"></i>
+            <span>Alerts</span>
+        </a>
+        <a href="student_profile.html">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </nav>
 </body>
 </html>

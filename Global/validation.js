@@ -9,19 +9,31 @@
  * Show error message below a form field
  */
 function showError(inputElement, message) {
-    // Remove existing error if present
+    // Support legacy id="error-{name}" span placeholders (registration.html)
+    if (inputElement && inputElement.name) {
+        const spanEl = document.getElementById('error-' + inputElement.name);
+        if (spanEl) {
+            spanEl.textContent = message;
+            spanEl.style.color = '#dc2626';
+            spanEl.style.fontSize = '12px';
+            spanEl.style.marginTop = '4px';
+            spanEl.style.display = 'block';
+            inputElement.classList.add('input-error');
+            inputElement.style.borderColor = '#dc2626';
+            return;
+        }
+    }
+
+    // Dynamic approach: remove existing error then insert a new span
     removeError(inputElement);
 
-    // Create error message element
     const errorEl = document.createElement('span');
     errorEl.className = 'error-message';
     errorEl.textContent = message;
 
-    // Add red border to input
     inputElement.classList.add('input-error');
     inputElement.style.borderColor = '#dc2626';
 
-    // Insert error after input
     inputElement.parentNode.insertBefore(errorEl, inputElement.nextSibling);
 }
 
@@ -29,9 +41,20 @@ function showError(inputElement, message) {
  * Remove error message from a form field
  */
 function removeError(inputElement) {
+    if (!inputElement) return;
     inputElement.classList.remove('input-error');
     inputElement.style.borderColor = '';
 
+    // Clear legacy id-based span first
+    if (inputElement.name) {
+        const spanEl = document.getElementById('error-' + inputElement.name);
+        if (spanEl) {
+            spanEl.textContent = '';
+            spanEl.style.display = 'none';
+        }
+    }
+
+    // Also remove a dynamically-inserted error span if present
     const errorEl = inputElement.nextElementSibling;
     if (errorEl && errorEl.classList.contains('error-message')) {
         errorEl.remove();
@@ -206,13 +229,14 @@ function validateRegistrationForm(formId) {
     }
 
     // ── Phone ──────────────────────────────────────────────────
-    const phoneInput = form.querySelector('input[name="phone"]');
+    // Support both name="phone" and name="phone_number"
+    const phoneInput = form.querySelector('input[name="phone"]') || form.querySelector('input[name="phone_number"]');
     if (phoneInput) {
         if (!phoneInput.value.trim()) {
             showError(phoneInput, 'Phone Number is required');
             isValid = false;
-        } else if (!/^[0-9]{10,11}$/.test(phoneInput.value.trim())) {
-            showError(phoneInput, 'Phone Number must be 10-11 digits (e.g. 09123456789)');
+        } else if (!/^(09|\+639)[0-9]{8,9}$/.test(phoneInput.value.trim())) {
+            showError(phoneInput, 'Phone Number must start with 09 or +639 (e.g. 09123456789)');
             isValid = false;
         }
     }
@@ -316,21 +340,20 @@ function initRegistrationValidation() {
 
     // Attach click listener to the submit button of each form
     forms.forEach(form => {
-        // Since there are multiple #register-btn IDs (invalid HTML but present), we find the button inside the specific form
-        const registerBtn = form.querySelector('#register-btn') || form.querySelector('a');
+        // Skip forms that already have their own inline submit handler (e.g. studentForm)
+        const registerBtn = form.querySelector('#register-btn, button[type="submit"]');
 
-        if (registerBtn) {
+        if (registerBtn && !registerBtn.dataset.validationBound) {
+            registerBtn.dataset.validationBound = 'true';
             registerBtn.style.cursor = 'pointer';
             registerBtn.addEventListener('click', function (e) {
                 e.preventDefault();
 
-                // Form is already known since we are iterating over forms
                 const formId = form.id;
 
                 if (validateRegistrationForm(formId)) {
                     showSuccessMessage('Registration successful - redirecting...');
                     setTimeout(() => {
-                        // Redirect to the href of the button or submit if it's a real form
                         if (registerBtn.hasAttribute('href')) {
                             window.location.href = registerBtn.getAttribute('href');
                         } else {
@@ -383,12 +406,12 @@ function validateSingleField(input) {
         } else if (!/^\d{4}-\d{4,5}$/.test(value)) {
             showError(input, 'Student ID format must be YYYY-NNNNN (e.g. 2023-01234)');
         }
-        // Phone
-    } else if (input.name === 'phone') {
+        // Phone (supports both name="phone" and name="phone_number")
+    } else if (input.name === 'phone' || input.name === 'phone_number') {
         if (!value) {
             showError(input, 'Phone Number is required');
-        } else if (!/^[0-9]{10,11}$/.test(value)) {
-            showError(input, 'Phone Number must be 10-11 digits (e.g. 09123456789)');
+        } else if (!/^(09|\+639)[0-9]{8,9}$/.test(value)) {
+            showError(input, 'Phone Number must start with 09 or +639 (e.g. 09123456789)');
         }
         // Barangay
     } else if (input.name === 'barangay') {

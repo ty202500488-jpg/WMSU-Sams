@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -7,6 +7,7 @@
     <title>CPPESO Student Collection | WMSU-SAMS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="form.css">
+    <link rel="stylesheet" href="../Global/responsive.css">
 </head>
 
 <body>
@@ -90,14 +91,14 @@
                     <div class="field">
                         <label>Department</label>
                         <select id="department" name="department" required>
-                            <option value="" disabled selected>Select Department</option>
+                            <option value="">Select Department</option>
                             <option value="law">College of Law</option>
                             <option value="coa">College of Agricultue</option>
                             <option value="cla">College of Liberal Arts</option>
                             <option value="architecture">College of Architecture</option>
                             <option value="cn">College of Nursing</option> 
                             <option value="cais">College of Asian & Islamic Studies</option>
-                            <option value="ccs">College of Computer Science</option>
+                            <option value="ccs" selected>College of Computing Colleges</option>
                             <option value="cfes">College of Forestry & Environmental Studies</option>
                             <option value="ccje">College of Criminal Justice Education</option>
                             <option value="che">College of Home Economics</option>
@@ -114,7 +115,9 @@
                         <div class="field">
                             <label>Program</label>
                             <select id="program" name="program" required>
-                                <option value="" disabled selected>Select Program</option>
+                                <option value="ccs" selected>Computer Science</option>
+                               
+                                
                             </select>
                         </div>                   
                 </div>
@@ -432,6 +435,30 @@ departmentSelect.addEventListener("change", function () {
   }
 });
 </script>
+
+    <!-- Mobile Bottom Nav -->
+    <nav class="mobile-bottom-nav">
+        <a href="student_dashboard.html">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="application.html" class="active">
+            <i class="fas fa-file-alt"></i>
+            <span>Apply</span>
+        </a>
+        <a href="positions.html">
+            <i class="fas fa-briefcase"></i>
+            <span>Jobs</span>
+        </a>
+        <a href="notification.html">
+            <i class="fas fa-bell"></i>
+            <span>Alerts</span>
+        </a>
+        <a href="student_profile.html">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </nav>
 </body>
 
 </html>
