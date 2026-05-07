@@ -491,7 +491,7 @@
             <div class="stat-card-top">
               <div>
                 <div class="stat-value" id="attlog-stat-pending">0</div>
-                <div class="stat-label">Pending / Unverified</div>
+                <div class="stat-label">Flagged by Admin</div>
               </div>
               <div class="stat-icon orange"><i class="fas fa-hourglass-half"></i></div>
             </div>
@@ -512,10 +512,6 @@
                   <option value="Library Department">Library Department</option>
                   <option value="IT Office">IT Office</option>
                   <option value="Registrar's Office">Registrar's Office</option>
-                  <option value="Finance Office">Finance Office</option>
-                  <option value="College of Nursing">College of Nursing</option>
-                  <option value="CED Office">CED Office</option>
-                  <option value="CPPPESO Office">CPPPESO Office</option>
                 </select>
               </div>
               <div>
@@ -541,8 +537,8 @@
                 <select id="attlog-filter-status" class="field-input" style="width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid var(--gray-200);font-size:13px;">
                   <option value="">All Statuses</option>
                   <option value="Verified">Verified</option>
-                  <option value="Pending Dept">Pending Dept</option>
-                  <option value="Anomaly">Anomaly</option>
+                  <option value="Flagged">Flagged (Anomaly)</option>
+                  <option value="Sent Back">Sent Back to Dept</option>
                 </select>
               </div>
               <div style="display:flex;gap:8px;align-items:flex-end;">
@@ -567,6 +563,53 @@
         <!-- ── Log Output Container ── -->
         <div id="attlog-output"></div>
 
+        <!-- ══ View Details Modal ══ -->
+        <div id="attlog-detail-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:9000;align-items:center;justify-content:center;padding:20px;">
+          <div style="background:#fff;border-radius:16px;max-width:680px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.25);overflow:hidden;">
+            <div style="background:var(--maroon);color:#fff;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <i class="fas fa-id-card" style="font-size:18px;"></i>
+                <strong style="font-size:16px;">Attendance Record Details</strong>
+              </div>
+              <button onclick="attLog_closeModal('attlog-detail-modal')" style="background:rgba(255,255,255,.15);border:none;color:#fff;border-radius:8px;padding:6px 12px;cursor:pointer;font-size:13px;"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="attlog-detail-body" style="padding:28px;"></div>
+            <div style="padding:16px 28px 24px;text-align:right;">
+              <button class="btn btn-outline btn-sm" onclick="attLog_closeModal('attlog-detail-modal')"><i class="fas fa-times"></i> Close</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ Send Back to Department Modal ══ -->
+        <div id="attlog-sendback-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:9000;align-items:center;justify-content:center;padding:20px;">
+          <div style="background:#fff;border-radius:16px;max-width:520px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.25);overflow:hidden;">
+            <div style="background:#d97706;color:#fff;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <i class="fas fa-reply" style="font-size:18px;"></i>
+                <strong style="font-size:16px;">Send Back to Department</strong>
+              </div>
+              <button onclick="attLog_closeModal('attlog-sendback-modal')" style="background:rgba(255,255,255,.15);border:none;color:#fff;border-radius:8px;padding:6px 12px;cursor:pointer;font-size:13px;"><i class="fas fa-times"></i></button>
+            </div>
+            <div style="padding:24px;">
+              <div style="background:#fff8e1;border:1.5px solid #ffc107;border-radius:10px;padding:12px 16px;margin-bottom:20px;font-size:13px;color:#6b4c00;">
+                <i class="fas fa-info-circle" style="margin-right:6px;"></i>
+                <span id="attlog-sb-info"></span>
+              </div>
+              <div style="margin-bottom:8px;">
+                <label style="font-size:11px;font-weight:700;color:#777;text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:8px;">
+                  <i class="fas fa-comment-alt" style="margin-right:5px;color:#d97706;"></i>Reason / Remarks <span style="color:var(--red);">*</span>
+                </label>
+                <textarea id="attlog-sb-remarks" rows="4" placeholder="Describe why this attendance record is being sent back (e.g., incorrect time-out, missing signature, duplicate entry)..." style="width:100%;padding:12px;border-radius:10px;border:1.5px solid var(--gray-200);font-size:13px;resize:vertical;font-family:inherit;box-sizing:border-box;"></textarea>
+                <div style="font-size:11px;color:#aaa;margin-top:4px;">Minimum 5 characters required. This will be logged and visible to the department.</div>
+              </div>
+            </div>
+            <div style="padding:0 24px 24px;display:flex;gap:10px;justify-content:flex-end;">
+              <button class="btn btn-outline btn-sm" onclick="attLog_closeModal('attlog-sendback-modal')"><i class="fas fa-times"></i> Cancel</button>
+              <button class="btn btn-sm" onclick="attLog_confirmSendBack()" style="background:#d97706;color:#fff;border:none;padding:9px 20px;border-radius:9px;font-weight:600;cursor:pointer;font-size:13px;"><i class="fas fa-paper-plane"></i> Confirm Send Back</button>
+            </div>
+          </div>
+        </div>
+
       </section>
 
       <script>
@@ -574,33 +617,30 @@
            ATTENDANCE LOG — DATA & LOGIC
         ═══════════════════════════════════════════════════════ */
         const ATTLOG_DATA = [
-          // Library — 2nd Sem 2026
-          { id:1, date:'2026-05-07', student:'Luz Mendoza',    dept:'Library Department',   batch:'2nd Sem 2026', timeIn:'08:02 AM', timeOut:'05:05 PM', hours:8.0, status:'Verified' },
-          { id:2, date:'2026-05-07', student:'Karl Reyes',     dept:'Library Department',   batch:'2nd Sem 2026', timeIn:'08:15 AM', timeOut:'05:10 PM', hours:7.5, status:'Verified' },
-          { id:3, date:'2026-05-06', student:'Luz Mendoza',    dept:'Library Department',   batch:'2nd Sem 2026', timeIn:'08:00 AM', timeOut:'05:00 PM', hours:8.0, status:'Verified' },
-          { id:4, date:'2026-05-06', student:'Karl Reyes',     dept:'Library Department',   batch:'2nd Sem 2026', timeIn:'08:10 AM', timeOut:'04:50 PM', hours:7.5, status:'Anomaly' },
-          { id:5, date:'2026-05-05', student:'Luz Mendoza',    dept:'Library Department',   batch:'2nd Sem 2026', timeIn:'08:05 AM', timeOut:'05:00 PM', hours:7.9, status:'Verified' },
-          // IT Office — 2nd Sem 2026
-          { id:6, date:'2026-05-07', student:'Juan Dela Cruz', dept:'IT Office',            batch:'2nd Sem 2026', timeIn:'07:55 AM', timeOut:'04:55 PM', hours:8.0, status:'Pending Dept' },
-          { id:7, date:'2026-05-07', student:'Ana Reyes',      dept:'IT Office',            batch:'2nd Sem 2026', timeIn:'08:00 AM', timeOut:'—',        hours:0,   status:'Anomaly' },
-          { id:8, date:'2026-05-06', student:'Juan Dela Cruz', dept:'IT Office',            batch:'2nd Sem 2026', timeIn:'08:00 AM', timeOut:'05:00 PM', hours:8.0, status:'Verified' },
-          // Finance Office — 2nd Sem 2026
-          { id:9, date:'2026-05-07', student:'Carlos Mendez',  dept:'Finance Office',       batch:'2nd Sem 2026', timeIn:'08:30 AM', timeOut:'05:30 PM', hours:8.0, status:'Verified' },
-          { id:10, date:'2026-05-06', student:'Carlos Mendez', dept:'Finance Office',       batch:'2nd Sem 2026', timeIn:'08:25 AM', timeOut:'05:25 PM', hours:8.0, status:'Verified' },
-          { id:11, date:'2026-05-05', student:'Maria Santos',  dept:'Finance Office',       batch:'2nd Sem 2026', timeIn:'08:00 AM', timeOut:'05:00 PM', hours:8.0, status:'Verified' },
-          // Registrar's Office — 2nd Sem 2026
-          { id:12, date:'2026-05-07', student:'Rose Caballero',dept:"Registrar's Office",   batch:'2nd Sem 2026', timeIn:'08:10 AM', timeOut:'05:10 PM', hours:8.0, status:'Pending Dept' },
-          { id:13, date:'2026-05-06', student:'Rose Caballero',dept:"Registrar's Office",   batch:'2nd Sem 2026', timeIn:'08:05 AM', timeOut:'05:05 PM', hours:8.0, status:'Verified' },
-          // CED Office — 1st Sem 2026
-          { id:14, date:'2026-01-10', student:'Ben Torres',    dept:'CED Office',           batch:'1st Sem 2026', timeIn:'08:00 AM', timeOut:'05:00 PM', hours:8.0, status:'Verified' },
-          { id:15, date:'2026-01-11', student:'Ben Torres',    dept:'CED Office',           batch:'1st Sem 2026', timeIn:'08:15 AM', timeOut:'05:00 PM', hours:7.8, status:'Verified' },
-          { id:16, date:'2026-01-12', student:'Lea Gomez',     dept:'CED Office',           batch:'1st Sem 2026', timeIn:'08:00 AM', timeOut:'05:00 PM', hours:8.0, status:'Anomaly' },
-          // College of Nursing — 1st Sem 2026
-          { id:17, date:'2026-01-10', student:'Nina Flores',   dept:'College of Nursing',   batch:'1st Sem 2026', timeIn:'07:45 AM', timeOut:'04:45 PM', hours:8.0, status:'Verified' },
-          { id:18, date:'2026-01-11', student:'Nina Flores',   dept:'College of Nursing',   batch:'1st Sem 2026', timeIn:'07:50 AM', timeOut:'04:50 PM', hours:8.0, status:'Verified' },
-          // CPPPESO — 2nd Sem 2026
-          { id:19, date:'2026-05-07', student:'Mark Tan',      dept:'CPPPESO Office',       batch:'2nd Sem 2026', timeIn:'08:00 AM', timeOut:'05:00 PM', hours:8.0, status:'Verified' },
-          { id:20, date:'2026-05-06', student:'Mark Tan',      dept:'CPPPESO Office',       batch:'2nd Sem 2026', timeIn:'08:00 AM', timeOut:'05:00 PM', hours:8.0, status:'Verified' },
+          // Library Department — 2nd Sem 2026 (Luz Mendoza, Juan Dela Cruz, Rosa Flores, Karl Reyes)
+          { id:1,  date:'2026-05-07', student:'Luz Mendoza',   studentId:'2022-0331', course:'BSIT', year:'3rd Year', position:'Library Assistant', dept:'Library Department', batch:'2nd Sem 2026', contact:'luz.mendoza@wmsu.edu.ph',   timeIn:'08:02 AM', timeOut:'05:05 PM', hours:8.0, status:'Verified' },
+          { id:2,  date:'2026-05-07', student:'Juan Dela Cruz', studentId:'2023-0089', course:'BSED', year:'2nd Year', position:'Cataloging Aide',   dept:'Library Department', batch:'2nd Sem 2026', contact:'juan.delacruz@wmsu.edu.ph', timeIn:'08:05 AM', timeOut:'05:00 PM', hours:7.9, status:'Verified' },
+          { id:3,  date:'2026-05-07', student:'Rosa Flores',    studentId:'2023-0215', course:'BSBA', year:'2nd Year', position:'Library Assistant', dept:'Library Department', batch:'2nd Sem 2026', contact:'rosa.flores@wmsu.edu.ph',   timeIn:'08:00 AM', timeOut:'05:00 PM', hours:8.0, status:'Verified' },
+          { id:4,  date:'2026-05-07', student:'Karl Reyes',     studentId:'2025-0067', course:'BSIT', year:'1st Year', position:'Records Aide',      dept:'Library Department', batch:'2nd Sem 2026', contact:'karl.reyes@wmsu.edu.ph',    timeIn:'08:10 AM', timeOut:'05:05 PM', hours:7.9, status:'Verified' },
+          { id:5,  date:'2026-05-06', student:'Luz Mendoza',   studentId:'2022-0331', course:'BSIT', year:'3rd Year', position:'Library Assistant', dept:'Library Department', batch:'2nd Sem 2026', contact:'luz.mendoza@wmsu.edu.ph',   timeIn:'08:00 AM', timeOut:'05:00 PM', hours:8.0, status:'Verified' },
+          { id:6,  date:'2026-05-06', student:'Juan Dela Cruz', studentId:'2023-0089', course:'BSED', year:'2nd Year', position:'Cataloging Aide',   dept:'Library Department', batch:'2nd Sem 2026', contact:'juan.delacruz@wmsu.edu.ph', timeIn:'07:58 AM', timeOut:'04:58 PM', hours:8.0, status:'Verified' },
+          { id:7,  date:'2026-05-06', student:'Rosa Flores',    studentId:'2023-0215', course:'BSBA', year:'2nd Year', position:'Library Assistant', dept:'Library Department', batch:'2nd Sem 2026', contact:'rosa.flores@wmsu.edu.ph',   timeIn:'08:00 AM', timeOut:'05:00 PM', hours:8.0, status:'Verified' },
+          { id:8,  date:'2026-05-06', student:'Karl Reyes',     studentId:'2025-0067', course:'BSIT', year:'1st Year', position:'Records Aide',      dept:'Library Department', batch:'2nd Sem 2026', contact:'karl.reyes@wmsu.edu.ph',    timeIn:'08:05 AM', timeOut:'05:05 PM', hours:8.0, status:'Verified' },
+          { id:9,  date:'2026-05-05', student:'Luz Mendoza',   studentId:'2022-0331', course:'BSIT', year:'3rd Year', position:'Library Assistant', dept:'Library Department', batch:'2nd Sem 2026', contact:'luz.mendoza@wmsu.edu.ph',   timeIn:'08:03 AM', timeOut:'05:01 PM', hours:8.0, status:'Verified' },
+          { id:10, date:'2026-05-05', student:'Rosa Flores',    studentId:'2023-0215', course:'BSBA', year:'2nd Year', position:'Library Assistant', dept:'Library Department', batch:'2nd Sem 2026', contact:'rosa.flores@wmsu.edu.ph',   timeIn:'08:00 AM', timeOut:'05:00 PM', hours:8.0, status:'Verified' },
+          // IT Office — 2nd Sem 2026 (Juan Dela Cruz)
+          { id:11, date:'2026-05-07', student:'Juan Dela Cruz', studentId:'2023-0089', course:'BSED', year:'2nd Year', position:'IT Lab Assistant',  dept:'IT Office',          batch:'2nd Sem 2026', contact:'juan.delacruz@wmsu.edu.ph', timeIn:'07:55 AM', timeOut:'04:55 PM', hours:8.0, status:'Verified' },
+          { id:12, date:'2026-05-06', student:'Juan Dela Cruz', studentId:'2023-0089', course:'BSED', year:'2nd Year', position:'IT Lab Assistant',  dept:'IT Office',          batch:'2nd Sem 2026', contact:'juan.delacruz@wmsu.edu.ph', timeIn:'08:00 AM', timeOut:'05:00 PM', hours:8.0, status:'Verified' },
+          { id:13, date:'2026-05-05', student:'Juan Dela Cruz', studentId:'2023-0089', course:'BSED', year:'2nd Year', position:'IT Lab Assistant',  dept:'IT Office',          batch:'2nd Sem 2026', contact:'juan.delacruz@wmsu.edu.ph', timeIn:'08:02 AM', timeOut:'05:00 PM', hours:8.0, status:'Verified' },
+          // Registrar's Office — 2nd Sem 2026 (Karl Reyes)
+          { id:14, date:'2026-05-07', student:'Karl Reyes',     studentId:'2025-0067', course:'BSIT', year:'1st Year', position:'Records Aide',      dept:"Registrar's Office", batch:'2nd Sem 2026', contact:'karl.reyes@wmsu.edu.ph',    timeIn:'08:10 AM', timeOut:'05:05 PM', hours:7.9, status:'Verified' },
+          { id:15, date:'2026-05-06', student:'Karl Reyes',     studentId:'2025-0067', course:'BSIT', year:'1st Year', position:'Records Aide',      dept:"Registrar's Office", batch:'2nd Sem 2026', contact:'karl.reyes@wmsu.edu.ph',    timeIn:'08:05 AM', timeOut:'05:00 PM', hours:8.0, status:'Verified' },
+          // Library Department — 1st Sem 2026
+          { id:16, date:'2026-01-10', student:'Luz Mendoza',   studentId:'2022-0331', course:'BSIT', year:'3rd Year', position:'Library Assistant', dept:'Library Department', batch:'1st Sem 2026', contact:'luz.mendoza@wmsu.edu.ph',   timeIn:'08:00 AM', timeOut:'05:00 PM', hours:8.0, status:'Verified' },
+          { id:17, date:'2026-01-10', student:'Juan Dela Cruz', studentId:'2023-0089', course:'BSED', year:'2nd Year', position:'Cataloging Aide',   dept:'Library Department', batch:'1st Sem 2026', contact:'juan.delacruz@wmsu.edu.ph', timeIn:'08:05 AM', timeOut:'05:00 PM', hours:7.9, status:'Verified' },
+          { id:18, date:'2026-01-11', student:'Rosa Flores',    studentId:'2023-0215', course:'BSBA', year:'2nd Year', position:'Library Assistant', dept:'Library Department', batch:'1st Sem 2026', contact:'rosa.flores@wmsu.edu.ph',   timeIn:'07:58 AM', timeOut:'04:58 PM', hours:8.0, status:'Verified' },
+          { id:19, date:'2026-01-11', student:'Karl Reyes',     studentId:'2025-0067', course:'BSIT', year:'1st Year', position:'Records Aide',      dept:'Library Department', batch:'1st Sem 2026', contact:'karl.reyes@wmsu.edu.ph',    timeIn:'08:00 AM', timeOut:'05:00 PM', hours:8.0, status:'Verified' },
+          { id:20, date:'2026-01-12', student:'Luz Mendoza',   studentId:'2022-0331', course:'BSIT', year:'3rd Year', position:'Library Assistant', dept:'Library Department', batch:'1st Sem 2026', contact:'luz.mendoza@wmsu.edu.ph',   timeIn:'08:01 AM', timeOut:'05:01 PM', hours:8.0, status:'Verified' },
         ];
 
         let attLogView = 'dept';
@@ -616,11 +656,11 @@
           const total = attLogFiltered.length;
           const depts = new Set(attLogFiltered.map(r => r.dept)).size;
           const verified = attLogFiltered.filter(r => r.status === 'Verified').length;
-          const pending = attLogFiltered.filter(r => r.status !== 'Verified').length;
+          const flagged = attLogFiltered.filter(r => r.status === 'Flagged' || r.status === 'Sent Back').length;
           document.getElementById('attlog-stat-total').textContent = total.toLocaleString();
           document.getElementById('attlog-stat-depts').textContent = depts;
           document.getElementById('attlog-stat-verified').textContent = verified;
-          document.getElementById('attlog-stat-pending').textContent = pending;
+          document.getElementById('attlog-stat-pending').textContent = flagged;
           document.getElementById('attlog-result-count').textContent = `Showing ${total} record${total !== 1 ? 's' : ''}`;
         }
 
@@ -661,38 +701,131 @@
         }
 
         function attLog_statusBadge(s) {
-          const map = { 'Verified': 'approved', 'Pending Dept': 'pending', 'Anomaly': 'rejected' };
+          const map = { 'Verified': 'approved', 'Flagged': 'rejected', 'Sent Back': 'pending' };
           return `<span class="badge ${map[s] || ''}">${s}</span>`;
         }
 
         function attLog_tableRows(rows) {
-          if (!rows.length) return `<tr><td colspan="7" style="text-align:center;color:#aaa;padding:28px;">No records found.</td></tr>`;
+          if (!rows.length) return `<tr><td colspan="8" style="text-align:center;color:#aaa;padding:28px;"><i class="fas fa-inbox" style="opacity:.3;font-size:22px;display:block;margin-bottom:8px;"></i>No records found.</td></tr>`;
           return rows.map(r => `
-            <tr>
-              <td>${new Date(r.date + 'T00:00:00').toLocaleDateString('en-PH',{year:'numeric',month:'short',day:'2-digit'})}</td>
-              <td class="td-name">${r.student}</td>
-              <td>${r.dept}</td>
-              <td>${r.batch}</td>
-              <td>${r.timeIn}</td>
-              <td>${r.timeOut}</td>
-              <td>${r.hours > 0 ? r.hours.toFixed(1) + ' hrs' : '—'}</td>
+            <tr data-id="${r.id}">
+              <td style="white-space:nowrap;font-size:12px;">${new Date(r.date + 'T00:00:00').toLocaleDateString('en-PH',{year:'numeric',month:'short',day:'2-digit'})}</td>
+              <td style="min-width:190px;">
+                <div class="td-name" style="font-size:13px;margin-bottom:1px;">${r.student}</div>
+                <div style="font-size:11px;color:#777;font-weight:500;">${r.studentId}</div>
+                <div style="font-size:11px;color:#4f87c5;"><i class="fas fa-envelope" style="font-size:9px;margin-right:3px;"></i>${r.contact}</div>
+              </td>
+              <td style="min-width:110px;">
+                <div style="font-weight:700;font-size:12px;color:var(--maroon);">${r.course}</div>
+                <div style="font-size:11px;color:#888;">${r.year}</div>
+              </td>
+              <td style="font-size:12px;min-width:120px;">${r.position}</td>
+              <td style="min-width:140px;">
+                <div style="font-size:12px;font-weight:600;">${r.dept}</div>
+                <div style="font-size:10px;color:#888;margin-top:2px;"><i class="fas fa-layer-group" style="font-size:9px;margin-right:3px;"></i>${r.batch}</div>
+              </td>
+              <td style="white-space:nowrap;min-width:130px;">
+                <div style="font-size:12px;"><i class="fas fa-sign-in-alt" style="color:var(--green);font-size:10px;margin-right:4px;"></i>${r.timeIn}</div>
+                <div style="font-size:12px;margin-top:2px;"><i class="fas fa-sign-out-alt" style="color:var(--maroon);font-size:10px;margin-right:4px;"></i>${r.timeOut}</div>
+              </td>
+              <td style="font-weight:700;font-size:13px;white-space:nowrap;">${r.hours > 0 ? r.hours.toFixed(1) + ' hrs' : '<span style="color:#aaa;">—</span>'}</td>
               <td>${attLog_statusBadge(r.status)}</td>
+              <td style="min-width:140px;">
+                <div style="display:flex;flex-direction:column;gap:5px;">
+                  <button class="btn btn-sm btn-outline" onclick="attLog_viewDetails(${r.id})" style="padding:4px 10px;font-size:11px;width:100%;"><i class="fas fa-eye" style="margin-right:4px;"></i>Details</button>
+                  ${r.status !== 'Flagged' ? `<button onclick="attLog_flagAnomaly(${r.id})" style="padding:4px 10px;font-size:11px;width:100%;background:#fce8e8;border:1.5px solid var(--red);color:var(--red);border-radius:7px;cursor:pointer;font-weight:600;"><i class="fas fa-flag" style="margin-right:4px;"></i>Flag Anomaly</button>` : `<button onclick="attLog_clearFlag(${r.id})" style="padding:4px 10px;font-size:11px;width:100%;background:#e8f5e9;border:1.5px solid var(--green);color:var(--green);border-radius:7px;cursor:pointer;font-weight:600;"><i class="fas fa-check" style="margin-right:4px;"></i>Clear Flag</button>`}
+                  <button onclick="attLog_openSendBack(${r.id})" style="padding:4px 10px;font-size:11px;width:100%;background:#fff8e1;border:1.5px solid #ffc107;color:#856404;border-radius:7px;cursor:pointer;font-weight:600;"><i class="fas fa-reply" style="margin-right:4px;"></i>Send Back</button>
+                </div>
+              </td>
             </tr>`).join('');
         }
 
         function attLog_tableHTML(rows) {
           return `
-            <div class="table-wrap">
-              <table class="table">
+            <div style="overflow-x:auto;width:100%;">
+              <table class="table" style="font-size:13px;min-width:860px;border-collapse:collapse;width:100%;">
                 <thead>
                   <tr>
-                    <th>Date</th><th>Student Name</th><th>Department</th><th>Batch</th>
-                    <th>Time In</th><th>Time Out</th><th>Hours</th><th>Status</th>
+                    <th style="white-space:nowrap;">Date</th>
+                    <th style="min-width:190px;">Student Info</th>
+                    <th>Course / Year</th>
+                    <th>Position</th>
+                    <th>Dept / Batch</th>
+                    <th style="white-space:nowrap;">Time In / Out</th>
+                    <th>Hours</th>
+                    <th>Status</th>
+                    <th style="min-width:120px;">Actions</th>
                   </tr>
                 </thead>
                 <tbody>${attLog_tableRows(rows)}</tbody>
               </table>
             </div>`;
+        }
+
+        /* ── View Details Modal ── */
+        function attLog_viewDetails(id) {
+          const r = ATTLOG_DATA.find(x => x.id === id);
+          if (!r) return;
+          document.getElementById('attlog-detail-body').innerHTML = `
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+              <div><label style="font-size:11px;font-weight:700;color:#888;text-transform:uppercase;">Student Name</label><div style="font-size:15px;font-weight:700;color:var(--maroon);margin-top:3px;">${r.student}</div></div>
+              <div><label style="font-size:11px;font-weight:700;color:#888;text-transform:uppercase;">Student ID</label><div style="font-size:14px;font-weight:600;margin-top:3px;">${r.studentId}</div></div>
+              <div><label style="font-size:11px;font-weight:700;color:#888;text-transform:uppercase;">Course & Year</label><div style="margin-top:3px;">${r.course} — ${r.year}</div></div>
+              <div><label style="font-size:11px;font-weight:700;color:#888;text-transform:uppercase;">Position</label><div style="margin-top:3px;">${r.position}</div></div>
+              <div><label style="font-size:11px;font-weight:700;color:#888;text-transform:uppercase;">Department</label><div style="margin-top:3px;">${r.dept}</div></div>
+              <div><label style="font-size:11px;font-weight:700;color:#888;text-transform:uppercase;">Batch</label><div style="margin-top:3px;">${r.batch}</div></div>
+              <div><label style="font-size:11px;font-weight:700;color:#888;text-transform:uppercase;">Contact Email</label><div style="margin-top:3px;font-size:12px;">${r.contact}</div></div>
+              <div><label style="font-size:11px;font-weight:700;color:#888;text-transform:uppercase;">Date</label><div style="margin-top:3px;">${new Date(r.date+'T00:00:00').toLocaleDateString('en-PH',{weekday:'long',year:'numeric',month:'long',day:'numeric'})}</div></div>
+              <div><label style="font-size:11px;font-weight:700;color:#888;text-transform:uppercase;">Time In</label><div style="margin-top:3px;font-size:15px;font-weight:700;color:var(--green);">${r.timeIn}</div></div>
+              <div><label style="font-size:11px;font-weight:700;color:#888;text-transform:uppercase;">Time Out</label><div style="margin-top:3px;font-size:15px;font-weight:700;color:var(--maroon);">${r.timeOut}</div></div>
+              <div><label style="font-size:11px;font-weight:700;color:#888;text-transform:uppercase;">Total Hours</label><div style="margin-top:3px;font-size:15px;font-weight:700;">${r.hours > 0 ? r.hours.toFixed(1) + ' hrs' : '—'}</div></div>
+              <div><label style="font-size:11px;font-weight:700;color:#888;text-transform:uppercase;">Status</label><div style="margin-top:5px;">${attLog_statusBadge(r.status)}</div></div>
+            </div>`;
+          document.getElementById('attlog-detail-modal').style.display = 'flex';
+        }
+
+        /* ── Send Back to Department Modal ── */
+        let attLog_sendBackId = null;
+        function attLog_openSendBack(id) {
+          attLog_sendBackId = id;
+          const r = ATTLOG_DATA.find(x => x.id === id);
+          if (!r) return;
+          document.getElementById('attlog-sb-info').innerHTML =
+            `<strong>${r.student}</strong> &bull; ${r.dept} &bull; ${new Date(r.date+'T00:00:00').toLocaleDateString('en-PH',{month:'short',day:'2-digit',year:'numeric'})} &bull; ${r.timeIn} – ${r.timeOut}`;
+          document.getElementById('attlog-sb-remarks').value = '';
+          document.getElementById('attlog-sendback-modal').style.display = 'flex';
+        }
+
+        function attLog_confirmSendBack() {
+          const remarks = document.getElementById('attlog-sb-remarks').value.trim();
+          if (remarks.length < 5) {
+            alert('Please provide a reason (minimum 5 characters).');
+            return;
+          }
+          const r = ATTLOG_DATA.find(x => x.id === attLog_sendBackId);
+          if (r) r.status = 'Sent Back';
+          document.getElementById('attlog-sendback-modal').style.display = 'none';
+          attLog_applyFilters();
+          attLog_updateStats();
+          if (window.showAlert) showAlert('Sent Back', `Attendance record sent back to ${r ? r.dept : 'department'} for correction. Reason logged.`, 'success');
+        }
+
+        function attLog_closeModal(id) {
+          document.getElementById(id).style.display = 'none';
+        }
+
+        function attLog_flagAnomaly(id) {
+          if (!confirm('Flag this record as an anomaly? It will be marked for review.')) return;
+          const r = ATTLOG_DATA.find(x => x.id === id);
+          if (r) { r.status = 'Flagged'; attLog_applyFilters(); attLog_updateStats(); }
+          if (window.showAlert) showAlert('Flagged', 'Record has been flagged as an anomaly for review.', 'success');
+        }
+
+        function attLog_clearFlag(id) {
+          if (!confirm('Clear this flag and restore to Verified?')) return;
+          const r = ATTLOG_DATA.find(x => x.id === id);
+          if (r) { r.status = 'Verified'; attLog_applyFilters(); attLog_updateStats(); }
+          if (window.showAlert) showAlert('Cleared', 'Flag cleared. Record restored to Verified.', 'success');
         }
 
         function attLog_groupHeader(icon, title, count, color) {
@@ -753,8 +886,12 @@
 
         function attLog_exportCSV() {
           if (!attLogFiltered.length) { if(window.showAlert) showAlert('No Data', 'No records to export.', 'error'); return; }
-          const headers = ['Date','Student','Department','Batch','Time In','Time Out','Hours','Status'];
-          const rows = attLogFiltered.map(r => [r.date, r.student, r.dept, r.batch, r.timeIn, r.timeOut, r.hours || '—', r.status].map(v => `"${v}"`).join(','));
+          const headers = ['Date','Student Name','Student ID','Email','Course','Year','Position','Department','Batch','Time In','Time Out','Hours','Status'];
+          const rows = attLogFiltered.map(r => [
+            r.date, r.student, r.studentId, r.contact, r.course, r.year,
+            r.position, r.dept, r.batch, r.timeIn, r.timeOut,
+            r.hours > 0 ? r.hours.toFixed(1) : '—', r.status
+          ].map(v => `"${v}"`).join(','));
           const csv = [headers.join(','), ...rows].join('\n');
           const blob = new Blob([csv], { type: 'text/csv' });
           const url = URL.createObjectURL(blob);
